@@ -1,38 +1,23 @@
 # For rdoggett
 
-Open questions only. Nothing here is decided. Updated 2026-09-15.
+Things that need YOU to decide or direct -- nothing else.  Nothing here is
+decided; anything that gets decided leaves this file the same day.  The item
+numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
+and the gaps are deliberate: a missing number is an answered question.
+Updated 2026-09-16.
 
 ## Yours alone -- nothing I can do about these
 
-1. **Nothing is pushed, tagged or merged.** The branch has never left this
-   machine; the CI pin is an old os9exec commit and has never run.
-   **Before a release, that pin MUST move past an os9exec fix that is not
-   in yet** (2026-09-13): the Linux build of os9exec renames every file
-   starting with `.' on an RBF image, and CI builds the image on Ubuntu --
-   so a CI-built image would carry `.bashrc', `.newsrc' and `.ELM' under
-   wrong names.  Fixed in os9exec **4d26520** (fix/scf-pd-eor, not pushed
-   yet); the CI pin must be at or past it.  The handoff has the detail.
-
-   **That branch now also carries a CPU fix, and the pin should take it
-   too** (2026-09-14): NEG and NBCD never set the 68000's X flag, so
-   Microware's software doubles came out wrong -- 1.0-1.0 was -2^-20.
-   209b35c, reviewed by the os9exec session, with its tests at d56b1bd,
-   the branch tip.  The image a CI build writes is not affected (tar
-   extracts no floating point), but every figure a program prints under
-   an older os9exec is, and this repo's cases, cards and
-   DOC/README-FLOATINGPOINT are now written against the fixed one.
-   `notes/os9exec-bugs/X-FLAG.md` has it.  The pin today is 261b4b6.
-
-   **And it must reach b3145c3, better d74b174** (2026-09-14, late; the later
-   commits fix renames and moves on host directories and makdir's error).  Before b3145c3, two update
-   paths on one RBF sector lost each other's writes, so every `move' left
-   two names on one file -- image corruption.  b3145c3 also carries
-   143152b (F$GPrDsc read past its process table).  All unpushed.
-
-   **Now better still: 40facae** (2026-09-15).  F$Alarm ignored the bit that
-   means 256ths of a second, so no alarm() from the disk's unix.l ever
-   fired.  atc's clock runs only on 40facae or later; its card and
-   play-test are shot against that build.  Also unpushed.
+1. **Nothing is pushed, tagged or merged, and the CI pin must move first.**
+   The branch has never left this machine and the workflow has never run.
+   `.github/workflows/build-image.yml` pins os9exec at 261b4b6; before a
+   release it needs to be at or past **40facae**, four fixes later -- Linux
+   renaming every dot-file on an RBF image (a CI-built image would carry
+   `.bashrc` and `.newsrc` under wrong names), the 68000 X flag, two RBF
+   update paths losing each other's writes, and F$Alarm.  All four are
+   unpushed, on os9exec's `fix/scf-pd-eor`.  The detail is in the handoff,
+   PLAN.md, ROADMAP-freeware.md and notes/os9exec-bugs/X-FLAG.md; what is
+   yours is pushing, tagging and moving the pin.
 
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
@@ -54,15 +39,12 @@ Open questions only. Nothing here is decided. Updated 2026-09-15.
    twin, and should edits reach it?  Until you say, I keep writing in place,
    as every generator here always has; rsconvert is the one file detached.
 
-19. **My play-test harness wrote a hack save file into YOUR osk-freeware.dd.**
-   `tools/playtest.py' never passed OS9H0, so os9exec mounted the repo's `h0'
-   link -- your image -- as /h0 on every play-test run tonight, beside
-   whatever emulator you had open.  hack's playground is an /h0 path, so
-   `GAMES/HACK/PLAYGROUND/save/0tester' (16,593 bytes, 22:39 on 2026-09-14)
-   landed on your image; nothing else dated tonight is there.  Fixed in
-   29d879b6.  I have not removed the file while your emulator holds the
-   image.  Delete it (`del /dd/GAMES/HACK/PLAYGROUND/save/0tester'), or say
-   so and I will do it once the image is closed.
+19. **A stray save file of mine is sitting on YOUR osk-freeware.dd.**  My
+   play-test harness mounted your image as /h0 on 2026-09-14 and hack wrote
+   `GAMES/HACK/PLAYGROUND/save/0tester` (16,593 bytes, 22:39) into it.  The
+   harness bug is fixed (29d879b6) and nothing else of mine is on it.
+   Delete it (`del /dd/GAMES/HACK/PLAYGROUND/save/0tester`), or say the word
+   and I will, once your emulator has let the image go.
 
 ## Licence and authorship questions the card-terms pass turned up (2026-09-14)
 

@@ -63,7 +63,12 @@ Name a pool file by what `file`/its listing shows, never by its filename.
 
 ---
 
-## Open questions for rdoggett (do not ship these until answered)
+## Rulings from rdoggett -- ALL FOUR ARE ANSWERED
+
+This is a record, not a queue.  **The live list of what needs him is
+`notes/FOR-RDOGGETT.md` and nothing else.**  Two files holding open
+questions is how both came to hold answered ones; if something here
+reopens, it goes there, not back into this section.
 
 1. **"Free, but non-commercial" terms.**  TOP's os9lib, vcron, scpp; the rogue
    clone; agrep 2.01; MNews; PtyMan.  **SETTLED 2026-09-11: accepted.**
@@ -88,16 +93,29 @@ Name a pool file by what `file`/its listing shows, never by its filename.
    hold dvips.c -- that is the filename shift this file warns about in
    these five categories, not a misnamed archive at the source.
    (Recommendation: add them.)
+   **SETTLED IN PART 2026-09-14 (rdoggett's decision 1): the source was
+   staged.**  SRC/gawk2.0 (28 files), SRC/bison (39) and SRC/dvips (65
+   top-level .c/.h plus the archive's own OS9/ port files), all CR-only and
+   recorded in SOURCES.txt with their terms.  What is still undecided is the
+   REST -- GCC139, the other GCC2 passes and dvipsk 5.495b, for which no
+   matching source exists here -- and that is FOR-RDOGGETT item 20.  Do not
+   re-ask the general question; ask only about those.
 3. **`jive` (1987, comp.sources.games v01i003).**  It builds and runs --
    `Sheeit, dis be a big-ass scribblin'` -- but it is a joke filter built on
    a racial caricature of Black speech, and a gallery card would showcase
    that.  Held, not shipped.  Everything needed is kept at
    `Scraped/acquisitions-2026-09-11/unix/jive-built-2026-09-11/` (flex output,
-   `libl.c` for `yywrap`, the posting, the built module).  Ship or leave?
+   `libl.c` for `yywrap`, the posting, the built module).
+   **SETTLED 2026-09-13 (decision 3): jive stays OUT.**  No N-word in it,
+   but `wet-back' and `greaser' are in its vocabulary, which is the test
+   rdoggett set even though the word he named is absent.  `valspeak', the
+   companion filter from the same distribution, ships and is clean.
 4. **`xmas` signs off "from The ghost of Robert past"** -- the OS-9 port's own
    change to the line the source invites you to change.  Kept as the port
-   shipped it, with nothing on the card saying whose it is.  Say if it
-   should read otherwise.
+   shipped it, with nothing on the card saying whose it is.
+   **SETTLED (decision 9, which rdoggett left to me): xmas stays as the
+   port shipped it.**  It is a real animated program and the sign-off is
+   the OS-9 porter's own, not ours to rewrite.
 
 Settled: the Star Wars ASCIImation is dropped (no grant from its author).
 `sl` is left out (only a 2015 rewrite survives).  The VT100 `.vt` movies are
