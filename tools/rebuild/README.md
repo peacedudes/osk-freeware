@@ -189,7 +189,8 @@ use `KNR=<files>` with `CPP2`.
 | `GCC` | build with the disk's own GCC 2.5.6, which is what several ports were written for |
 | `TRAPFREE` | link stdio into the module (`-qm`) instead of using the `cio` trap handler |
 
-`CPP2` is worth reaching for beyond the 512-character line it was written for:
+`CPP2` is worth reaching for beyond the long-line bus error it was written for
+(about 500 characters, not a fixed 512 -- see the table above):
 it also searches `-I` directories for an include name containing a DIRECTORY,
 which Microware's cpp will not do, and it is the only path whose temporaries
 survive two sources sharing a basename.

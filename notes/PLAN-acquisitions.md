@@ -1366,8 +1366,9 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 mz|mz|mz.c mzio.c sgtty.c||/dd/LIB/termlib.l|.  Terms: "may
                 be used and distributed freely ... name retained".
 
-    sol, solx   DONE (33739d93) -- cpp's 512-character line counted after
-                joining continued help strings, even in a skipped #if, so
+    sol, solx   DONE (33739d93) -- cpp's line limit (about 500, not the
+                fixed 512 this row used to name) counted after joining
+                continued help strings, even in a skipped #if, so
                 they print a line at a time; termlib's BC and UP are
                 pointers the programs wrote as arrays; SIGTERM; ioctl shim
     jumble2     DONE (c622dbe9) -- GAMES/words, GAMES/JUMBLE2/scores,
