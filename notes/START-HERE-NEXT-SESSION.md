@@ -615,6 +615,51 @@ Open:
      `tools/check_disk.py disk 2>&1 | tail -31' printed a FAILED line and
      then `exit 0' -- the 0 was the pipeline's, not the checker's.
 
+  2ae. **Three more 1990 IOCCC entries shipped (574622f1): dds, theorem,
+     westley.**  All eleven are public domain under the contest's rule 5;
+     seven were left after the earlier four.  dds is a BASIC interpreter in
+     1536 characters -- it prompts `Ok', takes numbered lines, and RUN and
+     LIST work; theorem is Best of Show, a Runge-Kutta solver that reaches
+     e and is also a reversing filter; westley is Best Layout, a daisy
+     picked petal by petal from source written to read as a letter.
+     **READ THE PACKAGE'S OWN MAKEFILE BEFORE CALLING A CHANGE TOO
+     INVASIVE.**  I had written westley off in the plan as unshippable,
+     because making it compile meant reformatting source whose PRIZE WAS
+     ITS LAYOUT.  Wrong: the contest's own common.mk builds that entry
+     through exactly the three sed substitutions I thought I was inventing
+     (`s/signed//', `s/1s/1/g', `s/^<tab>#/#/'), and does the same for
+     scjones's trigraphs.  A transformation the authors ship in their own
+     build is sanctioned, not damage.
+     **And its last error was mine.**  westley failed on an undeclared
+     identifier which turned out to be `stdout': the file has no
+     #include <stdio.h>, and I had added a putchar-through-fputc macro.  I
+     read the entry's scoping for a cycle before looking at my own line.
+     Two library facts worth keeping: dds's arrays come to 65,694 bytes and
+     needed `remote' (l68: "non-remote data allocation ... exceeds 64k"),
+     and theorem declares its globals TWICE on purpose -- that is how one
+     source compiles as four programs -- so the second set is extern here.
+     **The four not shipped, each measured:**
+     dg relies on the preprocessor expanding the DIRECTIVE NAME (`#define d
+     define', then `#d name(x) ...' sixty times), which standard C does not
+     do.  Writing them out as #define gets further and still fails: cc runs
+     and exits having written nothing, no diagnostic and no module -- the
+     silent cpp death of notes/CPP-MACRO-CRASH.md.  Its author predicts it
+     ("defines nested too deeply").  OSK/dg.c is kept with the rewrite so
+     the next person starts where I stopped.
+     pjr: cpp aborts (E_PRCABT) while READING it; its hint warns compilers
+     run out of temporary value space on the call chain that is the entry.
+     tbr: a working shell in 550 characters, built on fork(), pipe(),
+     execvp() and wait() -- none of which exist in this C library.
+     stig: the C file is three bytes; the entry is a csh aliasing trick,
+     and the judges said that type would not be permitted again.
+     **What is left unopened:** the nine CoCo Community Archive zips under
+     Scraped/acquisitions-2026-09-11/os9/community/cca (Sled, Tree,
+     Filters, Wildcard Commands, Bob Van der Poel's PD programs, OS-9 PD
+     Utilities and three more).  The c09_ tree is assessed; the usenet
+     posts are all triaged.  My earlier "~150 colorcomputerarchive zips"
+     was wrong -- there are 29 zips in the whole pool and nine of them are
+     that archive.
+
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am

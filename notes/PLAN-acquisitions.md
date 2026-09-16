@@ -616,6 +616,50 @@ into a data module, and EXIT_HANDLER adds two new calls to the kernel for exit
 routines.  Not shipped.  The 1990 IOCCC entries are next; the contest's rules
 required every entry to be public domain.
 
+### The 1990 IOCCC entries (EFFO forum disk 16, 7TH_C_CONTEST)   2026-09-15
+
+Eleven C entries; all public domain under the contest's rule 5.  Four were
+already here (queens/baruch.c, bjack/cmills.c, jaw, trigraph/scjones.c).
+Of the remaining seven:
+
+  dds       DONE (574622f1) -- a BASIC interpreter in 1536 characters, the contest's
+            Best Language Tool.  One line changed: its arrays are `remote'.
+  theorem   DONE (574622f1) -- Best of Show, a Runge-Kutta solver that is also a
+            reversing filter.  Its duplicate declarations are extern here.
+  westley   DONE (574622f1) -- and the reasoning that first rejected it was wrong
+            twice over.  I recorded it as unshippable because the fix
+            looked like reformatting the artwork; in fact THE CONTEST'S OWN
+            common.mk builds this entry through exactly the three
+            substitutions used here (`s/signed//', `s/1s/1/g',
+            `s/^<tab>#/#/'), so they are sanctioned, not invented.  And the
+            undeclared identifier that stopped it was MINE: westley has no
+            #include <stdio.h>, so the putchar-through-fputc change I had
+            added left stdout undeclared.  With stdio included it builds
+            clean.  Five changes in all, each in README.OSK.
+  dg        NOT SHIPPED, and the mechanism is worth keeping.  Line 3 is
+            `#define d define' and every directive after it is written
+            `#d name(x) ...' -- the entry relies on the preprocessor
+            EXPANDING THE DIRECTIVE NAME, which standard C does not do, so
+            neither cpp here recognises any of its 60 definitions.  Writing
+            them out as #define gets further and still fails: cc then runs
+            and exits having written nothing at all, no diagnostic and no
+            module, which is the silent cpp death of
+            notes/CPP-MACRO-CRASH.md.  The author expects it -- his hint
+            says that compressing the source further earns "defines nested
+            too deeply".  Sixty macros nested that way is past what this
+            preprocessor will expand.  Its other documented workarounds
+            (the explicit 'A' form, strchr for index) were tried and are
+            not the obstacle.
+  pjr       NOT SHIPPED.  Same shape: cpp aborts (E_PRCABT) while reading
+            it.  Its hint warns that compilers run out of temporary value
+            space on the `X=g().s().v()...' chain that IS the program.
+  tbr       NOT SHIPPED.  "Best Utility" -- a working shell in 550
+            characters, built on fork(), pipe(), execvp() and wait(), none
+            of which exist in this C library.
+  stig      NOT SHIPPED.  "Strangest Abuse of the Rules": the C file is
+            three bytes and the entry is a csh aliasing trick.  The judges
+            noted this type would not be permitted again.
+
 ### Leave alone
 Microware-owned: 6809 system source, PIPELINES, Training, qpascal, ucc
 support, csl/fpu inside STerm68k.lzh, bfed.  Restrictive: StG V3 BBS,
