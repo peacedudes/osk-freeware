@@ -1504,7 +1504,14 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 key read with getchar(), which on OS-9 waits for a line; its
                 REFRESH command also collides with curses's REFRESH (Microware
                 cpp keeps the first definition, 256)
-    thricken    DEFERRED: ANSI prototypes throughout (James Bonfield, 1992)
+    thricken    DONE (c9d4813d) -- comp.sources.games v13i101 with v13i102
+                Patch1, the sequel to perp.  The ANSI prototypes were the
+                whole of the deferral and `KNR' does NOT answer them here:
+                ansi2knr rewrites a definition only when the function NAME is
+                at the left margin, and all sixteen of thricken's write the
+                return type on the same line, so it converted NONE -- and it
+                never touches declarations.  Thirty-two constructs converted
+                by hand instead.  Data in GAMES/THRICKEN; SRC/thricken.
     skewlife    DEFERRED: needs build-time N1/N2 and a results table made by
                 running makeresults first; a batch computation, low value
     dinkum2     NOT SHIPPED: Gary A. Allen's `strict NO MODIFICATION rule' --

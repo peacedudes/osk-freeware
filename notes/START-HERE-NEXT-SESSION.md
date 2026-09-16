@@ -506,6 +506,41 @@ Open:
        `disk/SRC/unixlib/getopt.r' behind.  Restore it and remove the new
        .r files before committing.
 
+  2ab. **thricken ported (c9d4813d), and MY SHAR EXTRACTOR HAD A BUG --
+     check ORIG against the post before trusting it.**  Every file I
+     unpacked with the scratch extractor gained ONE BLANK FIRST LINE: the
+     slice started AT the newline ending the `sed ... << MARKER' line
+     instead of after it.  In xfmt (already committed, fixed in aba3dc8f)
+     it was harmless and invisible -- flex ignores a blank line before
+     `%{'.  In thricken it was FATAL and looked like a port bug: the level
+     file's first line is the sprite filename, so load_level() read "",
+     fopen("") failed, and the game printed `No such level' for data that
+     was plainly sitting there.  I checked the chdir, the permissions and
+     the file contents before checking my own extraction.
+     **Re-extract and diff before believing a port is broken**: compare
+     ORIG byte for byte against a fresh extraction of the post; all 29
+     thricken files differed by exactly one leading byte.
+     **Four shar dialects so far**, and one regex does not read them all:
+     `sed -e 's/^X//' > file << 'END'` (redirect first), `sed "s/^X//"
+     >'file' <<'END_OF_FILE'` (quoted name), `sed 's/^X//' << 'SHAR_EOF' >
+     file &&` (marker first, trailing &&), and markers CONTAINING A DOT
+     (`END_OF_FILE_xtail.h`) which a `[\w]+` marker pattern silently skips
+     -- five of xtail's seven files were missed that way.  Always print the
+     file count and compare it with the post's own "Contents:" list.
+     **ansi2knr answers fewer ANSI trees than it looks like.**  thricken is
+     ANSI throughout, and `KNR' converted NOTHING: the tool rewrites a
+     definition only when the function NAME is at the left margin, and every
+     one of thricken's sixteen writes the return type on the same line.  It
+     never touches declarations either.  Count BOTH shapes before choosing
+     the flag; 32 constructs here were a scripted hand conversion.
+     **curses' cbreak() only sets a flag on this system** -- it does not put
+     the terminal in character mode -- so stdio's getchar() still waits for
+     a whole line in a curses program.  getch() is the read that honours it
+     (chemtab reached the same place by a different route).
+     Also measured for thricken: no kill() in this C library (getpid() is
+     there), no sleep() (tsleep() counts ticks), no SIGTSTP/SIGSTOP, and
+     getpwuid() comes free from the driver's own shim, answering with $USER.
+
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
