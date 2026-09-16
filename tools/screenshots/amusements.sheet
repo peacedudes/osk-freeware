@@ -448,12 +448,13 @@ run     roll 2@2d10
 wait    3
 
 shot    smiley
-cap     Two faces explained -- each meaning the list holds for them -- and the
+cap     Two faces explained -- every meaning the list holds for each -- and the
 cap     version line, which counts the list as it was built.
-try     smiley ":-)" "8-)"; smiley -V
+try     smiley "8-)" "*<|:-)"; smiley -V
 run     clear
 wait    1
-run     smiley ":-)" "8-)"
+run     smiley "8-)" "*<|:-)"
 wait    3
 run     smiley -V
 wait    3
+snap
