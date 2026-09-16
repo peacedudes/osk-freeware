@@ -1455,9 +1455,11 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 `};' made `}'
     curses-clock ALREADY ON THE DISK: the post's gdc is the grand digital
                 clock the disk ships as gcl (v_misc.ar)
-    rain (v28)  DEFERRED: Col. G. L. Sicherman's 1994 rain -- drops fall and
-                pool; a quick port (its USLEEP path, rand for lrand48) but it
-                needs a module name beside toys.ar's rain, already shipped
+    rain (v28)  NOT SHIPPED: Col. G. L. Sicherman's 1994 rain -- drops fall and
+                pool.  A quick port (its USLEEP path, rand for lrand48), but the
+                disk already ships a rain screen toy and the only difference is
+                the drop pattern; naming a second one to tell them apart is not
+                worth a program's place
     hp          DONE (77989aad) -- floating-point RPN; its parser reads numbers
                 out of the line where lex's input() left it, so flex takes
                 characters one at a time from hp's reader, made with -I
@@ -1473,11 +1475,12 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 GAMES/words, an empty score file.  os9exec returned at once
                 from a sleep under a tick (reported; fixed in its 263b94a), so
                 a 4/256 floor came in and went out again (see git log)
-    cent        DEFERRED: curses centipede with tty ioctls, FIONREAD, an
-                nlist() load check and a help file run through system();
-                and a licence question first -- cent.c allows redistribution
-                with its notice, but the post's rand.c says "Copyright (c)
-                1982 Steven L. Wagar.  All rights reserved." with no grant
+    cent        NOT SHIPPED: the post carries Steven L. Wagar's rand.c,
+                "Copyright (c) 1982 ... All rights reserved." with no grant, and
+                ORIG ships a post as posted -- the ground dinkum2 was dropped on.
+                cent.c itself allows redistribution with its notice.  The port
+                would also want _gs_rdy for FIONREAD, tty ioctls, an nlist() load
+                check and a help file run through system()
     pac         DEFERRED: curses calculator in five parts
     dialog      DEFERRED: ANSI C for ncurses, 1994
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
