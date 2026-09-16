@@ -3444,3 +3444,44 @@ tonight a background job completed with exit 0 having accomplished
 nothing -- twice from this, once from an image lock it never acquired,
 once from a tool with no shebang.  Check for the OUTPUT you wanted, not
 for the absence of an error.
+
+## The CoCo survey's first port was WITHDRAWN, and the bar moved (2026-09-15)
+
+`ffix' (Bob van der Poel, 1988) was ported off the "OS-9 Public Domain
+Utilities" image, built clean, measured, catalogued -- and then taken back
+out again before it shipped.  rdoggett, mid-flight: *"don't just port
+everything from coco that you can, make sure it's a useful addition to us
+and not overly color computer related."*
+
+He is right and the port should never have started.  `ffix' expands tabs,
+which `detab' and `expand' do; it turns every other control character into
+a space, which `pep' -- "a file detergent" -- and `unp' do.  What was left
+was nothing a reader could not already do.  Everything about it is reverted;
+`notes/PLAN-acquisitions.md' records it as not a candidate so it does not
+get re-ported.
+
+**The test for the ~20 undescended Level 2 Library images is NOT "does it
+compile".**  It is: write the one sentence saying what a reader can do
+afterwards that they could not do before.  If that sentence names a program
+already on this disk, or only makes sense on a Color Computer, record it as
+not a candidate and move on.
+
+Two technical findings are worth keeping even though the program is gone:
+
+**A file header is a claim, not a measurement.**  `ffix' documents four
+conversions and one of them cannot happen: `filecopy()' assigns
+`lastc = c' at the TOP of its loop, so the previous character is never
+retained, and the branch tests `c == '\l'', which is not a C escape
+sequence.  Measured, the two bytes 0D 0A come out 0D 20 -- the LF becomes a
+space like any other control character, never deleted.  Catalogue text
+written from that header would have been wrong in a way no check here could
+catch.
+
+**Arming out the back half of a destructive sequence leaves the front half
+running.**  The in-place path copies to a scratch file, `unlink()'s the
+original, then renames the scratch over it via `system("rename ...")'.
+Only the rename is impossible here, so that is what got the `#ifdef OSK'
+arm -- and `ffix file' then deleted the file and stopped.  The test caught
+it because it dumped the file afterwards rather than reading the refusal
+message and believing it.  **Put the refusal before the first irreversible
+step, and assert the artefact still exists afterwards.**

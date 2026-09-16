@@ -663,7 +663,7 @@ Of the remaining seven:
 ### The CoCo Community Archive zips -- the last unopened body  2026-09-15
 
 Nine zips in Scraped/acquisitions-2026-09-11/os9/community/cca, and they are
-NOT source archives: they hold 24 CoCo .DSK disk images (RSDOS and OS-9
+NOT source archives: they hold 26 CoCo .DSK disk images (RSDOS and OS-9
 Level 2, 6809).  The programs on them are 6809 binaries and cannot run here.
 What could ship is SOURCE found inside them, so the first question for each
 image is whether it holds any .c at all.
@@ -673,18 +673,42 @@ are on this disk for exactly this (DONE 07a11dee): `os9dsk -dir <file>.DSK'
 lists an OS-9 disk, `-get' copies a file out, and rsdsk does the same for
 the RS-DOS side.  A strings pass over OS9PUB.DSK looked like it found
 makefiles and readmes; those were words inside documents, not directory
-entries.  The survey wants a -dir over all 24 and then -get on anything
+entries.  The survey wants a -dir over all 26 and then -get on anything
 whose name ends .c.
 
   Bob Van der Poel Public Domain Programs   1 image
   Filters (D.P. Johnston)                   2
   OS-9 L2 Unix Utilities (Mike Sweet)       1
-  OS-9 Level 2 Library                     12  (games, filters, comms, maths...)
+  OS-9 Level 2 Library                     15  (games, filters, comms, maths,
+                                                DBM, word processing...)
   OS-9 Public Domain Utilities              1
   Rdump/RayTrace/DispRaw (Walter Zambotti)  2 + a readme
   Sled v2.2 (Mark Griffith)                 2  (one is SLEDSRC.DSK)
   Tree (Tim Kientzle)                       1 + tree.c and tree.txt loose
   Wildcard Commands (Keith Alphonso)        1
+
+**Surveyed so far, 2026-09-15.  Nothing has shipped, and that is the right
+answer.**  `ffix' (Bob van der Poel, March 1988), FFIX/ffix.c on the "OS-9
+Public Domain Utilities" image, was ported and then WITHDRAWN.  It expands
+tabs, which `detab' and `expand' already do, and turns every other control
+character into a space, which `pep' -- "a file detergent" -- and `unp'
+already do.  The feature its own readme is written around, rewriting named
+files in place, needs a `shell' module this disk has not got, so what was
+left was the duplicated half.  Terms are a copyright line with no grant.
+Do not port it again.
+
+The rest read so far is 6809 and stays where it is: the Bob Van der Poel
+and Public Domain Utilities images duplicate each other outside that one
+file and are otherwise 6809 assembler and BASIC09; "OS-9 L2 Unix Utilities"
+(Mike Sweet) holds chmod, chown, ls, setenv and signal, which duplicate
+programs already here and state no terms; Sled is CoCo3 hardware-bound.
+
+About twenty Level 2 Library images are still undescended, and the test for
+them is NOT "does it compile".  It is: what can a reader do afterwards that
+they could not do before, and is the program mainly Color Computer
+business?  rdoggett, 2026-09-15: *"don't just port everything from coco
+that you can, make sure it's a useful addition to us and not overly color
+computer related."*
 
 Tree is the one already checked, and it is NOT a candidate: `tree' is
 already on this disk from EFFO forum disk 13, doing the same job, and
