@@ -451,6 +451,13 @@ Open:
      putc and write do; printf and fprintf do not).  setbuf(stdout,0) is
      common in old games -- kalah's output was rows of repeated punctuation.
      Leave stdout buffered; a terminal still shows a prompt before the read.
+     **A raw write() to a terminal gets NO line feed here.**  Measured with
+     one program printing both ways: write() arrives as `x\r' per line and
+     every line lands on the one before it; fputs() arrives as `x\r\n'.  To a
+     FILE the write() bytes are right, so a data test passes and only a
+     terminal capture shows it -- smiley (0b8de539) shipped with a smeared
+     card and was fixed by routing its write macros through stdio
+     (bd05465d).  Look at a card, not only at the gate.
      **A function returning char, called undeclared, is garbage above the
      low byte on the 68000** -- kalah's Pigeons totals read 661522 for 18.
      Code from a 6809 compiler relied on it; declare the function.
