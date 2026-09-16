@@ -660,6 +660,38 @@ Of the remaining seven:
             three bytes and the entry is a csh aliasing trick.  The judges
             noted this type would not be permitted again.
 
+### The CoCo Community Archive zips -- the last unopened body  2026-09-15
+
+Nine zips in Scraped/acquisitions-2026-09-11/os9/community/cca, and they are
+NOT source archives: they hold 24 CoCo .DSK disk images (RSDOS and OS-9
+Level 2, 6809).  The programs on them are 6809 binaries and cannot run here.
+What could ship is SOURCE found inside them, so the first question for each
+image is whether it holds any .c at all.
+
+READ THEM WITH THE DISK'S OWN TOOLS, not with `strings'.  os9dsk and rsdsk
+are on this disk for exactly this (DONE 07a11dee): `os9dsk -dir <file>.DSK'
+lists an OS-9 disk, `-get' copies a file out, and rsdsk does the same for
+the RS-DOS side.  A strings pass over OS9PUB.DSK looked like it found
+makefiles and readmes; those were words inside documents, not directory
+entries.  The survey wants a -dir over all 24 and then -get on anything
+whose name ends .c.
+
+  Bob Van der Poel Public Domain Programs   1 image
+  Filters (D.P. Johnston)                   2
+  OS-9 L2 Unix Utilities (Mike Sweet)       1
+  OS-9 Level 2 Library                     12  (games, filters, comms, maths...)
+  OS-9 Public Domain Utilities              1
+  Rdump/RayTrace/DispRaw (Walter Zambotti)  2 + a readme
+  Sled v2.2 (Mark Griffith)                 2  (one is SLEDSRC.DSK)
+  Tree (Tim Kientzle)                       1 + tree.c and tree.txt loose
+  Wildcard Commands (Keith Alphonso)        1
+
+Tree is the one already checked, and it is NOT a candidate: `tree' is
+already on this disk from EFFO forum disk 13, doing the same job, and
+Kientzle's 1992 version sits on Carl R. Kreider's 1984 original which was
+"released to the public domain for non-commercial use" -- a narrower grant
+than it first reads, and Kientzle's own additions carry no grant at all.
+
 ### Leave alone
 Microware-owned: 6809 system source, PIPELINES, Training, qpascal, ucc
 support, csl/fpu inside STerm68k.lzh, bfed.  Restrictive: StG V3 BBS,
