@@ -1538,11 +1538,25 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 program.  Note also moria's finding: this ncurses.l cannot
                 read SYS/termcap at all without tcentry.c linked ahead of
                 it, so the substrate is thin for any new ncurses program.
-    craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
-                fork()/execl("/bin/csh") shell escape, BSD random, and every
-                key read with getchar(), which on OS-9 waits for a line; its
-                REFRESH command also collides with curses's REFRESH (Microware
-                cpp keeps the first definition, 256)
+    craps       DONE (b54b5a4b) -- comp.sources.games v1i009, 1987, public
+                domain, K&R already so nothing was converted.  Every blocker
+                this row named was real and each had an answer: the link()
+                lock is not taken (no link() here, and RBF has no hard links),
+                the crypt() cheat and the fork()/csh escape say so instead,
+                BSD random needed nothing at all (its XENIX arm is time(),
+                srand() and rand(), which is what this library has), getchar()
+                became getch() -- crmode() only sets a flag on this curses --
+                and REFRESH is undefined before craps defines it.  update()
+                collides with curses.l as well.
+                TWO THIS ROW DID NOT PREDICT, both worth more than the rest:
+                printw() BUS-ERRORS on a floating-point conversion, and craps
+                keeps every amount as a double, so it drew nothing at all.  It
+                is printw ALONE -- wprintw, mvprintw and mvwprintw render the
+                same float, to stdscr as to any window -- so one define fixes
+                it and the call sites stand as posted.  And final.c's unneeded
+                <sys/types.h> made the program's OWN types.h answer an include
+                from inside a system header, pulling unguarded curses.h in
+                twice: 62 errors, all of them inside sgstat.h.
     thricken    DONE (c9d4813d) -- comp.sources.games v13i101 with v13i102
                 Patch1, the sequel to perp.  The ANSI prototypes were the
                 whole of the deferral and `KNR' does NOT answer them here:

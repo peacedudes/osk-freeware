@@ -546,6 +546,47 @@ Open:
      there), no sleep() (tsleep() counts ticks), no SIGTSTP/SIGSTOP, and
      getpwuid() comes free from the driver's own shim, answering with $USER.
 
+  2ac. **craps ported (b54b5a4b).  Two library findings that will bite the
+     next curses port.**
+     **(1) printw() BUS-ERRORS on a floating-point conversion -- and printw
+     ALONE.**  craps keeps every amount as a double and drew NOTHING, which
+     reads like a curses initialisation fault, not a printf bug.  The trace
+     is distinctive: last syscall a write, PC in a runaway zero-padding loop
+     (`MOVE.B #$30,(A3)+` / `SUB.L #1,D5`).  Measured against every
+     neighbour: printw("%d") is fine, and wprintw(), mvprintw() and
+     mvwprintw() all render the same float correctly -- INCLUDING to stdscr,
+     which is what printw is shorthand for.  So the defect is the wrapper.
+     The fix is one line where a program's calls are uniform:
+         #define printw(f, a)   wprintw(stdscr, (f), (a))
+     craps' twenty-seven calls all pass one argument after the format, so
+     the port differs from the 1987 posting by that define instead of a
+     helper function and twenty-five edited call sites.  printw is variadic
+     in general, so a program with a mixed call set needs sprintf()+addstr()
+     instead.  The os9-dev session reproduced the abort on its own rig down
+     to the faulting instruction pair.
+     **(2) A PORT'S OWN HEADER SHADOWS THE SDK'S FOR THE WHOLE CHAIN.**  The
+     recipe compiles with `-V=/h6/<tree> -V=/h7`, so the program's directory
+     answers every `#include <name.h>` -- including ones issued from inside
+     SDK and COMPAT headers.  craps ships a types.h; final.c included
+     <sys/types.h> for nothing; COMPAT's sys/types.h does `#include
+     <types.h>`; that found CRAPS' types.h, which includes <curses.h>; and
+     curses.h HAS NO INCLUDE GUARD, so sgstat.h arrived twice and struct
+     _sgs was defined twice.  62 errors, every one reported inside
+     /dd/DEFS/sgstat.h -- a file the program never mentions.  I spent four
+     probes on wrong theories (signal.h, then several sources in one cc
+     line) before asking WHICH FILE triggered it: `main.c final.c` failed
+     and `main.c subs.c` did not, which named it in two builds.  Check a
+     port's own header names against DEFS and COMPAT first: types.h, time.h,
+     stat.h and string.h are the collisions to expect.
+     Also confirmed here: no link() and no crypt() in either library, and
+     curses.l defines update() (the fourth name after setterm, abort and
+     REFRESH that a game has to rename).
+     **The deferred list is nearly empty.**  What is left is hodge-c (pipes
+     frames to a display monitor -- the same coprocess problem as pac),
+     banners (thirteen banner programs, three of them already here), and
+     skewlife (build-time tables, low value).  The 135 usenet posts are all
+     triaged.  CoCo/6809 remains, and is explicitly last.
+
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
