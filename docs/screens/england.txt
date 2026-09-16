@@ -2,37 +2,37 @@ $ england | head -n 37
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1          Clear      Clear    Cold ( 20)      None      Calm  21.3"  New Years (s)
-   2          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-   3          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-   4          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-   5          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-   6          Clear      Clear    Cold (  5)      None      Calm  21.3"  Twelfth Night
-   7          Clear      Clear  Chilly ( 30)      None      Calm  21.3"
-   8          Clear      Clear  Chilly ( 25)      None      Calm  21.3"
-   9       Overcast  Heavy Fog  Chilly ( 30)      None      Calm  21.3"
-  10  Precipitation     Cloudy    Cold ( 20)  Sprinkle  Blustery  21.4"  Snow - 25 minutes,
-  11          Clear      Clear    Cold ( 20)      None      Calm  21.4"
-  12          Clear      Clear    Cold (  5)      None      Calm  21.4"
-  13  Precipitation       Mist  Chilly ( 30)  Sprinkle     Light  21.5"  Snow - 20 minutes,
-  14          Clear      Clear    Cold ( 10)      None     Light  21.5"
-  15          Clear      Clear  Chilly ( 30)      None      Calm  21.5"
-  16          Clear      Clear    Cold ( 20)      None      Calm  21.5"
-  17  Precipitation       Mist    Cold (  5)    Steady     Brisk  30.5"  Snow - 24 hours,
-  18          Clear      Clear    Cold ( 15)      None      Calm  30.5"
-  19          Clear      Clear    Cold ( 20)      None      Calm  30.5"
-  20          Clear      Clear    Cold ( 10)      None      Calm  30.5"
-  21  Precipitation     Cloudy    Cold ( 20)    Shower     Light  30.5"  Snow - 90 minutes,
-  22          Clear      Clear    Cold ( 20)      None     Light  30.5"
-  23  Precipitation     Cloudy    Cold ( 20)    Shower     Light  30.5"  Snow - 50 minutes,
-  24          Clear      Clear    Cold ( 20)      None      Calm  30.5"
-  25          Clear      Clear    Cold ( 10)      None     Light  30.5"
-  26  Precipitation  Light Fog    Cold ( 20)    Shower      Calm  30.5"  Snow - 80 minutes,
-  27  Precipitation  Heavy Fog    Cold ( 20)  Sprinkle      Calm  30.6"  Snow - 10 minutes,
-  28          Clear      Clear    Cold ( 20)      None      Calm  30.6"
-  29          Clear      Clear    Cold ( 20)      None     Light  30.6"
-  30          Clear      Clear  Chilly ( 35)      None      Calm  29.6"
-  31          Clear      Clear    Cold ( 20)      None      Calm  29.6"
-High Temp =  35, Low Temp =   5, Average Temp =  19
+   1       Overcast       Mist    Cold ( 20)      None     Light   1.6"  New Years (s)
+   2          Clear      Clear    Cold ( 20)      None      Calm   1.6"
+   3  Precipitation       Mist    Cold ( 20)    Steady      Calm   7.6"  Snow - 24 hours,
+   4  Precipitation  Heavy Fog    Cold ( 20)    Steady     Light  13.6"  Snow - 24 hours,
+   5  Precipitation     Cloudy  Chilly ( 35)    Shower     Brisk  12.6"  Rain - 50 minutes,
+   6          Clear      Clear  Chilly ( 25)      None      Calm  12.6"  Twelfth Night
+   7          Clear      Clear    Cold ( 20)      None      Calm  12.6"
+   8          Clear      Clear  Chilly ( 25)      None     Light  12.6"
+   9          Clear      Clear  Chilly ( 25)      None      Calm  12.6"
+  10          Clear      Clear  Chilly ( 25)      None     Light  12.6"
+  11          Clear      Clear    Cold ( 20)      None      Calm  12.6"
+  12       Overcast       Mist    Cold (  5)      None      Calm  12.6"
+  13       Overcast       Mist    Cold ( 20)      None     Light  12.6"
+  14  Precipitation       Mist    Cold (  5)  Sprinkle      Calm  12.7"  Snow - 25 minutes,
+  15  Precipitation     Cloudy  Chilly ( 30)  Sprinkle  Blustery  12.8"  Snow - 30 minutes,
+  16  Precipitation  Light Fog    Cold ( 10)    Shower      Calm  12.8"  Snow - 30 minutes,
+  17          Clear      Clear    Cold ( 15)      None     Light  12.8"
+  18          Clear      Clear    Cold ( 20)      None      Calm  12.8"
+  19          Clear      Clear    Cold ( 20)      None      Calm  12.8"
+  20          Clear      Clear    Cold ( 15)      None      Calm  12.8"
+  21          Clear      Clear    Fair ( 40)      None      Calm   7.8"
+  22  Precipitation     Cloudy    Cold ( 15)  Sprinkle     Light   7.9"  Snow - 20 minutes,
+  23  Precipitation       Mist    Cold ( 20)  Sprinkle      Calm   8.0"  Snow -  5 minutes,
+  24          Clear      Clear    Cold ( 20)      None      Calm   8.0"
+  25          Clear      Clear    Cold ( 15)      None      Calm   8.0"
+  26          Clear      Clear    Cold ( 20)      None      Calm   8.0"
+  27          Clear      Clear    Cold ( 20)      None      Calm   8.0"
+  28          Clear      Clear    Cold ( 20)      None      Calm   8.0"
+  29          Clear      Clear    Cold ( 20)      None      Calm   8.0"
+  30          Clear      Clear  Chilly ( 25)      None     Light   8.0"
+  31       Overcast  Light Fog  Chilly ( 25)      None  Blustery   8.0"
+High Temp =  40, Low Temp =   5, Average Temp =  20
 
 February

@@ -1,5 +1,5 @@
                        OS9/68k V4.16 Process Monitor V6.1
-         ##21:08:50##14-Sep-19126##NODE:#OSK##TASKS:#003##CPU:#68040##
+         ##01:05:58##16-Sep-19126##NODE:#OSK##TASKS:#003##CPU:#68040##
     Minage: 00000  Maxage: 00000  ActiveTasks: 000  Delay: 04s  Port: /TERM
                                     0        25        50        75        100 %
 Id  Username   Processname          +---------+---------+---------+----------+
@@ -21,3 +21,4 @@ Id  Username   Processname          +---------+---------+---------+----------+
                                     |         |         |         |          |
                                     +---------+---------+---------+----------+
                                     0        25        50        75        100 %
+%

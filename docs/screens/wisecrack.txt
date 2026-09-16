@@ -1,7 +1,7 @@
 $ wisecrack &
 <3>
 $ ask
-+ COVE IST SPITZE +
+AUF WIEDERSEHEN 1993
 
 $ ask
-OSK_92 - SEMINAR
+VIEL SPASS MIT OSK

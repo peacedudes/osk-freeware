@@ -1,38 +1,39 @@
-$ japan | head -n 37
-                                                                  Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Rat
-   1          Clear      Clear    Fair ( 55)      None      Calm         Shinto, New Years (s)
-   2          Clear      Clear    Fair ( 45)      None      Calm         New Years (s)
+   1          Clear      Clear  Chilly ( 30)      None     Brisk         Shinto, New Years (s)
+   2          Clear      Clear    Fair ( 40)      None     Brisk         New Years (s)
    3          Clear      Clear  Chilly ( 35)      None      Calm         New Years (s)
-   4          Clear      Clear    Fair ( 40)      None      Calm         New Years (s)
-   5          Clear      Clear  Chilly ( 35)      None      Calm         New Years (s)
-   6          Clear      Clear  Chilly ( 25)      None      Calm         New Years (s)
-   7          Clear      Clear  Chilly ( 35)      None     Brisk
-   8          Clear      Clear    Fair ( 40)      None     Light         Buddhist,
-   9          Clear      Clear  Chilly ( 35)      None      Calm
-  10          Clear      Clear    Fair ( 45)      None      Calm
-  11          Clear      Clear    Fair ( 45)      None      Calm
-  12          Clear      Clear  Chilly ( 30)      None      Calm
-  13  Precipitation  Light Fog  Chilly ( 35)    Shower     Light         Rain - 70 minutes,
-  14  Precipitation       Mist  Chilly ( 25)    Shower     Light         Snow - 20 minutes,
-  15  Precipitation       Mist    Fair ( 60)  Sprinkle     Light         Rain - 15 minutes, Full Mo,
-  16          Clear      Clear    Fair ( 40)      None      Calm
-  17          Clear      Clear  Chilly ( 30)      None     Light
-  18          Clear      Clear    Fair ( 40)      None      Calm         Buddhist,
+   4  Precipitation     Cloudy    Fair ( 40)    Shower     Light         Rain - 40 minutes, New Year
+s (s)
+   5  Precipitation       Mist    Fair ( 40)  Sprinkle     Light         Rain - 30 minutes, New Year
+s (s)
+   6  Precipitation       Mist    Fair ( 40)     Heavy     Light         Rain -  4 hours, New Years
+(s)
+   7          Clear      Clear    Fair ( 40)      None     Light
+   8          Clear      Clear    Fair ( 40)      None      Calm         Buddhist,
+   9          Clear      Clear    Fair ( 40)      None     Light
+  10          Clear      Clear  Chilly ( 35)      None      Calm
+  11          Clear      Clear    Fair ( 60)      None     Light
+  12          Clear      Clear    Fair ( 40)      None      Calm
+  13          Clear      Clear  Chilly ( 30)      None      Calm
+  14          Clear      Clear  Chilly ( 25)      None     Brisk
+  15          Clear      Clear    Fair ( 40)      None     Brisk         Full Moon, Shinto,
+  16          Clear      Clear  Chilly ( 35)      None     Light
+  17          Clear      Clear    Fair ( 40)      None      Calm
+  18          Clear      Clear    Fair ( 45)      None      Calm         Buddhist,
   19          Clear      Clear    Fair ( 40)      None      Calm
-  20          Clear      Clear    Cold ( 20)      None      Calm
-  21          Clear      Clear    Fair ( 40)      None      Calm
-  22          Clear      Clear  Chilly ( 35)      None     Light
-  23          Clear      Clear    Fair ( 40)      None     Brisk
-  24          Clear      Clear    Fair ( 50)      None      Calm
-  25          Clear      Clear  Chilly ( 35)      None     Light
-  26          Clear      Clear  Chilly ( 35)      None      Calm
-  27          Clear      Clear    Fair ( 40)      None      Calm         Catastrophe,
-  28          Clear      Clear  Chilly ( 35)      None      Calm         Buddhist, Shinto,
-  29          Clear      Clear  Chilly ( 25)      None      Calm         New Moon,
-High Temp =  60, Low Temp =  20, Average Temp =  37
+  20          Clear      Clear    Fair ( 40)      None     Light
+  21       Overcast       Mist  Chilly ( 35)      None      Calm
+  22       Overcast       Mist    Fair ( 45)      None     Light
+  23          Clear      Clear    Fair ( 50)      None     Light
+  24          Clear      Clear    Fair ( 55)      None     Light
+  25          Clear      Clear    Fair ( 40)      None      Calm
+  26          Clear      Clear    Fair ( 40)      None      Calm
+  27          Clear      Clear    Fair ( 50)      None     Brisk
+  28          Clear      Clear    Fair ( 40)      None      Calm         Buddhist, Shinto,
+  29       Overcast       Mist    Fair ( 40)      None      Calm         New Moon,
+High Temp =  60, Low Temp =  25, Average Temp =  40
 
 Bull
-   1          Clear      Clear    Fair ( 50)      None     Light         Shinto, Equinox (b)
-   2          Clear      Clear    Fair ( 40)      None      Calm         Equinox (b)
+   1       Overcast       Mist    Fair ( 45)      None     Light         Shinto, Equinox (b)
+   2          Clear      Clear    Fair ( 55)      None      Calm         Equinox (b)
