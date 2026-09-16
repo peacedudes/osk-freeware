@@ -1,0 +1,27 @@
+family  smiley
+setup   export PATH=/dd/CMDS
+
+# A face given on the command line is explained, with every meaning the list
+# holds for it.
+case    explain
+run     /dd/CMDS/smiley ":-)" "8-)"
+expect  Your basic smiley
+expect  sunglasses
+
+# -V counts the list as built.
+case    version
+run     /dd/CMDS/smiley -V
+expect  589 faces, 818 definitions
+
+# The exit status is the number of faces it did not know.
+case    unknown-count
+run     /dd/CMDS/smiley qqq zzq ":-("
+run     echo "exit $?"
+expect  boo hoo
+expect  exit 2
+
+# -e explains the face in $SMILEY.
+case    from-environment
+run     export SMILEY=":-D"
+run     /dd/CMDS/smiley -e
+expect  big smile

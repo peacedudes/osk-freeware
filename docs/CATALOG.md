@@ -1,6 +1,6 @@
 # What is on this disk
 
-1054 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **705 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1055 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **706 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,7 +24,7 @@
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
@@ -1375,7 +1375,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>32 programs</summary>
+<details><summary>33 programs</summary>
 
 **Biorhythms**
 
@@ -1391,6 +1391,7 @@
 | `areacode` | &#9733; looks up North American telephone area codes, as many as you give it, from a table of the late 1980s; a code it does not know is said to be no area code |
 | `globe` | show the currently-lit face of the Earth in ASCII, the globe turning through the day as the hours pass |
 | `phoon` | show the phase of the moon as a little picture: `phoon' for tonight, `phoon 2025 12 25' for a date; `-l' sets the size |
+| `smiley` | explains the sideways faces of net messages: `smiley ":-)"' prints what that one means; with no argument it prints one of the 589 at random, -l lists them all and -e explains $SMILEY<br>**How:** Explains the sideways faces people typed in net messages. `smiley ":-)"' prints what that face means, and a face with several meanings gets them all. With no argument it prints one of the 589 at random; -f prints just the face, -l lists the whole list, -e explains the face in $SMILEY, and -V counts it. The list is the one the post carried, uncensored, so some of it is crude. The manual is DOC/smiley/smiley.1. |
 | `telenum` | turns words into the telephone number their letters dial: `telenum hello' prints 43556<br>**How:** `telenum hello world' prints the number each word dials, one a line: 43556 and 96753. Letters with no key (q and z) print as themselves. |
 | `telewords` | spells a telephone number every way its keypad letters allow, one a line: `telewords 43' prints gd ge gf ... if<br>**How:** `telewords 43' prints every spelling of the number with the letters on its keys, one a line -- gd, ge ... if. 0 and 1 stand for themselves; -<digit><letters> changes what a key spells. |
 | `touchtype` | TYPEFAST, a typing game: words fall down the screen and you type each one before it lands.  ESC ends the game and scores you in words per minute<br>**How:** Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score. |

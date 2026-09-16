@@ -1,0 +1,9 @@
+$ smiley -?
+smiley: illegal option -- ?
+usage: smiley [-V] [-e] [-l] [-f] [smiley ...]
+where:	-V	print program version
+	-e	explain the face in $SMILEY
+	-l	list all the smileys
+	-f	print a random smiley, face only
+	smiley	explain the given smileys
+(no args)	print a random smiley

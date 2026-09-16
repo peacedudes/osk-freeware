@@ -1021,6 +1021,8 @@ bugs|bugs|main.c startup.c loop.c meat.c|-Drandom=rand -Dsrandom=srand||
 letters|letters|letters.c highscore.c kinput.c term.c word.c usleep.c|-DNOJOB -Drandom=rand -Dsrandom=srand||
 # kalah (6809 archive c09_Kalah): Kalah and Pigeon Plague; movesrc.c for move.a; SRC/kalah/README.OSK.
 kalah|kalah|kalah.c eval.c show.c movesrc.c|||
+# smiley (comp.sources.misc v23): explains text smileys; faces.c made on OS-9; SRC/smiley/README.OSK.
+smiley|smiley|smiley.c faces.c getopt.c ltoa.c bsearch.c|||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

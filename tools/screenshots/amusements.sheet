@@ -446,3 +446,14 @@ run     roll 6x3,4d6
 wait    2
 run     roll 2@2d10
 wait    3
+
+shot    smiley
+cap     Two faces explained -- each meaning the list holds for them -- and the
+cap     version line, which counts the list as it was built.
+try     smiley ":-)" "8-)"; smiley -V
+run     clear
+wait    1
+run     smiley ":-)" "8-)"
+wait    3
+run     smiley -V
+wait    3

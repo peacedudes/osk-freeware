@@ -1061,6 +1061,7 @@ dc|none|it has no help flag -- given -? it only says it cannot read its terminal
 sod|sod -?|
 rogue|none|it has no help flag; an argument is taken as a saved game to restore
 ski|none|it takes no options; each turn a letter or Return at the ? on the slope line
+smiley|smiley -?|
 vttest|none|it takes no options and opens its test menu; a test's number and RETURN runs it, 0 leaves
 typefast|none|it has no help flag; `y' at its first question explains the game, and `q' at the level prompt quits
 vcraps|none|it has no help switch; -b sets the starting bankroll and -s plays single odds, and ? in the game lists every bet
