@@ -1497,7 +1497,19 @@ triaged by size, files, curses and stated terms.  Done or decided:
                 cent.c itself allows redistribution with its notice.  The port
                 would also want _gs_rdy for FIONREAD, tty ioctls, an nlist() load
                 check and a help file run through system()
-    pac         DEFERRED: curses calculator in five parts
+    pac         ASSESSED 2026-09-15, not ported: the five parts extract and
+                read cleanly (29 files, all ASCII, longest line 86), and the
+                curses half is ordinary.  The blocker is architectural: pac
+                does no arithmetic itself -- `pipes.c' forks `bc' and talks
+                to it over a two-way pipe (fork() + execlp("/usr/bin/bc")),
+                and the post says so outright.  This C library has no fork,
+                no pipe, no popen, no dup and no wait; clib does have
+                os9fork/os9exec/modload, and SRC/perl4/osk.c, SRC/pdksh and
+                SRC/sc show the shape, so it COULD be rewritten around
+                os9fork plus named pipes -- a sub-project with deadlock risk,
+                not a port.  SIGTERM/SIGTSTP/SIGCONT are absent here too.
+                bc, dc and hp already ship.  Terms: no copyright anywhere,
+                only "Author: Istvan Mohos, 1987" in each file header.
     dialog      DEFERRED: ANSI C for ncurses, 1994
     craps       DEFERRED: link() lock on its score list, a crypt() cheat, a
                 fork()/execl("/bin/csh") shell escape, BSD random, and every
