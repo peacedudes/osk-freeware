@@ -3585,6 +3585,12 @@ killed by the pause, or still be going.  Check before anything else.
 7. `rm sc-cb.dd sc-cb.dd.lock' after an `lsof' check.  It is a scratch image;
    osk-freeware.dd is rdoggett's and no harness may touch it.
 
+**CLAUDE.md is GITIGNORED and has never been tracked** (.gitignore line 20).
+It is rdoggett's own local instruction file, so an edit to it is local only --
+`git add' refuses it and no commit can carry it.  Do not try; say what changed
+instead.  It was corrected on 2026-09-16 because it told a new session that
+FOR-RDOGGETT held "currently nothing" when it held eighteen open items.
+
 **The twenty affected programs**: animal draw editor england gnuan hexa
 hexedit japan life perp shire stone sysmon thricken torus touchtype
 wisecrack wish yahtzee2 zot.  thricken has no card stanza and is published
