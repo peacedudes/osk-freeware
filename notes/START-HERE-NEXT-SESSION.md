@@ -660,13 +660,33 @@ Open:
      was wrong -- there are 29 zips in the whole pool and nine of them are
      that archive.
 
-  2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
-     waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
-     auto-wrap at column 80 (it clamps), so it cannot show what an am
-     terminal does with a full row.  playtest.py's `expect' also searches
-     the RAW stream on purpose (orbit's scrolled header), so a program that
-     prints the right words onto a garbled screen PASSES -- TOP's moria
-     passed on `Warrior' with the screen in column 80.  Read the snapshots.
+  2n. **ONE harness gap left; the first is FIXED (efe864e4, 2026-09-16).**
+     tools/ansiscreen.py clamped the cursor at the last column, so every
+     character written past column 80 landed on top of column 79 and the
+     ones before it were destroyed.  It now does a DEFERRED wrap, the way an
+     `am' terminal does.  Measured over all 274 stored play-test raws at
+     each capture's own geometry: 26 render differently, 19 of them showing
+     MORE (life 161 -> 1879 ink, because a full-width board was being eaten
+     a row at a time), and the 7 showing less all trigger the wrap branch --
+     that is the screen scrolling because the characters survive now.
+     mz waited on this and is no longer blocked by it.
+
+     **Consequence, and it is the expensive half: every published screen was
+     rendered AT CAPTURE TIME with the clamp.**  screenshots.py keeps no raw
+     stream, so a card can only pick the fix up by being re-shot; and the
+     play-test screens cannot be re-rendered from their stored raws either,
+     because the `snap' offsets are byte positions taken live during the run
+     and are not persisted -- only .screen.txt and .control.txt could be
+     rebuilt, and gen_screens' pick() publishes whichever label has the most
+     ink, so a half-refreshed set puts fresh screens in competition with
+     stale snapshots.  Both pipelines must be RE-RUN.  20 programs are
+     affected and have published screens; panel-backlog.txt holds none of
+     them, so the ratchet should not move.
+
+     STILL OPEN: playtest.py's `expect' searches the RAW stream on purpose
+     (orbit's scrolled header), so a program that prints the right words
+     onto a garbled screen PASSES -- TOP's moria passed on `Warrior' with
+     the screen in column 80.  Read the snapshots.
   3. System utilities on the same list (aprocs cpu devprc vc top sysmon):
      probe for case material.
 
