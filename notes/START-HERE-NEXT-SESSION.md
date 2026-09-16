@@ -3540,7 +3540,23 @@ Cheapest order within the sweep: run the exact method over every stored raw
 first, since it needs no emulator time at all; only then re-shoot the card
 candidates, which do.
 
-## PAUSED MID-SWEEP, 2026-09-16 -- pick up exactly here
+## The clamp screen-sweep: FINISHED 2026-09-16 (this was the pause note)
+
+**All seven resume steps below are DONE.  Nothing here is left to pick up.**
+Both pipelines were re-run against a scratch image -- nineteen cards and the
+same nineteen play-tests (19 of 19 pass, no orphaned escapes) -- gen_screens
+republished, and SIXTEEN screens changed plus screens.js (78b2efdf).  life's
+card had been publishing a nearly empty board and now renders its whole
+80-column field.  audit_panels --gate is clean at 0 problems, the ratchet did
+not move, check_disk is green on all 29, and the scratch image and its lock
+are removed.  osk-freeware.dd was never touched.
+
+**What is NOT done, and is the queue in rdoggett's order:** the rest of the
+downloads -- 20 CoCo images, the only body left -- and THEN the sweep for any
+other clamp-corrupted screens, whose method is in the section above.
+
+The rest of this section is kept as the record of how it stood mid-way.
+
 
 **Nothing is half-committed.**  The tree was clean at d53e39ce when this
 paused.  `notes/playtests/' is gitignored and gen_screens had not been run,
