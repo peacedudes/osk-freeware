@@ -109,7 +109,7 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 137 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 138 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |

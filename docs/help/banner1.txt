@@ -1,0 +1,10 @@
+$ banner1 -?
+Syntax: banner [<opts>] {<string>} [<opts>]
+Function: prints a banner to stdout
+Options:
+     -i          prints italic
+     -d          double size
+     -c=<char>   character
+     -s          use same character
+     -z          read strings from standard input
+     -z=<file>   read strings from <file>

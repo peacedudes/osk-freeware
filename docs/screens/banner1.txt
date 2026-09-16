@@ -1,0 +1,9 @@
+$ banner1 -s OS-9
+
+  OOO    SSSS            9999
+ OO OO  SS  SS          99  99
+OO   OO SSS             99  99
+OO   OO  SSS    ------   99999
+OO   OO    SSS              99
+ OO OO  SS  SS             99
+  OOO    SSSS            999

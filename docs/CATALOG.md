@@ -1,6 +1,6 @@
 # What is on this disk
 
-1059 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1060 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **711 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 27 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 137 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 48 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -155,7 +155,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>137 programs</summary>
+<details><summary>138 programs</summary>
 
 **Alternates**
 
@@ -169,6 +169,7 @@
 | | |
 |---|---|
 | `banner` | &#9733; prints its argument as tall letters made of `@', for a banner or a sign |
+| `banner1` | the first banner program written on OS-9, back from Unix with its OS-9 arms intact: eight rows tall, -d doubles, -i slants, -c=<char> picks the character and -s builds each letter out of itself; -z=<file> banners a file<br>**How:** Prints its arguments as tall letters, eight rows high. `banner1 -d' doubles the size, `-i' slants them, `-c=<char>' builds them from a character of your choosing and `-s' builds each letter out of itself. `-z=<file>' banners each line of a file instead, and `-z' alone reads standard input. Its own usage text calls it `banner', which is the name it had in 1987; the disk's `banner' is a different program. |
 | `cursive` | writes a message as one line of joined, sloping cursive script, the flourish people once signed mail with<br>`usage: cursive [-tn] [-in] message` |
 | `gothic` | &#9733; print text as a gothic/blackletter banner |
 | `zot` | &#9733; prints a line of text in one of fourteen animated styles -- the letters slide in, bounce, sort themselves or turn up one at a time: `zot -s=14 "text"'; -s names the styles, -d plays them all<br>**How:** `zot -s=<1-14> "text"' animates the text in that style -- the letters slide in, bounce, sort themselves or turn up one at a time, each frame overwriting the last with a bare CR; `zot -s' names the fourteen styles; `zot -d "text"' plays them all in turn.  Under os9exec, -r (unpaced output) makes every animation instantaneous, so you see only the finished line. |

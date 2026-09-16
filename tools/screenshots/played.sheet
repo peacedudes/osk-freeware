@@ -92,6 +92,15 @@ try     banner OS-9
 run     banner OS-9
 wait    5
 
+shot    banner1
+cap     The first banner program written on OS-9, back from Unix with its
+cap     OS-9 arms intact.  `-s' builds each letter out of that letter; -d
+cap     doubles the size, -i slants it and -c= picks the character.
+try     banner1 -s OS-9
+run     banner1 -s OS-9
+wait    5
+
+
 shot    beav
 cap     A binary editor and viewer, here on a file of the disk's own
 cap     documentation: the offset, sixteen bytes in hexadecimal, and the

@@ -286,3 +286,30 @@ run     echo "status $?"
 expect  xfmt: illegal option -- Q
 expect  usage: xfmt [-ijcmxou] [-l n] [-p n] [-t n] [file ...]
 expect  status 1
+
+# banner1 (2026-09-15, comp.sources.unix v26i141): banner-01 of the `banners'
+# collection -- the first banner program written on OS-9, built unchanged.
+case    banner1-prints-tall-letters-in-a-character-you-choose
+run     /dd/CMDS/banner1 -c=# Hi
+expect  ##  ##    ##
+expect  ######    ##
+
+case    banner1-s-builds-each-letter-out-of-itself
+run     /dd/CMDS/banner1 -s Hi
+expect  HH  HH    ii
+expect  HHHHHH    ii
+
+case    banner1-banners-each-line-of-a-file
+run     echo "OS-9" > $W/b1in.txt
+run     /dd/CMDS/banner1 -c=+ -z=$W/b1in.txt
+expect  ++++++   +++++
+
+# The usage goes to stderr, and so does the complaint, through _errmsg --
+# which is why the name appears in front of it.
+case    banner1-says-so-when-given-no-string
+run     /dd/CMDS/banner1 2> $W/b1err.txt
+run     echo "status $?"
+run     /dd/CMDS/cat $W/b1err.txt
+expect  status 1
+expect  banner1: no string given
+expect  -c=<char>   character
