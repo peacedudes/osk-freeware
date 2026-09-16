@@ -1388,7 +1388,18 @@ triaged by size, files, curses and stated terms.  Done or decided:
     rise_set    NOT SHIPPED: computes for one observer, its author's house,
                 hard-coded; needs ftime() and atan2(), which this C library
                 lacks
-    qterm       DEFERRED: termio/sgtty ioctls, alarm and setjmp
+    qterm       ASSESSED 2026-09-15, not ported -- a judgement, not a build
+                failure: qterm 3.0 (comp.sources.unix v10i072, six files)
+                works by SENDING an escape sequence and interpreting what
+                the terminal SENDS BACK.  Under os9exec the thing that
+                answers is the host's terminal emulator, so a card would be
+                reporting on whoever's xterm ran it rather than on anything
+                this collection does, and the answer would differ for every
+                reader.  Its job is also already done here: SYS/login sets
+                TERM and TERMCAP, which is what the 84 termcap programs
+                read.  The ioctls would map onto _gs_opt/_ss_opt the way
+                vttest's sgtty.c does, so it could be built -- it should not
+                be carded.
     ag          DONE (fe2bbc79) -- the ag2 post's generator, default word list
                 GAMES/words; Sean Barrett's pref/postf filters kept, not built
     colm        NOT SHIPPED: sets a list out in columns, which `column' does.
