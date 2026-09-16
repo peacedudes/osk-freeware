@@ -3539,3 +3539,62 @@ actually change.
 Cheapest order within the sweep: run the exact method over every stored raw
 first, since it needs no emulator time at all; only then re-shoot the card
 candidates, which do.
+
+## PAUSED MID-SWEEP, 2026-09-16 -- pick up exactly here
+
+**Nothing is half-committed.**  The tree was clean at d53e39ce when this
+paused.  `notes/playtests/' is gitignored and gen_screens had not been run,
+so `docs/' is untouched and no partial state is in git.
+
+**What is done.**  The ansiscreen clamp is FIXED and committed (efe864e4):
+it now does a deferred wrap instead of destroying every character written
+past the right margin.  Nineteen cards were re-shot against `sc-cb.dd' and
+their captures are in notes/playtests/*.shot.txt.  Measured against what is
+still published: life 205 -> 1852 ink (its card was showing about a ninth of
+the board), gnuan +416, animal +176, shire +135, torus +118, perp +100; six
+came back identical, so those cards were never affected; japan -22, wish -14
+and yahtzee2 -6 are the scroll effect, which is the faithful result.
+
+**What was in flight.**  A play-test re-run over the same nineteen .keys
+scripts, launched with `--image sc-cb.dd'.  It may have finished, been
+killed by the pause, or still be going.  Check before anything else.
+
+**Resume, in this order.**
+
+1. If a play-test run is still going, LET IT FINISH.  Never kill an emulator.
+2. If it was killed, `sc-cb.dd.lock' is left behind.  imagelock reports a
+   stale lock and never steals one, so remove it on purpose, then re-run:
+
+       python3 tools/playtest.py $(for n in animal draw editor england gnuan \
+         hexa hexedit japan life perp shire stone sysmon thricken torus \
+         touchtype wisecrack wish yahtzee2; do echo tools/playtests/$n.keys; \
+         done) --image $PWD/sc-cb.dd
+
+   Both pipelines have to be refreshed together: gen_screens' pick() publishes
+   whichever label has the most ink, so a fresh card shot competing with a
+   stale play-test snapshot is worse than neither.
+3. `python3 tools/gen_screens.py'  -- republishes docs/screens/*.txt and
+   docs/screens.js.
+4. `python3 tools/audit_panels.py --gate' -- the ratchet.  panel-backlog.txt
+   holds none of these twenty names, so it should not move in either
+   direction; if it does, read why before editing the backlog.
+5. `tools/check_disk.py disk' -- read the REAL exit status.  Not through a
+   pipe, and NOT with ${PIPESTATUS[0]}: that is a bash-ism and this shell is
+   zsh, which silently gave an empty status here today.
+6. Commit docs/.
+7. `rm sc-cb.dd sc-cb.dd.lock' after an `lsof' check.  It is a scratch image;
+   osk-freeware.dd is rdoggett's and no harness may touch it.
+
+**The twenty affected programs**: animal draw editor england gnuan hexa
+hexedit japan life perp shire stone sysmon thricken torus touchtype
+wisecrack wish yahtzee2 zot.  thricken has no card stanza and is published
+from its play-test capture; puzzle's capture changed too but it publishes no
+screen, so it needs nothing.
+
+**Then the queue rdoggett set, in his order**: the rest of the downloads --
+20 CoCo images, the only body left (Level 2 Library 15, Filters 2,
+Rdump/RayTrace 2, Wildcard 1; the other six are assessed) -- and only THEN
+the corruption sweep, whose method is in the section above.  Expect most of
+the twenty to come back "not a candidate": they are 6809 Level 2 disks, and
+the bar is now what a reader can do afterwards that they could not do
+before, not whether the source compiles.
