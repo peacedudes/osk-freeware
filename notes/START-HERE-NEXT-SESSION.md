@@ -461,6 +461,12 @@ Open:
      **A function returning char, called undeclared, is garbage above the
      low byte on the 68000** -- kalah's Pigeons totals read 661522 for 18.
      Code from a 6809 compiler relied on it; declare the function.
+     **smiley and yidslots ship as posted (0b8de539, 4def3472).**  rdoggett,
+     2026-09-15, on smiley's uncensored face list: "If we censor any of it, we
+     are positioning ourselves as moral police.  I say take it as it is, or
+     reject it in whole."  That answers FOR-RDOGGETT 24, which is gone, and it
+     freed yid-slots, held for the same reason.  Both were read in full first:
+     what is in them is in notes/PLAN-acquisitions and the session log.
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am

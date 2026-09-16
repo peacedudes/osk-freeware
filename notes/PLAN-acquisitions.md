@@ -1407,8 +1407,10 @@ triaged by size, files, curses and stated terms.  Done or decided:
     molecule    NOT SHIPPED: the simulation writes binary coordinates for a
                 display program built on a frame-buffer library (mginit,
                 mgihue) that has no counterpart here
-    smiley      DONE (0b8de539) -- one change, an exit() wrapper, because main's
-                return value reaches the shell as 0 here.  The face list ships
+    smiley      DONE (0b8de539) -- two changes: an exit() wrapper, because main's
+                return value reaches the shell as 0 here, and its write() macros
+                through stdio, since a raw write to a terminal gets no line feed
+                (bd05465d; the card it smeared, bb5374a3).  The face list ships
                 as posted.  rdoggett, 2026-09-15: "If we censor any of it, we
                 are positioning ourselves as moral police.  I say take it as it
                 is, or reject it in whole."
@@ -1430,10 +1432,9 @@ triaged by size, files, curses and stated terms.  Done or decided:
     trek73      DONE (b20bcb93) -- parser and scanner made on OS-9 with
                 yacc and flex, flex fed through YY_INPUT, the timed prompt's
                 interrupted read handed to check_signal(), no saved games
-    yid-slots   IN PROGRESS: unblocked by the same decision.  Builds clean with
-                rand for random -- this curses library has wscanw, overwrite and
-                scrollok -- and its names file goes under GAMES.  The module is
-                yidslots: no name on the disk carries a hyphen and the
+    yid-slots   DONE as yidslots (4def3472) -- built unchanged but for its names
+                file, read from GAMES/YIDSLOTS; rand for random, and the module
+                drops the hyphen, since no program name here carries one and the
                 catalogue's entry parser does not accept one
     scamper     NOT SHIPPED: X11/Xlib only
     hodge-c     DEFERRED: GPL, ANSI with GNU getopt_long, pipes frames to a
