@@ -1467,8 +1467,30 @@ triaged by size, files, curses and stated terms.  Done or decided:
     scamper     NOT SHIPPED: X11/Xlib only
     hodge-c     DEFERRED: GPL, ANSI with GNU getopt_long, pipes frames to a
                 display monitor; it writes PPM the disk's netpbm reads
-    banners     DEFERRED: thirteen banner programs; banner, cursive and
-                gothic are already on the disk
+    banners     ONE SHIPPED, the rest assessed 2026-09-15.  banner1 is DONE
+                (8d58010d): banner-01 of the collection, written in 1987 by
+                Wolfgang Ocker and described by its own README as "the very
+                first banner on OS-9/68000".  It builds UNCHANGED -- the
+                #ifdef OSK arms were already in it, and _errmsg() and
+                intercept() are both in clib.  The rest are not carried and
+                each for a stated reason:
+                  banner-04   IS the disk's `banner' (Brian Wallis's
+                              sysvbanner) -- confirmed by matching its
+                              licence text and its first glyph row, not by
+                              name.
+                  banner-05   holds the disk's `cursive' (Jan Wolter's),
+                              plus block/kban/lban/sban/vban/3db/leb/seb.
+                  banner-12   is banner1's own descendant (Ocker 1987 ->
+                              Kaefer -> Black), GPL v2.  The same banner
+                              twice; the period original is preferred.
+                  banner-11   `mb' reads an external font and the author
+                              ships NONE -- "I haven't included any, 'cause
+                              I don't [know] if they are copyrighted".  It
+                              would ship broken.
+                  banner-10   scripto is Pascal; banner-03 carries Fortran
+                              data files.
+                  the others  ordinary Unix banners, duplicating what is
+                              already here.
     look_rac    ALREADY ON THE DISK as look (Net/2)
     revcat_db   NOT SHIPPED: backwards cat, which tac does
     more-xmas   NOT SHIPPED: a reply carrying a joke, not a program

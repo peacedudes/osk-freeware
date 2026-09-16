@@ -587,6 +587,34 @@ Open:
      skewlife (build-time tables, low value).  The 135 usenet posts are all
      triaged.  CoCo/6809 remains, and is explicitly last.
 
+  2ad. **banner1 ported (8d58010d) -- UNCHANGED, because it came from
+     here.**  banner-01 of the `banners' collection (comp.sources.unix
+     v26i141) is Wolfgang Ocker's 1987 program, and its own README calls it
+     "the very first banner on OS-9/68000 ... one of the few programs that
+     transitioned with me from OS-9/68000 to Unix".  The #ifdef OSK arms
+     were still in the source and everything they call is in clib --
+     _errmsg() (five programs here already use it) and intercept().  ORIG
+     verified byte for byte against the posting; the port differs from it
+     by nothing at all.  The other twelve are assessed in PLAN-acquisitions
+     with a reason each: banner-04 IS the disk's `banner' and banner-05
+     holds its `cursive', both confirmed by licence text rather than name.
+     **A HOST VARIABLE CROSSES INTO os9exec ONLY IF ITS NAME STARTS WITH
+     '@'.**  Found in os9exec's prepParams by the os9-dev session, measured
+     here both ways: `TERM=zzz os9exec ...' is ignored silently and the
+     process sees the seeded `dumb'; `@TERM=zzz os9exec ...' arrives, and
+     `@USER=probe' likewise (USER is otherwise NULL without SYS/login).
+     This corrects the memory that said the host environment never crosses.
+     It also means a harness can hand a program TERM and TERMCAP without a
+     login session at all.
+     **DO NOT PROBE AGAINST `disk/' AS A HOST MOUNT WITHOUT CLEANING UP.**
+     Running `OS9DISK=$PWD/disk os9exec -r bash' lets the emulated bash
+     write `.bash_history' INTO THE TREE, and `no editor or host leftovers'
+     then fails the gate.  It cost a gate run tonight.  Use a scratch image,
+     or delete the file afterwards.
+     **And read check_disk's EXIT STATUS, not the tail of its output.**
+     `tools/check_disk.py disk 2>&1 | tail -31' printed a FAILED line and
+     then `exit 0' -- the 0 was the pipeline's, not the checker's.
+
   2n. **Two harness gaps, not yet fixed.**  (2026-09-15: mz is ported and
      waiting on the first one -- notes/PLAN-acquisitions.)  tools/ansiscreen.py does no
      auto-wrap at column 80 (it clamps), so it cannot show what an am
