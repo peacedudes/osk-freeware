@@ -1,0 +1,16 @@
+name    yidslots
+prog    yidslots
+# A bet of five, the windows spin and the combination is judged; 0 ends it.
+rate    0.5
+wait    5
+snap    start
+keys    5
+key     \r
+wait    7
+snap    spun
+keys    0
+key     \r
+wait    3
+snap    ended
+expect  Glickstein
+expect  Slots

@@ -1996,3 +1996,16 @@ wait    4
 send    -2\r
 wait    4
 snap
+
+shot    yidslots
+size    24 80
+cap     Three windows spinning through parts of names.  A bet of five is
+cap     placed, the windows stop, and the combination is judged.
+try     yidslots
+run     clear
+wait    1
+run     yidslots
+wait    5
+send    5\r
+wait    7
+snap

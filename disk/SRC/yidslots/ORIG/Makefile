@@ -1,0 +1,1 @@
+GAMEFILE=/usr/games/yid-slotsNAMEFILE=/usr/games/yid-namesCC=ccCFLAGS=-Oinstall: install-names install-slotsinstall-names: yid-names       -cp yid-names ${NAMEFILE}install-slots: yid-slots       -cp yid-slots ${GAMEFILE}yid-slots: yid-slots.o       ${CC} ${CFLAGS} yid-slots.o -o yid-slots -lcurses -ltermcapyid-slots.o: yid-slots.c yid-slots.h

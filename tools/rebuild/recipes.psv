@@ -1023,6 +1023,8 @@ letters|letters|letters.c highscore.c kinput.c term.c word.c usleep.c|-DNOJOB -D
 kalah|kalah|kalah.c eval.c show.c movesrc.c|||
 # smiley (comp.sources.misc v23): explains text smileys; faces.c made on OS-9; SRC/smiley/README.OSK.
 smiley|smiley|smiley.c faces.c getopt.c ltoa.c bsearch.c|||
+# yidslots (comp.sources.games v05i063, yid-slots): slot machine of name parts; SRC/yidslots/README.OSK.
+yidslots|yidslots|yid-slots.c|-Drandom=rand -Dsrandom=srand||
 lame|lame|lame.c||/dd/LIB/rand.r|
 canfield|canfield|canfield.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r|
 # atc -- Ed James's air traffic controller, 4.3BSD-Net/2.  Built on its SYSV

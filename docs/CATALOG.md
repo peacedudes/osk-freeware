@@ -1,6 +1,6 @@
 # What is on this disk
 
-1055 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **706 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1056 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **707 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1194,7 +1194,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>112 programs</summary>
+<details><summary>113 programs</summary>
 
 **Adventure & fiction**
 
@@ -1320,6 +1320,7 @@
 | `wisecrack` | a server, and `ask' is its client. Run it in the background and every `ask' pulls one line out of it through /pipe/txtpipe -- slogans from a German OS-9 seminar, 1992-93. `wisecrack & ask "anything"' |
 | `world` | World - text adventure |
 | `wump` | hunt the Wumpus through a cave of tunnels by the hazards you sense: a draft means a pit is next door, a smell the Wumpus himself.  Move room to room, then loose a crooked arrow along a path of rooms to kill him -- but miss and he may wake and eat you.  `-h' for a harder cave; `-r'/`-t'/`-a' resize it |
+| `yidslots` | a slot machine whose three windows spin through the parts of Jewish names: type a bet, watch them stop, and see what the combination pays; 0 ends the game.  Names in GAMES/YIDSLOTS<br>**How:** Full-screen slot machine. Three windows spin through parts of names -- a first name, a name beginning and a name ending. It asks `Place your bet', you type a number and Return, and 0 ends the game. You start with 100; a combination that matches the payoff list multiplies the bet, and `Bob Glick stein' pays 1000 to 1. The windows and the payoffs come from GAMES/YIDSLOTS/yid-names, and a file named on the command line is read instead. The rules are in DOC/yidslots/README. |
 
 **Puzzles**
 
