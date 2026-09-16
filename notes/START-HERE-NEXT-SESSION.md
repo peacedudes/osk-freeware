@@ -3505,3 +3505,37 @@ arm -- and `ffix file' then deleted the file and stopped.  The test caught
 it because it dumped the file afterwards rather than reading the refusal
 message and believing it.  **Put the refusal before the first irreversible
 step, and assert the artefact still exists afterwards.**
+
+## The screen-corruption sweep: how to find the rest (queued behind the downloads)
+
+rdoggett, 2026-09-16, on the ansiscreen clamp: *"if the bug that caused the
+bad renderings is fixed, great.  fix the ones you know about and if you know
+how to find others that may be corrupted, put finding and fixing them on your
+todo list after wading through the rest of the downloaded stuff."*
+
+So the ORDER is: the 20 known ones first (in hand), then the remaining
+downloads, then this sweep.
+
+**How to find them, two methods, one exact and one a filter.**
+
+EXACT, for anything with a stored raw -- the 274 play-test captures.  Render
+the raw with the current renderer and compare against the published screen;
+any difference is a screen the clamp altered.  That is how the 26 were found,
+and it cannot be fooled.
+
+A FILTER, for cards -- screenshots.py keeps no raw, so there is nothing to
+re-render and no exact test.  Use the necessary condition: the clamp could
+only alter a screen if some line actually reached the right margin, so a
+published screen is a candidate if it holds a line exactly as wide as THAT
+CAPTURE'S geometry.  It over-reports and cannot miss one.
+
+**Do not use a fixed width of 80.**  A first cut did and flagged 111 of the
+967 published screens -- but `gothic' renders 96 columns wide and `calen'
+131, so on those the test was asking the wrong question entirely.  Take each
+capture's width from its sheet `size' directive (default 24 80), the way the
+renderer measurement did, then re-shoot the candidates and keep the ones that
+actually change.
+
+Cheapest order within the sweep: run the exact method over every stored raw
+first, since it needs no emulator time at all; only then re-shoot the card
+candidates, which do.
