@@ -1098,3 +1098,7 @@ xfmt|xfmt|lex.yy.c yywrap.c ../unixlib/getopt.c ../unixlib/strchr.c ../unixlib/s
 # multiscreen levels, the sequel to perp.  ANSI C converted to K&R by hand --
 # ansi2knr converts none of it; SRC/thricken/README.OSK.
 thricken|thricken|files.c main.c scores.c screen.c ../unixlib/strdup.c ../unixlib/getopt.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
+# craps (comp.sources.games v1i009, 1987): casino craps, full screen.  printw
+# bus-errors on a float here, so amounts go through sprintf; REFRESH and update
+# collide with curses; SRC/craps/README.OSK.
+craps|craps|main.c dont.c etc.c help.c makeb.c pass.c pay.c prints.c props.c subs.c final.c random.c|XENIX SCORES|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/math.l|

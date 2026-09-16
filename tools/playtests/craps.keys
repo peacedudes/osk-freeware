@@ -1,0 +1,21 @@
+name    craps
+prog    craps
+# The table, ten dollars on the pass line, one roll, then quit.
+rate    0.6
+size    24 80
+wait    6
+snap    start
+key     p
+wait    1
+keys    10
+key     \r
+wait    2
+snap    bet
+key     r
+wait    5
+snap    rolled
+key     q
+wait    5
+expect  Rack
+expect  PASS
+expect  Bet:

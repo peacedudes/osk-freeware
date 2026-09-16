@@ -1,6 +1,6 @@
 # What is on this disk
 
-1058 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1059 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 98 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 114 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 132 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1195,7 +1195,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>114 programs</summary>
+<details><summary>115 programs</summary>
 
 **Adventure & fiction**
 
@@ -1245,6 +1245,7 @@
 | `canfield` | Canfield, the casino solitaire you bet on: earn units for each card worked up to a foundation, building down in alternating colours on the tableau; name a move by its two ends (s2, tf, 13, 2f), `ht' deals, `q' quits |
 | `cfscores` | reports what canfield's betting has cost you and won you -- hands, inspections, games, runs, information, thinking time, and what you are worth after it all.  It reads the same GAMES/cfscores canfield writes; before your first game it says so and stops |
 | `chess` | chess against the machine on a shaded board.  It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' then `e4', two keystrokes each with no RETURN.  68k port, three engine versions built<br>**How:** It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN. |
+| `craps` | casino craps at a full table: each bet is a key, then the amount and Return -- p pass line, d dont pass, f the field, h a hardway, o takes odds; r rolls, `?' lists every key and q leaves.  High roller list in GAMES/CRAPS<br>**How:** Full-screen casino craps with a rack of $100. Each bet is a key, then the amount and Return: p is the pass line, d dont pass, c come, D dont come, b a place bet, f the field, h a hardway, o takes odds and l lays them; s, a, 2, 3, y and u are the one-roll proposition bets. r rolls the dice, `?' lists every key, ^L redraws and q leaves, writing the high roller list to GAMES/CRAPS/craps.list. $CRAPSNAME names you there if you set it, otherwise $USER does. |
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |
 | `fish` | Go Fish against the computer: ask for a rank you already hold and take any the other player has, or `GO FISH' and draw; four of a rank makes a book, and the most books wins |
