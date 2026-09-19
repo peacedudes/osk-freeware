@@ -6,6 +6,12 @@ numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
 and the gaps are deliberate: a missing number is an answered question.
 Updated 2026-09-19.
 
+**START AT ITEM 30.**  It is the only one that touches somebody else's
+property: the `fpu' on the disk was not the copy its grant covers, and
+`fpu040' had no grant at all.  I have already acted -- swapped one,
+removed the other -- and both are one command to reverse if you read the
+grant more broadly than I did.
+
 **Item 25 opened and closed in one night, and I owe you a correction on
 it.**  I reported five libraries in LIB/ with no SOURCES.txt entry and said
 one of them, `unet.l', might be Microware's because it was byte-identical
