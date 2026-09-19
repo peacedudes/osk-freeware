@@ -29,6 +29,14 @@ mechanically decidable, and the `floods' list is deliberately kept as the
 record of how a whole class failed.  Seven candidates remain and every
 one of them is right as it stands -- run each before changing a word.
 
+**One disagreement the tool cannot see, left open: `pacman'.**
+`DOC/STATUS' says it "draws nothing and exits at once, keyed or not";
+its line in `tools/panel-exceptions.psv' says it draws its maze in raw
+keyboard mode, which the capture harness does not drive.  Those cannot
+both be true.  The exception is the later reading and the more detailed
+one, but neither was re-measured today -- it wants `tools/playtest.py',
+which plays a program at a pty and judges, rather than a capture.
+
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
 current tree; `tools/datatest.py --all' 868 of 868 against it; every
 `check_disk.py' check green; `check_the_checks.py' makes every one of
