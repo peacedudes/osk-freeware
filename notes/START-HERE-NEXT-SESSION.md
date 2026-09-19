@@ -7,6 +7,22 @@ current tree; `tools/datatest.py --all' 868 of 868 against it; every
 `check_disk.py' check green; `check_the_checks.py' makes every one of
 them fail on demand.  Working tree clean.
 
+**THE OS9EXEC SESSION ANSWERED THREE OF OURS**, all of them things we
+had written up as mysteries: `byteflip' wanted its byte maps rather than
+a filename; `disktest' forks OS-9's own `free' and reads a pipe it also
+holds open for writing, so with no `free' to answer it waits on itself;
+and `msntp' with no server named is LISTENING FOR BROADCASTS, which
+DOC/msntp/msntp.1 says in as many words on line 171.  Read the disk's
+own documentation before reporting a program, which is a rule this file
+already had.
+
+**A CHEAP SCAN FOR A SCRAMBLED SCREEN**, worth knowing since os9exec
+fixed an echo-ordering bug under baud pacing (887abd8):
+`grep -l "[A-Za-z0-9]bash#" notes/playtests/*.shot.txt' finds a prompt
+sitting immediately after a letter across all 950 captures in seconds.
+Fifteen matched on 2026-09-19 and every one is honest -- a program whose
+output ends without a newline -- so nothing in the gallery was damaged.
+
 Three gate checks were added today, each because something had gone
 wrong that nothing could see:
 
