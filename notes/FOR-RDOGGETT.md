@@ -40,6 +40,20 @@ from a measured list the gate checks.
    PLAN.md, ROADMAP-freeware.md and notes/os9exec-bugs/X-FLAG.md; what is
    yours is pushing, tagging and moving the pin.
 
+   **The os9exec session says you have already settled the shape of this**
+   -- relayed 2026-09-19, so check it against what you actually said: ONE
+   push rather than push-then-fix, os9exec waiting until the work here that
+   drives it settles (it expects about a week), then a fleet sweep, then the
+   two pushed together.  Nothing on its branch `fix/scf-pd-eor' has left
+   that machine either, so there is no newer commit to pin to today and I
+   have written none into anything.  If that is right, this item waits on
+   nothing of mine.
+
+   One thing landed there today that changes what a program here can do:
+   its per-process memory ceiling went from 512 allocation blocks to 8192
+   (their c0e68fa, unpushed).  `utree' on the whole of /dd runs out under
+   the old one; I will record whether the new one reads it.
+
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
 
