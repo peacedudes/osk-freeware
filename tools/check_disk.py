@@ -575,8 +575,8 @@ def check_hand_lists_have_no_duplicate_keys(root):
 
 
 def check_hand_files_name_real_programs(root):
-    """tools/howto.psv, tools/categories.psv, tools/requires.psv and
-    disk/DOC/USAGE must name programs that exist.
+    """tools/howto.psv, tools/categories.psv, tools/requires.psv,
+    tools/shadowed-names.txt and disk/DOC/USAGE must name programs that exist.
 
     All three are hand-maintained or generated-then-kept, and a program removed
     from the disk leaves its lines behind.  On 2026-08-30 `howto.psv' still
@@ -585,6 +585,11 @@ def check_hand_files_name_real_programs(root):
     of them still claiming "`q' quits -- tested"; `MakeTeXPK' had never been on
     the disk at all.  Nothing pointed at them, because these files are read by
     NAME -- an entry nobody looks up is an entry nobody notices.
+
+    `shadowed-names.txt' joined on 2026-09-18.  It is what puts the warning on
+    a card -- "your OS-9 has a `dir' of its own" -- so a name that has left the
+    disk means a warning nobody sees, and the file is exactly the kind that
+    drifts: it is measured against an SDK that is not in this repository.
 
     DOC/USAGE was added to this check on 2026-08-31, having been found with
     EIGHTEEN stale entries: eleven Microware-era utilities removed 2026-08-22,
@@ -609,7 +614,8 @@ def check_hand_files_name_real_programs(root):
 
     here = os.path.dirname(os.path.abspath(__file__))
     bad = []
-    for fname in ("howto.psv", "categories.psv", "requires.psv"):
+    for fname in ("howto.psv", "categories.psv", "requires.psv",
+                  "shadowed-names.txt"):
         path = os.path.join(here, fname)
         if not os.path.exists(path):
             continue

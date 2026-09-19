@@ -122,6 +122,14 @@
      of a full-screen program most of all.  Those are what a reader hunts for,
      so they are not the same colour as the prose around them. */
   .shotcap .key{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  /* A program whose NAME is also the name of a utility the reader owns.
+     rdoggett: "I want to do it with informed consent" -- so this is a
+     callout on the card, not a line in a document they must go and find. */
+  .shadow{margin:12px 0 0;padding:9px 11px;border-radius:6px;
+    background:var(--soft);border:1px solid var(--accent);
+    color:var(--ink);font-size:13px;line-height:1.5}
+  .shadow b{font-weight:600}
+  .shadow code{font-family:var(--mono);font-size:12.5px}
   .brings{display:flex;align-items:baseline;gap:12px;margin:14px 0 0;font-size:13px}
   .brings ul{list-style:none;margin:0;padding:0;color:var(--dim)}
   .brings li{display:flex;gap:10px;align-items:baseline}
@@ -602,6 +610,12 @@ function renderPanel(){
     `<h2 class="pn">${esc(p.name)}</h2>`+
     `<p class="pd">${esc(i.purpose||lead(p.desc))}</p>`+
     `<div class="try"><span class="k">try it</span><code class="copycmd" tabindex="0" title="tap to copy"><span class="pr">${esc(PROMPT[shell])}</span><span class="ct">${esc(tryCmd)}</span></code></div>`+
+    (p.shadows?`<p class="shadow"><b>Your OS-9 has a <code>${esc(p.name)}</code> of its own.</b> `+
+      `This is a different program under the same name. Nothing is overwritten by reading this disk `+
+      `&mdash; but put <code>${esc(p.shadows.includes("/")?"/dd/CMDS/"+p.shadows.replace(/\/[^/]*$/,""):"/dd/CMDS")}</code> `+
+      `ahead of yours on PATH, or <code>load</code> this one, and it answers for that name until you `+
+      `<code>unlink</code> it &mdash; a resident module is found by name whatever path you type. `+
+      `<code>DOC/README-NAMES</code> lists all of them.</p>`:"")+
     (needs.length?`<div class="needs"><span class="k">needs</span><span>${needs.join(" &middot; ")}${data.length?` <span class="okk">&middot; ${data.length>1?"all ":""}on the disk</span>`:""}</span></div>`:"")+
     seeHTML+
     helpHTML+

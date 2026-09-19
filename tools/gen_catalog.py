@@ -383,6 +383,27 @@ def load_categories(path):
     return cats
 
 
+def load_shadowed(path):
+    """Programs whose NAME is also the name of a utility the reader owns.
+
+    rdoggett, 2026-09-18, on shipping a `dir' beside theirs: "I might prefer
+    the freeware version (as a user) and want to overwrite Microware's,
+    but... I want to do it with informed consent."  So the card says so.
+    `tools/shadowed-names.txt' is the measured list and DOC/README-NAMES the
+    explanation; this only decides which cards carry the line.
+    """
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="latin-1"):
+        line = line.strip()
+        if not line or line.startswith("#") or "|" not in line:
+            continue
+        name, where = line.split("|", 1)
+        out[name.strip()] = where.strip()
+    return out
+
+
 def load_terms(path):
     """What each card says about a program's terms, from tools/terms.psv.
 
@@ -514,6 +535,8 @@ def gather(root, catfile):
     from_effo(root, progs)
     from_tree(root, progs, starred)
     cats  = load_categories(catfile)
+    shadowed = load_shadowed(os.path.join(os.path.dirname(catfile),
+                                          "shadowed-names.txt"))
     howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "howto.psv"))
     helps = load_help(root)
@@ -533,6 +556,8 @@ def gather(root, catfile):
             p["terms"] = terms[p["name"]]
         if p["name"] in requires:
             p["requires"] = requires[p["name"]]
+        if p["name"] in shadowed:
+            p["shadows"] = shadowed[p["name"]]
         if p["name"] in cats:
             p["cat"], p["sub"] = cats[p["name"]]
         elif p["name"] in groups:
@@ -576,7 +601,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "System & modules","Disk & DOS","Time & calendar","Maths & calculators",
  "Printing","Documentation","G-Windows","Needs hardware","Uncategorised"]
 
-KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src",
+KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src","shadows",
         "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
         "lang","langnote")
 

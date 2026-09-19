@@ -1,0 +1,49 @@
+# shadowed-names.txt -- programs here that carry the name of a utility the
+# reader already owns.  One `name|where' per line.
+#
+# WHY IT EXISTS.  rdoggett, 2026-09-18: "if we are shipping replacements for
+# Microware components (like dir), we need to put a clear warning about that.
+# It's ok, I might prefer the freeware version (as a user) and want to
+# overwrite Microware's, but... I want to do it with informed consent."
+#
+# So the card for each of these says so, in the reader's face rather than in
+# a document they have to go and find.  gen_catalog reads this file;
+# DOC/README-NAMES is the longer explanation it points at.
+#
+# MEASURED, not guessed: every filename under disk/CMDS compared with the
+# utility set of an OS-9/68K system disk, keeping the names in both.  The
+# five Microware runtime modules this collection ships by permission -- cio,
+# csl, csl020, math, math881 -- are NOT here: they are the same thing under
+# the same name, not another program wearing it.
+#
+# A system older or newer than the one measured will differ a little at the
+# edges.  The hazard does not: a resident module answers by name whatever
+# path you type, so `load' one of these and it answers for that name until
+# `unlink' lets it go.
+cc1plus|GCC2/cc1plus
+cc2|GCC2/cc2
+cc2plus|GCC2/cc2plus
+cccp2|GCC2/cccp2
+chown|chown
+collect|GCC2/collect
+compress|compress
+dir|dir
+dump|dump
+expand|expand
+gcc2|GCC2/gcc2
+gpp|GCC139/gpp
+grep|grep
+help|help
+inetd|WN/inetd
+kermit|kermit
+load|load
+make|make
+mshell|mshell
+mv|mv
+printenv|printenv
+setime|setime
+su|su
+tar|tar
+umacs|umacs
+undel|undel
+what|what
