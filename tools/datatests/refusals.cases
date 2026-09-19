@@ -42,13 +42,21 @@ case    sterm-wants-a-modem-port
 run     /dd/CMDS/COMMS/sterm
 expect  No MODEM port defined
 
-# `mailx' IS DELIBERATELY NOT HERE.  It was, for one evening, and it gave
-# three different answers to the same inputs between 01:25 and 02:15 on
-# 2026-09-19 -- "no mail waiting", then "can't change to your mailbox
-# directory: 'su'...error 214", then the same with error 216 -- while the
-# os9exec working copy beside this one was being rebuilt (sockets, and a
-# memory-block ceiling).  A case cannot pin behaviour that is moving; its
-# gallery card shows what it does and says no more than that.
+# `mailx' IS DELIBERATELY NOT HERE, and the reason is worth reading before
+# anyone adds it back.  On 2026-09-19 it gave three answers to the same
+# inputs inside fifty minutes: "no mail waiting" at 01:25, "can't change to
+# your mailbox directory: 'su'...error 214" at 01:55, and the same with
+# error 216 at 02:15.  The os9exec session confirms its binary did NOT
+# change between the first two, so at least that step is not theirs, and I
+# could not find what it was: replaying the SAME probe files against a
+# PINNED binary and a FRESHLY BUILT image gives error 216 every time, five
+# runs, both export forms.  Three earlier readings say otherwise and cannot
+# be reproduced.
+#
+# So: the current answer is stable but the history is not, and a case
+# that flaps is worse than a gap in coverage.  Its gallery card shows what
+# it does and claims no mechanism.  If you make it reproduce, write the
+# case and take `mailx' off the untested list.
 
 case    kermit-r15-prints-its-modes
 run     /dd/CMDS/kermit

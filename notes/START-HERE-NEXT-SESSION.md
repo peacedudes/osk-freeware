@@ -63,11 +63,22 @@ for what it needs** -- this is the second time that rule has paid.
 gave three different answers: "no mail waiting", then "can't change to
 your mailbox directory: 'su'...error 214", then the same with error 216.
 An explanation was written into its caption and a case on the strength of
-the first two, and had to be withdrawn.  What moved was the os9exec
-WORKING COPY beside this one, being rebuilt through the evening (sockets,
-and the memory-block ceiling above).  **A verification run against a
-sibling's working tree is a run against a moving target** -- note which
-binary, and re-run before believing a difference is yours.
+the first two, and both were withdrawn.  **The cause is NOT known.**  The
+first guess was the os9exec working copy beside this one, which was being
+rebuilt through the evening -- but its session checked and its binary did
+not change between the first two readings, so at least that step is ours.
+Replaying the same probe files against a PINNED binary and a FRESHLY
+BUILT image now gives error 216 five times out of five, both export
+forms; the three earlier readings cannot be reproduced at all.  Whoever
+makes it reproduce should write the case and take mailx off the untested
+list.
+
+**The practice that came out of it stands either way: A VERIFICATION RUN
+AGAINST A SIBLING'S WORKING TREE IS A RUN AGAINST A MOVING TARGET.**  The
+datatest harness defaults `OS9EXEC` to `../os9exec/os9exec`, which is
+that session's build output -- it was rebuilt at 02:01 in the middle of an
+863-case suite here.  Copy the binary into the scratchpad, point OS9EXEC
+at the copy, and say which one in the write-up.
 
 **Two more that moved the same way, and both cases were rewritten rather
 than chased.**  `msntp' used to answer "unable to allocate socket for
