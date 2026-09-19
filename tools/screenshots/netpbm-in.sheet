@@ -346,7 +346,7 @@ wait    5
 shot    xvminitoppm
 cap     Reads an XV thumbnail -- the small preview the XV image viewer
 cap     saves -- into a colour picture.  A thumbnail is `P7 332', a
-cap     comment line, the size, and then ONE byte a pixel indexing a fixed
+cap     comment line, the size, and then one byte a pixel indexing a fixed
 cap     palette of three bits of red, three of green and two of blue, so
 cap     one can be written with printf.  Sixteen characters of text make a
 cap     strip eight pixels by two.

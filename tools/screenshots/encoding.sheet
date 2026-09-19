@@ -172,11 +172,11 @@ wait    4
 shot    xcrypt
 cap     Scrambles a file against a key you type at its `Key:' prompt.  Two
 cap     things it needs that its syntax line does not say.  The output file
-cap     MUST ALREADY EXIST: it asks OS-9 to create one with a Unix
+cap     has to exist already: it asks OS-9 to create one with a Unix
 cap     permission word, OS-9 reads that word as its own attribute byte and
 cap     refuses, and the syntax line you get is that refusal, not a
 cap     complaint about your arguments.  And the direction comes from the
-cap     NAME it is invoked by -- one starting with `e' encrypts, anything
+cap     name it is invoked by -- one starting with `e' encrypts, anything
 cap     else decrypts -- so as `xcrypt' it always takes the decrypt path.
 cap     Ten characters of key or more, or it tells you the key is short.
 try     xcrypt a.txt a.enc

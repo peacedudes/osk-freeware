@@ -677,9 +677,9 @@ shot    signal
 cap     Sends an OS-9 signal to a process by id -- the id, the signal
 cap     code, and seconds to wait first if you want a delay.  Code 0 ends
 cap     the process.  Here `cron' is started in the background and bash
-cap     prints the id it got, in angle brackets; USE THE ID YOU SEE, not
-cap     the 3 shown here.  Sent twice: the second answers 228, an illegal
-cap     process id, which is how you know the first one landed.
+cap     prints the id it got, in angle brackets -- use the id you see
+cap     rather than the 3 shown here.  Sent twice: the second answers 228,
+cap     an illegal process id, which is how you know the first one landed.
 try     signal 3 0
 run     set +H
 wait    2
@@ -734,8 +734,8 @@ cap     A scheduling daemon: it reads usr/lib/crontab -- shown first --
 cap     and hands each command to Microware's shell at its minute, hour
 cap     and day, running until it is stopped.  Started in the background
 cap     here, bash prints the id it got, and `signal' answers status 0
-cap     because there was a daemon there to take it.  USE THE ID YOU SEE,
-cap     not the 3 shown.
+cap     because there was a daemon there to take it.  Use the id you see
+cap     rather than the 3 shown.
 try     cron &
 run     set +H
 wait    2
@@ -898,9 +898,9 @@ cap     Sends a signal to one or more processes named by id.  With no
 cap     option it sends the wake signal and says nothing; `-(n)' sends
 cap     signal n, and 2 is the keyboard abort, which ends a process.
 cap     `cron' is started in the background here and bash prints the id
-cap     it got -- USE THE ID YOU SEE, not the 3 shown.  Woken, then asked
-cap     for an id nothing holds, which is how you know it found the first
-cap     one, and then sent the abort.
+cap     it got -- use the id you see rather than the 3 shown.  Woken, then
+cap     asked for an id nothing holds, which is how you know it found the
+cap     first one, and then sent the abort.
 try     snd_sig 3
 run     set +H
 wait    2

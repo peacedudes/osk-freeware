@@ -268,7 +268,7 @@ wait    10
 shot    zip
 cap     Info-ZIP's zip deflates into a temporary of its own -- _Z000003 --
 cap     and then cannot put your name on it: the rename fails and it says
-cap     so.  THE TEMPORARY IS THE ARCHIVE.  Rename it yourself and unzip
+cap     so.  The temporary is the archive.  Rename it yourself and unzip
 cap     lists it, extracts it, and the file comes back byte for byte.
 cap     Stand in the directory and use bare names at both ends; a pathname
 cap     with a slash loses its leading one and cannot be unzipped back.
