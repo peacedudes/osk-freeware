@@ -1,2 +1,4 @@
-game g.lst 1 2
+game g.lst 1 2 > board.ps
+$ wc -l board.ps; cat board.ps
+      1 board.ps
 /V 11 72 mul def /L 60 def

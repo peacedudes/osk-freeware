@@ -602,8 +602,10 @@ shot    game
 size    24 80
 cap     Meant to draw a saved GNU Chess game board by board as PostScript,
 cap     one page a move, for printing with the ChessFont file its
-cap     documentation names.  Given a game it writes the first line of the
-cap     page setup and stops there, so there is nothing to print.
+cap     documentation names.  It writes the first line of the page setup
+cap     and stops there, so there is nothing to print -- and that is not
+cap     the game file's fault: tried again on a real `chess.lst' played
+cap     out of gnuchess and listed, the output is the same one line.
 cap     DOC/game has the manual page.
 try     game g.lst 1 2
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo "e2e4      0      0      0     8" > /dd/tmp/GAMESA/g.lst
@@ -612,8 +614,10 @@ run     builtin cd /dd/tmp/GAMESA
 wait    1
 run     clear
 wait    1
-run     game g.lst 1 2
+run     game g.lst 1 2 > board.ps
 wait    12
+run     wc -l board.ps; cat board.ps
+wait    6
 
 shot    postprint
 cap     Meant to print the positions in GNU Chess's saved hash file as
