@@ -654,18 +654,43 @@ try     dpark -?
 run     dpark -?
 wait    5
 shot    bsplt68
-cap     bsplt68 takes an OS9Boot file apart into the modules inside it.
-cap     There is no boot file here, so it answers with its usage line.
-try     bsplt68
-run     bsplt68
-wait    5
+cap     Takes an OS9Boot file apart into the modules inside it, writing
+cap     each one out under its own module name.  A boot file is simply
+cap     modules end to end, so one is made here with cat and split
+cap     straight back into the two that went in.
+try     bsplt68 OS9Boot
+run     rm -rf /dd/tmp/BSPL > /nil 2>/nil; mkdir -p /dd/tmp/BSPL
+wait    3
+run     builtin cd /dd/tmp/BSPL
+wait    1
+run     cat /dd/CMDS/cat /dd/CMDS/clear > OS9Boot
+wait    4
+run     clear
+wait    1
+run     ls -l
+wait    3
+run     bsplt68 OS9Boot
+wait    6
+run     ls -l
+wait    4
 shot    signal
-cap     signal sends an OS-9 signal to a process, after a delay if you ask
-cap     for one.  With no process named it prints its syntax: the process
-cap     id, the signal code and the seconds to wait.
-try     signal -?
-run     signal -?
-wait    5
+cap     Sends an OS-9 signal to a process by id -- the id, the signal
+cap     code, and seconds to wait first if you want a delay.  Code 0 ends
+cap     the process.  Here `cron' is started in the background and bash
+cap     prints the id it got, in angle brackets; USE THE ID YOU SEE, not
+cap     the 3 shown here.  Sent twice: the second answers 228, an illegal
+cap     process id, which is how you know the first one landed.
+try     signal 3 0
+run     set +H
+wait    2
+run     clear
+wait    1
+run     cron &
+wait    4
+run     signal 3 0; echo "status $?"
+wait    4
+run     signal 3 0; echo "status $?"
+wait    4
 shot    t
 cap     t is a minimal trap-handler test stub: it installs, returns cleanly
 cap     and prints nothing, so a zero exit status is the whole of what it
@@ -861,12 +886,26 @@ try     pri 2 128; echo "status $?"
 run     pri 2 128; echo "status $?"
 wait    3
 shot    snd_sig
-cap     snd_sig sends a signal to one or more processes named by pid;
-cap     `-(n)' is the signal number, and with none it sends the wake
-cap     signal.  Its synopsis, there being no process here to signal.
-try     snd_sig -?
-run     snd_sig -?
+cap     Sends a signal to one or more processes named by id.  With no
+cap     option it sends the wake signal and says nothing; `-(n)' sends
+cap     signal n, and 2 is the keyboard abort, which ends a process.
+cap     `cron' is started in the background here and bash prints the id
+cap     it got -- USE THE ID YOU SEE, not the 3 shown.  Woken, then asked
+cap     for an id nothing holds, which is how you know it found the first
+cap     one, and then sent the abort.
+try     snd_sig 3
+run     set +H
+wait    2
+run     clear
+wait    1
+run     cron &
+wait    4
+run     snd_sig 3
 wait    3
+run     snd_sig 99
+wait    3
+run     snd_sig -2 3; echo "status $?"
+wait    4
 shot    setime2
 cap     setime2 sets the system date and time from the fields
 cap     `yyy mm dd hh mm ss' at its prompt -- yyy counts years from 1900,

@@ -75,12 +75,9 @@ basicwin|an X11 basic-window demo; with no X server here it stops at "cannot con
 xengine|an X11 demo animating an engine; with no X display here it stops at "Can't open display"
 snap|writes a snapshot of the screen on specific hardware terminals; it does not recognize this console, which is not one of them
 getsys|reports OS-9's system globals; the emulator does not implement the system-global reads it makes, so only unimplemented notices come back
-signal|sends an OS-9 signal to a process named by id; with no target process its syntax is what there is to show
-snd_sig|sends a signal to one or more processes named by id; with no target process its synopsis is what there is to show
 transfer|copies files from GDOS disks to OS-9; it wants the GDOS device DGDOS0, which is not present
 mvolformat|formats a set of floppies with sequential volume numbers; there is no floppy drive here, so its syntax is what there is to show
 bootgen|builds an OS9Boot file from named modules for a machine to start from; there is no such file to build here, so it answers with its command format
-bsplt68|takes an OS9Boot file apart into the modules inside it; there is no boot file here, so it answers with its usage line
 dpark|restores an RBF disk's head to track zero; there is no disk head to park here, so it answers with its command format
 setime|sets the system clock; it prompts for the date and time in YYMMDDHHMMSS order, and setting the clock is a privileged operation
 rndir|renames subdirectory names to upper or lower case; on this case-insensitive filesystem a name and its other-case form are one entry, so there is nothing to change

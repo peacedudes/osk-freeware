@@ -93,6 +93,7 @@ bootgen a84da7013b341aa3
 browse d6333f7a41d2fe63
 brushtopbm ab0affe58b89d817
 bs 6c4fed518a8c42bd
+bsplt68 25375a0b5287ca5e
 btoa 8c34c328db6ca264
 btop c2d56a633e5b8ee1
 bugs f9b74b23ee2613a2
@@ -737,7 +738,7 @@ shdev 2bff145e6db657b6
 shire 73eb937ead616c9c
 showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
-signal cd58109a61af0db6
+signal dbbf720d268c4eb2
 sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
 ski eee1e80c93d85717
@@ -747,7 +748,7 @@ smail e63faf3593c3b34d
 smiley b84386a892e54438
 snake 57a3a2d0ae531c69
 snap 42f8483b027f8056
-snd_sig 1113acd74ba5ec4d
+snd_sig 3b37fe2783048d4b
 sod 42cb29479e16df52
 soelim 959365c836523243
 sokoban e5a224c805f12379
