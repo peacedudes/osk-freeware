@@ -422,7 +422,7 @@ wait    2
 shot    lotto
 size    24 80
 cap     Asked whether to hear a testimonial, whether you believe and whether
-cap     you REALLY believe -- y to all three -- it draws six numbers.
+cap     you really believe -- y to all three -- it draws six numbers.
 try     lotto -a 1
 run     clear
 wait    1

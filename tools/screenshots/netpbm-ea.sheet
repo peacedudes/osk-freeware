@@ -54,7 +54,7 @@ wait    6
 shot    pnmscale
 cap     Scales an image.  One number is a factor -- 2 doubles each side --
 cap     while -xysize fits it to exact dimensions.  A 32x16 ramp doubled to
-cap     64x32.  Given only a filename it takes THAT as the factor, so always
+cap     64x32.  Given only a filename it takes that as the factor, so always
 cap     name the factor.
 try     pnmscale 2 tmp/NEAB/r.pgm > tmp/NEAB/b.pgm; pnmfile tmp/NEAB/r.pgm tmp/NEAB/b.pgm
 os9     pnmscale 2 tmp/NEAB/r.pgm >-tmp/NEAB/b.pgm; pnmfile tmp/NEAB/r.pgm tmp/NEAB/b.pgm

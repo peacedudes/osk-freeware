@@ -1023,7 +1023,7 @@ cap     Runs the commands a remote site queued here.  Before starting it
 cap     looks for a module called `procs' to see whether another copy is
 cap     already going -- your own OS-9's, loaded from /h1 here.  With it
 cap     resident it gets past that and asks which site's queue to run,
-cap     printing what it takes: a system name, or ALL for every system in
+cap     printing what it takes: a system name, or `ALL' for every system in
 cap     the Systems file.
 try     uuxqt
 run     load /h1/CMDS/procs

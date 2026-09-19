@@ -246,7 +246,7 @@ cap     the line: here `wc' over the three files named in list.txt, each
 cap     command echoed before its output.  eo hands each command to the shell
 cap     SHELL names, and this disk's `sh' can only fork a module it finds by
 cap     name -- so `sh' and `wc' are loaded into memory first, and that is
-cap     what the two `load' commands are for.  SHELL=CMDS/sh does NOT work:
+cap     what the two `load' commands are for.  SHELL=CMDS/sh does not work:
 cap     a relative fork is resolved against the execution directory, not the
 cap     one you are in.
 try     load sh; load wc; SHELL=sh eo list.txt wc @
