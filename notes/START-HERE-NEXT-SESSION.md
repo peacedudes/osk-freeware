@@ -2,6 +2,40 @@
 
 ## DO NEXT -- 2026-09-19
 
+**RUN THE SUITE TWICE AGAINST ONE IMAGE.  It was only ever green the
+first time.**  `tools/datatest.py --all' runs against `osk-freeware.dd'
+and the image is NOT reset between runs -- `mkimage.sh' is what resets
+it.  `autoreply' reports whether /dd/USR/LIB/ELM/autoreply.data exists,
+and a case in `last2.cases' CREATES that file to prove `arepdaemon' no
+longer stops without one.  So the case in `last.cases' that asserts
+"You're not currently autoreplying to mail." passed the first time the
+suite met a fresh image and failed every time after.  **Every 868 of 868
+this week was a first run on a newly built image.**
+
+It surfaced by accident: two suites back to back while checking an
+emulator change.  Both cases are fixed at both ends -- the one that
+READS the state establishes it, the one that WRITES it removes it -- and
+`last2' then `last' is 11 of 11 and 13 of 13.
+
+**Where to look if it happens again:** case lines that write outside
+/dd/tmp.  Thirty-five of them across a dozen files, and they are the only
+ones that can poison a later run:
+
+    python3 - <<'X'
+    import re, glob, os
+    for p in sorted(glob.glob('tools/datatests/*.cases')):
+        for n, line in enumerate(open(p), 1):
+            if not line.strip().startswith('run '): continue
+            for m in re.finditer(r"(?:>>?|rm -f|rm -rf|mkdir -p|cp\s+\S+)\s+(/dd/\S+)",
+                                 line):
+                if not m.group(1).startswith('/dd/tmp'):
+                    print(os.path.basename(p), n, m.group(1))
+    X
+
+`netpbm6.cases' is the model: it copies `sh' to `shell' and gcc_cccp to
+/dd/cccp so rayshade can render, and takes both away again in the same
+case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
+
 **A BACKGROUND SERVER LEFT RUNNING AT THE END OF A STANZA CAN TAKE THE
 EMULATOR WITH IT.**  From the os9exec session: a daemon parked on a read
 after the main shell exits ends the emulator about eleven times in twelve
