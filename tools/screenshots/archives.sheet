@@ -262,12 +262,14 @@ run     fiz tmp/ARC/z2.zoo
 wait    10
 
 shot    zip
-cap     Info-ZIP's zip compresses the file correctly but then cannot
-cap     rename its temporary file onto the target, so the archive is
-cap     never written.  unzip reads archives made elsewhere without
-cap     trouble.
+cap     Info-ZIP's zip deflates into a temporary of its own -- _Z000003 --
+cap     and then cannot put your name on it: the rename fails and it says
+cap     so.  THE TEMPORARY IS THE ARCHIVE.  Rename it yourself and unzip
+cap     lists it, extracts it, and the file comes back byte for byte.
+cap     Stand in the directory and use bare names at both ends; a pathname
+cap     with a slash loses its leading one and cannot be unzipped back.
 try     zip test.zip motd
-run     rm -rf /dd/tmp/ZIPT > /nil 2>/nil; mkdir -p /dd/tmp/ZIPT; cp /dd/SYS/motd /dd/tmp/ZIPT/motd
+run     rm -rf /dd/tmp/ZIPT > /nil 2>/nil; mkdir -p /dd/tmp/ZIPT; cp /dd/SYS/termcap /dd/tmp/ZIPT/motd
 wait    5
 run     builtin cd /dd/tmp/ZIPT
 wait    1
@@ -275,8 +277,10 @@ run     clear
 wait    1
 run     zip test.zip motd
 wait    12
-run     ls
-wait    6
+run     mv _Z* test.zip
+wait    4
+run     unzip -l test.zip
+wait    8
 
 shot    unzip
 cap     Info-ZIP unzip extracting an archive of two members, one deflated

@@ -200,40 +200,50 @@ run     dump a.enc
 wait    3
 
 shot    todos
-cap     Meant to turn OS-9 line endings into DOS ones in place.  It
-cap     converts into a temporary file and then cannot rename it back
-cap     over the original, so the file comes out unchanged, as the
-cap     checksums show.  autolf does the job as a filter.
-try     chksum tmp/ENC/le.txt; todos tmp/ENC/le.txt; chksum tmp/ENC/le.txt
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/le.txt
+cap     Turns OS-9 line endings into DOS ones: every CR becomes CR LF.
+cap     It writes the converted text into todos.$$$.<n> in the directory
+cap     you are standing in and then forks OS-9's own del and rename to
+cap     move it over the original, which is where it stops here -- so the
+cap     file you named is untouched and the conversion is waiting under
+cap     the temporary name.  Rename it yourself, as below.  autolf -c -C
+cap     -L does the same job as a filter and renames nothing.
+try     todos le.txt
+run     rm -rf /dd/tmp/TDOS > /nil 2>/nil; mkdir -p /dd/tmp/TDOS; printf "one\rtwo\r" > /dd/tmp/TDOS/le.txt
 wait    2
-run     builtin cd /dd
+run     builtin cd /dd/tmp/TDOS
 wait    1
 run     clear
 wait    1
-run     chksum tmp/ENC/le.txt
+run     dump le.txt
 wait    3
-run     todos tmp/ENC/le.txt
-wait    4
-run     chksum tmp/ENC/le.txt
+run     todos le.txt
+wait    5
+run     mv todos.* dos.txt
+wait    3
+run     dump dos.txt
 wait    4
 
 shot    toos9
-cap     The other direction, DOS line endings to OS-9, and the same
-cap     story: the temporary file cannot be renamed over the original,
-cap     so nothing changes.  autolf does the job as a filter.
-try     chksum tmp/ENC/dos.txt; toos9 tmp/ENC/dos.txt; chksum tmp/ENC/dos.txt
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r\n" > /dd/tmp/ENC/dos.txt
+cap     The other direction, DOS line endings back to OS-9, and the same
+cap     arrangement: the converted text is left in toos9.$$$.<n> because
+cap     the rename onto the original cannot be made here.  Rename it and
+cap     there it is.  autolf -C does the same job as a filter.
+try     toos9 dos.txt
+run     rm -rf /dd/tmp/TOS9 > /nil 2>/nil; mkdir -p /dd/tmp/TOS9; printf "one\rtwo\r" > /dd/tmp/TOS9/le.txt
 wait    2
-run     builtin cd /dd
+run     builtin cd /dd/tmp/TOS9
 wait    1
+run     autolf -c -C -L < le.txt > dos.txt
+wait    3
 run     clear
 wait    1
-run     chksum tmp/ENC/dos.txt
+run     dump dos.txt
 wait    3
-run     toos9 tmp/ENC/dos.txt
-wait    4
-run     chksum tmp/ENC/dos.txt
+run     toos9 dos.txt
+wait    5
+run     mv toos9.* os9.txt
+wait    3
+run     dump os9.txt
 wait    4
 
 shot    macbin

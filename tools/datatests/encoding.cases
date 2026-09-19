@@ -63,10 +63,11 @@ expect  1393
 #
 # THE CONVERSIONS THEMSELVES, on /dd/SYS/termcap (963 bytes, 21 lines):
 # todos turns every CR into CR LF and appends ONE STRAY LF at the end, 985
-# bytes; toos9 takes CR LF back to CR and leaves that lone LF where it is,
-# so the return trip is 964 bytes -- the original plus that one byte. Both
-# numbers are asserted, so a build that stops adding the stray byte will
-# say so here.
+# bytes; toos9 takes CR LF back to CR and appends ONE 0xFF BYTE, so the
+# return trip is 964 bytes -- the original plus that byte. Each writes its
+# end-of-file marker into the file, in other words, and they do not even
+# agree on what it is. Both numbers are asserted, so a build that stops
+# adding the stray byte will say so here.
 case    todos-leaves-the-file-it-was-given-untouched
 run     /dd/CMDS/rm -rf /dd/tmp/TDOS > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/TDOS
