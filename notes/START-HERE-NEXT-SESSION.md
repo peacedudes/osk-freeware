@@ -63,6 +63,23 @@ case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
 ### What was learned -- the reusable part
 
+**A DATA-TEST CASE CAN QUOTE SHIPPED TEXT, AND THE COMMIT GATE DOES NOT
+KNOW.**  `check_disk.py' green is the gate on every commit here, and it
+says nothing about `tools/datatest.py'.  On 2026-09-19 four commits
+lowercased capitals-for-emphasis in `DOC/INDEX' and `tools/howto.psv',
+all four green, and one of them broke
+`about.cases:about-prints-the-how-to-line', which quotes `yagi''s entry
+verbatim: it expected "It asks FIVE questions on standard input" and the
+entry now says "five".  The suite found it, an hour later, on the first
+run against the rebuilt image -- 867 of 868.
+
+The case was right to quote it; `about' prints what `DOC/INDEX' says, so
+that IS the assertion.  **After editing `DOC/INDEX', `DOC/CATEGORIES' or
+`howto.psv', rebuild and run the suite** -- `tools/datatest.py --all',
+about half an hour -- or at least the families that quote them.  The
+number of cases that fail tells you how many entries you moved.
+
+
 **`config' NEVER WANTED A 68881, AND THE WRONG DIAGNOSIS WAS ON ITS WAY
 TO BECOMING A REQUEST TO MICROWARE.**  DOC/STATUS had a section headed
 WANTS FLOATING-POINT HARDWARE whose only entry was `config', aborting on
@@ -431,9 +448,17 @@ script.  A test that flaps is worse than a gap in coverage -- that is
 this collection's own rule -- so the file is not in tools/playtests and
 snake stays on the untested list on purpose.
 
-If someone wants it tested, the assertion would have to be a MAXIMUM
-rather than a count, and somebody should decide whether that is worth
-having.
+**Decided 2026-09-19: not worth having, and here is the reasoning so
+nobody re-opens it on a whim.**  A maximum-bound assertion -- "at most N
+stray escape fragments" -- would be stable at N=24 against a spread of
+14 to 16, but read what it actually asserts: that the untidiness stays
+bounded.  It says nothing about whether the board drew or the snake
+moved, which is the only thing a play-test is for, and a green tick on
+`snake' would then mean less than the honest gap does.  The program is
+recorded as playing in `DOC/INDEX' and in this file, by hand, which is
+the truthful record.  Re-open it only if the stray fragments go away --
+they are os9exec's cursor-move handling, so that is the emulator's to
+fix, not ours.
 
 **The ones left flagged are genuinely blocked** and were each re-checked:
 an X server, a modem port, a Wyse terminal, a printer, a G-Windows

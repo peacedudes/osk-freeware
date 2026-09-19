@@ -23,7 +23,7 @@ case    about-prints-the-how-to-line
 run     /dd/CMDS/about yagi
 expect  Yagi antenna design calculator, to DL6WU's method
 expect  for        SYSTEM & MODULES -- Utilities
-expect  how        It asks FIVE questions on standard input
+expect  how        It asks five questions on standard input
 expect  run it     yagi
 expect  take it    keep yagi
 
