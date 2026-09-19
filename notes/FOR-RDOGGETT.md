@@ -133,11 +133,22 @@ from a measured list the gate checks.
 
 19. **The stray save file on your image**: you said *"I don't mind if you
    left scores on the freeware disk image files.  don't overdo it"*, so
-   `GAMES/HACK/PLAYGROUND/save/0tester` stays.  The harness bug that put it
-   there is fixed and no harness has touched your image since.
+   `GAMES/HACK/PLAYGROUND/save/0tester` stays -- it is committed under
+   `disk/`, so every rebuild puts it back.  The harness bug that put it
+   there in the first place is fixed.  Harnesses DO write to the image
+   while they run (scratch files, a mailbox, a RAM disk), and none of it
+   survives: the image is rebuilt from `disk/` each time, so only what is
+   committed there persists.
 
-   Worth knowing: **your `osk-freeware.dd` was built 2026-09-15 at 07:58**
-   -- that is sector 0's own creation date, not the file's mtime -- so it
-   predates `westley` (committed 21:22 that day) and everything since.  That
-   is why westley looked missing to you.  Rebuild it when convenient:
+   **The stale-image problem is fixed and you need do nothing.**  Your
+   `free' alias opens `osk-freeware/h0', which symlinks to the repo's
+   `osk-freeware.dd' -- the same file the build writes.  So there was never
+   a second copy to keep in step, only one that nobody had rebuilt.  Sector
+   0 now reads **2026-09-19 02:31**, against 2026-09-15 07:58 when this was
+   written, and `utree', `westley', `SYS/UTREE' and `DOC/utree' were read
+   back through your own alias to check.
+
+   Going forward it is mine to keep current: rebuilding that file is the
+   last step of a session here now, and the handoff says so.  If you ever
+   want to do it yourself it takes four seconds --
    `OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd`.

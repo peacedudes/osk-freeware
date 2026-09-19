@@ -2,6 +2,20 @@
 
 ## DO NEXT -- 2026-09-19
 
+**REBUILD `osk-freeware.dd` AS THE LAST STEP OF EVERY SESSION.**  It is a
+build artefact and gitignored, so it is easy to treat as disposable -- but
+rdoggett's `free' alias opens `osk-freeware/h0', which symlinks to that
+exact file, so an unrebuilt image is what HE is running.  That is how
+`westley' came to look missing to him: nothing was wrong with the disk,
+the image had simply not been rebuilt since the 15th.  Four seconds:
+
+    OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
+
+Check it the way he would see it rather than by the file's mtime, which a
+copy preserves: sector 0 carries the creation date at offset 26, five
+bytes -- year since 1900, month, day, hour, minute.
+
+
 **`notes/FOR-RDOGGETT.md` is FOUR items and every one of them is his**:
 push/tag and the CI pin (1), real hardware (3), cancelling usenet-rewind
 (7 -- the pull is finished, nothing is left to fetch), and three decisions
