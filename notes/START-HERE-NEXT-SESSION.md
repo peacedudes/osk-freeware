@@ -2,6 +2,51 @@
 
 ## DO NEXT -- 2026-09-19
 
+**THE DATA-TEST SUITE HAS NO STANDING FAILURES: 868 of 868.**  Three
+cases had been "kept failing on purpose" as markers for defects nobody
+had got to the bottom of.  All three had an answer, and finding each one
+took the same move -- ask what the program DID before it gave up:
+
+  `zip'      writes a complete, valid archive into its temporary and
+             fails only on the rename onto your name.  `mv _Z* mine.zip'
+             and unzip lists it, extracts it, md5 intact.  Bare names at
+             both ends: a stored pathname loses its leading slash, and
+             `unzip -d <dir>' writes nothing and reports success.
+  `todos'    converts correctly -- CR to CR LF, plus one stray LF -- and
+             leaves the result in `todos.$$$.<n>' IN THE DATA DIRECTORY.
+             `toos9' the same in reverse, appending one 0xFF byte.
+  the SIR    pair is off by TWO BYTES of header.  pnmtosir writes 1536
+             shorts (three aligned blocks, 3072 bytes); sirtopnm reads
+             five and skips 1530, so 3070, and starts on the pixels two
+             bytes early.  That predicts the exact wrong colours the
+             disk produces, which is how it was checked.  The reader is
+             the one that is wrong and `i < 1532' is the fix, but the
+             loop is as the 1991 original has it -- item 26 in
+             notes/FOR-RDOGGETT.md asks whether to ship a patched
+             netpbm.
+
+Each is now pinned by cases that PASS, so a change in any of them still
+breaks something.  A permanently-red case is not a ratchet; it is noise
+that everybody learns to read past.
+
+**NINE CARDS CAME OFF THE EXCEPTED LIST, all the same shape: the program
+wanted something the disk had.**  `xcrypt' needed its output file to
+exist first (it asks OS-9 to create one with a Unix permission word) and
+takes its direction from the name it is invoked by.  `byteflip' wanted
+its two byte maps, not a filename.  `pbmtobbnbg' reads standard input
+and ignores a filename argument.  `loadmem'/`savemem' wanted the super
+user and hex addresses, which this session has.  `bsplt68' wanted a boot
+file, and a boot file is modules end to end, so `cat a b > OS9Boot'.
+`signal'/`snd_sig' wanted a process, and one is `cron &' away.
+`pgmedge' was flaky and is not any more -- that was the emulator.
+
+**USE `tools/fix_index.py' TO REWRITE AN INDEX ENTRY.**  A scratch
+helper that did the same job took an entry to be its head plus every
+line at the HEAD'S OWN indent, and `zip' -- head at 17, continuations at
+16 -- kept four lines of its old description under its new one, with no
+name on them.  Every check passed.  `index entries are whole' is now a
+gate check with a breaker; fix_index.py never had the bug.
+
 **TWO RECORDED HANGS WERE THE EMULATOR'S, AND ARE FIXED (2026-09-19).**
 os9exec `8ee3bcf' -- unpushed at the time of writing, so this depends on
 a build at or past that commit -- fixes a process that waited with its
