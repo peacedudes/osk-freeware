@@ -532,6 +532,7 @@ remove|remove -?|
 dir|dir -?|
 l|l -?|
 tree|tree -?|
+utree|none|it looks for a terminal before it looks at its arguments, so its usage cannot be captured here; `utree -h' at one prints the whole option list, and `utree' or `utree <directory>' is the ordinary way in
 du|du -?|
 space|space -?|
 dfiles|dfiles -?|

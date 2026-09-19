@@ -51,10 +51,13 @@ from a measured list the gate checks.
    `~/.config/usenet-rewind/os9`; say the word and I will delete it.
 
    The message you sent was **utree 3.03b-um** -- Peter Klingebiel's
-   screen-oriented file manager, a portable Unix xtree, all eight parts
-   pulled.  Its terms allow non-commercial redistribution, which is the
-   shape you already ruled on, and the disk has no full-screen file manager
-   at all, so it is a candidate: `notes/PLAN-acquisitions.md`.
+   screen-oriented file manager, a portable Unix xtree.  **It is ported,
+   it works, and it is on the disk** as of 2026-09-19: the directory tree
+   in one pane and the current directory's files in the other, tag a set
+   and act on all of them, a shell escape with a history, its own help
+   pages.  Nothing there needs you; `SRC/utree/README.OSK` says what the
+   port had to deal with, and the card is in the gallery under Files &
+   directories.
 
 ## Decisions
 

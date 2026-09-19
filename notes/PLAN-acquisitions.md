@@ -736,7 +736,7 @@ be established, and consent cannot be inferred.
 rdoggett, 2026-09-18, given that: *"it sounds like we can't ship omega"*.
 Do not re-propose it.
 
-### utree 3.03b-um -- rdoggett's own find, and a candidate  2026-09-18
+### utree 3.03b-um -- rdoggett's own find.  SHIPPED 2026-09-19
 
 He sent a usenet-rewind link to message `1992Sep7.214827.26662@PA.dec.com'.
 It is **comp.sources.unix v26i065, part 2 of 8 of `utree'** -- Peter
@@ -777,7 +777,26 @@ cannot do here today.  That is the bar the CoCo survey set, and this clears it.
     is the right shape for this disk's termcap.entry arrangement;
   * `sup/getopt.c` is carried, so the getopt bundle trap does not apply.
 
-Not started.  Queued behind the CoCo images.
+**DONE 2026-09-19.**  `CMDS/utree`, source in `SRC/utree` with the whole
+posting flattened into `ORIG/`, the startup file, key bindings, help pages
+and a backup program in `SYS/UTREE`, the manual page and notices in
+`DOC/utree`, a recipe, a gallery card and four cases.  Every arm is written
+up in `SRC/utree/README.OSK`; the three that cost the most time were
+
+  * `NODIRENT` is a TRAP, not the switch it looks like: it turns `opendir`
+    into `fopen(n,"r")` and RBF will not open a directory as a file.  OS-9
+    has the real calls in `unix.l`.
+  * the keyboard must be read one byte at a time with `read()`.  `getc()`
+    is buffered, and raw mode has cleared the end-of-record character, so
+    the driver waits for a full buffer and the program looks dead.
+  * **this C library's `system()` runs nothing on this disk** -- it forks a
+    module named `shell', which is not here, and answers 677130 having
+    printed nothing.  `os9exec(os9fork, ...)` with the shell named by
+    `$SHELL` is the way, and the `-c` matters: `ksh "script a b"` runs the
+    script with NO arguments where `ksh -c "script a b"` passes both.
+
+FIONREAD is `_gs_rdy`, SIGWINCH and SIGALRM are simply off, and the Stat
+panel was rewritten for OS-9's one-byte mode word.
 
 ### The CoCo Community Archive zips -- the last unopened body  2026-09-15
 

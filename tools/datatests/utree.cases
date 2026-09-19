@@ -1,0 +1,38 @@
+family  utree
+# utree ITSELF must not be driven from here.  Given a whole environment it
+# STARTS, and then reads the rest of the procedure file as keystrokes -- it
+# ran away with this family once and took the session with it.  So HOME and
+# TERMCAP are set and TERM is NOT: what is measured is the refusal, which
+# happens before anything is drawn.  The screen is the gallery card's job.
+#
+# The rest of the family is the backup program, which is an ordinary shell
+# procedure file and safe to run.
+setup   HOME=/dd; export HOME
+setup   TERMCAP=/dd/SYS/termcap; export TERMCAP
+setup   /dd/CMDS/rm -rf /dd/tmp/utr
+setup   /dd/CMDS/mkdir -p /dd/tmp/utr
+setup   /dd/CMDS/cat /dd/SYS/motd > /dd/tmp/utr/one
+setup   /dd/CMDS/cat /dd/SYS/motd /dd/SYS/motd > /dd/tmp/utr/two
+
+case    utree-will-not-start-without-a-terminal-type
+run     /dd/CMDS/utree /dd/SYS/UTREE
+expect  Unknown terminal type
+
+case    utree-backup-archives-the-list-it-is-given
+run     /dd/CMDS/ls /dd/tmp/utr/one > /dd/tmp/utr/list
+run     /dd/CMDS/ls /dd/tmp/utr/two >> /dd/tmp/utr/list
+run     /dd/SYS/UTREE/utree.backup /dd/tmp/utr/list /dd/tmp/utr/a.tar
+run     /dd/CMDS/tar tvf /dd/tmp/utr/a.tar
+expect  /dd/tmp/utr/one
+expect  /dd/tmp/utr/two
+absent  cannot execute
+
+case    utree-backup-refuses-an-empty-list
+run     /dd/CMDS/cat /nil > /dd/tmp/utr/empty
+run     /dd/SYS/UTREE/utree.backup /dd/tmp/utr/empty /dd/tmp/utr/b.tar
+expect  the list is empty
+absent  writing
+
+case    utree-backup-says-how-to-call-it
+run     /dd/SYS/UTREE/utree.backup
+expect  Syntax: utree.backup

@@ -217,6 +217,7 @@ edir|System & modules|Processes & memory
 l|Text tools|Transform & filter
 ls|Files & directories|List & navigate
 tree|Files & directories|List & navigate
+utree|Files & directories|Browse & inspect
 basename|Files & directories|Paths
 dirname|Files & directories|Paths
 

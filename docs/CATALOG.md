@@ -1,6 +1,6 @@
 # What is on this disk
 
-1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -14,7 +14,7 @@
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 34 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
@@ -356,7 +356,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>34 programs</summary>
+<details><summary>35 programs</summary>
 
 **Attributes & ownership**
 
@@ -372,6 +372,7 @@
 | | |
 |---|---|
 | `browse` | a screen-oriented directory browser: it shows an `ls -l' listing you move around the way you would move around a file in `vi', and acts on the entry under the cursor -- SPACE enters a directory or pages a file, `x' dumps it in hex, `?' shows the help.  Wants TERM, and a shell for the keys that run a program<br>`Browse through a directory, written by Peter da Silva` |
+| `utree` | full-screen file manager: the directory tree in the top pane, the files of the current directory below, and a menu of one-letter commands for whichever pane you are in -- copy, move, rename, remove, edit, page, dump, print, grep, tag a set of files and act on all of them at once.  `!' escapes to a shell and keeps a history of what you ran. Needs TERM and the termcap; its startup file, key bindings and help pages are in SYS/UTREE<br>**How:** Full-screen, two panes: the directory tree above, the current directory's files below.  `>' or RETURN crosses into the file pane, `<' back out; the menu line names the commands for whichever pane you are in and a capital letter means the whole tagged set.  `H' is the help pages, `=' the variables, `!' a shell command line with a history, `Q' then `y' quits.  Needs TERM and the termcap.  Its startup file, key bindings and help are in SYS/UTREE, and $HOME/.utree overrides the first of them. |
 
 **Copy, move, delete**
 

@@ -892,6 +892,7 @@ tput|Public domain. "tput, written by Badri Lokanathan, is in the public domain,
 transfer|No copyright or licence statement in its source (SRC/forum1/transfer.c) or its documentation.|SRC/forum1/transfer.c lines 1-7
 trap|No copyright or licence statement in SRC/trap or its documentation.|SRC/trap/ctrap.c; SRC/trap/traptst.c; SRC/trap/makefile
 tree|(c) 1990 by C.Mahr. Public.|DOC/tree/info_tree
+utree|"(co) 1991/92 Peter Klingebiel & UNIX Magazin Munich. Permission is granted to copy and distribute utree in modified or unmodified form, for noncommercial use, provided (a) this copyright notice is preserved, (b) no attempt is made to restrict redistribution of this file, and (c) this file is not distributed as part of any collection whose redistribution is restricted by a compilation copyright."|SRC/utree/ORIG/doc/utree.prlist.1; SOURCES.txt, utree section
 trunc|Carsten Emde. "May be copied for non-commercial use."|SRC/forum23/trunc.c line 9
 tsmon2|(c) 1989 Lukas Zeller. "public domain and may be used and distributed freely" only for peaceful applications -- not "for anything that has to do with development, testing or manufacturing of weapons" -- and copyright messages kept.|SRC/eff_tsmon/tsmon2.c lines 8, 17-25; DOC/tsmon2/tsmon2.doc lines 4-14
 tsort|BSD licence. Copyright (c) 1989 The Regents of the University of California. Redistribution in source and binary forms is permitted provided the notice, conditions and acknowledgement of UC Berkeley are kept.|SRC/tsort/tsort.c lines 2-15; SOURCES.txt lines 1334-1343

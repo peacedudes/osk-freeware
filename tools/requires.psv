@@ -58,3 +58,7 @@ dm|Microware's pd, which it runs through SHELL to learn its current directory|st
 uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
 fact|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits
 man|nroff and less, and TMACDIR set to /dd/LIB so nroff finds the man macros|/dd/startup and SYS/login both set TMACDIR; measured 2026-09-18
+utree|HOME, for its startup file, tag list and command history (SYS/login sets it)|measured 2026-09-19: without it, "utree: Can't get your home directory"
+utree|TERM and a termcap to look it up in -- SYS/login sets TERM and TERMCAP|measured 2026-09-19: without TERM, "utree: Unknown terminal type"
+utree|a shell named by SHELL for its `!' escape, Copy, Move, Remove, Grep and the Backup and user commands (SYS/login sets ksh)|SRC/utree/README.OSK, osk.c
+utree|SYS/UTREE/utree.help for `H', SYS/UTREE/utree for the startup settings, SYS/UTREE/utree.backup for Backup|SRC/utree/README.OSK

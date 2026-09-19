@@ -89,6 +89,25 @@ MTIME    = 1785801600      # 2026-08-04T00:00:00Z -- any fixed instant will do
 USTAR_MAX = 100
 
 
+# Shell PROCEDURE FILES that live outside CMDS and still have to be runnable.
+# Keyed by path, not by a mode bit on the host copy: 38 files under disk/
+# carry a stray execute bit from whatever archive they were unpacked out of
+# (every DOC/bix/B_* and a handful of headers), so the host bit says nothing
+# about intent. utree's Backup command runs the program its BACKUP variable
+# names and this collection is where that program comes from; ksh answers
+# "cannot execute" for a script without the bit, whether it is run by name or
+# handed to ksh as an argument.
+EXECUTABLE_DATA = frozenset({
+    "SYS/UTREE/utree.backup",
+})
+
+
+def is_executable_data(path, root):
+    """Is this one of the runnable scripts that live outside CMDS?"""
+    rel = os.path.relpath(path, root).replace(os.sep, "/")
+    return rel in EXECUTABLE_DATA
+
+
 def is_module(path):
     """True if the file begins with the OS-9 module magic 4AFC."""
     with open(path, "rb") as f:
@@ -121,6 +140,14 @@ def build(src, out):
     """Write src to out as ustar. Returns (ndirs, nfiles, nmodules)."""
     dirs, files = survey(src)
 
+    # A stale entry here would ship a data file as a program, or -- worse and
+    # quieter -- leave a renamed script unrunnable with nothing saying so.
+    have = {f.replace(os.sep, "/") for f in files}
+    missing = sorted(EXECUTABLE_DATA - have)
+    if missing:
+        raise SystemExit("EXECUTABLE_DATA names files that are not in the "
+                         "tree: %s" % ", ".join(missing))
+
     too_long = [p for p in dirs + files if len(p) > USTAR_MAX]
     if too_long:
         raise SystemExit("paths exceed the %d-char ustar limit: %s"
@@ -134,7 +161,9 @@ def build(src, out):
             full = os.path.join(src, f)
             mod  = is_module(full)
             modules += mod
-            info = entry(f, MODE_MODULE if (mod or is_command(full))
+            info = entry(f, MODE_MODULE
+                         if (mod or is_command(full)
+                             or is_executable_data(full, src))
                          else MODE_DATA,
                          tarfile.REGTYPE, os.path.getsize(full))
             with open(full, "rb") as fh:

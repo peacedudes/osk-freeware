@@ -310,6 +310,30 @@ run     tree CMDS
 wait    10
 snap
 
+shot    utree
+size    24 80
+cap     A file manager in two panes: the directory tree above, the files of
+cap     the current directory below, and a menu line naming what the letter
+cap     keys do in whichever pane you are in.  `>' or RETURN crosses into
+cap     the file pane and `<' comes back out; a capital letter acts on the
+cap     whole tagged set instead of the one file.  `t' tags, `!' opens a
+cap     command line with a history, `H' is the help pages and `=' the
+cap     settings.  `Q' then `y' leaves.  `-v 0' asks for no highlighting,
+cap     as here; without it the menu line and the current entry come up in
+cap     reverse video.  It reads TERM and the termcap.
+try     utree -v 0 DOC
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     utree -v 0 DOC
+wait    15
+snap
+send    Q
+wait    2
+send    y
+wait    3
+
 shot    du
 size    26 80
 cap     du adds up what a directory tree holds: bytes, kilobytes, sectors
