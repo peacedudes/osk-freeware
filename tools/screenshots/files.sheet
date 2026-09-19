@@ -320,7 +320,7 @@ cap     whole tagged set instead of the one file.  `t' tags, `!' opens a
 cap     command line with a history, `H' is the help pages and `=' the
 cap     settings.  `Q' then `y' leaves.  `-v 0' asks for no highlighting,
 cap     as here; without it the menu line and the current entry come up in
-cap     reverse video.  It reads TERM and the termcap.
+cap     reverse video.
 try     utree -v 0 DOC
 run     builtin cd /dd
 wait    1

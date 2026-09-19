@@ -1,6 +1,62 @@
 # Start here, next session
 
-## DO NEXT -- 2026-09-18
+## DO NEXT -- 2026-09-19
+
+**`notes/FOR-RDOGGETT.md` is FOUR items and every one of them is his**:
+push/tag and the CI pin (1), real hardware (3), cancelling usenet-rewind
+(7 -- the pull is finished, nothing is left to fetch), and three decisions
+(21 cpp, 23 ispell when his source arrives, 24 the duplicate builds).
+Read it first; there is nothing in it for you to do.
+
+**utree 3.03b-um is ported, on the disk, and catalogued** -- his own usenet
+find, and the first full-screen file manager here.  `SRC/utree/README.OSK`
+is the record of every arm.  Three of them are worth carrying forward
+because they are about OS-9 and not about utree:
+
+  * **`NODIRENT` is a trap.**  It looks like the switch for a system with
+    no `<dirent.h>`; it turns `opendir(n)` into `fopen(n,"r")`, and RBF
+    will not open a directory as a plain file.  OS-9 has the real
+    opendir/readdir/closedir in `unix.l` and its `<dir.h>` says in its
+    first line that they work like BSD 4.2's.  Take the BSD arm.
+  * **A full-screen program must read the keyboard with `read()`, one
+    byte.**  `getc(stdin)` is buffered, and raw mode has cleared the
+    end-of-record character, so the driver waits for a whole buffer and
+    the program looks dead from the first keystroke.
+  * **A PORT MUST NOT SHELL OUT THROUGH `system()`.**  It forks the bare
+    module name `shell' and never reads `$SHELL'.  On a real OS-9 system
+    that is right, and `SYS/login` loads yours off /h1 -- but with the
+    collection standing by itself there is no such module, and system()
+    returns 677130 having printed not one character (measured 2026-09-19,
+    twice, with and without blarslib).  `DOC/README-SHELLS` has had that
+    since 2026-09-11; what is new is what a PORT does instead, which is
+    `os9exec(os9fork, sh, argv, environ, 0, 0)` with the shell `$SHELL`
+    names -- `SRC/perl4/osk.c` did it first, `SRC/utree/osk.c` follows --
+    **and the `-c` matters**: `ksh "script a b"` runs the script with NO
+    arguments (whole string in `$0`, `$#` zero) where `ksh -c "script a b"`
+    passes both.  A MODULE gets its arguments either way, which is why
+    this went unnoticed.
+
+**`mail' WORKS, and its card said it could not.**  It wants a scratch
+device at /r0; `DOC/README-RUNNING` has said all along how to get one
+(`mount -r=256k /r0`, and twenty programs want it), and nobody had applied
+it.  With a RAM disk mounted, mail sends a message and reads it straight
+back.  **Before writing a program off, read the disk's own documentation
+for what it needs** -- this is the second time that rule has paid.
+
+**`mailx' was diagnosed wrong too**: it reads `MAIL` as the DIRECTORY the
+mailbox is in, where elm and frm read it as the mailbox FILE, and
+`SYS/login` sets it their way.  Unset MAIL and mailx starts.
+
+**Programs under no test: 15, from 22** (`tools/worklist.py --programs
+--no-test`).  `tools/datatests/refusals.cases` took seven on the principle
+that **a refusal is a measurement**.  Flagged cards: 24 of 965.
+
+**One process note.**  `tools/datatests/untested.cases` was overwritten by a
+`cat >` that did not check whether the file was there; git had it and it is
+restored, and the new cases live in `refusals.cases`.  Look before you
+write, the same way you look before you delete.
+
+## DO NEXT -- 2026-09-18 (done; kept for what it measured)
 
 **rdoggett read the gallery and the decisions list and sent two pages of
 notes.  Working through them was this session, and eleven of the eighteen

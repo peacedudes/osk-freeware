@@ -219,9 +219,9 @@ cap     prompts with its number; `?' lists the commands -- t for the titles,
 cap     p to print, d to delete, s to save, m to send another, r to reply,
 cap     x to leave.  Here a message went to `tester' and was read back.
 cap     mail wants a scratch device at /r0.  A real OS-9 system has a RAM
-cap     disk there; under os9exec, `mount -r=1000 /r0' makes one.
+cap     disk there; under os9exec, `mount -r=256k /r0' makes one.
 try     mail
-run     mount -r=1000 /r0
+run     mount -r=256k /r0
 wait    2
 run     mkdir -p /dd/MAIL > /nil 2>/nil
 wait    2

@@ -62,3 +62,5 @@ utree|HOME, for its startup file, tag list and command history (SYS/login sets i
 utree|TERM and a termcap to look it up in -- SYS/login sets TERM and TERMCAP|measured 2026-09-19: without TERM, "utree: Unknown terminal type"
 utree|a shell named by SHELL for its `!' escape, Copy, Move, Remove, Grep and the Backup and user commands (SYS/login sets ksh)|SRC/utree/README.OSK, osk.c
 utree|SYS/UTREE/utree.help for `H', SYS/UTREE/utree for the startup settings, SYS/UTREE/utree.backup for Backup|SRC/utree/README.OSK
+submit|a module named `shell' for the commands in the .sub file -- SYS/login loads yours from /h1, and DOC/README-SHELLS says why|measured 2026-09-19: with one resident, submit ran the file's commands and printed their output; with none it prints each line and runs nothing
+m4|a module named `shell' for its syscmd -- SYS/login loads yours from /h1|DOC/README-SHELLS
