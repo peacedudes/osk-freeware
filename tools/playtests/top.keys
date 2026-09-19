@@ -1,0 +1,24 @@
+name    top
+prog    top -a 3
+# The process lister.  It refreshes for ever, so the test is: does it draw
+# its table with this session's own two processes in it, and does it still
+# do so after a refresh?  Until 2026-09-18 it printed the headings and took
+# a bus error -- see SRC/eff_top/README.OSK -- so `bash' appearing here is
+# the whole point of the case.
+rate    0.6
+wait    8
+snap    listed
+expect  Id PId Grp.Usr Prio
+expect  bash
+expect  top
+# WITHOUT THESE THE CASE CANNOT FAIL.  The crash dump top used to produce
+# carries the headings, `bash' and `top' in it too -- measured 2026-09-18,
+# the old binary PASSED the three `expect' lines above.  What tells the two
+# apart is the dump itself.
+absent  Process Aborted
+absent  E_PRCABT
+absent  Last syscall
+wait    8
+snap    refreshed
+key     \003
+wait    2

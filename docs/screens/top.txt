@@ -1,8 +1,4 @@
  Id PId Grp.Usr Prio SysTime %Sys UserTime %User Totaltime Module
 
-
-Process   Pid: 3, top, edition 7
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
+  2   0   0.0    128    0.03   0%     0.15    0%      0.18 bash
+  3   2   0.0    128    0.00   0%     0.00    0%      0.00 top

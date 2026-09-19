@@ -1,6 +1,6 @@
 # What is on this disk
 
-1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **707 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **708 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -1489,14 +1489,14 @@
 
 | | |
 |---|---|
-| `aprocs` | &#9733; a process monitor: prints the active processes as a tree -- id, parent, priority, CPU time, age and share of the CPU -- and -m measures their activity over a few seconds. `procs', `top' and `sysmon' are the other process listers<br>`Syntax: aprocs [<opts>]` |
+| `aprocs` | &#9733; a process monitor: prints the active processes as a tree -- id, parent, priority, CPU time, age and share of the CPU -- and -m measures their activity over a few seconds. `procs', `top' is the other process lister<br>`Syntax: aprocs [<opts>]` |
 | `edir` | &#9733; list the event directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; a login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line. It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
 | `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `t` | a minimal trap-handler test stub: it installs, returns cleanly and prints nothing |
-| `top` | &#9733; show the busiest processes by their share of the CPU.  It prints its headings and then crashes -- its own bug: it asks about the root process's non-existent parent and does not check the error.  `aprocs' and `sysmon' show process state and run<br>`Syntax: top [<opts>] [<num>]` |
+| `top` | show the busiest processes by their share of the CPU, refreshed every few seconds: `top' lists only those that have used any, `top -a' lists them all, and `top <seconds>' sets how often.  Interrupt to leave. `aprocs' is the other process lister here<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible<br>`vis: illegal option -- ?` |
 | `who` | 'who is logged in'.  Written in Microware shell syntax |
 

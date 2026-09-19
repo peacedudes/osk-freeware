@@ -461,15 +461,24 @@ wait    1
 run     ssl DOC/INDEX
 wait    4
 shot    top
-cap     top lists processes by their share of the CPU.  It prints its column
-cap     headings and then crashes on the root process, whose parent is
-cap     process 0: it asks F$GPrDsc about 0, which correctly reports no such
-cap     process, does not check that error, and reads a field from its own
-cap     unfilled buffer.  A bug in top, not the system; aprocs and sysmon
-cap     read the same state and run.
-try     top
-run     top
-wait    6
+cap     top lists the processes by their share of the CPU and refreshes every
+cap     few seconds -- here `-a', which lists them all rather than only those
+cap     that have used any CPU since the last pass.  The interval is an
+cap     argument; interrupt it to leave.
+cap     It used to print these headings and then take a bus error, which its
+cap     card showed.  The cause was its own: it walked the process table by a
+cap     count without bounding it by the array that holds it, ran off the end
+cap     into whatever was beyond, and handed those bytes to F$GPrDsc as a
+cap     process id.  Rebuilt from SRC/eff_top with the walk bounded,
+cap     2026-09-18; the build needs no Microware module, so the star is gone
+cap     from its entry too.
+try     top -a 3
+run     clear
+wait    1
+run     top -a 3
+wait    12
+snap
+kill
 shot    tty
 for     tty vecho lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin
