@@ -154,13 +154,23 @@ mechanically decidable, and the `floods' list is deliberately kept as the
 record of how a whole class failed.  Seven candidates remain and every
 one of them is right as it stands -- run each before changing a word.
 
-**One disagreement the tool cannot see, left open: `pacman'.**
-`DOC/STATUS' says it "draws nothing and exits at once, keyed or not";
-its line in `tools/panel-exceptions.psv' says it draws its maze in raw
-keyboard mode, which the capture harness does not drive.  Those cannot
-both be true.  The exception is the later reading and the more detailed
-one, but neither was re-measured today -- it wants `tools/playtest.py',
-which plays a program at a pty and judges, rather than a capture.
+**`pacman' IS SETTLED, and the answer was neither reading.**  DOC/STATUS
+said it "draws nothing and exits at once, keyed or not"; its old card
+exception said it drew its maze in raw keyboard mode that the harness
+could not capture.  Play-tested and then run by hand: it asks your name
+and takes it, asks about the instructions and takes the answer, and then
+puts out one row of `+' and ends.  **It forks OS-9's own `tmode' to set
+the terminal `nopause noecho' before it draws anything, and tmode comes
+with the reader's system rather than with this collection.**  Its board
+file is plain text and its source positions with the ADM-3A sequence
+(ESC = row+32 col+32), so with tmode to hand and a terminal that reads
+that, the maze is there.  Both entries are corrected.
+
+A caution from it, since I nearly shipped the opposite: the play-test
+reported PASS, ink=50, responds=yes -- and all of that was my own typed
+characters being echoed.  `responds=yes' means the keyed screen differs
+from the control screen, not that the program did anything with the
+keys.  Look at the screen.
 
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
 current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
