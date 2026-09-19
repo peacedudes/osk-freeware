@@ -577,6 +577,24 @@ def break_absence_phrasing(root):
     return "DOC/INDEX made to say what this disk lacks again"
 
 
+def break_cio_list_names_a_ghost(root):
+    """A program that is not on the disk, added to README-CIO's own list.
+
+    The document enumerates the programs under the sentence the check reads
+    the numbers from, and until 2026-09-19 nothing compared that
+    enumeration with anything: `CMDS/sedt' stayed in it after sedt left the
+    disk, so the prose said twenty-two and the list said twenty-three.
+    """
+    p = os.path.join(root, "DOC", "README-CIO")
+    t = open(p, "rb").read().decode("latin-1")
+    marker = "most call sites first"
+    if marker not in t:
+        return None
+    i = t.index("CMDS/", t.index(marker))
+    w(p, (t[:i] + "CMDS/zzzgoneaway         " + t[i:]).encode("latin-1"))
+    return "`CMDS/zzzgoneaway' added to README-CIO's list of cio-macro programs"
+
+
 def break_cio_scan(root):
     """A name the cio-macro scan is required to find, removed.
 
@@ -758,6 +776,8 @@ BREAKS = [
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
+    ("cio list", "the cio-macro list is current",
+     break_cio_list_names_a_ghost),
     # Both directions of the ratchet, through a COPY of the backlog that
     # OSK_PANEL_BACKLOG points the gate at -- the live file is never edited.
     ("panel forgets", "panels show their own program", break_panel_backlog_forgets),

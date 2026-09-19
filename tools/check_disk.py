@@ -1218,6 +1218,28 @@ def check_cio_macro_population(root):
         elif (int(m.group(1)), int(m.group(2))) != (total, len(rows)):
             problems.append("README-CIO says %s/%s; the disk has %d/%d"
                             % (m.group(1), m.group(2), total, len(rows)))
+        # AND THE LIST ITSELF, not only the sentence with the number in it.
+        # The document enumerates the programs under that sentence, and
+        # nothing compared the enumeration with anything: `CMDS/sedt' sat in
+        # it after sedt left the disk on 2026-09-12, so the prose said
+        # twenty-two and the list below it said twenty-three and named a
+        # file that was not there. The number was checked; the names were
+        # not. Found 2026-09-19 by scanning the shipped READMEs for names
+        # the disk does not have.
+        head = text.find("most call sites first")
+        tail = text.find("If you meet it in a program", head + 1)
+        if head < 0 or tail < 0:
+            problems.append("README-CIO's list of the programs has moved or "
+                            "gone; this check cannot find it")
+        else:
+            listed_paths = set(re.findall(r"CMDS/\S+", text[head:tail]))
+            scanned = {name for name, _, _ in rows}
+            for extra in sorted(listed_paths - scanned):
+                problems.append("README-CIO lists %s and the scan does not "
+                                "find it" % extra)
+            for absent in sorted(scanned - listed_paths):
+                problems.append("the scan finds %s and README-CIO does not "
+                                "list it" % absent)
     for pr in problems:
         print("    %s" % pr)
     return not problems, "%d problem(s) with the cio-macro population" % len(problems)
