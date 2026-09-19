@@ -2,6 +2,22 @@
 
 ## DO NEXT -- 2026-09-19
 
+**A BACKGROUND SERVER LEFT RUNNING AT THE END OF A STANZA CAN TAKE THE
+EMULATOR WITH IT.**  From the os9exec session: a daemon parked on a read
+after the main shell exits ends the emulator about eleven times in twelve
+and holds it open for ever about one in twelve, decided by a scheduler
+counter.  `wisecrack' and `ask' each started one and walked away, with a
+whole sheet of stanzas after them; both now stop it with `signal <id> 0'
+and say why in the caption.
+
+**`mw' HAS NOT BEEN LOOKED AT and is the last one like this**
+(games.sheet, `run mw -l=5 >/nil &' -- a computer player joined to the
+maze game).  It is left alone on purpose: its card is a fourteen-second
+interactive capture and re-shooting it risks a worse picture for a
+hazard that may not apply, since the fault is documented for a read
+parked as a system task.  Worth a look by somebody willing to re-shoot
+it carefully.
+
 **`config' NEVER WANTED A 68881, AND THE WRONG DIAGNOSIS WAS ON ITS WAY
 TO BECOMING A REQUEST TO MICROWARE.**  DOC/STATUS had a section headed
 WANTS FLOATING-POINT HARDWARE whose only entry was `config', aborting on

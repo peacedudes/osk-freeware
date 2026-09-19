@@ -1251,6 +1251,9 @@ cap     Reads the next message from the pipe wisecrack writes to and
 cap     prints it, one a call, in German: they are the slogans of a 1992-93
 cap     OS-9 club seminar.  wisecrack must be running behind it, started
 cap     with the `&' as shown; on its own ask says "No Wisecracks coming".
+cap     Stop the server when you have finished -- `signal <id> 0', the id
+cap     bash printed -- because one left parked on the pipe after its shell
+cap     has gone can take the emulator with it.
 try     wisecrack &; ask
 run     wisecrack &
 wait    3
@@ -1258,6 +1261,8 @@ run     ask
 wait    5
 run     ask
 wait    5
+run     signal 3 0
+wait    3
 
 shot    shuffle
 cap     A switch puzzle.  A row of numbered switches is wired together so

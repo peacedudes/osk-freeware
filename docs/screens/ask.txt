@@ -1,7 +1,9 @@
 $ wisecrack &
 <3>
 $ ask
-GRUSS VON FILE HUGO
++ COVE IST SPITZE +
 
 $ ask
-COVE GRUESST EFFO
+AUF WIEDERSEHEN 1993
+
+$ signal 3 0
