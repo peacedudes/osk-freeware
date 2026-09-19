@@ -606,6 +606,23 @@ def break_panel_backlog_stale(root):
     return "`%s' (which passes) added to a COPY of panel-backlog.txt" % passing
 
 
+def break_panel_exception_stale(root):
+    """A passing program ADDED to the exceptions: a paid debt must object.
+
+    Thirty exceptions named programs whose cards had since been fixed, and
+    nothing said so until 2026-09-19 -- the ratchet watched the backlog in
+    both directions and the exceptions in one.  This is the other one.
+    """
+    import audit_panels
+    src = os.path.join(REPO, "tools", "panel-exceptions.psv")
+    passing = next(p for p, v, _ in audit_panels.audit() if v == "work")
+    copy = os.path.join(os.path.dirname(root), "panel-exceptions.psv")
+    open(copy, "w").write(open(src).read().rstrip("\n") + "\n" + passing
+                          + "|a reason that was true once\n")
+    os.environ["OSK_PANEL_EXCEPTIONS"] = copy
+    return "`%s' (which passes) added to a COPY of panel-exceptions.psv" % passing
+
+
 def break_try_backlog_forgets(root):
     """A stanza with no `try' line dropped from a COPY of the backlog."""
     src = os.path.join(REPO, "tools", "try-backlog.txt")
@@ -716,6 +733,8 @@ BREAKS = [
     # OSK_PANEL_BACKLOG points the gate at -- the live file is never edited.
     ("panel forgets", "panels show their own program", break_panel_backlog_forgets),
     ("panel stale", "panels show their own program", break_panel_backlog_stale),
+    ("exception stale", "panels show their own program",
+     break_panel_exception_stale),
     ("try forgets", "every card says what to type", break_try_backlog_forgets),
     ("try stale", "every card says what to type", break_try_backlog_stale),
     ("help forgets", "cards carry real help text", break_help_backlog_forgets),

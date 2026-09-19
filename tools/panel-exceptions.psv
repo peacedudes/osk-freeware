@@ -7,29 +7,20 @@
 perr|perr prints the text of an OS-9 error number; error text IS its output
 elvprsv|run by elvis on a crash to preserve the buffer; by hand with nothing preserved it prints nothing, and the card says so
 exrecover|recovers a buffer expreserve kept when vi died; with nothing preserved "File not found" is its whole answer, and the card says so
-hist|a line editor in front of the shell; on this console it prints a row of asterisks and returns, and the card says so
 if|its help and a try: it hands the chosen branch to Microware's shell, which is not on this disk, so the branch never runs; the card says so
 qp|its help and a try: it runs the expanded line through Microware's shell, which is not on this disk; the card says so
 checkenv|prints its syntax line on every call and answers only in its status; the card shows both statuses
 run|its usage and a try; the program it runs answers on the terminal PORT names, and on this console nothing comes back
 su|GNU su's usage and a try to become tester, which on a disk owned 0.0 throughout has no one to become
-epson|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
 lmargin|writes its control codes to the printer itself; with no printer on the disk its option list is what there is to show, and the card says so
 splman|the spooler manager opens a printer on a serial device and blocks waiting for it; with no such device there is nothing to show but that it started, and the card says so
 splprt|the spooler's printer process wants a printer device; without one it prints nothing and returns, and the card says so
-lp|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
-submit|a batch-file runner; its option list is what a card can show without a .sub job to run
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
-macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
-pacman|a keypad-controlled ASCII maze game (8/2/4/6 to move); it draws its maze in raw keyboard mode, which the capture harness does not drive, so there is no static frame to show
 disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
-convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
-unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
-texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
@@ -46,22 +37,15 @@ ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it w
 xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
 ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show
 frm|lists who your mail is from; it does not recognize this disk's mail folder and reports no mail, where messages and readmsg read the same one
-lmail|delivers mail locally; a real recipient makes it wait on a peer that never answers, so only its usage line is safe to show
-mail|a simple mail sender; it opens a scratch file on /r0, the RAM disk this configuration has no device for, and stops there
 mailx|the mail reader and sender; it finds a mailbox by user number, and the super user this runs as has none
-rmail|delivers incoming mail, invoked by uuxqt not by hand; local delivery expects a mailbox directory where a plain file ships, so it stops
 smail|the smart mail router; it needs a routing configuration and a peer to hand mail to, neither present, so its options are what there is to show
 uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial line, of which there is none here, so its options are what there is to show
-uuxqt|runs the commands a remote UUCP site queued here; it needs a queue and a peer to fill it, finds neither, and stops at once
 uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk, so there is nothing to print
-finger|asks another machine who is logged in; it needs a network to reach, and prints its usage without one
 msntp|sets the system clock from a network time server; with no network here it cannot open an NTP socket
 blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
 newslock|the news system's file lock; it belongs to a news spool this configuration does not run, and leaves no trace here
-connect|joins two serial paths so you can talk through one to the other; there are no serial devices here, so its usage is what there is to show
 disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded
 enable|the counterpart to disable on a serial port; it too needs the port's driver module resident, and none is loaded
-cls|clears the screen through the terminal's termcap clear capability; a cleared screen is the whole of its output
 fkeys|sets a VT220 terminal's function keys from a definition file; it needs VT220 hardware to program, and names its file argument without one
 setfont|loads a downloadable font into a terminal from a font file; it needs terminal hardware to receive the font, and prints its usage without one
 sbreak|sends a break signal on a serial device; there is no serial device here to send one on, so it reports that a device must be given
@@ -87,21 +71,9 @@ lpshut|stops the print spooler; none is running here, and it says so
 setterm|reports the terminal type in a single line -- too little for a published panel, but it does its one job
 uuname|lists the UUCP site names, a few short lines below the publish threshold; it does its job
 vis|redraws one command's output in place like watch; its control header is a single line, too little to publish
-unpacklib.os9|the OS-9 build of unpacklib; extracts modules from a library until a sync mismatch, shown on the unpacklib card
-ppmtopj|writes an HP PaintJet file silently; the pjtoppm round-trip that follows on its card, ending in "PPM raw, 48 by 24", is the evidence
 ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card, three 1165-byte files, is the evidence
-rain|a screen toy; a still frame of falling raindrops is too sparse to score, and there is nothing denser to show
-liborder|reports the module concatenation order, one relocatable name per library; the libraries here each reduce to a single .r, so its answer is one line -- too little to score, and there is no larger library to show
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
-apfel|a Mandelbrot drawer for the Graph library display; with no such display it prints its name and aborts. Needs G-Windows
-g|a Graph-library drawing program; with no G-Windows display it prints its name and aborts
-showpic|shows a picture through the Graph library; with no G-Windows display it aborts at once
-sine|plots a sine curve through the Graph library; with no G-Windows display it aborts
-striche|a Graph-library line drawing; with no G-Windows display it aborts
-graphdemo|a Graph-library demonstration; it aborts at once with no G-Windows display to draw on
-graphsave|saves a Graph-library screen; with no display to read it aborts at once
-tplot|a Tektronix plotter: it asks for the interval and points and draws the curve in Tektronix vectors, so on a character terminal the dialogue is the readable part
 wndex|builds the WN web server index for a directory and reports the one line `Wrote cache file'; there is nothing more to show
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
 bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
@@ -110,7 +82,5 @@ xy|waiting to receive on the terminal, since no MODEM port is set: the `C' it se
 k|waiting for the first Kermit packet on the terminal: `Receiving...' is all a receiver shows until a sender answers, and the card says so
 xyt|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so
 tterm|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so
-uustat|reports on the UUCP job queue, and nothing has been queued on this disk; it reaches the spool, finds no jobs waiting and says so, which is the same footing as uucico, uuxqt and uulog beside it
 infoxpress|an InfoXpress network client; it opens a serial device to reach its host and there is none here, so it returns without printing anything at all
-testibc|an IEEE-488 bus tester: it draws its command menu and aborts, because every command wants a GPIB bus and there is none here, and its message file errmsg.ibc is on no disk and in no archive
 filter|its scratch file is `#define filter_temp "/r0/filter"' at line 69 of SRC/infoxpress/BNU/ELM_2.4/HDRS/filter.h, and /r0 is an OS-9 DEVICE this disk has not got, so the shipped binary stops there.  NOT immovable -- this is the same one-line case SOURCES.txt describes rewriting to /dd/tmp, and FILTER/ has all eight sources -- but no ELM component is built here yet, so until one is, the usage line and the refusal are the true picture

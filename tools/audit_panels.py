@@ -281,6 +281,16 @@ def gate():
         if not failing and prog in backlog:
             bad.append("`%s' now passes (%s) -- take it off the backlog"
                        % (prog, v))
+        # AN EXCEPTION ROTS THE SAME WAY A BACKLOG LINE DOES, and until
+        # 2026-09-19 nothing said so: THIRTY of them named programs whose
+        # cards had since been fixed. `runc' was the one that showed it --
+        # its reason said the program had no chunk to interpret, while its
+        # card had been running one, arguments and all, for a fortnight.
+        # An exception is a debt with a reason attached, so a debt that has
+        # been paid must not keep drawing interest.
+        if not failing and prog in excepted:
+            bad.append("`%s' now passes (%s) -- take the exception out"
+                       % (prog, v))
     return not bad, bad
 
 
