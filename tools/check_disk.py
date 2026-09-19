@@ -1632,6 +1632,43 @@ def check_index_entries_are_whole(root):
     return not bad, "an entry carries the tail of an older one" 
 
 
+def check_captures_match_their_stanzas(root):
+    """Every published card's screen must come from the stanza above it.
+
+    THIRTEEN CARDS WERE PUBLISHING AN OLDER SCREEN on 2026-09-19 and
+    nothing in this gate said so. `gen_screens.py' stores a hash of each
+    stanza beside its capture and compares them, and `--check' exits 1 on
+    a mismatch -- but that only runs in CI, so a card whose commands or
+    caption were edited after the shot went on publishing the screen from
+    before the edit, commit after commit. `subber's was the worst: its
+    stanza had been changed to drive the reader's own OS-9 on /h1, which
+    the capture session does not mount, so the card would have published
+    E$MNF the moment anyone re-shot it.
+
+    What counts is the COMMANDS: screenshots.stanza_hash leaves the caption
+    out on purpose, because a caption cannot change what the screen shows.
+    Re-shoot with `tools/screenshots.py <sheet> --only <name>'.
+    """
+    import gen_screens
+    caps = os.path.join(os.path.dirname(gen_screens.CAPS), "playtests")
+    sheets = os.path.join(tools_dir(), "screenshots")
+    missing, stale = [], []
+    for name, meta in sorted(gen_screens.sheet_shots(sheets).items()):
+        cap = os.path.join(caps, "%s.shot.txt" % name)
+        stamp = os.path.join(caps, "%s.shot.hash" % name)
+        if not os.path.exists(cap):
+            missing.append(name)
+        elif os.path.exists(stamp) and open(stamp).read() != meta["hash"]:
+            stale.append(name)
+    for n in missing[:8]:
+        print("    %s has no capture" % n)
+    for n in stale[:8]:
+        print("    %s was shot from an older stanza" % n)
+    if len(missing) + len(stale) > 8:
+        print("    ... and more")
+    return not (missing or stale), "re-shoot them with tools/screenshots.py"
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1669,6 +1706,7 @@ CHECKS = [
     ("harness env matches SYS/login", check_harness_env_matches_login),
     ("every program is accounted for", check_every_program_is_accounted_for),
     ("panels show their own program", check_panels_show_their_program),
+    ("captures match their stanzas", check_captures_match_their_stanzas),
 ]
 
 if __name__ == "__main__":

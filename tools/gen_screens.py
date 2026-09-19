@@ -305,15 +305,21 @@ def collapse(text, keep=3):
     return "\n".join(out)
 
 
-def sheet_shots():
-    """Every stanza in every sheet: its caption and what it illustrates."""
+def sheet_shots(sheets=None):
+    """Every stanza in every sheet: its caption and what it illustrates.
+
+    `sheets' names the directory to read, so a caller can point this at a
+    COPY -- check_disk's capture-freshness check does, which is how
+    check_the_checks can break it without touching the real sheets.
+    """
+    sheets = sheets or SHEETS
     shots = {}
-    if not os.path.isdir(SHEETS):
+    if not os.path.isdir(sheets):
         return shots
-    for f in sorted(os.listdir(SHEETS)):
+    for f in sorted(os.listdir(sheets)):
         if not f.endswith(".sheet"):
             continue
-        parsed = screenshots.parse(os.path.join(SHEETS, f))
+        parsed = screenshots.parse(os.path.join(sheets, f))
         screenshots.check_names(parsed)
         # AND ACROSS SHEETS. check_names only sees one sheet at a time, and
         # two sheets can name the same stanza: `greg' was defined in both
@@ -570,8 +576,11 @@ def main():
         # invalidated seventeen others, the mtime reading said "churn, skip
         # it", and twenty real re-shoots were nearly dropped.  There is no
         # mtime in this check at all: it is the stored stanza hash against
-        # the stanza as it now reads, so a caption edit counts, which is
-        # right -- the card publishes caption and screen together.
+        # the stanza as it now reads.  A CAPTION EDIT DOES NOT COUNT --
+        # screenshots.stanza_hash leaves the caption out on purpose, since
+        # a caption cannot change what the screen shows; this comment said
+        # the opposite until 2026-09-19, when a breaker written from it
+        # changed a caption, moved no hash, and reported the check blind.
         print("  %d captures no longer match their stanza (caption or "
               "commands edited since the shot): %s"
               % (len(stale), " ".join(stale[:8])))

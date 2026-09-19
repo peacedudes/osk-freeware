@@ -306,6 +306,35 @@ def break_card_directory(root):
 
 
 
+def break_capture_freshness(root):
+    """A command added in a COPY of the sheets, leaving its capture behind.
+
+    THE CAPTION IS DELIBERATELY NOT IN THE STANZA HASH (screenshots.py
+    says why: a caption cannot change what the screen shows, and putting
+    it in marked ninety-four captures stale over a wording pass).  So the
+    break has to be a COMMAND -- an earlier version of this breaker edited
+    a caption, changed nothing, and reported the check blind.
+    """
+    copy = _tools_copy(root, "toolsshot")
+    sheets = os.path.join(copy, "screenshots")
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        path = os.path.join(sheets, f)
+        text = open(path).read()
+        if "\nrun     " not in text:
+            continue
+        head = text.index("\nrun     ")
+        name = text[:head].rsplit("shot    ", 1)[1].strip().split("\n")[0]
+        open(path, "w").write(text[:head]
+                              + "\nrun     echo a command added after the shot"
+                              + text[head:])
+        os.environ["OSK_TOOLS_DIR"] = copy
+        return ("a command added to `%s' in a COPY of the sheets, after its "
+                "capture was taken" % name)
+    return None
+
+
 def _tools_copy(root, name):
     """A writable copy of tools/, for checks that read their own directory."""
     copy = os.path.join(os.path.dirname(root), name)
@@ -735,6 +764,8 @@ BREAKS = [
     ("panel stale", "panels show their own program", break_panel_backlog_stale),
     ("exception stale", "panels show their own program",
      break_panel_exception_stale),
+    ("capture freshness", "captures match their stanzas",
+     break_capture_freshness),
     ("try forgets", "every card says what to type", break_try_backlog_forgets),
     ("try stale", "every card says what to type", break_try_backlog_stale),
     ("help forgets", "cards carry real help text", break_help_backlog_forgets),
