@@ -206,6 +206,36 @@ from a measured list the gate checks.
    documents, or is the narrow scope right?  If it should reach them, the
    check takes one line -- the file list, not the patterns.
 
+29. **Your username was on six published cards, and the name "Robert
+   Doggett" is still on the disk in five places.**  The username went
+   today: `tools/terms.psv' gave every program we wrote a terms line
+   ending *"rdoggett, 2026-09-18: 'anything we write is anybody who wants
+   it can have it'"*, and that was on `about', `fact', `keep', `kept',
+   `man' and `unkeep' in the gallery.  Four more decision attributions
+   were in `disk/SOURCES.txt', one in `DOC/STATUS', one in a port note,
+   and two in HTML and JavaScript comments the template copies verbatim
+   into the published page.  All nine are gone, the sentence before each
+   already said the thing, and `check_disk.py' has a gate now -- `the
+   artefact does not name us' -- with a breaker.
+
+   **What I did NOT remove, and this is the part for you.**  The gate
+   looks for the username, not the name.  `Robert Doggett' stays in
+   `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c'
+   and `SRC/hc_utils/fgrep.c' -- you wrote those ports in 1988 and 1989
+   and the credit is in the files as their authors left them.  Taking it
+   out would falsify the history of somebody else's archive as much as
+   your own.  `DOC/os9dsk/PUBDOM19.DSK' carries it too, in a disk image
+   from the period.  And `SOURCES.txt' says *"Robert Doggett asked Allan
+   at Microware for permission"*, which I kept because the record of who
+   asked is the provenance.  The os9exec URL stays for the same reason --
+   a reader has to be told where the emulator is, and it is at
+   `github.com/peacedudes/os9exec'.
+
+   Say the word if you want any of those gone and it is a one-line change
+   to the gate's allowed list.  My reading is that the rule was about the
+   maintainer's fingerprints on the artefact, not about erasing a 1988
+   byline, but it is your name.
+
 ## Not a question any more, but you should know
 
 18. **`disk/` is hard-linked to a second copy and my edits reach it.**  You

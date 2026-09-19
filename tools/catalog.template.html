@@ -123,8 +123,8 @@
      so they are not the same colour as the prose around them. */
   .shotcap .key{font-family:var(--mono);font-size:12px;color:var(--accent)}
   /* A program whose NAME is also the name of a utility the reader owns.
-     rdoggett: "I want to do it with informed consent" -- so this is a
-     callout on the card, not a line in a document they must go and find. */
+     The reader should know before they install, so this is a callout on
+     the card, not a line in a document they must go and find. */
   .shadow{margin:12px 0 0;padding:9px 11px;border-radius:6px;
     background:var(--soft);border:1px solid var(--accent);
     color:var(--ink);font-size:13px;line-height:1.5}
@@ -286,9 +286,8 @@ const ORDER = __ORDER__;
 const esc = s => String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const kb = n => n>=1024 ? Math.round(n/1024)+"K" : n+"B";
 // `x' is how every document here quotes a key or a command.  Mark those up
-// so they stand out of the caption -- rdoggett, 2026-09-18, on hunting for
-// the key that leaves a program: "It would be nice if these escape codes
-// were highlighted (different color, maybe yellow instead of white?)".
+// so they stand out of the caption: the key that leaves a program is the
+// one a reader hunts for, and it should not read as ordinary prose.
 // Runs on ALREADY-ESCAPED text, so it can only ever wrap what is there.
 const keys = s => s.replace(/`([^`'\n]{1,28})'/g,
                            (m,k) => `<span class="key">${k}</span>`);

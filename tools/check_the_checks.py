@@ -576,6 +576,22 @@ def break_shouting_caption(root):
     return None
 
 
+def break_maintainer_identifier(root):
+    """A decision attribution put back into DOC/STATUS, naming the maintainer.
+
+    That is the exact shape the check was written for: working-paper voice
+    reaching the artefact.  Nine of them shipped until 2026-09-19, six on
+    published gallery cards.
+    """
+    p = os.path.join(root, "DOC", "STATUS")
+    t = open(p, "rb").read()
+    marker = b"and it was settled that they"
+    if marker not in t:
+        return None
+    w(p, t.replace(marker, b"and rdoggett settled that they", 1))
+    return "DOC/STATUS made to name the maintainer again"
+
+
 def break_absence_phrasing(root):
     """A DOC/INDEX entry that says what this disk lacks instead of what you have.
 
@@ -817,6 +833,8 @@ BREAKS = [
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),
     ("shouting caption", "captions do not shout", break_shouting_caption),
+    ("maintainer named", "the artefact does not name us",
+     break_maintainer_identifier),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
     ("cio list", "the cio-macro list is current",
      break_cio_list_names_a_ghost),

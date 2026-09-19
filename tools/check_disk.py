@@ -1760,6 +1760,68 @@ def check_captions_do_not_shout(root):
         print("    %s" % b)
     return not bad, "%d caption(s) in capitals" % len(bad)
 
+def check_no_maintainer_identifiers(root):
+    """The artefact does not carry the maintainer's username or home path.
+
+    A HARD RULE in CLAUDE.md -- the disk is what people receive and
+    `docs/' is published, and neither may carry his name, username, home
+    path or machine -- and until 2026-09-19 nothing enforced it.  The
+    sweep that day found NINE: six gallery cards published "Written for
+    this collection and given away ... rdoggett, 2026-09-18: `anything we
+    write is anybody who wants it can have it'" out of `tools/terms.psv',
+    two more sat in HTML and JavaScript comments that the template copies
+    verbatim into `docs/index.html', and four decision attributions had
+    reached `disk/SOURCES.txt', one `disk/DOC/STATUS' and one port note.
+    Every one of them was working-paper voice: the sentence before it
+    already said the thing, and who settled it means nothing to a reader.
+
+    IT LOOKS FOR THE USERNAME, NOT THE NAME.  `Robert Doggett' is in
+    `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c'
+    and `SRC/hc_utils/fgrep.c' as the 1988 author of those ports, which is
+    historical fact in other people's files and stays; `Doggett' is also
+    an Irish place name in `hack''s data and a word in `draw''s.  What
+    goes is the modern attribution and the machine: the username, the
+    home path, and the account handle.
+
+    ALLOWED, with its reason: the os9exec URL in `SOURCES.txt'.  A reader
+    has to be told where the emulator comes from, and that is where it is.
+
+    `tools/' and `notes/' are working papers and may name him -- except
+    `catalog.template.html', which is not a working paper at all: it is
+    the published page with the data not yet poured in, so it is read
+    here as though it were under `docs/'.
+    """
+    pat = re.compile(rb"rdoggett|peacedudes", re.I)
+    allowed = (b"https://github.com/peacedudes/os9exec",)
+    repo = os.path.dirname(os.path.abspath(root))
+    roots = [root, os.path.join(repo, "docs")]
+    extra = [os.path.join(tools_dir(), "catalog.template.html")]
+    bad = []
+    for base in roots:
+        if not os.path.isdir(base):
+            continue
+        for d, _, files in os.walk(base):
+            extra.extend(os.path.join(d, f) for f in files)
+    for p in sorted(set(extra)):
+        if not os.path.isfile(p):
+            continue
+        try:
+            b = open(p, "rb").read()
+        except OSError:
+            continue
+        if not pat.search(b):
+            continue
+        for line in b.replace(b"\r\n", b"\n").replace(b"\r", b"\n").split(b"\n"):
+            m = pat.search(line)
+            if not m or any(a in line for a in allowed):
+                continue
+            bad.append("%s: %s" % (os.path.relpath(p, repo),
+                                   line[max(0, m.start() - 30):
+                                        m.start() + 46].decode("latin-1").strip()))
+    for b in bad[:8]:
+        print("    %s" % b)
+    return not bad, "%d line(s) naming the maintainer" % len(bad)
+
 
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
@@ -1788,6 +1850,7 @@ CHECKS = [
     ("README names documents that exist", check_readme_cross_references),
     ("text names what the reader has", check_no_absence_phrasing),
     ("captions do not shout", check_captions_do_not_shout),
+    ("the artefact does not name us", check_no_maintainer_identifiers),
     ("OS-9 paths count dots", check_no_chained_parent_paths),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("cards make their own directories",
