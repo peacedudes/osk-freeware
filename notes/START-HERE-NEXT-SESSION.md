@@ -2,6 +2,44 @@
 
 ## DO NEXT -- 2026-09-19
 
+**`config' NEVER WANTED A 68881, AND THE WRONG DIAGNOSIS WAS ON ITS WAY
+TO BECOMING A REQUEST TO MICROWARE.**  DOC/STATUS had a section headed
+WANTS FLOATING-POINT HARDWARE whose only entry was `config', aborting on
+vector $0B where `double' begins -- which reads exactly like a program
+executing 68881 instructions with no coprocessor, because that is the
+vector such a program takes.  `DOC/README-BUSERR' said the same and
+ended: "These two programs are the concrete case for asking about `fpu'
+as well."
+
+It installs its own handler for that vector and does the arithmetic in
+software.  The handler was going in 64K high: an F$STrap table gives each
+handler as a word offset from the table entry, SIGNED, so a table placed
+after its routines carries a negative one, and os9exec read it unsigned.
+The process then died at the very exception it had asked to be told
+about.
+
+**Established by measurement, not by asking**: `git archive <commit>'
+into the scratchpad, `make prod', run the program.  A build is ELEVEN
+SECONDS, so a binary search over 154 commits cost about eight of them.
+os9exec d401ce2, 2026-09-12.  The os9exec repo was only ever read --
+never checked out, never bisected in place.
+
+**THE LESSON, and it is the one to carry:** a fault on the vector for the
+very thing a program is doing is not evidence that the hardware is
+missing.  A program that installs a handler and then dies on that
+handler's own vector is a program whose handler did not go where it asked.
+
+**ONE SWEEP WORTH REPEATING AFTER ANY REMOVAL.**  Grep every shipped
+README for a name in backticks that the disk does not have.  It found
+`DOC/README-BUSERR' calling firq, souper and sysmem "three programs on
+this disk" and offering `sysid' as the counter-example that runs -- all
+four left with the Microware-authored utilities -- and `DOC/README-CIO'
+recommending `sedt' as the trap-free editor to use instead of `*ed' and
+`*emacs', and listing CMDS/sedt among the putc-macro programs under a
+heading saying twenty-THREE where the sentence four lines above, the one
+the gate checks, said twenty-two.  The gate now compares that
+enumeration with the scan in both directions.
+
 **SIX MORE FAILURE NOTES OUTLIVED THEIR FIXES, and there is a tool for
 finding them now: `tools/stale_notes.py'.**  The method is the one the
 last pass suggested -- a program whose `DOC/STATUS' row carries a failure
