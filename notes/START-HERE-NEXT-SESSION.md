@@ -29,8 +29,12 @@ very thing a program is doing is not evidence that the hardware is
 missing.  A program that installs a handler and then dies on that
 handler's own vector is a program whose handler did not go where it asked.
 
-**ONE SWEEP WORTH REPEATING AFTER ANY REMOVAL.**  Grep every shipped
-README for a name in backticks that the disk does not have.  It found
+**ONE SWEEP WORTH REPEATING AFTER ANY REMOVAL, and it is a tool now:
+`tools/ghost_names.py'.**  It reads every shipped file for a name in
+backticks that the disk does not have.  The worst it found was in
+`SYS/login' -- the greeting every reader gets before their first prompt
+said "cat and less read; vi_nocio edits", and vi_nocio left with the
+twenty-six that went on terms.  It also found
 `DOC/README-BUSERR' calling firq, souper and sysmem "three programs on
 this disk" and offering `sysid' as the counter-example that runs -- all
 four left with the Microware-authored utilities -- and `DOC/README-CIO'
@@ -38,7 +42,15 @@ recommending `sedt' as the trap-free editor to use instead of `*ed' and
 `*emacs', and listing CMDS/sedt among the putc-macro programs under a
 heading saying twenty-THREE where the sentence four lines above, the one
 the gate checks, said twenty-two.  The gate now compares that
-enumeration with the scan in both directions.
+enumeration with the scan in both directions.  `DOC/INDEX' was sending
+`ape's reader to `travesty', gone in the same commit, and `DOC/ORIGINS'
+still had rows for `ren' and `reagan'.
+
+Like `stale_notes.py' it is a REPORT: most of what it would print is
+right, because the shipped text names the reader's own OS-9 utilities on
+purpose.  Its SKIP, PROSE and GONE sets hold what has been judged, and
+the residue is what a person looks at.  It prints nothing today, so a
+new ghost will stand alone.
 
 **SIX MORE FAILURE NOTES OUTLIVED THEIR FIXES, and there is a tool for
 finding them now: `tools/stale_notes.py'.**  The method is the one the
