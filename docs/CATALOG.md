@@ -835,7 +835,7 @@
 | | |
 |---|---|
 | `bdecode` | &#9733; decodes a C News batch: it skips forward to the line `Decode the following with bdecode', decodes what follows and checks the CRC at the end. Given anything else it says `Missing header'. Source in SRC/cnews/input |
-| `byteflip` | &#9733; byte-swap a dbz database between architectures -- hand it a dbz database<br>**How:** It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures. |
+| `byteflip` | &#9733; reorders the bytes of every word it reads on standard input, so a dbz database written on one architecture can be read on another. Four things say how: the word length, where each byte comes FROM, the word length again, and where each byte GOES -- `byteflip 4 0 1 2 3 4 3 2 1 0' turns every four-byte word end for end. Give it those numbers: with none the word length is zero and it reads zero bytes for ever<br>**How:** It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures. |
 | `c7decode` | &#9733; the inverse of C News's c7encode: it reads the seven-bit-safe form a news batch is put into to cross a link that eats the eighth bit, and writes the eight-bit original back. Source in SRC/cnews/input |
 | `dbz` | &#9733; builds and maintains C News's history index -- the .dir and .pag pair beside the history file that lets the news system find an article by message-id without reading the whole of it. `dbz database [file]...'<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
 | `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |

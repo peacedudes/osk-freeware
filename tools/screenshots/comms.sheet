@@ -447,12 +447,26 @@ run     bdecode msg.txt
 wait    6
 
 shot    byteflip
-cap     Byte-swaps a dbz database between architectures.  Run with
-cap     nothing to swap, it ends the shell outright rather than printing
-cap     anything.
-try     byteflip
-run     byteflip
-wait    6
+cap     Reorders the bytes of every word it reads, so a dbz database
+cap     written on one architecture can be read on another.  Four things
+cap     tell it how: the word length, where each byte comes FROM, the
+cap     word length again, and where each byte GOES.  Turning a four-byte
+cap     word end for end is `4 0 1 2 3 4 3 2 1 0', which is what runs
+cap     here.  Give it those numbers: with none, the word length is zero,
+cap     and it reads zero bytes for ever.
+try     byteflip 4 0 1 2 3 4 3 2 1 0 < in.txt
+run     rm -rf /dd/tmp/BFL > /nil 2>/nil; mkdir -p /dd/tmp/BFL; printf "ABCDEFGH\r" > /dd/tmp/BFL/in.txt
+wait    3
+run     builtin cd /dd/tmp/BFL
+wait    1
+run     clear
+wait    1
+run     cat in.txt
+wait    3
+run     byteflip 4 0 1 2 3 4 3 2 1 0 < in.txt > out.txt
+wait    5
+run     cat out.txt
+wait    3
 
 shot    c7decode
 cap     Decodes 7-bit-safe encoded news.  Handed text that is not encoded

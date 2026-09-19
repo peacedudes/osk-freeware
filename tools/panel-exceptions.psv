@@ -60,7 +60,6 @@ uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk,
 finger|asks another machine who is logged in; it needs a network to reach, and prints its usage without one
 msntp|sets the system clock from a network time server; with no network here it cannot open an NTP socket
 blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
-byteflip|byte-swaps a dbz database between architectures; with no database to swap it ends the shell rather than printing anything
 newslock|the news system's file lock; it belongs to a news spool this configuration does not run, and leaves no trace here
 connect|joins two serial paths so you can talk through one to the other; there are no serial devices here, so its usage is what there is to show
 disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded

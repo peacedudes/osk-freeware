@@ -47,8 +47,14 @@ which in each case the disk or the reader already has:
 
 **The ones left flagged are genuinely blocked** and were each re-checked:
 an X server, a modem port, a Wyse terminal, a printer, a G-Windows
-display.  `byteflip' takes the session down even given a real dbz
-database, measured.
+display.  `byteflip' WAS on that list and should not have been: it
+takes FOUR arguments -- word length, source map, word length again,
+destination map -- and every run that "took the session down" had been
+handing it a FILENAME as the first one.  `atoi' of a filename is zero,
+`fread' of zero bytes returns zero, and its loop compares the two, so it
+reads nothing for ever.  `byteflip 4 0 1 2 3 4 3 2 1 0 < in > out' turns
+ABCDEFGH into DCBAHGFE and exits 0; its card shows that now.  Found by
+the os9exec session reading the source, 2026-09-19.
 
 **All 35 breaks in check_the_checks now fire** -- it had SIX checks with
 no breaker at all, and one of those carried a docstring saying a breaker
@@ -3154,14 +3160,13 @@ INCLUDING THE FILES THAT DID MATCH.  Ten strays were left that way.
               `panel-exceptions' line says "the ls that follows on its
               card is the evidence" -- THERE IS NO ls ON ITS CARD, and
               cannot be while it does this.
-  `byteflip'  honest, and now proven so.  The disk's own `dbz' WILL
-              build the base it wants (`dbz base' wrote base.dir and a
-              349 KB base.pag from three echoed lines), and `byteflip'
-              on that base still ends the session.  Its caption already
-              says it ends the shell outright.  No better card exists.  Re-run
-              against os9exec 8ee3bcf (2026-09-19), which fixed the
-              masked-signal freeze behind `yacc' and `pgmedge': byteflip
-              still ends the session, so it is not that fault.
+  `byteflip'  WRONG, and corrected 2026-09-19 -- see the entry at the
+              head of this file.  It was never a hang of the emulator's
+              and never wanted a database on its command line: it takes
+              a word length and two byte maps and reads standard input,
+              and it was being handed a filename where the word length
+              goes.  Given its maps it does the swap and exits, and its
+              card shows ABCDEFGH becoming DCBAHGFE.
   `rcsmerge'  cannot ever merge here: it forks `merge', and this disk
               has no such binary.  A real two-revision attempt gets as
               far as `RCS file: note_v / retrieving revision 1.1 /
