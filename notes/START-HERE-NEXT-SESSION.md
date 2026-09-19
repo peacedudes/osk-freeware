@@ -11,12 +11,32 @@ three Kientzle transfer programs (17), the GPL binaries (20), omega and the
 DECUS cpp (21), ispell when his source arrives (23), and one new one -- the
 twelve remaining "second build of" duplicates (24).
 
-**THE QUEUE, in his order.**  The downloads are finished: the usenet
-last-ditch pull is complete (nine groups, every count matching the site's
-index) and the CoCo Community Archive survey is under way -- 21 images read
-with the disk's own `os9dsk`, which is the last body of unopened material.
-After that comes **the sweep for other clamp-corrupted screens**, whose
-method is in "The screen-corruption sweep" below and has not started.
+**THE QUEUE HE SET IS FINISHED.**  The usenet last-ditch pull is complete
+(nine groups, every count matching the site's index); the CoCo Community
+Archive survey is complete (26 images, no candidates -- and note it is 26,
+not the 24 first reported, and that `frames.dsk' needed its two-byte JVC
+header stripped before either reader could see it); and the clamp screen
+sweep is DONE.  Both halves of the sweep were run: the exact one over every
+stored play-test raw found nothing, and the filter over cards flagged 96, of
+which 82 changed.  `spline' went from 119 ink to 1898 and `lorenz3d' from
+108 to 1856.  Three picture cards -- `djpeg', `pgmramp', `pnmtile' -- turned
+out to draw WIDER THAN 80 COLUMNS, which is why the clamp had been eating
+them; given windows that fit (164 and 156 columns) they show whole pictures
+and touch no margin.
+
+**WHAT IS OPEN NOW** is `notes/FOR-RDOGGETT.md` (five items, all his), and
+one thread of our own: **UNIX FILE MODES ARE NOT OS-9 MODES**, below.
+
+**UNIX FILE MODES ARE NOT OS-9 MODES -- a live defect class, seven sites
+still unchecked.**  `open(name, 0)' is O_RDONLY on Unix and NO ACCESS BITS
+on OS-9, so the open succeeds and every read through it is refused E$BMode.
+The os9exec session traced it in `patch' (which is fixed and applies diffs
+now); a scan of disk/SRC found 76 call sites across 34 trees, most of them
+harmless or deliberate -- a stat() shim opens mode 0 ON PURPOSE.  `bmgtest'
+and `bmgtest2' had it live and are fixed.  The seven still to check are
+listed with line numbers in `disk/SRC/strsch/README.OSK`, and the test is
+cheap: hand the program a NAMED file, then the same data on standard input.
+If the second works and the first does not, it is this.
 
 **What changed on the disk today, so nothing is re-derived:**
 
