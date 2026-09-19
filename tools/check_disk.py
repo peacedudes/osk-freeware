@@ -44,6 +44,21 @@ TEXT_RATIO   = 0.97
 CMD_DIRS     = ["CMDS", "CMDS/GAMES"]
 
 
+
+def tools_dir():
+    """Where the hand-maintained tables and sheets live.
+
+    OSK_TOOLS_DIR points this at a COPY, which is how check_the_checks
+    breaks a check that reads tools/ rather than the disk tree.  Without
+    it such a check reads the real tools/ whatever tree it is handed, and
+    so can never be made to fail -- six were in that position until
+    2026-09-19, one of them with a docstring saying a breaker was
+    impossible.
+    """
+    return os.environ.get("OSK_TOOLS_DIR",
+                          os.path.dirname(os.path.abspath(__file__)))
+
+
 def is_text(data):
     """True for a file worth holding to the text rules.
 
@@ -549,7 +564,11 @@ def check_hand_lists_have_no_duplicate_keys(root):
     Nothing about a duplicate is visible in the output, which is what makes
     it worth a check rather than a habit.
     """
-    here = os.path.dirname(os.path.abspath(__file__))
+    # OSK_TOOLS_DIR lets check_the_checks point this at a COPY of tools/ so
+    # the check can be made to fail.  A check reading the real tools/
+    # whatever tree it is given cannot be broken and so has never been
+    # proved able to fail, which is the one thing this collection insists on.
+    here = tools_dir()
     problems = []
     for fname in ("howto.psv", "categories.psv"):
         path = os.path.join(here, fname)
@@ -864,10 +883,16 @@ def check_no_chained_parent_paths(root):
     shell and Makefiles are not screened at all: `../..' is the host's
     correct spelling.
 
-    PROVEN THROUGH THE CLI, not merely in-process.  This check has NO breaker
-    in check_the_checks.py and cannot have one -- that harness copies the
-    DISK tree, while this reads the sheets under tools/, which are never
-    copied -- so its wiring needs a proof of its own.  Measured 2026-09-12:
+    IT HAS A BREAKER NOW, and the reason it went without one for a week is
+    worth keeping.  This docstring used to say a breaker was impossible --
+    "that harness copies the DISK tree, while this reads the sheets under
+    tools/, which are never copied".  True of the harness as it stood, and
+    the wrong conclusion: the answer was to let the check be POINTED
+    somewhere else, which is what `OSK_TOOLS_DIR' does and what
+    `OSK_HELP_TABLE' had already been doing for another check in the same
+    file.  "This cannot be tested" is nearly always "this cannot be tested
+    the way the harness works today".  The manual proof below stands as the
+    record of the week it was true:
 
         a throwaway sheet carrying `run  ../../CMDS/for div.f'
             -> `check_disk.py disk' EXITS 1 and prints this check FAILED
@@ -880,7 +905,7 @@ def check_no_chained_parent_paths(root):
     added to BREAKS, and check_the_checks reported "24 of 24 breaks were
     caught" throughout.  A function can be perfect and unreachable.
     """
-    here = os.path.dirname(os.path.abspath(__file__))
+    here = tools_dir()
     targets = []
     for sub in ("screenshots", "datatests", "drives", "playtests"):
         d = os.path.join(here, sub)
@@ -932,8 +957,7 @@ def check_cards_do_not_depend_on_each_other(root):
     A path nobody redirects into is nobody's dependency and is ignored.
     """
     import screenshots
-    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          "screenshots")
+    sheets = os.path.join(tools_dir(), "screenshots")
     if not os.path.isdir(sheets):
         return True, ""
     SETUP = "setup-image"
@@ -978,8 +1002,7 @@ def check_cards_have_no_pathlists(root):
     a `chd' so the shown command reads short.  A bare device (`mount as /h0')
     is fine; a rooted pathlist (`/h0/usr/src/...') is not.
     """
-    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          "screenshots")
+    sheets = os.path.join(tools_dir(), "screenshots")
     if not os.path.isdir(sheets):
         return True, ""
     pathlist = re.compile(r"(?:/dd|/h0|/h1|/h5|/h6)/[\w.]")
@@ -1211,7 +1234,7 @@ def check_cards_state_their_terms(root):
     catalogued program in neither fails; so does a backlog name that now
     has a line, and a line or backlog name that is not a program.
     """
-    tools = os.path.dirname(os.path.abspath(__file__))
+    tools = tools_dir()
     sys.path.insert(0, tools)
     # Every CATALOGUE entry, not only the runnable modules: cio, math and
     # the other trap libraries have cards too, and a reader keeping one
@@ -1417,8 +1440,8 @@ def check_every_program_is_accounted_for(root):
     sys.path.insert(0, here)
     import audit_panels
     cats = set(audit_panels.runnable())
-    backlog = names(os.path.join(here, "panel-backlog.txt"), None)
-    excepted = names(os.path.join(here, "panel-exceptions.psv"), "|")
+    backlog = names(os.path.join(tools_dir(), "panel-backlog.txt"), None)
+    excepted = names(os.path.join(tools_dir(), "panel-exceptions.psv"), "|")
     missing = sorted(cats - seen - backlog - excepted)
     for m in missing[:10]:
         print("    %s is catalogued but has no card, no backlog line and no "
@@ -1506,8 +1529,7 @@ def check_cards_make_their_own_directories(root):
     other sixty.  Found 2026-09-19 while re-shooting a card that turned out
     not to be stale after all.
     """
-    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          "screenshots")
+    sheets = os.path.join(tools_dir(), "screenshots")
     if not os.path.isdir(sheets):
         return True, ""
     bad = []

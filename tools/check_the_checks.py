@@ -266,13 +266,156 @@ def break_card_directory(root):
     because another stanza in the same sheet had run `mkdir' first.  It
     shows up the moment one card is re-shot on its own.
     """
-    p = os.path.join(root, "tools", "screenshots", "zzzdir.sheet")
-    w(p, b"shot    zzznodir\n"
-         b"cap     a stanza that writes where nobody made a directory\n"
-         b"try     cat tmp/ZZZNOPE/x\n"
-         b"run     cat /dd/SYS/motd > /dd/tmp/ZZZNOPE/x\n"
-         b"wait    2\n")
-    return "tools/screenshots/zzzdir.sheet added, writing into a directory nothing makes"
+    copy = os.path.join(os.path.dirname(root), "sheets")
+    shutil.copytree(os.path.join(REPO, "tools", "screenshots"), copy)
+    w(os.path.join(copy, "zzzdir.sheet"),
+      b"shot    zzznodir\n"
+      b"cap     a stanza that writes where nobody made a directory\n"
+      b"try     cat tmp/ZZZNOPE/x\n"
+      b"run     cat /dd/SYS/motd > /dd/tmp/ZZZNOPE/x\n"
+      b"wait    2\n")
+    os.environ["OSK_SHEET_DIR"] = copy
+    return "a stanza writing into /dd/tmp/ZZZNOPE added to a COPY of the sheets"
+
+
+
+
+
+def _tools_copy(root, name):
+    """A writable copy of tools/, for checks that read their own directory."""
+    copy = os.path.join(os.path.dirname(root), name)
+    if not os.path.isdir(copy):
+        shutil.copytree(os.path.join(REPO, "tools"), copy,
+                        ignore=shutil.ignore_patterns("__pycache__"))
+    return copy
+
+
+def break_duplicate_hand_line(root):
+    """A name twice in a COPY of howto.psv -- the later wins silently."""
+    copy = _tools_copy(root, "toolsdup")
+    path = os.path.join(copy, "howto.psv")
+    rows = open(path).read().split("\n")
+    i = next(i for i, r in enumerate(rows)
+             if r.strip() and not r.startswith("#") and "|" in r)
+    rows.insert(i + 1, rows[i])
+    open(path, "w").write("\n".join(rows))
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "`%s' listed twice in a COPY of howto.psv" % rows[i].split("|")[0]
+
+
+
+
+def break_chained_dots(root):
+    """A sheet whose `run' line climbs with `../..' -- Unix, not OS-9.
+
+    Its check's docstring said for a week that a breaker was impossible
+    because this harness copies the DISK tree and the check reads tools/.
+    The answer was to let the check be pointed elsewhere.
+    """
+    copy = _tools_copy(root, "toolsdots")
+    w(os.path.join(copy, "screenshots", "zzzdots.sheet"),
+      b"shot    zzzdots\n"
+      b"cap     a stanza climbing the Unix way\n"
+      b"try     cat ../../SYS/motd\n"
+      b"run     cat ../../SYS/motd\n"
+      b"wait    2\n")
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "a sheet using `../..' added to a COPY of the sheets"
+
+
+
+
+def break_card_terms(root):
+    """A program dropped from a COPY of terms.psv and off the backlog.
+
+    Every card states its terms -- copyright, licence, conditions -- and
+    the table is hand-kept, so a program added without a line in it would
+    publish a card saying nothing about what a reader may do with it.
+    """
+    copy = _tools_copy(root, "toolsterms")
+    path = os.path.join(copy, "terms.psv")
+    rows = open(path, encoding="latin-1").read().split("\n")
+    i = next(i for i, r in enumerate(rows)
+             if r.strip() and not r.startswith("#") and "|" in r)
+    name = rows[i].split("|")[0]
+    open(path, "w", encoding="latin-1").write("\n".join(rows[:i] + rows[i+1:]))
+    # and make sure the backlog does not excuse it
+    bl = os.path.join(copy, "terms-backlog.txt")
+    if os.path.exists(bl):
+        keep = [l for l in open(bl).read().split("\n") if l.strip() != name]
+        open(bl, "w").write("\n".join(keep))
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "`%s' dropped from a COPY of terms.psv" % name
+
+
+
+
+def break_card_pathlist(root):
+    """A caption in a COPY of the sheets carrying a full pathlist.
+
+    Cards name things the short way -- `chd' first, then the program --
+    because a full `/dd/...' in a shown command is the thing rdoggett
+    ruled out by name.
+    """
+    copy = _tools_copy(root, "toolspath")
+    w(os.path.join(copy, "screenshots", "zzzpath.sheet"),
+      b"shot    zzzpath\n"
+      b"cap     a caption naming /dd/SYS/motd the long way\n"
+      b"try     cat /dd/SYS/motd\n"
+      b"run     cat /dd/SYS/motd\n"
+      b"wait    2\n")
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "a stanza showing `/dd/SYS/motd' added to a COPY of the sheets"
+
+
+def break_card_dependency(root):
+    """Two stanzas in a COPY of the sheets, the second reading what the
+    first wrote.
+
+    This is the failure that cost five converter cards at once: ppmntsc
+    read a file the pnmfilters card wrote, and a slow pipeline meant it
+    was not there yet.
+    """
+    copy = _tools_copy(root, "toolsdep")
+    w(os.path.join(copy, "screenshots", "zzzdep.sheet"),
+      b"shot    zzzwriter\n"
+      b"cap     writes a file the next stanza reads\n"
+      b"try     cat SYS/motd\n"
+      b"run     mkdir -p /dd/tmp/ZZZDEP > /nil 2>/nil\n"
+      b"run     cat /dd/SYS/motd > /dd/tmp/ZZZDEP/left-behind\n"
+      b"wait    2\n"
+      b"\n"
+      b"shot    zzzreader\n"
+      b"cap     reads what the stanza above left behind\n"
+      b"try     cat tmp/ZZZDEP/left-behind\n"
+      b"run     mkdir -p /dd/tmp/ZZZDEP > /nil 2>/nil\n"
+      b"run     cat /dd/tmp/ZZZDEP/left-behind\n"
+      b"wait    2\n")
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "one stanza reading another's leftover added to a COPY of the sheets"
+
+
+
+
+def break_unaccounted_program(root):
+    """A program whose panel-backlog line is gone from a COPY of tools/.
+
+    The check asks that every runnable program is either in screens.js, on
+    the panel backlog, or excepted by name.  Take a backlogged program off
+    the backlog and it is accounted for nowhere, which is the state a newly
+    added program starts in and the state this check exists to notice.
+    """
+    copy = _tools_copy(root, "toolsacct")
+    path = os.path.join(copy, "panel-backlog.txt")
+    rows = [l for l in open(path).read().split("\n")]
+    i = next((i for i, r in enumerate(rows)
+              if r.strip() and not r.startswith("#")), None)
+    if i is None:
+        return None                      # an empty backlog: nothing to take
+    name = rows[i].strip()
+    open(path, "w").write("\n".join(rows[:i] + rows[i+1:]))
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "`%s' dropped from a COPY of panel-backlog.txt" % name
 
 
 
@@ -505,6 +648,15 @@ BREAKS = [
      break_unrecorded_library),
     ("card directory", "cards make their own directories",
      break_card_directory),
+    ("duplicate hand line", "one line per name in the hand lists",
+     break_duplicate_hand_line),
+    ("chained dots", "OS-9 paths count dots", break_chained_dots),
+    ("card terms", "every card states its terms", break_card_terms),
+    ("card pathlist", "cards carry no full pathlists", break_card_pathlist),
+    ("card dependency", "cards do not depend on each other",
+     break_card_dependency),
+    ("unaccounted program", "every program is accounted for",
+     break_unaccounted_program),
     ("login env", "harness env matches SYS/login", break_login_env),
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),
