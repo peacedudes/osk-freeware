@@ -23,7 +23,6 @@ lpsched|there is no printer device on this disk to start the spooler on; its opt
 submit|a batch-file runner; its option list is what a card can show without a .sub job to run
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
 macunpack|opens PackIt archives and none is on the disk; its options are what there is to show
-runc|the Lua runtime engine; a `luac -x' chunk runs through it by name at an OS-9 shell (like runb for BASIC09), so on its own it has no chunk to interpret
 pacman|a keypad-controlled ASCII maze game (8/2/4/6 to move); it draws its maze in raw keyboard mode, which the capture harness does not drive, so there is no static frame to show
 disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
