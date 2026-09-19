@@ -2,6 +2,39 @@
 
 ## DO NEXT -- 2026-09-19
 
+**A CARD THAT SAYS A PROGRAM CANNOT IS USUALLY A CARD THAT DID NOT ASK
+PROPERLY.**  The flagged count went 25 -> 21 in one pass and every fix
+was the same shape -- give the program the thing it is asking for,
+which in each case the disk or the reader already has:
+
+  atp      "Unable to open configuration file /dd/atprc or .atprc" for
+           months.  DOC/ka9q/atp.doc documents the format in full and
+           every program a sensible config names is here, so there is a
+           working `atprc' beside that documentation now.
+  submit   runs a .sub file once a `shell' module is resident, which
+           SYS/login already loads from /h1.  Its card shows a batch.
+  pdraw    stopped at the prompt it asks before sending a plot on.
+           Answer it and it writes 141,635 bytes of PostScript.
+  lnk.org  said it forked "a shell that is not here".  With os9lib,
+           shell and l68 loaded it reaches the LINKER and stops on
+           `fstart.r' -- whose source is SRC/rtf/rtfstart.a, which
+           DOC/README-FORTRAN has said all along.
+  uuxqt    wants a `procs' module; /h1 has one.
+  filter   wanted /r0, like `mail'.
+  cls      clears the screen, so its card was empty -- the harness
+           resets its capture on a literal `clear', which is why the
+           `clear' card worked and this one did not.  `snap' says where.
+
+**The ones left flagged are genuinely blocked** and were each re-checked:
+an X server, a modem port, a Wyse terminal, a printer, a G-Windows
+display.  `byteflip' takes the session down even given a real dbz
+database, measured.
+
+**All 35 breaks in check_the_checks now fire** -- it had SIX checks with
+no breaker at all, and one of those carried a docstring saying a breaker
+was impossible.  See the entry above.
+
+
 **A NOTE THAT RECORDS A FAILURE OUTLIVES THE FIX, AND NOBODY GOES BACK.**
 This is the day's biggest finding and it is a class, not an incident.
 `DOC/STATUS' is where every "this program is broken" note lives, and
