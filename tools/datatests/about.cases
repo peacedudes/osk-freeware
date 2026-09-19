@@ -44,7 +44,11 @@ expect  /DD/SYS/TEX/MFINPUTS/LOCAL             not here
 
 case    about-on-a-program-with-source-and-documentation
 run     /dd/CMDS/about fortune
-expect  fortune        print a random quotation
+# The index line is quoted here, so rewriting an entry breaks this case
+# -- which is the point: `about' is the program that SHOWS the entry, so
+# a case for it that did not notice the entry changing would be asserting
+# nothing.  Match the stable head of the line rather than all of it.
+expect  fortune        prints a quotation at random
 expect  for        TEXT TOOLS -- Fortune & sayings
 expect  from       Usenet           fortune.ar
 expect  needs      /dd/GAMES/FORTUNE/fortunes.dat         here
