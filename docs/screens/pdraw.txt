@@ -1,8 +1,8 @@
-pdraw -o DOC/pdraw/options DOC/pdraw/curves.plot
+pdraw -o options curves.plot
 Pdraw V1.4  9/4/90
    Terminal Type             = xterm-256color
    Default Printer           = -Plp550M
-   Commands: options-file    = "DOC/pdraw/options"
+   Commands: options-file    = "options"
    Options : Xlabel          = X-AXIS
    Options : Ylabel          = Y-AXIS
    Options : Zlabel          = Z-AXIS
@@ -13,3 +13,7 @@ Pdraw V1.4  9/4/90
    Options : markerchange    = on
    Options : hiddenline      = on
 Type return (or n/q) to send the plot to the -Plp550M printer :
+Postscript file has been sent to the -Plp550M printer
+Congratulations!!!  You have been TERMINATED...
+$ ls -l dataplot.ps
+-rw-------   1 0        0          141635 Sep 19 05:14 dataplot.ps

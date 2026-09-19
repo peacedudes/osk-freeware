@@ -1410,17 +1410,27 @@ snap
 
 
 shot    pdraw
-cap     Pdraw 1.4 reads 3D x-y-z data and draws it, to an X11 window or as
-cap     PostScript.  Given a sample dataset and an options file it builds
-cap     the plot and asks whether to send it to the printer named in the
-cap     options.
-try     pdraw -o DOC/pdraw/options DOC/pdraw/curves.plot
-run     builtin cd /dd
+size    30 80
+cap     Pdraw 1.4 plots 3D x-y-z data as PostScript.  It reads the options
+cap     file first and prints every setting it took from it, then asks
+cap     before sending the plot on; RETURN there and it writes the
+cap     PostScript and says so.  The file it leaves is `dataplot.ps', 138
+cap     KB of it for this three-curve sample.
+try     pdraw -o options curves.plot
+run     rm -rf /dd/tmp/PDA > /nil 2>/nil; mkdir -p /dd/tmp/PDA
+wait    2
+run     cat /dd/DOC/pdraw/options > /dd/tmp/PDA/options; cat /dd/DOC/pdraw/curves.plot > /dd/tmp/PDA/curves.plot
+wait    3
+run     builtin cd /dd/tmp/PDA
 wait    1
 run     clear
 wait    1
-run     pdraw -o DOC/pdraw/options DOC/pdraw/curves.plot
+run     pdraw -o options curves.plot
 wait    12
+send    \r
+wait    10
+run     ls -l dataplot.ps
+wait    4
 
 # ---- X11 clients
 snap

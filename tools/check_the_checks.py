@@ -406,23 +406,28 @@ def break_unaccounted_program(root):
     """
     copy = _tools_copy(root, "toolsacct")
     # The backlog is EMPTY -- every card passes -- so there is nothing to
-    # take off it.  The exceptions list is the other way a program is
-    # accounted for, and dropping one leaves it accounted for nowhere.
-    for fname, sep in (("panel-backlog.txt", None),
-                       ("panel-exceptions.psv", "|")):
-        path = os.path.join(copy, fname)
-        if not os.path.exists(path):
-            continue
-        rows = open(path, errors="replace").read().split("\n")
-        i = next((i for i, r in enumerate(rows)
-                  if r.strip() and not r.startswith("#")), None)
-        if i is None:
-            continue
-        name = rows[i].split(sep)[0].strip() if sep else rows[i].strip()
-        open(path, "w").write("\n".join(rows[:i] + rows[i+1:]))
-        os.environ["OSK_TOOLS_DIR"] = copy
-        return "`%s' dropped from a COPY of %s" % (name, fname)
-    return None
+    # take off it, and the exceptions list is the other way a program is
+    # accounted for.  IT MUST BE ONE WITH NO CARD: an excepted program
+    # that IS in screens.js is accounted for by the card anyway, and
+    # dropping its exception changes nothing.  `perr' is the first line of
+    # the file and has a card, which is how this breaker came to be blind.
+    import json
+    js = os.path.join(REPO, "docs", "screens.js")
+    seen = set()
+    if os.path.exists(js):
+        text = open(js).read()
+        seen = set(json.loads(text[text.index("{"):].rstrip().rstrip(";")).keys())
+    path = os.path.join(copy, "panel-exceptions.psv")
+    rows = open(path, errors="replace").read().split("\n")
+    i = next((i for i, r in enumerate(rows)
+              if r.strip() and not r.startswith("#") and "|" in r
+              and r.split("|")[0].strip() not in seen), None)
+    if i is None:
+        return None
+    name = rows[i].split("|")[0].strip()
+    open(path, "w").write("\n".join(rows[:i] + rows[i+1:]))
+    os.environ["OSK_TOOLS_DIR"] = copy
+    return "`%s' (which has no card) dropped from a COPY of panel-exceptions.psv" % name
 
 
 
