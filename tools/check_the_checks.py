@@ -101,6 +101,32 @@ def break_star_grid(root):
     return "the star grid's stated count moved by one (%d -> %d)" % (n, n + 1)
 
 
+def break_index_entry_tail(root):
+    """Leave a continuation line one space short of its entry's indent.
+
+    That is exactly the shape a half-rewritten entry takes: the head is the
+    new description, the tail belongs to the old one, and every other check
+    is happy because the file is still CR-only ASCII naming every program.
+    The line is taken from the tree rather than typed, so this cannot rot
+    against a particular entry.
+    """
+    p = os.path.join(root, "DOC", "INDEX")
+    lines = open(p, "rb").read().decode("latin-1").split("\r")
+    entry = re.compile(r"^ {1,4}\*? ?([A-Za-z0-9_.][\w.]*)\s{2,}(?=\S)")
+    for i, line in enumerate(lines[:-1]):
+        m = entry.match(line)
+        if not m or m.end() != 17:
+            continue
+        nxt = lines[i + 1]
+        if not nxt.startswith(" " * 17) or not nxt[17:].strip():
+            continue
+        lines[i + 1] = " " * 16 + nxt[17:]
+        w(p, "\r".join(lines).encode("latin-1"))
+        return ("`%s's continuation line left at 16 spaces under a head of 17"
+                % m.group(1))
+    return None
+
+
 def break_categories(root):
     p = os.path.join(root, "CMDS", "zzzuncategorised")
     shutil.copy(os.path.join(root, "CMDS", "cat"), p)
@@ -654,6 +680,7 @@ BREAKS = [
     ("build litter", "no build products in the tree", add_build_litter),
     ("index names", "every command is in DOC/INDEX", break_index_names),
     ("star grid", "the star grid is self-consistent", break_star_grid),
+    ("entry tail", "index entries are whole", break_index_entry_tail),
     ("categories", "every program has a category", break_categories),
     ("depends", "DOC/DEPENDS is up to date", break_depends),
     ("manual index", "the manual index is up to date", break_manpages),

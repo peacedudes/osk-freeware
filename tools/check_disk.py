@@ -1576,6 +1576,62 @@ def check_usage_is_current(root):
     return done.returncode == 0, "DOC/USAGE is stale"
 
 
+def check_index_entries_are_whole(root):
+    """No DOC/INDEX entry may be followed by the tail of an older one.
+
+    THE FAILURE THIS CATCHES WAS INVISIBLE TO EVERY OTHER CHECK, 2026-09-19.
+    A helper that rewrites one entry took the entry to be its head line plus
+    every following line at the HEAD'S OWN INDENT. That is nearly always
+    right, and it was wrong for `zip', whose head ran at 17 and whose
+    continuations ran at 16: the new description replaced the head, the four
+    old continuation lines stayed, and DOC/INDEX carried two descriptions of
+    zip end to end with the second one nameless. The file was still CR-only,
+    still ASCII, still named every program, so nothing failed. It was found
+    by reading `tools/worklist.py' output, which prints an entry as one
+    string and so showed the join.
+
+    The rule is narrow on purpose: a continuation indented LESS than its own
+    head AND less than the file's usual 17 is an orphan. A long name pushes
+    its head past 17 and keeps 17-space continuations -- `ispell_rebuilt' is
+    the one on the disk -- and that is not a fault. The star grid is skipped,
+    as everywhere else that walks this file.
+    """
+    path = os.path.join(root, "DOC", "INDEX")
+    if not os.path.exists(path):
+        return True, "DOC/INDEX is not there to read"
+    lines = open(path, "rb").read().decode("latin-1").split("\r")
+    entry = re.compile(r"^ {1,4}\*? ?([A-Za-z0-9_.][\w.]*)\s{2,}(?=\S)")
+    name = head = None
+    in_stars = False
+    bad = []
+    for n, line in enumerate(lines, 1):
+        if line.startswith("All ") and "verified" in line:
+            in_stars = True
+            continue
+        if in_stars:
+            if line.startswith("---") or line.startswith("/dd"):
+                in_stars = False
+            continue
+        m = entry.match(line)
+        if m:
+            name, head = m.group(1), m.end()
+            continue
+        if not line.strip():
+            name = None
+            continue
+        if name is None or not line.startswith(" "):
+            name = None
+            continue
+        ind = len(line) - len(line.lstrip())
+        if 8 <= ind < min(head, 17):
+            bad.append("INDEX:%d is a leftover line under `%s'" % (n, name))
+        elif ind != head:
+            name = None
+    for b in bad:
+        print("    " + b)
+    return not bad, "an entry carries the tail of an older one" 
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1584,6 +1640,7 @@ CHECKS = [
     ("no new SDK author stamps", check_author_stamps),
     ("every command is in DOC/INDEX", check_index_names),
     ("the star grid is self-consistent", check_star_grid),
+    ("index entries are whole", check_index_entries_are_whole),
     ("every recipe names a real tree", check_recipes),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
