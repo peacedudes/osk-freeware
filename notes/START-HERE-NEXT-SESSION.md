@@ -2,6 +2,33 @@
 
 ## DO NEXT -- 2026-09-19
 
+**SIX MORE FAILURE NOTES OUTLIVED THEIR FIXES, and there is a tool for
+finding them now: `tools/stale_notes.py'.**  The method is the one the
+last pass suggested -- a program whose `DOC/STATUS' row carries a failure
+word and whose published panel scores `work' is a candidate, because the
+two disagree -- and it found six that were two days to three weeks out
+of date:
+
+  `patch'   applies a hunk with Plan A and keeps <file>.orig.  DOC/INDEX
+            already carried the cause and the date (its port opened files
+            with Unix modes, and OS-9 reads mode 0 as no access); only
+            DOC/STATUS had not been told.
+  `aprocs'  prints the process table.
+  `devprc'  lists every process's open paths, bare AND with -a.
+  `config'  runs to its last line.  The `No more memory' lines near the
+            end are it halving a malloc request until one succeeds -- the
+            measurement, not a failure -- which empties the whole
+            WANTS FLOATING-POINT HARDWARE section.
+  `top'     has drawn its process table since 2026-09-18, and a paragraph
+            still called it the one with no invocation that gets past it.
+  `dm'      draws its two-pane browser; the note said it stopped before
+            its first screen.
+
+The tool is a REPORT, not a gate: whether a note is stale is not
+mechanically decidable, and the `floods' list is deliberately kept as the
+record of how a whole class failed.  Seven candidates remain and every
+one of them is right as it stands -- run each before changing a word.
+
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
 current tree; `tools/datatest.py --all' 868 of 868 against it; every
 `check_disk.py' check green; `check_the_checks.py' makes every one of
