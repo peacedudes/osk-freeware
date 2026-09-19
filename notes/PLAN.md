@@ -821,20 +821,27 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **15 runnable programs under no test** (re-measured 2026-09-19 with
+1. **17 runnable programs under no test** (re-measured 2026-09-19 with
    `tools/worklist.py --programs --no-test`; this said 75, and 22 before
-   that pass).  `tools/datatests/refusals.cases` took seven of them --
-   colortest, dclock, lmargin, sterm, mailx, kermit and kermit2 -- on the
-   principle that **a refusal is a measurement**: four of them name, in the
-   same words every time, the G-Windows display or modem port or mailbox
-   they are missing, and recording the words is what stops a later change
-   turning "it says it needs G-Windows" into "it says nothing".  The
-   fifteen left are hardware (`showpic`, `splman`, `splprt`, `tplot`,
-   `wysecrack`, `puzzle`, `scriptmaster`), programs that end the session
-   (`graphsave`, `cron`), full-screen ones (`dm`, `sddemo`, `snake`,
-   `fileserv`), `hist` (wants Microware's shell in front of it) and
+   that pass).  It went 22 -> 15 -> 17 in one night and both moves were
+   deliberate: `tools/datatests/refusals.cases` took seven, and then
+   `mailx` and `msntp` were given back -- mailx because its answer would
+   not reproduce, msntp because os9exec grew sockets that day and it now
+   waits instead of failing, and a case that hangs is worse than a gap.
+   The six that stuck are colortest, dclock, lmargin, sterm, kermit and
+   kermit2, on the principle that **a refusal is a measurement**: three of
+   them name, in the same words every time, the G-Windows display or the
+   modem port they are missing, and recording the words is what stops a
+   later change turning "it says it needs G-Windows" into "it says
+   nothing".
+
+   The seventeen left are hardware (`showpic`, `splman`, `splprt`,
+   `tplot`, `wysecrack`, `puzzle`, `scriptmaster`), programs that end the
+   session (`graphsave`, `cron`), full-screen ones (`dm`, `sddemo`,
+   `snake`, `fileserv`), `hist` (wants Microware's shell in front of it),
    `creadoc` (lists its directory through your own OS-9's `dir` and forks
-   its `shell`, both off /h1, which datatest does not mount).
+   its `shell`, both off /h1, which datatest does not mount), and the two
+   given back above.
 
    **`mailx` was a finding, not just a case.**  It reads MAIL as the
    DIRECTORY the mailbox sits in where elm and frm read it as the mailbox
