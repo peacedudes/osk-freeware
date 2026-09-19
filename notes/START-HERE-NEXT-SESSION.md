@@ -312,6 +312,44 @@ it carefully.
 
 ### What changed on the disk
 
+**EVERY FIGURE IN `DOC/README-MODULES' HAD DRIFTED, and two of its facts
+were wrong.**  It opened "925 of the 949 files under /dd/CMDS"; it is
+1010 of 1036 now.  But the counts were the least of it -- the file is the
+one that tells a reader which files in CMDS are NOT commands, and:
+
+  * `vmod_trap' was missing from the trap libraries, which is exactly the
+    one a reader needs told about, because rxmod and txmod do not work
+    until you `load' it;
+  * the system modules said "All seven are MM/1 hardware" and left out
+    `fpu' and `ptxm', which belong to any 68k machine;
+  * the shell scripts were keep, drop, kept, who and mscheck -- `keep'
+    and `kept' are compiled modules now, `drop' was renamed `unkeep' and
+    is also a module, and `man', a real ksh script, was not listed;
+  * the module groups omitted `dedit', the biggest of them at eleven
+    modules in one file.
+
+**And I got one wrong myself and had to correct it within the hour.**
+The file listed seven modules reporting a name that is not their
+filename as "a build mistake this collection made itself", and I repeated
+that for the two that remain.  Five really were ours and are rebuilt.
+`tabs' and `hc' are NOT: neither has a recipe in `tools/rebuild', so
+neither was ever built here, and `DOC/ORIGINS' says where the names came
+from.  CLAUDE.md has said "none are ours any more" since 2026-08-28.
+**The check that settles it is whether a recipe exists** -- if we never
+built it, we cannot have misnamed it.
+
+**COUNTS IN THE SHIPPED DOCUMENTS WERE THE DAY'S SECOND THEME.**  Six
+more, all found by asking "can I measure that?": `disk/readme' said the
+disk had 998 programs (1034) and that four carry a no-military-use
+condition (seven, and four more were unmarked in `DOC/INDEX'); it called
+`DOC/START-HERE' "a dozen programs" (fifteen), `README-DOCS' "the five
+ways" (four) and `README-BUSERR' "the five programs that take a bus
+error" (three, and all three have left the disk).  `DOC/EFFO-INFO' marked
+`i_am_i', `rxmod' and `txmod' as not here while saying two paragraphs
+above that they ship.  `DOC/STATUS' compared a count of FILES with a
+count of runnable MODULES.
+
+
 **THE MAINTAINER'S USERNAME WAS ON SIX PUBLISHED CARDS.**  CLAUDE.md's
 hard rule is that `disk/' is what people receive and `docs/' is
 published, and neither may carry his name, username, home path or
