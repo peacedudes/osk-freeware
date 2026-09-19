@@ -5,6 +5,13 @@
 # documentation have been read for one.  Seeded 2026-09-14 from SOURCES.txt
 # License:/terms lines and the EFFO info files; tools/terms-backlog.txt
 # names the programs whose terms have not been looked up yet.
+# THE THIRD FIELD IS A CITATION AND ITS LINE NUMBERS DRIFT.  They were
+# right when the row was written; SOURCES.txt has grown by hundreds of
+# lines since, so a `SOURCES.txt lines 1782-1796' can be a long way off --
+# fpu's was, once its paragraph was rewritten.  Cite a SECTION HEADING
+# when you write a new one.  Nothing reads this field but a person, and
+# the card shows the second field, so a drifted number costs a search
+# rather than a wrong card.
 Ascii2Libr|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
 EditLibr|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
 Libr2Ascii|Shareware. Copyright (c) 1991,1992 Robert Heller D/B/A Deepwoods Software. Licensed "to anyone to use at no charge"; "may be freely copied, so long as the complete package of six executable programs and the documentation files are copied together as a unit." No fee may be charged.|DOC/homelibr/HomeLibr.doc lines 1356-1389; SOURCES.txt lines 163-170
@@ -297,7 +304,7 @@ fontgen|No copyright or licence statement in SRC/forum3 or its documentation.|SR
 forth|GNU General Public License, version 1 or later. Copyright (c) 1989 Mikael R.K. Patel (TILE Forth). Its readme also calls it shareware: "You may use it freely", with a contribution to the author encouraged.|SRC/pd7/forth.c lines 4, 30-32; SRC/pd7/readme lines 296-304; DOC/forth/COPYING
 fortune|No copyright or licence statement in SRC/fortune or its documentation. The source carries only an SCCS id, "fortune.c 1.4 (Berkeley) 2/11/83".|SRC/fortune/fortune.c line 1
 for|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
-fpu|"FPU - (C) 1995 Microware Systems Corp. Permission to distribute FPU is granted so long as this file is retained." (DOC/fpu.doc must travel with it.)|DOC/fpu.doc lines 1-2; SOURCES.txt lines 1782-1796
+fpu|"FPU - (C) 1995 Microware Systems Corp. Permission to distribute FPU is granted so long as this file is retained." (DOC/fpu.doc must travel with it.)|DOC/fpu.doc lines 1-2; SOURCES.txt, "MICROWARE'S RUNTIME MODULES"
 freeb|Public domain. The source says so in its third line: "Public domain version: 5/21/89".|SOURCES.txt line 2379
 frm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice
 fstat|No copyright or licence statement in its source, which names Mike Haaland (1992).|SRC/fstat/fstat.c lines 1-7; SOURCES.txt lines 333-343
