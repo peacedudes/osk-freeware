@@ -6,11 +6,22 @@ numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
 and the gaps are deliberate: a missing number is an answered question.
 Updated 2026-09-18.
 
-**Your notes of 2026-09-18 cleared eleven of these** -- 8, 9, 10, 11, 12, 13,
-14, 15, 16, 19 and 22 are done and gone from this file, along with the
-removals and rebuilds they called for.  The commits say what each one did;
-`git log --since=2026-09-18` is the list.  Four questions survive, with more
-known about them than before, and one is new.
+**Your notes of 2026-09-18 cleared THIRTEEN of these** -- 8, 9, 10, 11, 12,
+13, 14, 15, 16, 17, 19, 20 and 22 are done and gone from this file, along
+with the removals, rebuilds and additions they called for.  The commits say
+what each one did; `git log --since=2026-09-18` is the list.
+
+Two of those closed on your second note.  **17**: you are right that
+shipping the source in the collection IS the condition met -- it is in
+SRC/xyz now, and it is the source of those very binaries, checked.  **20**:
+"find source if you can.  if you can't... ok" -- so DOC/README-GCC now
+states exactly what is here (SRC/gcc142, SRC/vh), what is not (gcc 1.39,
+g++ 1.40.3, gcc 2.5.6, cc2plus 2.5.8), that we looked, and where the one
+lead goes.  It needs nothing further from you.
+
+And the shadow rule you set is machinery now, not a promise: all 27 cards
+for programs sharing a name with a utility of yours carry the warning, built
+from a measured list the gate checks.
 
 ## Yours alone -- nothing I can do about these
 
@@ -47,61 +58,18 @@ known about them than before, and one is new.
 
 ## Decisions
 
-17. **`k`, `xy` and `z` are the three affected** -- you asked which.  They
-   are Tim Kientzle's xmodem, ymodem and zmodem file-transfer programs, in
-   CMDS and CMDS/COMMS.  His notice, the same header in every `ft*.c` of
-   TELECOM/xyz.lzh, permits redistribution "in source or binary form ...
-   only under the following conditions", and one of them is that code
-   received as part of an application "may only be redistributed with the
-   complete source of that program".  The disk ships the three binaries and
-   not that source.  The source IS in the pool archive, so the choice is:
-   ship it beside them, or drop the three.  Ship it and the condition is
-   met; either way it is a content decision.
+21. **`cpp` only -- omega is settled.**  You read the evidence and said "it
+   sounds like we can't ship omega", so omega is out and stays out; nothing
+   of it was ever on the disk, and PLAN-acquisitions records the decision.
 
-20. **The GPL binaries still have no source, and there is now a real lead.**
-   CMDS/GCC139 (gcc 1.39, g++ pass 1.37.1), CMDS/GCC2 (gpp/cc1plus 1.40.3,
-   gcc2 2.5.6, cc2plus 2.5.8) and CMDS/TEXCMDS/dvips (dvipsk 5.495b) ship
-   without it.
-
-   The usenet pull turned up **GCC 1.37 ported to OS-9/68000** --
-   comp.sources.misc v13i005..v13i011, May 1990, Mr. Seyama's port posted by
-   NIIMI Makoto as diffs against stock GCC 1.37 with English documentation.
-   Saved to `Scraped/usenet-rewind/extracted/gcc137-osk/`.  It is the first
-   OS-9 GCC source this project has found anywhere.  It is also not the
-   version we ship and **part 2 of 7 is missing from the archive**, so it
-   does not close the question -- it just makes "fetch the near matches" a
-   real option rather than a hope.  Keep the binaries, fetch what can be
-   fetched, or remove them?
-
-   **The other half of your question is answered and needs nothing from
-   you.**  "Do we need them all, or mostly just the latest (are they
-   backward compatible)?  How do we advise people which to choose?"
-   DOC/README-GCC now opens with that: take GCC2 (2.5.6) unless the machine
-   is short of memory, because GCC139 compiles C in about half the space
-   (563 KB of passes against 1085 KB, measured), and 1.39's C++ is 1.37.1 --
-   no templates.  Code 1.39 compiles, 2.5.6 compiles; not the reverse.  They
-   cannot both be installed, so it is a real choice, and the file now makes
-   it for the reader.
-
-21. **omega: we cannot find out what was modified, and that is the answer.**
-   You asked.  TOP shipped omega as a BINARY and its data files -- no source
-   anywhere in the release -- and the binary announces itself as stock
-   "omega version 0.71 (beta)" with no porter's credit in it.  So the only
-   modification anyone can point to is that it is an OS-9/68K module, and
-   whether anything in the game changed cannot be established without source
-   to compare.  Brothers's licence allows free copying but not distributing
-   modifications without his consent.  Your call, with that in hand.
-
-   **`cpp` is the other half of 21 and is still open.**  TOP's OS-9 build of
-   the public-domain DECUS preprocessor works -- macros, #if, local includes
-   -- and writes Microware's `#P`/`#5` line markers, because it was built to
-   replace Microware's own `cpp` pass.  My recommendation is now firmer than
-   before: ship it, but NOT under the name `cpp`.  DOC/README-NAMES (new
-   today) is about exactly this hazard -- twenty programs here already carry
-   the name of a utility the reader owns, and a resident module answers by
-   name whatever path you type, so a `cpp` of ours could quietly become the
-   one their `cc` finds.  `dcpp` or `cpp.decus` costs nothing and cannot do
-   that.
+   What is left is TOP's OS-9 build of the public-domain DECUS preprocessor.
+   It works -- macros, #if, local includes -- and writes Microware's `#P`/`#5`
+   line markers, because it was built to replace Microware's own `cpp` pass.
+   It is one of the programs your shadow rule is about, and that rule now has
+   machinery: every such card carries the warning automatically. So my
+   recommendation is: ship it, as `cpp`, and let the card say what it would
+   answer for. Say the word and it goes in; it is the only reason this item
+   is still here.
 
 23. **ispell: you said you would send me the source you have.**  Until then:
    CMDS/ispell faults at its first dictionary lookup and is a different
