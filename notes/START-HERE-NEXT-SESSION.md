@@ -2,6 +2,24 @@
 
 ## DO NEXT -- 2026-09-19
 
+**`snake' CANNOT HAVE A PLAY-TEST, and the reason is worth knowing
+before anyone tries again.**  It plays: the board draws, the `I' moves
+to h/j/k/l, the `$' is there and the snake chases.  But some of its
+cursor moves arrive as literal text -- `[14;5H' printed on the board,
+which DOC/INDEX already records -- and `playtest.py' fails any program
+that leaves stray escape fragments, which is the right default.
+
+I wrote a keys file and considered an `orphans N' directive to pin the
+known untidiness the way the data-test cases pin known defects.  The
+count is NOT stable: 16, 16, 16, then 14 over four runs of the same
+script.  A test that flaps is worse than a gap in coverage -- that is
+this collection's own rule -- so the file is not in tools/playtests and
+snake stays on the untested list on purpose.
+
+If someone wants it tested, the assertion would have to be a MAXIMUM
+rather than a count, and somebody should decide whether that is worth
+having.
+
 **PLAN RULE 3 -- "no capitals for emphasis" -- IS HALF DONE, and the
 half that is left is named here.**  `tools/audit_caps.py' has listed them
 all along and I used it AFTER writing nine shouting captions rather than
