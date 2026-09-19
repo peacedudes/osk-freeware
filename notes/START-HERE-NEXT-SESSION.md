@@ -2,6 +2,23 @@
 
 ## DO NEXT -- 2026-09-19
 
+**WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
+current tree; `tools/datatest.py --all' 868 of 868 against it; every
+`check_disk.py' check green; `check_the_checks.py' makes every one of
+them fail on demand.  Working tree clean.
+
+Three gate checks were added today, each because something had gone
+wrong that nothing could see:
+
+  `index entries are whole'        a rewritten DOC/INDEX entry kept four
+                                   lines of the old one, nameless.
+  `captures match their stanzas'   thirteen cards published a screen
+                                   taken before their commands were
+                                   edited.  This was in CI only.
+  a stale panel EXCEPTION now      thirty exceptions named programs
+  fails, as a stale backlog        whose cards had since been fixed.
+  line already did
+
 **`printf' ON THIS DISK WRITES ARBITRARY BYTES, AND THAT IS HOW A
 MISSING SAMPLE FILE GETS MADE.**  `printf "\001\002\377"' writes three
 bytes and `printf "\x41\x42"' writes two, both measured.  It STOPS AT A
