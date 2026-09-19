@@ -29,15 +29,20 @@ note describes that are no longer on the disk at all.  Both are two dozen
 lines of Python over files already here.  Every one of the seven is
 corrected and keeps what it used to do, marked as what it used to do.
 
-**AND A CASE CANNOT PIN THE EMULATOR.**  `lfmaker' answered three
-different ways in one day: the "No more memory !!!" flood (August),
-silence with status 208 (morning), silence with status 0 (evening, after
-the memory-block ceiling went 512 -> 8192).  In the morning I moved its
-case off os9exec's WORDS and onto its exit STATUS and wrote a comment
-saying pinning another project's text was the mistake; by evening the
-status had moved too.  It asserts only the bare run now.  `msntp' and
-`mailx' went the same way earlier.  **Assert what the program does with
-this disk's data, not what the system says back.**
+**`$?' AFTER A PIPELINE IS THE LAST COMMAND'S STATUS, AND IT PUT A WRONG
+NUMBER INTO THIS FILE.**  `lfmaker test 2>&1 | head -n 4' then `echo $?'
+answers 0 -- head's status.  Run with nothing after it, lfmaker has
+answered 208 all along, and the reason is the program: it asks its
+terminal for setstat $4749, a graphics-window call, is told E$UnkSvc and
+exits with that.  I read the 0, concluded the emulator had moved under
+me again, wrote "three different answers in a day" into the notes and a
+case, and told the os9exec session so.  They traced it and it was mine.
+**Measure a status with nothing after the program.**
+
+The narrower rule that came out of the real moves still stands: `msntp'
+and `mailx' DID change under us, so **assert what a program does with
+this disk's data rather than what the system says back** -- but check
+the invocation before blaming the system.
 
 
 **THE MODE-0 CLASS IS NOT CLOSED, AND THE REASON IS A LESSON ABOUT

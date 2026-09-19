@@ -426,6 +426,17 @@ def break_unaccounted_program(root):
 
 
 
+
+def break_usage_stale(root):
+    """A line cut from DOC/USAGE, which is generated and had no gate."""
+    p = os.path.join(root, "DOC", "USAGE")
+    data = open(p, "rb").read()
+    i = data.find(b"\r", 400)
+    w(p, data[:i] + data[i + 1:])
+    return "a line removed from DOC/USAGE, which is generated"
+
+
+
 def break_screened_source(root):
     """A file under SRC that names OS-9 system internals.
 
@@ -641,6 +652,7 @@ BREAKS = [
     ("categories", "every program has a category", break_categories),
     ("depends", "DOC/DEPENDS is up to date", break_depends),
     ("manual index", "the manual index is up to date", break_manpages),
+    ("usage stale", "DOC/USAGE is up to date", break_usage_stale),
     ("binary magic", "binaries start with their magic", break_binary_magic),
     ("module magic", "every command is a real module", break_module_magic),
     ("module names", "one module name, one file", break_module_names),

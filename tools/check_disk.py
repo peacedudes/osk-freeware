@@ -1553,6 +1553,25 @@ def check_cards_make_their_own_directories(root):
     return True, ""
 
 
+
+def check_usage_is_current(root):
+    """DOC/USAGE matches what tools/helpcap.py would write now.
+
+    It is generated from tools/help.psv and docs/help, exactly as
+    DOC/DEPENDS and DOC/MANPAGES are generated -- and unlike those two it
+    had no freshness check, so on 2026-09-19 it was 267 lines and 14 KB
+    behind and nothing said so.  A generated file with no gate goes stale
+    quietly, and this one is what a reader on the disk consults to find
+    out what a program's own help says.
+    """
+    gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "helpcap.py")
+    done = subprocess.run([sys.executable, gen, "--disk", root, "--check"],
+                          capture_output=True, text=True)
+    if done.returncode:
+        print("    " + done.stdout.strip())
+    return done.returncode == 0, "DOC/USAGE is stale"
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1565,6 +1584,7 @@ CHECKS = [
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
     ("the manual index is up to date", check_manpages),
+    ("DOC/USAGE is up to date", check_usage_is_current),
     ("no unscreened Microware source", check_src_screened),
     ("every library is recorded", check_libraries_are_recorded),
     ("binaries start with their magic", check_binary_magic),

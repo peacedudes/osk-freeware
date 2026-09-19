@@ -8,6 +8,7 @@ r"""Capture each program's OWN help text, complete, the way it prints it.
                                               # to decide what to write there
     tools/helpcap.py --backlog                # rewrite tools/help-backlog.txt
     tools/helpcap.py --disk disk              # regenerate disk/DOC/USAGE
+    tools/helpcap.py --disk disk --check      # is it current?  exit 1 if not
 
 Why this exists
 ---------------
@@ -176,7 +177,7 @@ def rewrite_backlog(root, table, path=BACKLOG):
     return len(names)
 
 
-def render_disk_usage(root, table):
+def render_disk_usage(root, table, check=False):
     """DOC/USAGE: what every program says when asked for help, CR-only."""
     dirs = programs(root)
     out = ["USAGE -- what each program says when asked for its help",
@@ -202,9 +203,18 @@ def render_disk_usage(root, table):
             out.append("      $ " + cmd)
             out += ["      " + ln if ln else "" for ln in body[1].rstrip("\n").split("\n")]
         out.append("")
-    data = "\r".join(out) + "\r"
-    with open(os.path.join(root, "DOC", "USAGE"), "wb") as f:
-        f.write(data.encode("ascii"))
+    data = ("\r".join(out) + "\r").encode("ascii")
+    path = os.path.join(root, "DOC", "USAGE")
+    if check:
+        # A GENERATED FILE WITH NO FRESHNESS GATE GOES STALE QUIETLY.  This
+        # one was 267 lines behind on 2026-09-19 and nothing said so, where
+        # DOC/DEPENDS and DOC/MANPAGES have had such a check for weeks.
+        try:
+            return data == open(path, "rb").read()
+        except OSError:
+            return False
+    with open(path, "wb") as f:
+        f.write(data)
     return len(out)
 
 
@@ -220,6 +230,11 @@ def main(argv):
         return 0
     if "--disk" in argv:
         root = argv[argv.index("--disk") + 1]
+        if "--check" in argv:
+            if render_disk_usage(root, table, check=True):
+                return 0
+            print("  DOC/USAGE is STALE -- run tools/helpcap.py --disk %s" % root)
+            return 1
         print("  DOC/USAGE: %d lines" % render_disk_usage(root, table))
         return 0
     if not os.path.isdir(os.path.join(os9try.SDK, "CMDS")):

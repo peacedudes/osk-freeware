@@ -70,18 +70,21 @@ expect  0 /dd/tmp/pt2
 # selector mismatch that produces the same symptom in 41 other programs --
 # see notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md, addendum.
 #
-# IT ASSERTS ONLY THE HALF THAT HOLDS STILL.  Run bare, lfmaker writes
-# nothing, and that has not changed.  Given an argument it has answered
-# three different ways in one day as os9exec's memory handling moved under
-# it: "No more memory !!!" in flood (August), silence with status 208
-# (2026-09-19 morning), and silence with status 0 (the same evening, after
-# the memory-block ceiling went from 512 to 8192).  First the words were
-# pinned, then the status, and both moved.  What is being measured there is
-# the emulator, not this disk, so it is not measured here at all.
-case    lfmaker-writes-nothing-when-run-bare
+# 208 IS THE PROGRAM'S OWN ANSWER AND IS STABLE.  lfmaker asks its terminal
+# for setstat $4749 -- a graphics-window call -- is told E$UnkSvc, and exits
+# with it.  The "No more memory !!!" flood it used to produce was os9exec's
+# old 512-block ceiling and is gone; this is not that.
+#
+# NOTE THE INVOCATION.  `lfmaker test 2>&1 | head -n 4' followed by
+# `echo $?' reports HEAD's status, not lfmaker's, and reading 0 from that
+# is how this case briefly came to assert the wrong thing.  Nothing after
+# the program when a status is being measured.
+case    lfmaker-writes-nothing-bare-and-answers-208-with-an-argument
 run     /dd/CMDS/lfmaker > /dd/tmp/lf1 2>&1
 run     /dd/CMDS/wc -c /dd/tmp/lf1
+run     /dd/CMDS/lfmaker test; echo "lfmaker-status=$?"
 expect  0 /dd/tmp/lf1
+expect  lfmaker-status=208
 
 # `testibc' IS NOT HERE ON PURPOSE. It prints its banner, reports
 # `Error #000:009' opening /dd/sys/errmsg.ibc, asks `Timeout time (1/10
