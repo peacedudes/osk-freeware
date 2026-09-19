@@ -220,7 +220,7 @@
 |---|---|
 | `cookhash` | build the hash file cookie(1) needs, from a sayings file<br>`usage: cookhash <cookiefile >hashfile` |
 | `cookie` | print a random fortune cookie<br>**How:** Bare it prints a fortune from a default file. Given arguments it wants BOTH the cookie file and the hash `strfile' built for it: `strfile mine' then `cookie mine mine.dat'. |
-| `fortune` | print a random quotation<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
+| `fortune` | prints a quotation at random. -s keeps to the short ones and -l to the long, -w waits long enough to read what it printed, -o takes them from the offensive file, and a filename of your own is read instead<br>`usage:  fortune [ - ] [ -wsloa ] [ file ]` |
 | `psychic` | a fortune teller: psychic messages strung together from stock phrases, three unless you give a number<br>**How:** `psychic' prints three psychic messages, `psychic 1' one; each is assembled at random from stock phrases. |
 | `sonnet` | writes (bad) sonnets in iambic pentameter, full screen: mark the lines you like and recompose the rest; w appends the poem to a file and -l <file> loads one it wrote to go on working on it<br>**How:** Full-screen: it takes over the display. **ESC quits**, so does q at its prompt. Commands at the prompt: m# / u# mark and unmark a line, r recomposes the unmarked lines, w [file] appends the poem to a file (sonnet.out by default, -f <file> changes that). `sonnet -l <file>' loads a poem it wrote with w -- fourteen lines -- and refuses any other file. The vocabulary is compiled in (SRC/sonnet/lex.data through makelex), not read at run time. |
 | `strfile` | &#9733; builds the .dat index that fortune reads from a file of sayings separated by %% lines, and reports what it found<br>`usage:  strfile [ - ] [ -cC ] [ -sv ] inputfile [ datafile ]` |
@@ -833,11 +833,11 @@
 | `c7decode` | &#9733; the inverse of C News's c7encode: it reads the seven-bit-safe form a news batch is put into to cross a link that eats the eighth bit, and writes the eight-bit original back. Source in SRC/cnews/input |
 | `dbz` | &#9733; builds and maintains C News's history index -- the .dir and .pag pair beside the history file that lets the news system find an article by message-id without reading the whole of it. `dbz database [file]...'<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
 | `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |
-| `newshist` | &#9733; rebuild the history file<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
+| `newshist` | &#9733; looks message-ids up in the news history and reports what it finds, or that there is no entry for them: `newshist "<id@site>" ...'. -df names a history file other than the system's<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
 | `newslock` | &#9733; the news system's lock<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
 | `postnews` | &#9733; post an article to a newsgroup<br>`/dd/CMDS/UUCP/postnews: illegal option -- ?` |
 | `readnews` | &#9733; read Usenet news articles: it opens the reader and asks about each newsgroup in the active file not yet in .newsrc, then answers `**** End of newsgroups' when the news spool is empty<br>`readnews: read Usenet news articles` |
-| `rnews` | &#9733; unpack an incoming news batch<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
+| `rnews` | &#9733; takes an incoming news batch apart and files each article under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |
 | `unsubscribe` | &#9733; drops a newsgroup from your subscription list: `!' replaces `:' in /dd/.newsrc. For a group that is already off it prints `Newsgroup 684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%'<br>`unsubscribe: unsubscribe from Usenet newsgroup(s)` |
 
@@ -876,11 +876,11 @@
 |---|---|
 | `blastem` | XModem and YModem file transfer, written for the MM/1<br>`Syntax: Blastem [<opts>] {<filename> [<opts>]}` |
 | `dld` | &#9733; receives a file with XMODEM -- FHL's, 1986. `dld <file>' starts it and control-X aborts; `uld' is the other half, sending one out<br>`dld version 1.4   (c) 1986 FHL` |
-| `k` | Kermit transfer<br>`General Usage:` |
+| `k` | Kermit file transfer, the short form: `k <file>...' sends the files named and `k' on its own waits to receive. It guesses text or binary per file unless told, and wants a serial line with a Kermit at the other end<br>`General Usage:` |
 | `rxmod` | receives an OS-9 module over a serial line and enters it in the module directory -- the receiving half of `txmod'. It calls the VMod_trap handler that ships beside it in COMMS, so `load' that first. Source in SRC/serload<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
 | `sterm` | a serial terminal emulator<br>`Sterm Ver. 2.0` |
-| `tsu` | &#9733; tterm's setup program |
-| `tterm` | &#9733; a terminal emulator, VT100-ish<br>`Tterm Version 2.30` |
+| `tsu` | &#9733; makes the directories and files tterm expects before it is first used -- USR/TTERM and a dialling list named after you -- and reports each one it finds or creates |
+| `tterm` | &#9733; a terminal emulator, VT100-ish: -l=<port> links it to a serial port, MODEM by default. `tsu' sets its directories up first and `xyt' does file transfer from inside it<br>`Tterm Version 2.30` |
 | `txmod` | sends OS-9 modules out over a serial line to `rxmod' at the other end, which links them into the module directory there: -x sends everything in the execution directory and -l names the device to send on<br>`4ETXMod - Err:  -? !` |
 | `uld` | &#9733; sends a file out with XMODEM -- FHL's, 1986. `uld <file>' starts it and control-X aborts; `dld' is the other half, receiving into a file<br>`uld version 1.4   (c) 1986 FHL` |
 | `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too<br>`General Usage:` |
@@ -934,7 +934,7 @@
 | | |
 |---|---|
 | `graph` | the Graph trap library itself -- a type-$0B module, not a program. It is what g, striche, apfel, sine, showpic, graphdemo, graphsave and wgen all call: `load' it and the trap installs. The module executes in supervisor state, so a program that calls it from the shell is entered and aborts on a supervisor-only instruction |
-| `lissaj` | &#9733; Tektronix demo: Lissajous figures |
+| `lissaj` | &#9733; draws Lissajous figures on a Tektronix graphics terminal. It asks four things first -- the x and y angular frequencies, how long to hold the picture, and the phase -- and then plots |
 | `lorenz3d` | &#9733; Tektronix demo: the Lorenz attractor in 3D |
 | `wgen` | Tektronix waveform generator.  With the `graph' trap library resident it runs and asks for a resolution and the intensity of each harmonic, then emits Tektronix plotting codes.  Bare, it aborts with `unintialized User Trap #5'.<br>**How:** It aborts with `unintialized User Trap #5, err=#227' until the `graph' trap library is resident: `load /dd/CMDS/GAMES/graph'. Then it asks for a resolution and the intensity of nine harmonics and draws the waveform. Give it ten numbers -- at end of input it draws for ever. `showpic' and `graphsave' need the same library AND a display, so they abort either way. |
 
@@ -1241,7 +1241,7 @@
 | `scrabble` | Scrabble against the computer on the full fifteen-by-fifteen board: the premium squares, the hundred-letter pool and the fifty-point bonus for laying down all seven letters at once. `hjkl' move the cursor, `H' or `V' enters a word across or down from there, `T' trades letters back into the pool, `A' asks the computer what it would play, `S' and `R' save and restore a game, and `Q' quits.  Its word list is GAMES/words. `-n' sets the number of players and `-m <n>' makes player n the computer. |
 | `sol` | Klondike solitaire at the terminal: t thumbs the deck three cards at a time, m moves a card or a run, h lists the commands and q quits<br>**How:** Full-screen Klondike. Type a command and RETURN at the cmd prompt: t (or just RETURN) thumbs the deck three cards at a time; m with a source and a destination moves -- 1-7 for a run, d for the deck, a for an ace pile; a turns on the auto pilot; r shows the rules, h the commands; q quits. s, p, d and w are cheats, and it remembers. |
 | `solx` | a harder solitaire with no deck: every card is dealt into runs, which may be split -- `m run position destination'; h lists the commands<br>**How:** Full-screen, and harder than sol: there is no deck, every card is dealt into runs that may be split, and the layout runs sideways so runs can grow long. m takes a run, the card position to split at, and the destination run (or a for an ace pile); h lists the commands and r the rules; q quits. |
-| `tttt` | tic-tac-toe<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |
+| `tttt` | tic-tac-toe on a FOUR-by-four board, so three in a row is not enough. Name a square as a column letter and a row digit, `b1'; `q' quits<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |
 | `vcraps` | casino craps, full screen: bet with p (pass line), c, dp, f, h and more -- type the amount and Return -- then r rolls; ? lists every bet, ESC abandons an entry, X quits<br>**How:** Full-screen casino craps with $1000 to start. Space clears each message at the bottom. p bets the pass line: type the amount and Return. r rolls the dice. c is a come bet, dp don't pass, dc don't come, f the field, b6 and b8 big 6 and 8, h22 to h55 the hard ways, a7 any seven, ac any craps; a number then c, p, dc or dp bets on that number. t takes a bet down, $ totals the bets, m reviews messages, ? lists all of it, ESC abandons an entry, X quits. -b sets the bankroll and -s plays single odds. |
 | `yahtzee2` | Yahtzee 2.1: the poker-dice game on a curses scoreboard. Up to six players, human or computer, roll five dice up to three times a turn and bank each roll in one of thirteen categories.  Enter the player count; for each player, space toggles human or computer and `n' names them.  In play a digit holds a die, space rerolls, `b' shows the rules and `q' quits. High scores are kept in GAMES/YAHTZEE |
 
@@ -1472,7 +1472,7 @@
 
 | | |
 |---|---|
-| `bootgen` | &#9733; generate an OS-9 boot file<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
+| `bootgen` | &#9733; makes or extends the boot file on a device from the module files you name -- the file a system reads its modules out of at startup. -a appends to the boot already there instead of writing a new one, and -b sets the copy buffer<br>`Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }` |
 | `bsplt68` | Split a boot file into its component modules |
 | `flink` | &#9733; makes a second directory entry for a file under a name you give -- an RBF hard link. RBF has no true hard links, and removing such an entry can leave the original pointing at the wrong place, so do not run it on a disk you care about<br>**How:** DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything. |
 | `gen` | generates the frame of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with. It appends `.c' to whatever name you give it: `gen -p frame' leaves `frame.c'. `-m' does a module frame, `-t' a type, `-f' a function declaration<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
@@ -1546,7 +1546,7 @@
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a second front end for Microware's cc, with its own options: -p pipes the preprocessor's output straight into the compiler instead of through a temporary file, -r compiles to relocatable files in a directory you name, -a stops at assembler, -bp shows each command before it runs. `-?' lists them all<br>`fastcc: <opts> <files> <opts>` |
-| `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
+| `fixyear` | repairs FILE dates, not the clock: given a file or a directory it corrects any modification year earlier than 1970, which is what a machine whose clock was wrong when the file was written leaves behind. -l logs what it changed and -q carries on past an error<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `hinterhalt` | &#9733; a small maze game, in German: asked whether you need instructions (J/N) and told no, it draws the board -- walls, the player and a target |
@@ -1568,7 +1568,7 @@
 | `screen_nocio` | a trap-free source build; CMDS/screen uses cio and this one does not |
 | `scsiutil` | talks to a SCSI device: inquiry, capacity, read sectors, eject, and audio CD control -- table of contents, play, volume<br>`SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]` |
-| `setyear` | Y2K: set the year directly<br>`Syntax:    setyear <YYYY>` |
+| `setyear` | sets the system year, and only the year -- `setyear 2026' -- leaving the month, day and time alone. It takes 1970 to 2050 and prints the date it ends up with<br>`Syntax:    setyear <YYYY>` |
 | `snd_sig` | &#9733; sends a signal to one process or to several at once -- `snd_sig <pid> <pid>...' -- and with no option sends the wake signal; -<n> sends signal number n instead. `signal' beside it takes one process and can delay first<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | a square-root demonstration: for each of the first primes it prints the root, the root squared back, and how far that lands from the number -- a few parts in ten thousand million million, which is what double precision is worth |
