@@ -2,5 +2,6 @@ filter -?
 Usage: | filter [-nrvlq] [-f rules] [-o file]
         or: filter [-c] -[s|S]
 $ filter -v <msg.txt
-filter (Fri Sep 18 20:29:06 2026 su): LEAVE Cannot open temporary file /r0/filte
-r.3
+filter (Sat Sep 19 05:20:43 2026 su): Couldn't read filter rules file "/dd/sys/.
+elm/filter_rules"!
+filter (Sat Sep 19 05:20:43 2026 su): Mailing message to su

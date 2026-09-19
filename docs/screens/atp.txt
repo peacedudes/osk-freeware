@@ -1,3 +1,23 @@
-Reading Configuration file...
+           lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+           x   lqqqqqqqk  lqqqqqqqk  lqqqqqqqk   Ver. 1.40  x
+           x   x lqqqk xa mqqk lqqja x lqqqk xa              x
+           x   x xa  x xa  aax xaaaa x xa  x xa              xaa
+           x   x mqqqj xa    x xa    x mqqqj xa              xaa
+           x   x lqqqk xa    x xa    x lqqqqqja              xaa
+           x   x xaaax xa    x xa    x xaaaaaaa              xaa
+           x   mqja  mqja    mqja    mqja                    xaa
+           x     aa    aa      aa      aa QWK PACKET READER  xaa
+           x                                                 xaa
+           x                                                 xaa
+           x   Copyright 1992 (c) Thomas McWilliams          xaa
+           x                                                 xaa
+           x   Free Software subject to terms of Free Soft-  xaa
+           x   ware Foundation GNU General Public License.   xaa
+           x   ABSOLUTELY NO WARRANTY,  type `show terms'    xaa
+           mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjaa
+              aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
-Unable to open configuration file /dd/atprc or .atprc !
+...
+ * ATP/OSK 1.40 * Read on OS-9/68000
+
+Reader [ empty ] >
