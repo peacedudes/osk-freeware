@@ -1,7 +1,9 @@
 $ wisecrack &
 <3>
 $ ask
-AUF WIEDERSEHEN 1993
++ COVE IST SPITZE +
 
 $ ask
-VIEL SPASS MIT OSK
+AUF WIEDERSEHEN 1993
+
+$ signal 3 0

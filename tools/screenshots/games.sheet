@@ -1231,7 +1231,11 @@ cap     from a German OS-9 club seminar of 1992-93 into /pipe/txtpipe, in
 cap     German -- "VIEL SPASS MIT OSK" is "have fun with OSK" -- and prints
 cap     nothing itself.  Each `ask' then pulls out the next one.  Type the
 cap     `&': started in the foreground it waits for a reader and, under
-cap     os9exec, neither Ctrl-C nor Ctrl-E gets the terminal back.
+cap     os9exec, neither Ctrl-C nor Ctrl-E gets the terminal back.  Stop it
+cap     when you have finished with it -- `signal <id> 0', the id bash
+cap     printed in angle brackets -- because a server left parked on a read
+cap     after its shell has gone is the one thing here that can take the
+cap     emulator with it.
 try     wisecrack &
 run     wisecrack &
 wait    3
@@ -1239,6 +1243,8 @@ run     ask
 wait    5
 run     ask
 wait    5
+run     signal 3 0
+wait    3
 
 shot    ask
 cap     Reads the next message from the pipe wisecrack writes to and
