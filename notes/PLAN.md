@@ -108,34 +108,16 @@ clear.
 
 | | |
 |---|---|
-| Programs catalogued | 996 |
-| Of those, RUNNABLE (a type-$01 module) | 970 -- the rest are drivers, descriptors and trap libraries |
-| **Under no test at all** | **26** (2026-09-14 late) — what is left wants hardware, G-Windows, a peer, or Microware's own shell; `worklist.py --programs --no-test` lists them |
-| No gallery card runs it by name | **1** (`fixyear`) — it was 81; the all-card sweep is what closed it |
-| `datatest` cases | **800 in 64 families**, 4 deliberate failures (named above this table); `--all` on a fresh image: 795 of 799 before the rsconvert case |
-| `tools/drives` sheets | **76** |
-| Screens | **899 cards over 929 stanzas**, **30** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in the table there) — re-measured 2026-09-13 |
+| Programs catalogued | 1033 -- re-measured 2026-09-18, after 30 removals |
+| **Under no test at all** | **23** — what is left wants hardware, G-Windows, a peer, or Microware's own shell; `worklist.py --programs --no-test` lists them |
+| `datatest` cases | **850 in 70 families**, 4 deliberate failures (zip, todos, sir, and one that fails until an os9exec fix lands) |
+| `tools/drives` sheets | **72**, and **140** play-tests in `tools/playtests` |
+| Screens | **964 cards**, **25** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in that file) — re-measured 2026-09-18 |
+| Source here | 738 (71%) |
+| Documented beyond one index line | 671 (64%) |
+| Where the programs want the collection | 478 at `/dd` against 55 wanting data at `/h0`, 8.7 to 1 — `measure_layout.py` |
 
-> **THE FIGURE THIS TABLE USED TO LEAD WITH WAS WRONG, and the correction is
-> worth more than the number.** "Programs with neither a test nor a card" ran
-> 421 → 97 → 42 over two days and it was measured by a filter that could not
-> do its job: `worklist.py`'s `carded()` looked for `for'-credited names in
-> `shot["acts"]`, and `screenshots.parse` puts them in `shot["for"]`. The loop
-> never matched. Every program credited on a shared card -- and cards here
-> routinely credit three to five -- counted as having no card.
->
-> Fixing it literally counted `for' and the answer went to **zero**, which is
-> the trap `gen_screens` already names: *"918 of 918 have sample output"
-> cannot fail while grouping satisfies it.* So `carded()` now means what
-> `gen_screens` means by it -- **a card RUNS the program BY NAME** -- and the
-> honest backlog is the first row above: **209 programs under no test**.
->
-> The work done under the old figure was real: 79 cases, five rebuilds, four
-> cards. The number describing what was left was not.
-| Source here | 701 (70%) |
-| Documented beyond one index line | 656 (65%) |
-
-Re-measured 2026-08-31 evening. The tools are the authority, not this table:
+Re-measured 2026-09-18. The tools are the authority, not this table:
 `tools/worklist.py --programs --no-test --no-card`, `tools/audit_cards.py`,
 `tools/src_census.py disk`, `tools/doc_census.py disk`.
 
