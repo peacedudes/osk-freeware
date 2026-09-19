@@ -14,8 +14,8 @@
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 36 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -356,7 +356,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>36 programs</summary>
+<details><summary>37 programs</summary>
 
 **Attributes & ownership**
 
@@ -436,6 +436,7 @@
 | | |
 |---|---|
 | `names` | &#9733; an address book, in German: `Adressen Verwaltung', version 1.0.  Anrede, Nachname, Vorname, Strasse, PLZ, Stadt, Telefon and two Bemerkung lines per record, kept in a file of its own under SYS which it creates on first run.  Full screen and interactive -- it wants a terminal, and at end of input it re-prompts for ever.  It does NOT list module names; `modinfo' is what does that |
+| `sdb` | SDB 2.0, "a Simple Database System" by David Betz: a small relational database.  A relation is a file, a tuple a record, an attribute a field. `create' makes a relation and names its fields, `insert' prompts for one record at a time, `print <fields> from <relation> ;' reads them back as a table, and there are delete, update, sort, import, export and macros besides.  `help' lists them and DOC/sdb holds the manual<br>**How:** Run it in a directory you can write to; it keeps one file per relation there. `create people ( name char 12 town char 12 ) 20' makes one, `insert people' prompts field by field and a blank line ends the entry, and `print * from people ;' reads it back as a table -- the semicolon is part of the syntax. `help' lists the commands, `exit' leaves. Typing something it cannot parse gives `syntax error' and, if you keep going, a stack overflow. |
 
 **Split & join**
 
@@ -450,7 +451,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>37 programs</summary>
+<details><summary>36 programs</summary>
 
 **Assembly**
 
@@ -483,7 +484,6 @@
 
 | | |
 |---|---|
-| `sdb` | SDB 2.0, a symbolic debugger: opens a program at its prompt, where breakpoints, single steps and memory display are commands; exit leaves |
 | `trap` | &#9733; an example trap handler -- it installs a trap from system state, so from an ordinary program it stops. Run it by path; trap is also a shell builtin.<br>**How:** The system-state trap-handler example: it installs a trap from system state. Ask for it BY PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently. |
 
 **Libraries**

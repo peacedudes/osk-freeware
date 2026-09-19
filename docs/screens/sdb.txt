@@ -1,3 +1,17 @@
-sdb CMDS/today
+sdb
 SDB - version 2.0
+SDB> create people ( name char 12 town char 12 ) 20
+SDB> insert people
+name            : Ada
+town            : Bath
+----
+name            :
+[ 1 inserted ]
+SDB> print * from people ;
+-------------------------------
+| name         | town         |
+-------------------------------
+| Ada          | Bath         |
+-------------------------------
+[ 1 found ]
 SDB>

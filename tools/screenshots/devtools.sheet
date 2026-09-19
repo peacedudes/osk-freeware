@@ -341,15 +341,34 @@ run     libsplit LIB/blarslib.l
 wait    6
 
 shot    sdb
-cap     SDB 2.0, a symbolic debugger, opened on a program: its prompt, ready
-cap     for a command.  exit leaves it.
-try     sdb CMDS/today
-run     builtin cd /dd
+size    30 80
+cap     SDB 2.0, "a Simple Database System" by David Betz -- a small
+cap     relational database, not a debugger.  A relation is a file, a
+cap     tuple a record, an attribute a field.  Here a relation is created
+cap     with two fields, one record is typed into it (a blank line ends
+cap     the entry), and `print * from people ;' reads it back.  DOC/sdb
+cap     holds the manual and `help' lists the commands.
+try     sdb
+run     rm -rf /dd/tmp/SDBC > /nil 2>/nil; mkdir -p /dd/tmp/SDBC
+wait    3
+run     builtin cd /dd/tmp/SDBC
 wait    1
 run     clear
 wait    1
-run     sdb CMDS/today
-wait    8
+run     sdb
+wait    4
+send    create people ( name char 12 town char 12 ) 20\r
+wait    3
+send    insert people\r
+wait    3
+send    Ada\r
+wait    2
+send    Bath\r
+wait    2
+send    \r
+wait    3
+send    print * from people ;\r
+wait    4
 snap
 send    exit\r
 wait    3
