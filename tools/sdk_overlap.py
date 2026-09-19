@@ -32,6 +32,13 @@ A NEW NAME HERE IS NOT AUTOMATICALLY WRONG, but it does need somebody to
 say which of three things it is: a module covered by that permission, a
 file that carries its own grant (check the grant travels with THAT COPY --
 that is the fpu lesson), or something that has to come off the disk.
+
+POINT IT AT A PRISTINE SDK AND NOTHING ELSE.  The build overlay is not
+one: it carries a copy of THIS COLLECTION under `CMDS/SHARE' so that
+recipes can link against it, so running this against the overlay reports
+several hundred matches, every one of them our own freeware looking back
+at us.  A tree that answers with hundreds of names is the wrong tree, not
+a disaster.
 """
 import hashlib
 import os
