@@ -40,7 +40,7 @@ uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial 
 uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk, so there is nothing to print
 msntp|sets the system clock from a network time server; with no network here it cannot open an NTP socket
 blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
-newslock|the news system's file lock; it belongs to a news spool this configuration does not run, and leaves no trace here
+newslock|the news system's file lock; it takes a temporary name and a lock name and makes the lock by LINKING one to the other, and this C library has no link(), so it returns 1 and leaves nothing behind -- measured 2026-09-19, and SRC/cnews/misc/newslock.c is four lines of which `if (link(argv[1], argv[2]) < 0) exit(1);' is the whole program
 disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded
 enable|the counterpart to disable on a serial port; it too needs the port's driver module resident, and none is loaded
 fkeys|sets a VT220 terminal's function keys from a definition file; it needs VT220 hardware to program, and names its file argument without one
