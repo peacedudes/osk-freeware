@@ -54,5 +54,11 @@ try     juggle -p 3
 run     juggle -p 3
 wait    3
 snap
+wait    1
+snap
+wait    1
+snap
+wait    1
+snap
 send    \003
 wait    3

@@ -266,7 +266,21 @@ SPARSE_OK = {"rain",
              # juggle draws a title and one "(n)" per ball on an empty
              # field -- the three-ball cascade is twenty characters of ink
              # and that is the whole picture, like rain's rings.
-             "juggle"}
+             "juggle",
+             # FOUR MORE, 2026-09-19.  Each was excepted as "too little to
+             # publish", which left a reader looking at nothing at all --
+             # and a short true picture beats an absent one.  The test is
+             # the same as rain's: is the small screen the WHOLE of what
+             # the program does?
+             #
+             # sieve   prints `start' and ` 100 sieves done' and that is
+             #         its entire output; the point is the time between.
+             # qt      says the time in words in one sentence.
+             # setterm reports the terminal type in one line.
+             # edir    lists the event directory, and with nothing on this
+             #         disk creating an event the heading is the listing --
+             #         an empty `ls' is still an answer.
+             "sieve", "qt", "setterm", "edir"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

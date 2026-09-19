@@ -1,0 +1,2 @@
+$ qt
+It's almost half past eight.

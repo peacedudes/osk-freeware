@@ -241,6 +241,7 @@ dvitos 0d0e17b496dbc859
 dvitype 39ae706d5b4fe689
 ed 431d3e6ebaa40aa8
 ediff a77ad36bb656fd6e
+edir 7bcb58b3efcbbbb5
 editor cc22a9da6564489a
 elm 202e330b419a3743
 elvis f33d9af83b3e1f10
@@ -396,7 +397,7 @@ jargon 5d03fb56e069502a
 jaw 87db990242adca8f
 join 4d1311ffaf9da182
 jotto 18d4ed7abb6f16a8
-juggle 461551086ca217d5
+juggle cf5d6c120687e81f
 jumble 398ffe8a8a7e2af7
 jumble2 7f172d3db77300c6
 kalah 51036908cd5f8cab
@@ -672,6 +673,7 @@ pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
 qsort9 60b79e4fd20080c9
+qt 6e09112db03ccdd9
 queens 620aaa05515f3571
 rain 050b5008150a7cf4
 rawtopgm 44b6f0cd3736c181
@@ -731,6 +733,7 @@ sed_1.06 b45e5f3769a58252
 sepwords 2946a889b8fd59d2
 setime2 51ad4508112afdfc
 setimex c0f3cf92c42028ee
+setterm 845175284bbbb72a
 setup-image 98fc8faa8576a97d
 setyear f1b6ef80d36a4746
 sgrep 63636bbc5818b85b
@@ -740,6 +743,7 @@ shdev 2bff145e6db657b6
 shire 73eb937ead616c9c
 showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
+sieve 066145397b3012fe
 signal dbbf720d268c4eb2
 sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
