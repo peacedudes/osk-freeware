@@ -2,6 +2,29 @@
 
 ## DO NEXT -- 2026-09-19
 
+**`printf' ON THIS DISK WRITES ARBITRARY BYTES, AND THAT IS HOW A
+MISSING SAMPLE FILE GETS MADE.**  `printf "\001\002\377"' writes three
+bytes and `printf "\x41\x42"' writes two, both measured.  It STOPS AT A
+NUL, so a format whose header contains a zero byte cannot be made this
+way -- which is what rules out `brushtopbm', whose magic is 01 00.
+
+Three netpbm readers were excepted for want of a sample and now have
+working cards, each built from a header written with printf:
+
+  `mtvtoppm'     one line of width and height, then three raw bytes a
+                 pixel.  Twenty-four characters of text are a picture.
+  `xvminitoppm'  `P7 332', a comment line, the size, then ONE byte a
+                 pixel into a fixed 3-3-2 palette.
+  `hipstopgm'    nine lines of text, history lines up to a line holding
+                 one dot, then one byte a pixel.
+
+`gouldtoppm' (a 512-byte binary header block), `hpcdtoppm', `spottopgm'
+and `ximtoppm' have not been tried; their sources are in SRC/netpbm and
+the same trick may reach some of them.
+
+**THE EXCEPTED LIST IS DOWN FROM 125 TO 78** and the ratchet now guards
+it in both directions -- see the entry on stale exceptions below.
+
 **THE DATA-TEST SUITE HAS NO STANDING FAILURES: 868 of 868.**  Three
 cases had been "kept failing on purpose" as markers for defects nobody
 had got to the bottom of.  All three had an answer, and finding each one
