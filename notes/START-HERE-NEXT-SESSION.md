@@ -2,6 +2,29 @@
 
 ## DO NEXT -- 2026-09-19
 
+**`play/oskBoot` IS A WORKING BUILD OVERLAY, NOT A PRISTINE SDK, AND
+READING A MATCH THERE AS EVIDENCE COST AN HOUR AND A FALSE ALARM.**  It
+carries this collection's OWN libraries beside Microware's files --
+`ncurses.l`, `libgcc.l`, `libgpp.l`, `unet.l`, the `os9unix/` headers --
+so "byte-identical to the SDK" there means "identical to our own file"
+as often as not.  `tools/screen_microware.py` says exactly this in its
+docstring and PRINTS "[build overlay only -- may be OUR file, check
+before acting]" beside such a match.  I read that line and wrote a
+provenance alarm into `FOR-RDOGGETT` anyway, on a library that turned out
+not to be Microware's at all.  **`paths.SDK_FULL`
+(`Scraped/sdk-copyrighted/OS9`) is the pristine one and the only thing
+that settles provenance.**
+
+What was real underneath the false alarm, and is fixed: **LIB/ had never
+been screened**, and ten of its fifteen libraries had no SOURCES.txt
+entry.  All are recorded now -- the GCC set, libg++, the oleo porter's
+own curses, the 68040 maths that travels with libgcc in the pool, and
+netpbm's four -- `unet.l` is dropped (unplaceable, unlinked by anything,
+rdoggett: "You can drop them"), and a new gate check, **`every library is
+recorded`**, keeps LIB/ answerable.  It found five MORE on its first run,
+which is this collection's usual pattern for a new check.
+
+
 **REBUILD `osk-freeware.dd` AS THE LAST STEP OF EVERY SESSION.**  It is a
 build artefact and gitignored, so it is easy to treat as disposable -- but
 rdoggett's `free' alias opens `osk-freeware/h0', which symlinks to that

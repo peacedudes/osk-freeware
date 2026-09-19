@@ -243,6 +243,21 @@ def break_recipe_tree(root):
     return None
 
 
+
+def break_unrecorded_library(root):
+    """A library in LIB/ that SOURCES.txt does not name.
+
+    Five of fifteen were like this until 2026-09-19, and one of them --
+    `unet.l' -- nobody could place at all.  A library is the one thing on
+    this disk a reader links into their OWN program, so it is the one
+    thing that has to be answerable for.
+    """
+    p = os.path.join(root, "LIB", "zzzmystery.l")
+    w(p, b"\xde\xad\xfa\xce" + b"\0" * 60)
+    return "LIB/zzzmystery.l added, a library SOURCES.txt does not name"
+
+
+
 def break_screened_source(root):
     """A file under SRC that names OS-9 system internals.
 
@@ -468,6 +483,8 @@ BREAKS = [
     ("recipes", "every recipe names a real tree", break_recipe_tree),
     ("screened src", "no unscreened Microware source",
      break_screened_source),
+    ("unrecorded library", "every library is recorded",
+     break_unrecorded_library),
     ("login env", "harness env matches SYS/login", break_login_env),
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),

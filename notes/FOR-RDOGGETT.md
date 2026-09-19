@@ -6,11 +6,24 @@ numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
 and the gaps are deliberate: a missing number is an answered question.
 Updated 2026-09-19.
 
-**One new item, 25** -- five libraries in LIB/ are not in SOURCES.txt and
-one of them I cannot place at all.  It is a legal-exposure call and nothing
-on the disk uses the file, so it is a clean decision rather than a problem.
-Otherwise utree is finished and on the disk (item 7's note), and everything
-else this session touched was ours to do.  Five items.
+**Item 25 opened and closed in one night, and I owe you a correction on
+it.**  I reported five libraries in LIB/ with no SOURCES.txt entry and said
+one of them, `unet.l', might be Microware's because it was byte-identical
+to a file on your oskBoot SDK.  **That was a false alarm and the tooling
+had already warned me**: `tools/screen_microware.py' says in its own
+docstring that oskBoot is your working BUILD OVERLAY and carries this
+collection's own libraries, and it printed "[build overlay only -- may be
+OUR file, check before acting]" next to the match.  I read that and wrote
+the item anyway.  Checked properly against the pristine SDK, `unet.l' is
+not there and never was Microware's.
+
+What was real underneath it: LIB/ had never been screened at all, and TEN
+of its fifteen libraries had no entry here.  All are now recorded, `unet.l'
+is dropped on your word (nothing linked it, nobody could place it), and a
+gate check keeps LIB/ answerable from now on.  Nothing here needs you.
+
+utree is finished and on the disk (item 7's note), and everything else this
+session touched was ours to do.  Four items.
 
 **Your notes of 2026-09-18 cleared THIRTEEN of these** -- 8, 9, 10, 11, 12,
 13, 14, 15, 16, 17, 19, 20 and 22 are done and gone from this file, along
@@ -121,38 +134,6 @@ from a measured list the gate checks.
    the same editor as `emacs`).  I removed `touchtype` and `vi_cio` today
    because each was a duplicate AND the worse of the pair.  Do you want the
    rest gone, or the convention kept and explained?
-
-25. **Five libraries in `LIB/` are not recorded in SOURCES.txt, and one of
-   them I cannot place.  This one is a legal-exposure call, so it is
-   yours.**  Found 2026-09-19 while answering your networking question.
-
-   SOURCES.txt states the rule plainly -- "DEFS/ C header files --
-   THIRD-PARTY COLLECTIONS ONLY, no Microware headers are here" -- and
-   `tools/screen_microware.py` exists to enforce it on anything new.  What
-   nobody had done is screen what was ALREADY in `LIB/` at the initial
-   import.  Doing that now, five files have no entry in SOURCES.txt:
-   `gnulib.l`, `libgcc.l`, `libgpp.l` (GCC's own, and DOC/README-GCC
-   covers the GCC set), `libcurses.l` (pcurses, Pavel Curtis's 1982
-   notice, freely redistributable -- the matching header is in DEFS and
-   carries it), and **`unet.l`, which I cannot place at all.**
-
-   On `unet.l`, everything I have: 25,395 bytes, byte-identical to the
-   copy on your oskBoot SDK, in the tree since the first commit, NO
-   copyright or licence string anywhere in it, and its symbols are BSD
-   networking -- `rcmd`, `rexec`, `.rhosts`, `_check_rhosts_file`,
-   `socket`, `connect`.  Being on the SDK disk does not make it
-   Microware's (that disk carries plenty of freeware, and half this
-   collection matches its SHARE directory), so this is a gap in the
-   record rather than a proven problem.  But it is unattributed code of
-   unknown origin sitting in the one directory the rules say is for
-   third-party collections only, and your standard is "any real question
-   is a no".
-
-   **Nothing on the disk links it** -- I checked every binary under CMDS
-   for its symbols and found none -- so dropping it costs no function at
-   all.  My recommendation: drop `unet.l` unless you know where it came
-   from, and let me write SOURCES.txt entries for the other four.  Say
-   which and I will do it in one pass.
 
 ## Not a question any more, but you should know
 

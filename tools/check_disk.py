@@ -1452,6 +1452,42 @@ def check_panels_show_their_program(root):
     return ok, "%d problem(s); run tools/audit_panels.py --gate" % len(bad)
 
 
+
+def check_libraries_are_recorded(root):
+    """Every .l in LIB/ must be named in SOURCES.txt.
+
+    LIB/ HAD NEVER BEEN SCREENED. SOURCES.txt says DEFS/ is third-party
+    collections only and `tools/screen_microware.py' enforces that on
+    anything NEW, but the libraries that arrived with the initial import
+    were never checked against it -- and five of fifteen had no entry at
+    all. One, `unet.l', could not be placed by anybody: no copyright
+    string, no entry, nothing on the disk linking it, and BSD networking
+    symbols inside. It was removed on 2026-09-19.
+
+    A library is the one thing here a reader links into their OWN program,
+    so "what is this and may I use it" is a fair question to be able to
+    answer for each. Matching a file on rdoggett's build overlay does NOT
+    answer it -- that overlay carries this collection's own libraries, and
+    reading a match there as evidence is what turned this into a false
+    alarm about Microware for an hour. The pristine SDK under
+    `paths.SDK_FULL' is the one that settles provenance.
+    """
+    libdir = os.path.join(root, "LIB")
+    if not os.path.isdir(libdir):
+        return True, ""
+    sources = os.path.join(root, "SOURCES.txt")
+    if not os.path.isfile(sources):
+        return False, "no SOURCES.txt to check LIB/ against"
+    text = open(sources, "rb").read().decode("latin-1")
+    missing = [f for f in sorted(os.listdir(libdir))
+               if f.endswith(".l") and f not in text]
+    if missing:
+        return False, ("%d librar%s in LIB/ not named in SOURCES.txt: %s"
+                       % (len(missing), "y is" if len(missing) == 1 else "ies are",
+                          " ".join(missing)))
+    return True, ""
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1465,6 +1501,7 @@ CHECKS = [
     ("DOC/DEPENDS is up to date", check_depends),
     ("the manual index is up to date", check_manpages),
     ("no unscreened Microware source", check_src_screened),
+    ("every library is recorded", check_libraries_are_recorded),
     ("binaries start with their magic", check_binary_magic),
     ("every command is a real module", check_modules_start_with_4afc),
     ("one module name, one file", check_module_names),
