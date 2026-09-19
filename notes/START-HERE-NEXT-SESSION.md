@@ -2,44 +2,26 @@
 
 ## DO NEXT -- 2026-09-19
 
-**`snake' CANNOT HAVE A PLAY-TEST, and the reason is worth knowing
-before anyone tries again.**  It plays: the board draws, the `I' moves
-to h/j/k/l, the `$' is there and the snake chases.  But some of its
-cursor moves arrive as literal text -- `[14;5H' printed on the board,
-which DOC/INDEX already records -- and `playtest.py' fails any program
-that leaves stray escape fragments, which is the right default.
+### Where it stands, and how it was checked
 
-I wrote a keys file and considered an `orphans N' directive to pin the
-known untidiness the way the data-test cases pin known defects.  The
-count is NOT stable: 16, 16, 16, then 14 over four runs of the same
-script.  A test that flaps is worse than a gap in coverage -- that is
-this collection's own rule -- so the file is not in tools/playtests and
-snake stays on the untested list on purpose.
+**WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
+current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
+868 again on a SECOND run against the same image, which is the check
+that had never been made; 36 `check_disk.py' checks green;
+`check_the_checks.py' 41 of 41 fired, the forty-second reported "not
+applicable" because the try-backlog is empty and there is nothing left
+to drop from it.  Working tree clean.
 
-If someone wants it tested, the assertion would have to be a MAXIMUM
-rather than a count, and somebody should decide whether that is worth
-having.
-
-**PLAN RULE 3 -- "no capitals for emphasis" -- IS HALF DONE, and the
-half that is left is named here.**  `tools/audit_caps.py' has listed them
-all along and I used it AFTER writing nine shouting captions rather than
-before, which is the lesson.  What is clear now, across all three
-surfaces (captions, `DOC/INDEX', `tools/howto.psv'): every MULTI-WORD
-phrase in capitals that was emphasis rather than a name.
-
-What is left is the long tail of SINGLE capitalised words -- about 116
-how-to lines and a similar number of index entries -- and most of it is
-not emphasis at all: names (ADL, AARD, BOG, DCGRAPHIC), BASIC keywords
-in `dds's line, key names, hex, data like the `ABCDEFGH' byteflip turns
-into `DCBAHGFE'.  Read each in context.  `flink' is the warning: its
-line said "DO NOT run it" about a program that corrupts the disk it
-links on, and lowercasing that alone would have weakened a real
-warning -- the sentence had to be rewritten to carry it.
-
-A `captions do not shout' gate check now catches the multi-word case
-before it ships, with a breaker.  It does not read DOC/INDEX or howto;
-`audit_caps.py' is the tool for those, and it is a prompt to go and
-look rather than a verdict.
+**THE SUITE WAS ALSO RUN AGAINST A LATER EMULATOR AND DID NOT MOVE.**
+os9exec 685a4c3 carries four changes that could have reached us -- SS_EOF
+on host-directory files, signal queue order, what d0 holds on entry to an
+intercept routine, and a refusal of over-long arguments to internal
+commands.  868 of 868 there too, case for case.  The one with a real
+exposure was SS_EOF, and NOT for the shipped disk: the collection is an
+RBF image, but `datatest.py' and `drive.py' write each family's script to
+a HOST DIRECTORY mounted as /h1 and run `os9exec -r bash /h1/<family>.sh',
+so every case reads its script off a host-directory file.  Worth
+remembering the next time that path changes.
 
 **RUN THE SUITE TWICE AGAINST ONE IMAGE.  It was only ever green the
 first time.**  `tools/datatest.py --all' runs against `osk-freeware.dd'
@@ -79,21 +61,7 @@ ones that can poison a later run:
 /dd/cccp so rayshade can render, and takes both away again in the same
 case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
-**A BACKGROUND SERVER LEFT RUNNING AT THE END OF A STANZA CAN TAKE THE
-EMULATOR WITH IT.**  From the os9exec session: a daemon parked on a read
-after the main shell exits ends the emulator about eleven times in twelve
-and holds it open for ever about one in twelve, decided by a scheduler
-counter.  `wisecrack' and `ask' each started one and walked away, with a
-whole sheet of stanzas after them; both now stop it with `signal <id> 0'
-and say why in the caption.
-
-**`mw' HAS NOT BEEN LOOKED AT and is the last one like this**
-(games.sheet, `run mw -l=5 >/nil &' -- a computer player joined to the
-maze game).  It is left alone on purpose: its card is a fourteen-second
-interactive capture and re-shooting it risks a worse picture for a
-hazard that may not apply, since the fault is documented for a read
-parked as a system task.  Worth a look by somebody willing to re-shoot
-it carefully.
+### What was learned -- the reusable part
 
 **`config' NEVER WANTED A 68881, AND THE WRONG DIAGNOSIS WAS ON ITS WAY
 TO BECOMING A REQUEST TO MICROWARE.**  DOC/STATUS had a section headed
@@ -172,52 +140,6 @@ mechanically decidable, and the `floods' list is deliberately kept as the
 record of how a whole class failed.  Seven candidates remain and every
 one of them is right as it stands -- run each before changing a word.
 
-**`pacman' IS SETTLED, and the answer was neither reading.**  DOC/STATUS
-said it "draws nothing and exits at once, keyed or not"; its old card
-exception said it drew its maze in raw keyboard mode that the harness
-could not capture.  Play-tested and then run by hand: it asks your name
-and takes it, asks about the instructions and takes the answer, and then
-puts out one row of `+' and ends.  **It forks OS-9's own `tmode' to set
-the terminal `nopause noecho' before it draws anything, and tmode comes
-with the reader's system rather than with this collection.**  Its board
-file is plain text and its source positions with the ADM-3A sequence
-(ESC = row+32 col+32), so with tmode to hand and a terminal that reads
-that, the maze is there.  Both entries are corrected.
-
-A caution from it, since I nearly shipped the opposite: the play-test
-reported PASS, ink=50, responds=yes -- and all of that was my own typed
-characters being echoed.  `responds=yes' means the keyed screen differs
-from the control screen, not that the program did anything with the
-keys.  Look at the screen.
-
-**WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
-current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
-868 again on a SECOND run against the same image, which is the check
-that had never been made; 36 `check_disk.py' checks green;
-`check_the_checks.py' 41 of 41 fired, the forty-second reported "not
-applicable" because the try-backlog is empty and there is nothing left
-to drop from it.  Working tree clean.
-
-**THE SUITE WAS ALSO RUN AGAINST A LATER EMULATOR AND DID NOT MOVE.**
-os9exec 685a4c3 carries four changes that could have reached us -- SS_EOF
-on host-directory files, signal queue order, what d0 holds on entry to an
-intercept routine, and a refusal of over-long arguments to internal
-commands.  868 of 868 there too, case for case.  The one with a real
-exposure was SS_EOF, and NOT for the shipped disk: the collection is an
-RBF image, but `datatest.py' and `drive.py' write each family's script to
-a HOST DIRECTORY mounted as /h1 and run `os9exec -r bash /h1/<family>.sh',
-so every case reads its script off a host-directory file.  Worth
-remembering the next time that path changes.
-
-**THE OS9EXEC SESSION ANSWERED THREE OF OURS**, all of them things we
-had written up as mysteries: `byteflip' wanted its byte maps rather than
-a filename; `disktest' forks OS-9's own `free' and reads a pipe it also
-holds open for writing, so with no `free' to answer it waits on itself;
-and `msntp' with no server named is LISTENING FOR BROADCASTS, which
-DOC/msntp/msntp.1 says in as many words on line 171.  Read the disk's
-own documentation before reporting a program, which is a rule this file
-already had.
-
 **A CHEAP SCAN FOR A SCRAMBLED SCREEN**, worth knowing since os9exec
 fixed an echo-ordering bug under baud pacing (887abd8):
 `grep -l "[A-Za-z0-9]bash#" notes/playtests/*.shot.txt' finds a prompt
@@ -270,8 +192,51 @@ working cards, each built from a header written with printf:
 and `ximtoppm' have not been tried; their sources are in SRC/netpbm and
 the same trick may reach some of them.
 
-**THE EXCEPTED LIST IS DOWN FROM 125 TO 78** and the ratchet now guards
-it in both directions -- see the entry on stale exceptions below.
+**USE `tools/fix_index.py' TO REWRITE AN INDEX ENTRY.**  A scratch
+helper that did the same job took an entry to be its head plus every
+line at the HEAD'S OWN indent, and `zip' -- head at 17, continuations at
+16 -- kept four lines of its old description under its new one, with no
+name on them.  Every check passed.  `index entries are whole' is now a
+gate check with a breaker; fix_index.py never had the bug.
+
+**PLAN RULE 3 -- "no capitals for emphasis" -- IS HALF DONE, and the
+half that is left is named here.**  `tools/audit_caps.py' has listed them
+all along and I used it AFTER writing nine shouting captions rather than
+before, which is the lesson.  What is clear now, across all three
+surfaces (captions, `DOC/INDEX', `tools/howto.psv'): every MULTI-WORD
+phrase in capitals that was emphasis rather than a name.
+
+What is left is the long tail of SINGLE capitalised words -- about 116
+how-to lines and a similar number of index entries -- and most of it is
+not emphasis at all: names (ADL, AARD, BOG, DCGRAPHIC), BASIC keywords
+in `dds's line, key names, hex, data like the `ABCDEFGH' byteflip turns
+into `DCBAHGFE'.  Read each in context.  `flink' is the warning: its
+line said "DO NOT run it" about a program that corrupts the disk it
+links on, and lowercasing that alone would have weakened a real
+warning -- the sentence had to be rewritten to carry it.
+
+A `captions do not shout' gate check now catches the multi-word case
+before it ships, with a breaker.  It does not read DOC/INDEX or howto;
+`audit_caps.py' is the tool for those, and it is a prompt to go and
+look rather than a verdict.
+
+**A BACKGROUND SERVER LEFT RUNNING AT THE END OF A STANZA CAN TAKE THE
+EMULATOR WITH IT.**  From the os9exec session: a daemon parked on a read
+after the main shell exits ends the emulator about eleven times in twelve
+and holds it open for ever about one in twelve, decided by a scheduler
+counter.  `wisecrack' and `ask' each started one and walked away, with a
+whole sheet of stanzas after them; both now stop it with `signal <id> 0'
+and say why in the caption.
+
+**`mw' HAS NOT BEEN LOOKED AT and is the last one like this**
+(games.sheet, `run mw -l=5 >/nil &' -- a computer player joined to the
+maze game).  It is left alone on purpose: its card is a fourteen-second
+interactive capture and re-shooting it risks a worse picture for a
+hazard that may not apply, since the fault is documented for a read
+parked as a system task.  Worth a look by somebody willing to re-shoot
+it carefully.
+
+### What changed on the disk
 
 **THE DATA-TEST SUITE HAS NO STANDING FAILURES: 868 of 868.**  Three
 cases had been "kept failing on purpose" as markers for defects nobody
@@ -323,32 +288,10 @@ for that from this disk's bash -- so its card shows the word list, the
 lines it would rewrite, and the memory refusal, with the OS-9 form on an
 `os9' line.
 
-**USE `tools/fix_index.py' TO REWRITE AN INDEX ENTRY.**  A scratch
-helper that did the same job took an entry to be its head plus every
-line at the HEAD'S OWN indent, and `zip' -- head at 17, continuations at
-16 -- kept four lines of its old description under its new one, with no
-name on them.  Every check passed.  `index entries are whole' is now a
-gate check with a breaker; fix_index.py never had the bug.
-
-**TWO RECORDED HANGS WERE THE EMULATOR'S, AND ARE FIXED (2026-09-19).**
-os9exec `8ee3bcf' -- unpushed at the time of writing, so this depends on
-a build at or past that commit -- fixes a process that waited with its
-signals masked never giving up the CPU, which froze the whole emulator.
-Re-run against a pinned copy of it:
-
-  `yacc'     reads a grammar, reports what it finds wrong with it and
-             writes `y.tab.c'.  It used to print nothing and never
-             return.
-  `pgmedge'  reads the 320x200 gulls photograph and writes its edge map
-             in a few seconds.  It used to hang on any photograph while
-             a gradient of any size went through -- which had it written
-             up as content-sensitive.  It was the signal mask.
-  `byteflip' STILL ends the session on 8ee3bcf, so it is a different
-             fault.  Its entry below stands.
-
-`DOC/INDEX' and `DOC/STATUS' are corrected for both, keeping what they
-used to do marked as what they used to do.  Neither has a card yet --
-that is the obvious next job for anyone with a build past 8ee3bcf.
+**THE EXCEPTED LIST WENT FROM 125 TO 73 ON 2026-09-19** and the ratchet
+now guards it in both directions -- see the entry on stale exceptions
+below.  Read the count off `tools/panel-exceptions.psv' rather than
+from here; this is the figure on the day, not a standing one.
 
 **A CARD THAT SAYS A PROGRAM CANNOT IS USUALLY A CARD THAT DID NOT ASK
 PROPERLY.**  The flagged count went 25 -> 21 in one pass and every fix
@@ -372,6 +315,73 @@ which in each case the disk or the reader already has:
   cls      clears the screen, so its card was empty -- the harness
            resets its capture on a literal `clear', which is why the
            `clear' card worked and this one did not.  `snap' says where.
+
+**TWO RECORDED HANGS WERE THE EMULATOR'S, AND ARE FIXED (2026-09-19).**
+os9exec `8ee3bcf' -- unpushed at the time of writing, so this depends on
+a build at or past that commit -- fixes a process that waited with its
+signals masked never giving up the CPU, which froze the whole emulator.
+Re-run against a pinned copy of it:
+
+  `yacc'     reads a grammar, reports what it finds wrong with it and
+             writes `y.tab.c'.  It used to print nothing and never
+             return.
+  `pgmedge'  reads the 320x200 gulls photograph and writes its edge map
+             in a few seconds.  It used to hang on any photograph while
+             a gradient of any size went through -- which had it written
+             up as content-sensitive.  It was the signal mask.
+  `byteflip' STILL ends the session on 8ee3bcf, so it is a different
+             fault.  Its entry below stands.
+
+`DOC/INDEX' and `DOC/STATUS' are corrected for both, keeping what they
+used to do marked as what they used to do.  Neither has a card yet --
+that is the obvious next job for anyone with a build past 8ee3bcf.
+
+**THE OS9EXEC SESSION ANSWERED THREE OF OURS**, all of them things we
+had written up as mysteries: `byteflip' wanted its byte maps rather than
+a filename; `disktest' forks OS-9's own `free' and reads a pipe it also
+holds open for writing, so with no `free' to answer it waits on itself;
+and `msntp' with no server named is LISTENING FOR BROADCASTS, which
+DOC/msntp/msntp.1 says in as many words on line 171.  Read the disk's
+own documentation before reporting a program, which is a rule this file
+already had.
+
+**`pacman' IS SETTLED, and the answer was neither reading.**  DOC/STATUS
+said it "draws nothing and exits at once, keyed or not"; its old card
+exception said it drew its maze in raw keyboard mode that the harness
+could not capture.  Play-tested and then run by hand: it asks your name
+and takes it, asks about the instructions and takes the answer, and then
+puts out one row of `+' and ends.  **It forks OS-9's own `tmode' to set
+the terminal `nopause noecho' before it draws anything, and tmode comes
+with the reader's system rather than with this collection.**  Its board
+file is plain text and its source positions with the ADM-3A sequence
+(ESC = row+32 col+32), so with tmode to hand and a terminal that reads
+that, the maze is there.  Both entries are corrected.
+
+A caution from it, since I nearly shipped the opposite: the play-test
+reported PASS, ink=50, responds=yes -- and all of that was my own typed
+characters being echoed.  `responds=yes' means the keyed screen differs
+from the control screen, not that the program did anything with the
+keys.  Look at the screen.
+
+### Left open
+
+**`snake' CANNOT HAVE A PLAY-TEST, and the reason is worth knowing
+before anyone tries again.**  It plays: the board draws, the `I' moves
+to h/j/k/l, the `$' is there and the snake chases.  But some of its
+cursor moves arrive as literal text -- `[14;5H' printed on the board,
+which DOC/INDEX already records -- and `playtest.py' fails any program
+that leaves stray escape fragments, which is the right default.
+
+I wrote a keys file and considered an `orphans N' directive to pin the
+known untidiness the way the data-test cases pin known defects.  The
+count is NOT stable: 16, 16, 16, then 14 over four runs of the same
+script.  A test that flaps is worse than a gap in coverage -- that is
+this collection's own rule -- so the file is not in tools/playtests and
+snake stays on the untested list on purpose.
+
+If someone wants it tested, the assertion would have to be a MAXIMUM
+rather than a count, and somebody should decide whether that is worth
+having.
 
 **The ones left flagged are genuinely blocked** and were each re-checked:
 an X server, a modem port, a Wyse terminal, a printer, a G-Windows
