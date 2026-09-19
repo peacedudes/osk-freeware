@@ -117,7 +117,7 @@ lprm|eff_lp|lprm.c|||
 lpshut|eff_lp|lpshut.c|||
 ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c xmalloc.c xstrtol.c|GCC HAVE_CONFIG_H|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
 m4|eff_m4b|main.c eval.c expr.c look.c misc.c serv.c||/dd/LIB/egetopt.r|
-make|eff_make|make.c parse.c stat.c tstring.c utime.c|OS9||
+make|eff_make|make.c parse.c stat.c tstring.c utime_osk.c|OS9||
 makelex|sonnet|makelex.c|||
 maze|v_misc|maze.c|||
 mines|mines|mines.c|||

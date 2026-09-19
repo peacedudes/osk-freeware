@@ -17,6 +17,10 @@ family  dev
 setup   export TERM=vt100
 setup   export TERMCAP=/dd/SYS/termcap
 setup   export USER=tester
+# make runs each command line through the shell SHELL names -- SYS/login
+# sets ksh and datatest sets nothing, so without this `cat src > out'
+# never runs and the target is never built.
+setup   export SHELL=/dd/CMDS/ksh
 setup   W=/dd/tmp/DEVC
 setup   /dd/CMDS/rm -f $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
@@ -104,6 +108,31 @@ expect  Error reading tmp file
 case    sieve-runs-its-benchmark
 run     /dd/CMDS/sieve
 expect  100 sieves done
+
+# make, and the collection's own utime() underneath it.  The utime that came
+# with this make had a bare copyright and no grant, so it is not in the build
+# (SRC/eff_make/README.OSK); `make -t' is the only thing here that calls the
+# replacement, since touching a target instead of building it is exactly what
+# needs a file's date written.
+case    make-builds-a-target-from-its-source
+run     /dd/CMDS/rm -rf $W/MK > /nil 2>/nil
+run     /dd/CMDS/mkdir -p $W/MK > /nil 2>/nil
+# The rule names cat by its full path: datatest sets no PATH, so the shell
+# make forks cannot find a bare `cat' -- measured, the first run of this
+# case failed with "cat: not found" and an empty target.
+run     /dd/CMDS/printf "all: out\rout: src\r\t/dd/CMDS/cat src > out\r" > $W/MK/makefile
+run     /dd/CMDS/printf "hello\r" > $W/MK/src
+run     /dd/CMDS/ksh -c "cd $W/MK; /dd/CMDS/make"
+expect  cat src > out
+run     /dd/CMDS/cat $W/MK/out
+expect  hello
+
+case    make-t-touches-the-target-rather-than-building-it
+run     /dd/CMDS/rm -f $W/MK/out > /nil 2>/nil
+run     /dd/CMDS/ksh -c "cd $W/MK; /dd/CMDS/make -t"
+expect  touch out
+run     /dd/CMDS/ls $W/MK/out
+expect  out
 
 case    luac-compiles-lua-to-bytecode
 run     echo 'print("hello from lua")' > $W/h.lua
