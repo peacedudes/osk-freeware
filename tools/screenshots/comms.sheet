@@ -1119,14 +1119,19 @@ wait    8
 shot    wndex
 cap     Builds the index.cache the WN web server reads a directory from.
 cap     It works on the current directory, so the demo moves there first,
-cap     off-screen, and runs it by name.
+cap     off-screen, and runs it by name.  The listing after it is the file
+cap     it wrote.
 try     wndex
 run     builtin cd /dd/c/unid/wn_1.14.3/osk
 wait    1
+run     rm -f index.cache > /nil 2>/nil
+wait    2
 run     clear
 wait    1
 run     wndex
 wait    8
+run     ls -l index.cache
+wait    4
 
 shot    inetd
 cap     The internet superserver: it listens on a port and hands each

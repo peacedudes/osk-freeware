@@ -71,7 +71,6 @@ vis|redraws one command's output in place like watch; its control header is a si
 ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card, three 1165-byte files, is the evidence
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
-wndex|builds the WN web server index for a directory and reports the one line `Wrote cache file'; there is nothing more to show
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
 bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
 lfmaker|builds a low-level disk format descriptor and needs a real disk device to size; with none it reads its length argument as an address and stops with a No-more-memory request, which is as far as it goes here
