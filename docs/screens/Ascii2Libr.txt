@@ -1,11 +1,15 @@
 cat DOC/samples/cat.txt | head -n 4
 16
 2
-"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programmin)
-"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher)
+"B0001" #C( :type Book :author "Kernighan and Ritchie" :title "The C Programming
+ Language" :publisher "Prentice-Hall" :city "Englewood Cliffs" :description "The
+ white book." :volume 0 :year 1978 )
+"B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher
+"Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0
+ :year 1984 )
 <mp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
 tmp/cat2.libr already exists!
--rw-------   1 0        0           17677 Sep 12 18:29 tmp/cat2.libr
+-rw-------   1 0        0           17677 Sep 18 20:45 tmp/cat2.libr
 $ Libr2Ascii -infile tmp/cat2.libr | head -n 6
 4
 2

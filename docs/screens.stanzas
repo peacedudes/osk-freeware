@@ -209,7 +209,7 @@ disable 392a7269b17d81d7
 disdvi e1ada0a46a4b8270
 disktest cef9b1c52f746013
 divide 5d42d00640eb98f9
-djpeg ad8376024b2b43d2
+djpeg 5e51c7ea5fb33922
 djpeg.070 056535a96995b78a
 dld 2bd5dd6d0ead4c98
 dload 123da82a8ca4aeac
@@ -583,7 +583,7 @@ pgmkernel 3a015b39f4093c70
 pgmnoise 904eca251b0648bb
 pgmnorm 963313f9c2566f9e
 pgmoil beb14521fca583d1
-pgmramp d1950161b088fcb2
+pgmramp 5aca5971f0d5c473
 pgmtexture e32ae64b55f931ec
 pgmtofs 6ca0b170f5325c31
 pgmtolispm 033efef00b807203
@@ -619,7 +619,7 @@ pnmrotate dec962ef01d22fee
 pnmscale fce6bc24a26f693a
 pnmshear abbe2d383ad79189
 pnmsmooth 8ecea421d4a8668f
-pnmtile 79140b04cd1790f1
+pnmtile 825a43cd26b76a10
 pnmtoddif 0b9dce17a9b98d4d
 pnmtofits 8412296e6dde74e7
 pnmtops 54564430e06ac0c6

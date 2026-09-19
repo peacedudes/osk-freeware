@@ -1,3 +1,4 @@
 $ gcc_cc1plus -version
-GNU C++ version 1.37.1 (based on GCC 1.37) (68k, Motorola syntax) compiled by G.
+GNU C++ version 1.37.1 (based on GCC 1.37) (68k, Motorola syntax) compiled by GN
+U C version 1.37.1.
 default target switches: -mregparm -mstack-check

@@ -1,5 +1,6 @@
 as5 DOC/xasm/sample.a5 - l s
-0001                         * sample.a5 -- a 6805 program for as5.  Bit set, bit test ane
+0001                         * sample.a5 -- a 6805 program for as5.  Bit set, bit test and
+ branch are
 0002                         * what the 6805 is for, so it uses them.
 0003                         *
 0004 0100                            org     $0100

@@ -1,3 +1,4 @@
 $ gpp_cc1plus -version
-GNU C++ version 1.40.3 (based on GCC 1.40) (68k, Motorola syntax) compiled by G.
+GNU C++ version 1.40.3 (based on GCC 1.40) (68k, Motorola syntax) compiled by GN
+U C version 1.40.
 default target switches: -mregparm -mstack-check

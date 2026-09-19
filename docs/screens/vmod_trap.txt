@@ -1,5 +1,6 @@
 modinfo vmod_trap | head -n 14
----------------------------------- vmod_trap  - - - - - - - - - - - - - - - - --
+---------------------------------- vmod_trap  - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - -
 Module name           = VMod_trap
 System revision       = 1
 Module size           = 202

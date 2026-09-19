@@ -3,7 +3,7 @@ Newsgroups: comp.os.os9
 Subject: a test posting
 Keywords:
 Message-ID: <1@milkyway.andromeda.org>
-Date: Tue, 8 Sep 26 18:29:06 -0500
+Date: Fri, 18 Sep 26 20:30:34 -0500
 Reply-To: su@milkyway.andromeda.org
 Distribution: world
 Summary: testing postnews
@@ -12,4 +12,5 @@ Organization: The Milky Way BBS
 This is only a test.
 
 
-posting your article...locally...docmd_na(): cannot spawn process--> rnews -x0 )
+posting your article...locally...docmd_na(): cannot spawn process--> rnews -x0 -
+ncomp.os.os9 D.milkywa0000 (error 221)

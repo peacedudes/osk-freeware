@@ -196,9 +196,12 @@ wait    5
 
 shot    patch
 size    30 80
-cap     patch recognises a diff -- "Looks like a normal diff to me" -- and then
-cap     cannot finish: it writes a temporary file and cannot read it back.  The
-cap     file it was patching is left as it was.
+cap     patch applying a diff: it recognises what it was handed -- "Looks like
+cap     a normal diff to me" -- takes Plan A, and the hunk succeeds.  The file
+cap     is updated and the original is kept beside it as p1.orig.
+cap     Until 2026-09-18 this card showed it failing, and the failure was its
+cap     own: the port opened its files with Unix modes, and OS-9 reads mode 0
+cap     as no access bits at all, so the read that followed was refused.
 try     patch tmp/DEV/p1 tmp/DEV/p.diff
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "one\rtwo\rthree\r" > /dd/tmp/DEV/p1; printf "one\rTWO\rthree\r" > /dd/tmp/DEV/p2; diff /dd/tmp/DEV/p1 /dd/tmp/DEV/p2 > /dd/tmp/DEV/p.diff
 wait    6
@@ -210,6 +213,8 @@ run     cat tmp/DEV/p.diff
 wait    4
 run     patch tmp/DEV/p1 tmp/DEV/p.diff
 wait    10
+run     cat tmp/DEV/p1
+wait    4
 
 shot    bcheck
 cap     Counts brackets in a C source, line by line, so a mismatch can be

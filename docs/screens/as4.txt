@@ -1,7 +1,10 @@
 as4 DOC/xasm/sample.a4 - l s
-0001                         * sample.a4 -- a 6804 program for as4.  The 6804 has a very l
-0002                         * instruction set: no CLR on the pseudo-registers, no CMP im.
-0003                         * See DOC/xasm/asm.doc, which lists what each assembler acce.
+0001                         * sample.a4 -- a 6804 program for as4.  The 6804 has a very s
+mall
+0002                         * instruction set: no CLR on the pseudo-registers, no CMP imm
+ediate.
+0003                         * See DOC/xasm/asm.doc, which lists what each assembler accep
+ts.
 0004                         *
 0005 0020                            org     $0020
 0006 0020 e8 05              start   lda     #$05

@@ -3,4 +3,5 @@ Syntax: eunlink {<event>}
 Function: unlink an event
 Options: none
 $ eunlink testevent
-eunlink: can't unlink "testevent"  Error #000:168 (E_EVNF) Event (name) not foud
+eunlink: can't unlink "testevent"  Error #000:168 (E_EVNF) Event (name) not foun
+d

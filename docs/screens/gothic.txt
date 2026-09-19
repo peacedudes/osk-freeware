@@ -21,16 +21,27 @@ $ gothic OS-9
                           OOOOOOOOOO               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                          OOOOOOOOOO                                                          OOO
                           OOOOOOOO                                                          OOOO
+OO
                             OOOOO                                                          OOOOO
+OOOOO
                              OOO                                                          OOOOOO
+OOOOOOOOO
                               OO                                                          OOOOOO
+OOOOOOOO
                                OO                                                        OOOOOOO
+OOOOOOO
                                  OO                                                     OOOOOOOO
+OOOOOOO
                                   OO                                                   OOOOOOOOO
+OOOOOO
                                     OO                                               OOOOOOOOOOO
+OOOOO
                                      OOO                                            OOOOOOOOOOOO
+OOOO
                                        OOOO                                        OOOOOOOOOOOOO
+OOO
                                         OOOOOO                                   OOOOOOOOOOOOOOO
+OO
                                           OOOOOOO                             OOOOOOOOOOOOOOOOOO
                                             OOOOOOOO                       OOOOOOOOOOOOOOOOOOO
                                               OOOOOOOOOOO              OOOOOOOOOOOOOOOOOOOOO
@@ -60,28 +71,51 @@ $ gothic OS-9
                                     OOOOOOOOO           OO           OOOOOOOOOOOOOOOO      OOO
                                    OOOOOOOOOO          O            OOOOOOOOOOOOOOOO         OOO
                                    OOOOOOOOOO         O            OOOOOOOOOOOOOOOO          OOO
+OO
                                   OOOOOOOOOOO         O            OOOOOOOOOOOOOOO          OOOO
+OOOOO
                                  OOOOOOOOOOOO          O          OOOOOOOOOOOOOOO          OOOOO
+OOOOOOOOO
                                 OOOOOOOOOOOO            OO       OOOOOOOOOOOOOOO          OOOOOO
+OOOOOOO
                                OOOOOOOOOOOOO               OO    OOOOOOOOOOOOOO           OOOOOO
+OOOOO
                               OOOOOOOOOOOOO                   OOOOOOOOOOOOOOOO           OOOOOOO
+OOOO
                             OOOOOOOOOOOOOO                      OOOOOOOOOOOOO            OOOOOOO
+OO
                          OOOOOOOOOOOOOOOOO                     OOOOOOOOOOOOO            OOOOOOOO
+OO
                           OOOOOOOOOOOOOO                       OOOOOOOOOOOO            OOOOOOOOO
+OO
                           OOOOOOOOOOOOO                       OOOOOOOOOOOO OO          OOOOOOOOO
+OO
                            OOOOOOOOOOO                        OOOOOOOOOOOO    OO      OOOOOOOOOO
+OO
                             OOOOOOOO                         OOOOOOOOOOOO        OO   OOOOOOOOOO
+O
                              OOOOOO                          OOOOOOOOOOOO           OOOOOOOOOOOO
+O
                              OOOOO                          OOOOOOOOOOOO              OOOOOOOOOO
+O
                               OO                            OOOOOOOOOOOO              OOOOOOOOOO
+O
                                OO                          OOOOOOOOOOOO                OOOOOOOOO
+O
                                 OO                        OOOOOOOOOOOO                 OOOOOOOOO
+O
                                  OO                      OOOOOOOOOOOOO                  OOOOOOOO
+O OO
                                   OOO                   OOOOOOOOOOOOO                    OOOOOOO
+O    OO
                                    OOO                OOOOOOOOOOOOO                       OOOOOO
+O      O
                                     OOOO           OOOOOOOOOOOOOO                           OOOO
+OO      O
                                       OOOOOOOOOOOOOOOOOOOOOOOOO                               OO
-                                        OOOOOOOOOOOOOOOOOOOO                                   O
+OOO     O
+                                        OOOOOOOOOOOOOOOOOOOO
+OOOO   O
 
 
 

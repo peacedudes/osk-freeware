@@ -1,9 +1,13 @@
 as0 DOC/xasm/sample.a0 - l s
-0001                         * sample.a0 -- a 6800 program for as0, the 6800/6802 cross-a.
+0001                         * sample.a0 -- a 6800 program for as0, the 6800/6802 cross-as
+sembler.
 0002                         *
-0003                         * It is here so that `as0' can be shown doing its job ratherg
-0004                         * its usage line.  Assemble it with:   as0 /dd/DOC/xasm/samps
-0005                         * and the S-record object lands in sample.a0.S19 in your dat.
+0003                         * It is here so that `as0' can be shown doing its job rather
+than printing
+0004                         * its usage line.  Assemble it with:   as0 /dd/DOC/xasm/sampl
+e.a0 - l s
+0005                         * and the S-record object lands in sample.a0.S19 in your data
+ directory.
 0006                         *
 0007 0100                            org     $0100
 0008 0100 86 41              start   ldaa    #$41            load an 'A'

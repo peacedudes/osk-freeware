@@ -1,6 +1,8 @@
 as11 DOC/xasm/sample.a11
-                        * sample.a11 -- a 68HC11 program for as11.  Bit manipulation opern
-                        * the 'HC11 are separated by BLANKS, not commas -- see DOC/xasm/a.
+                        * sample.a11 -- a 68HC11 program for as11.  Bit manipulation opera
+nds on
+                        * the 'HC11 are separated by BLANKS, not commas -- see DOC/xasm/as
+m.doc.
                         *
 c000                            org     $c000
 1004                    portb   equ     $1004

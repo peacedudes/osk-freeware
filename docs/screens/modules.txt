@@ -1,5 +1,6 @@
 modinfo CMDS/cio | head -n 6
------------------------------------ CMDS/cio  - - - - - - - - - - - - - - - - --
+----------------------------------- CMDS/cio  - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - -
 Module name           = cio
 System revision       = 1
 Module size           = 18058

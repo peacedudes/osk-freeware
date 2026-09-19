@@ -1,2 +1,4 @@
-rmail milkyway (Sep 8-18:12:21) ERROR--dolocal: can't change to mailbox: /dd/SP4
-uuxqt  (Sep 8-18:25:54) ERROR--isuuxqtrunning() can't load 'procs'
+$ uulog
+
+rmail milkyway (Sep 18-20:29:28) ERROR--dolocal: can't change to mailbox: /dd/SP
+OOL/MAIL/tester/tester...error #214

@@ -2,4 +2,5 @@ filter -?
 Usage: | filter [-nrvlq] [-f rules] [-o file]
         or: filter [-c] -[s|S]
 $ filter -v <msg.txt
-filter (Sat Sep 12 06:41:35 2026 su): LEAVE Cannot open temporary file /r0/filt3
+filter (Fri Sep 18 20:29:06 2026 su): LEAVE Cannot open temporary file /r0/filte
+r.3

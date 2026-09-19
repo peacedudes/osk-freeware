@@ -1,16 +1,20 @@
 wns -w=1 GPL DOC/README
 DOC/README:
-DOC/README:Where a package is under the GPL, its COPYING file is kept here too t
+DOC/README:Where a package is under the GPL, its COPYING file is kept here too -
+- that
 DOC/README:is a licence obligation for the binaries in CMDS, not a convenience.
 -------------------
-DOC/README:gcc.texinfo rather than a separate file, and sbprolog is under SUNY y
+DOC/README:gcc.texinfo rather than a separate file, and sbprolog is under SUNY S
+tony
 DOC/README:Brook's own licence (DOC/sbprolog/COPYING), not the GPL.
 DOC/README:
 -------------------
 DOC/README:  bash/     Bourne-Again Shell -- readme, OSK port notes
 DOC/README:  ed/       GNU ed 0.2 -- README, OSK port notes, ed.1, COPYING (GPL)
-DOC/README:  elvis/    Elvis 1.7 (vi clone) -- elvis/ctags/fmt/ref man pages + c
+DOC/README:  elvis/    Elvis 1.7 (vi clone) -- elvis/ctags/fmt/ref man pages + .
+doc
 -------------------
 DOC/README:  gcc/      GCC 2.5.6 OS-9 port notes
-DOC/README:  grep/     GNU grep 2.0 -- README, OSK port notes, grep.man, COPYIN)
+DOC/README:  grep/     GNU grep 2.0 -- README, OSK port notes, grep.man, COPYING
+ (GPL)
 DOC/README:  ncurses/  ncurses -- installation, terminal and compile notes

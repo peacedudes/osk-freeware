@@ -4,6 +4,7 @@ $ todos tmp/ENC/le.txt
 del: not found
 rename: can't rename to "tmp/ENC/le.txt"Error #000:215 (E_BPNAM) Bad Path Name
 %1       5 Error  215           rename todos.${$}$.3 tmp/ENC/le.txt
-Src: 'tmp/ENC/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -> 'tmp/ENC/l'
+Src: 'tmp/ENC/le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -> 'tmp/ENC/le
+.txt'
 $ chksum tmp/ENC/le.txt
 09f241c9

@@ -1,3 +1,4 @@
 texidx sample.idx
-# No more memory: 67108928-byte request refused, 10400704 bytes free in a 33554a
+# No more memory: 67108928-byte request refused, 10444544 bytes free in a 335544
+32-byte arena
 texi: virtual memory exhausted

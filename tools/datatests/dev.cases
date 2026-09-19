@@ -96,14 +96,27 @@ expect  {  if  {  return  }  return  }
 # patch recognises the diff and gets as far as Plan B, then cannot read
 # back its own temporary. Pinned as the defect it is -- the recognition is
 # real and so is the failure.
-case    patch-recognises-a-diff-and-then-cannot-read-its-own-temporary
+# patch APPLIES a diff, and did not until 2026-09-18.  It used to fall back
+# to Plan B and stop with "Error reading tmp file", which was pinned here as
+# a defect and blamed on the emulator; it was its own port.  inp.c and util.c
+# opened files with Unix modes -- `open(name, 0)' is O_RDONLY on Unix and NO
+# ACCESS BITS on OS-9, so the read after it is refused E$BMode.  Traced by the
+# os9exec session, fixed in SRC/patch, recorded in SRC/patch/README.OSK.
+# The `absent' lines are what make this case able to fail again.
+case    patch-applies-a-diff-with-plan-a
 run     /dd/CMDS/cp $W/t.c $W/t2.c
 run     echo "/* a new comment */" >> $W/t2.c
 run     /dd/CMDS/diff $W/t.c $W/t2.c > $W/t.diff
 run     /dd/CMDS/patch $W/t.c < $W/t.diff
 expect  Hmm...  Looks like a normal diff to me...
-expect  using Plan B...
-expect  Error reading tmp file
+expect  using Plan A...
+expect  Hunk #1 succeeded
+run     /dd/CMDS/cat $W/t.c
+expect  /* a new comment */
+run     /dd/CMDS/ls $W/t.c.orig
+expect  t.c.orig
+absent  using Plan B...
+absent  Error reading tmp file
 
 case    sieve-runs-its-benchmark
 run     /dd/CMDS/sieve

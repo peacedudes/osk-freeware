@@ -7,17 +7,20 @@ dvijet story.dvi
 [Log file [story.dvi_err] created]
 
 Font file [cmsl10 [120 dpi]] could not be opened.
----using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmsl10.300pk [300 dpi]] inst.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmsl10.300pk [300 dpi]] inste
+ad.
 Current TeX page counters: [0]
 
 Font file [cmbx10 [120 dpi]] could not be opened.
----using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmbx10.300pk [300 dpi]] inst.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmbx10.300pk [300 dpi]] inste
+ad.
 Current TeX page counters: [0]
 
 Font file [cmr10 [120 dpi]] could not be opened.
----using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmr10.300pk [300 dpi]] inste.
+---using nearest neighbor [/DD/SYS/TEX/FONTS/pk300/cmr10.300pk [300 dpi]] instea
+d.
 Current TeX page counters: [0]
 [1{1}]  [OK]
 $ ls -l story.dvi_*
--rw-------   1 0        0             496 Sep  9 00:36 story.dvi_err
--rw-------   1 0        0           13906 Sep  9 00:36 story.dvi_jet
+-rw-------   1 0        0             496 Sep 18 21:16 story.dvi_err
+-rw-------   1 0        0           13906 Sep 18 21:16 story.dvi_jet

@@ -1,3 +1,24 @@
-echo "0 0" > tmp/pts
-$ spline tmp/pts | head -n 14
-%!0LY1LF.or#\LG,nl(ILF.or#\LG*aa&CLF,nl(ILG+hu,VLF,nl(ILG*ca*OLF+hu,VLG*b~1BLF+E
+GLF)if-YLELP)if-Y1LF(a}.GLF(e|/CLF)me.ULELP)me.U1LF(e|/CLF(bz/_LF)bc/QLELP)bc/Q1
+LF(bz/_LF(nv0[LF(f~0MLELP(f~0M1LF(nv0[LF(kr1WLF(ow1ILELP(ow1I1LF(kr1WLF(gm2SLF(g
+o2ELELP(go2E1LF(gm2SLF(ci3RLF(oh3DLELP(oh3D1LF(ci3RLF(eh4WLF(mg4ILELP(mg4I1LF(eh
+4WLF(fk6ALF(jl5SLELP(jl5S1LF(fk6ALF(ar7QLF(mv7CLELP(mv7C1LF(ar7QLF(c|9FLF)kf8XLE
+LP(a|'T1LF(jq(BLF(gt)WLF(o|)ILELP(o|)I1LF(gt)WLF(nu+GLF(f}*YLELP(f}*Y1LF(nu+GLF(
+kv,QLF(g},CLELP(g},C1LF(kv,QLF(fv-VLF(e}-HLELP(e}-H1LF(fv-VLF(eu.ULF(a}.GLELP(a}
+.G1LF(eu.ULF(ns/QLF(e|/CLELP(e|/C1LF(ns/QLF(nq0MLF(bz/_LELP(bz/_1LF(nq0MLF(go1IL
+F(nv0[LELP(nv0[1LF(go1ILF(gl2ELF(kr1WLELP(kr1W1LF(gl2ELF(di3BLF(gm2SLELP(gm2S1LF
+(di3BLF(of4@LF(ci3RLELP(ci3R1LF(of4@LF(jf5ELF(eh4WLELP(eh4W1LF(jf5ELF(fh6OLF(fk6
+ALELP(fk6A1LF(fh6OLF(mk7_LF(ar7QLELP(ar7Q1LF(mk7_LF(kq9TLF(c|9FLELP(jq(B1LF(bg(P
+LF(ll*FLF(gt)WLELP(gt)W1LF(ll*FLF(kp+ULF(nu+GLELP(nu+G1LF(kp+ULF(gr,_LF(kv,QLELP
+(kv,Q1LF(gr,_LF(nq.DLF(fv-VLELP(fv-V1LF(nq.DLF(io/CLF(eu.ULELP(eu.U1LF(io/CLF(fl
+/_LF(ns/QLELP(ns/Q1LF(fl/_LF(ji0[LF(nq0MLELP(nq0M1LF(ji0[LF(gg1WLF(go1ILELP(go1I
+1LF(gg1WLF(ce2SLF(gl2ELELP(gl2E1LF(ce2SLF(dc3PLF(di3BLELP(di3B1LF(dc3PLF(gb4NLF(
+of4@LELP(of4@1LF(gb4NLF(fb5SLF(jf5ELELP(jf5E1LF(fb5SLF(cc6]LF(fh6OLELP(fh6O1LF(c
+c6]LF(id8MLF(mk7_LELP(mk7_1LF(id8MLF(cg:BLF(kq9TLELP(bg(P1LF'j|(^LF(lf*TLF(ll*FL
+ELP(ll*F1LF(lf*TLF(gm,CLF(kp+ULELP(kp+U1LF(gm,CLF(dp-NLF(gr,_LELP(gr,_1LF(dp-NLF
+(no.RLF(nq.DLELP(nq.D1LF(no.RLF(jk/QLF(io/CLELP(io/C1LF(jk/QLF(ff0MLF(fl/_LELP(f
+l/_1LF(ff0MLF(oa1ILF(ji0[LELP(ji0[1LF(oa1ILF'o~2ELF(gg1WLELP(gg1W1LF'o~2ELF'h|3B
+LF(ce2SLELP(ce2S1LF'h|3BLF'l{3^LF(dc3PLELP(dc3P1LF'l{3^LF'h{4]LF(gb4NLELP(gb4N1L
+F'h{4]LF'f{6ALF(fb5SLELP(fb5S1LF'f{6ALF'k{7KLF(cc6]LELP(cc6]1LF'k{7KLF'b|8[LF(id
+8MLELP(id8M1LF'b|8[LF'h|:QLF(cg:BLELP'j|(^1LF'br)LLF(`b+BLF(lf*TLELP(lf*T1LF(`b+
+BLF(gl,QLF(gm,CLELP(gm,C1LF(gl,QLF(`q-\LF(dp-NLELP(dp-N1LF(`q-\LF(bp/@LF(no.RLEL
+P(no.R1LF(bp/@LF(ji/_LF(jk/QLELP(jk/Q1LF(ji/_LF(ba0[LF(ff0

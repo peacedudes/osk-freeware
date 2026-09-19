@@ -1,5 +1,3 @@
-italic font.
-   The terms command and function are synonymous. We often speak of a command b*
  *eing
 bound to a particular key, although you may actually have to type more than one*
  * character
@@ -15,4 +13,6 @@ characters like C-x _ here, typing the character "x" while holding down the con*
  * be labelled
 something else; on the Atari ST, for example, the key marked "Alternate" is the*
  * meta key.)
-If your keyboard doesn't have a meta key, don't
+If your keyboard doesn't have a meta key, don't panic.  You can also use the es*
+ *cape key
+as a meta

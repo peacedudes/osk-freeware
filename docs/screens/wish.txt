@@ -1,7 +1,7 @@
 HeaderLine
 
 ================================================================================
-Current Directory: /dd                                             Entries: 031
+Current Directory: /dd                                             Entries: 037
 
 Dirs:   ..            .ELM          ADL           CMDS          DEFS
         DEMO          DOC           DOS           ETC           GAMES
@@ -9,9 +9,9 @@ Dirs:   ..            .ELM          ADL           CMDS          DEFS
         SBPROLOG      SPL           SPOOL         SRC           SYS
         USR           VH            c             local         tmp
 
-Files:  .bashrc       .newsrc       SOURCES.txt   readme        startup
-
-
+Files:  .bashrc       .newsrc       9             SOURCES.txt   lex.yy.c
+        m.out         rdoc.err      readme        startup       todos.$$$.3
+        toos9.$$$.3
 
 
 
@@ -20,5 +20,5 @@ Files:  .bashrc       .newsrc       SOURCES.txt   readme        startup
 
 
 ================================================================================
-Siz:      992 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 00-00-00 00:00
+Siz:     1184 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 18-09-126 20:44
  #echo#  #mark#  unmark  ######  ######  ######  ######  ######  ######  #exit#

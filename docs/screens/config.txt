@@ -1,7 +1,3 @@
-/* Properties of double: */
-/* Base = 2 */
-/* Significant base digits = 53 (= at least 15 decimal digits) */
-/* Smallest x such that 1.0-base**x != 1.0 = -53 */
 /* Small x such that 1.0-x != 1.0 = 1.11022e-16 */
 /* Smallest x such that 1.0+base**x != 1.0 = -52 */
 /* Smallest x such that 1.0+x != 1.0 = 2.22045e-16 */
@@ -15,9 +11,13 @@
 /* Arithmetic uses a hidden bit */
 
 /* Expressions are evaluated in double precision */
-# No more memory: 1073745920-byte request refused, 32771264 bytes free in a 335a
-# No more memory: 536875008-byte request refused, 32771264 bytes free in a 3355a
-# No more memory: 268439552-byte request refused, 32771264 bytes free in a 3355a
-# No more memory: 10 allocation failures so far, still failing (latest 2101248 )
+# No more memory: 1073745920-byte request refused, 32852032 bytes free in a 3355
+4432-byte arena
+# No more memory: 536875008-byte request refused, 32852032 bytes free in a 33554
+432-byte arena
+# No more memory: 268439552-byte request refused, 32852032 bytes free in a 33554
+432-byte arena
+# No more memory: 10 allocation failures so far, still failing (latest 2101248 b
+ytes)
 
 /* Memory mallocatable ~= 32082 Kbytes */

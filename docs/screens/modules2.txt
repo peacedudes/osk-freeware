@@ -1,5 +1,6 @@
 modinfo CMDS/ptxm | head -n 12
----------------------------------- CMDS/ptxm  - - - - - - - - - - - - - - - - --
+---------------------------------- CMDS/ptxm  - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - -
 Module name           = Ptxm
 System revision       = 1
 Module size           = 2886
@@ -13,6 +14,7 @@ Comment string offset = 00000000H
 Symbol table offset   = 00000000H
 $ modinfo CMDS/WN/wn.stb | head -n 4
 -------------------------------- CMDS/WN/wn.stb  - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - -
 Module name           = wn.stb
 System revision       = 1
 Module size           = 7968

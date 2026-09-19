@@ -1,17 +1,17 @@
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
         Files: 00 fCons /term
  Last syscall: I$WritLn (0x008c)
-    Registers: Dn=0A0DE798 000BE01A 00000003 00000006
+    Registers: Dn=0A0DF5D8 000BEE5A 00000003 00000006
                   00000003 01000000 0000C580 00000008
-               An=000A778E 000BDF96 000BE01A 0A0DE798
-                  000BE2E0 000BDF50 000B9DC0 000BDF50
+               An=000A778E 000BEDD6 000BEE5A 0A0DF5D8
+                  000BF120 000BED90 000BAC00 000BED90
                PC=000A778E SR=0000
- Executing: -->000a778e: 202b 0004 d0ae 8a88 6100 MOVE.L (A3,$0004) == $0a0de790
-               000a7792: d0ae 8a88 6100 2ca4 4a80 ADD.L (A6,$8a88) == $000b28480
-       Memory: Static    -     000B1DC0 - 000BE340   50560 bytes
-               Allocated - 000 000B1DC0 - 000BE340   50560 bytes
-                           001 000BE340 - 000DE340  131072 bytes
-                           002 000DE340 - 00103340  151552 bytes
-# # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to c)
+ Executing: -->000a778e: 202b 0004 d0ae 8a88 6100 MOVE.L (A3,$0004) == $0a0df5dc
+,D0
+               000a7792: d0ae 8a88 6100 2ca4 4a80 ADD.L (A6,$8a88) == $000b3688,
+D0
+       Memory: Static    -     000B2C00 - 000BF180   50560 bytes
+               Allocated - 000 000B2C00 - 000BF180   50560 bytes
+                           001 000BF180 - 000DF180  131072 bytes
+                           002 000DF180 - 00104180  151552 bytes
+# # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to co
+ntinue)

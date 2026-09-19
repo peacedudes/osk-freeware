@@ -478,6 +478,7 @@ wait    35
 
 
 shot    pgmramp
+size    26 156
 cap     A greyscale ramp dithered to a bitmap: the gradient survives as the
 cap     density of the characters.
 try     pgmramp -lr 152 44 | pgmtopbm | pbmtoascii
@@ -648,6 +649,7 @@ wait    15
 
 
 shot    pnmtile
+size    24 156
 cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
 cap     enlarges a bitmap without the staircase.
 try     pnmtile 150 40 tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
@@ -1109,7 +1111,7 @@ wait    5
 
 
 shot    djpeg
-size    36 80
+size    36 164
 cap     The JPEG library's own test image, decoded by djpeg and drawn as
 cap     ASCII by netpbm.  djpeg ends its PNM header lines with LF and the
 cap     netpbm here wants CR, so the three `pbyte' calls patch those

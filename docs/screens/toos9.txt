@@ -4,6 +4,7 @@ $ toos9 tmp/ENC/dos.txt
 del: not found
 rename: can't rename to "tmp/enc/dos.txt"Error #000:215 (E_BPNAM) Bad Path Name
 %1       5 Error  215           rename toos9.${$}$.3 tmp/enc/dos.txt
-Src: 'tmp/ENC/dos.txt', Dest: 'toos9.$$$.3'   Rename 'toos9.$$$.3' -> 'tmp/enc/'
+Src: 'tmp/ENC/dos.txt', Dest: 'toos9.$$$.3'   Rename 'toos9.$$$.3' -> 'tmp/enc/d
+os.txt'
 $ chksum tmp/ENC/dos.txt
 9c00f4e8

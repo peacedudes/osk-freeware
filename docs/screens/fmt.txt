@@ -1,7 +1,8 @@
 cat tmp/TXT/rag.txt
 Twas brillig,
 and the slithy
-toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mo.
+toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mom
+e raths outgrabe.
 $ fmt tmp/TXT/rag.txt
 Twas brillig, and the slithy toves did gyre and gimble in the wabe: all
 mimsy were the borogoves, and the mome raths outgrabe.
