@@ -266,15 +266,14 @@ def break_card_directory(root):
     because another stanza in the same sheet had run `mkdir' first.  It
     shows up the moment one card is re-shot on its own.
     """
-    copy = os.path.join(os.path.dirname(root), "sheets")
-    shutil.copytree(os.path.join(REPO, "tools", "screenshots"), copy)
-    w(os.path.join(copy, "zzzdir.sheet"),
+    copy = _tools_copy(root, "toolsnodir")
+    w(os.path.join(copy, "screenshots", "zzzdir.sheet"),
       b"shot    zzznodir\n"
       b"cap     a stanza that writes where nobody made a directory\n"
       b"try     cat tmp/ZZZNOPE/x\n"
       b"run     cat /dd/SYS/motd > /dd/tmp/ZZZNOPE/x\n"
       b"wait    2\n")
-    os.environ["OSK_SHEET_DIR"] = copy
+    os.environ["OSK_TOOLS_DIR"] = copy
     return "a stanza writing into /dd/tmp/ZZZNOPE added to a COPY of the sheets"
 
 
@@ -406,16 +405,24 @@ def break_unaccounted_program(root):
     added program starts in and the state this check exists to notice.
     """
     copy = _tools_copy(root, "toolsacct")
-    path = os.path.join(copy, "panel-backlog.txt")
-    rows = [l for l in open(path).read().split("\n")]
-    i = next((i for i, r in enumerate(rows)
-              if r.strip() and not r.startswith("#")), None)
-    if i is None:
-        return None                      # an empty backlog: nothing to take
-    name = rows[i].strip()
-    open(path, "w").write("\n".join(rows[:i] + rows[i+1:]))
-    os.environ["OSK_TOOLS_DIR"] = copy
-    return "`%s' dropped from a COPY of panel-backlog.txt" % name
+    # The backlog is EMPTY -- every card passes -- so there is nothing to
+    # take off it.  The exceptions list is the other way a program is
+    # accounted for, and dropping one leaves it accounted for nowhere.
+    for fname, sep in (("panel-backlog.txt", None),
+                       ("panel-exceptions.psv", "|")):
+        path = os.path.join(copy, fname)
+        if not os.path.exists(path):
+            continue
+        rows = open(path, errors="replace").read().split("\n")
+        i = next((i for i, r in enumerate(rows)
+                  if r.strip() and not r.startswith("#")), None)
+        if i is None:
+            continue
+        name = rows[i].split(sep)[0].strip() if sep else rows[i].strip()
+        open(path, "w").write("\n".join(rows[:i] + rows[i+1:]))
+        os.environ["OSK_TOOLS_DIR"] = copy
+        return "`%s' dropped from a COPY of %s" % (name, fname)
+    return None
 
 
 
