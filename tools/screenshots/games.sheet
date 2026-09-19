@@ -139,21 +139,6 @@ wait    5
 
 # ------------------------------------------------------------------- arcade
 
-shot    greed
-cap     Greed: the screen is a field of digits and `@' is you.  Move with
-cap     the vi keys and you eat that many digits in that direction, scoring
-cap     them and leaving blanks behind; the game ends when no move is left.
-cap     The percentage beside the score is how much of the field you have
-cap     cleared.
-try     greed
-run     greed
-wait    8
-keys    jjkl
-wait    5
-snap
-send    \003
-wait    2
-
 shot    lander
 cap     A lunar lander flown over a scrolling landscape.  Space starts a
 cap     descent, a digit sets the engine power, `x' or `k' fires the main
@@ -1003,30 +988,6 @@ wait    5
 snap
 send    q
 wait    2
-
-shot    puz15
-cap     The fifteen puzzle, shuffled: slide the tiles into the gap until
-cap     they read 1 to 15.  It counts your moves and your time.  Give it a
-cap     size to play on a different board -- `puz15 5x5'.
-try     puz15
-run     puz15
-wait    8
-snap
-send    \003
-wait    2
-
-shot    puzzle15
-cap     The same fifteen puzzle under its longer name, in CMDS rather than
-cap     CMDS/GAMES.  Slide the tiles into the gap; the move count and clock
-cap     are along the foot.  DOC/puzzle15 has its notes.
-try     puzzle15
-run     puzzle15
-wait    8
-snap
-send    \003
-wait    3
-
-# ----------------------------------------------------------- word & guessing
 
 shot    animal
 cap     The guess-the-animal game, which learns: it asks yes-or-no questions

@@ -81,11 +81,6 @@ cap     file to build here, so it answers with its command format.
 try     bootgen -?
 run     bootgen -?
 wait    8
-shot    btree
-cap     A B-tree demonstration, building and walking an index.
-try     btree
-run     btree
-wait    8
 shot    clock
 cap     clock displays a running clock, and cannot here: it opens a pipe
 cap     to feed its display and answers `Popen error 216' when that pipe
@@ -262,11 +257,6 @@ cap     ask their own question about a module and have cards of their own.
 try     liborder.os9 -?
 run     liborder.os9 -?
 wait    6
-shot    isam
-cap     The indexed-sequential file demonstration from the same shelf.
-try     isam
-run     isam
-wait    8
 shot    keep
 size    30 80
 cap     keep takes a program off the collection onto your own disk, copying
@@ -470,33 +460,6 @@ run     clear
 wait    1
 run     ssl DOC/INDEX
 wait    4
-shot    sysid
-cap     sysid asks the kernel to identify itself through F$SysID and prints
-cap     what comes back: the processor it is running on, the processor the
-cap     kernel was built for, and the kernel's own name and version line.
-try     sysid
-run     sysid
-wait    5
-shot    sysmon
-size    30 80
-cap     The OS-9/68k Process Monitor: the node, clock and CPU in the header,
-cap     then a bar per process scaled 0 to 100 percent of the CPU, redrawn
-cap     every few seconds.  On its first run it offers to create SYS/nodedef
-cap     and asks for this system's node name; control-C leaves.
-try     sysmon
-run     export TERM=vt100
-wait    1
-run     clear
-wait    1
-run     sysmon 2>/nil
-wait    6
-send    Y
-wait    4
-send    osk\r
-wait    12
-snap
-send    \003
-wait    3
 shot    top
 cap     top lists processes by their share of the CPU.  It prints its column
 cap     headings and then crashes on the root process, whose parent is
@@ -693,20 +656,6 @@ cap     for one.  With no process named it prints its syntax: the process
 cap     id, the signal code and the seconds to wait.
 try     signal -?
 run     signal -?
-wait    5
-shot    sysmax
-cap     sysmax reports the system's maximum process age -- the scheduler
-cap     setting that bounds how far a waiting process's priority can climb.
-cap     The setting is not kept here, so it reads back as zero.
-try     sysmax
-run     sysmax
-wait    5
-shot    sysmin
-cap     sysmin reports the system's minimum process priority, the floor the
-cap     scheduler ages processes up from.  The setting is not kept here, so
-cap     it reads back as zero.
-try     sysmin
-run     sysmin
 wait    5
 shot    t
 cap     t is a minimal trap-handler test stub: it installs, returns cleanly

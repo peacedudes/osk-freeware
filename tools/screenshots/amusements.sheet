@@ -258,23 +258,6 @@ wait    1
 send    \033
 wait    3
 
-shot    travesty
-size    30 80
-cap     Rewrites a text as plausible nonsense.  It learns which letters
-cap     follow which in the input -- runs of five, unless -o says
-cap     otherwise -- and writes new text with the same habits, as many
-cap     characters as -n asks for.  Here it has read the Star Trek
-cap     quotations in GAMES/COOKIE and invents its own, attributions and
-cap     stardates included.
-try     travesty -n600 < GAMES/COOKIE/startrek
-os9     travesty -n600 <GAMES/COOKIE/startrek
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     travesty -n600 < GAMES/COOKIE/startrek
-wait    12
-
 shot    textb
 size    32 80
 cap     The Mandelbrot set drawn in ASCII, the number of iterations at

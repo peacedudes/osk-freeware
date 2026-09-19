@@ -35,7 +35,6 @@ wysecrack|Communications|Terminal & session
 wysetime|Communications|Terminal & session
 name|Amusements|Generators
 pwgen|Amusements|Generators
-travesty|Amusements|Generators
 rndname|Amusements|Generators
 scales|Amusements|Generators
 bio|Amusements|Biorhythms
@@ -87,8 +86,6 @@ screen|System & modules|Utilities
 screen_nocio|System & modules|Utilities
 setterm|Communications|Terminal & session
 tsmon2|Communications|Terminal & session
-udate|Communications|Terminal & session
-uwho|Communications|Terminal & session
 
 # ---- Compilers & build ----
 as0|Compilers & build|Assemblers & linkers
@@ -119,8 +116,6 @@ float|Developer tools|Benchmarks
 paranoia|Games|Adventure & fiction
 savage|Developer tools|Benchmarks
 sieve|Developer tools|Benchmarks
-time|Developer tools|Benchmarks
-timid|Developer tools|Benchmarks
 sdb|Developer tools|Debugging
 trap|Developer tools|Debugging
 cb|Developer tools|Source formatting
@@ -134,13 +129,6 @@ ctags|Developer tools|Source navigation
 cxref|Developer tools|Source navigation
 etags|Developer tools|Source navigation
 xrf|Developer tools|Source navigation
-ci|Developer tools|Version control
-co|Developer tools|Version control
-rcs|Developer tools|Version control
-rcsdiff|Developer tools|Version control
-rcsident|Developer tools|Version control
-rcsmerge|Developer tools|Version control
-rlog|Developer tools|Version control
 
 # ---- Disk & DOS ----
 msattrib|Disk & DOS|MS-DOS media (mtools)
@@ -185,8 +173,6 @@ mg|Editors|emacs family
 sedt|Editors|SEDT family
 vi_1.0|Editors|vi family
 vi|Editors|vi family
-vi_cio|Editors|vi family
-vi_nocio|Editors|vi family
 vis|System & modules|Processes & memory
 
 # ---- Encoding & conversion ----
@@ -246,7 +232,6 @@ napoleon|Games|Adventure & fiction
 infocom|Games|Adventure & fiction
 infocom.tcap|Games|Adventure & fiction
 bite|Screen toys|Screen toys
-greed|Games|Arcade & action
 lander|Games|Arcade & action
 letters|Games|Arcade & action
 pacman|Games|Arcade & action
@@ -298,8 +283,6 @@ world|Games|Other games
 zot|Text tools|Banners & text art
 maze|Games|Puzzles
 mines|Games|Puzzles
-puz15|Games|Puzzles
-puzzle15|Games|Puzzles
 animal|Games|Word & guessing
 bog|Games|Word & guessing
 hang|Games|Word & guessing
@@ -567,9 +550,6 @@ aprocs|System & modules|Processes & memory
 dpark|System & modules|Devices & disks
 launch|System & modules|Processes & memory
 signal|System & modules|Processes & memory
-sysmax|System & modules|Processes & memory
-sysmin|System & modules|Processes & memory
-sysmon|System & modules|Processes & memory
 t|System & modules|Processes & memory
 top|System & modules|Processes & memory
 who|System & modules|Processes & memory
@@ -578,7 +558,6 @@ clock|System & modules|System state
 load|System & modules|OS-9 modules
 oskversion|System & modules|System state
 setime|System & modules|System state
-sysid|System & modules|System state
 
 # ---- Text tools ----
 ascii|Text tools|Count & inspect
@@ -639,7 +618,6 @@ casefix|Text tools|Transform & filter
 cut|Text tools|Transform & filter
 cuts|Encoding & conversion|Text encodings
 detab|Text tools|Transform & filter
-deton|System & modules|Utilities
 eo|Text tools|Transform & filter
 field|Text tools|Transform & filter
 fillup|Text tools|Transform & filter
@@ -879,7 +857,6 @@ adldebug|Languages|Adventure authoring
 adlrun|Languages|Adventure authoring
 adltouch|Languages|Adventure authoring
 modinfo|System & modules|Utilities
-btree|Editors|SEDT family
 clear|System & modules|Utilities
 repeat|System & modules|Scheduling
 phone|System & modules|Utilities
@@ -937,11 +914,8 @@ cyberwar|G-Windows|G-Windows
 dclock|G-Windows|G-Windows
 dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
-e|System & modules|Utilities
-new_e|Editors|SEDT family
 every|System & modules|Scheduling
 greg|Time & calendar|Calendars
-isam|System & modules|Utilities
 lgrep|System & modules|Utilities
 liborder.os9|System & modules|Utilities
 lmargin|Printing|Printers

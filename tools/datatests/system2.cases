@@ -17,10 +17,6 @@ run     /dd/CMDS/preset
 expect  Funktionstasten belegt!
 expect  dsave -ieb128k
 
-case    deton-demonstrates-an-alarm-timing-out-a-read
-run     /dd/CMDS/deton 2 < /nil
-expect  You have 2 seconds to terminate self-destruct
-
 case    fixyear-explains-itself-and-then-does-its-job-silently
 run     /dd/CMDS/fixyear
 run     /dd/CMDS/cp $S /dd/tmp/fy.txt

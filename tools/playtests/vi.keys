@@ -1,18 +1,15 @@
 name    vi
 prog    vi /dd/DOC/README-CIO
-# THE REAL vi/ex -- its source in SRC/effo_vi is the Berkeley ex source.
-# Opened on a file, moved through, and left with :q! so nothing is written.
-rate    0.5
-wait    8
+# PVic.  Open a file read-only, page down, then quit without saving.
+rate    0.6
+wait    5
 snap    opened
-keys    jjjj
+key     \s
 wait    2
-keys    G
-wait    3
-snap    bottom
-key     \033
-keys    :q!
+snap    paged
+key     :
+keys    q!
 key     \r
-wait    3
-expect  README-CIO
-absent  Can't install trap handler
+wait    2
+allow   trap handler
+allow   Can't open

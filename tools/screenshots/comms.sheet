@@ -672,14 +672,6 @@ try     tsu
 run     tsu
 wait    6
 
-shot    uwho
-cap     Lists who is logged in, from the Unaxcess bulletin board.  It
-cap     opens /etc/utmp, and a leading /etc names a device in OS-9 rather
-cap     than a directory, so it cannot find that file here.
-try     uwho
-run     uwho
-wait    5
-
 shot    input
 cap     The Unaxcess bulletin board's input helper: it copies standard input
 cap     straight to standard output, a line at a time.
@@ -692,14 +684,6 @@ run     clear
 wait    1
 run     input <lines.txt
 wait    5
-
-shot    udate
-cap     The Unaxcess bulletin board's date display.  It prints the day and
-cap     time, writing the year into a fixed `19' field, so the present
-cap     year reads 19126.
-try     udate
-run     udate
-wait    4
 
 shot    wysecrack
 cap     Probes for a Wyse terminal by asking it to identify itself and

@@ -132,12 +132,3 @@ expect  SUBDIR
 case    snd_sig-says-so-when-there-is-no-such-process
 run     /dd/CMDS/snd_sig 250
 expect  can't wake 250
-
-# os9exec does not implement the F$SetSys calls these two make, and both
-# print zero as a result. That is the emulator, not the programs, and it is
-# what DOC/INDEX says -- asserted here so the entry cannot drift from it.
-case    sysmax-and-sysmin-report-zero-under-os9exec
-run     /dd/CMDS/sysmax
-run     /dd/CMDS/sysmin
-expect  system maximum age is 0
-expect  system minimun priority is 0

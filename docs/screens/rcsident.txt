@@ -1,3 +1,0 @@
-rcsident note_v
-note_v:
-ident warning: no id keywords in note_v

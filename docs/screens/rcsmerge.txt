@@ -1,3 +1,0 @@
-rcsmerge note_v
-rcsmerge error: no base revision number given
-rcsmerge aborted

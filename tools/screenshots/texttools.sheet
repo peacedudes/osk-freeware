@@ -74,17 +74,6 @@ run     clear
 run     diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 wait    5
 
-shot    deton
-cap     deton is a demonstration of timing out a read with an alarm, not
-cap     a tool in its own right.  Given nothing to read within three
-cap     seconds it announces self-destruct and then, having read no
-cap     password, sets it off -- all in words; nothing is actually at
-cap     risk.
-try     deton < /nil
-os9     deton</nil
-run     deton < /nil
-wait    8
-
 shot    fcomp
 cap     fcomp compares two text files line by line and names what
 cap     changed between them -- here, a line inserted at the end.

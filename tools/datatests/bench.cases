@@ -47,20 +47,6 @@ run     $D/dhryshamu < /dd/tmp/runs
 run     $D/dhryshamu2 < /dd/tmp/runs
 expect  Arr_2_Glob[8][7]:    20010
 expect  Bool_Glob:           1
-
-# os9exec runs 20000 Dhrystones inside one tick of a one-second clock, so
-# every build ends with this rather than a rate. It is the emulator, not the
-# programs, and it is worth pinning: a rate here would be a measurement of
-# the host anyway.
-case    twenty-thousand-runs-is-too-fast-to-time-under-os9exec
-run     $D/dhryO2 < /dd/tmp/runs
-expect  Measured time too small to obtain meaningful results
-expect  Please increase number of runs
-
-# savage runs a = tan(atan(exp(log(sqrt(a*a))))) + 1 a thousand times, so
-# the ideal answer is 1000 and the distance from it is the accumulated
-# error.  This asserted 7.486e+02 until 2026-09-14: os9exec left X stale
-# after NEG and Microware's software doubles came out wrong; fixed there.
 case    float-and-savage-are-the-floating-point-benchmarks
 run     /dd/CMDS/float
 run     /dd/CMDS/savage
@@ -90,10 +76,3 @@ expect  Welcome to Paranoia!
 expect  As Philo-R-DMD you will die at times during the adventure
 expect  Simply complete the mission before you expend all six clones
 absent  ULP
-
-case    timid-reports-itself-as-timit-and-times-nothing-you-give-it
-run     /dd/CMDS/timid -?
-run     /dd/CMDS/timid /dd/CMDS/wc -c /dd/SYS/termcap
-expect  Syntax: timit [<opts>]
-expect  Function: time something
-expect  timid: unknown option 'c'

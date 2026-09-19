@@ -96,33 +96,6 @@ case    macstream-measures-the-file-before-it-reads-it
 run     echo "not a macbinary file" > $W/mac.src
 run     /dd/CMDS/macstream $W/mac.src
 expect  Short file /dd/tmp/L3/mac.src
-
-# RCS: THE CLOCK STOPS IT, and that is worth pinning because it looks like
-# a broken program. `date -t' reads 2100 here and does not advance, so two
-# check-ins land in the same second and `ci' refuses the second one --
-# "Date ... is not later than ... in existing revision 1.1". Everything
-# downstream then compares 1.1 with 1.1.
-# THE RCS FILE IS REMOVED FIRST, or the second run of this family measures
-# the first run's history instead of the clock.
-case    ci-refuses-a-second-revision-because-the-clock-does-not-advance
-run     /dd/CMDS/rm -f $W/note.txt_v $W/note.txt
-run     echo "a first line" > $W/note.txt
-run     echo "a description" > $W/desc
-run     echo "." >> $W/desc
-run     /dd/CMDS/ci $W/note.txt < $W/desc
-run     /dd/CMDS/co -l $W/note.txt
-run     echo "a second line" >> $W/note.txt
-run     /dd/CMDS/ci $W/note.txt < $W/desc
-expect  initial revision: 1.1
-expect  ci error: Date
-expect  is not later than
-
-# LAST IN THE FAMILY, because `chardef' ENDS THE EMULATOR SESSION -- and a
-# session-ender must be last or every case after it pays for a restart it
-# did not need.  (`wgen' above used to be the other half of that bill.)
-# `dict.191' which is not on this disk -- /dd/LIB/ispell.hash is the BUILT
-# hash, which is what ispell itself reads. Naming a word list of your own
-# does not change the answer: the name is compiled in.
 case    buildhash-and-chardef-both-want-a-dictionary-that-is-not-here
 # The `ls' comes FIRST: the second buildhash ends the emulator session, so
 # anything after it would never run.

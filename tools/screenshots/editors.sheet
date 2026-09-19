@@ -208,38 +208,6 @@ snap
 send    \003
 wait    3
 
-shot    new_e
-cap     SEDT again, the build that reads TERM to choose its terminal setup;
-cap     here it comes up for a VT100.  It needs the same three SYS files as e.
-try     new_e tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     new_e tmp/EDIT/jabber.txt
-wait    8
-snap
-send    \003
-wait    3
-
-shot    e
-cap     SEDT once more, a small fixed VT100 build.  All three read the
-cap     same three files in SYS: sedt.keys, sedt.ruler0 and sedt.help.
-try     e tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     e tmp/EDIT/jabber.txt
-wait    8
-snap
-send    \003
-wait    3
-
 shot    hexed
 cap     A hex editor made of your text editor: it writes the file out as
 cap     a hex dump, opens that in the editor named by -e, and when you
@@ -326,24 +294,6 @@ wait    1
 run     sed_1.06 "s/the/THE/g" DOC/samples/jabber.txt
 wait    6
 
-shot    vi
-cap     The genuine Berkeley vi and ex -- `vi -x' is ex, `vi -d' is edit.
-cap     It fills the screen on a real terminal; the picture here shows the
-cap     first lines it paints before it waits for a command.  Its source is
-cap     in SRC/effo_vi.
-try     vi DOC/samples/jabber.txt
-wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     vi DOC/samples/jabber.txt
-wait    15
-snap
-send    \033
-wait    2
-quit    \033:q!\r
-
 shot    view
 cap     Elvis opened read-only, which is what the name `view' asks of it:
 cap     the status line marks the file read-only.
@@ -392,42 +342,43 @@ snap
 send    :q!\r
 wait    3
 
-shot    vi_cio
-cap     PVIC 1.0a, the build that uses Microware's cio.  It reads the
-cap     terminal description from TERMCAP as text, so the entry is put in
-cap     the variable first.
-try     vi_cio tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
-run     . /dd/SYS/termcap.entry
-wait    2
-run     export TERM=vt100
+shot    vi
+cap     PVIC 1.0a, the Portable VI Clone -- this disk's vi, public domain and
+cap     needing no Microware module.  A whole-screen editor, so this is the
+cap     screen: the whole file at once, with `~' marking every line past the
+cap     end of it.  Here it has gone to the last line with `G', opened a new
+cap     one with `o' and typed into it -- the change is in the buffer, not
+cap     on disk.
+cap     To leave: press ESC to get out of insert mode, then type `:q!' and
+cap     Enter to quit without saving, or `:wq' to save and quit.
+try     vi jabber.txt
+# `!' is a history reference to this bash even inside quotes, and the whole
+# line then dies with `Event not found' -- the poem below has two of them.
+run     set +H
 wait    1
-run     builtin cd /dd
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil
+wait    2
+run     printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r\rBeware the Jabberwock, my son!\r     The jaws that bite, the claws that catch!\rBeware the Jubjub bird, and shun\r     The frumious Bandersnatch!\r" > /dd/tmp/EDIT/jabber.txt
+wait    3
+run     builtin cd /dd/tmp/EDIT
 wait    1
 run     clear
 wait    1
-run     vi_cio tmp/EDIT/jabber.txt
+run     vi jabber.txt
 wait    8
+keys    G
+wait    2
+keys    o
+wait    2
+keys    He took his vorpal sword in hand.
+wait    2
+send    \e
+wait    2
 snap
 send    :q!\r
 wait    3
-
-shot    vi_nocio
-cap     PVIC 1.0a, the build that needs no Microware module: the smallest
-cap     vi on the disk.
-try     vi_nocio tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
 run     builtin cd /dd
 wait    1
-run     clear
-wait    1
-run     vi_nocio tmp/EDIT/jabber.txt
-wait    8
-snap
-send    :q!\r
-wait    3
 
 shot    ctags.elvis
 cap     Builds a tags file for elvis from C source: one line per function,

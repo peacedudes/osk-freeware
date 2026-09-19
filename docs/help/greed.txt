@@ -1,2 +1,0 @@
-$ greed -?
-Usage: /dd/CMDS/GAMES/greed [-p] [-s]

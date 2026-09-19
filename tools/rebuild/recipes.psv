@@ -67,7 +67,6 @@ cuts|cuts|cuts.c cuts_decode.c cuts_encode.c cuts_getopt.c|||
 cvtbase|misc|cvtbase.c|||
 dam|effo_wolk|dam.c|||
 des|des|des.c|||
-deton|hc_utils|deton.c|||
 # devprc UNTESTED: its makefile also wants getsys.a, which is 68k assembly.
 # The shipped binary has a bad CRC and will not load -- see notes/SECOND-PASS.md.
 devprc|devprc|devprc.c getopt.c getsys.a|||
@@ -96,7 +95,6 @@ gen|divutils|gen.c misc.c|||
 georgia|weather|weather.c|GREGORIAN S_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
 gep|bix|gep.c|||
 gothic|gothic|gothic0.c gothic1.c|||
-greed|v_misc|greed.c|||
 gshell|eff_gshell|gshell.c selectfile.c|||
 hang|hang|main.c dogame.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/strings.r|
 help|eff_help|help.c|||
@@ -154,8 +152,6 @@ pep|pep|main.c ansi.c plain.c os9stricmp.c|||
 poker|effo_snobol|poker.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
 printf|misc|printf.c|||
 prjob|eff_lp|prjob.c|||
-puz15|v_misc|puz15.c|||
-puzzle15|eff_puzzle15|puzzle15.c|||
 pwgen|misc|pwgen.c|||
 qp|eff_qp|qp.c|||
 qt|misc|qt.c|||
@@ -196,22 +192,16 @@ ssl|effo_wolk|ssl.c|||
 stone|effo_snobol|stone.c cardpak.c genprim.c pattern.c pokev.c quest.c rperm.c rselect.c rsent.c snorand.c|||
 strfile|fortune|strfile.c|||
 strings|v_misc|strings.c|||
-sysid|hc_utils|sysid.c|||
-sysmax|hc_utils|sysmax.c|||
-sysmin|hc_utils|sysmin.c|||
 tar|eff_tar|tar.c|||
 tess|tess|tess.c|||
 tet|tet|MoveR.c MoveL.c NewP.c AdvanceP.c Rotate.c tet.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/math.l|
 tformat|effo_snobol|tformat.c|||
-time|hc_utils|time.c|||
-timid|hc_utils|timid.c|||
 top|eff_top|top.c|||
 touchtype|touchtype|game.c utils.c words.c os9.c||/dd/LIB/termlib.l /dd/LIB/curses.l /dd/LIB/rand.r /dd/LIB/egetopt.r|
 trap|trap|ctrap.c traptst.c||/dd/LIB/cio.l /dd/LIB/clib.l /dd/LIB/sys.l|
 tree|eff_tree|tree.c|||
 tsmon2|eff_tsmon|tsmon2.c|||
 tttt|hc_loose|tttt.c|||
-udate|effo_unaxcess|udate.c date.c|||
 undel|eff_undel|undel.c|||
 unifdef|hc_utils|unifdef.c|||
 unip|bix|unip.c|||
@@ -221,10 +211,8 @@ unstr|fortune|unstr.c|||
 # -- its own build line names curses.l, termlib.l and unix.l.
 ttyexp|ttyexp|ttyexp.c|||
 uuexpand|v_misc|uuexpand.c||/dd/LIB/egetopt.r|
-uwho|effo_unaxcess|uwho.c date.c os9getpw.c os9geteuid.c|||
 valspeak|toys|valspeak.c|||
 version|version|version.c|||
-vi|effo_vi|ex.c ex_OS9.c ex_addr.c ex_cmds.c ex_cmds2.c ex_cmdsub.c ex_data.c ex_extern.c ex_get.c ex_io.c ex_put.c ex_re.c ex_set.c ex_subr.c ex_temp.c ex_tty.c ex_unix.c ex_v.c ex_vadj.c ex_vget.c ex_vmain.c ex_voper.c ex_vops.c ex_vops2.c ex_vops3.c ex_vput.c ex_vwind.c pprintf.c||/dd/LIB/termlib.l|
 vis|vis|vis.c||/dd/LIB/egetopt.r|
 vtxtcn|world|vtxtcn.c|||
 vcnvrt|world|vcnvrt.c|||
@@ -320,7 +308,6 @@ dm|dm|diskmaster.c screen.c dirread.c showfiles.c misc.c error.c unarc.c mouse.c
 # not a preference: built -qixm it hangs forever on end-of-file reading stdin,
 # because cio's read path never returns EOF under os9exec.  See
 # notes/os9exec-bugs/STDIN-EOF.md.  Remove the flag when that is fixed.
-travesty|travesty|travesty.c ../unixlib/getopt.c|TRAPFREE||
 # The collection's own. One source builds three programs; `about' is separate.
 keep|keep|keep.c|||
 unkeep|keep|keep.c|MODE_UNKEEP||

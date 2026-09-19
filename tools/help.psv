@@ -15,7 +15,6 @@ cookie|cookie -?|
 cursive|cursive -?|
 diff|diff -?|
 diff_1.1|diff_1.1 -?|
-deton|deton -?|
 fcomp|fcomp -?|
 gothic|none|it draws whatever it is given, a `-?' included: `gothic word' sets the word, and `-h' halves the height
 grep|grep -?|
@@ -142,9 +141,7 @@ setfont|setfont -?|
 tsmon2|tsmon2 -?|
 connect|connect -?|
 tsu|none|it takes no options: run it and it checks tterm's directories, creating what is missing
-uwho|none|it takes no options
 input|none|a filter with no options
-udate|none|it takes no options: run it and it prints the date
 wysecrack|none|it takes no options: it sends the identify request and waits for the terminal's reply
 wysetime|none|a BASIC09 program run by runb; it takes no options
 sterm|sterm -?|
@@ -416,7 +413,6 @@ qt|none|it takes no options: run it and it tells the time
 setimex|setimex -?|
 today|none|it takes no options: run it and it prints the day
 greg|greg -?|
-travesty|travesty -H|
 ar|ar -?|
 ar2|ar2 -?|
 arc|arc -?|
@@ -488,20 +484,16 @@ umacs|none|it takes file names and no help flag
 me|me -?|
 mg|none|it takes file names and no help flag; control-H inside it is the help key
 sedt|sedt -?|
-new_e|new_e -?|
-e|e -?|
 hexed|hexed -?|
 hexedit|hexedit -?|
 pbyte|pbyte -?|
 chbase|chbase -?|
 sed|sed -?|
 sed_1.06|sed_1.06 -?|
-vi|none|it takes file names, and -x makes it ex, -d edit; there is no help flag
 view|none|elvis read-only; it takes file names and DOC/elvis has the manual
 vi.elvis|none|it takes file names; an unknown flag is ignored with a note, and DOC/elvis has the manual
 vi_1.0|vi_1.0 -?|
-vi_cio|vi_cio -?|
-vi_nocio|vi_nocio -?|
+vi|vi -?|
 ctags.elvis|ctags.elvis -?|
 ed|ed --help|
 btoa|btoa -?|
@@ -621,16 +613,7 @@ dhryGcc2in|none|it reads the number of runs from standard input and takes no opt
 dhryGcc2mx|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc2mx'
 dhryshamu|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryshamu'
 dhryshamu2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryshamu2'
-time|time -?|
-timid|timid -?|
 disktest|disktest -?|
-ci|ci -?|
-co|co -?|
-rlog|rlog -?|
-rcsident|none|it takes file names and no options
-rcs|rcs -?|
-rcsdiff|rcsdiff -?|
-rcsmerge|rcsmerge -?|
 cb|cb -?|
 indent|indent -?|
 cpr|cpr -?|
@@ -657,7 +640,6 @@ advent|none|it takes no options; it asks its own questions
 infocom.tcap|none|it takes the story file and nothing else
 infocom|none|it takes the story file and nothing else
 paranoia|none|it takes no options; RETURN goes on and a letter chooses
-greed|greed -?|
 lander|none|it takes no options; its keys are on the card
 letters|none|it answers only on a terminal, so its usage cannot be captured here; its options are -q or -b (quiet, or the bell on a mistake), -l# to start at level #, and -h for the high scores
 pacman|none|it takes no options and asks its own questions
@@ -694,8 +676,6 @@ larn|none|it has no help flag; `?' inside the game is the help
 ularn|ularn -h|
 maze|none|it reads the number of rows on standard input and takes no options
 mines|none|it takes no options; q quits
-puz15|puz15 -?|
-puzzle15|puzzle15 -?|
 animal|none|it takes the file it learns from and no options
 bog|bog -?|
 hang|none|it takes no options
@@ -828,7 +808,6 @@ aprocs|aprocs -?|
 argproc_demo|argproc_demo -help|
 bigsetter|none|it takes no options: run it and it prints its test
 bootgen|bootgen -?|
-btree|none|it takes no options: run it and it builds its index
 clock|none|it takes no options
 config|none|it takes no options: run it and it prints the defines
 cpu|none|it takes no options
@@ -845,7 +824,6 @@ gen|gen -?|
 getsys|getsys -?|
 hinterhalt|none|it asks its question itself, in German (J/N)
 i_am_i|none|it takes no options: run it and it prints itself
-isam|none|it takes no options: run it and it runs its test
 keep|keep -?|
 kept|kept -?|
 launch|launch -?|
@@ -863,8 +841,6 @@ shdev|none|it takes no options
 spline|none|it takes a file of points and writes PostScript whatever it is given; there is no help flag
 sqrtx|none|it takes no options
 ssl|none|it takes the file and nothing else
-sysid|none|it takes no options
-sysmon|sysmon -?|
 top|top -?|
 tty|none|it takes no options
 ub68kdemo|ub68kdemo -?|
@@ -879,8 +855,6 @@ fontgen|none|it reads its bitmap on standard input and takes no options
 dpark|dpark -?|
 bsplt68|none|it takes the boot file and nothing else
 signal|signal -?|
-sysmax|none|it takes no options
-sysmin|none|it takes no options
 t|none|it takes no options and prints nothing
 mexist|mexist -?|
 vis|vis -?|

@@ -18,24 +18,6 @@ run     /dd/CMDS/tty
 run     /dd/CMDS/whoami
 expect  term
 expect  su
-
-# sysid asks the kernel for a system identification through F$SysID, which
-# os9exec answers in its pre-3.0 form (969fa5d, 2026-09-04): the processor,
-# the kernel's processor, and the kernel's own version line.
-case    sysid-reports-the-kernel
-run     /dd/CMDS/sysid
-expect  kernel mpu
-expect  emulating OS-9/68000
-
-# vlen builds a variable-length record store and reports the mapper as it
-# grows -- one of the few programs here that demonstrates a data structure
-# and shows its own bookkeeping.
-#
-# ITS STORE PERSISTS, IN THE DATA DIRECTORY, AS `test.mp' AND `test.st'.
-# A second run finds them, says `Filesystem already exists.' and adds
-# nothing -- so the case removes them first, or it passes once and never
-# again. (It also means a bare `vlen' leaves two files at the root of
-# whatever disk you run it from.)
 case    vlen-builds-a-variable-length-record-store-and-reports-its-mapper
 run     /dd/CMDS/rm -f /dd/test.mp /dd/test.st > /nil 2>/nil
 run     /dd/CMDS/vlen < /nil
@@ -81,11 +63,9 @@ case    jargon-states-its-arguments
 run     /dd/CMDS/jargon -?
 expect  usage: jargon [-cigmr] [-b key] [srcname] [indexname]
 
-case    finger-and-uwho-each-name-what-they-cannot-reach
+case    finger-names-what-it-cannot-reach
 run     /dd/CMDS/NETWORK/finger
-run     /dd/CMDS/uwho
 expect  Function: display real world info on user.
-expect  can't open /etc/utmp
 
 # The two X11 demos reach their own code and stop where they should: there
 # is no X server here.  Until the csl edition-25 swap (2026-09-04) they

@@ -15,16 +15,6 @@ setup   /dd/CMDS/rm -f $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
 
-# isam and btree are the two data-structure demonstrations that build real
-# files and report every step. isam is the indexed-sequential one.
-case    isam-builds-an-indexed-file-and-reads-it-back-in-order
-run     /dd/CMDS/isam < /nil
-expect  ISAM Test driver: here we go
-expect  1. Create filesystem ok
-expect  Part Code: 000001 - This is part #1 Bin: A029
-expect  Part Code: 000015 - This is part #15 Bin: A015
-expect  Part Code: 000001 - Second part #1 Bin: A029
-
 case    ob68kdemo-prints-the-omnibasic-demo-banner
 run     /dd/CMDS/DEMOS/ob68kdemo < /nil
 expect  OmniBasic Version 1.16

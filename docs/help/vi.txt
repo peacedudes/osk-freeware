@@ -1,4 +1,4 @@
-$ vi_nocio -?
+$ vi -?
 Usage: vi [file ...]
        vi -t tag
        vi +[num] file

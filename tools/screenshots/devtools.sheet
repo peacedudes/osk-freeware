@@ -127,22 +127,6 @@ os9     echo 500000 ! dhryshamu2 ! tail -l=6
 run     echo 500000 | dhryshamu2 | tail -l=6
 wait    30
 
-shot    time
-cap     Times a command the way OS-9 accounts for it -- here the sieve: the
-cap     system and user ticks, the seconds elapsed, and the calls and bytes
-cap     it took.
-try     time sieve
-run     time sieve
-wait    14
-
-shot    timid
-cap     A fixed timing loop: it runs the same batch of system calls tens of
-cap     thousands of times and reports the elapsed clock ticks.  It times only
-cap     itself -- any argument you give it is ignored.
-try     timid
-run     timid
-wait    8
-
 shot    disktest
 cap     Times how long reads and writes really take through the disk system.
 cap     Run for real it takes over the drive and needs the system's own
@@ -150,112 +134,6 @@ cap     privileges, so what it can show here is its syntax.
 try     disktest -?
 run     disktest -?
 wait    8
-
-shot    ci
-size    30 80
-cap     RCS: checking a file in.  ci asks for a description, writes the history
-cap     file beside the working file -- note_v, since OS-9 has no comma in a
-cap     file name -- and takes the working file away.
-try     ci note
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note
-wait    3
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     clear
-wait    1
-run     ci note
-wait    6
-send    first draft\r
-wait    3
-send    .\r
-wait    8
-run     ls -l
-wait    4
-
-shot    co
-size    30 80
-cap     RCS: checking the file out again.  co reads the history file and
-cap     recreates the working file from the chosen revision.
-try     co note_v
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
-wait    10
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     clear
-wait    1
-run     co note_v
-wait    8
-run     ls -l; cat note
-wait    4
-
-shot    rlog
-size    30 80
-cap     RCS: the history of a file -- head revision, locks, the description
-cap     and the log of each revision.
-try     rlog note_v
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
-wait    10
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     clear
-wait    1
-run     rlog note_v
-wait    8
-
-shot    rcsident
-cap     RCS: looks for $Id$-style keywords stamped in a file and prints them.
-cap     This file carries none, and it says so.
-try     rcsident note_v
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
-wait    10
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     clear
-wait    1
-run     rcsident note_v
-wait    6
-
-shot    rcs
-cap     RCS: the administration command -- it sets access lists, locks and
-cap     comment leaders on a history file.  It has no -? option, so it answers
-cap     one with its command format.
-try     rcs -?
-run     rcs -?
-wait    6
-
-shot    rcsdiff
-size    30 80
-cap     RCS: compares your working file against a stored revision.  It fetches
-cap     the revision by running co from a directory named RCS inside CMDS,
-cap     through Microware's shell, which reads the >- in that command.  Here
-cap     co sits beside rcs in CMDS and ksh stands in for the shell, so the
-cap     fetch stops at its redirection.
-try     rcsdiff note_v
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
-wait    8
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     co note_v
-wait    5
-run     clear
-wait    1
-run     rcsdiff note_v
-wait    8
-snap
-
-shot    rcsmerge
-cap     RCS: merges the changes between two revisions into your working file.
-cap     It needs a base revision named with -r; given only a file it stops and
-cap     says it has no base revision to work from.
-try     rcsmerge note_v
-run     rm -rf /dd/tmp/DEV/rcs > /nil 2>/nil; mkdir -p /dd/tmp/DEV/rcs; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/DEV/rcs/note; ci -t-draft /dd/tmp/DEV/rcs/note < /nil
-wait    10
-run     builtin cd /dd/tmp/DEV/rcs
-wait    1
-run     clear
-wait    1
-run     rcsmerge note_v
-wait    6
 
 shot    cb
 cap     The C beautifier: it indents C that has none, reading standard input

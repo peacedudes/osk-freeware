@@ -1,5 +1,0 @@
-$ vi_cio -?
-Usage: vi [file ...]
-       vi -t tag
-       vi +[num] file
-       vi +/pat  file

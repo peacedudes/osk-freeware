@@ -1,5 +1,0 @@
-$ rcs -?
-rcs error: Unknown option: -?
-command format:
-rcs -i -alogins -Alogins -e[logins] -b[rev] -c[commentleader] -l[rev] -u[rev] -.
-rcs aborted

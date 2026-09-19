@@ -1,1 +1,0 @@
-/* djbatoi.h, 11/1/89. */#ifndef __DJBATOIH_#define __DJBATOIH_/* some stupid versions of atoi() crash (!) on nulls */int dummyatoi;#define atoi(s) ( ( dummyatoi = 0 ), \  ( sscanf(s,"%d",&dummyatoi) || ( dummyatoi = 0 ) ), \  dummyatoi )long dummyatol;#define atol(s) ( ( dummyatol = 0 ), \  ( sscanf(s,"%D",&dummyatol) || ( dummyatol = 0 ) ), \  dummyatol )#endif

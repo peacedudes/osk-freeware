@@ -117,15 +117,6 @@ run     /dd/CMDS/gen -p $W/frame.c
 run     /dd/CMDS/ls $W
 expect  frame.c
 
-# The two data-structure demonstrations. btree builds a real index and data
-# file and reports every step; bigsetter is Modula-2 set operations.
-case    btree-builds-an-index-and-inserts-keys
-run     /dd/CMDS/btree < /nil
-expect  SoftFocus BTree Library
-expect  1. Index & data file created okay.
-expect  2. Data file opened okay.
-expect  3. Inserting key 00000.
-
 case    bigsetter-demonstrates-modula-2-set-operations
 run     /dd/CMDS/bigsetter < /nil
 expect  Test fuer BigSet mit 36 Elementen
