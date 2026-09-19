@@ -22,6 +22,18 @@ case    lnk-speaks-too
 run     /dd/CMDS/lnk
 expect  command: lnk
 
+# `fact' is the collection's own Fortran example, written 2026-09-18 so that
+# the compiler here has something a reader can see through end to end.  It
+# links os9lib like every other RTF program, which is why it belongs in this
+# family rather than beside the compilers: with the module loaded it prints
+# its table, and without it it would print nothing at all.
+case    fact-prints-the-factorials-to-twelve
+run     /dd/CMDS/fact
+expect  n         n!
+expect  1           1
+expect  6         720
+expect  12   479001600
+
 case    rtf-the-compiler-itself
 run     /dd/CMDS/rtf
 expect  RTF pathname
