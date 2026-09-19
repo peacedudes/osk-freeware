@@ -16,8 +16,8 @@ The community's software for OS-9, made to run again on OS-9. It ships as
 **`osk-freeware.dd`**, one RBF disk image built from `disk/`, 256 MB, with
 room left for scores, saves and your own work.
 
-It is not a boot disk and carries no OS9Boot: it is a data disk for an OS-9
-system you already have, or for os9exec.
+It is a data disk for an OS-9 system you already have, or for os9exec:
+your system boots as it always did, and this mounts beside it.
 
     disk/       the tree the image is built from
       CMDS/       the commands, plus GAMES/ REBUILT/ NETPBM/ GCC*/ and the rest
