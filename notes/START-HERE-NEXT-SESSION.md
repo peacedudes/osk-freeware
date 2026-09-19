@@ -163,9 +163,12 @@ one, but neither was re-measured today -- it wants `tools/playtest.py',
 which plays a program at a pty and judges, rather than a capture.
 
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
-current tree; `tools/datatest.py --all' 868 of 868 against it; every
-`check_disk.py' check green; `check_the_checks.py' makes every one of
-them fail on demand.  Working tree clean.
+current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
+868 again on a SECOND run against the same image, which is the check
+that had never been made; 36 `check_disk.py' checks green;
+`check_the_checks.py' 41 of 41 fired, the forty-second reported "not
+applicable" because the try-backlog is empty and there is nothing left
+to drop from it.  Working tree clean.
 
 **THE SUITE WAS ALSO RUN AGAINST A LATER EMULATOR AND DID NOT MOVE.**
 os9exec 685a4c3 carries four changes that could have reached us -- SS_EOF
@@ -194,8 +197,8 @@ sitting immediately after a letter across all 950 captures in seconds.
 Fifteen matched on 2026-09-19 and every one is honest -- a program whose
 output ends without a newline -- so nothing in the gallery was damaged.
 
-Three gate checks were added today, each because something had gone
-wrong that nothing could see:
+SIX gate checks were added or widened today, each because something had
+gone wrong that nothing could see:
 
   `index entries are whole'        a rewritten DOC/INDEX entry kept four
                                    lines of the old one, nameless.
@@ -205,6 +208,19 @@ wrong that nothing could see:
   a stale panel EXCEPTION now      thirty exceptions named programs
   fails, as a stale backlog        whose cards had since been fixed.
   line already did
+  `the cio-macro list is current'  now compares the ENUMERATION under
+                                   README-CIO's sentence with the scan,
+                                   both ways, not only the count.
+  `name lists point at real        DOC/ORIGINS joins the files it reads;
+  programs'                        it had rows for two dropped programs.
+  `captions do not shout'          rdoggett's card rule from 2026-09-08,
+                                   unenforced until one session broke it
+                                   nine times in a day.
+
+And the panel audit's SCORER was letting a card through: `clock'
+published two lines, an error and "clock returned 65535", and the second
+read as a plain sentence, so a card showing nothing but a failure was
+graded as the program working.
 
 **`printf' ON THIS DISK WRITES ARBITRARY BYTES, AND THAT IS HOW A
 MISSING SAMPLE FILE GETS MADE.**  `printf "\001\002\377"' writes three
