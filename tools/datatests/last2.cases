@@ -151,11 +151,3 @@ run     /dd/CMDS/COMMS/xy -h < /nil
 expect  Receiving...
 expect  CCC
 
-# OS-9's `break'
-# invokes the system-level debugger; under os9exec that is the EMULATOR's
-# own interactive meta-debugger, and a scripted run has nobody to answer
-# its prompt. The prompt arrives before the hang, so it can be asserted --
-# but nothing after this case would run.
-case    break-drops-into-the-emulators-own-debugger
-run     /dd/CMDS/break < /nil
-expect  type ?<Enter> for hlp

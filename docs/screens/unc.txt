@@ -1,21 +1,24 @@
-          psect     disas,Typ_Lang,Attr_Rev,Ed,stk,start
+          lea       V16(a6),a1
+          clr.w     d0
+          os9       F$Time
+          move.l    d0,(a1)+
+          move.l    d1,(a1)
+          bra       LB3                      ($8e)
 
-          sub.l     #3,d5
-          bcs.s     LB1                      ($f2)
-          cmp.b     #$2d,(a5)+
-          bne.s     LB1                      ($f2)
-          cmp.b     #$3f,(a5)+
-          bne.s     LB1                      ($f2)
-LB2:      lea       $ff60(pc),a0
-          bra.s     LB3                      ($100)
-
-LB1:      tst.l     d1
-          bne.s     LB2                      ($ec)
-          moveq.l   #$0,d1
-          os9       F$SysDbg
-          lea       -87(pc),a0
-LB3:      moveq.l   #$1,d0
-          moveq.l   #$ffffffff,d1
-          os9       I$WritLn
-          moveq.l   #$0,d1
+LB5:      moveq.l   #$0,d1
           os9       F$Exit
+
+
+          vsect
+vstart:   ds.b      0                        $8000(a6)
+V11       ds.b      2                        $8000(a6)
+V12       ds.b      2                        $8002(a6)
+V14       ds.b      2                        $8004(a6)
+V15       ds.b      2                        $8006(a6)
+V16       ds.b      8                        $8008(a6)
+V10       ds.b      4                        $8010(a6)
+V13       ds.b      1                        $8014(a6)
+V9        ds.b      13                       $8015(a6)
+          ends
+
+          ends

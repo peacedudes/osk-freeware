@@ -6,12 +6,12 @@ shot    unc
 cap     unc disassembles a 68000 OS-9 module back to assembler: the module
 cap     header as equates, then the code, tracing which bytes are
 cap     instructions and which are data, and naming the OS-9 system calls.
-try     unc break
+try     unc setime
 run     builtin cd /dd/CMDS
 wait    1
 run     clear
 wait    1
-run     unc break
+run     unc setime
 wait    5
 
 shot    about
@@ -946,18 +946,6 @@ run     clear
 wait    1
 run     screen_nocio; echo "st $?"
 wait    5
-shot    break
-cap     break sends a break signal on a serial line, an assembler
-cap     example from the forums.  Run bare it calls the system-debugger
-cap     trap and, with no debugger attached, does not return; asked with
-cap     `-?' it exits at once.  bash's own `break' answers first, so
-cap     `enable -n break' turns that off for the session before it is
-cap     run.
-try     enable -n break; break -?; echo "returned $?"
-run     enable -n break
-wait    1
-run     break -?; echo "returned $?"
-wait    4
 shot    transfer
 cap     transfer copies files from GDOS disks to OS-9 and takes no
 cap     options -- not a general device-to-device copier; `cp' and

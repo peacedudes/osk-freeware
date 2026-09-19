@@ -1,6 +1,6 @@
 # What is on this disk
 
-1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **708 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **707 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 125 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -1410,7 +1410,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>125 programs</summary>
+<details><summary>124 programs</summary>
 
 **Devices & disks**
 
@@ -1532,7 +1532,6 @@
 | `argproc_demo` | a demonstration of argproc(), a command-line argument parser: it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'. A switch takes its argument with no space (`-x99', not `-x 99'), which the program says itself under -help. The argproc library manual is in DOC/argproc_demo/man.argproc<br>**How:** A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; log what happens during boot |
-| `break` | send a BREAK on a serial line -- an assembler example, and it calls F$SysDbg, the system-debugger trap, on its way there.  On a machine with a debugger attached that drops you into it and waits for an answer, which in a script is a hang Shares its name with a utility of your own -- README-NAMES |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `chardef` | loads a character set into a VT220 terminal from a definition file: `chardef <file>'; it calls itself defchar<br>`Syntax: defchar [<path>]` |
 | `clear` | &#9733; clear the screen<br>`Syntax:   clear` |

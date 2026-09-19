@@ -12,10 +12,6 @@
 
 family  system5
 
-drive   break
-why     does it reach the debugger, and does anything come back?
-run     /dd/CMDS/break < /nil
-run     echo "--- end break"
 
 drive   cron
 why     with an empty crontab, does it say anything before settling in?
