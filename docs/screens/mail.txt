@@ -1,3 +1,6 @@
-printf "hi\r.\r" | mail tester
-mail: /r0/ma000004 cannot open for writing
-can't unlink /r0/ma000004  215
+mail
+ 1 : < > From tester        Sat Sep 19 01:22:20 2026
+        Hello from the collection.
+
+at EOF
+mail <1> ?

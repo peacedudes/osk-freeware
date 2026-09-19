@@ -210,20 +210,39 @@ run     cat SPOOL/MAIL/os9
 wait    3
 
 shot    mail
-cap     A simple mail sender.  It reaches for a scratch file at /r0, the
-cap     RAM disk this disk has no device for, and stops there.
-try     mail tester
-run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
+size    24 80
+cap     A mail reader and sender in one, from the UUCP set.  `mail <user>'
+cap     takes the message from the keyboard, a line holding one dot ending
+cap     it, and files it in the MAIL directory at the root of the disk.
+cap     `mail' on its own opens what is waiting, one message at a time, and
+cap     prompts with its number; `?' lists the commands -- t for the titles,
+cap     p to print, d to delete, s to save, m to send another, r to reply,
+cap     x to leave.  Here a message went to `tester' and was read back.
+cap     mail wants a scratch device at /r0.  A real OS-9 system has a RAM
+cap     disk there; under os9exec, `mount -r=1000 /r0' makes one.
+try     mail
+run     mount -r=1000 /r0
 wait    2
+run     mkdir -p /dd/MAIL > /nil 2>/nil
+wait    2
+run     rm -f /dd/MAIL/tester > /nil 2>/nil
+wait    2
+run     ksh -c "echo Hello from the collection. | mail tester"
+wait    5
 run     clear
 wait    1
-run     printf "hi\r.\r" | mail tester
-wait    6
+run     mail
+wait    7
+snap
+send    x
+wait    2
 
 shot    mailx
-cap     The mail reader and sender.  It finds your mailbox by the numeric
-cap     user id rather than by name -- logged in as the super user, which
-cap     has no mailbox of its own, so it says it cannot change to it.
+cap     The mail reader and sender.  It reads MAIL as the DIRECTORY your
+cap     mailbox sits in, where elm and frm read it as the mailbox FILE --
+cap     and the login script sets it their way, so mailx stops, naming the
+cap     login name the password file gives for the numeric owner.  Unset
+cap     MAIL and it starts, with no mail waiting.  Measured 2026-09-19.
 try     mailx
 run     mailx
 wait    8
