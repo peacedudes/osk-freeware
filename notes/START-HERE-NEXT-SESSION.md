@@ -1,6 +1,54 @@
 # Start here, next session
 
-## DO NEXT -- kept current, 2026-09-14 (late)
+## DO NEXT -- 2026-09-18
+
+**rdoggett read the gallery and the decisions list and sent two pages of
+notes.  Working through them was this session, and eleven of the eighteen
+open questions are answered and gone.**  `notes/FOR-RDOGGETT.md` is rewritten
+and is short now; read it first.  What is left for him: push and the CI pin
+(1), real hardware (3), cancelling usenet-rewind (7, now unblocked), the
+three Kientzle transfer programs (17), the GPL binaries (20), omega and the
+DECUS cpp (21), ispell when his source arrives (23), and one new one -- the
+twelve remaining "second build of" duplicates (24).
+
+**THE QUEUE, in his order.**  The downloads are finished: the usenet
+last-ditch pull is complete (nine groups, every count matching the site's
+index) and the CoCo Community Archive survey is under way -- 21 images read
+with the disk's own `os9dsk`, which is the last body of unopened material.
+After that comes **the sweep for other clamp-corrupted screens**, whose
+method is in "The screen-corruption sweep" below and has not started.
+
+**What changed on the disk today, so nothing is re-derived:**
+
+  * **Twenty-nine programs came off on his rulings**, each recorded in
+    SOURCES.txt: six utilities written at Microware (time, timid, deton,
+    sysid, sysmax, sysmin); greed; travesty; puzzle15, puz15, udate, uwho;
+    the EFFO `vi'; sysmon; RCS's seven; SEDT's `e', `new_e' and `sedt';
+    btree and isam; `break', which is Microware's own utility disassembled;
+    and fibo, float, touchtype, vi_cio and compress_rebuilt as duplicates or
+    broken.  Eight misfiled documentation directories went too.
+  * **`vi' is PVIC now.**  The EFFO vi was XENIX-derived; `vi_nocio' took
+    the name, module renamed to match, and DOC/README-VI is rewritten around
+    the two editors left.
+  * **Three things were FIXED rather than written off.**  `top' walked off
+    the end of its own process table -- rebuilt, and it runs; `compress' is
+    the build whose putchar double-evaluation is fixed; `make' links a
+    utime() of the collection's own instead of a file with no grant.
+  * **Two things are new.**  `man' reads the ~300 manual pages that were
+    already here (DOC/MANPAGES is its generated index, with a gate check),
+    and `fact' is a twenty-line Fortran example that compiles on this disk
+    and runs, which is what he asked Fortran to have.
+  * **DOC/README-NAMES is new**: twenty programs here carry the name of a
+    utility the reader already owns, and it says what decides which one runs.
+  * README-EDITORS answers "which of the six Emacsen"; README-GCC answers
+    "which gcc"; card captions now show quoted keys in the accent colour.
+
+**Tools worth knowing about**: `tools/program_refs.py <name>` finds every
+reference to a program, and `tools/remove_program.py <name>` does the
+mechanical removal and reports what needs a person.  Twenty-nine removals in
+one day is what they exist for.
+
+## The session before this one -- 2026-09-14 (late)
 
 Settled this session (committed; do not re-derive):
   * **lmail never hung** -- it retries its lock in /DD/SYS/.LOCKS/MAIL.LOCKS

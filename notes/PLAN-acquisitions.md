@@ -792,8 +792,45 @@ whose name ends .c.
   Tree (Tim Kientzle)                       1 + tree.c and tree.txt loose
   Wildcard Commands (Keith Alphonso)        1
 
-**Surveyed so far, 2026-09-15.  Nothing has shipped, and that is the right
-answer.**  `ffix' (Bob van der Poel, March 1988), FFIX/ffix.c on the "OS-9
+**THE SURVEY IS FINISHED, 2026-09-18, and nothing on these disks is a
+candidate.**  All 24 images were read with the disk's own `os9dsk`, directory
+by directory -- 826 files.  The rule that decides it is rdoggett's: what can
+a reader do afterwards that they could not do before, and is it overly Color
+Computer business?
+
+What is on them, and why each answer is no:
+
+  * **Every program is a 6809 binary.**  They cannot run on OS-9/68K, so the
+    only thing that could ship is SOURCE found beside them.
+  * **There are 69 C files across the 24 images**, and they divide into
+    three kinds.  Most are 1980s utilities this disk already carries in a
+    better version -- sort, uniq, wc, head, tail, split, nroff, more, cb,
+    field, help, today, othello, tab.  Some are 6809-only by construction:
+    `sst' reads D_BLKMAP, D_SYSDAT and D_SYSMEM, which are Level 2 MMU and
+    DAT globals with no 68K equivalent; `latest' walks the raw 6809
+    directory format with 29-character names; `disp_raw' and the printer
+    drivers `eps' and `oki' drive CoCo hardware.  The rest duplicate
+    something here under another name: `ratmaze' is a maze generator "for
+    the Tandy Color Computer ... using Dyna-c" and this disk has `maze';
+    Walter Zambotti's `rdump -x' extracts modules from a library, which is
+    `unpacklib' and `liborder'; his raytrace is, in his own readme, "NOT
+    really useful except for bench marking purposes"; Keith Alphonso's six
+    Wildcard commands add globbing to a shell that has not got it, and
+    every shell here has.
+  * **`ffix' is on two of them** (POELOS9 and OS9PUB) and was ported and
+    withdrawn on 2026-09-15; see below.  Do not port it again.
+
+So the CoCo body is closed.  The one technical thing worth keeping from the
+survey: **os9dsk wants a path RELATIVE to the image root** -- `os9dsk -dir
+x.DSK CMDS' lists a directory and `-dir x.DSK /CMDS' lists nothing and says
+nothing about why -- and **an image whose filename contains a space cannot
+be named at all**, because OS-9 argv splits there.  Fifteen of the first
+twenty-one images reported empty for that reason before anyone noticed; a
+survey that answers "nothing on it" for most of its input is a failed
+measurement, not a result.
+
+**Surveyed 2026-09-15, before that pass.  Nothing has shipped, and that is
+the right answer.**  `ffix' (Bob van der Poel, March 1988), FFIX/ffix.c on the "OS-9
 Public Domain Utilities" image, was ported and then WITHDRAWN.  It expands
 tabs, which `detab' and `expand' already do, and turns every other control
 character into a space, which `pep' -- "a file detergent" -- and `unp'
