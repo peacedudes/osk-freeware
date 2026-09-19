@@ -171,7 +171,6 @@ scrabble|scrabble|scrabble.c util.c board.c dict.c move.c player.c savegame.c tt
 screen_nocio|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
 sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
 sed|eff_sed|alloca.c glob.c regex.c sed.c|||
-sedt|effo_sedt|sedt.c buf.c com.c com1.c edit.c ent.c key.c menu.c vdu.c|||
 sepwords|bix|sepwords.c|||
 setfont|effo_wolk|setfont.c|||
 shire|weather|weather.c|MIDDLE_EARTH MID_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|

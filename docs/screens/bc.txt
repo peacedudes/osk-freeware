@@ -1,15 +1,6 @@
-bc powers.b
-bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
-This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty'.
+echo "2^200" | bc
 1606938044258990275541962092341162602522202993782792835301376
-$ bc seventh.b
-bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
-This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty'.
+$ echo "scale=40; 1/7" | bc
 .1428571428571428571428571428571428571428
-$ bc -l pi.b
-bc 1.01 (Nov 25, 1991), Copyright (C) 1991 Free Software Foundation, Inc.
-This is free software with ABSOLUTELY NO WARRANTY.
-For details type `warranty'.
+$ echo "scale=20; a(1)*4" | bc -l
 3.14159265358979323844

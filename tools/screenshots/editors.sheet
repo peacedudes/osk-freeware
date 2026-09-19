@@ -191,23 +191,6 @@ snap
 send    \030\003
 wait    3
 
-shot    sedt
-cap     SEDT 2.6, a DEC-style keypad editor for a VT100: the ruler at the
-cap     top, the file below it, and its key bindings read from
-cap     SYS/sedt.keys.
-try     sedt tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     sedt tmp/EDIT/jabber.txt
-wait    8
-snap
-send    \003
-wait    3
-
 shot    hexed
 cap     A hex editor made out of your text editor: it writes the file out as
 cap     a hex dump, opens that in the editor -e names, and when you leave it

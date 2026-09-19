@@ -504,6 +504,35 @@ wait    15
 run     ls -l y.tab.c
 wait    6
 
+shot    fact
+size    40 80
+cap     The Fortran example, end to end: the source, this disk's compiler
+cap     accepting it, and the finished program printing 1! to 12!.  Twelve is
+cap     as far as a 32-bit integer reaches -- 13! overflows.
+cap     RTF/68K compiles Fortran-77 to 68000 ASSEMBLY, so the step from
+cap     `fact.a' to a program needs an assembler and a linker, which come
+cap     with your OS-9 and not with this disk.  CMDS/fact was assembled and
+cap     linked that way; everything else on this card is this disk doing the
+cap     work.  Every RTF program wants the run-time library resident first,
+cap     which is what `load os9lib' is for.
+try     load os9lib; fact
+run     rm -f /dd/tmp/FACT/fact.f /dd/tmp/FACT/fact.a; mkdir -p /dd/tmp/FACT > /nil 2>/nil
+wait    3
+run     cp /dd/SRC/rtf/fact.f /dd/tmp/FACT/fact.f
+wait    3
+run     load /dd/CMDS/os9lib
+wait    5
+run     builtin cd /dd/tmp/FACT
+wait    1
+run     clear
+wait    1
+run     cat fact.f
+wait    4
+run     rtf fact.f
+wait    18
+run     fact
+wait    8
+
 shot    rtf
 cap     RTF/68K compiling Fortran-77: with its run-time library loaded
 cap     first (`load os9lib'), `rtf' reads the source and writes 68k

@@ -65,7 +65,7 @@ banner1 c1e3d55b746a0a25
 basename 88d6e9c0a92810a1
 bash 6e45fc01c6b3701f
 basicwin f7b0c22628587472
-bc 26218d4b817772ba
+bc 9487abdee59ab57c
 bcd 9293614be1ad39bf
 bcheck 129a9acf434dd876
 bdecode 3d8e88f1697a9b18
@@ -91,12 +91,11 @@ bmp 095921447e784b82
 bog 6a559c9a353d94f5
 bootgen a84da7013b341aa3
 break 3066c233736b242f
-browse 2a786e9b5a8a972b
+browse d6333f7a41d2fe63
 brushtopbm ab0affe58b89d817
 bs 6c4fed518a8c42bd
 btoa 8c34c328db6ca264
 btop c2d56a633e5b8ee1
-btree d2d82344ac802011
 bugs f9b74b23ee2613a2
 buildhash 488b6e3d5a2e09fe
 c4 79e00796ab327574
@@ -136,13 +135,11 @@ chgrp afb641af9a3d88cb
 chksum 95ff9e1a6c600201
 choose af28169a3d9f98fb
 chown 342b73b89e3c5a35
-ci 02f2445cdea7cd26
 cjpeg d3d0a901439eb926
 cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
 clear a45512bf7a197623
 clock f694aa1ec8a552c8
-co 96e8232542582cfc
 col 6c2dbd2160aea05c
 collect f300802e1e634ae9
 colortest 5c2330766a9f14e5
@@ -182,7 +179,7 @@ cyberwar 217de83f79ad4776
 dam c30b7cc7269589c3
 dback 906be23ee236ebeb
 dbz 574c22070aaf4b57
-dc 971d29215c5be3fc
+dc e0f9226797b9f6f5
 dclock 9081125499f001ad
 dds 2191b5d3d78f3b96
 delbak 5afa330f2759aa23
@@ -190,7 +187,6 @@ demerge 5d1401233cb0522a
 demo 56e8d37beec6bcf8
 des 850682ebbb6037f3
 detab 693cae8730d97533
-deton 8e55fa06dca8e53c
 devprc c2f43b3bc265ad35
 dfiles 6146aeac3e39ef55
 dhry 882e185dd872643d
@@ -241,7 +237,6 @@ dvioki 9a0198b8fd2df2ab
 dvips d6770f726610262f
 dvitos 0d0e17b496dbc859
 dvitype 39ae706d5b4fe689
-e dfb9e2d2330f22ac
 ed 431d3e6ebaa40aa8
 ediff a77ad36bb656fd6e
 editor cc22a9da6564489a
@@ -255,7 +250,7 @@ emacs.mm1 4c8760b3930ccedf
 enable f3b946f52217bade
 england d6027b06875145fc
 env b204bde44766916f
-eo a4a29448f81694f4
+eo c2ce1d12ad5038df
 ephem 59fd505985416455
 ephem881 b2ff1bbc463abc95
 epson 0b6f36e0dbd7e50d
@@ -268,6 +263,7 @@ expand 6d527f34be7958ca
 expire 4f5c0139a9bff507
 expr 93380e70a1308318
 exrecover 7e7b5298a953fdb1
+fact 991277e06b018c6e
 factor 1ccd0e9539df7630
 fastcc 5e4a74de4c19af8a
 fastmail de1605f1973c63c9
@@ -275,7 +271,6 @@ fc d5a28e4ea8596b2c
 fcomp 1088fc8ffba0aabb
 ff dfa69563d285691d
 fgrep 4e98fc62c03728b2
-fibo d1f08baf63bfb96e
 field 23e15abb15f652dd
 file c9d8fdc888312ccd
 fileserv 94ca3f927ad83188
@@ -344,7 +339,6 @@ gpp_collect 72241bec17e95aa4
 graph db8cce2aef3f69f7
 graphdemo e54d0a7bf36b46b3
 graphsave d0d49807572e471e
-greed 158e714fe4950b0c
 greg 76f1f9ff303cd722
 grep 358e2708027e2124
 gs33 addce421260f1692
@@ -369,7 +363,7 @@ help 902405d7025f4ed9
 helpindex 6e05b7ef5cb8238e
 hexa 29982684642f4ecc
 hexbin 06949c54d9627202
-hexed ad46480b4037f9ca
+hexed 55bb24889ae6eefa
 hexedit 296ee6ff860344e7
 hinterhalt b00eedc2d15c2162
 hipstopgm 50daa9f3332217ee
@@ -393,7 +387,6 @@ inimf f97af714700a6cfb
 initex 54027428dfff0ad8
 initvdu 702afc4863e9f823
 input 8071c07987f3d81d
-isam 9fa60597ccc34dc8
 ispell 25ab73eb17c5c5fd
 ispell_rebuilt db7d7cf4bb2a08b8
 japan 0d3ecf5c721bf981
@@ -530,7 +523,6 @@ nasa e91379ce9e15b3a7
 nchess 0dfb3a13eb024d85
 net 8d37bd4fcf3b208f
 nethack3 b2e06413d0b29449
-new_e 690352b9bd5b7797
 newalias 8d158b4f1f815a2e
 newmail 49da0d4333233604
 newsgen f1b7a2263cd50784
@@ -671,8 +663,6 @@ psc 0bdca397b0d3f04e
 psidtopgm f1c1848f751ebeab
 psychic 77d3cca369ceebc6
 ptob adf4ce6f8152f623
-puz15 f4446639e39ed1e6
-puzzle15 681b23b46819725d
 pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
@@ -682,10 +672,6 @@ rain 050b5008150a7cf4
 rawtopgm 44b6f0cd3736c181
 rawtoppm 68880f52798e4bf8
 rayshade 1e2c69998aeea301
-rcs 0a7ef2bf484960ec
-rcsdiff 8b8fde2a69c1409e
-rcsident 32281f0ea742f004
-rcsmerge a0d6230fb91be227
 rdjpgcom e7bf0acbf472a866
 rdjpgcom.070 21fad5e8bdcc6030
 rdoc a0d7a1db99272266
@@ -700,7 +686,6 @@ repeat 86d732ebd88df086
 repunsel 3ae476f3868f0533
 rev 46f510f2d0eb4591
 reversi 18d51fb296f8b092
-rlog e9a49a095f09448d
 rm 7ed8216dd14e7330
 rmail 245cc5bb1daa0815
 rndir 6bde2178ac76d811
@@ -738,7 +723,6 @@ sdb 4d1c7151e703230c
 sddemo c472fc5dc89bc5e1
 sed 86aff8401aaf7f06
 sed_1.06 b45e5f3769a58252
-sedt c1d9526ab394690c
 sepwords 2946a889b8fd59d2
 setime2 51ad4508112afdfc
 setimex c0f3cf92c42028ee
@@ -795,9 +779,6 @@ subscribe f1d8ed44b7523917
 sum afdc981977ce6a0d
 suse a20cb996353fbdc9
 suspend 58d044e0396fc49d
-sysid 5c038a5fdcf0eb2b
-sysmin 4d4569d97afa466d
-sysmon 300405a5a909cf15
 tab 975e832fe52071e6
 tabs cb8547c815fee808
 tac 6dece2f23a527633
@@ -820,8 +801,6 @@ tgatoppm d5a487674cad43f9
 theorem 1b57a3aa1db57e96
 ticktalk 16472074a7387caf
 tiffish f64869cd9cfd6f5b
-time a3ba286af1dfe84f
-timid 8ac2e5fb4322cda4
 today 4fe69e051d3146c8
 todos caffc76cd117b03d
 toos9 22377fa726080b38
@@ -850,7 +829,6 @@ txmod fd4dae283e0996bc
 typefast f4e991db469b5d22
 ub68020demo dd6614e0b6b7d065
 ub68kdemo a23d32c97b7c0679
-udate 7ff31bc871140d1d
 ul 89f5dba125d83b55
 ularn d1f0b86a94761e8a
 uld 5ba781c0c11e10df
@@ -888,7 +866,7 @@ vc 184340ae7a592513
 vcraps 4a4e9c21b6113efa
 version 4cf80677f3f5a15c
 vftovp 01cee193d3f83aa4
-vi 8208ed0b9ed6a6e4
+vi 815e0cedeedc2fec
 vi-recovery ea4fd3700d282789
 vi.elvis 8253ea73025a2ad1
 vi_1.0 912d53b32f43f229
@@ -962,4 +940,4 @@ zipnote c13e62bff5c4c1db
 zipsplit 1b88d6aa10cc41a8
 zoo be029b960a3ddef4
 zoo_2.1 b73d565d5db9caee
-zot f342786c0651ef35
+zot e69ef6e39bdf870a

@@ -185,14 +185,6 @@ why     a disk-allocation map ("| = cluster (%d Bytes) allocated").
 run     /dd/CMDS/dam /dd < /nil
 run     echo "--- end dam"
 
-drive   sedt
-why     SEDT, the third build of the same editor -- a full-screen program,
-why     so the question is whether it gets as far as drawing anything.
-run     echo "Y" > $W/sedt.in
-run     /dd/CMDS/sedt $W/a.txt < $W/sedt.in
-run     echo "--- did it leave the file alone?"
-run     /dd/CMDS/wc -c $W/a.txt
-run     echo "--- end sedt"
 
 drive   rpoem
 why     a poem generator -- pure output.

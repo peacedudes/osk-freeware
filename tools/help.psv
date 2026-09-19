@@ -482,7 +482,6 @@ emacs.mm1|none|it takes file names and no help flag; its help lives inside, in t
 umacs|none|it takes file names and no help flag
 me|me -?|
 mg|none|it takes file names and no help flag; control-H inside it is the help key
-sedt|sedt -?|
 hexed|hexed -?|
 hexedit|hexedit -?|
 pbyte|pbyte -?|
@@ -1046,3 +1045,4 @@ banner1|banner1 -?|
 dds|none|it has no options; it prompts with Ok and takes BASIC -- RUN, LIST, NEW, OLD, SAVE and BYE
 theorem|none|it takes five arguments: the expression, the interval, the step and the initial value; `-r 0 0 0 0' reverses standard input instead
 westley|none|it takes one argument, the number of petals
+fact|none|its output is its whole behaviour; it takes no options

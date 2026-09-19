@@ -56,3 +56,4 @@ cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/u
 tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026-09-14: after the three answers it sends ESC f and stops at instruction $A000 (E_PRCABT); its usage line names it hiplot
 dm|Microware's pd, which it runs through SHELL to learn its current directory|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
 uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
+fact|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits

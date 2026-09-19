@@ -1,0 +1,38 @@
+cat fact.f
+options intsize=4
+      program factorial
+c
+c *** n! = 1 * 2 * 3 * ... * n, the factorial of n.
+c *** Twelve is as far as it goes in a 32-bit integer: 13! overflows.
+c
+      implicit none
+      integer   n, i
+      integer*4 f
+
+      type *,'   n         n!'
+      do n = 1, 12
+        f = 1
+        do i = 2, n
+          f = f * i
+        end do
+        type *, n, f
+      end do
+      end
+$ rtf fact.f
+ RTF/68K Version 2.14 (19-May-1987)
+ Total Errors   0   Warnings   0
+ RTF normally completed
+$ fact
+   n         n!
+           1           1
+           2           2
+           3           6
+           4          24
+           5         120
+           6         720
+           7        5040
+           8       40320
+           9      362880
+          10     3628800
+          11    39916800
+          12   479001600

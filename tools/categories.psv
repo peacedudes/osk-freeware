@@ -104,9 +104,9 @@ gmake|Compilers & build|Make & generators
 m4|Compilers & build|Make & generators
 make|Compilers & build|Make & generators
 makeinfo|Compilers & build|Make & generators
-rtf|Compilers & build|Fortran
+rtf|Languages|Fortran
 yacc|Compilers & build|Make & generators
-for|Compilers & build|Fortran
+for|Languages|Fortran
 
 # ---- Developer tools ----
 disktest|Developer tools|Benchmarks
@@ -167,7 +167,6 @@ emacs|Editors|emacs family
 emacs.mm1|Editors|emacs family
 me|Editors|emacs family
 mg|Editors|emacs family
-sedt|Editors|SEDT family
 vi_1.0|Editors|vi family
 vi|Editors|vi family
 vis|System & modules|Processes & memory
@@ -897,7 +896,7 @@ ask|Games|Other games
 biory|Amusements|Biorhythms
 bigsetter|System & modules|Utilities
 config|System & modules|Utilities
-creadoc|Compilers & build|Fortran
+creadoc|Languages|Fortran
 demerge|System & modules|Utilities
 devprc|System & modules|Utilities
 em|Editors|emacs family
@@ -1094,3 +1093,4 @@ rogue|Games|Dungeon crawl
 ski|Games|Other games
 vttest|Communications|Terminal & session
 typefast|Games|Other games
+fact|Languages|Fortran

@@ -1,0 +1,3 @@
+$ travesty
+the quick brown fox jumps over the lazy dog and the quick red fox
+runs over the lazy brown dog while the quick dog naps

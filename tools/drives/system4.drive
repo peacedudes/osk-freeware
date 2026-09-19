@@ -14,7 +14,6 @@
 #   testibc     /dd/sys/errmsg.ibc
 #   mvolformat  forks `format'; prompts "Hit RETURN when drive ready:"
 #   suspend     refuses unless super-user AND not run from a terminal path
-#   new_e       SEDT: SedtKeys/SedtHelp/SedtRuler0 -> sys/sedt.*
 
 family  system4
 
@@ -121,7 +120,6 @@ run     echo "--- end setime"
 drive   new_e
 why     SEDT for a generic terminal.  It takes over the screen, so the
 why     useful question is what it does with a file and an immediate
-why     abort -- and whether it finds sys/sedt.ruler0 and sedt.keys.
 run     /dd/CMDS/cat /dd/SYS/motd > $W/edit.txt
 run     echo "Y" > $W/quit.txt
 run     /dd/CMDS/new_e $W/edit.txt < $W/quit.txt
