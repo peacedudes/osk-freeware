@@ -1,5 +1,9 @@
-/h1/CMDS/shell "chd /dd/tmp/sub; cat words; subber #1000k words in"
+cat words
 ,fox,cat
 ,here,there
-there is a cat
-the cat went there
+$ cat in
+here is a fox
+the fox went here
+$ subber words in
+# No more memory: 256-byte request refused: the block above the data area is in
+use, 32832704 bytes free in a 33554432-byte arena

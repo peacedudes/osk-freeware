@@ -596,18 +596,27 @@ snap
 
 shot    subber
 size    24 80
-try     subber #1000k words in
-cap     Here the word list `,fox,cat' and `,here,there' rewrites the two
-cap     lines below it.  The catch, and the reason for the `#1000k': subber
-cap     grows its memory as it reads, and that growth almost always fails
-cap     part-way on this system -- so you hand it plenty from the start with
-cap     the `#' size and it never has to grow.
-run     mkdir -p /dd/tmp/sub > /nil 2>/nil; rm -rf /dd/tmp/sub > /nil 2>/nil; /h1/CMDS/makdir /dd/tmp/sub > /nil 2>/nil; printf ',fox,cat\r,here,there\r' > /dd/tmp/sub/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/sub/in
+try     subber words in
+os9     subber #1000k words in
+cap     Substitutes word for word through a file: the list `,fox,cat' and
+cap     `,here,there' rewrites the two lines under it.  It grows its memory
+cap     as it reads and that growth is refused here, so it wants to be
+cap     started with the memory already in hand -- which is what the
+cap     `#1000k' does at your own OS-9 shell, on the second line above.
+cap     Started from this disk's bash there is no way to ask for it, and
+cap     the refusal is what comes back.
+run     rm -rf /dd/tmp/SUBB > /nil 2>/nil; mkdir -p /dd/tmp/SUBB; printf ',fox,cat\r,here,there\r' > /dd/tmp/SUBB/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/SUBB/in
 wait    3
+run     builtin cd /dd/tmp/SUBB
+wait    1
 run     clear
 wait    1
-run     /h1/CMDS/shell "chd /dd/tmp/sub; cat words; subber #1000k words in"
-wait    6
+run     cat words
+wait    3
+run     cat in
+wait    3
+run     subber words in
+wait    5
 
 shot    tcmp
 cap     tcmp compares two text files line by line and prints each line that

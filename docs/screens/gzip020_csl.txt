@@ -1,2 +1,2 @@
 gzip020_csl -v tmp/ARC/g5
-tmp/ARC/g5:              63.7% -- replaced with tmp/ARC/g5.gz
+tmp/ARC/g5:              64.9% -- replaced with tmp/ARC/g5.gz

@@ -152,7 +152,7 @@ comm d41baa7bc4a2c62b
 compiler a1cfa4c684d609b5
 compr 6f55fb11df248478
 compress ec67ee6d6af394aa
-compress_4.0 a923278466ef7663
+compress_4.0 6e072b36b66e9c80
 config f6e67a27e95bc933
 connect 6f66266523d65a1d
 convert 35a7dc94e03647b3
@@ -243,7 +243,7 @@ ediff a77ad36bb656fd6e
 editor cc22a9da6564489a
 elm 202e330b419a3743
 elvis f33d9af83b3e1f10
-elvis_input 749a1fe020ebcab6
+elvis_input 7935cdac3b24cab6
 elvrec e3a4ae2e4a7041dc
 em ffb237c4c74742fe
 emacs 514b4e95ff91f5c5
@@ -345,13 +345,13 @@ grep 358e2708027e2124
 gs33 addce421260f1692
 gs403 761a78917e2d23bb
 gshell 33ecf84de9211522
-gtar b5cc1b17d0d6bb41
+gtar ecb1f7c3f07227d5
 gulls 3acc5cb63cf0966f
 gulls-invert 0ec3437923bf8935
 gzip 8fe28670c0ef05c9
-gzip020_csl cc8e69ddb3fda150
-gzip68k_csl b2993953dfe2afd2
-gzipcpu32k_csl a0b74b8bc382d82d
+gzip020_csl c2e9acd5a10ec512
+gzip68k_csl e920f63582ea5fbf
+gzipcpu32k_csl 5854ccf04ab1778e
 hack 0fa0a0ab8bfee9d5
 hackwish 43454e5e00ab4f2a
 hang 087e991e81c527f9
@@ -419,8 +419,8 @@ lesskey d392f6e111e10d1c
 letters cbacb6d31db1c8c2
 lgrep f1ef4ef5180533dc
 lha 52340e9187ace34b
-lharc b3f9054245bf7775
-lharcs 4f1f23a3be40ea59
+lharc 5ac6c1ea77ae2c9a
+lharcs 9b5fb0c1c42ee105
 liborder f6e8a5f90d444254
 libsplit d91101c22b790347
 life cb3cef72829ef40d
@@ -457,7 +457,7 @@ macbin 3a7f913cb6815c13
 macsave 4b29f37316dbc3fc
 macstream 915556cc8a2a0137
 macunpack 40788d1c64b6f7f1
-mail 45e5fb68abc61346
+mail 672b47c3c20cf84f
 mailx 13e40634d305ceeb
 make c9902ae76af265bf
 makecrc 541a2d827eb1a03f
@@ -465,7 +465,7 @@ makedb da9ac82136e50140
 makeinfo 3172d405e40f894a
 makelex 1fd04e7cb20c1700
 maketexpk eb25a36d250f989a
-man 728a06c2f2b0dd17
+man 7a9006bafe8e8157
 map 2ca31eb0fe17ba0b
 marc 4f0332b4c4bed354
 mastrm d79ab1d9809f926a
@@ -482,7 +482,7 @@ mimecode b4f8a095eb5d37f1
 mines d60bd064f0a8be59
 minnesota f7ab891b958c9da7
 mkdict 429d03cfca6f7aec
-mkdir d5cbe4d6e1888792
+mkdir ed4d64f149e31208
 mkindex 56e25e6b32f8fb0c
 modbuster cb744ce6cbe812b3
 modinfo 35b55f276b3cbaeb
@@ -777,7 +777,7 @@ strfile aacbe8f2cbb58af8
 striche 78cf3953bcc12164
 strings a69f26e3b152e77c
 su a6743cd58fbaac7c
-subber a2d2ab5962fe9db3
+subber 81b180d052153876
 submit 62a641b4f30f1b4b
 subscribe f1d8ed44b7523917
 sum afdc981977ce6a0d
@@ -944,5 +944,5 @@ zipinfo 5780201f80f1146c
 zipnote c13e62bff5c4c1db
 zipsplit 1b88d6aa10cc41a8
 zoo 4a5f734b099997bf
-zoo_2.1 b73d565d5db9caee
+zoo_2.1 992a2532d3ed6da4
 zot e69ef6e39bdf870a
