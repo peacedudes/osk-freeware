@@ -972,11 +972,20 @@ snap
 send    q
 wait    2
 shot    bootlogger
-cap     bootlogger records what happens during system start-up to a log.
-cap     Run by hand, outside boot, it has nothing to record and returns
-cap     silently.
-try     bootlogger; echo "status $?"
+cap     Writes the time the machine came up into SYS/bootlog and says
+cap     nothing.  It returns silently whenever you run it, so the log is
+cap     the only way to see that it did anything -- and running it by hand
+cap     stamps the log with the time you ran it rather than a boot.
+try     bootlogger; cat SYS/bootlog
+run     rm -f /dd/SYS/bootlog > /nil 2>/nil
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
 run     bootlogger; echo "status $?"
+wait    4
+run     cat SYS/bootlog
 wait    3
 shot    screen_nocio
 cap     screen_nocio is the trap-free build of `screen', a login greeting

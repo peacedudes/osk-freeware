@@ -1538,7 +1538,7 @@
 | `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here<br>`usage: add_errmsg "msg1" ... "msgN"` |
 | `argproc_demo` | a demonstration of argproc(), a command-line argument parser: it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'. A switch takes its argument with no space (`-x99', not `-x 99'), which the program says itself under -help. The argproc library manual is in DOC/argproc_demo/man.argproc<br>**How:** A switch takes its argument with NO SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. |
 | `bigsetter` | Modula-2 set-operations demonstration |
-| `bootlogger` | &#9733; log what happens during boot |
+| `bootlogger` | &#9733; writes the time the machine came up into SYS/bootlog and says nothing at all.  It returns silently however it is run, so the log is the only way to see that it did anything -- and run by hand it stamps the log with the time you ran it rather than with a boot |
 | `btop` | convert characters to bit patterns -- its own Function: line, and what it does: `btop <file>' prints each character as a grid of O and space.<br>`Syntax:   BtoP [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `chardef` | loads a character set into a VT220 terminal from a definition file: `chardef <file>'; it calls itself defchar<br>`Syntax: defchar [<path>]` |
 | `clear` | &#9733; clears the screen, reading the escape sequence to do it from the termcap. `cls' beside it does the same job from a different author; either will do<br>`Syntax:   clear` |

@@ -72,7 +72,6 @@ ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card
 sieve|the Sieve of Eratosthenes benchmark: it runs the pass a hundred times and prints `start' and ` 100 sieves done', which is its whole output -- what it measures is the gap between those two lines, and there is no timing command here to pair it with (measured 2026-09-19: bash has no `time' keyword in this build and no such program ships)
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
-bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
 lfmaker|builds a low-level disk format descriptor and needs a real disk device to size; with none it reads its length argument as an address and stops with a No-more-memory request, which is as far as it goes here
 xy|waiting to receive on the terminal, since no MODEM port is set: the `C' it sends to ask for a CRC transfer is the whole of what a receiver shows until a sender answers, and the card says so
 k|waiting for the first Kermit packet on the terminal: `Receiving...' is all a receiver shows until a sender answers, and the card says so
