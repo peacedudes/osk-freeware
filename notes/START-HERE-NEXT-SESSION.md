@@ -2,6 +2,27 @@
 
 ## DO NEXT -- 2026-09-19
 
+**PLAN RULE 3 -- "no capitals for emphasis" -- IS HALF DONE, and the
+half that is left is named here.**  `tools/audit_caps.py' has listed them
+all along and I used it AFTER writing nine shouting captions rather than
+before, which is the lesson.  What is clear now, across all three
+surfaces (captions, `DOC/INDEX', `tools/howto.psv'): every MULTI-WORD
+phrase in capitals that was emphasis rather than a name.
+
+What is left is the long tail of SINGLE capitalised words -- about 116
+how-to lines and a similar number of index entries -- and most of it is
+not emphasis at all: names (ADL, AARD, BOG, DCGRAPHIC), BASIC keywords
+in `dds's line, key names, hex, data like the `ABCDEFGH' byteflip turns
+into `DCBAHGFE'.  Read each in context.  `flink' is the warning: its
+line said "DO NOT run it" about a program that corrupts the disk it
+links on, and lowercasing that alone would have weakened a real
+warning -- the sentence had to be rewritten to carry it.
+
+A `captions do not shout' gate check now catches the multi-word case
+before it ships, with a breaker.  It does not read DOC/INDEX or howto;
+`audit_caps.py' is the tool for those, and it is a prompt to go and
+look rather than a verdict.
+
 **RUN THE SUITE TWICE AGAINST ONE IMAGE.  It was only ever green the
 first time.**  `tools/datatest.py --all' runs against `osk-freeware.dd'
 and the image is NOT reset between runs -- `mkimage.sh' is what resets
