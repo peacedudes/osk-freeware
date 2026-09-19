@@ -1,6 +1,6 @@
 # What is on this disk
 
-1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 123 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 122 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -883,11 +883,11 @@
 | `blastem` | XModem and YModem file transfer, written for the MM/1<br>`Syntax: Blastem [<opts>] {<filename> [<opts>]}` |
 | `dld` | &#9733; receives a file with XMODEM -- FHL's, 1986. `dld <file>' starts it and control-X aborts; `uld' is the other half, sending one out<br>`dld version 1.4   (c) 1986 FHL` |
 | `k` | Kermit file transfer, the short form: `k <file>...' sends the files named and `k' on its own waits to receive. It guesses text or binary per file unless told, and wants a serial line with a Kermit at the other end<br>`General Usage:` |
-| `rxmod` | receives an OS-9 module over a serial line and enters it in the module directory -- the receiving half of `txmod'. It calls the VMod_trap handler that ships beside it in COMMS, so `load' that first. Source in SRC/serload<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
+| `rxmod` | receives an OS-9 module over a serial line and enters it in the module directory -- the receiving half of `txmod'. It calls the VMod_trap handler that ships beside it in COMMS, so `load' that first. Source in SRC/serload [no military use -- EFFO-INFO]<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
 | `sterm` | a serial terminal emulator: -l'<port>' says which line to talk on and -e'<char>' sets the escape character that gets you back. Told of no port it says so and stops<br>`Sterm Ver. 2.0` |
 | `tsu` | &#9733; makes the directories and files tterm expects before it is first used -- USR/TTERM and a dialling list named after you -- and reports each one it finds or creates |
 | `tterm` | &#9733; a terminal emulator, VT100-ish: -l=<port> links it to a serial port, MODEM by default. `tsu' sets its directories up first and `xyt' does file transfer from inside it<br>`Tterm Version 2.30` |
-| `txmod` | sends OS-9 modules out over a serial line to `rxmod' at the other end, which links them into the module directory there: -x sends everything in the execution directory and -l names the device to send on<br>`4ETXMod - Err:  -? !` |
+| `txmod` | sends OS-9 modules out over a serial line to `rxmod' at the other end, which links them into the module directory there: -x sends everything in the execution directory and -l names the device to send on [no military use -- EFFO-INFO]<br>`4ETXMod - Err:  -? !` |
 | `uld` | &#9733; sends a file out with XMODEM -- FHL's, 1986. `uld <file>' starts it and control-X aborts; `dld' is the other half, receiving into a file<br>`uld version 1.4   (c) 1986 FHL` |
 | `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too<br>`General Usage:` |
 | `xydown` | XModem/YModem download, public domain.  It senses which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown<br>`XYDOWN ver. 1.1` |
@@ -1417,7 +1417,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>123 programs</summary>
+<details><summary>122 programs</summary>
 
 **Devices & disks**
 
@@ -1458,7 +1458,6 @@
 | `csl` | Microware's C Shared Library, for programs built with Ultra C rather than cc 3.2 (68000) |
 | `csl020` | the same, for 68020/030/040 |
 | `fpu` | Microware's floating-point EMULATION module: where there is no 68881/68882 coprocessor it makes the machine behave as though there were, so Ultra C's floating-point code runs. Carries its own distribution grant -- DOC/fpu.doc, which the grant requires be kept with it.  Not a program and not loadable by hand: it belongs in your bootfile and in your Init module's extension list, so it is here for you to install on your own system rather than to run from here |
-| `fpu040` | the same module built for the 68040.  It registers as `fpu' too -- an Init extension list names `fpu' -- so take whichever suits the machine, not both |
 | `math` | Microware's floating-point trap module (software) |
 | `math881` | the same, using a 68881/68882 coprocessor.  Both register as the module `math'; load whichever suits your machine. |
 
@@ -1556,7 +1555,7 @@
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
 | `hinterhalt` | &#9733; a small maze game, in German: asked whether you need instructions (J/N) and told no, it draws the board -- walls, the player and a target |
-| `i_am_i` | a quine in Pascal: run it and it prints its own source, the loop at the end walking the table of lines that holds the program's text |
+| `i_am_i` | a quine in Pascal: run it and it prints its own source, the loop at the end walking the table of lines that holds the program's text [no military use -- EFFO-INFO] |
 | `lgrep` | &#9733; list the files a pattern appears in -- its banner says "same as 'grep -l', but prints filenames without comments". `grep -l' does the same job here.  DOC/README-GREP compares the six searchers<br>`Syntax: lgrep <arg1> ... <argn>` |
 | `liborder.os9` | the same program as liborder, a second build<br>`liborder: Unimplemented option '-?'.` |
 | `makecrc` | generates C source for CRC tables. It takes no arguments: run it somewhere writable and it writes six files into the data directory -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c and zip.c -- each holding a crctab[256] and an updcrc() for one polynomial. It writes them without a message, so list the directory afterwards. For a CRC of a file, `chksum' does that<br>**How:** It generates C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards. |
@@ -1765,7 +1764,7 @@
 
 | | |
 |---|---|
-| `help` | help system: `help <topic>' pages the topic's article from a .hlp file in SYS/HELP and then offers its subtopics; `help help' explains the format. bash has a help builtin of its own that answers first, so `enable -n help' there Shares its name with a utility of your own -- README-NAMES<br>**How:** `help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead. |
+| `help` | help system: `help <topic>' pages the topic's article from a .hlp file in SYS/HELP and then offers its subtopics; `help help' explains the format. bash has a help builtin of its own that answers first, so `enable -n help' there Shares its name with a utility of your own -- README-NAMES [no military use -- EFFO-INFO]<br>**How:** `help dinfo'. At bash type `enable -n help' first, or bash's own help builtin answers instead. |
 | `helpindex` | &#9733; builds the .ndx index a .hlp help file needs: `helpindex dinfo.hlp' writes dinfo.ndx beside it<br>**How:** `helpindex dinfo.hlp' writes dinfo.ndx beside it. Only names ending .hlp or .hlib are accepted unless -a is given; with no name it asks for one. |
 | `less` | shows a file a screenful at a time so it does not scroll past you, and lets you move about in it: space or f for the next screen, b for the one before, / to search forward, n for the next match, h for its help screen (SYS/less.hlp), q to leave.  Reads the terminal's size and codes from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |

@@ -13,8 +13,6 @@ csl       Microware trap library.  csl020 is the 68020 build and EXISTS to
           answer to the name `csl' on that CPU; renaming it breaks every
           program that links it.
 math      Same: math881 is the 68881 build of `math'.
-fpu       Same again: fpu040 is the 68040 build of `fpu'.  An Init module's
-          extension list names `fpu', so both must answer to it.
 msdrv     Two editions of one MM/1 mouse driver, MM1/msdrv.901_340 and
           MM1/msdrv_340.901.ms.  A device descriptor binds a driver BY NAME.
 gcc       GCC139/gcc and GCC2/gcc -- both archive material, in directories you

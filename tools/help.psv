@@ -884,7 +884,6 @@ rndir|rndir -?|
 cio|none|Microware's C I/O trap handler, not a program: the starred programs call it
 csl|none|Microware's C standard library trap handler, not a program
 fpu|none|Microware's floating-point emulation module, not a program: it goes in a bootfile
-fpu040|none|the 68040 build of the same module, not a program
 csl020|none|Microware's C standard library trap handler built for the 68020, not a program
 math|none|Microware's maths trap handler, not a program
 math881|none|Microware's maths trap handler for the 68881, not a program

@@ -297,7 +297,6 @@ fontgen|No copyright or licence statement in SRC/forum3 or its documentation.|SR
 forth|GNU General Public License, version 1 or later. Copyright (c) 1989 Mikael R.K. Patel (TILE Forth). Its readme also calls it shareware: "You may use it freely", with a contribution to the author encouraged.|SRC/pd7/forth.c lines 4, 30-32; SRC/pd7/readme lines 296-304; DOC/forth/COPYING
 fortune|No copyright or licence statement in SRC/fortune or its documentation. The source carries only an SCCS id, "fortune.c 1.4 (Berkeley) 2/11/83".|SRC/fortune/fortune.c line 1
 for|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
-fpu040|"FPU - (C) 1995 Microware Systems Corp. Permission to distribute FPU is granted so long as this file is retained." (DOC/fpu.doc must travel with it.)|DOC/fpu.doc lines 1-2; SOURCES.txt lines 1782-1796
 fpu|"FPU - (C) 1995 Microware Systems Corp. Permission to distribute FPU is granted so long as this file is retained." (DOC/fpu.doc must travel with it.)|DOC/fpu.doc lines 1-2; SOURCES.txt lines 1782-1796
 freeb|Public domain. The source says so in its third line: "Public domain version: 5/21/89".|SOURCES.txt line 2379
 frm|The Elm Mail System General Public License, (C) 1988-1992 USENET Community Trust and 1986-1987 Dave Taylor: copying and distribution permitted, at no charge.|DOC/elm/Notice

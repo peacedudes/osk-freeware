@@ -206,6 +206,50 @@ from a measured list the gate checks.
    documents, or is the narrow scope right?  If it should reach them, the
    check takes one line -- the file list, not the patterns.
 
+30. **READ THIS ONE FIRST.  The `fpu' we shipped was not the copy the
+   grant covers, and `fpu040' had no grant at all.  I swapped one and
+   removed the other; both are one command to reverse.**
+
+   On 2026-09-12 you ruled: *"If we follow the rules of a grant, then we
+   can include it. So yes, do."*  The grant is `fpu.doc': *"FPU - (C)
+   1995 Microware Systems Corp.  Permission to distribute FPU is granted
+   so long as this file is retained."*  The commit that added the modules
+   says they were "taken from the pool copy that travels with its grant".
+   The bytes say otherwise, and I checked them today:
+
+     what shipped    fpu     14,572 bytes  edition 5   md5 4893b5f9
+                     fpu040   6,140 bytes  edition 11  md5 30f667f0
+     where from      both are byte-identical to the loose modules in
+                     TELECOM/STerm68k.lzh, a terminal program's archive
+                     that carries no document and no grant
+     the granted     fpu     12,724 bytes  edition 12  md5 3f5b0760
+     copy            the module in TELECOM/xyz.lzh, in the same archive
+                     as the fpu.doc we ship -- and there is NO fpu040
+                     anywhere beside a grant
+
+   `disk/DOC/fpu.doc' is byte-identical to the granted document, so the
+   condition was being met -- for a file we were not shipping.
+
+   **What I did.**  Replaced `disk/CMDS/fpu' with the granted copy (also
+   the newer module: edition 12 against edition 5), and took `fpu040' off
+   with `tools/remove_program.py'.  `SOURCES.txt' now records the hashes
+   and says plainly which copy is here and why; CLAUDE.md and
+   `notes/MICROWARE-PERMISSION.md' are corrected; the gate is green.
+
+   **Why I did not wait for you**, since every other removal here has
+   been on your ruling.  Your ruling stands and I followed it: following
+   the grant means shipping the file the grant travels with.  What
+   changed is a premise, not a decision.  And the disk itself already
+   said, in `SOURCES.txt', that `fpu040' was "Still NOT here" -- so it
+   was telling a reader something untrue about a Microware module.
+
+   **What is yours to say.**  The grant's words are "Permission to
+   distribute FPU", not "this copy of FPU".  If you read that as covering
+   the module generally, `fpu040' can come back -- `git revert' of the
+   removal commit, and I will re-run the gate.  I took the narrow reading
+   because it is the one `notes/MICROWARE-PERMISSION.md' already argued
+   for and because it is Microware's property and they are still trading.
+
 29. **Your username was on six published cards, and the name "Robert
    Doggett" is still on the disk in five places.**  The username went
    today: `tools/terms.psv' gave every program we wrote a terms line

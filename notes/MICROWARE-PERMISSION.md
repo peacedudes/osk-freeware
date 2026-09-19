@@ -97,8 +97,8 @@ Points that may help the case:
 
 | | |
 |---|---|
-| `fpu` from `xyz.lzh` | **May ship** -- explicit written grant, provided `fpu.doc` travels with it. |
-| `csl`, `csl020`, `fpu040`, `p2init`, `fpuem` from `ucc_support` | **Stays out.** "Uploaded with permission" is permission for *that* upload; the modules remain under Microware's Licence Agreement by their own words. |
+| `fpu` from `xyz.lzh` | **May ship** -- explicit written grant, provided `fpu.doc` travels with it. **SHIPPED since 2026-09-12; the RIGHT COPY since 2026-09-19** -- 12,724 bytes, edition 12, md5 `3f5b0760`. What shipped in between was a 14,572-byte edition 5 out of `TELECOM/STerm68k.lzh`, which travels with no document; the commit that added it said it came from the granted archive and the hashes say otherwise. |
+| `csl`, `csl020`, `fpu040`, `p2init`, `fpuem` from `ucc_support` | **`csl` and `csl020` ship since 2026-08-16 on Allan's answer, a separate route. The rest stays out** -- `fpu040` was on the disk from 2026-09-12 and came off 2026-09-19: no copy of it anywhere here travels with a grant. "Uploaded with permission" is permission for *that* upload; the modules remain under Microware's Licence Agreement by their own words. |
 | `cio`, `math`, `math881` | **Stays out.** No grant found anywhere in the pool. |
 
 One detail worth knowing before quoting sizes: the `fpu` in `ucc_support` and
