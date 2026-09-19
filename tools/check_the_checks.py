@@ -555,6 +555,27 @@ def break_login_env(root):
 # and a correct `.../' form must PASS, and do.  If this check ever grows a
 # root-relative target, give it a breaker here.
 
+def break_shouting_caption(root):
+    """A caption given a phrase in capitals, in a COPY of the sheets."""
+    copy = _tools_copy(root, "toolsshout")
+    sheets = os.path.join(copy, "screenshots")
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        path = os.path.join(sheets, f)
+        text = open(path).read()
+        if "\ncap     " not in text:
+            continue
+        head = text.index("\ncap     ")
+        name = text[:head].rsplit("shot    ", 1)[1].strip().split("\n")[0]
+        open(path, "w").write(text[:head]
+                              + "\ncap     THIS IS SHOUTING at the reader."
+                              + text[head:])
+        os.environ["OSK_TOOLS_DIR"] = copy
+        return "`%s' given a caption in capitals in a COPY of the sheets" % name
+    return None
+
+
 def break_absence_phrasing(root):
     """A DOC/INDEX entry that says what this disk lacks instead of what you have.
 
@@ -795,6 +816,7 @@ BREAKS = [
     ("login env", "harness env matches SYS/login", break_login_env),
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),
+    ("shouting caption", "captions do not shout", break_shouting_caption),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
     ("cio list", "the cio-macro list is current",
      break_cio_list_names_a_ghost),

@@ -1713,6 +1713,54 @@ def check_captures_match_their_stanzas(root):
     return not (missing or stale), "re-shoot them with tools/screenshots.py"
 
 
+def check_captions_do_not_shout(root):
+    """A caption carries its emphasis in the sentence, not in capitals.
+
+    rdoggett's card rules, 2026-09-08: no ALL CAPS.  It went unenforced and
+    on 2026-09-19 one session broke it NINE times in a day -- "USE THE ID
+    YOU SEE" on three cards, "THE TEMPORARY IS THE ARCHIVE", "IT READS
+    STANDARD INPUT", "MUST ALREADY EXIST" and more.  Every one of them read
+    as a good sentence with the capitals taken out, which is the point.
+
+    NARROW, like `text names what the reader has' and for the same reason:
+    a phrase of TWO OR MORE capitalised words in a row.  A single capital
+    word is usually a name the program itself uses -- an environment
+    variable (TERM, USER, SHELL), a directory (GAMES, CMDS), a key
+    (RETURN, SPACE) -- and a wider net would catch those and teach whoever
+    hits it to phrase around the checker.
+
+    ACCEPTED, because they are names rather than emphasis: the format and
+    product names (CR LF, SGI RGB, GEM IMG, ST DEGAS, ALPS ASP) and the
+    German quoted on wisecrack's card.  Add to ALLOWED rather than
+    widening the pattern.
+    """
+    tools = tools_dir()
+    sheets = os.path.join(tools, "screenshots")
+    if not os.path.isdir(sheets):
+        return True, "no sheets to read"
+    allowed = ("CR LF", "SGI RGB", "GEM IMG", "ST DEGAS", "ALPS ASP",
+               "VIEL SPASS MIT OSK", "OS-9", "ESC P")
+    shout = re.compile(r"\b[A-Z]{2,}(?:[ ']+[A-Z]{2,}){1,}\b")
+    bad = []
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        shot = None
+        for n, line in enumerate(open(os.path.join(sheets, f)), 1):
+            if line.startswith("shot    "):
+                shot = line.split(None, 1)[1].strip()
+            if not line.startswith("cap     "):
+                continue
+            for m in shout.finditer(line[8:]):
+                phrase = m.group(0)
+                if any(phrase in a or a in phrase for a in allowed):
+                    continue
+                bad.append("%s:%d `%s' shouts: %s" % (f, n, shot, phrase))
+    for b in bad[:8]:
+        print("    %s" % b)
+    return not bad, "%d caption(s) in capitals" % len(bad)
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1739,6 +1787,7 @@ CHECKS = [
     ("the disk's documents are intact", check_docs_not_truncated),
     ("README names documents that exist", check_readme_cross_references),
     ("text names what the reader has", check_no_absence_phrasing),
+    ("captions do not shout", check_captions_do_not_shout),
     ("OS-9 paths count dots", check_no_chained_parent_paths),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
     ("cards make their own directories",
