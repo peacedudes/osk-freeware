@@ -18,7 +18,7 @@ splprt|the spooler's printer process wants a printer device; without one it prin
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
-disktest|measures disk performance and does not come back here, so its syntax is what there is to show and the card says so. What it does, from SRC/forum14/disktest.c: asks the allocator for the largest block there is (_srqmem(-1)), reads the raw device `@' and times it against the system tick globals, then times a write to ./disktest.tmp, which it unlinks. It is NOT destructive -- the only file it writes is that temporary -- it simply does not return; re-measured 2026-09-19 against the build that fixed the masked-signal freeze
+disktest|measures disk performance and does not come back here, so its syntax is what there is to show and the card says so. WHY, established 2026-09-19 with the os9exec session: it asks OS-9's own `free' for the sector count through a pipe and reads that pipe until the answer comes. It holds a write-capable path to the same pipe itself, so with no `free' to answer, the pipe never reaches EOF and it waits on itself at 0% CPU. Where `free' is to hand and the directory is on an RBF device it runs to the end -- and prints NEGATIVE rates, from its own int overflow on a 33 MB buffer. It is not destructive: the only file it writes is ./disktest.tmp, which it unlinks
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
@@ -38,7 +38,7 @@ mailx|the mail reader and sender; it finds a mailbox by user number, and the sup
 smail|the smart mail router; it needs a routing configuration and a peer to hand mail to, neither present, so its options are what there is to show
 uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial line, of which there is none here, so its options are what there is to show
 uulog|shows the UUCP transfer log; no UUCP traffic has been logged on this disk, so there is nothing to print
-msntp|sets the system clock from a network time server; with no network here it cannot open an NTP socket
+msntp|sets the system clock from a network time server; with no network here it cannot reach one, and its card names a server so that the lookup failure is what shows. Named none it listens for broadcasts and waits, which DOC/msntp/msntp.1 describes -- correct behaviour, not a fault
 blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a serial path, and its help is what there is to show without one
 newslock|the news system's file lock; it takes a temporary name and a lock name and makes the lock by LINKING one to the other, and this C library has no link(), so it returns 1 and leaves nothing behind -- measured 2026-09-19, and SRC/cnews/misc/newslock.c is four lines of which `if (link(argv[1], argv[2]) < 0) exit(1);' is the whole program
 disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded

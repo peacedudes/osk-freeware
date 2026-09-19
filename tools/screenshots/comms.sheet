@@ -970,7 +970,8 @@ cap     Sets the system clock from a network time server: name the server
 cap     and it asks one, then sets the clock.  Named one here it stops at
 cap     the lookup -- there is no host table on this disk to find an
 cap     address in, and it says so for a dotted number as readily as for a
-cap     name.  With no server named it prints nothing and waits.
+cap     name.  With no server named it listens for broadcasts instead and
+cap     waits for one, which is what its own manual says it does.
 try     msntp 127.0.0.1
 run     msntp 127.0.0.1
 wait    6

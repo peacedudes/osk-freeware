@@ -475,7 +475,7 @@
 | `dhryO2` | Dhrystone 2.0 built with Microware's cc at -O2; see dhry<br>**How:** All eleven Dhrystone builds READ A RUN COUNT FROM STANDARD INPUT before they start -- run bare they print two lines and wait. `echo 200000 \| dhryO2'. Under os9exec even 20000 runs finish inside one tick of the clock, so it answers "Measured time too small ... Please increase number of runs" rather than a rate; the comparison between builds is what they are here for, and on real hardware it works as intended. |
 | `dhryshamu` | &#9733; Dhrystone 2.0, the shamu build; see dhry |
 | `dhryshamu2` | &#9733; Dhrystone 2.0, a second shamu build; see dhry |
-| `disktest` | measure disk performance  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
+| `disktest` | measures disk performance: it times a read of the raw device, a write of a temporary it then removes, and a run of seeks, and prints the rates.  IT ASKS OS-9's OWN `free' FOR THE SECTOR COUNT FIRST, through a pipe, and waits on that pipe until the answer comes -- so on a system where `free' is to hand it runs through, and here, where it is not, it waits.  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
 | `savage` | &#9733; Savage's benchmark: a chain of functions that should cancel to an exact number, a thousand times; how far the printed value drifts measures the arithmetic's rounding |
 | `sieve` | &#9733; the sieve of Eratosthenes as a speed test: the primes below a fixed limit, the pass repeated a hundred times; time it with `time' |
 
@@ -853,7 +853,7 @@
 |---|---|
 | `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
-| `msntp` | sets the system clock from a network time server, by SNTP; it needs a network to reach one<br>**How:** Sets the clock from a network time server. |
+| `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With NO server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
 | `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
 
