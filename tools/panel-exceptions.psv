@@ -84,7 +84,7 @@ bsplt68|takes an OS9Boot file apart into the modules inside it; there is no boot
 dpark|restores an RBF disk's head to track zero; there is no disk head to park here, so it answers with its command format
 setime|sets the system clock; it prompts for the date and time in YYMMDDHHMMSS order, and setting the clock is a privileged operation
 rndir|renames subdirectory names to upper or lower case; on this case-insensitive filesystem a name and its other-case form are one entry, so there is nothing to change
-lgrep|lists the files a pattern appears in; it prints nothing even for a pattern that is present, so grep -l does this job
+lgrep|lists the files a pattern appears in; it prints nothing even for a pattern that is present, and not for want of what it forks -- measured 2026-09-19 with grep and ksh loaded resident, and again with a real OS-9 on /h1 so that SYS/login's `load shell' finds Microware's own shell, which is what this C library's system() forks. grep -l does this job
 fixyear|corrects a file's modification year when the clock wrote a wrong one; the files here carry good years, so it finds nothing to fix
 os9lib|not a program but the RTF/68K FORTRAN runtime library; it is shown among the runtime modules, not run
 edir|lists the OS-9 event directory; nothing on this disk creates an event, so the heading is all there is
@@ -112,7 +112,6 @@ wndex|builds the WN web server index for a directory and reports the one line `W
 qt|a talking clock: it prints the time in words as one sentence (and chimes near the hour); that one line is all it has to show
 bootlogger|records boot-time events to a log; on an already-running system there is nothing to record, so it writes its log silently and returns with nothing to show
 lfmaker|builds a low-level disk format descriptor and needs a real disk device to size; with none it reads its length argument as an address and stops with a No-more-memory request, which is as far as it goes here
-pgmedge|an edge detector; it writes a valid edge greymap but leaves the capture session unusable often enough that no follow-up can be relied on -- measured over seven runs 2026-09-13: 8x8 and 16x16 rendered, 24x16 and 24x24 wedged, and 32x16 rendered once and wedged on the very next run of the same stanza with the same wait. It is FLAKY, not merely slow (the older stanza rendered a follow-up on a LARGER image with a SHORTER wait), so the card shows the command it ran rather than a picture that would be right about half the time
 xy|waiting to receive on the terminal, since no MODEM port is set: the `C' it sends to ask for a CRC transfer is the whole of what a receiver shows until a sender answers, and the card says so
 k|waiting for the first Kermit packet on the terminal: `Receiving...' is all a receiver shows until a sender answers, and the card says so
 xyt|it wants a MODEM port and there is none to give it; saying so is what it does here, and the card says so

@@ -1,0 +1,4 @@
+pgmedge gg.pgm > eg.pgm
+$ pnmfile gg.pgm eg.pgm
+gg.pgm: PGM raw, 40 by 20  maxval 255
+eg.pgm: PGM raw, 40 by 20  maxval 255
