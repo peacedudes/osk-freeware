@@ -4,221 +4,151 @@ Things that need YOU to decide or direct -- nothing else.  Nothing here is
 decided; anything that gets decided leaves this file the same day.  The item
 numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
 and the gaps are deliberate: a missing number is an answered question.
-Updated 2026-09-16.
+Updated 2026-09-18.
+
+**Your notes of 2026-09-18 cleared eleven of these** -- 8, 9, 10, 11, 12, 13,
+14, 15, 16, 19 and 22 are done and gone from this file, along with the
+removals and rebuilds they called for.  The commits say what each one did;
+`git log --since=2026-09-18` is the list.  Four questions survive, with more
+known about them than before, and one is new.
 
 ## Yours alone -- nothing I can do about these
 
 1. **Nothing is pushed, tagged or merged, and the CI pin must move first.**
    The branch has never left this machine and the workflow has never run.
    `.github/workflows/build-image.yml` pins os9exec at 261b4b6; before a
-   release it needs to be at or past **40facae**, four fixes later -- Linux
-   renaming every dot-file on an RBF image (a CI-built image would carry
-   `.bashrc` and `.newsrc` under wrong names), the 68000 X flag, two RBF
-   update paths losing each other's writes, and F$Alarm.  All four are
-   unpushed, on os9exec's `fix/scf-pd-eor`.  The detail is in the handoff,
+   release it needs to be at or past **40facae** -- Linux renaming every
+   dot-file on an RBF image (a CI-built image would carry `.bashrc` and
+   `.newsrc` under wrong names), the 68000 X flag, two RBF update paths
+   losing each other's writes, and F$Alarm.  os9exec's tip today is
+   **e4ffa20**, which is well past all four.  The detail is in the handoff,
    PLAN.md, ROADMAP-freeware.md and notes/os9exec-bugs/X-FLAG.md; what is
    yours is pushing, tagging and moving the pin.
 
 3. **Nobody has tried this on real hardware.** The guides say so plainly.
    If you know someone with a real system, that is the paragraph to check.
 
-7. **Cancel usenet-rewind before it renews, about 2026-10-13, and delete
-   the key.**  You bought one month of Researcher on 2026-09-13 for the
-   OS-9 newsgroup pull.  Cancelling happens on their site, in your account.
-   The key is `~/.config/usenet-rewind/os9`; once the pull is verified a
-   session can delete that file for you if you say so.
+7. **usenet-rewind: CANCEL IT.  The pull is finished.**  Nine more groups
+   came down on 2026-09-18 and every one matches the site's own index --
+   fj.sys.x68000 (4,482), comp.sources.unix (2,817), comp.sources.games
+   (1,987), comp.sources.misc (6,165), comp.sources.reviewed (276),
+   mod.sources (798), net.sources (6,437), fj.sources (2,132) and
+   alt.sources (15,923).  That is ~41,000 messages on top of the OS-9
+   groups, 1.2 GB, and it closes every "no mirror found" row in the
+   acquisitions recovery table.  Nothing is left to fetch.
+   Cancelling happens on their site, in your account.  The key is
+   `~/.config/usenet-rewind/os9`; say the word and I will delete it.
 
-18. **`disk/` is hard-linked to a second copy I cannot find, and my edits
-   reach it.**  8,896 of the 9,927 files under `disk/` have a link count of
-   2.  `find` over your home (skipping `~/mine`, `~/Library`, `~/.Trash`) finds
-   no other name, so the twin is in one of those or on another volume.
-   Every in-place write here goes through to it: tonight that was
-   `DOC/INDEX`, `DOC/DEPENDS`, `DOC/CATEGORIES` and `CMDS/GAMES/monop`.  A
-   write by rename does the opposite and breaks the link -- `CMDS/rsconvert`
-   was installed that way, so the twin keeps the old one.  What is the
-   twin, and should edits reach it?  Until you say, I keep writing in place,
-   as every generator here always has; rsconvert is the one file detached.
+   The message you sent was **utree 3.03b-um** -- Peter Klingebiel's
+   screen-oriented file manager, a portable Unix xtree, all eight parts
+   pulled.  Its terms allow non-commercial redistribution, which is the
+   shape you already ruled on, and the disk has no full-screen file manager
+   at all, so it is a candidate: `notes/PLAN-acquisitions.md`.
 
-19. **A stray save file of mine is sitting on YOUR osk-freeware.dd.**  My
-   play-test harness mounted your image as /h0 on 2026-09-14 and hack wrote
-   `GAMES/HACK/PLAYGROUND/save/0tester` (16,593 bytes, 22:39) into it.  The
-   harness bug is fixed (29d879b6) and nothing else of mine is on it.
-   Delete it (`del /dd/GAMES/HACK/PLAYGROUND/save/0tester`), or say the word
-   and I will, once your emulator has let the image go.
+## Decisions
 
-## Licence and authorship questions the card-terms pass turned up (2026-09-14)
+17. **`k`, `xy` and `z` are the three affected** -- you asked which.  They
+   are Tim Kientzle's xmodem, ymodem and zmodem file-transfer programs, in
+   CMDS and CMDS/COMMS.  His notice, the same header in every `ft*.c` of
+   TELECOM/xyz.lzh, permits redistribution "in source or binary form ...
+   only under the following conditions", and one of them is that code
+   received as part of an application "may only be redistributed with the
+   complete source of that program".  The disk ships the three binaries and
+   not that source.  The source IS in the pool archive, so the choice is:
+   ship it beside them, or drop the three.  Ship it and the condition is
+   met; either way it is a content decision.
 
-Every card must now state its terms, so every program's source was read for
-them. Most answer plainly. These do not, and each is yours to decide -- nothing
-has been removed or rebuilt.  All are quoted from the files, and each file and
-line is recorded in `tools/terms.psv` or the handoff.
+20. **The GPL binaries still have no source, and there is now a real lead.**
+   CMDS/GCC139 (gcc 1.39, g++ pass 1.37.1), CMDS/GCC2 (gpp/cc1plus 1.40.3,
+   gcc2 2.5.6, cc2plus 2.5.8) and CMDS/TEXCMDS/dvips (dvipsk 5.495b) ship
+   without it.
 
-8. **`time` and `timid` meet the rule you set for utilities written at
-   Microware.**  `SRC/hc_utils/time.c`'s revision history is `rfd` twice
-   ("Created rfd 08-15-85"); `timid.c` says "Cloned from sys.c rfd 85/02/02",
-   and sys.c is already on the removed list.  Both shipped binaries are built
-   from those sources (recipes `time` and `timid`; the strings match).
-   SOURCES.txt's own test -- "grep the edition-history rows for the
-   initials" -- says remove them, source and binary, with their INDEX,
-   ORIGINS, categories, help.psv, devtools card and bench.cases entries.
-   Recommended; not done, because removing a program is your call.
-   (`DOC/time/time.doc` is David J. Partington's submission of a DIFFERENT
-   TIME program, and would go or stay separately.)
+   The usenet pull turned up **GCC 1.37 ported to OS-9/68000** --
+   comp.sources.misc v13i005..v13i011, May 1990, Mr. Seyama's port posted by
+   NIIMI Makoto as diffs against stock GCC 1.37 with English documentation.
+   Saved to `Scraped/usenet-rewind/extracted/gcc137-osk/`.  It is the first
+   OS-9 GCC source this project has found anywhere.  It is also not the
+   version we ship and **part 2 of 7 is missing from the archive**, so it
+   does not close the question -- it just makes "fetch the near matches" a
+   real option rather than a hope.  Keep the binaries, fetch what can be
+   fetched, or remove them?
 
-9. **`deton`, `sysid`, `sysmax`, `sysmin`** sit in the same `SRC/hc_utils`
-   and look like system utilities, but carry no revision history and no author
-   line, so the test above cannot catch them.  Are they yours?
+   **The other half of your question is answered and needs nothing from
+   you.**  "Do we need them all, or mostly just the latest (are they
+   backward compatible)?  How do we advise people which to choose?"
+   DOC/README-GCC now opens with that: take GCC2 (2.5.6) unless the machine
+   is short of memory, because GCC139 compiles C in about half the space
+   (563 KB of passes against 1085 KB, measured), and 1.39's C++ is 1.37.1 --
+   no templates.  Code 1.39 compiles, 2.5.6 compiles; not the reverse.  They
+   cannot both be installed, so it is a real choice, and the file now makes
+   it for the reader.
 
-10. **Explicit restrictions on programs that ship:**
-   - `greed` -- "Please don't redistribute this." (Matthew T. Day, greed.c).
-   - `travesty` -- Bernstein's grant ran "Until January 1, 1994" and says the
-     rights "are automatically revoked on January 1, 1994".
-   - `sysmon` -- its header calls the source "the proprietary confidential
-     property of MAX PLANCK INSTITUTE KERNPHYSIK HEIDELBERG ... distribution in
-     any form ... is prohibited", then the author writes "I have decided to
-     distribute the source code to everybody on request !"
-   - `vi` (SRC/effo_vi) -- "originates from the sources of vi running under
-     the XENIX operating system", adapted for OS-9; nobody grants anything.
-   - `puzzle15`, `puz15`, `udate`, `uwho` -- their authors allow unmodified
-     copies only, and what ships are OS-9 builds.
-   The utime.c rule ("if there is any question about it we have to exclude.
-   Don't delete") would take these out of the build; that is your ruling to
-   apply or not.
+21. **omega: we cannot find out what was modified, and that is the answer.**
+   You asked.  TOP shipped omega as a BINARY and its data files -- no source
+   anywhere in the release -- and the binary announces itself as stock
+   "omega version 0.71 (beta)" with no porter's credit in it.  So the only
+   modification anyone can point to is that it is an OS-9/68K module, and
+   whether anything in the game changed cannot be established without source
+   to compare.  Brothers's licence allows free copying but not distributing
+   modifications without his consent.  Your call, with that in hand.
 
-11. **`break` is a disassembly.**  `SRC/forum5/break.a` is headed
-   "Disassembled 1987 by L.Zeller" of "object code at disassembly time", and
-   the program "invokes the system level debugger".  If what was disassembled
-   is Microware's own `break`, this is Microware code in source form, which
-   the Microware-source screen does not catch because no notice survived.
+   **`cpp` is the other half of 21 and is still open.**  TOP's OS-9 build of
+   the public-domain DECUS preprocessor works -- macros, #if, local includes
+   -- and writes Microware's `#P`/`#5` line markers, because it was built to
+   replace Microware's own `cpp` pass.  My recommendation is now firmer than
+   before: ship it, but NOT under the name `cpp`.  DOC/README-NAMES (new
+   today) is about exactly this hazard -- twenty programs here already carry
+   the name of a utility the reader owns, and a resident module answers by
+   name whatever path you type, so a `cpp` of ours could quietly become the
+   one their `cc` finds.  `dcpp` or `cpp.decus` costs nothing and cannot do
+   that.
 
-12. **Programs that ship with no grant at all.**  Blars UUCP's uupoll and uux,
-   the smail five, the twelve Dhrystone builds, sterm, the six smallutils
-   programs, and about 120 more from the source-tree reading, each recorded on
-   its card as "No copyright or licence statement".  The utime.c rule applies
-   to such files; the question is whether it applies to programs that have
-   shipped all along.
+23. **ispell: you said you would send me the source you have.**  Until then:
+   CMDS/ispell faults at its first dictionary lookup and is a different
+   edition from everything else here, and REBUILT/ispell_rebuilt -- built
+   from SRC/ispell, the edition DOC/ispell and LIB/ispell.hash belong to --
+   works.  When your source arrives I will see whether it matches the
+   shipped binary, and if it does the same treatment as `compress` applies:
+   build it, put it in CMDS, drop the twin.
 
-13. **`make` links the `utime.c` your ruling keeps out of the build.**  The
-   ruling (2026-09-11, in PLAN-acquisitions): "`utime.c', which has a bare
-   copyright and NO grant, stays out of the build".  Three utime.c files are
-   on the disk; only one has a copyright line at all --
-   `SRC/eff_make/utime.c`, whose whole notice is "Copyright (c) 1988 by
-   Michael Hoffmann, Muenchen" -- and `tools/rebuild/recipes.psv` builds
-   `CMDS/make` from `make.c parse.c stat.c tstring.c utime.c` in that tree.
-   (blarslib's and ELM's OSK copies carry no copyright line.)  The ruling
-   does not name its tree, so this is the likeliest match, not a proven one.
-   Options: rebuild make with a utime() of the collection's own, as the
-   perl port did for pipe(); leave it; or say the ruling meant another file.
-   Asked in conversation as "we did include utime.c, right?" -- and the
-   answer is yes, in make.
+24. **Twelve more programs are "a second build of" something already here,
+   and your "we don't need both" would remove them.**  You asked, of
+   `vi_cio`: *"we don't need both (are there others like this)??"*  Measured
+   from DOC/INDEX, which describes each of these as another build of a
+   program on this disk:
 
-14. **More from the last research pass, each checked against the binary:**
-   - `dclock` and `colortest` ship, but SOURCES.txt (G-Windows section,
-     line ~2043) says both "were NOT taken, because adding a new program on
-     unstated terms is a different question".  dclock says only "Copyright
-     1996 by High-G Software."; colortest states nothing.
-   - `cyberwar`, `puzzle`, `scriptmaster` -- Stephen Carville copyrights with
-     no distribution terms; SOURCES.txt already marks them "FLAGGED FOR
-     REVIEW, not settled".
-   - `backgammon`, `teachgammon`, `cribbage` -- "Copyright (c) 1980 Regents
-     of the University of California.  All rights reserved." and no grant in
-     what ships.
-   - `ub68020demo` -- its demo terms want "ALL of the files ... kept intact",
-     and CMDS/archives holds UB_68000.LZH but not a UB_68020 archive.
+       compress_rebuilt (gone today)   diff_1.1        emacs.mm1
+       ggrep                           gtar            liborder.os9
+       m4_0.5                          sed_1.06        xlharc
+       dhry (eleven Dhrystone builds)  vi_1.0          lharcs
 
-15. **The last research pass found four more, each checked against its file:**
-   - **RCS** (`ci`, `co`, `rcs`, `rcsdiff`, `rcsident`, `rcsmerge`, `rlog`,
-     and `SRC/rcs`) -- `SRC/rcs/READ_ME` is Purdue's non-disclosure form:
-     "RCS will be used internally only" and "RCS will not be distributed in
-     any form or by any means without prior written permission by the
-     author, Walter Tichy."
-   - **SEDT** (`e`, `new_e`) -- "Sedt binaries are being made available for
-     customers and Digital internal use on the condition that ... no
-     modifications are made to the program" (EFFO forum 11, sedt.doc).
-   - **`btree`, `isam`** -- btree.doc: no longer public domain, "sondern wird
-     gegen einen 'modesten' Betrag ($65 ?) verkauft"; contact the author.
-   - **The collection's own programs** -- `keep`, `kept`, `unkeep`, `about`,
-     and os9exec's `load` -- state no licence anywhere; the repository's
-     LICENSE grant covers `tools/`, not `disk/`.  What should their cards say?
+   Three kinds are mixed in there, and they are not the same question.
+   Some are OUR rebuilds kept beside a period binary on purpose
+   (`vi_1.0`, `liborder.os9`); some are a second implementation worth
+   having (`ggrep` beside `grep`, `compr` beside `compress`); and some are
+   just another copy (`emacs.mm1` is MicroEMACS 4.00 built for an MM/1 --
+   the same editor as `emacs`).  I removed `touchtype` and `vi_cio` today
+   because each was a duplicate AND the worse of the pair.  Do you want the
+   rest gone, or the convention kept and explained?
 
-16. **Eight programs' documentation directories hold another program's
-   manual, and none of those other programs is on the disk.**  Each card
-   points a reader at the wrong document:
-   - `DOC/bm/bm.doc` -- "User Manual for BM, Bdale's MS-Dos Mailer";
-     `bm` is a Boyer-Moore grep.
-   - `DOC/dump/dump.1` -- terminfo's "dump \- Print the contents of a
-     compiled terminfo file"; `dump` is a file and module dumper.
-   - `DOC/join/Join.doc`, `DOC/uniq/Uniq.doc` -- Gregorie's join and
-     `drop`; the binaries are GNU textutils join and a different uniq.
-   - `DOC/whoami/whoami.man` -- UUCP's whoami page; the binary is GNU's.
-   - `DOC/tail/tail.doc` -- Eric Williams' tail; the binary is DESIGNA VLT's
-     (both happen to take `-l=`).
-   - `DOC/screen/screen.doc` -- "Microware Screen Control Package", a manual
-     for Microware's curses package, beside the README of `screen`, which is
-     Screens.  Besides being misfiled it is Microware's own document, and the
-     Microware screen (tools/screen_microware.py) only looks at disk/SRC.
-   - `DOC/m4/readme` -- the readme of a different, public-domain m4 ("This
-     code *is* PD"); `m4` is GNU m4 0.50.
-   - (Not misfiled, but for another version: `DOC/ckermit/ckermit.doc`
-     documents C-Kermit 4E(068) of 1988, the binary is 5A(190); and
-     `DOC/less/less.man` is version 330's manual, the binary is less 290.)
-   Options: remove them (they document nothing that ships); keep them under
-   a name that no card claims; or leave them.  Recommended: remove, since
-   git keeps them -- but it is the disk's contents, so it is yours.
+## Not a question any more, but you should know
 
-17. **`k`, `xy` and `z` ship as binaries, and their licence ties
-   redistribution to source.**  Tim Kientzle's notice (the same header in
-   every ft*.c of TELECOM/xyz.lzh): "Redistribution in source or binary form
-   is permitted only under the following conditions" -- among them, code
-   received "as a part of an application program ... may only be
-   redistributed with the complete source of that program", and otherwise
-   not "without explicit written permission from Tim Kientzle".  The disk
-   ships the three binaries without that source.  Ship the source beside
-   them, or decide otherwise.
+18. **`disk/` is hard-linked to a second copy and my edits reach it.**  You
+   said you are not qualified to answer, which is fair -- so I will stop
+   asking and say what I do.  8,896 of the files under `disk/` have a link
+   count of 2 and the twin is not findable under your home.  Every generator
+   here writes in place, which goes through to it; a write by rename detaches
+   instead.  I keep writing in place, as they always have.  If you ever find
+   what the twin is and it should NOT be tracking us, say so and the
+   generators can be made to write by rename.
 
-20. **GPL binaries still shipping without their source** (2026-09-15).  VH
-   (jargon) and the gcc 1.42 driver in CMDS/GCC2 now have exact source in
-   SRC.  Nothing matching exists here for the rest:
-   - CMDS/GCC139: gcc 1.39 and its g++ pass 1.37.1;
-   - CMDS/GCC2: gpp/cc1plus 1.40.3, gcc2 2.5.6, cc2plus 2.5.8;
-   - CMDS/TEXCMDS/dvips: dvipsk 5.495b (the archive's "dvips_source" is
-     binaries and fonts, not source).
-   Near matches exist: Microware archive 4066, gcc 1.37.1 OS-9 source; and
-   4072, gcc 2.7.2.  Neither is the version shipped.  Keep the binaries
-   without source, fetch the near matches, or remove those binaries?
+19. **The stray save file on your image**: you said *"I don't mind if you
+   left scores on the freeware disk image files.  don't overdo it"*, so
+   `GAMES/HACK/PLAYGROUND/save/0tester` stays.  The harness bug that put it
+   there is fixed and no harness has touched your image since.
 
-21. **TOP's omega and cpp: two to decide before either ships** (2026-09-15).
-   - `omega` 0.71 beta (TOP release 2's OS-9 build, 540K, with its data
-     and 1989 score lists; needs no runtime module) runs here with
-     `. /dd/SYS/termcap.entry`: the
-     welcome, the rulers list, the character question.  Brothers's licence
-     (LIB/olicense.txt) allows free copying and distribution, but "the
-     modifications are not distributed without my consent" -- and an OS-9
-     build is a modified omega, consent unknown.  Ship it, or leave it?
-   - `cpp` is TOP's OS-9 build of the public-domain DECUS C preprocessor
-     (needs cio).  It works -- macros, #if, local includes -- and writes
-     Microware's `#P`/`#5` line markers: it was built to replace
-     Microware's own `cpp` pass.  Shipped as `cpp`, it could be what a real
-     system's `cc` finds.  Ship it as `cpp`, under another name, or not?
-
-22. **CMDS/compress writes corrupt output into a pipe** (2026-09-15).
-   `compress -c < f | ...` and `compress -dc < f.Z | ...` both come out
-   wrong; written to a file, both are right.  The cause is Microware's
-   putchar macro, which evaluates its argument twice when stdout is a pipe
-   or a terminal, and compress.c passes it `*bp++` and `*--stackp`.
-   REBUILT/compress_rebuilt is now built from the same source with a
-   three-line fix (66797841): identical bytes to a file, correct bytes
-   through a pipe.  compr and compress_4.0 were always right.  INDEX, howto
-   and README-ARCHIVERS now say to write compress's output to a file.
-   Keep the period binary as CMDS/compress, or put the fixed build there?
-
-23. **CMDS/ispell cannot look a word up** (2026-09-15).  It lists correct
-   words as unknown and stops with a bus error at its first dictionary
-   lookup, under both os9exec builds.  It is another edition than DOC/ispell
-   describes (it has -u, -z and -o=), and no source for it is on the disk.
-   SRC/ispell -- the edition the docs, the recipe and LIB/ispell.hash all
-   belong to -- builds and works: `-l' lists exactly the unknown words.  It
-   now ships as REBUILT/ispell_rebuilt (1b74fb46), and ispell's INDEX entry,
-   howto and card say what the shipped one does.  Its -a mode writes control
-   bytes, and the shipped buildhash dies on a 1010 trap, so neither is a way
-   round.  Keep CMDS/ispell as it is, or put the working build in its place?
+   Worth knowing: **your `osk-freeware.dd` was built 2026-09-15 at 07:58**
+   -- that is sector 0's own creation date, not the file's mtime -- so it
+   predates `westley` (committed 21:22 that day) and everything since.  That
+   is why westley looked missing to you.  Rebuild it when convenient:
+   `OS9EXEC_DIR=~/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd`.
