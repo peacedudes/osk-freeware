@@ -187,9 +187,13 @@ from a measured list the gate checks.
    `free' alias opens `osk-freeware/h0', which symlinks to the repo's
    `osk-freeware.dd' -- the same file the build writes.  So there was never
    a second copy to keep in step, only one that nobody had rebuilt.  Sector
-   0 now reads **2026-09-19 02:31**, against 2026-09-15 07:58 when this was
-   written, and `utree', `westley', `SYS/UTREE' and `DOC/utree' were read
-   back through your own alias to check.
+   0 was four days stale when this was written -- 2026-09-15 07:58 -- and
+   has been rebuilt from the current tree several times since, the last of
+   them at the end of the 2026-09-19 session.  `utree', `westley',
+   `SYS/UTREE' and `DOC/utree' were read back through your own alias to
+   check the first of those.  No date is quoted here on purpose: the rule
+   this collection keeps learning is that a figure written down drifts, and
+   `ls -l osk-freeware.dd' answers it in one line.
 
    Going forward it is mine to keep current: rebuilding that file is the
    last step of a session here now, and the handoff says so.  If you ever
