@@ -2,7 +2,7 @@
 
 Three decades of community software for **OS-9/68000 (OSK)**, gathered in one
 place and made to run again, with the documentation and the source that could
-be found for them and a record of where each one came from. Two thirds of it
+be found for them and a record of where each one came from. Seven tenths of it
 has source here; most of the rest never had any that survived.
 
 OS-9 is Microware's, and still a current product. This is the software the
@@ -21,7 +21,7 @@ system you already have, or for os9exec.
 
     disk/       the tree the image is built from
       CMDS/       the commands, plus GAMES/ REBUILT/ NETPBM/ GCC*/ and the rest
-      SRC/        C source for two thirds of it
+      SRC/        C source for seven tenths of it
       DOC/        per-package documentation, plus the index files below
       GAMES/      game data
       SYS/ LIB/ DEFS/
