@@ -248,30 +248,53 @@ run     $P/pnmfile /dd/tmp/nm.ppm
 expect  PPM raw, 32 by 8
 absent  Stack Overflow
 
-# KNOWN FAILURE, found by this suite 2026-08-27 and NOT yet fixed.
-# The SIR round trip is LOSSY: it returns an image of the right size whose
-# channels are rotated over the first half of the pixels. Minimal case --
-# a solid red 4x1 image:
+# THE SIR ROUND TRIP IS OFF BY TWO BYTES, and the two bytes are in the
+# HEADER. Found by this suite 2026-08-27, diagnosed 2026-09-19 by counting
+# what each program writes and reads. `pnmtosir' writes a header of 1536
+# little-endian shorts -- 256 for the file header, 256 for the colour-map
+# header, 1024 for the map itself -- which is 3072 bytes, and a 4x1 image
+# comes out 3084 bytes, exactly 3072 + 12. `sirtopnm' reads five shorts
+# and then skips 1530 more:
 #
-#     in    255 0 0   255 0 0   255 0 0   255 0 0
-#     out     0 255 0   0 255 0   255 0 0   255 0 0
+#     for ( i = 1; i < 1531; i++ )
+#         pm_readlittleshort( ifp, &info );
 #
-# and solid green comes back as blue for the same two pixels. So R->G->B on
-# the first half, correct on the second: a plane-offset bug, not rounding.
-# WHICH of the two is at fault is unknown -- there is no reference SIR file
-# on the disk to write or read against, so the pair can only be tested as a
-# pair. The stack patch is NOT the cause: it fixed the crash that used to
-# hide this, and the corruption was here underneath it.
+# which is 1535 shorts, 3070 bytes. So it starts on the pixel data two
+# bytes early, and every plane it reads is shifted by two.
 #
-# The case is kept FAILING on purpose. A suite that deletes its failures
-# stops being worth running.
-case    sir-round-trip-is-lossy
+# THAT PREDICTS THE EXACT OUTPUT, which is how the diagnosis was checked
+# rather than guessed. With cols*rows = 4 the red plane is read from
+# offset 0 of the shifted array, the green from 4 and the blue from 8, so
+# solid red comes back green for the first two pixels and correct for the
+# last two, and solid green comes back blue the same way. Both are
+# asserted below and both were measured on the disk.
+#
+# The header is 3072 bytes because it is three aligned blocks, so the
+# READER is the one that is wrong -- one more short in that loop and the
+# pair round-trips. Both programs here are built from SRC/netpbm/PNM by a
+# recipe, and the loop is as the 1991 original has it, so this is an
+# upstream defect and fixing it would mean shipping a netpbm that differs
+# from the archive. That is rdoggett's call, not a thing to do quietly;
+# notes/FOR-RDOGGETT.md carries it. Until then these cases pin what the
+# shipped pair does, so a change in either program shows up here.
+case    sir-round-trip-shifts-the-planes-by-two-bytes
 run     $P/ppmmake red 4 1 > /dd/tmp/k.ppm 2>/nil
 run     $P/pnmtosir /dd/tmp/k.ppm > /dd/tmp/k.sir 2>/nil
 run     $P/sirtopnm /dd/tmp/k.sir > /dd/tmp/k2.ppm 2>/nil
 run     $P/pnmnoraw /dd/tmp/k2.ppm
-expect  255 0 0  255 0 0  255 0 0  255 0 0
+expect  0 255 0  0 255 0  255 0 0  255 0 0
 absent  Stack Overflow
+
+case    the-same-shift-turns-green-into-blue
+run     $P/ppmmake green 4 1 > /dd/tmp/g.ppm 2>/nil
+run     $P/pnmtosir /dd/tmp/g.ppm > /dd/tmp/g.sir 2>/nil
+run     $P/sirtopnm /dd/tmp/g.sir > /dd/tmp/g2.ppm 2>/nil
+run     $P/pnmnoraw /dd/tmp/g2.ppm
+expect  0 0 255  0 0 255  0 255 0  0 255 0
+
+case    the-sir-header-is-three-aligned-blocks
+run     /dd/CMDS/wc -c /dd/tmp/k.sir
+expect  3084
 
 case    pbmtext-renders-text
 run     $P/pbmtext hello > /dd/tmp/tx.pbm 2>/nil

@@ -40,39 +40,54 @@ case    uuencode-really-encodes
 run     /dd/CMDS/wc -c /dd/tmp/t.uu
 expect  1393
 
-# KNOWN FAILURE, found 2026-08-27. `todos' and `toos9' are NO-OPS. They take
-# a FILENAME and rewrite it in place (via todos.$$$.N, which they rename over
-# the original), and the file that comes out is BYTE-IDENTICAL to the one
-# that went in -- same size, same md5 -- on a CR-only OS-9 text file, which
-# is precisely what `todos' says it converts:
+# `todos' AND `toos9' BOTH DO THEIR WORK AND CANNOT PUT IT BACK. Recorded
+# as no-ops on 2026-08-27 because the file handed to them comes back
+# byte-identical; measured properly on 2026-09-19 and the conversion was
+# there all along, sitting under another name:
 #
 #   TODOS  Version UTIL 2.80 by DESIGNA VLT 03.08.98
 #   Converts TEXT-File from OS9-Format to DOS-Format
 #
-# Measured on /dd/SYS/termcap (963 bytes) and /dd/DOC/README-CIO (3886): both
-# unchanged in size and in md5. A DOS conversion must ADD a linefeed per line
-# and cannot leave the length alone.
+# Each writes `todos.$$$.<n>' / `toos9.$$$.<n>' IN THE DATA DIRECTORY -- not
+# beside the file it was given -- and then forks two OS-9 utilities to move
+# it into place. `del' is not on this disk, and OS-9's `rename' takes a NAME
+# and not a pathname, so with an absolute target it answers E_BPNAM (215):
 #
-# This case asserts what todos is FOR, so it fails. It is kept failing: the
-# round trip below it passes trivially precisely because neither program
-# does anything, which is the trap this file exists to demonstrate.
+#   del: not found
+#   rename: can't rename to "/dd/tmp/TE/w.txt"Error #000:215 (E_BPNAM)
 #
-# WHY it does nothing was found 2026-08-29 and is asserted at the foot of
-# this file: todos converts into `todos.$$$.<pid>' and then cannot RENAME
-# it back, because this C library has no rename(). Same wall as zip and arc.
-# `autolf -c -C -L < in > out' does the job and is on this disk.
-case    todos-must-change-the-file
-run     /dd/CMDS/cp $T /dd/tmp/w.txt
-run     /dd/CMDS/todos /dd/tmp/w.txt
-run     /dd/CMDS/md5 /dd/tmp/w.txt
-absent  ee2c20fa226fe6fc78feec7f123c7a99
-
-case    todos-toos9-round-trip-passes-trivially
-run     /dd/CMDS/cp $T /dd/tmp/x.txt
-run     /dd/CMDS/todos /dd/tmp/x.txt
-run     /dd/CMDS/toos9 /dd/tmp/x.txt
-run     /dd/CMDS/md5 /dd/tmp/x.txt
+# So stand in the directory, use a bare name, and rename the result
+# yourself -- which is what the cases below do. `autolf -c -C -L < in >
+# out' converts in one step and renames nothing; it is the easy answer and
+# it is on this disk.
+#
+# THE CONVERSIONS THEMSELVES, on /dd/SYS/termcap (963 bytes, 21 lines):
+# todos turns every CR into CR LF and appends ONE STRAY LF at the end, 985
+# bytes; toos9 takes CR LF back to CR and leaves that lone LF where it is,
+# so the return trip is 964 bytes -- the original plus that one byte. Both
+# numbers are asserted, so a build that stops adding the stray byte will
+# say so here.
+case    todos-leaves-the-file-it-was-given-untouched
+run     /dd/CMDS/rm -rf /dd/tmp/TDOS > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/TDOS
+run     /dd/CMDS/cp $T /dd/tmp/TDOS/w.txt
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TDOS; /dd/CMDS/todos w.txt"
+run     /dd/CMDS/md5 /dd/tmp/TDOS/w.txt
 expect  ee2c20fa226fe6fc78feec7f123c7a99
+expect  rename todos.
+
+case    the-dos-file-todos-could-not-name-is-in-the-data-directory
+run     /dd/CMDS/ls /dd/tmp/TDOS
+expect  todos.$
+run     /dd/CMDS/mv /dd/tmp/TDOS/todos.* /dd/tmp/TDOS/dos.txt
+run     /dd/CMDS/wc -c /dd/tmp/TDOS/dos.txt
+expect  985
+
+case    toos9-brings-it-back-the-same-way
+run     /dd/CMDS/ksh -c "cd /dd/tmp/TDOS; /dd/CMDS/toos9 dos.txt"
+run     /dd/CMDS/mv /dd/tmp/TDOS/toos9.* /dd/tmp/TDOS/back.txt
+run     /dd/CMDS/wc -c /dd/tmp/TDOS/back.txt
+expect  964
 
 case    binhex-produces-hqx
 run     /dd/CMDS/binhex $T > /dd/tmp/t.hqx

@@ -740,6 +740,22 @@ def failing_labels(text):
 
 def main(argv):
     want = [a.lower() for a in argv]
+    # A FILTER THAT MATCHES NOTHING IS THIS TOOL'S OWN FAILURE MODE.  The
+    # argument is a substring of a break's ident, not a path -- and
+    # `check_the_checks.py disk', typed by analogy with every other tool
+    # here, selected no break at all and reported "0 of 0 ... caught",
+    # exit 0.  A green run that measured nothing is exactly what this
+    # tool exists to catch, so it may not do it itself.
+    if want:
+        idents = [ident for ident, _, _ in BREAKS]
+        unmatched = [k for k in want
+                     if not any(k in ident for ident in idents)]
+        if unmatched:
+            print("no break matches %s" % ", ".join(unmatched))
+            print("the argument is a break ident, not a path; known idents:")
+            for ident in sorted(set(idents)):
+                print("  %s" % ident)
+            return 2
     work = tempfile.mkdtemp(prefix="checkprobe.")
     root = os.path.join(work, "disk")
     print("copying the tree to %s ..." % root)

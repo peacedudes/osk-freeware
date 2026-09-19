@@ -1542,9 +1542,13 @@ def check_cards_make_their_own_directories(root):
             e = starts[si + 1] if si + 1 < len(starts) else len(lines)
             body = "\n".join(lines[s:e])
             name = lines[s].split(None, 1)[1].strip()
-            used = set(re.findall(r"/dd/tmp/([A-Za-z0-9_]+)/", body))
-            made = set(re.findall(r"mkdir\s+(?:-p\s+)?/dd/tmp/([A-Za-z0-9_]+)",
-                                  body))
+            # BOTH SPELLINGS.  A stanza that has done `builtin cd /dd'
+            # writes `tmp/X/...' with no /dd on the front, and the first
+            # version of this check only looked for the absolute form --
+            # so it passed a stanza whose card was publishing error 216.
+            used = set(re.findall(r"(?:/dd/)?tmp/([A-Za-z0-9_]+)/", body))
+            made = set(re.findall(
+                r"mkdir\s+(?:-p\s+)?(?:/dd/)?tmp/([A-Za-z0-9_]+)", body))
             for d in sorted(used - made):
                 bad.append("%s:%s wants /dd/tmp/%s" % (f, name, d))
     if bad:

@@ -2,6 +2,26 @@
 
 ## DO NEXT -- 2026-09-19
 
+**TWO RECORDED HANGS WERE THE EMULATOR'S, AND ARE FIXED (2026-09-19).**
+os9exec `8ee3bcf' -- unpushed at the time of writing, so this depends on
+a build at or past that commit -- fixes a process that waited with its
+signals masked never giving up the CPU, which froze the whole emulator.
+Re-run against a pinned copy of it:
+
+  `yacc'     reads a grammar, reports what it finds wrong with it and
+             writes `y.tab.c'.  It used to print nothing and never
+             return.
+  `pgmedge'  reads the 320x200 gulls photograph and writes its edge map
+             in a few seconds.  It used to hang on any photograph while
+             a gradient of any size went through -- which had it written
+             up as content-sensitive.  It was the signal mask.
+  `byteflip' STILL ends the session on 8ee3bcf, so it is a different
+             fault.  Its entry below stands.
+
+`DOC/INDEX' and `DOC/STATUS' are corrected for both, keeping what they
+used to do marked as what they used to do.  Neither has a card yet --
+that is the obvious next job for anyone with a build past 8ee3bcf.
+
 **A CARD THAT SAYS A PROGRAM CANNOT IS USUALLY A CARD THAT DID NOT ASK
 PROPERLY.**  The flagged count went 25 -> 21 in one pass and every fix
 was the same shape -- give the program the thing it is asking for,
@@ -3138,7 +3158,10 @@ INCLUDING THE FILES THAT DID MATCH.  Ten strays were left that way.
               build the base it wants (`dbz base' wrote base.dir and a
               349 KB base.pag from three echoed lines), and `byteflip'
               on that base still ends the session.  Its caption already
-              says it ends the shell outright.  No better card exists.
+              says it ends the shell outright.  No better card exists.  Re-run
+              against os9exec 8ee3bcf (2026-09-19), which fixed the
+              masked-signal freeze behind `yacc' and `pgmedge': byteflip
+              still ends the session, so it is not that fault.
   `rcsmerge'  cannot ever merge here: it forks `merge', and this disk
               has no such binary.  A real two-revision attempt gets as
               far as `RCS file: note_v / retrieving revision 1.1 /

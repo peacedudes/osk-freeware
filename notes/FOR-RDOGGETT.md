@@ -135,6 +135,34 @@ from a measured list the gate checks.
    because each was a duplicate AND the worse of the pair.  Do you want the
    rest gone, or the convention kept and explained?
 
+26. **One line of 1991 source would make `pnmtosir'/`sirtopnm' round-trip,
+   and I have not touched it.**  The SIR pair comes back the right size with
+   the colour planes rotated over the first pixels; that has been in
+   DOC/INDEX as a known fault since August with no cause.  The cause is two
+   bytes: `pnmtosir' writes a header of 1536 little-endian shorts -- 256 file
+   header, 256 colour-map header, 1024 map, three aligned blocks, 3072 bytes,
+   and a 4x1 image is 3084 bytes on the nose -- while `sirtopnm' reads five
+   shorts and then
+
+       for ( i = 1; i < 1531; i++ )
+
+   skips 1530 more.  1535 shorts, 3070 bytes.  It starts on the pixels two
+   bytes early and every plane it reads is shifted by two.
+
+   I checked that by PREDICTION rather than by patching: the shift says solid
+   red must come back green, green, red, red and solid green must come back
+   blue, blue, green, green, and both are exactly what the disk produces.
+   Three data-test cases now pin it.
+
+   The header is three aligned blocks, so the reader is the one that is
+   wrong, and `i < 1532' is the whole fix.  **But the loop is as the 1991
+   original has it**, so this is an upstream defect and fixing it means
+   shipping a netpbm that differs from the archive -- against the grain of a
+   collection that preserves period software.  Both programs are ours to
+   rebuild (SRC/netpbm/PNM, recipes in place), so it is a ten-minute job
+   whenever you say.  Ship the patched pair, or keep the archive's and leave
+   the note?
+
 ## Not a question any more, but you should know
 
 18. **`disk/` is hard-linked to a second copy and my edits reach it.**  You

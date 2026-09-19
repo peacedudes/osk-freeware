@@ -54,22 +54,62 @@ case    booz-reads-a-zoo
 run     /dd/CMDS/booz -l /dd/tmp/a.zoo
 absent  error
 
-# KNOWN FAILURE, found 2026-08-27. Info-ZIP `zip' deflates correctly and then
-# CANNOT PUT THE RESULT ANYWHERE. It writes a temporary (_Z000003), fails to
-# rename it over the target, and says so:
+# ZIP WRITES A VALID ARCHIVE AND CANNOT PUT ITS NAME ON IT. Found
+# 2026-08-27, understood 2026-09-19. Info-ZIP `zip' deflates into a
+# temporary beside the target -- `_Z000003', `_Za00003' -- and then renames
+# that over the target. THE RENAME IS THE ONLY THING THAT FAILS:
 #
-#   adding dd/SYS/termcap (deflated 44%)
+#   adding m.txt (deflated 44%)
 #   zip warning: new zip file left as: _Z000003
 #   zip error: file not found
 #   zip error: Could not create output file (was replacing the original zip file)
 #
-# Reproduced writing into /dd/tmp and into /dd, so it is not one bad
-# directory. The deflate works; only the finalising rename fails. `unzip'
-# cannot be judged until there is an archive for it to read -- use zoo, tar
-# or gzip meanwhile. Kept failing on purpose.
-case    zip-cannot-write-its-archive
-run     /dd/CMDS/zip /dd/tmp/a.zip $T
-absent  Could not create output file
+# and the temporary IS the archive -- rename it yourself and `unzip' lists
+# it, extracts it, and the file comes back with the md5 it went in with.
+# The cases below do exactly that, so the round trip is asserted like every
+# other archiver here rather than written off.
+#
+# What was ruled out, all measured on 2026-09-19: it is not one bad
+# directory (/dd/tmp and /dd behave alike); it is not the target being
+# absent (given an existing VALID archive to update, zip deletes it and the
+# rename still fails, leaving neither); and the deflate was never in doubt.
+#
+# The first case pins the defect, so that a zip which one day renames its
+# own file breaks a case and brings somebody back to this comment.
+#
+# TWO INVOCATION RULES, both measured. Zip STRIPS THE LEADING SLASH from a
+# pathname it stores, so an absolute round trip cannot work: `unzip' then
+# tries to create `dd/tmp/.../z.txt' under wherever it is standing and
+# answers `unable to process'. And `unzip -d <dir>' WRITES NOTHING AND
+# REPORTS SUCCESS -- the last case pins that too. So: stand in the
+# directory and use bare names, at both ends.
+case    zip-writes-a-valid-archive-and-cannot-put-its-name-on-it
+run     /dd/CMDS/rm -rf /dd/tmp/ZIPC > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/ZIPC/out
+run     /dd/CMDS/cp $T /dd/tmp/ZIPC/m.txt
+run     /dd/CMDS/ksh -c "cd /dd/tmp/ZIPC; /dd/CMDS/zip a.zip m.txt"
+expect  adding m.txt (deflated 44%)
+expect  new zip file left as: _Z
+expect  Could not create output file
+
+case    the-temporary-zip-leaves-behind-is-the-archive
+run     /dd/CMDS/mv /dd/tmp/ZIPC/_Z* /dd/tmp/ZIPC/a.zip
+run     /dd/CMDS/unzip -l /dd/tmp/ZIPC/a.zip
+expect  963
+expect  m.txt
+
+case    zip-round-trip-under-the-name-zip-could-not-use
+run     /dd/CMDS/ksh -c "cd /dd/tmp/ZIPC/out; /dd/CMDS/unzip /dd/tmp/ZIPC/a.zip"
+run     /dd/CMDS/md5 /dd/tmp/ZIPC/out/m.txt
+expect  ee2c20fa226fe6fc78feec7f123c7a99
+
+case    unzip-minus-d-writes-nothing-and-reports-success
+run     /dd/CMDS/rm -rf /dd/tmp/ZIPE > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/ZIPE
+run     /dd/CMDS/unzip -o /dd/tmp/ZIPC/a.zip -d /dd/tmp/ZIPE
+run     /dd/CMDS/ls -l /dd/tmp/ZIPE
+expect  total 0
+absent  Inflating
 
 # THE REST OF THE FAMILY, 2026-08-28.  Every archiver on this disk that can
 # be driven from a script is now here, and each one proves itself by the

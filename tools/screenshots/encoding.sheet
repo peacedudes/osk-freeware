@@ -170,18 +170,33 @@ run     ls -l tmp/ENC/d.txt.n
 wait    4
 
 shot    xcrypt
-cap     A file cipher that cannot be driven from a command line here.  Every
-cap     form prints the same syntax line and stops -- two filenames, a key
-cap     given as `-k=word' or `-k word', or nothing at all -- and no output
-cap     file is created.  The binary carries a `Key:' prompt and a warning
-cap     that a short key is weak, so a key was meant to be typed somewhere,
-cap     but nothing on this disk reaches it.
-try     xcrypt
+cap     Scrambles a file against a key you type at its `Key:' prompt.  Two
+cap     things it needs that its syntax line does not say.  The output file
+cap     MUST ALREADY EXIST: it asks OS-9 to create one with a Unix
+cap     permission word, OS-9 reads that word as its own attribute byte and
+cap     refuses, and the syntax line you get is that refusal, not a
+cap     complaint about your arguments.  And the direction comes from the
+cap     NAME it is invoked by -- one starting with `e' encrypts, anything
+cap     else decrypts -- so as `xcrypt' it always takes the decrypt path.
+cap     Ten characters of key or more, or it tells you the key is short.
+try     xcrypt a.txt a.enc
+run     rm -rf /dd/tmp/XCA > /nil 2>/nil; mkdir -p /dd/tmp/XCA
+wait    2
+run     cat /dd/SYS/motd > /dd/tmp/XCA/a.txt
+wait    2
+run     builtin cd /dd/tmp/XCA
+wait    1
 run     clear
 wait    1
-run     xcrypt
+run     cat a.txt
+wait    2
+run     echo x > a.enc
+wait    2
+run     xcrypt a.txt a.enc
 wait    3
-run     xcrypt tmp/XCA/a.txt tmp/XCA/a.enc
+send    thiskeyisplentylongenough\r
+wait    4
+run     dump a.enc
 wait    3
 
 shot    todos
