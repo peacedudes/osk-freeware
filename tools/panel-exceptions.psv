@@ -90,7 +90,6 @@ lgrep|lists the files a pattern appears in; it prints nothing even for a pattern
 fixyear|corrects a file's modification year when the clock wrote a wrong one; the files here carry good years, so it finds nothing to fix
 os9lib|not a program but the RTF/68K FORTRAN runtime library; it is shown among the runtime modules, not run
 edir|lists the OS-9 event directory; nothing on this disk creates an event, so the heading is all there is
-pbmtobbnbg|writes graphics for a BBN BitGraph terminal; it rejects the PBM bitmaps this disk's netpbm makes with bad magic number and writes nothing
 lpq|shows the print spooler's queue; no spooler is running on this disk, and it says so
 lpshut|stops the print spooler; none is running here, and it says so
 setterm|reports the terminal type in a single line -- too little for a published panel, but it does its one job

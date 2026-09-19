@@ -296,6 +296,20 @@ case    the-sir-header-is-three-aligned-blocks
 run     /dd/CMDS/wc -c /dd/tmp/k.sir
 expect  3084
 
+# pbmtobbnbg READS STANDARD INPUT and ignores a filename given as an
+# argument -- which is the whole of why it was written off as rejecting
+# this disk's own bitmaps. Handed a name it waits on the terminal and calls
+# whatever arrives next a bad magic number. Redirected, it writes the
+# BitGraph escape sequence: ESC P, the size, the packed rows, ESC \.
+# Measured 2026-09-19.
+case    pbmtobbnbg-reads-standard-input-and-writes-bitgraph-codes
+run     $P/pbmmake -g 16 8 > /dd/tmp/bb.pbm 2>/nil
+run     $P/pbmtobbnbg < /dd/tmp/bb.pbm > /dd/tmp/bb.out 2>/nil
+run     /dd/CMDS/wc -c /dd/tmp/bb.out
+expect  38
+run     /dd/CMDS/dump /dd/tmp/bb.out
+expect  .P:3;16;8s
+
 case    pbmtext-renders-text
 run     $P/pbmtext hello > /dd/tmp/tx.pbm 2>/nil
 run     $P/pnmfile /dd/tmp/tx.pbm

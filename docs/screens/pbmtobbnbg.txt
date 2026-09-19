@@ -1,3 +1,8 @@
-pbmtobbnbg tmp/NPMB/b.pbm > tmp/NPMB/o.bg
-ls -l tmp/NPMB/o.bg
-pbmtobbnbg: bad magic number - not a pbm file
+pbmtobbnbg < b.pbm > o.bg
+$ dump o.bg
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  1B50 3A33 3B31 363B 3873 0D55 5535 5555 .P:3;16;8s.UU5UU
+0010  2655 5535 5555 2655 5535 5555 2655 5535 &UU5UU&UU5UU&UU5
+0020  5555 261B 5C0D                          UU&.\.

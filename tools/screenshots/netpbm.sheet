@@ -122,20 +122,24 @@ run     ls -l tmp/NPMB/o.ptx
 wait    4
 
 shot    pbmtobbnbg
-cap     Meant to write graphics for a BBN BitGraph terminal.  Given a PBM
-cap     this disk's netpbm makes -- raw or plain -- it answers `bad magic
-cap     number' and writes nothing, while the other PBM converters read the
-cap     same file.
-try     pbmtobbnbg tmp/NPMB/b.pbm > tmp/NPMB/o.bg
-run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
-run     pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm
+cap     Writes a bitmap as the escape sequence a BBN BitGraph terminal
+cap     draws with: ESC P, the size, the rows packed into printable
+cap     characters, ESC \.  IT READS STANDARD INPUT and ignores a
+cap     filename handed to it as an argument -- give it the file with
+cap     `<', or it waits on the terminal and calls whatever you type next
+cap     a bad magic number.
+try     pbmtobbnbg < b.pbm > o.bg
+run     rm -rf /dd/tmp/BBNB > /nil 2>/nil; mkdir -p /dd/tmp/BBNB
+wait    3
+run     pbmmake -g 16 8 > /dd/tmp/BBNB/b.pbm
 wait    4
-run     builtin cd /dd
+run     builtin cd /dd/tmp/BBNB
 wait    1
 run     clear
-run     pbmtobbnbg tmp/NPMB/b.pbm > tmp/NPMB/o.bg
+wait    1
+run     pbmtobbnbg < b.pbm > o.bg
 wait    5
-run     ls -l tmp/NPMB/o.bg
+run     dump o.bg
 wait    4
 
 shot    pgmtofs

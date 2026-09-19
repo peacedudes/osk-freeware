@@ -867,12 +867,20 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    already driven -- their transcripts are reproducible from the sheets in
    `tools/drives/` -- and only need a case written. The ones left are the
    awkward ones: the seven gcc PASSES (forked by the driver, not run by
-   hand), the three Atari GRAPH demos that want a display, and a handful
-   that end the emulator session and so cannot be a `datatest` case at all
-   (`pbmtobbnbg`, `wysecrack`, `cron`, `byteflip`). **A program that ends
-   the session belongs in DOC/INDEX and in a drive transcript, not in a
-   case** -- datatest fails any case whose session took an exception, and
-   that rule is right.
+   hand) and the three Atari GRAPH demos that want a display.
+
+   **The four named here as ending the emulator session do not end it**,
+   corrected 2026-09-19 after the os9exec session read each one. `byteflip`
+   wants a word length and two byte maps and was being handed a filename,
+   so it read zero bytes for ever; given its maps it swaps and exits, and
+   it has a card. `pbmtobbnbg` prints `EOF / read error reading magic
+   number` on empty input and the next command runs. `cron` is a daemon and
+   stays up idle, which is correct behaviour. `wysecrack` opens with a
+   deliberate 60-second `F$Sleep`. So the honest description is
+   NEVER RETURNS for two of them and NOTHING WRONG for the other two.
+   **A program that does not return still belongs in DOC/INDEX and in a
+   drive transcript rather than in a case** -- datatest has no timeout of
+   its own -- and that rule is right; the reason for it was not.
 2. **30 gallery cards still flagged, of 929** (`tools/audit_cards.py`,
    re-measured 2026-09-13 — this item said 17 of 485 and both halves had
    drifted). **44 are excepted by name and should stay**, each with its
