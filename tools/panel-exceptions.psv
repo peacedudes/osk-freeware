@@ -33,7 +33,7 @@ hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what 
 spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
 ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show
-frm|lists who your mail is from; it does not recognize this disk's mail folder and reports no mail, where messages and readmsg read the same one
+frm|lists who your mail is from; it opens this disk's folder and counts no messages in it, where messages and readmsg read the same file -- measured 2026-09-19 three ways, as `frm', as `frm $MAIL' and on a copy given by bare name from its own directory (`No messages in that folder!', and -S says the folder contains none). The From_ line is well formed; the parser that rejects it is ELM's real_from(), which lives in a lib/ the archive here does not carry
 mailx|the mail reader and sender; it finds a mailbox by user number, and the super user this runs as has none
 smail|the smart mail router; it needs a routing configuration and a peer to hand mail to, neither present, so its options are what there is to show
 uucico|the UUCP transfer program; it dials or answers a UUCP peer over a serial line, of which there is none here, so its options are what there is to show
