@@ -14,7 +14,7 @@
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 35 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 36 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
@@ -25,7 +25,7 @@
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 124 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 123 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -356,7 +356,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>35 programs</summary>
+<details><summary>36 programs</summary>
 
 **Attributes & ownership**
 
@@ -430,6 +430,12 @@
 |---|---|
 | `basename` | &#9733; prints the last part of a path -- the file name with every directory dropped -- and drops a suffix too if one is given as a second argument<br>`basename v1.0 (c) M.C.Gregorie, 1994` |
 | `dirname` | &#9733; prints the directory part of a path: everything up to the last slash<br>`dirname v1.0 (c) M.C.Gregorie, 1994` |
+
+**Records & catalogues**
+
+| | |
+|---|---|
+| `names` | &#9733; an address book, in German: `Adressen Verwaltung', version 1.0.  Anrede, Nachname, Vorname, Strasse, PLZ, Stadt, Telefon and two Bemerkung lines per record, kept in a file of its own under SYS which it creates on first run.  Full screen and interactive -- it wants a terminal, and at end of input it re-prompts for ever.  It does NOT list module names; `modinfo' is what does that |
 
 **Split & join**
 
@@ -962,10 +968,10 @@
 | `pbmpscale` | enlarges a bitmap by an integer factor, smoothing the edges rather than making stairs<br>`usage:  pbmpscale scale [pbmfile]` |
 | `pbmreduce` | shrinks a bitmap by an integer factor, dithering the averaged pixels<br>`usage:  pbmreduce [-floyd\|-fs \| -threshold] [-value <val>] N [pbmfile]` |
 | `pbmtext` | sets a line of text as a bitmap, in its built-in font or one from a file<br>**How:** pbmtext <word> draws it as an image. `pbmtext os9 \| pbmtoascii' prints it on the terminal and needs no file at all -- the shortest demonstration of the 169 NETPBM programs. See DOC/README-NETPBM. |
-| `pbmupc` | draws a UPC-A bar code from its digits<br>`usage:  pbmupc [-s1\|-s2] <type> <manufac> <product>` |
+| `pbmupc` | draws a UPC-A bar code as a bitmap from the three number groups that make one up -- product type, manufacturer and product -- with -s1 or -s2 for the two sizes<br>`usage:  pbmupc [-s1\|-s2] <type> <manufac> <product>` |
 | `pgmbentley` | the Bentley effect: an image smeared as if painted, brightness shifting the pixels |
 | `pgmcrater` | makes a cratered landscape -- a moon -- from a random number generator<br>`usage:  pgmcrater [-number <n>] [-width\|-xsize <w>]` |
-| `pgmedge` | finds the edges in a greymap |
+| `pgmedge` | finds the edges in a greymap. IT HANGS ON A PHOTOGRAPH -- no output, no error, and it never returns, so the session has to be stopped. A generated ramp of any size goes through in a second, which makes it the content and not the size; `pgmenhance' and `pgmnorm' handle either. Measured 2026-08-28 |
 | `pgmenhance` | sharpens a greymap by edge enhancement, -1 mild to -9 strong<br>`usage:  pgmenhance [-N] [pgmfile]  ( 1 <= N <= 9, default = 9 )` |
 | `pgmhist` | prints a histogram of the grey levels in a greymap |
 | `pgmkernel` | makes a convolution kernel for pnmconvol, of the size given<br>`usage:  pgmkernel [-weight f] width [height]` |
@@ -1411,7 +1417,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>124 programs</summary>
+<details><summary>123 programs</summary>
 
 **Devices & disks**
 
@@ -1514,7 +1520,7 @@
 | | |
 |---|---|
 | `clock` | displays a running clock on the terminal; it needs a terminal type and opens a pipe to feed its display |
-| `oskversion` | &#9733; report the OS-9/OSK version<br>`Syntax:   OSKversion` |
+| `oskversion` | &#9733; reports the system: OS-9 level, version, revision and edition, and the CPU twice over -- what the init module claims and what the system globals say the processor really is, which are not always the same machine<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `setime` | sets the system time. It prompts with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line Shares its name with a utility of your own -- README-NAMES |
 
@@ -1557,7 +1563,6 @@
 | `map` | &#9733; show the disk blocks a file occupies, sector by sector: `map <file>', or `map -e <file>' for the extended form. For memory rather than disk, `mfree' and `free' would be the equivalents, and your own OS-9 has them<br>`Syntax: map [<opts>] <file> {<file>}` |
 | `modinfo` | report a module's header -- name, type, size, edition, CRC<br>`module: Show Module Information` |
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
-| `names` | &#9733; an address book, in German: `Adressen Verwaltung', version 1.0.  Anrede, Nachname, Vorname, Strasse, PLZ, Stadt, Telefon and two Bemerkung lines per record, kept in a file of its own under SYS which it creates on first run.  Full screen and interactive -- it wants a terminal, and at end of input it re-prompts for ever.  It does NOT list module names; `modinfo' is what does that |
 | `phone` | connects two terminals over a communication path so you can type to somebody on another: `phone /t1' rings until answered; control-E leaves<br>`Syntax: phone <communication-path>` |
 | `preset` | loads the terminal's function keys: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'. German. It takes no arguments and ignores any given |
 | `pri` | change a process's priority: `pri <pid> <priority>'. |
