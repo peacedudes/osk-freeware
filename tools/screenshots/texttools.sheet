@@ -616,11 +616,24 @@ run     ispell_rebuilt -l < tmp/TXT/spell2.txt
 wait    8
 
 shot    buildhash
-cap     Builds ispell's hashed dictionary from a word list and an affix
-cap     file; without the word list it says which one it wants.
+cap     Builds ispell's hash table from a word list.  It reads `dict.191'
+cap     by bare name from the directory you are standing in, and the
+cap     dictionary it wants ships in SRC/ispell -- so stand somewhere with
+cap     a copy and it counts the words, then writes `count.191' and the
+cap     `stats.191' below, which is how many words hash to each bucket.
 try     buildhash
+run     rm -rf /dd/tmp/ISPB > /nil 2>/nil; mkdir -p /dd/tmp/ISPB
+wait    3
+run     cp /dd/SRC/ispell/dict.191 /dd/tmp/ISPB/dict.191
+wait    4
+run     builtin cd /dd/tmp/ISPB
+wait    1
+run     clear
+wait    1
 run     buildhash
-wait    6
+wait    30
+run     cat count.191; head stats.191
+wait    5
 
 shot    makelex
 cap     Turns sonnet's word list into a C array, one dictionary entry
