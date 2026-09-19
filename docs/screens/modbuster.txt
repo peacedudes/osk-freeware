@@ -1,0 +1,10 @@
+modbuster twomods
+cat
+getenv
+.
+$ ls -l
+total 18944
+-rw-------   1 0        0            5322 Sep 19 06:49 cat
+-rw-------   1 0        0            3784 Sep 19 06:49 getenv
+-rw-rw-rw-   1 0        0            9106 Sep 19 06:49 twomods
+-rw-------   1 0        0               0 Sep 19 06:49 ?

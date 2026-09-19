@@ -165,7 +165,7 @@ cpu 098e41d6e2631e71
 creadoc dde4ad02df47b5c3
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
-cron 32dbb5d3d7b578bc
+cron d4fd92cf0137f205
 crypto ee96bdb3042ce625
 ctags 841abe2f2cfff6b3
 ctags.elvis be73695a040d2c13
@@ -484,6 +484,7 @@ minnesota f7ab891b958c9da7
 mkdict 429d03cfca6f7aec
 mkdir d5cbe4d6e1888792
 mkindex 56e25e6b32f8fb0c
+modbuster cb744ce6cbe812b3
 modinfo 35b55f276b3cbaeb
 modules 3f1b889666b4b165
 modules2 3e9cd772e0307a88

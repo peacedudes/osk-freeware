@@ -730,17 +730,25 @@ try     repeat 2 today
 run     repeat 2 today
 wait    4
 shot    cron
-cap     cron is a scheduling daemon: it reads usr/lib/crontab and hands each
-cap     command to Microware's shell at its minute, hour and day, running
-cap     until it is stopped.  A daemon that waits has no screen of its own,
-cap     so this shows the crontab it acts on.
-try     cat usr/lib/crontab
+cap     A scheduling daemon: it reads usr/lib/crontab -- shown first --
+cap     and hands each command to Microware's shell at its minute, hour
+cap     and day, running until it is stopped.  Started in the background
+cap     here, bash prints the id it got, and `signal' answers status 0
+cap     because there was a daemon there to take it.  USE THE ID YOU SEE,
+cap     not the 3 shown.
+try     cron &
+run     set +H
+wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     cat usr/lib/crontab
 wait    5
+run     cron &
+wait    4
+run     signal 3 0; echo "status $?"
+wait    4
 shot    setime
 cap     setime sets the system clock.  It prompts for the date and time
 cap     as one string, two digits each: year, month, day, hour, minute,

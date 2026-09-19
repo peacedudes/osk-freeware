@@ -30,12 +30,10 @@ trap|an example trap handler that cannot be installed from user state; the refus
 convert|starts WORLD, whose opening shows only its MORE prompt here; the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
 unstr|asks for 75 megabytes before it reads a byte and is refused; the stop is the whole of what it does, and the card says so
-modbuster|prints only the name of the module it split out; the card shows that
 texidx|builds an index from a TeX run's entries; with none to read its usage is what there is to show
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
-cron|a scheduling daemon; its card shows the crontab it reads rather than running it
 t|a stub that returns success and prints nothing; the status line on its card is the evidence
 eset|the event directory is empty and nothing here creates an event, so it can only report that
 eunlink|the event directory is empty, so it reports the event is not found

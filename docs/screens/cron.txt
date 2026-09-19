@@ -5,3 +5,7 @@ cat usr/lib/crontab
 * One job per line:  minute hour day month weekday command
 * Example, commented out so it does not run:
 * 0 3 * * *  /dd/CMDS/UUCP/uuclean
+$ cron &
+<3>
+$ signal 3 0; echo "status $?"
+status 0
