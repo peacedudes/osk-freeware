@@ -750,9 +750,12 @@ wait    4
 run     signal 3 0; echo "status $?"
 wait    4
 shot    setime
-cap     setime sets the system clock.  It prompts for the date and time
-cap     as one string, two digits each: year, month, day, hour, minute,
-cap     second, in that order.
+cap     setime prompts for the date and time as one string, two digits
+cap     each: year, month, day, hour, minute, second, in that order.
+cap     Answering it leaves the clock where it was, from the prompt or
+cap     from six fields on the command line alike -- so the format is
+cap     what this card has to give you.  `setime2' and `setyear' do set
+cap     the clock, and their cards show it.
 try     setime -?
 run     setime -?
 wait    5
