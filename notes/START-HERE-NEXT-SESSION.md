@@ -17,6 +17,10 @@ emulator change.  Both cases are fixed at both ends -- the one that
 READS the state establishes it, the one that WRITES it removes it -- and
 `last2' then `last' is 11 of 11 and 13 of 13.
 
+**PROVED: 868 of 868 TWICE against one image**, so that pair was the only
+order dependency in the suite and nothing else leaves state another case
+depends on.  That is the run to repeat after any new case.
+
 **Where to look if it happens again:** case lines that write outside
 /dd/tmp.  Thirty-five of them across a dozen files, and they are the only
 ones that can poison a later run:
