@@ -209,26 +209,39 @@ send    \003
 wait    3
 
 shot    hexed
-cap     A hex editor made of your text editor: it writes the file out as
-cap     a hex dump, opens that in the editor named by -e, and when you
-cap     leave it turns the dump back into the file.  -t names the
-cap     directory for the dump.
-try     hexed -t=tmp/EDIT -e=vi_nocio tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+cap     A hex editor made out of your text editor: it writes the file out as
+cap     a hex dump, opens that in the editor -e names, and when you leave it
+cap     turns the dump back into the file.  Both halves are shown here doing
+cap     their work -- and the editing step in between is the part this disk
+cap     cannot do.
+cap     hexed hands the whole thing to system() as `chd <dir> ; <editor>
+cap     <file>.hd', and only Microware's own shell parses that line.  With
+cap     that shell resident and SHELL naming it, vi opens on the dump;
+cap     measured 2026-09-18.  So on your own OS-9 this is a working hex
+cap     editor, and here it is a round trip.
+cap     -t names the directory for the dump and is not optional: without it
+cap     the dump goes to /r0, a RAM disk you would have to mount first
+cap     (`mount -r=256k /r0').
+try     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil
+wait    2
+run     printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     hexed -t=tmp/EDIT -e=vi_nocio tmp/EDIT/jabber.txt
+run     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
 wait    10
 
 shot    hexedit
 cap     HEXPERT, a hex viewer and editor, on a module from the disk: one
 cap     16-byte row and the mode is its whole display.  It reads the
 cap     terminal description from TERMCAP as text rather than as a file
-cap     name, so the entry is put in the variable first.
-try     hexedit CMDS/today
+cap     name, so the entry goes into the variable first -- that is what the
+cap     leading `.' line does, and without it hexedit prints the terminal
+cap     type and exits.
+try     . SYS/termcap.entry; hexedit CMDS/today
 run     . /dd/SYS/termcap.entry
 wait    3
 run     builtin cd /dd

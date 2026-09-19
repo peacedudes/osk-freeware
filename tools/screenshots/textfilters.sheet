@@ -243,23 +243,26 @@ snap
 shot    eo
 cap     eo runs one command for every line of a file, with `@' standing for
 cap     the line: here `wc' over the three files named in list.txt, each
-cap     command echoed before its output.  It hands the commands to the shell
-cap     named by SHELL -- `sh' here, with `wc' loaded first so that sh finds
-cap     it by name.
-try     cat tmp/TEXTA/list.txt; SHELL=CMDS/sh eo tmp/TEXTA/list.txt wc @
+cap     command echoed before its output.  eo hands each command to the shell
+cap     SHELL names, and this disk's `sh' can only fork a module it finds by
+cap     name -- so `sh' and `wc' are loaded into memory first, and that is
+cap     what the two `load' commands are for.  SHELL=CMDS/sh does NOT work:
+cap     a relative fork is resolved against the execution directory, not the
+cap     one you are in.
+try     load sh; load wc; SHELL=sh eo list.txt wc @
 run     mkdir -p /dd/tmp/TEXTA; echo /dd/SYS/motd > /dd/tmp/TEXTA/list.txt; echo /dd/SYS/holidays >> /dd/tmp/TEXTA/list.txt; echo /dd/SYS/birthdays >> /dd/tmp/TEXTA/list.txt
 wait    3
-run     load /dd/CMDS/wc
-wait    2
-run     builtin cd /dd
+run     builtin cd /dd/tmp/TEXTA
 wait    1
 run     clear
 wait    1
-run     cat tmp/TEXTA/list.txt
+run     cat list.txt
 wait    3
-run     SHELL=CMDS/sh eo tmp/TEXTA/list.txt wc @
-wait    8
+run     load sh; load wc; SHELL=sh eo list.txt wc @
+wait    10
 snap
+run     builtin cd /dd
+wait    1
 
 shot    field
 cap     field prints the words you pick from each line by their position:

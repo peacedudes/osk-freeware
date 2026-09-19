@@ -1159,12 +1159,12 @@ cap     one at a time like a game-show board, and settle as the line.  Shown
 cap     as a strip, one line per frame, top to bottom: Wheel of Fortune
 cap     (style 14), then Expand text outward (style 5).  zot -s names all
 cap     fourteen.
-try     zot -s=14 "OS-9 freeware"
+try     zot -s=14 "Microware OS-9/68000 -- the freeware collection, 1987 to 1996"
 frames
-run     zot -s=14 "OS-9 freeware"
-wait    3
-run     zot -s=5 "OS-9 freeware"
-wait    3
+run     zot -s=14 "Microware OS-9/68000 -- the freeware collection, 1987 to 1996"
+wait    6
+run     zot -s=5 "Microware OS-9/68000 -- the freeware collection, 1987 to 1996"
+wait    6
 
 shot    convert
 cap     Starts the WORLD text adventure.  Its opening sets you on a trail

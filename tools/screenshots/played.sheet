@@ -104,7 +104,12 @@ wait    5
 shot    beav
 cap     A binary editor and viewer, here on a file of the disk's own
 cap     documentation: the offset, sixteen bytes in hexadecimal, and the
-cap     same sixteen as characters.  Control-C leaves it.
+cap     same sixteen as characters.
+cap     To edit, type hexadecimal digits: they replace the byte under the
+cap     cursor, and the character column changes with them.  Ctl-X Ctl-A
+cap     switches between replacing and inserting.  Ctl-C asks
+cap     `quit-no-save [y/n]?' -- answer y to leave without writing; Ctl-X
+cap     Ctl-E saves and leaves.  Its own manual is DOC/beav.
 run     builtin cd /dd/DOC
 wait    1
 run     clear

@@ -685,7 +685,8 @@ cap     browse shows a directory the way vi shows a file: an `ls -l' listing
 cap     with a cursor in it.  j and k step down and up, SPACE opens the
 cap     directory under the cursor or pages the file, `x' dumps that file in
 cap     hex and `?' brings up the help.  The `~' rows are the empty screen
-cap     below the last entry, exactly as vi draws them.
+cap     below the last entry, exactly as vi draws them.  To leave, press `q'
+cap     TWICE -- one on its own does nothing.
 try     browse DOC/unshar
 run     builtin cd /dd
 wait    1
@@ -694,5 +695,7 @@ wait    1
 run     browse DOC/unshar
 wait    6
 snap
+send    q
+wait    1
 send    q
 wait    2

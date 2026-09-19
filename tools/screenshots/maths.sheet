@@ -208,15 +208,14 @@ shot    dc
 size    24 80
 cap     The integer desk calculator after 6*7: the display top right, five
 cap     memory slots down the left, and the keypad laid out like the Atari
-cap     ST's.  Its boxes are drawn with DCGRAPHIC's plain characters, set first,
-cap     since the Cumana graphics it expects are not on this terminal.  Q or
-cap     ESC leaves it.
-try     dc
-run     export DCGRAPHIC="++++|-"
-wait    1
+cap     ST's.  DCGRAPHIC is not optional on a terminal without the Cumana
+cap     graphics dc expects: set as shown it draws the boxes out of six
+cap     plain characters, and without it the frame comes out as rubbish.
+cap     Q or ESC leaves it.
+try     DCGRAPHIC='++++|-' dc
 run     clear
 wait    1
-run     dc
+run     DCGRAPHIC='++++|-' dc
 wait    5
 send    6*7\r
 wait    3
@@ -225,26 +224,22 @@ send    Q
 wait    3
 
 shot    bc
-size    16 80
-cap     An arbitrary-precision calculator: the numbers are as long as they
-cap     need to be, and `scale' says how many decimal places to keep.  -l
-cap     loads the maths library, where a(1) is arctangent -- so a(1)*4 is
-cap     pi, to whatever scale was asked for.
-try     bc powers.b; bc seventh.b; bc -l pi.b
-run     rm -rf /dd/tmp/BCC > /nil 2>/nil; mkdir -p /dd/tmp/BCC
-run     printf "2^200\rquit\r" > /dd/tmp/BCC/powers.b
-run     printf "scale=40\r1/7\rquit\r" > /dd/tmp/BCC/seventh.b
-run     printf "scale=20\ra(1)*4\rquit\r" > /dd/tmp/BCC/pi.b
-run     builtin cd /dd/tmp/BCC
-wait    2
+size    14 80
+cap     An arbitrary-precision calculator: each sum above its answer.  Two to
+cap     the two-hundredth comes out in full, a seventh to forty decimal
+cap     places, and pi as four times the arctangent of one -- `scale' says
+cap     how many places to keep, and -l loads the maths library that a(1)
+cap     comes from.  Typed at on its own, bc answers sum by sum until `quit'.
+try     echo "2^200" | bc
 run     clear
 wait    1
-run     bc powers.b
+run     echo "2^200" | bc
 wait    4
-run     bc seventh.b
+run     echo "scale=40; 1/7" | bc
 wait    4
-run     bc -l pi.b
+run     echo "scale=20; a(1)*4" | bc -l
 wait    5
+snap
 
 shot    chemtab
 size    24 80
