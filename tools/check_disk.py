@@ -1446,7 +1446,9 @@ def check_every_program_is_accounted_for(root):
     the program has neither a card nor a recorded reason for lacking one.
 
     Written 2026-09-12 after `dedit', `who', `fpu' and `fpu040' appeared to
-    fall through.  THEY DO NOT: none is a type-$01 program, so the panel
+    fall through.  (`fpu040' came off the disk on 2026-09-19 -- no grant
+    travels with any copy of it; the name is kept here because the lesson
+    is about the four, not about which of them still ships.)  THEY DO NOT: none is a type-$01 program, so the panel
     system ignores them correctly, and the first version of this check
     demanded cards for things nothing can show.  It failed the gate on four
     correctly-handled names before the predicate was narrowed to
