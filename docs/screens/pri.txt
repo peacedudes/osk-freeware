@@ -1,2 +1,4 @@
 $ pri 2 128; echo "status $?"
 status 221
+$ pri; echo "status $?"
+status 221

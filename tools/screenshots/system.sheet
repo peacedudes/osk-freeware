@@ -887,11 +887,16 @@ run     suse today; echo "status $?"
 wait    3
 shot    pri
 cap     pri changes a process's priority: `pri <pid> <priority>'.  It
-cap     prints nothing, so the exit status is the whole of what it has
-cap     to show: 221, module not found, since there is no process 2 on
-cap     this disk to change.
+cap     prints nothing whatever happens, so the exit status is all there
+cap     is to see -- and here that is 221 for every invocation tried,
+cap     including a live process and no arguments at all.  221 is
+cap     module-not-found, which is not an answer about a process; what it
+cap     is looking for has not been established, and there is no source
+cap     for it on the disk to read.
 try     pri 2 128; echo "status $?"
 run     pri 2 128; echo "status $?"
+wait    3
+run     pri; echo "status $?"
 wait    3
 shot    snd_sig
 cap     Sends a signal to one or more processes named by id.  With no
