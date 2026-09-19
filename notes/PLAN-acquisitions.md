@@ -722,6 +722,20 @@ an "OS-9 GNU C compiler" thread from February 1991 that has not been read.
 Nothing else in the nine groups looks like OS-9 software we do not have; the
 mentions are mostly ports being discussed rather than posted.
 
+### omega -- NOT a candidate, settled 2026-09-18
+
+TOP's OS-9 build of omega 0.71 beta runs here, and it stays out.  Brothers's
+licence allows free copying and distribution but not distributing
+MODIFICATIONS without his consent, and an OS-9 build is a modified omega.
+Asked what was modified, the honest answer is that nobody can say: TOP
+shipped the binary and its data files with NO SOURCE anywhere in the
+release, and the binary announces itself as stock "omega version 0.71
+(beta)" with no porter's credit in it.  So the extent of the change cannot
+be established, and consent cannot be inferred.
+
+rdoggett, 2026-09-18, given that: *"it sounds like we can't ship omega"*.
+Do not re-propose it.
+
 ### utree 3.03b-um -- rdoggett's own find, and a candidate  2026-09-18
 
 He sent a usenet-rewind link to message `1992Sep7.214827.26662@PA.dec.com'.
