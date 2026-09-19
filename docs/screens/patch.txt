@@ -5,5 +5,10 @@ cat tmp/DEV/p.diff
 > TWO
 $ patch tmp/DEV/p1 tmp/DEV/p.diff
 Hmm...  Looks like a normal diff to me...
-Patching file tmp/DEV/p1 using Plan B...
-Error reading tmp file /dd/tmp/patchi000004.
+Patching file tmp/DEV/p1 using Plan A...
+Hunk #1 succeeded at 2.
+done
+$ cat tmp/DEV/p1
+one
+TWO
+three

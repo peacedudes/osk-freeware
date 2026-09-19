@@ -1,6 +1,6 @@
 # What is on this disk
 
-1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **707 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -240,8 +240,8 @@
 |---|---|
 | `agrep` | grep that forgives spelling: `agrep -2 homogenos file' finds `homogeneous', allowing up to two letters wrong, missing or extra.  -i ignores case, -w matches whole words, -c counts, -f takes many patterns from a file, and -d splits the text into records (`-d "^From "' for a mailbox)<br>**How:** Like grep, but a number option allows mistakes: `agrep -1 recieve file' finds `receive', one substitution, insertion or deletion away. -i ignores case, -w wants whole words, -c counts matching records, -l names the files, -v inverts, -f patfile searches for every pattern in patfile, and -d sets the record delimiter, so `agrep -d "^From " word mailbox' prints whole messages. Bare, it prints its option summary. |
 | `bm` | &#9733; a fast grep by the Boyer-Moore algorithm: searches files for one or more fixed strings, with counts, file lists and character offsets on request<br>`bm: search for a given string or strings in a file or files` |
-| `bmgtest` | &#9733; Boyer-Moore-Gosper substring search demo<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching. |
-| `bmgtest2` | &#9733; Boyer-Moore-Gosper substring search demo (variant)<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
+| `bmgtest` | Boyer-Moore-Gosper substring search: `bmgtest <pattern> <file>' prints the lines that match, and it reads standard input if you name no file.  -i ignores case, -n numbers the lines<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching. |
+| `bmgtest2` | Boyer-Moore-Gosper substring search, a second driver over the same routines in SRC/strsch; the same arguments as `bmgtest'<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
 | `fgrep` | &#9733; searches files for fixed strings rather than patterns, with context lines, counts, line numbers and file lists on request<br>`Syntax   : fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]` |
 | `ggrep` | &#9733; GNU grep, a second build: the same options as `grep'<br>**How:** GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect. |
 | `grep` | GNU grep 2.0: prints the lines of files that match a regular expression -- -E extended, -F fixed strings, -i ignore case, -v invert, -n number, -c count Shares its name with a utility of your own -- README-NAMES<br>`grep: illegal option -- ?` |
@@ -501,7 +501,7 @@
 | `cpr` | print or pretty-list C source for paper: a title, a contents page, then the source with page and line numbers.<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
 | `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
-| `patch` | apply a diff to update a file. It recognises the diff but cannot complete the patch, leaving the target unchanged; diff itself works. |
+| `patch` | applies a diff to a file, the way `diff' made it: `patch <file> <diff>', or the diff on standard input.  It keeps the original beside the result as <file>.orig.  It could not finish until 2026-09-18 -- its port opened files with Unix modes, where OS-9 reads mode 0 as no access at all |
 | `scpp` | &#9733; the selective C preprocessor: expands only the macros you name and leaves the rest of the source as it was. `scpp -MWIDTH prog.c' interprets WIDTH alone; -D defines one<br>**How:** `scpp -MNAME file' copies the C source to standard output expanding only NAME -- its #define disappears and each use becomes the value -- and leaves every other macro, #include and #ifdef untouched. Name several with -M"A B"; -DNAME=value defines one; -C keeps comments; -I adds an include directory. |
 | `unifdef` | resolve #ifdef sections in C source for one symbol: -d<sym> keeps its branch, -u<sym> the other.<br>**How:** Its option is `-d<sym>' -- lower case, no equals -- and `-u<sym>' for the other side. `-DOSK' is refused with its own help, which reads like the program working and is not. |
 

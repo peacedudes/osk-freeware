@@ -131,6 +131,23 @@ run     /dd/CMDS/bmgtest
 run     /dd/CMDS/bmgtest2
 expect  bmgtest: pattern argument missing
 
+# THEY SEARCH A NAMED FILE, and did not until 2026-09-18.  Both opened it
+# with Unix modes -- `open(name, 0)' is O_RDONLY on Unix and NO ACCESS BITS
+# on OS-9 -- so every read through the descriptor was refused and a named
+# file was searched as empty, while the same pattern on standard input
+# worked.  That contrast is what this case asserts; without the file half it
+# would have passed all along.  SRC/strsch/README.OSK.
+case    the-boyer-moore-tests-search-a-named-file-and-standard-input-alike
+run     /dd/CMDS/rm -rf /dd/tmp/TA/BMG > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/TA/BMG > /nil 2>/nil
+run     /dd/CMDS/printf "alpha\rbeta\rgamma\r" > /dd/tmp/TA/BMG/f.txt
+run     /dd/CMDS/bmgtest beta /dd/tmp/TA/BMG/f.txt
+expect  beta
+run     /dd/CMDS/bmgtest2 gamma /dd/tmp/TA/BMG/f.txt
+expect  gamma
+run     /dd/CMDS/bmgtest alpha < /dd/tmp/TA/BMG/f.txt
+expect  alpha
+
 case    rendsk-says-what-it-is-missing
 run     /dd/CMDS/rendsk
 expect  rendsk: Requires two parameters
