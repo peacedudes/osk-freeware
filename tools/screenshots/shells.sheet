@@ -236,11 +236,31 @@ wait    4
 try     su --help
 
 shot    submit
-cap     Runs the commands in a .sub file with its parameters substituted
-cap     into them -- a batch job: its options.
-run     submit -?
-wait    5
-try     submit -?
+size    20 80
+cap     Runs the commands in a .sub file, one after another, printing each
+cap     before it runs it -- a batch job.  It hands every line to `shell',
+cap     so your own OS-9's shell has to be resident: SYS/login loads it
+cap     from /h1 already, and without it the lines are printed and nothing
+cap     runs.  The file must be named .sub and is given without the suffix.
+try     submit demo
+run     rm -rf /dd/tmp/SUBA > /nil 2>/nil; mkdir -p /dd/tmp/SUBA
+wait    2
+run     load /h1/CMDS/shell
+wait    3
+run     cat /dd/DOC/samples/jabber.txt > /dd/tmp/SUBA/poem
+wait    2
+run     echo "wc poem" > /dd/tmp/SUBA/demo.sub
+wait    1
+run     echo "md5 poem" >> /dd/tmp/SUBA/demo.sub
+wait    1
+run     echo "head -n 2 poem" >> /dd/tmp/SUBA/demo.sub
+wait    1
+run     builtin cd /dd/tmp/SUBA
+wait    1
+run     clear
+wait    1
+run     submit demo
+wait    8
 
 shot    xargs
 size    16 80

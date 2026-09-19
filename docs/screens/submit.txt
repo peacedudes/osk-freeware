@@ -1,6 +1,8 @@
-$ submit -?
-Syntax: submit [<opts>] [<submit file>] [{<parameter>)]
-Function: Executes commands from the submit file with textual replacement.
-          The submit file must have the suffix .sub.
-Options:
-     -?       displays this help message
+submit demo
+wc poem
+      4     23    137 poem
+md5 poem
+MD5 (poem) = daf7ac0e5440228681020bf4d3c11791
+head -n 2 poem
+Twas brillig, and the slithy toves
+     Did gyre and gimble in the wabe:
