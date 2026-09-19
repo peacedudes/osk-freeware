@@ -296,13 +296,15 @@ The rules for each card, on top of the 2026-09-03 ones below:
 | 2026-09-09 evening | every card carries its own CAPTURED help | `notes/PLAN-recard.md' done: `usage_of()' retired for `tools/helpcap.py' + `tools/help.psv' + `docs/help/', gate `cards carry real help text', help-backlog EMPTY (935 of 935); help unfolded on the card, details always open; every DOC/INDEX entry read with its probe beside it, netpbm's 169 given real entries; DOC/USAGE regenerated from the captures. Not yet read rendered in a browser. |
 | 2026-09-19 | **933 of 1007 runnable programs** show their own program working; panel-backlog EMPTY, exceptions 73 (down from 125 that morning). The remaining 74 are counted, not hidden: 28 help-only, 20 with no panel, 17 error-only, 4 mostly-error, 3 silent, 2 play-tested. | the ratchet now fails on a STALE exception as well as a new failure, so a card that gets fixed must have its line taken out; `audit_cards' learnt to read "<prog> returned <n>" as an error line, which is how `clock' published two failures and scored `work'. |
 
-Still to do, in the order worth doing: Files & directories and Archives
-(in flight), Compilers & build (the GCC passes live under
-`/dd/CMDS/GCC2/` and `/dd/CMDS/GCC139/` and are not on PATH -- call them
-by full path; `gcc_cccp -version` answers, the others want a file), Text
-tools (the rest: TeX, DVI drivers, search, sort, spelling, fortune),
-Games (Other games), Graphics & images (netpbm is a real family), System
-& modules, Communications.
+That category list is finished -- every one of them passed at least once
+by 2026-09-04 and the sweep has been per-program since. What is left is
+not a category but the 74 programs the summary counts, and they are not
+all fixable: some need an X server, a modem port, a Wyse terminal, a
+printer or a G-Windows display, and their cards say so in the program's
+own words. `tools/audit_panels.py --summary` is the roster; the work is
+picking a name off it and asking whether the card gave the program what
+it asks for, which is what `tools/panel-exceptions.psv` records a reason
+for when the answer is no.
 
 ### The plan, in order
 
