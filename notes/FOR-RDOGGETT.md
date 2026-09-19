@@ -180,6 +180,32 @@ from a measured list the gate checks.
    question may apply to anything else dropped for its content rather than
    its terms; `reagan' is the only one the scan found.
 
+28. **Does "name what the reader HAS" reach the shipped READMEs?**  The
+   gate enforces it on `DOC/INDEX', `tools/howto.psv' and the gallery
+   sheets, and its docstring says the PATTERNS are narrow on purpose.  It
+   does not read the shipped `DOC/README-*' files, and four of them use the
+   phrasing:
+
+       README-GCC:172       "and is not on this disk, so nothing that
+                             included <stdio.h> could be"
+       README-BUSERR:90     "it is in the SDK and it is deliberately not on
+                             this disk" (about `sysglob.h')
+       README-METAFONT:85   "three Microware utilities that are not on this
+                             disk"
+       README:43            "the docs are here but the BINARY is not on this
+                             disk"
+
+   I fixed only the unambiguous one, `DOC/rayshade/README-RAYSHADE', which
+   said "THIS DISK HAS NO `shell': it has bash and sh" -- misleading as well
+   as against the rule, since the reader's own OS-9 has one and the document
+   goes on to tell them to make the name with a copy.
+
+   The other four read to me as facts rather than discouragement, and two of
+   them are about Microware's own files being deliberately absent, which is
+   the respectful thing to say.  Do you want the rule to reach those
+   documents, or is the narrow scope right?  If it should reach them, the
+   check takes one line -- the file list, not the patterns.
+
 ## Not a question any more, but you should know
 
 18. **`disk/` is hard-linked to a second copy and my edits reach it.**  You
