@@ -238,11 +238,11 @@ send    x
 wait    2
 
 shot    mailx
-cap     The mail reader and sender.  It reads MAIL as the DIRECTORY your
-cap     mailbox sits in, where elm and frm read it as the mailbox FILE --
-cap     and the login script sets it their way, so mailx stops, naming the
-cap     login name the password file gives for the numeric owner.  Unset
-cap     MAIL and it starts, with no mail waiting.  Measured 2026-09-19.
+cap     The mail reader and sender, from the UUCP set.  It goes looking for
+cap     a mailbox directory of its own and names the login name the password
+cap     file gives for the numeric owner -- `su', logged in as the super
+cap     user, which has no mailbox here.  `mail', beside it, keeps its
+cap     mailboxes in the MAIL directory at the root of the disk and works.
 try     mailx
 run     mailx
 wait    8

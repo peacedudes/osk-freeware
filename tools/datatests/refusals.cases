@@ -42,15 +42,13 @@ case    sterm-wants-a-modem-port
 run     /dd/CMDS/COMMS/sterm
 expect  No MODEM port defined
 
-case    mailx-starts-when-MAIL-does-not-name-a-file
-# mailx reads MAIL as the DIRECTORY the mailbox is in; elm and frm read it
-# as the mailbox FILE, and SYS/login sets it their way -- which is why the
-# gallery card, taken under that environment, shows mailx refusing to
-# change to its mailbox directory.  datatest sets no MAIL, so this is the
-# other half of the same measurement.
-run     /dd/CMDS/UUCP/mailx
-expect  no mail waiting
-absent  change to your mailbox directory
+# `mailx' IS DELIBERATELY NOT HERE.  It was, for one evening, and it gave
+# three different answers to the same inputs between 01:25 and 02:15 on
+# 2026-09-19 -- "no mail waiting", then "can't change to your mailbox
+# directory: 'su'...error 214", then the same with error 216 -- while the
+# os9exec working copy beside this one was being rebuilt (sockets, and a
+# memory-block ceiling).  A case cannot pin behaviour that is moving; its
+# gallery card shows what it does and says no more than that.
 
 case    kermit-r15-prints-its-modes
 run     /dd/CMDS/kermit

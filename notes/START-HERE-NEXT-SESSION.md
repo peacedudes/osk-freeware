@@ -36,6 +36,21 @@ because they are about OS-9 and not about utree:
     passes both.  A MODULE gets its arguments either way, which is why
     this went unnoticed.
 
+**AN os9exec LIMIT, NOT AN OS-9 ONE -- and the distinction was nearly
+written down the wrong way round.**  `utree /dd' stops partway through SRC
+with `ualloc: memory full' while os9exec reports 30 MB free in a 32 MB
+arena.  Raising the module's own MEM= from 128k to 1024k moved the free
+figure by exactly that much and did not move the failure.  The os9exec
+session named it within the hour: `MAXMEMBLOCKS = 512' in os9exec_nt.h is
+a COUNT of F$SRqMem blocks per process, not a size, so 512 allocations of
+any size exhaust it -- about 2 MB at this C library's 4 KB chunk.  **Real
+OS-9 joins adjacent memory blocks and os9exec did not**, so on hardware
+utree would very likely read the whole tree; a fix is in flight there.
+Our documentation says "open it on a subdirectory, or give `-q'", which
+is sensible advice on any machine, and does NOT call it an OS-9 limit.
+The general rule this is an instance of: when os9exec is the only thing
+you have measured on, say so, and ask.
+
 **`mail' WORKS, and its card said it could not.**  It wants a scratch
 device at /r0; `DOC/README-RUNNING` has said all along how to get one
 (`mount -r=256k /r0`, and twenty programs want it), and nobody had applied
@@ -43,9 +58,25 @@ it.  With a RAM disk mounted, mail sends a message and reads it straight
 back.  **Before writing a program off, read the disk's own documentation
 for what it needs** -- this is the second time that rule has paid.
 
-**`mailx' was diagnosed wrong too**: it reads `MAIL` as the DIRECTORY the
-mailbox is in, where elm and frm read it as the mailbox FILE, and
-`SYS/login` sets it their way.  Unset MAIL and mailx starts.
+**`mailx' -- DO NOT WRITE A MECHANISM FOR IT, and this is why.**  Between
+01:25 and 02:15 on 2026-09-19 the SAME command with the SAME environment
+gave three different answers: "no mail waiting", then "can't change to
+your mailbox directory: 'su'...error 214", then the same with error 216.
+An explanation was written into its caption and a case on the strength of
+the first two, and had to be withdrawn.  What moved was the os9exec
+WORKING COPY beside this one, being rebuilt through the evening (sockets,
+and the memory-block ceiling above).  **A verification run against a
+sibling's working tree is a run against a moving target** -- note which
+binary, and re-run before believing a difference is yours.
+
+**Two more that moved the same way, and both cases were rewritten rather
+than chased.**  `msntp' used to answer "unable to allocate socket for
+NTP"; os9exec grew real sockets that day and it now BLOCKS instead, so it
+is no longer a case (a case that hangs is worse than no case) and the
+comment in `net.cases' says so.  `lfmaker' used to print "No more memory"
+-- the EMULATOR's message, not the program's -- and went silent while
+still answering 208, so `system2.cases' asserts the STATUS now.  **Do not
+pin another project's diagnostic text in a case here.**
 
 **Programs under no test: 15, from 22** (`tools/worklist.py --programs
 --no-test`).  `tools/datatests/refusals.cases` took seven on the principle

@@ -37,13 +37,15 @@ run     /dd/CMDS/NETWORK/atp < /nil
 expect  Reading Configuration file...
 expect  Unable to open configuration file /dd/atprc or .atprc !
 
-# msntp wanted csl edition 25, and that edition has shipped since
-# 2026-09-04.  It now starts and stops where every program here does: no
-# network to open a socket on.
-case    msntp-gets-past-the-csl-and-stops-at-the-network
-run     /dd/CMDS/NETWORK/msntp < /nil
-expect  unable to allocate socket for NTP
-absent  csl traphandler mismatch
+# `msntp' IS DELIBERATELY NOT A CASE ANY MORE.  It wanted csl edition 25,
+# which has shipped since 2026-09-04, and it then stopped where every
+# program here stopped: "unable to allocate socket for NTP", no network to
+# open a socket on.  On 2026-09-19 os9exec grew real sockets -- its own log
+# that day has "a socket connect parks its caller instead of freezing the
+# emulator" -- and msntp now BLOCKS instead of failing: run under gtimeout
+# 90 against a host with no NTP server it printed nothing and never
+# returned.  A case that hangs is worse than no case, and what it would be
+# measuring is the emulator's network, not this disk.  Its card stands.
 
 case    ckermit-reports-its-version-and-its-os9-modules
 run     echo "show version" > $W/k.in

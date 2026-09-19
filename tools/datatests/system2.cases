@@ -69,12 +69,19 @@ expect  0 /dd/tmp/pt2
 # argument. It carries NO trap-13 stubs at all, so this is NOT the cio
 # selector mismatch that produces the same symptom in 41 other programs --
 # see notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md, addendum.
+#
+# IT ASSERTS THE STATUS, NOT THE WORDS.  `No more memory' is the EMULATOR's
+# message, not lfmaker's, and on 2026-09-19 it stopped appearing while the
+# os9exec working copy beside this one was having its memory-block ceiling
+# changed -- the program went silent and still answered 208.  A case that
+# pins another project's diagnostic text fails for reasons that have
+# nothing to do with this disk.
 case    lfmaker-is-silent-bare-and-cannot-allocate-with-an-argument
 run     /dd/CMDS/lfmaker > /dd/tmp/lf1 2>&1
 run     /dd/CMDS/wc -c /dd/tmp/lf1
-run     /dd/CMDS/lfmaker test
+run     /dd/CMDS/lfmaker test; echo "lfmaker-status=$?"
 expect  0 /dd/tmp/lf1
-expect  No more memory
+expect  lfmaker-status=208
 
 # `testibc' IS NOT HERE ON PURPOSE. It prints its banner, reports
 # `Error #000:009' opening /dd/sys/errmsg.ibc, asks `Timeout time (1/10

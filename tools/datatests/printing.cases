@@ -29,12 +29,20 @@ expect  prjob: Spooler not installed
 
 # perr is an error-message printer, so error text IS its output -- the one
 # card in the gallery whose every line reads like a failure and is not.
+#
+# THE EXPECTED TEXT IS THIS DISK'S OWN, not Microware's.  perr reads
+# SYS/errmsg, and this collection's copy was rewritten on 2026-08-05 into
+# full sentences; these three lines were still the short forms that copy
+# replaced ("(E_PNNF) Path Name Not Found"), so the case had been failing
+# ever since against text that is not on the disk.  Corrected 2026-09-19
+# from a run.  000:001 really is "Process aborted" -- the ERROR table and
+# the SIGNAL table are different tables, and signal 1 is the wake-up.
 case    perr-prints-the-text-of-an-os9-error-number
 run     /dd/CMDS/perr 216
 run     /dd/CMDS/perr 1 2 3
-expect  Error #000:216 (E_PNNF) Path Name Not Found
-expect  Error #000:001 (S_Wake) wake
-expect  Error #000:003 (S_Intrpt) User interrupt
+expect  Error #000:216 (E$PNNF) That path name doesn't lead to anything
+expect  Error #000:001 Process aborted.
+expect  Error #000:003 (S$Intrpt) Keyboard interrupt
 
 case    perr-answers-none-for-something-that-is-not-a-number
 run     /dd/CMDS/perr notanumber

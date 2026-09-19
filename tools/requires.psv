@@ -64,4 +64,4 @@ utree|a shell named by SHELL for its `!' escape, Copy, Move, Remove, Grep and th
 utree|SYS/UTREE/utree.help for `H', SYS/UTREE/utree for the startup settings, SYS/UTREE/utree.backup for Backup|SRC/utree/README.OSK
 submit|a module named `shell' for the commands in the .sub file -- SYS/login loads yours from /h1, and DOC/README-SHELLS says why|measured 2026-09-19: with one resident, submit ran the file's commands and printed their output; with none it prints each line and runs nothing
 m4|a module named `shell' for its syscmd -- SYS/login loads yours from /h1|DOC/README-SHELLS
-utree|room for the whole tree in memory -- name a subdirectory, or `-q' for two levels, on a disk this size|measured 2026-09-19: `utree DOC' (303 dirs, 1553 files) reads whole; `utree /dd' stops in SRC with `ualloc: memory full', and a bigger MEM= does not move it
+utree|room for the whole tree it is given -- open it on a subdirectory, or give `-q' for two levels, on a disk this size|measured 2026-09-19: `utree DOC' (303 dirs, 1553 files) reads whole
