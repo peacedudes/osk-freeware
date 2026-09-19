@@ -394,9 +394,12 @@ reads nothing for ever.  `byteflip 4 0 1 2 3 4 3 2 1 0 < in > out' turns
 ABCDEFGH into DCBAHGFE and exits 0; its card shows that now.  Found by
 the os9exec session reading the source, 2026-09-19.
 
-**All 35 breaks in check_the_checks now fire** -- it had SIX checks with
-no breaker at all, and one of those carried a docstring saying a breaker
-was impossible.  See the entry above.
+**EVERY BREAK IN check_the_checks FIRES** -- it had SIX checks with no
+breaker at all, and one of those carried a docstring saying a breaker was
+impossible.  Read the tally off the tool, not off this page: the figure
+here said 35 while the run at the top of the file said 41, because a
+number in prose goes stale the next time a breaker lands.  See the entry
+above.
 
 
 **A NOTE THAT RECORDS A FAILURE OUTLIVES THE FIX, AND NOBODY GOES BACK.**
