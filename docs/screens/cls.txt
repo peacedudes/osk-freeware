@@ -1,0 +1,2 @@
+$ echo "cls wiped the listing above"
+cls wiped the listing above

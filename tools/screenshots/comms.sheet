@@ -627,10 +627,19 @@ wait    5
 
 shot    cls
 cap     Clears the screen through the terminal's termcap clear capability,
-cap     the way `clear' does, and returns with the cursor at the top.
-try     cls
+cap     the way `clear' beside it does, and returns with the cursor at the
+cap     top.  A directory listing is printed and then wiped -- only the
+cap     line typed after it is left.
+try     dir CMDS; cls; echo "cls wiped the listing above"
+run     builtin cd /dd
+wait    1
+run     dir CMDS
+wait    3
 run     cls
-wait    4
+wait    2
+run     echo "cls wiped the listing above"
+wait    3
+snap
 
 shot    fkeys
 cap     Sets the user-defined function keys on a VT220 terminal from a
@@ -996,9 +1005,16 @@ wait    5
 
 shot    uuxqt
 cap     Runs the commands a remote site queued here.  Before starting it
-cap     looks for a module called `procs' to check whether it is already
-cap     running, and this disk has none, so it stops there.
+cap     looks for a module called `procs' to see whether another copy is
+cap     already going -- your own OS-9's, loaded from /h1 here.  With it
+cap     resident it gets past that and asks which site's queue to run,
+cap     printing what it takes: a system name, or ALL for every system in
+cap     the Systems file.
 try     uuxqt
+run     load /h1/CMDS/procs
+wait    4
+run     clear
+wait    1
 run     uuxqt
 wait    6
 

@@ -591,13 +591,18 @@ run     lnk div.f
 wait    10
 
 shot    lnk.org
-cap     The original build of `lnk' -- the same driver and the same stop,
-cap     forking a shell that is not here.
+cap     The original build of `lnk', the RTF Fortran linker driver.  It
+cap     wants `os9lib' resident, hands its command line to `shell', and
+cap     calls `l68' to link -- the last two your own OS-9's, and all three
+cap     loaded here, which is how it gets as far as the linker.  What it
+cap     stops on is the Fortran start-up code, `fstart.r': its source is
+cap     SRC/rtf/rtfstart.a and assembling it with your own `r68' completes
+cap     the chain.  DOC/README-FORTRAN says so and lists what is here.
 try     lnk.org div.f
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
 wait    3
-run     load /dd/CMDS/os9lib
-wait    5
+run     load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/l68
+wait    8
 run     builtin cd /dd/tmp/CMPA
 wait    1
 run     clear

@@ -1,1 +1,17 @@
-uuxqt: isuuxqtrunning() can't load 'procs'...error 221
+uuxqt
+uuxqt: no system specified
+
+
+ uuxqt: process incoming queued UUCP traffic
+
+ Usage:  uuxqt [opts]  <sys> [<sys>...]  [opts]
+
+      <sys>   -process work for <sys>.  If <sys> name is 'ALL', all systems in
+                 the Systems file are processed
+
+ opts:  -xN   -set debug level to N.  0 = OFF (default), 9 = highest
+        -q    -work quietly (no messages to the screen)
+
+
+v2.1 (94Sep30) This is free software released under the GNU General Public
+License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org

@@ -1,2 +1,3 @@
 lnk.org div.f
+l68: error - can't open '/h0/LIB/fstart.r'
  STOP: linking aborted

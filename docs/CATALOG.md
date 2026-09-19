@@ -555,7 +555,7 @@
 | `as5` | 6805/68HC05 cross-assembler (xasm); see as0. Sample in DOC/xasm/sample.a5 |
 | `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `lnk` | the RTF Fortran link driver; it calls l68 with /h0/LIB/sys.l, which is Microware's |
-| `lnk.org` | as lnk, the original build<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
+| `lnk.org` | as `lnk', the original build: the RTF Fortran linker driver. It wants `os9lib' resident, hands its line to `shell' and calls `l68' to link, and then wants the Fortran start-up code `fstart.r' -- whose source is SRC/rtf/rtfstart.a, assembled with your own r68. DOC/README-FORTRAN has the chain<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
 
 **C toolchain**
 
@@ -904,7 +904,7 @@
 | `uulog` | &#9733; reads the UUCP and file-server logs and shows what was transferred: -s<site> narrows it to one remote site, -u<user> to one user, -d<days> to a day already past, and -f follows the log as it grows<br>`uulog: examine uucp or fileserver log files` |
 | `uuname` | &#9733; lists the UUCP sites this machine can reach; -l prints this machine's own name instead<br>`uuname --show local machine name or those of UUCP sites we talk to` |
 | `uustat` | UUCP job status and control: what is queued, for which system and by whom.  `-s' limits it to one system, `-u' to one user, `-k' kills a job and `-r' rejuvenates one.  With no queue to report on it says `uucp is possibly active' and stops<br>`Syntax: uustat [<opts>]` |
-| `uuxqt` | &#9733; run the jobs a remote site queued here.  It looks for a module called `procs' to see whether it is already running, so it wants a `procs' loaded (error 221 without one). |
+| `uuxqt` | &#9733; runs the commands a remote UUCP site queued here. It first looks for a module called `procs' to see whether another copy is already going, then wants a site named, or ALL for every system in the Systems file; -xN turns on debugging and -q keeps it quiet |
 
 **Web server**
 

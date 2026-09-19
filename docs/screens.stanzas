@@ -139,6 +139,7 @@ cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
 clear a45512bf7a197623
 clock f694aa1ec8a552c8
+cls 73477bc60bd42a76
 col 6c2dbd2160aea05c
 collect f300802e1e634ae9
 colortest 5c2330766a9f14e5
@@ -428,7 +429,7 @@ listalias 505f544d04c0d606
 lmail fdbfa17739eaa823
 lmargin 0e7377b686da6c46
 lnk 6be6483d8b461aaa
-lnk.org 6844d9fc6293d1f7
+lnk.org 9b6dd99e779a7132
 load 104f6887d304107f
 loadmem 157a6d50ee6894bb
 loan 974d2f18d2e5f11e
@@ -860,7 +861,7 @@ uulog 9ccaeac3af76146e
 uupoll 16b72e7930e12e9f
 uustat 6b344e24fe936fa5
 uux 600ce072555b3c4a
-uuxqt 64679172304137b0
+uuxqt 7d5ec6a8ac150b00
 valspeak 7d51b124e270473b
 vc 184340ae7a592513
 vcraps 4a4e9c21b6113efa
