@@ -32,6 +32,15 @@ the hashes and says which copy is here; CLAUDE.md and
 grant says "FPU", not "this copy of FPU" -- is rdoggett's to overrule,
 and a `git revert' puts fpu040 back.
 
+**THE NINE SHIPPED ARCHIVES WERE SCREENED TOO, and they are clean.**
+`disk/CMDS/archives' holds the original .lzh files nine programs were
+unpacked from, and a compressed member is invisible to every check here
+-- which is how `SRC/msfm', 21 files of Microware file-manager internals,
+once shipped for months.  Extracted all nine (192 files) and ran
+`sdk_overlap' over them: nothing matches the SDK, and the only
+"proprietary" hit is the word inside a GPL COPYING file.  Worth repeating
+whenever an archive is added.
+
 **The other five are on a different footing and are fine**: Allan's
 permission names the MODULES, so any build is within it.  Their sizes,
 editions and hashes are in `SOURCES.txt' now, because the next person
