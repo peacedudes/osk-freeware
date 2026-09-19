@@ -18,7 +18,7 @@ splprt|the spooler's printer process wants a printer device; without one it prin
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
 chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
-disktest|measures the disk and, run on one, ends the session; its syntax is what there is to show, and the card says so
+disktest|measures disk performance and does not come back here, so its syntax is what there is to show and the card says so. What it does, from SRC/forum14/disktest.c: asks the allocator for the largest block there is (_srqmem(-1)), reads the raw device `@' and times it against the system tick globals, then times a write to ./disktest.tmp, which it unlinks. It is NOT destructive -- the only file it writes is that temporary -- it simply does not return; re-measured 2026-09-19 against the build that fixed the masked-signal freeze
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
