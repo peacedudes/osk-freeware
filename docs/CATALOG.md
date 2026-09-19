@@ -1040,7 +1040,7 @@
 | `gemtopbm` | GEM .img (Atari and PC) to PBM<br>`usage:  gemtopbm [-debug] [gemfile]` |
 | `giftopnm` | GIF to PNM; -image picks one of several in the file, -comments prints its comments<br>**How:** Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif \| pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details. |
 | `gouldtoppm` | Gould scanner file to PPM |
-| `hipstopgm` | HIPS image to PGM.  The header is nine lines of text -- origin, name, frames, date, rows, columns, bits a pixel, packing, pixel format -- then history lines up to one holding a single dot, then one byte a pixel, so `printf' can make one |
+| `hipstopgm` | HIPS image to PGM.  The header is nine lines of text -- origin, name, frames, date, rows, columns, bits a pixel, packing, pixel format -- then history lines up to one holding a single dot, then one byte a pixel, so `printf' can make one<br>**How:** No HIPS image ships, and one is two commands: `printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips' -- origin, name, frames, date, rows, columns, bits a pixel, packing, format, then a line holding one dot -- and `printf "0123456789abcdef" >> x.hips' for the pixels. |
 | `hpcdtoppm` | Kodak Photo CD image to PPM, at one of five resolutions<br>`Error in Arguments !` |
 | `icontopbm` | Sun icon to PBM |
 | `ilbmtoppm` | Amiga IFF ILBM to PPM, HAM and extra-halfbrite pictures included<br>`usage:  ilbmtoppm [-verbose] [-ignore <chunkID>] [-isham\|-isehb] [-adjustcolors] [ilbmfile]` |
@@ -1048,7 +1048,7 @@
 | `lispmtopgm` | Lisp machine bitmap to PGM<br>**How:** This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm. |
 | `macptopbm` | MacPaint to PBM<br>`usage:  macptopbm [-extraskip N] [macpfile]` |
 | `mgrtopbm` | MGR window-manager bitmap to PBM |
-| `mtvtoppm` | MTV/PRT ray-tracer image to PPM.  The format is one line of width and height and then three raw bytes a pixel, so `printf' can make one |
+| `mtvtoppm` | MTV/PRT ray-tracer image to PPM.  The format is one line of width and height and then three raw bytes a pixel, so `printf' can make one<br>**How:** No MTV image ships, and one is two commands: `printf "4 2\r" > x.mtv' then `printf "0123456789abcdefghijklmn" >> x.mtv' -- a line of width and height, then three raw bytes a pixel. `mtvtoppm x.mtv > out.ppm' and pnmfile says PPM raw, 4 by 2. |
 | `pcxtoppm` | PCX, PC Paintbrush's format, to PPM<br>**How:** Cannot read a pipe -- it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file and pass the filename. sgitopnm has the same limitation. |
 | `pi1toppm` | Atari Degas .pi1 to PPM |
 | `pi3topbm` | Atari Degas .pi3 to PBM<br>`usage:  pi3topbm [-debug] [pi3file]` |
@@ -1071,7 +1071,7 @@
 | `xbmtopbm` | X11 or X10 bitmap, as C source, to PBM |
 | `ximtoppm` | Xim image to PPM |
 | `xpmtoppm` | X pixmap (XPM) to PPM |
-| `xvminitoppm` | XV thumbnail (.xvpics) to PPM.  The format is `P7 332', a comment line, the size, then ONE byte a pixel indexing a fixed palette -- three bits of red, three of green, two of blue -- so `printf' can make one |
+| `xvminitoppm` | XV thumbnail (.xvpics) to PPM.  The format is `P7 332', a comment line, the size, then ONE byte a pixel indexing a fixed palette -- three bits of red, three of green, two of blue -- so `printf' can make one<br>**How:** No XV thumbnail ships, and one is two commands: `printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv' then `printf "0123456789abcdef" >> x.xv' -- one byte a pixel into a fixed palette of three bits of red, three of green and two of blue. |
 | `xwdtopnm` | X window dump (xwd) to PNM |
 | `ybmtopbm` | Bennet Yee `face' bitmap to PBM |
 | `yuvsplittoppm` | three YUV planes -- basename.Y, .U and .V, 4:2:0 -- to PPM, given the width and height<br>`usage:  yuvsplittoppm <basename> <width> <height> [-ccir601]` |
