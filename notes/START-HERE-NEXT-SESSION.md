@@ -2,6 +2,46 @@
 
 ## DO NEXT -- 2026-09-19
 
+### The one thing to read before anything else
+
+**THE `fpu' WE SHIPPED WAS NOT THE COPY THE GRANT COVERS, AND `fpu040'
+HAD NO GRANT AT ALL.**  Item 30 of `FOR-RDOGGETT.md' has it in full.  In
+short: the grant is `fpu.doc' -- "Permission to distribute FPU is granted
+so long as this file is retained" -- and a grant of that shape travels
+with a COPY.
+
+    shipped   fpu    14,572 bytes  edition 5   md5 4893b5f9
+              fpu040  6,140 bytes  edition 11  md5 30f667f0
+              -- both byte-identical to loose modules in a terminal
+                 program's archive that carries no document at all
+    granted   fpu    12,724 bytes  edition 12  md5 3f5b0760
+              -- beside the fpu.doc we ship; there is NO fpu040
+                 anywhere beside a grant
+
+`disk/DOC/fpu.doc' was byte-identical to the granted document all along,
+so the condition was being met for a file that was not on the disk.  The
+commit that added them said they came from the granted archive; nobody
+compared the bytes.  `SOURCES.txt' then contradicted itself two
+paragraphs apart -- one saying both were here under the grant, the other
+listing `fpu040' as "Still NOT here".
+
+Done: `fpu' is the granted copy (and the newer module, edition 12 against
+5); `fpu040' is off with `tools/remove_program.py'; `SOURCES.txt' carries
+the hashes and says which copy is here; CLAUDE.md and
+`notes/MICROWARE-PERMISSION.md' are corrected.  The narrow reading -- the
+grant says "FPU", not "this copy of FPU" -- is rdoggett's to overrule,
+and a `git revert' puts fpu040 back.
+
+**The other five are on a different footing and are fine**: Allan's
+permission names the MODULES, so any build is within it.  Their sizes,
+editions and hashes are in `SOURCES.txt' now, because the next person
+cannot tell which kind of permission they are looking at.
+
+**THE RULE THIS LEAVES: before shipping anything of Microware's, find
+the document that grants it, find the file that document travels with,
+and md5 both against what is on the disk.**
+
+
 ### Where it stands, and how it was checked
 
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
