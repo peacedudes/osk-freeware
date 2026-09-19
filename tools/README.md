@@ -65,6 +65,26 @@ something that can fail again. `worklist.py` says which programs still have
 nothing; `drive.py` runs a batch of them and shows what came back; a
 `datatests/*.cases` case is what turns that into a fact that can fail.
 
+## Reports that are not gates
+
+    tools/stale_notes.py                       # DOC/STATUS notes the cards contradict
+    tools/ghost_names.py                       # shipped text naming what is not here
+    tools/sdk_overlap.py <sdk-tree>            # disk files byte-identical to Microware's
+
+Three sweeps whose answer needs a person. `stale_notes` finds rows in
+`DOC/STATUS` that call a program broken when its published panel shows it
+working -- a note recording a failure outlives the fix, and thirteen of
+them did. `ghost_names` finds a name the shipped prose points at that the
+disk has not got, which is what happens when a program leaves and the
+sentences naming it stay. `sdk_overlap` hashes every file on the disk
+against Microware's SDK tree, because the only thing that can tell you a
+binary is theirs is its bytes; it needs the SDK tree, which is not in this
+repository, so it can never be a gate.
+
+Each of them was made to fail on purpose before being believed -- against
+a scratch tree, since that is the only honest way to prove a report can
+say anything at all.
+
 ## Checking the tree
 
     tools/check_disk.py disk
