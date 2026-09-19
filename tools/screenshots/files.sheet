@@ -312,15 +312,15 @@ snap
 
 shot    utree
 size    24 80
-cap     A file manager in two panes: the directory tree above, the files of
-cap     the current directory below, and a menu line naming what the letter
-cap     keys do in whichever pane you are in.  `>' or RETURN crosses into
-cap     the file pane and `<' comes back out; a capital letter acts on the
-cap     whole tagged set instead of the one file.  `t' tags, `!' opens a
-cap     command line with a history, `H' is the help pages and `=' the
-cap     settings.  `Q' then `y' leaves.  `-v 0' asks for no highlighting,
-cap     as here; without it the menu line and the current entry come up in
-cap     reverse video.
+cap     Opened on the DOC directory: three hundred of them in the tree
+cap     pane, the files of the current one below, the tree menu across
+cap     the top.  `>' or RETURN crosses into the file pane and RETURN or
+cap     `q' comes back, while `<' goes up a level; a capital letter acts
+cap     on the whole tagged set instead of the one file under the cursor.
+cap     `t' tags, `!' opens a command line with a history, `H' is the
+cap     help pages, `=' the settings, `Q' then `y' leaves.  `-v 0' asks
+cap     for no highlighting, as here; without it the menu line and the
+cap     current entry come up in reverse video.
 try     utree -v 0 DOC
 run     builtin cd /dd
 wait    1

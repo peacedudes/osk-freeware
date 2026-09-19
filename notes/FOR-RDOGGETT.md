@@ -4,7 +4,11 @@ Things that need YOU to decide or direct -- nothing else.  Nothing here is
 decided; anything that gets decided leaves this file the same day.  The item
 numbers are cited from notes/START-HERE-NEXT-SESSION.md, so they stay stable
 and the gaps are deliberate: a missing number is an answered question.
-Updated 2026-09-18.
+Updated 2026-09-19.
+
+**Nothing new was added here today.**  utree is finished and on the disk
+(item 7's note below), and everything else this session touched was ours to
+do.  Four items, all yours.
 
 **Your notes of 2026-09-18 cleared THIRTEEN of these** -- 8, 9, 10, 11, 12,
 13, 14, 15, 16, 17, 19, 20 and 22 are done and gone from this file, along
