@@ -2,6 +2,44 @@
 
 ## DO NEXT -- 2026-09-19
 
+**A NOTE THAT RECORDS A FAILURE OUTLIVES THE FIX, AND NOBODY GOES BACK.**
+This is the day's biggest finding and it is a class, not an incident.
+`DOC/STATUS' is where every "this program is broken" note lives, and
+seven of them were describing a disk that no longer exists:
+
+  nroff    "prints nothing and never returns" -- FIXED 2026-08-31, three
+           days after the note, as one of the eleven cio casualties.  And
+           `man' on this disk runs `nroff -man' for every page, so the
+           note was warning a reader off something the disk depends on.
+  names    "given any module it prints nothing and never returns" -- it
+           takes no module and lists nothing.  It is a German ADDRESS
+           BOOK, and fed no keyboard it re-prompts for ever, which is the
+           whole hang.  DOC/INDEX had been corrected; STATUS had not, and
+           its category still said System & modules.
+  top      fixed 2026-09-18 (by us), oleo 2026-09-11 (by os9exec),
+           aprocs and getsys by os9exec since -- aprocs prints its
+           process table now and getsys the whole global page bar one
+           `F$SetSys: unimplemented 0002'.
+  date     REMOVED from the disk 2026-09-04 and still described.
+  l        answers 0 on a directory now.
+
+**How they were found, which is the reusable part:** ask which programs a
+failure note names that have a CARD with real ink, and which names the
+note describes that are no longer on the disk at all.  Both are two dozen
+lines of Python over files already here.  Every one of the seven is
+corrected and keeps what it used to do, marked as what it used to do.
+
+**AND A CASE CANNOT PIN THE EMULATOR.**  `lfmaker' answered three
+different ways in one day: the "No more memory !!!" flood (August),
+silence with status 208 (morning), silence with status 0 (evening, after
+the memory-block ceiling went 512 -> 8192).  In the morning I moved its
+case off os9exec's WORDS and onto its exit STATUS and wrote a comment
+saying pinning another project's text was the mistake; by evening the
+status had moved too.  It asserts only the bare run now.  `msntp' and
+`mailx' went the same way earlier.  **Assert what the program does with
+this disk's data, not what the system says back.**
+
+
 **THE MODE-0 CLASS IS NOT CLOSED, AND THE REASON IS A LESSON ABOUT
 SCANS.**  `SRC/strsch/README.OSK` recorded it closed on 2026-09-18 after
 a scan of `disk/SRC` found 76 call sites and settled every one.  The scan
