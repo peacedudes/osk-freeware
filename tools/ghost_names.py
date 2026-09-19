@@ -105,18 +105,42 @@ def on_disk():
 
 
 def shipped_text():
+    """The text THIS COLLECTION wrote, not everything under DOC.
+
+    DOC is mostly other people's documentation -- a GNU manual, elvis's own
+    Readme, the TeXbook's companion files -- and those name programs from
+    their own world quite properly.  Reading all of it would bury the four
+    real hits in hundreds of those.  So: the files at the root of the disk,
+    the documents at the top of DOC, SYS/login and SYS/motd (the two a
+    reader meets before anything else), and any README-* ANYWHERE under
+    DOC, which is how this collection names the pages it wrote itself --
+    DOC/rayshade/README-RAYSHADE is one, and it held a violation.
+    """
     for name in ("readme", "startup", "SOURCES.txt"):
         p = os.path.join(DISK, name)
         if os.path.isfile(p):
             yield p
-    for sub in ("DOC", "SYS"):
-        d = os.path.join(DISK, sub)
-        if not os.path.isdir(d):
-            continue
-        for f in sorted(os.listdir(d)):
-            p = os.path.join(d, f)
+    for name in ("login", "motd"):
+        p = os.path.join(DISK, "SYS", name)
+        if os.path.isfile(p):
+            yield p
+    doc = os.path.join(DISK, "DOC")
+    if os.path.isdir(doc):
+        for f in sorted(os.listdir(doc)):
+            p = os.path.join(doc, f)
             if os.path.isfile(p):
                 yield p
+        for base, _, files in os.walk(doc):
+            if base == doc:
+                continue
+            for f in sorted(files):
+                # `README-NAME' with the hyphen is this collection's own
+                # naming for a page it wrote; a bare `README' in a
+                # subdirectory is the archive's own, like DOC/cnews/README,
+                # which is Henry Spencer's and names Unix programs from its
+                # own world quite properly.
+                if f.startswith("README-"):
+                    yield os.path.join(base, f)
 
 
 def main(argv):
