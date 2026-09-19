@@ -55,7 +55,7 @@ size    24 80
 cap     mkdir makes a directory, and `-p' makes every directory on the way
 cap     to it, so one command builds a whole chain.
 try     mkdir -p tmp/FILESA/mk/notes/june; ls -l tmp/FILESA/mk/notes
-run     rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
+run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil
 wait    3
 run     builtin cd /dd
 wait    1

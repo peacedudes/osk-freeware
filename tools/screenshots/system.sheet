@@ -155,7 +155,7 @@ cap     unkept: unkeep reads the receipt in SYS/kept and removes each file
 cap     it lists, leaving any whose checksum has changed since -- a score
 cap     file, a saved game -- so those are safe from it.
 try     unkeep greg
-run     export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
+run     mkdir -p /dd/tmp/SYSB > /nil 2>/nil; export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
 wait    5
 run     clear
 wait    1
@@ -276,7 +276,7 @@ cap     kept lists what keep has written to your disk and what it came to.
 cap     A program is kept first, then listed: each file, its size, and the
 cap     total.
 try     kept
-run     export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
+run     mkdir -p /dd/tmp/SYSB > /nil 2>/nil; export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil
 wait    5
 run     clear
 wait    1

@@ -111,7 +111,7 @@ shot    compress
 cap     compress, the Lempel-Ziv-Welch one, with -v to report what it
 cap     saved.  The .Z file replaces the original.
 try     compress -v tmp/ARC/idx4
-run     rm -f /dd/tmp/ARC/idx4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx4
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/idx4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx4
 wait    3
 run     builtin cd /dd
 wait    1
@@ -124,7 +124,7 @@ shot    compress_4.0
 cap     compress 4.0, another edition of the compress in CMDS, on the
 cap     same file.
 try     compress_4.0 -v tmp/ARC/idx5
-run     rm -f /dd/tmp/ARC/idx5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx5
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/idx5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx5
 wait    3
 run     builtin cd /dd
 wait    1
@@ -136,7 +136,7 @@ wait    8
 shot    gzip
 cap     GNU gzip on the same file, for comparison with compress.
 try     gzip -v tmp/ARC/g1
-run     rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1
 wait    3
 run     builtin cd /dd
 wait    1
@@ -148,7 +148,7 @@ wait    8
 shot    gzip68k_csl
 cap     The same 68000 build of gzip 1.2.4, linked against csl instead.
 try     gzip68k_csl -v tmp/ARC/g3
-run     rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3
 wait    3
 run     builtin cd /dd
 wait    1
@@ -160,7 +160,7 @@ wait    8
 shot    gzip020_csl
 cap     The 68020 build of gzip 1.2.4, linked against csl.
 try     gzip020_csl -v tmp/ARC/g5
-run     rm -f /dd/tmp/ARC/g5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g5
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g5
 wait    3
 run     builtin cd /dd
 wait    1
@@ -172,7 +172,7 @@ wait    8
 shot    gzipcpu32k_csl
 cap     The CPU32 build of gzip 1.2.4, linked against csl.
 try     gzipcpu32k_csl -v tmp/ARC/g7
-run     rm -f /dd/tmp/ARC/g7*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g7
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g7*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g7
 wait    3
 run     builtin cd /dd
 wait    1
@@ -200,7 +200,7 @@ for     lharc xlharc
 cap     LHarc, the older sibling of lha: pack, then list.  xlharc, a
 cap     third build of the same reader, lists the same archive.
 try     lharc a tmp/ARC/l.lzh SYS/motd
-run     rm -f /dd/tmp/ARC/l.lzh
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/l.lzh
 wait    2
 run     builtin cd /dd
 wait    1
@@ -217,7 +217,7 @@ shot    lharcs
 cap     An older LHarc, version 1.01, packing a file and listing it back
 cap     the same way as lha 2.08.
 try     lharcs a tmp/ARC/ls.lzh SYS/motd
-run     rm -f /dd/tmp/ARC/ls.lzh
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/ls.lzh
 wait    2
 run     builtin cd /dd
 wait    1
@@ -231,7 +231,7 @@ wait    6
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.
 try     zoo a tmp/ARC/k.zoo SRC/keep/keep.c
-run     rm -f /dd/tmp/ARC/k.zoo
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/k.zoo
 wait    2
 run     builtin cd /dd
 wait    1
@@ -248,7 +248,7 @@ cap     zoo 2.1, newer than the 2.01 that ships as `zoo', writes an
 cap     archive; booz lists it with a bare letter rather than a
 cap     dash-letter; fiz walks its internal directory structure.
 try     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
-run     rm -f /dd/tmp/ARC/z2.zoo
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/z2.zoo
 wait    2
 run     builtin cd /dd
 wait    1
@@ -405,7 +405,7 @@ shot    gtar
 cap     Another build of GNU tar, packing the same directory and listing
 cap     it back with owner and permissions.
 try     gtar cvf tmp/ARC/keep2.tar SRC/keep
-run     rm -f /dd/tmp/ARC/keep2.tar
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/keep2.tar
 wait    2
 run     builtin cd /dd
 wait    1

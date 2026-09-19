@@ -258,6 +258,24 @@ def break_unrecorded_library(root):
 
 
 
+
+def break_card_directory(root):
+    """A stanza that writes into a /dd/tmp directory it never makes.
+
+    Eleven stanzas in archives.sheet were like this and worked only
+    because another stanza in the same sheet had run `mkdir' first.  It
+    shows up the moment one card is re-shot on its own.
+    """
+    p = os.path.join(root, "tools", "screenshots", "zzzdir.sheet")
+    w(p, b"shot    zzznodir\n"
+         b"cap     a stanza that writes where nobody made a directory\n"
+         b"try     cat tmp/ZZZNOPE/x\n"
+         b"run     cat /dd/SYS/motd > /dd/tmp/ZZZNOPE/x\n"
+         b"wait    2\n")
+    return "tools/screenshots/zzzdir.sheet added, writing into a directory nothing makes"
+
+
+
 def break_screened_source(root):
     """A file under SRC that names OS-9 system internals.
 
@@ -485,6 +503,8 @@ BREAKS = [
      break_screened_source),
     ("unrecorded library", "every library is recorded",
      break_unrecorded_library),
+    ("card directory", "cards make their own directories",
+     break_card_directory),
     ("login env", "harness env matches SYS/login", break_login_env),
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),

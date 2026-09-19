@@ -602,7 +602,7 @@ cap     lines below it.  The catch, and the reason for the `#1000k': subber
 cap     grows its memory as it reads, and that growth almost always fails
 cap     part-way on this system -- so you hand it plenty from the start with
 cap     the `#' size and it never has to grow.
-run     rm -rf /dd/tmp/sub > /nil 2>/nil; /h1/CMDS/makdir /dd/tmp/sub > /nil 2>/nil; printf ',fox,cat\r,here,there\r' > /dd/tmp/sub/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/sub/in
+run     mkdir -p /dd/tmp/sub > /nil 2>/nil; rm -rf /dd/tmp/sub > /nil 2>/nil; /h1/CMDS/makdir /dd/tmp/sub > /nil 2>/nil; printf ',fox,cat\r,here,there\r' > /dd/tmp/sub/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/sub/in
 wait    3
 run     clear
 wait    1

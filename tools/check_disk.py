@@ -1488,6 +1488,49 @@ def check_libraries_are_recorded(root):
     return True, ""
 
 
+
+def check_cards_make_their_own_directories(root):
+    """A stanza must create the /dd/tmp directory it writes into.
+
+    `cards do not depend on each other' catches a stanza that reads a FILE
+    another stanza wrote.  It does not catch the same dependency on a
+    DIRECTORY, and eleven stanzas in archives.sheet had it: only `cat' and
+    `compr' ran `mkdir -p /dd/tmp/ARC', and every other stanza in the sheet
+    wrote into it and worked only because one of those two had gone first.
+    Shot on its own -- which is what `--only' does when one card is being
+    corrected -- `compress' answered "I/O error: opening file
+    tmp/ARC/idx4, error 216" and published that.
+
+    The failure is silent in a full sheet run and appears only when someone
+    re-shoots one card, which is exactly when nobody is looking at the
+    other sixty.  Found 2026-09-19 while re-shooting a card that turned out
+    not to be stale after all.
+    """
+    sheets = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "screenshots")
+    if not os.path.isdir(sheets):
+        return True, ""
+    bad = []
+    for f in sorted(os.listdir(sheets)):
+        if not f.endswith(".sheet"):
+            continue
+        lines = open(os.path.join(sheets, f), errors="replace").read().split("\n")
+        starts = [i for i, l in enumerate(lines) if l.startswith("shot ")]
+        for si, s in enumerate(starts):
+            e = starts[si + 1] if si + 1 < len(starts) else len(lines)
+            body = "\n".join(lines[s:e])
+            name = lines[s].split(None, 1)[1].strip()
+            used = set(re.findall(r"/dd/tmp/([A-Za-z0-9_]+)/", body))
+            made = set(re.findall(r"mkdir\s+(?:-p\s+)?/dd/tmp/([A-Za-z0-9_]+)",
+                                  body))
+            for d in sorted(used - made):
+                bad.append("%s:%s wants /dd/tmp/%s" % (f, name, d))
+    if bad:
+        return False, ("%d stanza(s) write into a directory they never make: %s"
+                       % (len(bad), "; ".join(bad[:4])))
+    return True, ""
+
+
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
     ("no UTF-8 on an 8-bit disk", check_no_utf8),
@@ -1514,6 +1557,8 @@ CHECKS = [
     ("text names what the reader has", check_no_absence_phrasing),
     ("OS-9 paths count dots", check_no_chained_parent_paths),
     ("cards do not depend on each other", check_cards_do_not_depend_on_each_other),
+    ("cards make their own directories",
+     check_cards_make_their_own_directories),
     ("cards carry no full pathlists", check_cards_have_no_pathlists),
     ("every card says what to type", check_cards_have_a_try_line),
     ("cards carry real help text", check_cards_carry_real_help),

@@ -56,7 +56,7 @@ shot    elvis_input
 cap     Elvis opened already in insert mode, on a new file: what you type
 cap     goes straight in, and ESC gets you to the : prompt to write it.
 try     elvis_input tmp/EDIT/new.txt
-run     rm -f /dd/tmp/EDIT/new.txt
+run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/new.txt
 wait    2
 run     builtin cd /dd
 wait    1

@@ -511,28 +511,39 @@ run     ggrep -n USR password
 wait    5
 
 shot    bmgtest
-cap     A demonstration program for the Boyer-Moore-Gosper search bm is
-cap     built on: given a pattern and a file, it prints every matching
-cap     line, streaming through the file rather than loading it whole.
-try     bmgtest the SYS/motd
+cap     A demonstration of the Boyer-Moore-Gosper search that `bm' is built
+cap     on: given a pattern and a file it prints every line that matches,
+cap     streaming through the file rather than reading it whole.  Shown
+cap     three ways -- a word that is there, one that is not, and the same
+cap     search on standard input, which is the form that worked while the
+cap     named-file form was returning nothing.
+try     bmgtest OS-9 SYS/motd
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     bmgtest the SYS/motd; echo "status $?"
-wait    5
+run     bmgtest OS-9 SYS/motd; echo "status $?"
+wait    4
+run     bmgtest nosuchword SYS/motd; echo "status $?"
+wait    4
+run     bmgtest OS-9 < SYS/motd
+wait    4
 
 shot    bmgtest2
-cap     The other Boyer-Moore-Gosper demonstration: the same search, but
-cap     it reads the whole file into memory first rather than streaming
-cap     through it.
-try     bmgtest2 the SYS/motd
+cap     The other Boyer-Moore-Gosper demonstration: the same search, but it
+cap     reads the whole file into memory first rather than streaming
+cap     through it.  Same three invocations as `bmgtest' beside it.
+try     bmgtest2 OS-9 SYS/motd
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     bmgtest2 the SYS/motd; echo "status $?"
-wait    5
+run     bmgtest2 OS-9 SYS/motd; echo "status $?"
+wait    4
+run     bmgtest2 nosuchword SYS/motd; echo "status $?"
+wait    4
+run     bmgtest2 OS-9 < SYS/motd
+wait    4
 
 shot    pagekwic
 size    36 80

@@ -2,6 +2,28 @@
 
 ## DO NEXT -- 2026-09-19
 
+**THE MODE-0 CLASS IS NOT CLOSED, AND THE REASON IS A LESSON ABOUT
+SCANS.**  `SRC/strsch/README.OSK` recorded it closed on 2026-09-18 after
+a scan of `disk/SRC` found 76 call sites and settled every one.  The scan
+reads SOURCE, so what it actually closed is the class *for programs whose
+source is here* -- and roughly 298 shipped programs have none.
+`texidx' is one of them and has the bug: `I$Open D0.b=$00`, `I$Read`
+answering E_BMODE, and a read loop that reads the refusal as "buffer too
+small" and QUADRUPLES the buffer until the request passes the arena, so
+it always ends at "virtual memory exhausted".  Traced by the os9exec
+session; measured here across five `-M` sizes, where the request tracked
+the arena exactly.
+
+It is not patchable: its three I$Open sites are all inside the C
+library's own open() wrapper, taking the mode from the caller in d1.
+
+**The method that found it was running the program and reading the
+numbers.**  I had gone looking for a free-memory bug in the emulator and
+reported one; it was this instead.  For the programs with no source that
+is the only method there is, and its index entry now says what it does
+rather than what I guessed.
+
+
 **`play/oskBoot` IS A WORKING BUILD OVERLAY, NOT A PRISTINE SDK, AND
 READING A MATCH THERE AS EVIDENCE COST AN HOUR AND A FALSE ALARM.**  It
 carries this collection's OWN libraries beside Microware's files --
