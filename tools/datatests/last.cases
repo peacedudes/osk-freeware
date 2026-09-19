@@ -98,7 +98,15 @@ run     /dd/CMDS/md5 /dd/tmp/LA/h.i /dd/tmp/LA/h2.i /dd/tmp/LA/h3.i
 run     /dd/CMDS/gpp_collect
 expect  Function : generate global con-/de-structor table for g++
 
+# `autoreply' REPORTS WHETHER /dd/USR/LIB/ELM/autoreply.data EXISTS, so this
+# case has to make its own precondition.  It did not, and it passed for weeks
+# because it ran on a freshly built image every time: `last2.cases' creates
+# that file to prove arepdaemon no longer stops without one, the image is NOT
+# reset between runs, and so the suite passed the first time it was run
+# against an image and failed every time after.  Found 2026-09-19 by running
+# the whole suite twice against one image.
 case    the-elm-helpers-that-report-rather-than-act
+run     /dd/CMDS/rm -f /dd/USR/LIB/ELM/autoreply.data > /nil 2>/nil
 run     /dd/CMDS/ELM/autoreply
 expect  You're not currently autoreplying to mail.
 

@@ -60,11 +60,16 @@ expect  infoxpress exit 221
 # `Error 216 attempting fstat' because /dd/USR/LIB/ELM/autoreply.data was
 # not there; given one it reads it and settles down to wait, which is what
 # a daemon does. The assertion is that the fstat error is GONE.
+# LEAVE THE IMAGE AS YOU FOUND IT.  This case creates autoreply.data, and
+# `autoreply' in last.cases reports on whether that file is there -- so for
+# weeks this one quietly broke that one on every run after the first, the
+# image not being reset between runs.  The file goes again at the end.
 case    arepdaemon-no-longer-stops-on-a-missing-autoreply-file
 run     echo "" > /dd/USR/LIB/ELM/autoreply.data
 run     /dd/CMDS/ls /dd/USR/LIB/ELM
 expect  autoreply.data
 expect  aliases.text
+run     /dd/CMDS/rm -f /dd/USR/LIB/ELM/autoreply.data > /nil 2>/nil
 
 # fastmail composes a message and hands it to a delivery agent -- smail,
 # sendmail or rmail, in that order. None of them can deliver locally here
