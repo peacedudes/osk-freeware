@@ -3,6 +3,7 @@ r"""Find names the shipped text points at and the disk does not have.
 
     tools/ghost_names.py            # candidates, with the files naming them
     tools/ghost_names.py --quotes   # show the sentence each one sits in
+    tools/ghost_names.py <tree>     # a tree other than this repo's disk/
 
 WHY THIS EXISTS.  A program leaves the collection and the sentences that
 named it stay behind.  `check_disk.py' catches that in the files it knows
@@ -57,6 +58,10 @@ tsmon login copy cmp ident mfree sleep setenv logout mount iconv qsort
 # the reader to MAKE it, `copy /dd/CMDS/GCC139/gcc_cccp /dd/cccp', because
 # rayshade forks it by that bare name out of the data directory.  Named as an
 # instruction, not as a claim that it is installed.
+# `create', `insert', `start' and `exit' are a PROGRAM'S OWN commands quoted
+# in its entry -- sdb's create and insert, the menu commands of the thing
+# CATEGORIES is describing -- and `start' is also sieve's own output and an
+# ordinary English word.  None of them was ever a file here.
 PROSE = set("""
 always auto break bye can compile configure copying copyright couldn deg done
 double drop edit else endif examine extern float geometry get goin hjkl
@@ -67,6 +72,7 @@ fprintf fwrite getc putc noreader epsonlo mfput polaroid spoolqueue coords
 face damage chesstool dsave deldir e2e4 uuunexpand terminate tester syscmd
 mortgage banners channel remote rfd readstr timeio timid wabbits which6 xshar
 jpeg wermit cccp
+create insert start exit
 inetdb kwin kzc lcsys libgcc1_c libgcc2_gc osktag sect0boot sector0 warranty
 tex_readme cpp
 """.split())
@@ -83,7 +89,7 @@ vi_nocio
 """.split())
 
 
-def on_disk():
+def on_disk(disk):
     """Every file anywhere under disk/, plus the names DOC/INDEX gives.
 
     EVERYWHERE, not just the program directories: the text names data files
@@ -91,20 +97,20 @@ def on_disk():
     scan that only walked CMDS called both of those ghosts.
     """
     names = set()
-    for _, _, files in os.walk(DISK):
+    for _, _, files in os.walk(disk):
         names |= set(files)
-    index = os.path.join(DISK, "DOC", "INDEX")
+    index = os.path.join(disk, "DOC", "INDEX")
     if os.path.exists(index):
         text = open(index, "rb").read().decode("latin-1").replace("\r", "\n")
         names |= set(re.findall(r"^ {1,4}\*? ?([A-Za-z0-9_.][\w.]*)\s{2,}(?=\S)",
                                 text, re.M))
-    src = os.path.join(DISK, "SRC")
+    src = os.path.join(disk, "SRC")
     if os.path.isdir(src):
         names |= set(os.listdir(src))
     return names
 
 
-def shipped_text():
+def shipped_text(disk):
     """The text THIS COLLECTION wrote, not everything under DOC.
 
     DOC is mostly other people's documentation -- a GNU manual, elvis's own
@@ -117,14 +123,14 @@ def shipped_text():
     DOC/rayshade/README-RAYSHADE is one, and it held a violation.
     """
     for name in ("readme", "startup", "SOURCES.txt"):
-        p = os.path.join(DISK, name)
+        p = os.path.join(disk, name)
         if os.path.isfile(p):
             yield p
     for name in ("login", "motd"):
-        p = os.path.join(DISK, "SYS", name)
+        p = os.path.join(disk, "SYS", name)
         if os.path.isfile(p):
             yield p
-    doc = os.path.join(DISK, "DOC")
+    doc = os.path.join(disk, "DOC")
     if os.path.isdir(doc):
         for f in sorted(os.listdir(doc)):
             p = os.path.join(doc, f)
@@ -144,9 +150,23 @@ def shipped_text():
 
 
 def main(argv):
-    known = on_disk() | SKIP | PROSE | GONE
+    # A positional argument used to be ACCEPTED AND IGNORED, so
+    # `ghost_names.py /some/other/tree' answered confidently about this
+    # repo's own disk/.  That is the shape this collection keeps producing
+    # -- a tool that cannot be made to fail because it never looks where it
+    # is told.  Honour the path, and refuse one that is not a tree.
+    paths = [a for a in argv if not a.startswith("-")]
+    if len(paths) > 1:
+        sys.stderr.write("ghost_names: one tree at a time\n")
+        return 2
+    disk = os.path.abspath(paths[0]) if paths else DISK
+    if not os.path.isdir(disk):
+        sys.stderr.write("ghost_names: %s is not a directory\n" % disk)
+        return 2
+
+    known = on_disk(disk) | SKIP | PROSE | GONE
     hits = {}
-    for p in shipped_text():
+    for p in shipped_text(disk):
         try:
             text = open(p, "rb").read().decode("latin-1").replace("\r", "\n")
         except OSError:
@@ -157,6 +177,8 @@ def main(argv):
                 continue
             line = text[:m.start()].count("\n") + 1
             where = os.path.relpath(p, REPO)
+            if where.startswith(".."):
+                where = p
             hits.setdefault(name, []).append((where, line,
                                               text.split("\n")[line - 1][:74]))
     for name in sorted(hits):

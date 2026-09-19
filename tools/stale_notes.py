@@ -62,6 +62,16 @@ def rows(status):
 
 
 def main(argv):
+    # This one reads THIS repo -- DOC/STATUS against `audit_panels', which
+    # scores the published gallery -- so there is no tree to point it at.
+    # It used to accept `stale_notes.py disk' and ignore it, which reads
+    # like a path argument that works.  Say so instead.
+    stray = [a for a in argv if not a.startswith("-")]
+    if stray:
+        sys.stderr.write("stale_notes: takes no path -- it reads this "
+                         "repo's disk/DOC/STATUS and the gallery\n")
+        return 2
+
     path = os.path.join(REPO, "disk", "DOC", "STATUS")
     status = open(path, "rb").read().decode("latin-1").replace("\r", "\n")
     working = {p for p, v, _ in audit_panels.audit() if v == "work"}
