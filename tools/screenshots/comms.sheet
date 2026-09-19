@@ -937,11 +937,13 @@ run     osknet
 wait    8
 
 shot    msntp
-cap     Sets the system clock from a network time server.  There is no
-cap     network here, so it cannot open a time socket and says so; with a
-cap     network it reaches a server and sets the clock.
-try     msntp
-run     msntp
+cap     Sets the system clock from a network time server: name the server
+cap     and it asks one, then sets the clock.  Named one here it stops at
+cap     the lookup -- there is no host table on this disk to find an
+cap     address in, and it says so for a dotted number as readily as for a
+cap     name.  With no server named it prints nothing and waits.
+try     msntp 127.0.0.1
+run     msntp 127.0.0.1
 wait    6
 
 shot    atp

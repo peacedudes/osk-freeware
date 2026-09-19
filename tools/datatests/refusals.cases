@@ -3,13 +3,14 @@
 # `untested.cases' is the 2026-09-01 pass over the same gap.  This is the
 # next layer down: tools/worklist.py --programs --no-test listed 22 more,
 # most of them wanting hardware that is not here or taking the session
-# with them when they run, and neither can be a case.  These seven can.
+# with them when they run, and neither can be a case.  These six can.
 #
-# A REFUSAL IS A MEASUREMENT.  Four of these say, in the same words every
-# time, what they are missing -- a G-Windows display, a modem port, a
-# mailbox -- and recording the words is what stops a future change turning
-# "it says it needs G-Windows" into "it says nothing at all", which is the
-# failure this collection keeps finding after the fact rather than before.
+# A REFUSAL IS A MEASUREMENT.  Three of these say, in the same words every
+# time, what they are missing -- a G-Windows display, a modem port -- and
+# recording the words is what stops a future change turning "it says it
+# needs G-Windows" into "it says nothing at all", which is the failure
+# this collection keeps finding after the fact rather than before.  A
+# seventh, `mailx', was here and is not; the note further down says why.
 #
 # `creadoc' is NOT here and cannot be: it lists its directory through your
 # own OS-9's `dir' and forks its `shell', both loaded off /h1, and
