@@ -645,6 +645,28 @@ def check_hand_files_name_real_programs(root):
             if name and name not in ondisk:
                 bad.append("%s: %s" % (fname, name))
 
+    # DOC/ORIGINS SHIPS AND SAYS "one line per program", so a row for
+    # something that is not here is the same defect as a stale DOC/USAGE
+    # entry -- and it was not checked until 2026-09-19, when two were found:
+    # `ren', dropped with the Microware-era utilities, and `reagan', dropped
+    # on its own.  A name whose SOURCE still ships is allowed, because the
+    # row is then the only record of where that source came from; reagan's
+    # row says so in its own text.
+    origins = os.path.join(root, "DOC", "ORIGINS")
+    if os.path.exists(origins):
+        text = open(origins, "rb").read().decode("latin-1").replace("\r", "\n")
+        src = os.path.join(root, "SRC")
+        trees = set(os.listdir(src)) if os.path.isdir(src) else set()
+        for m in re.finditer(r"^  ([A-Za-z0-9_.][\w.]*)\s{2,}(\S+)\s", text, re.M):
+            name = m.group(1)
+            if name in everywhere or name in ondisk or name in trees:
+                continue
+            # The file has prose lines that look like rows; a row's second
+            # column is an archive name, and prose words are not archives.
+            if m.group(2) in ("a", "the", "its", "an", "and"):
+                continue
+            bad.append("DOC/ORIGINS: %s" % name)
+
     usage = os.path.join(root, "DOC", "USAGE")
     if os.path.exists(usage):
         text = open(usage, "rb").read().decode("latin-1").replace("\r", "\n")

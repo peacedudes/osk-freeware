@@ -577,6 +577,24 @@ def break_absence_phrasing(root):
     return "DOC/INDEX made to say what this disk lacks again"
 
 
+def break_origins_names_a_ghost(root):
+    """A row in DOC/ORIGINS for a program that is not on the disk.
+
+    ORIGINS ships and says "one line per program", and nothing compared it
+    with the tree until 2026-09-19: `ren' and `reagan' had been dropped and
+    their rows stayed.
+    """
+    p = os.path.join(root, "DOC", "ORIGINS")
+    t = open(p, "rb").read().decode("latin-1")
+    marker = "The origins, all public:\r"
+    if marker not in t:
+        return None
+    i = t.index(marker) + len(marker)
+    row = "  zzzgoneaway    zzzarchive  Usenet           zzzgoneaway.ar\r"
+    w(p, (t[:i] + row + t[i:]).encode("latin-1"))
+    return "`zzzgoneaway' given a row in DOC/ORIGINS with nothing behind it"
+
+
 def break_cio_list_names_a_ghost(root):
     """A program that is not on the disk, added to README-CIO's own list.
 
@@ -755,6 +773,8 @@ BREAKS = [
     ("docs intact", "the disk's documents are intact", break_docs),
     ("readme refs", "README names documents that exist", break_readme_refs),
     ("name lists", "name lists point at real programs", break_hand_files),
+    ("origins ghost", "name lists point at real programs",
+     break_origins_names_a_ghost),
     ("author stamps", "no new SDK author stamps", break_author_stamp),
     ("recipes", "every recipe names a real tree", break_recipe_tree),
     ("screened src", "no unscreened Microware source",

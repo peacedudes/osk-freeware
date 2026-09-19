@@ -163,6 +163,23 @@ from a measured list the gate checks.
    whenever you say.  Ship the patched pair, or keep the archive's and leave
    the note?
 
+27. **`reagan' was dropped and its SOURCE is still on the disk.**  You
+   dropped the binary in c65e4baf -- "drop joke, reagan, two stale .login
+   scripts and a captured session" -- and `disk/SRC/reagan/' went on
+   shipping: `reagan.c' and a makefile, 
+   no `DOC/INDEX' entry, no
+   `SOURCES.txt' entry, and until today nothing but a line in `DOC/ORIGINS'
+   to say where it came from.  So the program is still distributed, just as
+   source rather than as a binary, and anybody with the compiler on this
+   disk can build it.
+
+   I have not removed it, because dropping something from the collection is
+   your call and because that ORIGINS line was the only record of its
+   provenance -- the line now says the program was dropped and the source is
+   what remains.  Do you want `SRC/reagan' off the disk as well?  The same
+   question may apply to anything else dropped for its content rather than
+   its terms; `reagan' is the only one the scan found.
+
 ## Not a question any more, but you should know
 
 18. **`disk/` is hard-linked to a second copy and my edits reach it.**  You
