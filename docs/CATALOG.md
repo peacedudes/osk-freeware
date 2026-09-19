@@ -930,9 +930,9 @@
 | | |
 |---|---|
 | `draw` | a character-graphics drawing program: it rules a canvas across the terminal and you move a cursor over it laying down characters -- hjkl to move, p to lift and drop the pen, backslash to choose the character; `?' shows the keys<br>`syntax: draw [<opts>] <file> [<opts>]` |
-| `loadmem` | loads a file into memory at a given address -- destination, upper limit and path, the addresses in hex; super user only. savemem is its reverse<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
+| `loadmem` | copies a file into memory at a given address -- destination, upper limit and path, the addresses in hex; super user only. It says nothing when it works, so read the same address back with `savemem', which is its reverse<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4: plots 2D and 3D data as PostScript. It reads an options file -- labels, whether to hide lines, whether to mark points -- prints every setting it took from it, then asks before sending the plot on. Answer and it writes `dataplot.ps' beside the data<br>`Pdraw V1.4  9/4/90` |
-| `savemem` | writes a block of memory to a file -- from address, to address and path, the addresses in hex; super user only. loadmem is its reverse<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
+| `savemem` | writes a block of memory to a file -- from address, to address and path, the addresses in hex and the range inclusive, so 8000 8027 is 40 bytes. Super user only, and the file must not already exist: handed one that does it prints its syntax rather than overwriting. `loadmem' is its reverse<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
 | `snap` | &#9733; writes what is on the terminal screen to a file -- `polaroid' unless you name another -- so a display can be kept. -s and -e take a range of lines rather than the whole screen<br>`syntax: snap {opt} [<file>] {opt}` |
 
 **Hardware demos**

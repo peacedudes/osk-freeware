@@ -1378,23 +1378,49 @@ snap
 
 
 shot    loadmem
-cap     Loads a file into memory at a given address.  It must be run by
-cap     the super user and takes hex addresses; run without them it prints
-cap     its syntax.
-try     loadmem
-run     loadmem
-wait    5
-snap
+cap     Copies a file into memory at an address you give: destination,
+cap     upper limit, path, the addresses in hex.  Super user only, and it
+cap     says nothing at all when it works -- so its counterpart `savemem'
+cap     reads the same address straight back here, and there the file is.
+try     loadmem 8000 80FF m.txt
+run     rm -rf /dd/tmp/MEML > /nil 2>/nil; mkdir -p /dd/tmp/MEML
+wait    3
+run     builtin cd /dd/tmp/MEML
+wait    1
+run     cp /dd/SYS/motd m.txt
+wait    3
+run     clear
+wait    1
+run     loadmem 8000 80FF m.txt
+wait    4
+run     savemem 8000 8027 back.bin
+wait    4
+run     dump back.bin
+wait    4
 
 
 shot    savemem
-cap     Writes a block of memory out to a file, the counterpart to loadmem.
-cap     It too wants the super user and hex addresses, and prints its
-cap     syntax when run without them.
-try     savemem
-run     savemem
-wait    5
-snap
+cap     Writes a block of memory out to a file: from address, to address,
+cap     path, in hex and the range inclusive -- 8000 to 8027 is 40 bytes.
+cap     Its counterpart `loadmem' put the text there first, so there is
+cap     something to recognise coming back.  Super user only, and the file
+cap     it writes must not already exist: handed one that does, it prints
+cap     its syntax rather than overwriting.
+try     savemem 8000 8027 back.bin
+run     rm -rf /dd/tmp/MEMS > /nil 2>/nil; mkdir -p /dd/tmp/MEMS
+wait    3
+run     builtin cd /dd/tmp/MEMS
+wait    1
+run     cp /dd/SYS/motd m.txt
+wait    3
+run     loadmem 8000 80FF m.txt
+wait    4
+run     clear
+wait    1
+run     savemem 8000 8027 back.bin
+wait    4
+run     dump back.bin
+wait    4
 
 
 shot    snap

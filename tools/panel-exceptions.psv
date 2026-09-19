@@ -73,8 +73,6 @@ authwn|WN's authenticator for a password-protected area; inetd and wn invoke it 
 inetdc|what inetd forks to handle each connection; run by hand with nothing to serve it exits in silence
 basicwin|an X11 basic-window demo; with no X server here it stops at "cannot connect to X server"
 xengine|an X11 demo animating an engine; with no X display here it stops at "Can't open display"
-loadmem|loads a file into memory at a hex address; it must run as the super user with addresses given, and prints its syntax without them
-savemem|writes a block of memory out to a file; it must run as the super user with addresses given, and prints its syntax without them
 snap|writes a snapshot of the screen on specific hardware terminals; it does not recognize this console, which is not one of them
 getsys|reports OS-9's system globals; the emulator does not implement the system-global reads it makes, so only unimplemented notices come back
 signal|sends an OS-9 signal to a process named by id; with no target process its syntax is what there is to show
