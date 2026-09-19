@@ -31,10 +31,8 @@ brushtopbm|reads a Xerox brush file, no sample ships; its card shows it naming w
 gouldtoppm|reads a Gould scanner file, no sample ships; its card shows it naming what it wants
 hipstopgm|reads a HIPS image, no sample ships; its card shows it naming what it wants
 hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what it wants
-mtvtoppm|reads an MTV/PRT ray-tracer image, no sample ships; its card shows it naming what it wants
 spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants
-xvminitoppm|reads an XV thumbnail image, no sample ships; its card shows it naming what it wants
 ptxminst|installs the ptxm path-table module into the kernel, which needs system state not available here; its usage is what there is to show
 frm|lists who your mail is from; it does not recognize this disk's mail folder and reports no mail, where messages and readmsg read the same one
 mailx|the mail reader and sender; it finds a mailbox by user number, and the super user this runs as has none

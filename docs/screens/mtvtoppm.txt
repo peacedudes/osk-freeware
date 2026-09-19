@@ -1,2 +1,9 @@
-mtvtoppm tmp/NPIB/nr.ppm
-mtvtoppm: unable to parse MTV file header
+mtvtoppm x.mtv > out.ppm
+$ pnmfile out.ppm
+out.ppm:        PPM raw, 4 by 2  maxval 255
+$ pnmnoraw out.ppm
+P3
+4 2
+255
+48 49 50  51 52 53  54 55 56  57 97 98
+99 100 101  102 103 104  105 106 107  108 109 110

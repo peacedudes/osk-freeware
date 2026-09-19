@@ -275,18 +275,26 @@ run     imgtoppm tmp/NPIB/none.img
 wait    5
 
 shot    mtvtoppm
-cap     Reads the output of the MTV ray tracer into a colour picture.  No MTV
-cap     image ships here; handed a colour picture it says it cannot parse the
-cap     MTV header rather than guessing.
-try     mtvtoppm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads the output of the MTV ray tracer into a colour picture.  An
+cap     MTV image is one line of width and height and then three raw bytes
+cap     a pixel, so one can be written with printf: twenty-four characters
+cap     of text make a picture four pixels by two, and their codes are the
+cap     colours that come out.
+try     mtvtoppm x.mtv > out.ppm
+run     rm -rf /dd/tmp/MTVB > /nil 2>/nil; mkdir -p /dd/tmp/MTVB
+wait    3
+run     builtin cd /dd/tmp/MTVB
 wait    1
+run     printf "4 2\r" > x.mtv; printf "0123456789abcdefghijklmn" >> x.mtv
+wait    3
 run     clear
-run     mtvtoppm tmp/NPIB/nr.ppm
+wait    1
+run     mtvtoppm x.mtv > out.ppm
 wait    5
+run     pnmfile out.ppm
+wait    3
+run     pnmnoraw out.ppm
+wait    4
 
 shot    spctoppm
 cap     Reads an Atari ST Spectrum 512 picture into a colour image.  No
@@ -326,18 +334,27 @@ run     ximtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    xvminitoppm
-cap     Reads an XV thumbnail -- the small preview the XV image viewer saves
-cap     -- into a colour picture.  No thumbnail ships here; handed a colour
-cap     picture it reports the bad magic number rather than guessing.
-try     xvminitoppm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads an XV thumbnail -- the small preview the XV image viewer
+cap     saves -- into a colour picture.  A thumbnail is `P7 332', a
+cap     comment line, the size, and then ONE byte a pixel indexing a fixed
+cap     palette of three bits of red, three of green and two of blue, so
+cap     one can be written with printf.  Sixteen characters of text make a
+cap     strip eight pixels by two.
+try     xvminitoppm x.xv > out.ppm
+run     rm -rf /dd/tmp/XVB > /nil 2>/nil; mkdir -p /dd/tmp/XVB
+wait    3
+run     builtin cd /dd/tmp/XVB
 wait    1
+run     printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv; printf "0123456789abcdef" >> x.xv
+wait    3
 run     clear
-run     xvminitoppm tmp/NPIB/nr.ppm
+wait    1
+run     xvminitoppm x.xv > out.ppm
 wait    5
+run     pnmfile out.ppm
+wait    3
+run     pnmnoraw out.ppm
+wait    4
 
 shot    zeisstopnm
 cap     Reads a Zeiss confocal microscope image into a PNM.  No Zeiss file
