@@ -793,7 +793,7 @@ whose name ends .c.
   Wildcard Commands (Keith Alphonso)        1
 
 **THE SURVEY IS FINISHED, 2026-09-18, and nothing on these disks is a
-candidate.**  All 24 images were read with the disk's own `os9dsk`, directory
+candidate.**  All 26 images were read with the disk's own `os9dsk`, directory
 by directory -- 826 files.  The rule that decides it is rdoggett's: what can
 a reader do afterwards that they could not do before, and is it overly Color
 Computer business?
@@ -802,7 +802,7 @@ What is on them, and why each answer is no:
 
   * **Every program is a 6809 binary.**  They cannot run on OS-9/68K, so the
     only thing that could ship is SOURCE found beside them.
-  * **There are 69 C files across the 24 images**, and they divide into
+  * **There are 69 C files across the 26 images**, and they divide into
     three kinds.  Most are 1980s utilities this disk already carries in a
     better version -- sort, uniq, wc, head, tail, split, nroff, more, cb,
     field, help, today, othello, tab.  Some are 6809-only by construction:
@@ -820,8 +820,23 @@ What is on them, and why each answer is no:
   * **`ffix' is on two of them** (POELOS9 and OS9PUB) and was ported and
     withdrawn on 2026-09-15; see below.  Do not port it again.
 
-So the CoCo body is closed.  The one technical thing worth keeping from the
-survey: **os9dsk wants a path RELATIVE to the image root** -- `os9dsk -dir
+**One image is not a filesystem to either reader, and that took a third
+look.**  `frames.dsk`, beside Zambotti's raytracer, listed nothing under
+`os9dsk` AND nothing under `rsdsk` -- the answer that should never be
+believed.  It is 737,282 bytes: 720K plus TWO, a JVC-style `.dsk` header
+that neither tool skips.  Strip those two bytes and `os9dsk` reads it --
+one file, `frames', 614,400 bytes, which is exactly twenty CoCo-3 graphics
+frames for `DispRaw' to display.  Raw picture data for a CoCo screen, so not
+a candidate either, but examined rather than assumed.
+
+The alt.sources "OS-9 GNU C compiler" thread of February 1991 is read too,
+and it is a dead end: a request from Inducom Systems in the Netherlands, and
+a reply saying the GNU C and C++ BINARIES had been uploaded to
+smilodon.cs.wisc.edu, which has not existed for thirty years.  No source in
+either post.
+
+So the CoCo body is closed.  Three technical things are worth keeping from
+the survey.  **os9dsk wants a path RELATIVE to the image root** -- `os9dsk -dir
 x.DSK CMDS' lists a directory and `-dir x.DSK /CMDS' lists nothing and says
 nothing about why -- and **an image whose filename contains a space cannot
 be named at all**, because OS-9 argv splits there.  Fifteen of the first
