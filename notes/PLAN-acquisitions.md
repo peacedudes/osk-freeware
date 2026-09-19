@@ -678,6 +678,50 @@ Of the remaining seven:
             three bytes and the entry is a csh aliasing trick.  The judges
             noted this type would not be permitted again.
 
+### The usenet last-ditch pull, and what was in it  2026-09-18
+
+rdoggett, 2026-09-18: *"We need to make a last ditch attempt at getting
+whatever we may want from usenet, then I will end it."*  Done.  **Nine more
+groups are pulled whole and every count matches the site's own index**, so
+the subscription can be cancelled:
+
+    fj.sys.x68000        4,482     comp.sources.unix     2,817
+    comp.sources.games   1,987     comp.sources.misc     6,165
+    comp.sources.reviewed  276     mod.sources             798
+    net.sources          6,437     fj.sources            2,132
+    alt.sources         15,923
+
+fj.sys.x68000 is his: Sharp's X68000 ran an OS-9/68000 port, and the group
+carries OS-9 threads from its first month (December 1987) to a 1997 request
+for OS-9/X68000 V2.4.  The rest are the "no mirror found" rows of the
+recovery table below -- comp.sources.misc v48+, comp.sources.games v19+ and
+the alt.sources gaps -- which turned out to be small enough here to take
+whole.  ~41,000 messages, 1.2 GB, in
+`~/Developer/os9/Scraped/usenet-rewind`.
+
+**What mentions OS-9, OSK or Microware**, measured across the nine:
+fj.sys.x68000 189, comp.sources.misc 97, alt.sources 68, fj.sources 26,
+net.sources 16, comp.sources.unix 7, mod.sources 7, comp.sources.reviewed 2,
+comp.sources.games 1.
+
+**The one find that changes a decision: GCC 1.37 ported to OS-9/68000.**
+comp.sources.misc v13i005 to v13i011, May 1990 -- Mr. Seyama's port, posted
+for him by NIIMI Makoto of Keio University, as **diffs against stock GCC
+1.37** plus documentation in English.  Saved to
+`Scraped/usenet-rewind/extracted/gcc137-osk/`.  **Part 2 of 7 (v13i006, the
+first of five diff files) is NOT in this archive's copy of the group**; the
+other six parts and a repost of part 6 are.
+
+That bears on FOR-RDOGGETT 20, the GPL binaries shipping with no source:
+CMDS/GCC139 holds gcc 1.39 and a g++ pass 1.37.1.  This is not that version
+and it is incomplete, so it does not close the question -- but it is the
+first OS-9 GCC SOURCE this project has found anywhere, and it is a better
+lead than the two Microware-archive near-matches.  alt.sources also carries
+an "OS-9 GNU C compiler" thread from February 1991 that has not been read.
+
+Nothing else in the nine groups looks like OS-9 software we do not have; the
+mentions are mostly ports being discussed rather than posted.
+
 ### utree 3.03b-um -- rdoggett's own find, and a candidate  2026-09-18
 
 He sent a usenet-rewind link to message `1992Sep7.214827.26662@PA.dec.com'.
