@@ -83,12 +83,10 @@ eo|eff_eo|eo.c|||
 etags|eff_etags|etags.c|||
 fcomp|bix|fcomp.c|||
 ff|effo_wolk|ff.c|||
-fibo|eff_bench|fibo.c|||
 fillup|fillup|fillup.c|||
 find|eff_effind|find.c|||
 fkeys|eff_fkeys|fkeys.c|||
 flink|eff_flink|flink.c|||
-float|eff_bench|float.c|||
 florida|weather|weather.c|GREGORIAN GULF|/dd/LIB/rand.r /dd/LIB/math.l|
 gcl|v_misc|gcl.c|||
 gen|divutils|gen.c misc.c|||
@@ -197,7 +195,6 @@ tess|tess|tess.c|||
 tet|tet|MoveR.c MoveL.c NewP.c AdvanceP.c Rotate.c tet.c||/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/math.l|
 tformat|effo_snobol|tformat.c|||
 top|eff_top|top.c|||
-touchtype|touchtype|game.c utils.c words.c os9.c||/dd/LIB/termlib.l /dd/LIB/curses.l /dd/LIB/rand.r /dd/LIB/egetopt.r|
 trap|trap|ctrap.c traptst.c||/dd/LIB/cio.l /dd/LIB/clib.l /dd/LIB/sys.l|
 tree|eff_tree|tree.c|||
 tsmon2|eff_tsmon|tsmon2.c|||

@@ -91,11 +91,9 @@ run     /dd/CMDS/patch $W/t.c < $W/t.diff
 run     /dd/CMDS/cat $W/t.c
 run     echo "--- end patch"
 
-drive   fibo-and-sieve
-why     two benchmarks.  They print a time, which is a property of the
-why     host, so only the shape of the answer can be asserted.
-run     /dd/CMDS/fibo
-run     echo "--- sieve:"
+drive   sieve
+why     a benchmark.  It prints a time, which is a property of the host,
+why     so only the shape of the answer can be asserted.
 run     /dd/CMDS/sieve
 run     echo "--- end benchmarks"
 

@@ -237,27 +237,6 @@ wait    6
 run     cat scales.lst | head -n 16
 wait    4
 
-shot    touchtype
-cap     A typing game.  Words fall down the screen and each has to be
-cap     typed, followed by a space or RETURN, before it reaches the
-cap     bottom; the top line counts hits and misses.  It first asks
-cap     whether you want instructions (y or n) and a level, 1 to 3.  This
-cap     is level 2 a few seconds in; Esc ends the game and scores it in
-cap     words per minute.
-try     touchtype
-run     touchtype
-wait    3
-send    n
-wait    2
-send    2
-wait    6
-keys    the
-wait    2
-snap
-wait    1
-send    \033
-wait    3
-
 shot    textb
 size    32 80
 cap     The Mandelbrot set drawn in ASCII, the number of iterations at

@@ -20,7 +20,6 @@ card|Screen toys|Screen toys
 dam|System & modules|Devices & disks
 setfont|Communications|Terminal & session
 ssl|System & modules|Devices & disks
-touchtype|Amusements|Curiosities
 phoon|Amusements|Curiosities
 telewords|Amusements|Curiosities
 telenum|Amusements|Curiosities
@@ -111,8 +110,6 @@ for|Compilers & build|Fortran
 
 # ---- Developer tools ----
 disktest|Developer tools|Benchmarks
-fibo|Developer tools|Benchmarks
-float|Developer tools|Benchmarks
 paranoia|Games|Adventure & fiction
 savage|Developer tools|Benchmarks
 sieve|Developer tools|Benchmarks

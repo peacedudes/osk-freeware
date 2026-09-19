@@ -678,6 +678,49 @@ Of the remaining seven:
             three bytes and the entry is a csh aliasing trick.  The judges
             noted this type would not be permitted again.
 
+### utree 3.03b-um -- rdoggett's own find, and a candidate  2026-09-18
+
+He sent a usenet-rewind link to message `1992Sep7.214827.26662@PA.dec.com'.
+It is **comp.sources.unix v26i065, part 2 of 8 of `utree'** -- Peter
+Klingebiel's "screen oriented filesystem utility", a portable Unix version of
+the DOS `xtree'.  Paul Vixie's moderator note calls it "dired-like
+functionality without the overhead of GNU Emacs".
+
+All eight parts are pulled and unpacked:
+`~/Developer/os9/Scraped/usenet-rewind/extracted/utree/part0*.shar` (626 KB).
+
+**Terms permit shipping it**, and they are the non-commercial shape settled
+on 2026-09-11 (accept, record, ship).  From `doc/utree.prlist.1`:
+
+> (co) 1991/92 Peter Klingebiel & UNIX Magazin Munich.  Permission is granted
+> to copy and distribute utree in modified or unmodified form, for
+> noncommercial use, provided (a) this copyright notice is preserved, (b) no
+> attempt is made to restrict redistribution of this file, and (c) this file
+> is not distributed as part of any collection whose redistribution is
+> restricted by a compilation copyright.
+
+Condition (c) is satisfied: nothing restricts the redistribution of this
+collection.
+
+**Why it is a candidate and not just portable.**  The disk has `tree', which
+prints a directory tree and stops; `browse' and `wndex', which are for text;
+and no full-screen file manager at all.  A reader could navigate, copy, move
+and delete across a whole filesystem from one screen, which is a thing they
+cannot do here today.  That is the bar the CoCo survey set, and this clears it.
+
+**What the port will have to deal with**, read from the shar:
+  * it ships 17 `sys/Makefile.*` and five `conf.h.*` -- BSD, V.2, V.3, SCO,
+    AIX, SUN, MIPS, ULT and more -- so the porting seam already exists and an
+    OSK arm joins it rather than cutting a new one;
+  * `tst/fionread.c` and `tst/sigwinch.c` say it wants FIONREAD and SIGWINCH.
+    OS-9 has neither; the keyboard read will need SS_Ready, and there is no
+    window-size signal, so the screen size comes from the termcap;
+  * curses, and a per-terminal key-binding file (`lib/utree.binding`), which
+    is the right shape for this disk's termcap.entry arrangement;
+  * `sup/getopt.c` is carried, so the getopt bundle trap does not apply.
+
+Not started.  Queued behind the CoCo images.
+
 ### The CoCo Community Archive zips -- the last unopened body  2026-09-15
 
 Nine zips in Scraped/acquisitions-2026-09-11/os9/community/cca, and they are

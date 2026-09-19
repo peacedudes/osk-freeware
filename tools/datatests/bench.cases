@@ -47,10 +47,8 @@ run     $D/dhryshamu < /dd/tmp/runs
 run     $D/dhryshamu2 < /dd/tmp/runs
 expect  Arr_2_Glob[8][7]:    20010
 expect  Bool_Glob:           1
-case    float-and-savage-are-the-floating-point-benchmarks
-run     /dd/CMDS/float
+case    savage-is-the-floating-point-benchmark
 run     /dd/CMDS/savage
-expect  7000 loops done
 expect  a = 9.99999999981959e+02
 expect  1000 loops done
 

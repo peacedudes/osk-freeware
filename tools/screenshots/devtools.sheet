@@ -12,22 +12,6 @@ try     sieve
 run     sieve
 wait    10
 
-shot    fibo
-cap     The Fibonacci benchmark: it works out a Fibonacci number by the plain
-cap     recursive definition, which fans out into a great many calls, and
-cap     repeats that a set number of times.  A stress test for the cost of a
-cap     function call rather than for arithmetic.
-try     fibo
-run     fibo
-wait    12
-
-shot    float
-cap     A floating-point speed test: an arithmetic loop run a fixed number of
-cap     times, reporting when the loops are done.
-try     float
-run     float
-wait    12
-
 shot    savage
 cap     Savage's benchmark stresses accuracy rather than speed.  It runs a
 cap     chain of functions that cancel out, so each pass should add exactly

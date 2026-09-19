@@ -1,1 +1,0 @@
-baudrate(){	return(9600);}/* suspend for so many milliseconds */napms(ms)int ms;{	tsleep(ms / 100);}flash(){	printw("%c%c%c", 7, 7, 7);}

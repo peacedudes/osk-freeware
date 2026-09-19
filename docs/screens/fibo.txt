@@ -1,4 +1,0 @@
-$ fibo
-start
-10 loops done
- Fibonacci( 24) = 46368

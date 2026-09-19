@@ -101,11 +101,8 @@ expect  Hmm...  Looks like a normal diff to me...
 expect  using Plan B...
 expect  Error reading tmp file
 
-case    fibo-and-sieve-run-their-benchmarks
-run     /dd/CMDS/fibo
+case    sieve-runs-its-benchmark
 run     /dd/CMDS/sieve
-expect  Fibonacci( 24) = 46368
-expect  10 loops done
 expect  100 sieves done
 
 case    luac-compiles-lua-to-bytecode

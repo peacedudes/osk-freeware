@@ -108,7 +108,6 @@ setterm|`setterm' alone reports what TERM says; give it a terminal name to chang
 shuffle|Full-screen: it takes over the display. **`q' quits**.
 snake|Full-screen. h/j/k/l move; reach the `$' before the snake reaches you. `x' quits.
 sonnet|Full-screen: it takes over the display. **ESC quits**, so does q at its prompt. Commands at the prompt: m# / u# mark and unmark a line, r recomposes the unmarked lines, w [file] appends the poem to a file (sonnet.out by default, -f <file> changes that). `sonnet -l <file>' loads a poem it wrote with w -- fourteen lines -- and refuses any other file. The vocabulary is compiled in (SRC/sonnet/lex.data through makelex), not read at run time.
-touchtype|Full-screen typing game. Answer `n' to the instructions question, pick a level 1-3 (q quits there), type each falling word followed by SPACE or RETURN. ESC ends the game and prints the words-per-minute score.
 tt|Tetris for terminals, full-screen: , and / move the piece, . rotates, space drops, s pauses, q quits.
 tttt|Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits.
 wanderer|Full-screen. Dig through the earth for diamonds, forty-five on the first screen. `q' quits. Its thirty screens are in GAMES/WAND.

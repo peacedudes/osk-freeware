@@ -102,7 +102,6 @@ ppmtopj|writes an HP PaintJet file silently; the pjtoppm round-trip that follows
 ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card, three 1165-byte files, is the evidence
 rain|a screen toy; a still frame of falling raindrops is too sparse to score, and there is nothing denser to show
 liborder|reports the module concatenation order, one relocatable name per library; the libraries here each reduce to a single .r, so its answer is one line -- too little to score, and there is no larger library to show
-float|a floating-point benchmark: it runs a fixed loop of arithmetic and prints the single result value it computes; pair it with `time` for a rate. There is nothing more to show
 sieve|the Sieve of Eratosthenes benchmark: it counts the primes below its fixed limit and prints the one count; pair it with `time` for a rate
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
 apfel|a Mandelbrot drawer for the Graph library display; with no such display it prints its name and aborts. Needs G-Windows

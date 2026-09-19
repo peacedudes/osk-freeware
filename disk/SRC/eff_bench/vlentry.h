@@ -1,1 +1,0 @@
-/* *  vlEntry.h   Entry declarations for the vlen library */extern int vlCreat();extern int vlOpen();extern int vlClose();extern int vlFlush();extern long vlAvl();extern int vlFree();extern int vlRead();extern int vlWrite();extern char *vlGetErr();extern int vlStats();/* *  end of vlEntry.h */

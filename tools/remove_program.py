@@ -231,6 +231,28 @@ def strip_card(name, out):
             write(p, "\n".join(lines))
 
 
+def sync_cio_count(out):
+    """DOC/README-CIO states how many modules link cio, and `check_disk'
+    compares that figure with a scan of the disk.  Taking a starred program
+    off changes it, so the document is brought back into line here rather
+    than being left for the gate to fail on -- which it did, twice, on the
+    2026-09-18 removals."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import cio_macro_scan
+    total, rows = cio_macro_scan.survey([os.path.join(ROOT, "disk")])
+    p = os.path.join(ROOT, "disk/DOC/README-CIO")
+    text = read(p)
+    m = re.search(r"(\d+) modules here link cio; (\d+) contain the call", text)
+    if not m:
+        out.append("   README-CIO no longer states the population -- check by hand")
+        return
+    if (int(m.group(1)), int(m.group(2))) == (total, len(rows)):
+        return
+    new = "%d modules here link cio; %d contain the call" % (total, len(rows))
+    out.append("   README-CIO  %s -> %s" % (m.group(0), new))
+    write(p, text.replace(m.group(0), new))
+
+
 def mentions(name):
     """Files that still NAME the program and need a person to read them."""
     found = []
@@ -281,6 +303,7 @@ def remove(name):
     strip_origins(name, out)
     strip_usage_status(name, out)
     strip_card(name, out)
+    sync_cio_count(out)
     print("\n".join(out) if out else "   nothing found")
     left = mentions(name)
     if left:

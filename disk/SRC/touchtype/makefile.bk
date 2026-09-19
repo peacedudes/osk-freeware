@@ -1,1 +1,0 @@
-# Makefile for typefastOBJ=game.o utils.o words.oall:    $(OBJ)        cc -o typefast $(OBJ) -lcursesgame.o: game.c        cc -c -O game.c
