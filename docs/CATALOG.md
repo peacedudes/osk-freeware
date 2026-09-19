@@ -1519,7 +1519,7 @@
 
 | | |
 |---|---|
-| `clock` | displays a running clock on the terminal; it needs a terminal type and opens a pipe to feed its display |
+| `clock` | a full-screen clock, the digits drawn with `banner'.  For each one it runs banner into a named pipe through system() and reads the pipe back, and this C library's system() forks a module called `shell' -- your own OS-9 has one.  With none resident nothing writes the pipe and it stops on the open.  Source in SRC/misc/clock.c |
 | `oskversion` | &#9733; reports the system: OS-9 level, version, revision and edition, and the CPU twice over -- what the init module claims and what the system globals say the processor really is, which are not always the same machine<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `setime` | sets the system time. It prompts with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line Shares its name with a utility of your own -- README-NAMES |

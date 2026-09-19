@@ -50,7 +50,13 @@ USAGE = re.compile(r"(?i)^\s*(usage|syntax|use\b|options?)\s*[:\-]"
 ERROR = re.compile(
     r"(?i)(error\s*#|\berror\b|can't|cannot|couldn't|unable to|not found"
     r"|no such|\*\*\*\*\s.*\s\*\*\*\*|unknown option|illegal|invalid|bad |permission"
-    r"|E\$[A-Za-z]|vector=\$|not accessible|no more memory|abort)")
+    r"|E\$[A-Za-z]|vector=\$|not accessible|no more memory|abort"
+    # `clock returned 65535' -- the shell reporting a non-zero exit.  It
+    # reads as a plain sentence, so it counted as WORK, and a panel of one
+    # error line and that one scored as the program working: `clock' was
+    # publishing "Popen error 216 / clock returned 65535" and the audit
+    # called it work.  Zero is not an error and must not match.
+    r"|\breturned [1-9][0-9]*\b)")
 
 
 def sheet_commands():
