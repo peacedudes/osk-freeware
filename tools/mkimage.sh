@@ -37,6 +37,15 @@
 set -u
 
 SRC=${1:-}; OUT=${2:-}; MB=${3:-0}
+
+# BOTH PATHS ARE MADE ABSOLUTE, and the source one is the reason.  The
+# extract step below cd's to the output directory, and passes $SRC to the
+# emulator as OS9DISK from THERE -- so a relative `disk' works only when the
+# image is written into the repository root, and anywhere else the emulator
+# stops with `#000:221 (E_MNF): bash' before emulation begins, which reads
+# exactly like a source tree with no shell on it.  Measured 2026-09-18,
+# building into a scratch directory.
+[ -n "$SRC" ] && [ -d "$SRC" ] && SRC=$(cd "$SRC" && pwd)
 [ -n "$SRC" ] && [ -n "$OUT" ] || { echo "usage: mkimage.sh <source-tree> <output-image> [sizeMB]"; exit 1; }
 [ -d "$SRC" ] || { echo "no such tree: $SRC"; exit 1; }
 
