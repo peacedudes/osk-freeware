@@ -500,7 +500,7 @@
 |---|---|
 | `cb` | &#9733; the C beautifier: indents C source into a readable layout, standard input to standard output<br>`Usage:  cb <input.fil >output.fil` |
 | `cpr` | print or pretty-list C source for paper: a title, a contents page, then the source with page and line numbers.<br>`Usage: cpr [-cCnNsS] [-T title] [-t tabwidth] [-p[num]] [-r[num]] [-l pagelength] [[-f] file] ...` |
-| `ifdef` | resolve #ifdefs in C source<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
+| `ifdef` | reads C source and resolves its #ifdefs, writing what is left: -D<name> defines a name and -U<name> undefines it, so `ifdef -DOSK f.c' keeps the OS-9 arm and drops the others. -t prints the table it built<br>`Syntax: ifdef [<opts>] [<file>] [<opts>]` |
 | `indent` | reformat a C source program for readability<br>`Syntax: indent [<opts>] [<inpath> [<outpath>]] [<opts>]` |
 | `patch` | applies a diff to a file, the way `diff' made it: `patch <file> <diff>', or the diff on standard input.  It keeps the original beside the result as <file>.orig.  It could not finish until 2026-09-18 -- its port opened files with Unix modes, where OS-9 reads mode 0 as no access at all |
 | `scpp` | &#9733; the selective C preprocessor: expands only the macros you name and leaves the rest of the source as it was. `scpp -MWIDTH prog.c' interprets WIDTH alone; -D defines one<br>**How:** `scpp -MNAME file' copies the C source to standard output expanding only NAME -- its #define disappears and each use becomes the value -- and leaves every other macro, #include and #ifdef untouched. Name several with -M"A B"; -DNAME=value defines one; -C keeps comments; -I adds an include directory. |
@@ -512,7 +512,7 @@
 |---|---|
 | `ctags` | generate a vi tags file from C source (BSD)<br>`ctags: illegal option -- ?` |
 | `cxref` | &#9733; C cross-reference lister -- numbered listing + symbol table<br>`Syntax:		cxref [-opts] [path]` |
-| `etags` | generate an emacs TAGS file<br>`Syntax: etags { [<opts>] <path> }` |
+| `etags` | makes a tag table -- the index an editor uses to jump to where a name is defined. It reads C, LaTeX, Lisp, Scheme, Pascal, Fortran and more, and writes TAGS for emacs or, with -e set the other way, the form vi wants<br>`Syntax: etags { [<opts>] <path> }` |
 | `rdoc` | &#9733; reverse documentation: C source in, structure chart out |
 | `xrf` | C cross-reference generator -- it reads its language table C.XRF from the current data directory; the disk ships one in DOC/xrf.<br>**How:** Wants TWO files in the DATA directory, not on the command line: its language table as `C.XRF' (the disk has it as DOC/xrf/c.xrf -- copy it) and the source you name. Given both it prints a full cross-reference: every identifier with the lines it appears on. |
 
@@ -560,7 +560,7 @@
 | `cc2plus` | a second GCC C++ compiler pass (2.5.8) in the GCC2 directory |
 | `cccp2` | &#9733; the GCC 2.x preprocessor, in the GCC2 directory beside its driver<br>`GNU C Compatible Compiler Preprocessor (Version 2.5.6)` |
 | `collect` | collect2: builds the table of global constructors and destructors a C++ program needs before linking<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
-| `compiler` | GSHELL front-end for the C compiler<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
+| `compiler` | a full-screen menu in front of the C compiler -- CC-SHELL 1.0, 1988. It lists the directory a page at a time, a letter picks the file to compile and the same letter in lower case asks for arguments first; `.' changes directory and `!' leaves the menu. Control-C is what gets you out of the program<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`GNU C Compiler (Version 1.42)` |
 | `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`GNU C Compiler (Version 2.5.6)` |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
@@ -796,27 +796,27 @@
 | `atp` | &#9733; ATP, an off-line reader for QWK mail packets: the bundles a bulletin board packed a caller's messages into |
 | `autoreply` | &#9733; send an automatic reply while you are away.  It resolves your mailbox by the session's numeric owner rather than $USER, so under this identity it reaches for a mailbox named `su' and stops there; turning autoreplying off does not need the mailbox and answers for real |
 | `checkalias` | &#9733; check an alias resolves before you rely on it. `listalias' answers the same question and prints its result<br>`Usage: checkalias alias [alias ...]` |
-| `disable` | &#9733; disable a UUCP device<br>`Syntax: disable <port>` |
+| `disable` | &#9733; turns the terminal monitor off on a port, in its own words `Turn OFF MTSMon on <port>', which frees the line for something else to use -- a modem dialling out being why it sits with the UUCP set. `enable' turns it back on<br>`Syntax: disable <port>` |
 | `dotilde` | &#9733; the mailer's tilde-escape handler: it reads a message from standard input and acts on the `~' commands in it, answering `Unrecognized tilde command' and `Continuing...type "." or <ESC> to end message...'<br>`================= Tilde Help =================` |
 | `elm` | &#9733; the Elm mail reader itself -- full-screen, menu-driven<br>**How:** The full-screen mail reader. It opens on the folder that ships for this account, `~/SPOOL/MAIL/tester', showing one message. `readmsg 1' prints a message without opening the reader; `messages' counts the folder. Mail lives at /dd/SPOOL/MAIL/<user>, and SYS/login points MAIL at it. |
-| `enable` | &#9733; re-enable a UUCP device<br>`Syntax: enable [<opts>] <port> [<opts>]` |
+| `enable` | &#9733; turns the terminal monitor back on for a port, the counterpart of `disable'; -p holds the prompt back until a signal arrives<br>`Syntax: enable [<opts>] <port> [<opts>]` |
 | `fastmail` | &#9733; send a file as mail without opening the reader.  It needs a delivery agent to deliver it<br>`/dd/CMDS/ELM/fastmail: illegal option -- ?` |
 | `filter` | sorts incoming mail into folders by rule, as a pipe stage: its own usage line begins `\| filter'<br>`/dd/CMDS/ELM/filter: illegal option -- ?` |
 | `frm` | &#9733; list who your mail is from, one line each.  On this port it answers `tester has no mail' for a folder that `messages' counts and `readmsg' prints, so use those two<br>**How:** Lists who your mail is from, one line each. Reads $MAIL, which SYS/login sets. |
-| `lcasep` | &#9733; lower-case a name for mail<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
+| `lcasep` | &#9733; lower-cases everything it reads, standard input to standard output, or -f and -o for files. Mail addresses are matched in lower case, which is what it is for<br>`/dd/CMDS/UUCP/lcasep: illegal option -- ?` |
 | `listalias` | &#9733; list the aliases you have, once newalias has compiled them: `home  os9-freeware (This Collection)'.  It builds an `egrep ... \| sort' pipeline and hands it to a shell, so `load' sort first or the fork misses it and you get the list unsorted with a `sort: nowhere found' line above it<br>`/dd/CMDS/ELM/listalias: illegal option -- ?` |
 | `lmail` | &#9733; local mail delivery: `lmail <user>' reads a message on standard input and appends it to that user's folder in SPOOL/MAIL, taking its lock in SYS/.LOCKS/MAIL.LOCKS<br>`Syntax: lmail <user name> {<user name>}` |
-| `mail` | &#9733; a simple mail sender |
+| `mail` | &#9733; a mail reader and sender in one, from the UUCP set. `mail <user>' takes a message from the keyboard, a line holding one dot ending it, and files it in MAIL/ under that login name; `mail' on its own opens what is waiting and prompts, `?' listing the commands. It wants a scratch device at /r0 -- DOC/README-RUNNING says how |
 | `mailx` | &#9733; the mail reader and sender<br>`mailx v2.1 (94Sep30)  --send and receive e-mail` |
 | `makedb` | build smail's path-alias dbm: `makedb -o <name> <file>' writes <name>.dir and <name>.pag.  /dd/USR/LIB/SMAIL/palias is the source it defaults to<br>`/dd/CMDS/UUCP/makedb: illegal option -- ?` |
 | `messages` | &#9733; counts and lists what is in a mail folder: `There is 1 message in your mailbox'<br>**How:** Counts what is in your mail folder: "There is 1 message in your mailbox". |
 | `newalias` | &#9733; rebuild the alias database -- run it after editing aliases, and add -g for the system file.  `processed 2 aliases', `processed 6 aliases'<br>**How:** Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it. |
 | `newmail` | &#9733; watch for mail arriving and say so.  -d reports the folder it is watching and its size<br>`/dd/CMDS/ELM/newmail: illegal option -- ?` |
 | `nptx` | &#9733; smail's full-name permuter: it takes `<full name>' TAB `<login>', one per line, and answers with the pair reversed.  Anything else -- an address list, a bare name, the password file -- earns `format error: <the line>'<br>**How:** smail's full-name permuter, and its input format is the whole trick: one line of `<full name>' TAB `<login>' and it answers with the pair reversed. ANY other shape -- an address list, a bare name, the password file -- earns `format error: <the line>', which is how it came to be described as an alias expander. |
-| `pathalias` | compute mail routes from a map<br>`/dd/CMDS/UUCP/pathalias: illegal option -- ?` |
+| `pathalias` | works out how mail should be routed from a map of which site talks to which, and prints one line per destination: the site, then the bang path to reach it. -l names the site you are computing from<br>`/dd/CMDS/UUCP/pathalias: illegal option -- ?` |
 | `philmail` | an off-line mail reader: it opens your mail file, steps through the messages with return and offers a reply; `q' quits<br>`/dd/CMDS/UUCP/philmail is an off-line mail reader for UNIX mail` |
 | `printmail` | &#9733; format a message for a printer.  It forks `readmsg' by bare name, so load it first; then it prints the message the same way `readmsg' would<br>**How:** It forks `readmsg' BY BARE NAME, and OS-9 resolves a bare-name fork against the EXECUTION directory, never against PATH -- so it is silent from everywhere except /dd/CMDS/ELM. `load /dd/CMDS/ELM/readmsg' once and it works from anywhere: a RESIDENT module is found by name with no directory search at all. |
-| `pwparse` | &#9733; parse the password file for the mailer |
+| `pwparse` | &#9733; reads a password file on standard input and prints the login name from each line, one to a line -- the form the mail system wants a user list in |
 | `read_mail` | &#9733; a small mail reader of its own: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'<br>**How:** Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt ON STANDARD INPUT -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound. |
 | `readmsg` | &#9733; prints selected messages from a mail folder, by number or by pattern: `readmsg 1' for the first<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you). Given a local name it builds <mailbox>/<user>, and the mailbox here is a file, so it stops with `can't change to mailbox: /dd/SPOOL/MAIL/tester/tester'.  Given a `host!user' address for remote delivery it does not return at all<br>**How:** Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return. |
@@ -828,10 +828,10 @@
 
 | | |
 |---|---|
-| `bdecode` | &#9733; decode a batched news article |
+| `bdecode` | &#9733; decodes a C News batch: it skips forward to the line `Decode the following with bdecode', decodes what follows and checks the CRC at the end. Given anything else it says `Missing header'. Source in SRC/cnews/input |
 | `byteflip` | &#9733; byte-swap a dbz database between architectures -- hand it a dbz database<br>**How:** It is in CMDS/NEWS. Hand it a dbz database to byte-swap between architectures. |
-| `c7decode` | &#9733; decode 7-bit-safe encoded news |
-| `dbz` | &#9733; the news history database<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
+| `c7decode` | &#9733; the inverse of C News's c7encode: it reads the seven-bit-safe form a news batch is put into to cross a link that eats the eighth bit, and writes the eight-bit original back. Source in SRC/cnews/input |
+| `dbz` | &#9733; builds and maintains C News's history index -- the .dir and .pag pair beside the history file that lets the news system find an article by message-id without reading the whole of it. `dbz database [file]...'<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
 | `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |
 | `newshist` | &#9733; rebuild the history file<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
 | `newslock` | &#9733; the news system's lock<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
@@ -857,9 +857,9 @@
 |---|---|
 | `aterm` | ATerm 2.6, a terminal emulator for a serial line: `aterm /t1'. Its configuration is in SYS/ATERM; run it from a login session rather than as the machine's first process. Manual in DOC/aterm, source in SRC/aterm<br>`ATerm : A terminal program for OS9/68000` |
 | `cls` | clear the screen (termcap)<br>`Syntax: cls` |
-| `connect` | &#9733; connect to a serial line<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
-| `fkeys` | define terminal function keys<br>`Syntax: fkeys [<path>]` |
-| `initvdu` | &#9733; init video display<br>**How:** It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal". |
+| `connect` | &#9733; joins two paths -- your terminal and a remote device -- so what you type reaches one and what it sends comes back on the other. Both default to standard input and output, the switches before each path set echo, CR/LF and XON/XOFF for that path alone, and control-E quits<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
+| `fkeys` | loads the user-defined keys of a VT220 from a file, so the function keys send what you want. Given no file it prints its syntax<br>`Syntax: fkeys [<path>]` |
+| `initvdu` | &#9733; sets the login terminal up from its termcap entry. It knows particular VDUs; on one it has no definition for it says so and changes nothing, which is the answer rather than a failure. -d shows what it would send<br>**How:** It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal". |
 | `input` | the Unaxcess bulletin board's input helper: it copies standard input to standard output a line at a time |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'.<br>`usage: setfont <path>` |
@@ -927,7 +927,7 @@
 | `loadmem` | loads a file into memory at a given address -- destination, upper limit and path, the addresses in hex; super user only. savemem is its reverse<br>`Syntax   : LOADMEM <destinati address> <upper limit address> <path>` |
 | `pdraw` | Pdraw 1.4 - 2D/3D data plotting, PostScript output<br>`Pdraw V1.4  9/4/90` |
 | `savemem` | writes a block of memory to a file -- from address, to address and path, the addresses in hex; super user only. loadmem is its reverse<br>`Syntax   : SAVEMEM <from address> <to address> <path>` |
-| `snap` | &#9733; snapshot the screen to a file<br>`syntax: snap {opt} [<file>] {opt}` |
+| `snap` | &#9733; writes what is on the terminal screen to a file -- `polaroid' unless you name another -- so a display can be kept. -s and -e take a range of lines rather than the whole screen<br>`syntax: snap {opt} [<file>] {opt}` |
 
 **Hardware demos**
 
@@ -1419,7 +1419,7 @@
 |---|---|
 | `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
 | `dedit` | BASIC09 disk sector editor -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
-| `dinfo` | &#9733; disk/device information<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dinfo` | &#9733; reports on an RBF disk -- volume name, creation date, capacity, how much is free and in how many blocks -- doing the job your own `free' does and saying more. -e extends the display and -f reports fragmentation<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
 | `dpark` | &#9733; parks the disk head: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive<br>`Syntax:   dpark [/device]` |
 | `freeb` | lists the free space on a disk block by block -- how many free blocks there are, how big each one is and where it starts.  -t counts them by size, -a lists every one, -h leaves the header out and -s the total<br>`Usage:` |
 | `os9dsk` | reads a CoCo OS-9 disk image -- the .DSK files a Color Computer emulator uses.  `os9dsk -dir <file>.DSK' lists it, -get copies a file out, -proc shows the file descriptor.  A 1985 disk reads as easily as a new one<br>`Usage:	os9dsk -dir filename.DSK DSKpath` |
@@ -1477,7 +1477,7 @@
 | `flink` | &#9733; makes a second directory entry for a file under a name you give -- an RBF hard link. RBF has no true hard links, and removing such an entry can leave the original pointing at the wrong place, so do not run it on a disk you care about<br>**How:** DO NOT run it on a shipped module. It makes a directory entry aliasing the file's FD in the CURRENT directory, RBF has no hard links, and removing the entry leaves the file pointing at a DIRECTORY -- `cat' then answers `is a directory' for everything. |
 | `gen` | generates the frame of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with. It appends `.c' to whatever name you give it: `gen -p frame' leaves `frame.c'. `-m' does a module frame, `-t' a type, `-f' a function declaration<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
 | `load` | loads a module into memory, so a program that links a library module can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive. A clean-room reimplementation of Microware's load, source in SRC/load, built trap-free Shares its name with a utility of your own -- README-NAMES<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
-| `mexist` | &#9733; test module existence<br>`MEXIST   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
+| `mexist` | &#9733; answers whether a module is in the module directory by its EXIT STATUS rather than by printing: 0 if it is there, 1 if it is not. The name is case-sensitive, and it looks at up to 256 modules<br>`MEXIST   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `os9lib` | the RTF/68K Fortran run-time library. rtf, for, lnk, biory and creadoc all link it, so `load' it into the module directory before running them. See DOC/README-FORTRAN |
 | `ptxm` | Path Table eXtension Module: a kernel extension letting user-state processes open unlimited I/O paths. Courtesyware, free. It installs into the kernel and so needs supervisor state. DOC/ptxm/ptxm.txt |
 | `remove` | &#9733; remove modules from memory -- its own Function line says so. `remove <module>...', -q for quiet. `rm' removes files<br>**How:** Removes modules from memory. `del', `rm' and `deldir' are the file ones. |
@@ -1495,7 +1495,7 @@
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; a login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line. It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
-| `signal` | &#9733; send a signal to a process<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
+| `signal` | &#9733; sends a signal to a process by number, and can wait first: `signal <pid> <code> [<seconds>]' delays that many seconds and then sends it. `snd_sig' beside it takes several processes at once and defaults to the wake signal<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `t` | a minimal trap-handler test stub: it installs, returns cleanly and prints nothing |
 | `top` | show the busiest processes by their share of the CPU, refreshed every few seconds: `top' lists only those that have used any, `top -a' lists them all, and `top <seconds>' sets how often.  Interrupt to leave. `aprocs' is the other process lister here<br>`Syntax: top [<opts>] [<num>]` |
 | `vis` | &#9733; run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible<br>`vis: illegal option -- ?` |
@@ -1506,7 +1506,7 @@
 | | |
 |---|---|
 | `cron` | run commands at specified times (daemon) |
-| `every` | &#9733; run a command at intervals<br>`Syntax: every <time> <progname> [<progopts>]` |
+| `every` | &#9733; runs a program over and over, waiting the given number of seconds between runs: `every 2 oskversion' prints the version every two seconds until you stop it. The program's own options follow its name<br>`Syntax: every <time> <progname> [<progopts>]` |
 | `repeat` | repeat an OS-9 command N times -- `repeat 2 date' runs date twice.  It hands the command to $SHELL, which SYS/login sets to ksh, and ksh runs it.  date writes no trailing newline, so the repeats abut on one line.<br>`repeat ver 1.2` |
 
 **System state**
@@ -1539,13 +1539,13 @@
 | `combine` | &#9733; interleaves two files byte by byte, one supplying the even bytes and the other the odd -- how a 16-bit EPROM image is put back together from two 8-bit halves<br>`(c.) 1989 by F.R.Schmitt MPI Kernphysik Heidelberg` |
 | `config` | report this machine's C type properties as #defines -- char, short, int, long, pointer and float all come out; it then aborts where `double' begins, because that needs a 68881 or Microware's fpu.  See DOC/README-BUSERR |
 | `cpu` | &#9733; a CPU speed test: it draws a bar chart of its timing loop and prints the clock rate it measured, then stops on a trap |
-| `demerge` | split a merged file back into its parts<br>**How:** OS-9's `merge' is concatenation, so `cat a b > c' makes the file demerge takes apart -- your own `merge' does the same. `dump' is the hex dump here. |
+| `demerge` | splits a file holding several OS-9 modules into one file per module, each named after the module it holds. OS-9's `merge' is concatenation, so `cat a b > c' makes the file it takes apart. `modbuster' does the same job and can be pointed at another directory<br>**How:** OS-9's `merge' is concatenation, so `cat a b > c' makes the file demerge takes apart -- your own `merge' does the same. `dump' is the hex dump here. |
 | `demo` | egetopt option-parsing demonstration |
 | `devprc` | shows which device each process holds a path to: -a walks every process and lists its open paths and the device behind each<br>`devprc: display device(s) belonging to process(es), V.1.01` |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
 | `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
 | `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
-| `fastcc` | &#9733; a faster front end for cc<br>`fastcc: <opts> <files> <opts>` |
+| `fastcc` | &#9733; a second front end for Microware's cc, with its own options: -p pipes the preprocessor's output straight into the compiler instead of through a temporary file, -r compiles to relocatable files in a directory you name, -a stops at assembler, -bp shows each command before it runs. `-?' lists them all<br>`fastcc: <opts> <files> <opts>` |
 | `fixyear` | Y2K: correct a date the clock got wrong<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
 | `getsys` | &#9733; report the system's globals -- what OS-9 thinks it is running on<br>`Syntax: getsys [<opts>]` |
@@ -1569,7 +1569,7 @@
 | `scsiutil` | talks to a SCSI device: inquiry, capacity, read sectors, eject, and audio CD control -- table of contents, play, volume<br>`SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan` |
 | `setime2` | Y2K: set the system time, four-digit year<br>`Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]` |
 | `setyear` | Y2K: set the year directly<br>`Syntax:    setyear <YYYY>` |
-| `snd_sig` | &#9733; send a signal to a process<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
+| `snd_sig` | &#9733; sends a signal to one process or to several at once -- `snd_sig <pid> <pid>...' -- and with no option sends the wake signal; -<n> sends signal number n instead. `signal' beside it takes one process and can delay first<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
 | `spline` | &#9733; fit a spline through points, output PostScript |
 | `sqrtx` | square-root demonstration |
 | `suse` | show a program's usage line.  `-?' does the same for most programs here. |
@@ -1777,7 +1777,7 @@
 
 | | |
 |---|---|
-| `colortest` | &#9733; G-Windows colour chart<br>`colortest` |
+| `colortest` | &#9733; reports how G-Windows has its colour look-up table set up. At a terminal it says so and stops -- it wants the /win device, which is the G-Windows display<br>`colortest` |
 | `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
 | `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
 | `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
