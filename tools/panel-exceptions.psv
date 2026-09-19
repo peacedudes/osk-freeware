@@ -29,7 +29,6 @@ eset|the event directory is empty and nothing here creates an event, so it can o
 eunlink|the event directory is empty, so it reports the event is not found
 brushtopbm|reads a Xerox brush file, no sample ships; its card shows it naming what it wants
 gouldtoppm|reads a Gould scanner file, no sample ships; its card shows it naming what it wants
-hipstopgm|reads a HIPS image, no sample ships; its card shows it naming what it wants
 hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what it wants
 spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
 ximtoppm|reads an Xim image, no sample ships; its card shows it naming what it wants

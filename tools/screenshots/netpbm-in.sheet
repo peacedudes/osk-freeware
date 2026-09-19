@@ -235,18 +235,28 @@ run     gouldtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    hipstopgm
-cap     Reads a HIPS image -- the format of a human-vision research library
-cap     -- into a greyscale picture.  No file in that format ships here;
-cap     handed a colour picture it reports the header error rather than guess.
-try     hipstopgm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads a HIPS image -- the format of a human-vision research
+cap     library -- into a greyscale picture.  Its header is nine lines of
+cap     text (where it came from, its name, how many frames, the date,
+cap     rows, columns, bits a pixel, packing, pixel format) and then
+cap     history lines up to a line holding one dot; after that it is one
+cap     byte a pixel.  So printf writes one, and sixteen characters of
+cap     text make a strip eight pixels by two.
+try     hipstopgm x.hips > out.pgm
+run     rm -rf /dd/tmp/HIPB > /nil 2>/nil; mkdir -p /dd/tmp/HIPB
+wait    3
+run     builtin cd /dd/tmp/HIPB
 wait    1
+run     printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips; printf "0123456789abcdef" >> x.hips
+wait    3
 run     clear
-run     hipstopgm tmp/NPIB/nr.ppm
+wait    1
+run     hipstopgm x.hips > out.pgm
 wait    5
+run     pnmfile out.pgm
+wait    3
+run     pnmnoraw out.pgm
+wait    4
 
 shot    hpcdtoppm
 cap     Reads a Kodak Photo CD image into a colour picture.  No Photo CD

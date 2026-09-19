@@ -1,2 +1,9 @@
-hipstopgm tmp/NPIB/nr.ppm
-hipstopgm: error reading header
+hipstopgm x.hips > out.pgm
+$ pnmfile out.pgm
+out.pgm:        PGM raw, 8 by 2  maxval 255
+$ pnmnoraw out.pgm
+P2
+8 2
+255
+48 49 50 51 52 53 54 55
+56 57 97 98 99 100 101 102

@@ -1040,7 +1040,7 @@
 | `gemtopbm` | GEM .img (Atari and PC) to PBM<br>`usage:  gemtopbm [-debug] [gemfile]` |
 | `giftopnm` | GIF to PNM; -image picks one of several in the file, -comments prints its comments<br>**How:** Reads a GIF into the PNM formats the other 168 converters work on -- try `giftopnm /dd/DEMO/gulls.gif \| pnmfile'. IMPORTANT for anyone piping images out of the emulator: os9exec turns CR into CRLF on the way to the host, so a raw image containing byte 13 arrives corrupted. Keep binary inside OS-9 and convert with pnmnoraw before taking a picture anywhere else. DOC/README-NETPBM has the details. |
 | `gouldtoppm` | Gould scanner file to PPM |
-| `hipstopgm` | HIPS, the image-processing package's format, to PGM |
+| `hipstopgm` | HIPS image to PGM.  The header is nine lines of text -- origin, name, frames, date, rows, columns, bits a pixel, packing, pixel format -- then history lines up to one holding a single dot, then one byte a pixel, so `printf' can make one |
 | `hpcdtoppm` | Kodak Photo CD image to PPM, at one of five resolutions<br>`Error in Arguments !` |
 | `icontopbm` | Sun icon to PBM |
 | `ilbmtoppm` | Amiga IFF ILBM to PPM, HAM and extra-halfbrite pictures included<br>`usage:  ilbmtoppm [-verbose] [-ignore <chunkID>] [-isham\|-isehb] [-adjustcolors] [ilbmfile]` |
