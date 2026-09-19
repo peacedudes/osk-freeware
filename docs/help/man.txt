@@ -1,0 +1,2 @@
+$ man
+shell: can't execute "man"  - Error #000:214 (E_FNA) File Not Accessible

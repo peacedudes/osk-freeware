@@ -32,6 +32,25 @@ wait    5
 run     ls -l
 wait    4
 
+shot    man
+size    30 80
+cap     About 300 manual pages ship on this disk, one or two to a package
+cap     directory under DOC, and `man' is how you read one: it looks the name
+cap     up in DOC/MANPAGES, formats the page with nroff and shows it a screen
+cap     at a time with less; the md5 page is shown.  `man -k <word>' lists
+cap     the pages whose name contains a word, and `man -w <name>' says where
+cap     a page is.
+cap     It is a shell script, so you can read it as well as run it.  Written
+cap     for this collection; anyone who wants it can have it.
+try     man md5
+run     clear
+wait    1
+run     man md5
+wait    16
+snap
+send    q
+wait    3
+
 shot    less
 cap     less, paging a file a screen at a time: space or f for the next
 cap     page, b for the one before, / to search, h for its help screen

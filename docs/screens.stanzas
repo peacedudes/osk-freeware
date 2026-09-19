@@ -151,7 +151,6 @@ compiler a1cfa4c684d609b5
 compr 6f55fb11df248478
 compress a6249bf9930187e5
 compress_4.0 a923278466ef7663
-compress_rebuilt 898383101fcc06c0
 config f6e67a27e95bc933
 connect 6f66266523d65a1d
 convert 35a7dc94e03647b3
@@ -464,6 +463,7 @@ makedb da9ac82136e50140
 makeinfo 3172d405e40f894a
 makelex 1fd04e7cb20c1700
 maketexpk eb25a36d250f989a
+man 728a06c2f2b0dd17
 map 2ca31eb0fe17ba0b
 marc 4f0332b4c4bed354
 mastrm d79ab1d9809f926a

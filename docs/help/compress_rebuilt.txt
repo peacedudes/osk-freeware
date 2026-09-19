@@ -1,2 +1,0 @@
-$ compress_rebuilt -?
-Unknown flag: '?'; Usage: compress [-dfvoV] [-b MaxBits] [file ...]

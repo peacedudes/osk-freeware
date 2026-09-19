@@ -113,6 +113,15 @@ def break_depends(root):
     return "DOC/DEPENDS given an extra line"
 
 
+def break_manpages(root):
+    """Drop a page out of the index -- what happens by itself when a manual
+    page is added to DOC and the generator is not run."""
+    p = os.path.join(root, "DOC", "MANPAGES")
+    rows = open(p, "rb").read().split(b"\r")
+    w(p, b"\r".join(rows[1:]))
+    return "a page dropped from DOC/MANPAGES"
+
+
 def break_binary_magic(root):
     """A JPEG that no longer starts like one.
 
@@ -448,6 +457,7 @@ BREAKS = [
     ("star grid", "the star grid is self-consistent", break_star_grid),
     ("categories", "every program has a category", break_categories),
     ("depends", "DOC/DEPENDS is up to date", break_depends),
+    ("manual index", "the manual index is up to date", break_manpages),
     ("binary magic", "binaries start with their magic", break_binary_magic),
     ("module magic", "every command is a real module", break_module_magic),
     ("module names", "one module name, one file", break_module_names),

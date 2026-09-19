@@ -133,19 +133,6 @@ wait    1
 run     compress_4.0 -v tmp/ARC/idx5
 wait    8
 
-shot    compress_rebuilt
-cap     Another build of compress, from the same source as the one in
-cap     CMDS and producing the same output; -v reports what it saved.
-try     compress_rebuilt -v tmp/ARC/idx6
-run     rm -f /dd/tmp/ARC/idx6*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx6
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     compress_rebuilt -v tmp/ARC/idx6
-wait    8
-
 shot    gzip
 cap     GNU gzip on the same file, for comparison with compress.
 try     gzip -v tmp/ARC/g1

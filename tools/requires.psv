@@ -57,3 +57,4 @@ tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026
 dm|Microware's pd, which it runs through SHELL to learn its current directory|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
 uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
 fact|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits
+man|nroff and less, and TMACDIR set to /dd/LIB so nroff finds the man macros|/dd/startup and SYS/login both set TMACDIR; measured 2026-09-18

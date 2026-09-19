@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -30,7 +30,7 @@
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
-| [Documentation](#documentation) | 5 | Pagers, readers and the help system. |
+| [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | [Needs hardware](#needs-hardware) | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
@@ -638,14 +638,13 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>34 programs</summary>
+<details><summary>33 programs</summary>
 
 **Alternates**
 
 | | |
 |---|---|
 | `compress_4.0` | compress 4.0, another edition of CMDS/compress<br>`Syntax   : compress [-cdfvV] [-b maxbits] [file ...]` |
-| `compress_rebuilt` | a second build of `compress' from the same source; the two write the same bytes to a file, and this one writes a pipe correctly too<br>**How:** The same program as CMDS/compress, built from SRC/hc_utils/compress.c, writing the same bytes to a file -- and correctly through a pipe, which the shipped binary does not: `compress_rebuilt -c < file \| btoa'. SRC/hc_utils/README.OSK has the three-line fix. |
 | `gtar` | another build of GNU tar, taking the long +option spellings as well: `gtar +help' lists them<br>`This is GNU tar, the tape archiving program.` |
 | `gzip020_csl` | &#9733; gzip 1.2.4, 68020, needs csl<br>`gzip020_csl 1.2.4 (18 Aug 93)` |
 | `gzip68k_csl` | &#9733; gzip 1.2.4, 68000, needs csl<br>`gzip68k_csl 1.2.4 (18 Aug 93)` |
@@ -658,7 +657,7 @@
 | | |
 |---|---|
 | `compr` | a Lempel-Ziv-Welch file compressor, another edition of `compress': -v reports the saving, -d decompresses, and the .Z file replaces the original<br>`Unknown flag: '?'; Usage: compress [-dfvcV] [-b maxbits] [file ...]` |
-| `compress` | compress and uncompress with Lempel-Ziv-Welch coding.  Write its output to a file: through a pipe it comes out corrupt, which REBUILT/compress_rebuilt's does not Shares its name with a utility of your own -- README-NAMES<br>**How:** `compress -c < file > file.Z' packs and `compress -dc < file.Z > file' unpacks; plain `compress file' replaces the file with file.Z. Write its output to a file and never into a pipe: through a pipe the bytes come out corrupt, both ways. REBUILT/compress_rebuilt is the same program with that fixed, and compr is right through a pipe too. |
+| `compress` | compress and uncompress with Lempel-Ziv-Welch coding: `compress -c < file > file.Z' packs, `-dc' unpacks, and plain `compress file' replaces the file with file.Z.  Pipes are safe -- the shipped binary is the build with stdio's putchar double-evaluation fixed, 2026-09-18 Shares its name with a utility of your own -- README-NAMES<br>**How:** `compress -c < file > file.Z' packs and `compress -dc < file.Z > file' unpacks; plain `compress file' replaces the file with file.Z.  Its output is safe through a pipe as well as into a file: the shipped binary is the build whose putchar double-evaluation is fixed (SRC/hc_utils/README.OSK).  `compr' and `compress_4.0' are the other two compresses here. |
 | `gzip` | GNU gzip 1.2.2: compresses a file to .gz and back again with -d; -l lists, -t tests, -1 to -9 trade speed for size<br>`gzip 1.2.2 (17 Jun 93)` |
 | `jaw` | zcat in 22 lines, a 1990 obfuscated-C contest entry: `jaw < file.Z' writes out what compress packed<br>**How:** `jaw < file.Z' writes out what compress packed into file.Z, as zcat does. It reads a pipe as well as a file. Run as a copy whose name begins with `a' it decodes btoa's text instead -- its authors' shark archiver pipes the one into the other. |
 
@@ -1757,7 +1756,7 @@
 
 *Pagers, readers and the help system.*
 
-<details><summary>5 programs</summary>
+<details><summary>6 programs</summary>
 
 | | |
 |---|---|
@@ -1766,6 +1765,7 @@
 | `less` | shows a file a screenful at a time so it does not scroll past you, and lets you move about in it: space or f for the next screen, b for the one before, / to search forward, n for the next match, h for its help screen (SYS/less.hlp), q to leave.  Reads the terminal's size and codes from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
+| `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  About 300 pages are indexed in DOC/MANPAGES.  A shell script, so you can read it |
 
 </details>
 

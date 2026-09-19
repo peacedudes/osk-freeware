@@ -45,7 +45,6 @@ chksum|chksum|chksum.c crc32.c||/dd/LIB/math.l|
 clock|misc|clock.c|||
 cls|bix|cls.c|||
 compiler|eff_gshell|compiler.c selectfile.c|||
-compress_rebuilt|hc_utils|compress.c|||
 connect|bix|connect.c|||
 # world -- and the two generators its makefile runs before it.
 #
@@ -1095,3 +1094,4 @@ theorem|ioccc/OSK|theorem.c||/dd/LIB/math.l|
 # correspondence.  The contest own common.mk builds it with the same three
 # substitutions used here; SRC/ioccc/OSK/README.OSK.
 westley|ioccc/OSK|westley.c|||
+compress|hc_utils|compress.c|||

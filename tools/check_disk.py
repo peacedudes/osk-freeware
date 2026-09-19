@@ -394,6 +394,22 @@ def check_depends(root):
     return done.returncode == 0, "DOC/DEPENDS is stale"
 
 
+def check_manpages(root):
+    """DOC/MANPAGES must list the manual pages actually on the disk.
+
+    `man' reads that index rather than searching 363 directories, so a stale
+    index is a silent failure of exactly the wrong kind: the page is there,
+    and `man' says there is none.  Same shape as the DEPENDS check above, and
+    the same fix -- run the generator.
+    """
+    gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_manpages.py")
+    done = subprocess.run([sys.executable, gen, root, "--check"],
+                          capture_output=True, text=True)
+    if done.returncode:
+        print("    " + done.stdout.strip())
+    return done.returncode == 0, "DOC/MANPAGES is stale"
+
+
 def check_src_screened(root):
     """No unreviewed Microware material in the shipped source trees.
 
@@ -704,13 +720,17 @@ def check_modules_start_with_4afc(root):
     it and the shell says `module not found'. Nothing else here would say
     which file.
 
-    `mscheck' and `who' are SHELL SCRIPTS, not modules, and are the only two
-    exceptions -- the same two `module_census.py' reports as not-a-module.
+    `mscheck', `who' and `man' are SHELL SCRIPTS, not modules, and are the
+    only three exceptions -- the same ones `module_census.py' reports as
+    not-a-module.  `man' was written for this collection on 2026-09-18 and
+    is a script on purpose: what it does is find a page in DOC/MANPAGES and
+    hand it to nroff and less, which is three lines of shell and would be a
+    hundred of C.
     `wn.stb' and `rtfdat' are type-$04 DATA modules and still carry $4AFC,
     so they need no exception.
     """
     import gen_catalog
-    SCRIPTS = {"mscheck", "who"}
+    SCRIPTS = {"mscheck", "who", "man"}
     bad = []
     for d in gen_catalog.PROGRAM_DIRS:
         full = os.path.join(root, d)
@@ -1437,6 +1457,7 @@ CHECKS = [
     ("every recipe names a real tree", check_recipes),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
+    ("the manual index is up to date", check_manpages),
     ("no unscreened Microware source", check_src_screened),
     ("binaries start with their magic", check_binary_magic),
     ("every command is a real module", check_modules_start_with_4afc),

@@ -90,16 +90,15 @@ expect  .screens directory
 # these files used to carry the module name of the program in /dd/CMDS that
 # they sit beside, and OS-9 finds a program by MODULE name once it is
 # resident -- so loading one of them silently answered for the other.
-case    rebuilt-compress-calls-itself-compress_rebuilt
-run     /dd/CMDS/modinfo $R/compress_rebuilt
-expect  Module name           = compress_rebuilt
-
 case    rebuilt-screen-calls-itself-screen_nocio
 run     /dd/CMDS/modinfo $R/screen_nocio
 expect  Module name           = screen_nocio
 
-case    the-two-compresses-agree-byte-for-byte
-run     $R/compress_rebuilt -c < /dd/SYS/termcap > /dd/tmp/rc.Z
+# The shipped compress is the fixed build since 2026-09-18 (rdoggett: "use a
+# fixed build").  It still packs the same 631-byte archive the period binary
+# did, and still reads its own output back byte for byte.
+case    compress-packs-the-same-archive-it-always-did
+run     /dd/CMDS/compress -c < /dd/SYS/termcap > /dd/tmp/rc.Z
 run     /dd/CMDS/wc -c /dd/tmp/rc.Z
 expect  631
 run     /dd/CMDS/compress -dc < /dd/tmp/rc.Z > /dd/tmp/rc.out
@@ -122,28 +121,22 @@ expect  error
 # beside: compress_4.0 said `compress', the six gzip builds all said `gzip',
 # and loading any of them answered for the shipped one.
 
-# compress_rebuilt writes a pipe correctly since 2026-09-15.  stdio's putchar
-# macro evaluates its argument twice when output is line-buffered, so
-# compress.c's putchar(*bp++) and putchar(*--stackp) skipped bytes into a pipe
-# or a terminal, and a file -- where every case above writes -- never showed
-# it.  SRC/hc_utils/README.OSK has the fix.  CMDS/compress is the period
-# binary and still corrupts a pipe; the last case records that, and will
-# fail if that binary is ever replaced -- update its INDEX and howto then.
-case    rebuilt-compress-packs-into-a-pipe-correctly
-run     $R/compress_rebuilt -c < /dd/SYS/termcap | /dd/CMDS/cat > /dd/tmp/rcp.Z
+# THE PIPE IS THE POINT OF THIS PAIR.  stdio's putchar macro evaluates its
+# argument twice when output is line-buffered, so compress.c's
+# putchar(*bp++) and putchar(*--stackp) skipped bytes into a pipe or a
+# terminal, and a file -- where every case above writes -- never showed it.
+# The period binary had that defect; the build here does not, and these two
+# cases are what would catch it coming back.  SRC/hc_utils/README.OSK has
+# the three-line fix.
+case    compress-packs-into-a-pipe-correctly
+run     /dd/CMDS/compress -c < /dd/SYS/termcap | /dd/CMDS/cat > /dd/tmp/rcp.Z
 run     /dd/CMDS/md5 /dd/tmp/rcp.Z
 expect  c3694c4f0abc8ed599498e027b44945b
 
-case    rebuilt-compress-unpacks-into-a-pipe-correctly
-run     $R/compress_rebuilt -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/rcp.out
+case    compress-unpacks-into-a-pipe-correctly
+run     /dd/CMDS/compress -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/rcp.out
 run     /dd/CMDS/md5 /dd/tmp/rcp.out
 expect  ee2c20fa226fe6fc78feec7f123c7a99
-
-case    shipped-compress-still-corrupts-a-pipe
-run     /dd/CMDS/compress -dc < /dd/tmp/rcp.Z | /dd/CMDS/cat > /dd/tmp/scp.out
-run     /dd/CMDS/md5 /dd/tmp/scp.out
-expect  MD5 (/dd/tmp/scp.out) =
-absent  ee2c20fa226fe6fc78feec7f123c7a99
 
 # ispell_rebuilt (2026-09-15) is SRC/ispell built as its recipe says: the
 # edition DOC/ispell documents and LIB/ispell.hash was made for.  CMDS/ispell

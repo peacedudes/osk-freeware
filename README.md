@@ -114,7 +114,7 @@ is no help until you already know the name you want.
 | **Developer tools** | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 16 | Interpreters and language systems beyond C. |
-| **Archives & compression** | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 96 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -126,7 +126,7 @@ is no help until you already know the name you want.
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 19 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
-| **Documentation** | 5 | Pagers, readers and the help system. |
+| **Documentation** | 6 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | **Needs hardware** | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
