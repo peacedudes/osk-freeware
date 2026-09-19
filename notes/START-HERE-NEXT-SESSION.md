@@ -48,6 +48,12 @@ OS-9 joins adjacent memory blocks and os9exec did not**, so on hardware
 utree would very likely read the whole tree; a fix is in flight there.
 Our documentation says "open it on a subdirectory, or give `-q'", which
 is sensible advice on any machine, and does NOT call it an OS-9 limit.
+**THEIR FIX WORKS AND IS MEASURED HERE**: against a build carrying
+c0e68fa (8192 blocks), `utree /dd' reads 1131 directories and 12377 files
+in about a minute and a half, draws the tree, and its Info panel answers
+`kBytes:136788 Files:30 Dirs:23' for the root.  Under the old ceiling it
+died in SRC.  That is an emulator fix changing what a program on this
+disk can do, which is worth knowing when the pin moves.
 The general rule this is an instance of: when os9exec is the only thing
 you have measured on, say so, and ask.
 
