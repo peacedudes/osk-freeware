@@ -238,6 +238,58 @@ it carefully.
 
 ### What changed on the disk
 
+**THE MAINTAINER'S USERNAME WAS ON SIX PUBLISHED CARDS.**  CLAUDE.md's
+hard rule is that `disk/' is what people receive and `docs/' is
+published, and neither may carry his name, username, home path or
+machine.  Nothing enforced it.  Nine violations had accumulated and the
+worst were the ones nobody would look at twice: `tools/terms.psv' ended
+the terms line for every program WE wrote with a dated attribution, so
+`about', `fact', `keep', `kept', `man' and `unkeep' each published the
+username in the gallery.  Two more were HTML and JavaScript COMMENTS in
+`catalog.template.html' -- which is not a working paper, because the
+generator copies it verbatim into `docs/index.html', so a comment there
+is published text.  The rest were decision attributions in shipped
+prose: four in `SOURCES.txt', one in `DOC/STATUS', one in a port note.
+
+Every one of them was working-paper voice, and the sentence before it
+already said the thing.  `check_disk.py' has a gate now -- `the artefact
+does not name us' -- reading the disk tree, `docs/' AND the template,
+with a breaker in `check_the_checks.py'.
+
+**IT LOOKS FOR THE USERNAME, NOT THE NAME, and that is a judgement
+somebody should be able to overrule.**  `Robert Doggett' is in
+`DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c' and
+`SRC/hc_utils/fgrep.c' as the 1988 author of those ports -- other
+people's files, their authors' bylines, and taking it out would falsify
+the archive.  `Doggett' is also an Irish place name in `hack''s data and
+a word in `draw''s.  The os9exec URL in `SOURCES.txt' stays because a
+reader has to be told where the emulator is.  Written out as item 29 in
+`FOR-RDOGGETT.md'; if he wants any of it gone it is one line in the
+gate's allowed list.
+
+**HOW IT WAS FOUND, which is the reusable part.**  Not by reading: by
+`grep -rilE' over `disk/' and `docs/' for the username, the account
+handle and the home path, and then a line-by-line pass because the
+CR-only files come back from grep as ONE ENORMOUS LINE and bury the hit.
+Every hard rule in CLAUDE.md is worth that sweep once.
+
+**STATUS's two headline counts were of different things** -- "940
+program files ... 1006 as of 2026-09-19" put a count of FILES under
+/dd/CMDS beside a count of runnable MODULES.  Measured: 1037 files, 1006
+of them modules you can run.  Both are labelled now.
+
+**The two new report tools honour the tree they are given.**  Both took
+a positional argument and IGNORED it, so `ghost_names.py /some/other/tree'
+answered confidently about this repo's own `disk/'.  That is the shape
+this collection keeps producing -- a tool that cannot be made to fail
+because it never looks where it is told.  `ghost_names.py' threads the
+path through now and was made to fail on purpose against a scratch tree;
+`stale_notes.py' has no tree to point at (it reads DOC/STATUS against the
+published gallery) so it says so and exits 2.  Four names came off its
+report with their reason: `create', `insert', `start' and `exit' are a
+program's own commands quoted in its entry, not files that left.
+
+
 **THE DATA-TEST SUITE HAS NO STANDING FAILURES: 868 of 868.**  Three
 cases had been "kept failing on purpose" as markers for defects nobody
 had got to the bottom of.  All three had an answer, and finding each one
