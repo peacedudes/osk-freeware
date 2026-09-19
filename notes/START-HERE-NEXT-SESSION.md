@@ -42,6 +42,17 @@ current tree; `tools/datatest.py --all' 868 of 868 against it; every
 `check_disk.py' check green; `check_the_checks.py' makes every one of
 them fail on demand.  Working tree clean.
 
+**THE SUITE WAS ALSO RUN AGAINST A LATER EMULATOR AND DID NOT MOVE.**
+os9exec 685a4c3 carries four changes that could have reached us -- SS_EOF
+on host-directory files, signal queue order, what d0 holds on entry to an
+intercept routine, and a refusal of over-long arguments to internal
+commands.  868 of 868 there too, case for case.  The one with a real
+exposure was SS_EOF, and NOT for the shipped disk: the collection is an
+RBF image, but `datatest.py' and `drive.py' write each family's script to
+a HOST DIRECTORY mounted as /h1 and run `os9exec -r bash /h1/<family>.sh',
+so every case reads its script off a host-directory file.  Worth
+remembering the next time that path changes.
+
 **THE OS9EXEC SESSION ANSWERED THREE OF OURS**, all of them things we
 had written up as mysteries: `byteflip' wanted its byte maps rather than
 a filename; `disktest' forks OS-9's own `free' and reads a pipe it also
