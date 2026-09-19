@@ -1,19 +1,19 @@
 ls -al SYS | head -n 18
-total 190464
-drwxrwxrwx   1 0        0            1408 Sep  8 15:38 .
-drwxrwxrwx   1 0        0            1408 Sep  8 15:38 ..
+total 954368
+drwxrwxrwx   1 0        0            1408 Sep 19 03:46 .
+drwxrwxrwx   1 0        0            1024 Sep 19 04:02 ..
+drw-rw-rw-   1 0        0             128 Sep 19 03:46 .LOCKS
 -rw-rw-rw-   1 0        0              31 Aug  3 19:00 .exrc
 -rw-rw-rw-   1 0        0             213 Aug  3 19:00 .login
-drwxrwxrwx   1 0        0             160 Sep  7 09:05 ATERM
-drwxrwxrwx   1 0        0             832 Sep  7 09:05 HELP
-drwxrwxrwx   1 0        0             288 Sep  7 09:05 PEP
+drwxrwxrwx   1 0        0             160 Sep 19 03:46 ATERM
+drwxrwxrwx   1 0        0             832 Sep 19 03:46 HELP
+drwxrwxrwx   1 0        0             288 Sep 19 03:46 PEP
 -rw-rw-rw-   1 0        0             414 Aug  3 19:00 README-bootlog
-drwxrwxrwx   1 0        0             288 Sep  7 09:05 TERM
-drwxrwxrwx   1 0        0             384 Sep  7 09:05 TEX
-drwxrwxrwx   1 0        0             320 Sep  7 09:05 UUCP
+drwxrwxrwx   1 0        0             288 Sep 19 03:46 TERM
+drwxrwxrwx   1 0        0             416 Sep 19 03:46 TEX
+drwxrwxrwx   1 0        0             192 Sep 19 03:46 UTREE
+drwxrwxrwx   1 0        0             320 Sep 19 03:46 UUCP
 -rw-rw-rw-   1 0        0             343 Aug  3 19:00 birthdays
 -rw-rw-rw-   1 0        0               0 Aug  3 19:00 bootlog
+-rw-rw-rw-   1 0        0            1814 Aug  3 19:00 browse.hlp
 -rw-rw-rw-   1 0        0             717 Aug  3 19:00 cal.holidays
--rw-rw-rw-   1 0        0             449 Aug  3 19:00 cal.init
--rw-rw-rw-   1 0        0            5203 Aug  3 19:00 dm.hlp
--rw-rw-rw-   1 0        0             151 Aug  3 19:00 ephem.cfg

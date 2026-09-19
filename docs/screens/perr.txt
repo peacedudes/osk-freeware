@@ -1,6 +1,8 @@
 $ perr 214 216 218 221 237
-Error #000:214 (E_FNA) File Not Accessible
-Error #000:216 (E_PNNF) Path Name Not Found
-Error #000:218 (E_CEF) Creating Existing File
-Error #000:221 (E_MNF) Module Not Found
-Error #000:237 (E_NORAM) No Ram Available
+Error #000:214 (E$FNA) This file was found but isn't accessible in the mode requ
+ested - check its owner and permissions.
+Error #000:216 (E$PNNF) That path name doesn't lead to anything - check the spel
+ling and location.
+Error #000:218 (E$CEF) A file with that name already exists.
+Error #000:221 (E$MNF) That module isn't currently loaded.
+Error #000:237 (E$NoRAM) There isn't enough free memory to satisfy this request.

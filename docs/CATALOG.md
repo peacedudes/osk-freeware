@@ -308,7 +308,7 @@
 | `slitex` | SliTeX -- LaTeX for slides<br>**How:** LaTeX for slides; its format is SYS/TEX/FORMATS/splain.fmt, already built. |
 | `tangle` | WEB to Pascal -- Knuth's literate programming tool. It needs a change file named, always: given only a .web it answers `Error: `Can't open file.'' and the absent change file is what it could not open. DOC/tex ships `sample.web' and `none.ch' (an empty change file): copy both to your data directory and run `tangle sample none'. It reads and writes there, not where you typed from<br>**How:** Needs a CHANGE FILE named, always. `tangle yourfile.web' alone answers `Error: `Can't open file.'' and the file it cannot open is the absent change file, not your source. DOC/tex ships `sample.web' and `none.ch' (empty, changes nothing): copy both to your data directory and run `tangle sample none'. It reads and writes in the DATA directory, which bash's `cd' does not move. `weave sample none' is the other half. |
 | `tex` | TeX itself -- the typesetting program (a driver; virtex does the work)<br>**How:** Run the engine, not the wrapper. `tex' is one line: it asks a shell to run `virtex "&plain" yourfile', the quoted format name is never unquoted, and the shell answers E$PNNF for the whole line (rc 221 with no $SHELL set, and silently). Type `virtex '&plain' yourfile.tex' instead. For LaTeX it is `virtex '&lplain' yourfile.tex', for SliTeX `virtex '&splain''. SYS/TEX/SAMPLES/small.tex is a LaTeX document and story.tex is plain TeX with no \end. |
-| `texidx` | build an index from TeX's .idx output |
+| `texidx` | sorts the \indexentry lines a LaTeX \makeindex run leaves in a .idx file into the alphabetised index LaTeX reads back. It opens its input with NO ACCESS MODE, which OS-9 refuses to read, and its loop reads that refusal as `buffer too small' and quadruples the buffer until the request passes what the machine has -- so it always ends at `virtual memory exhausted'. No source for it is here to fix |
 | `tftopl` | TeX font metric to property list (the readable form) |
 | `vftovp` | virtual font to virtual property list<br>**How:** `vftovp s.vf s.tfm back.vpl' reads the binary pair back to text. VFFONTS and TEXFONTS must name where the .vf and .tfm are. |
 | `virmf` | the real MetaFont engine -- generates fonts from .mf sources<br>**How:** Metafont. `virmf '&cmbase' '\scrollmode; \mode:=epsonlo; \input cmr10; \end'' renders all 128 characters of cmr10. THE JOB NAME COMES FROM THE COMMAND LINE: the same line fed on standard input renders the same font and calls it `mfput'. |
@@ -688,7 +688,7 @@
 |---|---|
 | `liborder` | &#9733; lists relocatable objects in the order you would merge them into a library -- `liborder a.r b.r c.r' prints them last first, which is the order l68 wants.  Measured: it reverses whatever it is given, and does not read a .l at all.  Handed a library or a plain file it takes the first bytes for an object header, reads a length from them and asks for that many, which floods `No more memory !!!'. `-modinfo' prints each object's public names. `liborder.os9' is the same program, a second build.<br>`liborder: Unimplemented option '-?'.` |
 | `modbuster` | splits a file holding several OS-9 modules into one file per module, in the current directory or the one -w=<dir> names<br>**How:** Give it a file holding SEVERAL modules and it writes one file per module in the CURRENT directory. Use ksh to put yourself somewhere writable first. `/dd/CMDS/GAMES/cyberwar' looks like a candidate but modbuster hangs on it with no output at all; a single ordinary module (`/dd/CMDS/today') shows it working. |
-| `unpacklib` | &#9733; split an OS-9 library into its modules<br>`unpacklib: Unimplemented option '-?'.` |
+| `unpacklib` | &#9733; takes an OS-9 library apart into the modules that were merged to make it, writing each as its own file; -verbose names each one and its size as it goes<br>`unpacklib: Unimplemented option '-?'.` |
 
 **zip**
 
@@ -865,7 +865,7 @@
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'.<br>`usage: setfont <path>` |
 | `setterm` | &#9733; reports or sets the terminal type: `setterm' alone says what TERM names; give it a name to change it. When TERM names a terminal it does not know it falls back on SYS/setterm, the defaults file. DOC/setterm has the manual and a termcap.extra of further entries<br>**How:** `setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes FULL-SCREEN -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap. |
 | `tput` | prints what a terminal needs for a capability, read from termcap: `tput -Tvt100 clear' emits the clear-screen escape and `tput cols' prints 80.  The capability names are the System V ones -- clear, bold, cup, lines, cols<br>`Usage: tput [ -Ttype ] [ -e ] [ -nlines ] capname [ x y ]` |
-| `tsmon2` | tsmon replacement - terminal monitor<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
+| `tsmon2` | watches a terminal device and starts the login program when someone types RETURN on it -- the job your own `tsmon' does, with more control: -i starts login as soon as carrier appears instead of waiting for a key. Zeller, 1989<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
 | `vttest` | the VT100 compatibility test: a menu of pages for cursor movement, screen features, character sets, double-size lines, the keyboard, status reports, VT52 mode and VT102 editing, each saying what a correct terminal shows.  0 leaves<br>**How:** Full-screen menu of VT100 tests. Type a test's number and RETURN; each page says what a correct terminal should show, and RETURN moves on. 0 leaves, printing `That's all, folks!'. Run it on the terminal you mean to judge: the keyboard and reports tests read what that terminal sends back. |
 | `wysecrack` | &#9733; probe a Wyse terminal: it sends the code that asks the terminal to identify itself (`Anybody out there?' is in the binary) and reads the reply to sense its baud rate. With a Wyse terminal on the line it answers; without one it waits.  Companion to wysetime, which sets that terminal's clock |
 | `wysetime` | Wyse terminal clock-setter, in BASIC09.  `runb wysetime' prints the escape sequence a Wyse terminal reads to set its own display clock; run it by bare name at an OS-9 shell. |
@@ -875,14 +875,14 @@
 | | |
 |---|---|
 | `blastem` | XModem and YModem file transfer, written for the MM/1<br>`Syntax: Blastem [<opts>] {<filename> [<opts>]}` |
-| `dld` | &#9733; XModem download<br>`dld version 1.4   (c) 1986 FHL` |
+| `dld` | &#9733; receives a file with XMODEM -- FHL's, 1986. `dld <file>' starts it and control-X aborts; `uld' is the other half, sending one out<br>`dld version 1.4   (c) 1986 FHL` |
 | `k` | Kermit transfer<br>`General Usage:` |
 | `rxmod` | receives an OS-9 module over a serial line and enters it in the module directory -- the receiving half of `txmod'. It calls the VMod_trap handler that ships beside it in COMMS, so `load' that first. Source in SRC/serload<br>**How:** It stops with `can't install Vmod Trap handler' and the handler is sitting beside it: `load /dd/CMDS/COMMS/vmod_trap' first. It then gets past the install and faults inside the trap, which is a different thing and worth telling apart. |
 | `sterm` | a serial terminal emulator<br>`Sterm Ver. 2.0` |
 | `tsu` | &#9733; tterm's setup program |
 | `tterm` | &#9733; a terminal emulator, VT100-ish<br>`Tterm Version 2.30` |
-| `txmod` | send an OS-9 module over a serial line<br>`4ETXMod - Err:  -? !` |
-| `uld` | &#9733; XModem upload<br>`uld version 1.4   (c) 1986 FHL` |
+| `txmod` | sends OS-9 modules out over a serial line to `rxmod' at the other end, which links them into the module directory there: -x sends everything in the execution directory and -l names the device to send on<br>`4ETXMod - Err:  -? !` |
+| `uld` | &#9733; sends a file out with XMODEM -- FHL's, 1986. `uld <file>' starts it and control-X aborts; `dld' is the other half, receiving into a file<br>`uld version 1.4   (c) 1986 FHL` |
 | `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too<br>`General Usage:` |
 | `xydown` | XModem/YModem download, public domain.  It senses which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown<br>`XYDOWN ver. 1.1` |
 | `xyt` | &#9733; X/Y/ZMODEM transfer for tterm<br>`xyt - version 1.02` |
@@ -895,8 +895,8 @@
 | `uucico` | &#9733; the transfer program itself -- dials, talks UUCP<br>`usage: uucico [opts] -r \| sys [sys...]  [opts]` |
 | `uuclean` | &#9733; removes stale jobs from the UUCP spool, /dd/SPOOL/uucp, which SYS/UUCP/Parameters names, and rotates the log files. It walks every entry in the spool as if it were a directory, so a plain file there earns `can't change to directory'; harmless<br>`uuclean: removed old UUCP files, rotate UUCP and FileServ log files` |
 | `uucp` | &#9733; queue a file copy to or from another site<br>`uucp:  unix to unix copy program` |
-| `uulog` | &#9733; show the transfer log<br>`uulog: examine uucp or fileserver log files` |
-| `uuname` | &#9733; list the sites you can reach<br>`uuname --show local machine name or those of UUCP sites we talk to` |
+| `uulog` | &#9733; reads the UUCP and file-server logs and shows what was transferred: -s<site> narrows it to one remote site, -u<user> to one user, -d<days> to a day already past, and -f follows the log as it grows<br>`uulog: examine uucp or fileserver log files` |
+| `uuname` | &#9733; lists the UUCP sites this machine can reach; -l prints this machine's own name instead<br>`uuname --show local machine name or those of UUCP sites we talk to` |
 | `uustat` | UUCP job status and control: what is queued, for which system and by whom.  `-s' limits it to one system, `-u' to one user, `-k' kills a job and `-r' rejuvenates one.  With no queue to report on it says `uucp is possibly active' and stops<br>`Syntax: uustat [<opts>]` |
 | `uuxqt` | &#9733; run the jobs a remote site queued here.  It looks for a module called `procs' to see whether it is already running, so it wants a `procs' loaded (error 221 without one). |
 
@@ -1571,7 +1571,7 @@
 | `setyear` | Y2K: set the year directly<br>`Syntax:    setyear <YYYY>` |
 | `snd_sig` | &#9733; sends a signal to one process or to several at once -- `snd_sig <pid> <pid>...' -- and with no option sends the wake signal; -<n> sends signal number n instead. `signal' beside it takes one process and can delay first<br>`Syntax:   snd_sig [-options] pid pid1...pidn` |
 | `spline` | &#9733; fit a spline through points, output PostScript |
-| `sqrtx` | square-root demonstration |
+| `sqrtx` | a square-root demonstration: for each of the first primes it prints the root, the root squared back, and how far that lands from the number -- a few parts in ten thousand million million, which is what double precision is worth |
 | `suse` | show a program's usage line.  `-?' does the same for most programs here. |
 | `suspend` | &#9733; removes a process from the system -- its own usage line says so -- rather than suspending it; -s reaches system programs too<br>`SUSPEND V1.1 (C.) 1989 by F.R.Schmitt` |
 | `t_trtest` | RICO trap-handler test |
@@ -1746,7 +1746,7 @@
 |---|---|
 | `lp` | &#9733; submits a file to the lp print spooler: -n=xx makes copies, -d=ptr picks the printer, -m mails you when it is done<br>`Syntax: lp [<opts>] {<path>}` |
 | `lpq` | &#9733; shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'.<br>`Syntax: lpq [-p=dev] [user]` |
-| `lprm` | &#9733; remove a job from the print queue<br>`Syntax: lprm [-d=dev] [-] job..` |
+| `lprm` | &#9733; removes a job from the printer spooler's queue by number; `-' removes every one, and -d=<dev> picks the queue of another printer<br>`Syntax: lprm [-d=dev] [-] job..` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `prjob` | &#9733; prints a queued job from the lp spooler; with no spooler installed it says so |
 

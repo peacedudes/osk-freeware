@@ -20,5 +20,5 @@ Community                               Park place - Dk. Blue 350
 Tennessee  - Orange   180               Luxury Tax
 New York a - Orange   200               Boardwalk  - Dk. Blue 400
 
-Bob (2) (cash $1500) on === GO ===
+Alice (1) (cash $1500) on === GO ===
 -- Command:

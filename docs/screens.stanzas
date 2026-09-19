@@ -85,8 +85,8 @@ blackjack cb5b1723a6717229
 blackjak af801185feddb977
 blastem 392393562d589092
 bm 81e5bace8971e799
-bmgtest ce72d50c61788f73
-bmgtest2 b1a35f3056550cd5
+bmgtest a9ba53080379b0fa
+bmgtest2 93e463ea407c684d
 bmp 095921447e784b82
 bog 6a559c9a353d94f5
 bootgen a84da7013b341aa3
@@ -148,7 +148,7 @@ combine 206d5cbdc2d7267e
 comm d41baa7bc4a2c62b
 compiler a1cfa4c684d609b5
 compr 6f55fb11df248478
-compress a6249bf9930187e5
+compress ec67ee6d6af394aa
 compress_4.0 a923278466ef7663
 config f6e67a27e95bc933
 connect 6f66266523d65a1d
@@ -345,7 +345,7 @@ gshell 33ecf84de9211522
 gtar b5cc1b17d0d6bb41
 gulls 3acc5cb63cf0966f
 gulls-invert 0ec3437923bf8935
-gzip 44dcbcba72b8d87b
+gzip 8fe28670c0ef05c9
 gzip020_csl cc8e69ddb3fda150
 gzip68k_csl b2993953dfe2afd2
 gzipcpu32k_csl a0b74b8bc382d82d
@@ -397,7 +397,7 @@ jumble 398ffe8a8a7e2af7
 jumble2 7f172d3db77300c6
 kalah 51036908cd5f8cab
 keep 5c6b4b40fea22151
-kept 234115bd596e4961
+kept ec53bd61950c86f3
 kermit ed49abee7f893498
 kermit2 28b91e5e0320a6d8
 kermit3 b49d8ac64ba36539
@@ -840,7 +840,7 @@ unexpand 78737392555a4a4e
 unifdef c9d33e347e75ac68
 unip 5598a74a1fee6179
 uniq 62938badd8aa5e3d
-unkeep a91b5f770a867348
+unkeep ba31f02f8c55d43c
 unp d9954af1d0edb570
 unpacklib 8bb1d3a69ebb675e
 unpacklib.os9 5f7d671d280f441e
@@ -938,6 +938,6 @@ zip 2407e59999c640ed
 zipinfo 5780201f80f1146c
 zipnote c13e62bff5c4c1db
 zipsplit 1b88d6aa10cc41a8
-zoo be029b960a3ddef4
+zoo 4a5f734b099997bf
 zoo_2.1 b73d565d5db9caee
 zot e69ef6e39bdf870a
