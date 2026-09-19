@@ -69,16 +69,28 @@ Each is now pinned by cases that PASS, so a change in any of them still
 breaks something.  A permanently-red case is not a ratchet; it is noise
 that everybody learns to read past.
 
-**NINE CARDS CAME OFF THE EXCEPTED LIST, all the same shape: the program
-wanted something the disk had.**  `xcrypt' needed its output file to
+**FOURTEEN CARDS CAME OFF THE EXCEPTED LIST, most of them the same
+shape: the program wanted something the disk had.**  `xcrypt' needed its output file to
 exist first (it asks OS-9 to create one with a Unix permission word) and
 takes its direction from the name it is invoked by.  `byteflip' wanted
 its two byte maps, not a filename.  `pbmtobbnbg' reads standard input
 and ignores a filename argument.  `loadmem'/`savemem' wanted the super
 user and hex addresses, which this session has.  `bsplt68' wanted a boot
 file, and a boot file is modules end to end, so `cat a b > OS9Boot'.
-`signal'/`snd_sig' wanted a process, and one is `cron &' away.
-`pgmedge' was flaky and is not any more -- that was the emulator.
+`signal'/`snd_sig' wanted a process, and one is `cron &' away, which
+is what `cron's own card now shows as well.  `modbuster' and `wndex'
+wanted a listing after them to show what they had written.  `runc' had
+been running a Lua chunk on its card all along and nobody took the
+exception out.  `pgmedge' was flaky and is not any more -- that was the
+emulator.
+
+`subber' went the other way and is worth knowing about: its stanza had
+been edited to drive the reader's own shell on `/h1', which the capture
+session does not mount, so it published nothing but E$MNF.  It needs
+Microware's shell for the `#1000k' memory size -- there is no way to ask
+for that from this disk's bash -- so its card shows the word list, the
+lines it would rewrite, and the memory refusal, with the OS-9 form on an
+`os9' line.
 
 **USE `tools/fix_index.py' TO REWRITE AN INDEX ENTRY.**  A scratch
 helper that did the same job took an entry to be its head plus every
