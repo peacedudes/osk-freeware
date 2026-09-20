@@ -326,9 +326,18 @@ sentence into either mistake, and both of today's absence-phrasing hits
 were about a utility removed the day before.
 
 
-**WHERE IT STANDS AT THE END OF 2026-09-19.**  `tools/datatest.py --all'
-868 of 868 against the shipping image, and 868 of 868 again on a SECOND
-run against that same image.  Every `check_disk.py' check green (read
+**WHERE IT STANDS AT THE END OF THE NIGHT OF 2026-09-19/20.**
+`tools/datatest.py --all' 869 of 869 against the shipping image, and 869
+of 869 again on a SECOND run against that same image.  The count moved
+from 868 because `cpp' arrived with two cases, `ispell_rebuilt's case
+became an `ispell' case, and the SIR pair gained one for the grey branch.
+
+The four overnight decisions are above.  Also done, unasked and small:
+`cpp' has cases so it cannot sit on the untested list; the SIR cases pin
+the round trip instead of the bug; `SOURCES.txt' gained entries for
+`cpp' and for `ispell', which never had one.
+
+Every `check_disk.py' check green (read
 the list the tool prints, not a number here).  `check_the_checks.py'
 caught every break with none blind, one reported "not applicable"
 because the try-backlog is empty and there is nothing left to drop from
