@@ -1785,7 +1785,7 @@
 | `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
 | `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
 | `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
-| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  For a 15-puzzle you can play, use puzzle15 or GAMES/puz15; both work |
+| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  It is here for a real OS-9 workstation that has G-Windows |
 | `scriptmaster` | &#9733; G-Windows scripting tool |
 
 </details>

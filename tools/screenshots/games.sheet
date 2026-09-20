@@ -1290,8 +1290,8 @@ wait    6
 
 shot    puzzle
 cap     A sliding-tile puzzle for G-Windows, the graphics system this disk
-cap     does not carry, so at a terminal it cannot draw and stops.  For a
-cap     sliding puzzle you can play here, use puzzle15.
+cap     does not carry, so at a terminal it cannot draw and stops.  It is
+cap     here for a real OS-9 workstation that has the display.
 try     puzzle
 run     puzzle
 wait    6
