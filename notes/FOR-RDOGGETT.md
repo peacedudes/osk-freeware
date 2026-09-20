@@ -70,6 +70,27 @@ from a measured list the gate checks.
    have written none into anything.  If that is right, this item waits on
    nothing of mine.
 
+   **MEASURED 2026-09-19, against the os9exec checkout rather than taken on
+   anyone's word, because the numbers matter here:**
+
+     github/master tip           0f83437, 2026-08-16
+     our CI pin  261b4b6         an ancestor of it -- fetchable today
+     the branch tip 665ca8c      **215 commits ahead of github/master,
+                                 and not pushed**
+
+   So a CI build today compiles an os9exec of **2026-08-04**, and NONE of
+   the fixes this collection now depends on are on GitHub: `40facae'
+   (F$Alarm and the Linux dot-file rename), `d401ce2' (the signed F$STrap
+   handler offset -- this is why `config' no longer looks like it wants a
+   68881), `685a4c3' (SS_EOF on host-directory files) and today's
+   `00fcec5' with its test `665ca8c' (F$PErr looping for ever on a
+   terminal, which is what made `load' hang).  All five are ancestors of
+   665ca8c, so ONE push carries the lot.
+
+   The os9exec session warned me that 261b4b6 might not be in its history
+   at all.  It is -- checked with `git merge-base --is-ancestor' -- and it
+   is on `github/master'; the pin is merely old, not wrong.
+
    One thing landed there today that changes what a program here can do:
    its per-process memory ceiling went from 512 allocation blocks to 8192
    (their c0e68fa, unpushed).  `utree' on the whole of /dd runs out under
