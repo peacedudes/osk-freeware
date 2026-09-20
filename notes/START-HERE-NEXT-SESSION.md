@@ -85,7 +85,8 @@ report.
 
 
 **THE `fpu' WE SHIPPED WAS NOT THE COPY THE GRANT COVERS, AND `fpu040'
-HAD NO GRANT AT ALL.**  Item 30 of `FOR-RDOGGETT.md' has it in full.  In
+HAD NO GRANT AT ALL.**  Item 30 of `FOR-RDOGGETT.md' is the asking; the
+full account is here.  In
 short: the grant is `fpu.doc' -- "Permission to distribute FPU is granted
 so long as this file is retained" -- and a grant of that shape travels
 with a COPY.
@@ -502,6 +503,47 @@ parked as a system task.  Worth a look by somebody willing to re-shoot
 it carefully.
 
 ### What changed on the disk
+
+**ispell: THE PAIR THAT AGREES IS `ispell' + `buildhash', AND THE DISK
+HAS BEEN RECOMMENDING THE OTHER ONE.**  rdoggett put his ispell source in
+`/dd/tmp/ispell' ON THE IMAGE on 2026-09-20 -- copied off to
+`Scraped/ispell-osk-1989/' first, because `disk/tmp' in the tree is empty
+and the next `mkimage' would have wiped it.
+
+It is the source of the shipped `CMDS/ispell': `os9.c' byte-identical to
+ours, built through `tools/rebuild' it is 34,582 bytes against the
+shipped 34,502 (`ispell_rebuilt' is 33,262), and given the same input the
+new build and the shipped binary behave the same down to aborting at the
+same point with the same edition number.
+
+Then the measurement, on copies of the image:
+
+    hash from CMDS/buildhash + his dict (329,748 bytes)
+        ispell          lists the misspellings, status 0
+        ispell_rebuilt  prints NOTHING, status 0
+    hash from CMDS/buildhash + SRC/ispell's dict (279,570)
+        ispell          lists the misspellings, status 0
+        ispell_rebuilt  prints NOTHING, status 0
+    the shipped LIB/ispell.hash (490,186, provenance unknown)
+        ispell          stops on the first word
+        ispell_rebuilt  lists the misspellings, status 0
+
+`ispell_rebuilt' works with ONE pre-existing file nothing here can
+reproduce; given a freshly built table it returns a clean bill for text
+full of errors, and `-u' takes a bus error on it.  **A speller that
+silently passes everything is worse than one that stops**, and
+`DOC/INDEX' has been pointing readers at it.
+
+The dictionaries: his has 17,632 words against 15,044, with 2,665 words
+ours lacks and 77 the other way (ours include `CHATTERERZ'), and 217
+common words carry more suffix flags in his.  Same format; the shipped
+`buildhash' reads it without complaint.
+
+`DOC/INDEX' is corrected as to the CAUSE (the two editions cannot share a
+table, rather than "it faults at its first dictionary lookup").  Nothing
+else is changed: swapping the hash trades one working program for
+another, so it waits on item 23.
+
 
 **EVERY FIGURE IN `DOC/README-MODULES' HAD DRIFTED, and two of its facts
 were wrong.**  It opened "925 of the 949 files under /dd/CMDS"; it is
