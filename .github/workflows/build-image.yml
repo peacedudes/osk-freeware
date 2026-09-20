@@ -16,15 +16,34 @@ on:
       os9exec_ref:
         description: 'os9exec ref to build against'
         required: false
-        default: 261b4b69ce2eced889ec18b50c9b611f9ca19881
+        default: fix/scf-pd-eor
 
 env:
-  # mount -k=<size> -v=<name> is required, and lives on arm64-uae-integration
-  # -- master has no mount -k at all. Pinned to a COMMIT, not the branch: a
-  # force-push or a regression on a moving branch would break this build with
-  # no warning and no way to tell which change did it. Bump deliberately.
+  # WHICH os9exec. The collection is developed and tested against the branch
+  # the os9exec project is actively working on -- every harness in tools/
+  # runs the binary built from that working tree -- NOT against what is on
+  # github/master, which is a long way behind and lacks every fix this
+  # collection now depends on:
+  #
+  #   40facae  F$Alarm, and Linux renaming every dot-file on an RBF image
+  #   d401ce2  an F$STrap table's handler offset is signed  (this is why
+  #            `config' stopped looking as though it wanted a 68881)
+  #   685a4c3  SS_EOF on host-directory files
+  #   00fcec5  F$PErr searches only a path it can search -- without it a
+  #            mistyped `load' name repeats its error until you kill the
+  #            session
+  #
+  # So this names the BRANCH. Until that branch is pushed, this workflow
+  # cannot run, and that is the correct failure: the alternative was a
+  # commit pin at 261b4b6 (2026-08-04, on master) which would have built an
+  # emulator without any of the above and reported success.
+  #
+  # AT RELEASE, FREEZE IT. Replace the branch with the tip COMMIT, so that a
+  # force-push or a regression on a moving branch cannot change what a
+  # tagged build produced. The tip moves fast -- 665ca8c to 7d54fa1 inside a
+  # few hours on 2026-09-19 -- so take the hash at the moment of tagging.
   OS9EXEC_REPO: peacedudes/os9exec
-  OS9EXEC_REF: 261b4b69ce2eced889ec18b50c9b611f9ca19881
+  OS9EXEC_REF: fix/scf-pd-eor
 
 jobs:
   build:

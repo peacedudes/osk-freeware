@@ -89,7 +89,23 @@ from a measured list the gate checks.
 
    The os9exec session warned me that 261b4b6 might not be in its history
    at all.  It is -- checked with `git merge-base --is-ancestor' -- and it
-   is on `github/master'; the pin is merely old, not wrong.
+   is on `github/master'.
+
+   **THE PIN NOW NAMES THE BRANCH, on your instruction 2026-09-20: "you
+   need to be the local branch your sibling claude is updating for you,
+   not the released version."**  `.github/workflows/build-image.yml' reads
+   `fix/scf-pd-eor' where it read 261b4b6.  Everything in `tools/' already
+   ran the binary built from that working tree -- `tools/paths.py' resolves
+   the emulator to `~/Developer/os9/os9exec' -- so CI was the only place
+   still looking at the released version, and it would have built an
+   emulator without any of the four fixes and reported success.
+
+   Until the branch is pushed the workflow cannot run at all, which is the
+   right failure and not a new blocker: it has never run.  **At release,
+   freeze it** -- put the tip COMMIT in place of the branch name, taken at
+   the moment of tagging, so a force-push cannot change what a tagged build
+   produced.  The tip moves fast: 665ca8c to 7d54fa1 inside a few hours on
+   2026-09-19.
 
    One thing landed there today that changes what a program here can do:
    its per-process memory ceiling went from 512 allocation blocks to 8192
