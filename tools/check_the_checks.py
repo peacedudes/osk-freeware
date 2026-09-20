@@ -991,6 +991,11 @@ def main(argv):
         os.environ.pop("OSK_HELP_BACKLOG", None)
         os.environ.pop("OSK_HELP_DIR", None)
         os.environ.pop("OSK_HELP_TABLE", None)
+        # Left set, this would point EVERY LATER CHECK at the broken copy of
+        # docs/, so the published-page check would report a failure for the
+        # rest of the run that had nothing to do with the break being probed.
+        os.environ.pop("OSK_DOCS_DIR", None)
+        shutil.rmtree(os.path.join(work, "docscopy"), ignore_errors=True)
         shutil.rmtree(os.path.join(work, "help"), ignore_errors=True)
 
     shutil.rmtree(work, ignore_errors=True)
