@@ -56,15 +56,22 @@ and md5 both against what is on the disk.**
 **THE PUBLISHED PAGE WAS CHECKED STRUCTURALLY for the first time**, which
 is cheap and had never been done -- `notes/PLAN.md' has said "not yet
 read rendered in a browser" since 2026-09-09 and that is still true, but
-this is the half a machine can do.  Feeding `docs/index.html' through
-Python's own `html.parser': no unclosed tag, no mismatched close.  Its
-three JavaScript payloads all parse as JSON -- DATA 1033 programs, BLURB
-22 categories, ORDER 23 (the extra is `Uncategorised', the fallback
-bucket, empty as it should be).  All 1010 keys in `docs/screens.js' name
-a program in DATA, and no card points at a help file that is not in
-`docs/help'.  Worth re-running after any change to `gen_catalog.py':
+this is the half a machine can do.  **It is a `check_disk' gate now --
+`the published page is well formed' -- with a breaker**, so it runs on
+every commit rather than being something somebody remembers.
 
-    python3 -c "from html.parser import HTMLParser; ..."   # see the log
+Four things: tags balance under Python's own `html.parser'; the three
+JavaScript payloads parse as JSON (DATA 1033 programs, BLURB 22
+categories, ORDER 23 -- the extra is `Uncategorised', the fallback
+bucket, empty as it should be); every one of the 1010 keys in
+`docs/screens.js' names a program the page lists; and no card points at a
+help file that is not in `docs/help'.  All green.
+
+`OSK_DOCS_DIR' points the check at a copy, which is what lets the breaker
+put an unclosed `<div>' in the page without touching the real one -- the
+same arrangement as `OSK_TOOLS_DIR', and the same reason: a check that
+reads the live directory whatever tree it is handed can never be made to
+fail.
 
 
 **FOUR REPORTS THAT ARE NOT GATES, all of them at zero as of the end of
