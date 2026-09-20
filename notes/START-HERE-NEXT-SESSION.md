@@ -100,13 +100,18 @@ list the tool prints, not a number here); `check_the_checks.py' caught
 every break, with one reported "not applicable" because the try-backlog
 is empty and there is nothing left to drop from it.  Working tree clean.
 
-The day ran the suite FOUR times over three images, and that was not
-belt-and-braces: the first pair was 868 of 868, then four commits
-lowercased capitals in `DOC/INDEX' and the next run came back 867 --
-`about.cases' quotes `yagi''s entry word for word.  Fixed, and 868 of
-868 twice more.  **Any edit to `DOC/INDEX', `DOC/CATEGORIES' or
-`howto.psv' wants a suite run behind it**; the commit gate does not
-know about the suite.
+The day ran the suite TEN times over five images, and that was not
+belt-and-braces.  The first pair was 868 of 868.  Then four commits
+lowercased capitals-for-emphasis in `DOC/INDEX' -- all four green on the
+commit gate -- and the next run came back **867**: `about.cases' asserts
+that `about yagi' prints the entry's how-to line, and that line IS
+`DOC/INDEX''s own text, so changing the entry changed the assertion.
+Fixed, and every pair since has been 868 of 868.
+
+**Any edit to `DOC/INDEX', `DOC/CATEGORIES' or `howto.psv' wants a suite
+run behind it.**  `check_disk.py' green is the commit gate and it knows
+nothing about `datatest.py'; the two are separate and only one of them
+reads the shipped prose back through a program.
 
 **THE SUITE WAS ALSO RUN AGAINST A LATER EMULATOR AND DID NOT MOVE.**
 os9exec 685a4c3 carries four changes that could have reached us -- SS_EOF
