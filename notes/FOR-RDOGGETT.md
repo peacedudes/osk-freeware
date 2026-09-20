@@ -205,21 +205,53 @@ from a measured list the gate checks.
 
    So `DOC/INDEX' was wrong about the cause and is corrected.
 
-   **What is yours to decide.**  One compiled-in name means one hash, so as
-   things stand only one of the two editions can work:
+   **YOUR RULING WAS "if the ispell is the same, except for the dictionary,
+   toss mine and use the one somebody else ported".  IT IS NOT THE SAME,
+   and the measurement turns the whole thing round.**  Every source file
+   differs -- `ispell.c' is 18,746 bytes against 12,211 -- and the build
+   differs too (yours TERMCAPS + termlib, `SRC/ispell' -DANSII).  More to
+   the point, tossing yours would take away the only source for the binary
+   that actually works.
 
-     a. leave it -- `ispell_rebuilt' works, `ispell' stops on word one;
-     b. ship your dictionary and hash instead -- `ispell' works and
-        `ispell_rebuilt' stops instead.  Nothing is gained;
-     c. rebuild your edition with `LIBDIR' pointing somewhere of its own
-        and ship BOTH hashes, and both work.  This is the only option
-        that ends with two working spellers, and it costs one `-DLIBDIR'
-        and about 330KB.
+   **`CMDS/ispell' and `CMDS/buildhash' agree with each other.
+   `REBUILT/ispell_rebuilt' agrees with neither.**  Measured on copies of
+   the image, three ways:
 
-   I recommend (c) and have not done it.  Terms are the other half and are
-   not settled: the README says only "I received his permission to post
-   ispell to the net", which is a posting permission from 1989 and not a
-   licence.  `SOURCES.txt' would need a line saying exactly that.
+       hash built by CMDS/buildhash from YOUR dict (329,748 bytes)
+           ispell          lists the misspellings, status 0
+           ispell_rebuilt  prints NOTHING, status 0
+       hash built by CMDS/buildhash from SRC/ispell's dict (279,570)
+           ispell          lists the misspellings, status 0
+           ispell_rebuilt  prints NOTHING, status 0
+       the shipped LIB/ispell.hash (490,186, provenance unknown)
+           ispell          stops on the first word
+           ispell_rebuilt  lists the misspellings, status 0
+
+   So `ispell_rebuilt' works with ONE pre-existing file that nothing here
+   can reproduce, and given a freshly built table it returns a clean bill
+   for text full of errors -- and `ispell_rebuilt -u' takes a bus error on
+   the same table.  A speller that silently passes everything is worse
+   than one that stops.
+
+   **The dictionary, which you left to me: yours, clearly.**  17,632 words
+   against 15,044; 2,665 words yours has and ours does not, 77 the other
+   way (and ours include `CHATTERERZ', which is not a word); and 217 common
+   words carry more suffix flags in yours, so the real gap is wider than
+   the counts.  Same format, and `CMDS/buildhash' reads it without
+   complaint.
+
+   **What I recommend, and have NOT done because it changes what ships:**
+   keep `CMDS/ispell', rebuild `LIB/ispell.hash' from your dictionary with
+   the shipped `buildhash', ship your `dict.191' in `SRC/ispell' beside the
+   source, and retire `REBUILT/ispell_rebuilt' with the 490,186-byte table
+   it alone can read.  That leaves one speller that works, with 17,632
+   words, reproducible from source on the disk.
+
+   Terms are the other half.  `SRC/ispell' is Pace Willisson's, 1983,
+   "permission for non-profit use", which this collection accepts.  Your
+   tree's README adds only "I received his permission to post ispell to the
+   net" -- a posting permission, not a licence -- so if its source ships,
+   `SOURCES.txt' needs a line saying exactly that and no more.
 
 24. **Twelve more programs are "a second build of" something already here,
    and your "we don't need both" would remove them.**  You asked, of
