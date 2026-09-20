@@ -21,11 +21,14 @@ the ref to the tip **commit**, taken at that moment.
 The guides say so plainly. If you know someone with a real system, that is
 the paragraph to check.
 
-**7. usenet-rewind: cancel it.**
-Nothing is lost -- the archive stores full message bodies and all 1.2 GB is
-on this machine. Three OS-9 programs in it are worth having, already
-downloaded and extracted: MNews, Tass, Ptyman 1.3. The key is
-`~/.config/usenet-rewind/os9`; say the word and I delete it.
+**7. usenet-rewind: CANCELLED, access until 2026-10-14.**
+Nothing needed. Nothing is lost either -- the archive stores full message
+bodies and all 1.2 GB is on this machine, with MNews, Tass and Ptyman 1.3
+already extracted. **The key stays** (`~/.config/usenet-rewind/os9`) with
+`pull.py` and `mine.py` beside the archive, until access expires or we
+publish, whichever comes first -- your call, 2026-09-20, in case something
+turns up that wants one more fetch. Delete the key after that; it is the
+only credential here.
 
 ## Decisions
 

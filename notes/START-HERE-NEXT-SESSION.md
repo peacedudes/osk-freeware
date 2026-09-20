@@ -4,6 +4,17 @@
 
 ### The one thing to read before anything else
 
+**USENET-REWIND IS CANCELLED AND ACCESS ENDS 2026-10-14.**  Until then the
+key at `~/.config/usenet-rewind/os9' and `pull.py'/`mine.py' beside the
+archive STAY -- rdoggett's call, 2026-09-20 -- in case something turns up
+that wants one more fetch.  After 2026-10-14, or once we publish,
+whichever comes first, the key is to be deleted; it is the only
+credential in this work.  Nothing else depends on the subscription: the
+archive keeps full message bodies, all 1.2 GB of it is local, and MNews,
+Tass and Ptyman 1.3 are already extracted to
+`Scraped/usenet-rewind/extracted/'.
+
+
 **`load' HUNG THE SESSION ON A MISTYPED MODULE NAME, and it is fixed on
 both sides.**  rdoggett reported it 2026-09-19: "216 error repeating
 forever if you load something that doesn't exist".  Reproduced on a pty
