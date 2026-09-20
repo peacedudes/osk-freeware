@@ -181,3 +181,34 @@ run     /dd/CMDS/printf 'exit\n' | /dd/CMDS/sdb
 expect  SDB - version 2.0
 absent  syntax error
 absent  Stack Overflow
+
+# DECUS CPP, added to the disk 2026-09-20.  Two things worth pinning: that
+# the preprocessor actually preprocesses -- a macro with an argument, and an
+# `#if' whose false arm has to disappear -- and that `-A' is what chooses
+# between ordinary `#line' markers and the `#P'/`#5' pair Microware's own
+# preprocessor pass emits, which is the whole reason this build exists.
+#
+# Its own work directory, per the warning at the head of this file.
+case    cpp-expands-a-macro-and-takes-the-right-arm-of-an-if
+run     /dd/CMDS/rm -rf /dd/tmp/cppc > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/cppc > /nil 2>/nil
+run     echo "#define GREET(who) \"hello, \" who" > /dd/tmp/cppc/t.c
+run     echo "#define N 3" >> /dd/tmp/cppc/t.c
+run     echo "#if N > 2" >> /dd/tmp/cppc/t.c
+run     echo "int big = N;" >> /dd/tmp/cppc/t.c
+run     echo "#else" >> /dd/tmp/cppc/t.c
+run     echo "int small = N;" >> /dd/tmp/cppc/t.c
+run     echo "#endif" >> /dd/tmp/cppc/t.c
+run     echo "char *s = GREET(\"world\");" >> /dd/tmp/cppc/t.c
+run     /dd/CMDS/cpp -A /dd/tmp/cppc/t.c
+expect  int big = 3;
+expect  char *s = "hello, " "world";
+absent  int small
+absent  GREET
+
+case    cpp-writes-microwares-line-markers-without--A
+run     /dd/CMDS/cpp /dd/tmp/cppc/t.c
+expect  #P
+expect  #5
+expect  int big = 3;
+absent  #line
