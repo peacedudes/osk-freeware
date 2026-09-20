@@ -1034,10 +1034,13 @@ run     uuxqt
 wait    6
 
 shot    uuname
-cap     Lists the UUCP sites this system is configured to reach, out of
-cap     the tables in SYS.
-try     uuname
+cap     The UUCP sites this system is configured to reach, out of the
+cap     tables in SYS -- and `-l' for the name this machine answers to,
+cap     which is what the other end sees.
+try     uuname; uuname -l
 run     uuname
+wait    5
+run     uuname -l
 wait    5
 
 shot    uulog

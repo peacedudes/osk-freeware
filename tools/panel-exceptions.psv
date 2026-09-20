@@ -59,12 +59,11 @@ bootgen|builds an OS9Boot file from named modules for a machine to start from; t
 dpark|restores an RBF disk's head to track zero; there is no disk head to park here, so it answers with its command format
 setime|sets the system clock -- or rather does not: it prompts with `YYMMDDHHMMSS' and the clock is unchanged afterwards, whether the answer comes from standard input or from six fields on the command line, which is what DOC/INDEX records. The prompt is the format, and it is what there is to show. `setimex' and `setyear' both do set the clock and have cards that show it
 rndir|renames subdirectory names to upper or lower case; on this case-insensitive filesystem a name and its other-case form are one entry, so there is nothing to change
-lgrep|lists the files a pattern appears in; it prints nothing even for a pattern that is present, and not for want of what it forks -- measured 2026-09-19 with grep and ksh loaded resident, and again with a real OS-9 on /h1 so that SYS/login's `load shell' finds Microware's own shell, which is what this C library's system() forks. grep -l does this job
+lgrep|lists the files a pattern appears in, and prints nothing even for a pattern that is present -- measured again 2026-09-20 against `grep -l' with identical arguments, which answers correctly. It forks `grep' and reads it back through /PIPE (both strings are in the binary), and each half works alone: grep runs (it reports its own errors), and `grep -l ... | cat' pipes fine. lgrep itself emits ZERO bytes on stdout and stderr both. Its own defect, not a want of anything here.
 fixyear|corrects a file's modification year when the clock wrote a wrong one; the files here carry good years, so it finds nothing to fix
 os9lib|not a program but the RTF/68K FORTRAN runtime library; it is shown among the runtime modules, not run
 lpq|shows the print spooler's queue; no spooler is running on this disk, and it says so
 lpshut|stops the print spooler; none is running here, and it says so
-uuname|lists the UUCP site names, a few short lines below the publish threshold; it does its job
 vis|redraws one command's output in place like watch; its control header is a single line, too little to publish
 ppmtorgb3|writes three RGB plane files silently; the ls that follows on its card, three 1165-byte files, is the evidence
 lnk.org|an RTF Fortran link driver: it prints the l68 command it would run and stops, because the link needs l68 from the reader own OS-9; rtf compiles and is the working program of that set
