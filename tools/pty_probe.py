@@ -3,6 +3,7 @@ r"""Run one command on a REAL TERMINAL and count what comes back.
 
     tools/pty_probe.py "load nosuchmodule"
     tools/pty_probe.py "tree /nosuchdir" --seconds 30
+    OS9DISK=<other.dd> OS9EXEC=<other binary> tools/pty_probe.py "..."
 
 WHY THIS EXISTS.  Every other harness here -- `screenshots.py',
 `datatest.py', `drive.py', `os9try.py' -- captures os9exec through a PIPE.
@@ -101,7 +102,7 @@ def main(argv):
     if rest:
         command = rest[0]
 
-    image = os.path.join(REPO, "osk-freeware.dd")
+    image = os.environ.get("OS9DISK", os.path.join(REPO, "osk-freeware.dd"))
     emulator = os.environ.get(
         "OS9EXEC", os.path.expanduser("~/Developer/os9/os9exec/os9exec"))
     for p in (image, emulator):

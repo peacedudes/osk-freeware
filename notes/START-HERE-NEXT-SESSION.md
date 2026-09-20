@@ -22,6 +22,23 @@ parked process by re-running its call.  Hence for ever.  `cpr' and
 or 0, not a terminal.  Their fix: F$PErr searches only something that can
 be searched.  Regression test: 948 messages before, 1 after.
 
+**BOTH FIXES WERE MEASURED SEPARATELY, and that mattered.**  I nearly
+wrote "verified on a pty" for a test that ran against their rebuilt
+emulator four minutes after they rebuilt it -- at which point "my fix
+works" and "their fix works" are the same observation.  So all four
+cells, `load nosuchmodule' on a pty, twelve seconds each:
+
+                         os9exec 685a4c3      os9exec with 00fcec5
+      prerr(2, errno)    559 repeats          prints once
+      our formatting     prints once          prints once
+
+The bottom-left cell is the one that earns the workaround its place.
+Method: `git archive 685a4c3' out of the os9exec repo into the scratchpad
+and `make' it (never a checkout there -- its tree moves under you), plus
+a throwaway image built with `SKIP_CHECKS=1' carrying the old binary.
+`mkimage' refused the first attempt because DOC/DEPENDS no longer matched
+the old binary, which is the gate doing its job on a deliberate swap.
+
 **What ships is still our own formatting**, in `disk/SRC/load/load.c' --
 the error text now comes from SYS/errmsg on the running system, so on a
 real OS-9 it is that system's wording.  Kept deliberately even though the
