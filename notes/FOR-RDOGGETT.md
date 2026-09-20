@@ -212,6 +212,22 @@ from a measured list the gate checks.
    documents, or is the narrow scope right?  If it should reach them, the
    check takes one line -- the file list, not the patterns.
 
+   **More evidence, 2026-09-19: the PATTERNS are narrow too, and one real
+   violation was hiding behind that.**  The gate looks for "not on this
+   disk" and "neither is on this disk".  Sweeping the captions for the
+   same claim in other words -- "this disk does not carry", "there is no
+   X here" -- found eight.  Seven are facts about data or hardware ("no
+   PackIt archive is on this disk to open", "no Tektronix terminal here",
+   "there is no X server here") and read correctly.  The eighth was
+   `dback': *"There is no `copy' program on this disk, so nothing is
+   copied"* -- and `copy' is Microware's, so the reader HAS it and the
+   card was telling them their own utility does not exist.  Rewritten to
+   say it calls their own OS-9's `copy'.
+
+   So the same question applies to the patterns as to the file list, and
+   the answer may differ: widening the file list is safe, widening the
+   patterns would flag seven captions that are right.
+
 30. **READ THIS ONE FIRST.  The `fpu' we shipped was not the copy the
    grant covers, and `fpu040' had no grant at all.  I swapped one and
    removed the other; both are one command to reverse.**

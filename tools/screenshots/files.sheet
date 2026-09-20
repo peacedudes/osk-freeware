@@ -180,8 +180,8 @@ size    26 80
 cap     dback compares a directory against a backup directory and issues an
 cap     OS-9 `copy' for every file that has changed.  It names the pair of
 cap     directories it is working on and then prints the copy it wants.
-cap     There is no `copy' program on this disk, so nothing is copied and
-cap     the backup directory stays empty.
+cap     It calls your own OS-9's `copy', so on your system the files go
+cap     across; here the copies are shown and the backup stays empty.
 try     dback tmp/FILESA/db tmp/FILESA/dbk
 run     rm -rf /dd/tmp/FILESA/db /dd/tmp/FILESA/dbk > /nil 2>/nil
 wait    3
