@@ -154,7 +154,6 @@ qp|eff_qp|qp.c|||
 qt|misc|qt.c|||
 rain|toys|rain.c ctime.c rand.c screen.c||/dd/LIB/usr.l /dd/LIB/termlib.l|
 rdoc|eff_rdoc|rdoc.c|||
-reagan|reagan|reagan.c|||
 remove|eff_remove|remove.c|||
 rendsk|eff_rendsk|rendsk.c|||
 rndname|rndname|name.c|||

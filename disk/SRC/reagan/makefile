@@ -1,1 +1,0 @@
-OBJ = reaganRDIR = RELSFILES = rrcount.rLIBS = /dd/lib/curses.l /dd/lib/termlib.l /dd/lib/rand.lCFLAGS = -qim=2k -t=/r0LFLAGS = -l=/dd/lib/curses.l -l=/dd/lib/termlib.l -l=/dd/lib/rand.l$(OBJ): $(FILES) $(LIBS)	chd rels; cc $(CFLAGS) $(LFLAGS) $(FILES) -f=$(OBJ) -n=$(OBJ)
