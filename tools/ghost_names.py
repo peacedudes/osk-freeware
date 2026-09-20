@@ -84,8 +84,8 @@ tex_readme cpp
 # being written about as though it were present again will not be caught, so
 # take one OUT when the sentences naming it go.
 GONE = set("""
-dearc firq kermit_cio new_e ren rstory2 sedt souper sysmem travesty vi_cio
-vi_nocio
+dearc firq fpu040 kermit_cio new_e ren rstory2 sedt souper sysmem travesty
+vi_cio vi_nocio
 """.split())
 
 
