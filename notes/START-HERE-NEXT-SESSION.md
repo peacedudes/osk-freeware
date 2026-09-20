@@ -92,13 +92,18 @@ sentence into either mistake, and both of today's absence-phrasing hits
 were about a utility removed the day before.
 
 
-**WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
-current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
-868 again on a SECOND run against the same image, which is the check
-that had never been made; every `check_disk.py' check green (read the
-list the tool prints, not a number here); `check_the_checks.py' caught
-every break, with one reported "not applicable" because the try-backlog
-is empty and there is nothing left to drop from it.  Working tree clean.
+**WHERE IT STANDS AT THE END OF 2026-09-19.**  `tools/datatest.py --all'
+868 of 868 against the shipping image, and 868 of 868 again on a SECOND
+run against that same image.  Every `check_disk.py' check green (read
+the list the tool prints, not a number here).  `check_the_checks.py'
+caught every break with none blind, one reported "not applicable"
+because the try-backlog is empty and there is nothing left to drop from
+it.  Working tree clean, and `osk-freeware.dd' rebuilt clean afterwards
+so it carries no test litter -- it is what `free' opens.
+
+The image was checked at the byte level for the one thing that changed
+under it today: exactly one copy of the granted `fpu' is in it, and no
+module of the old `fpu''s size or `fpu040''s is anywhere in the image.
 
 The day ran the suite TEN times over five images, and that was not
 belt-and-braces.  The first pair was 868 of 868.  Then four commits
