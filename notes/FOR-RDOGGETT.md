@@ -284,23 +284,30 @@ from a measured list the gate checks.
    already said the thing, and `check_disk.py' has a gate now -- `the
    artefact does not name us' -- with a breaker.
 
-   **What I did NOT remove, and this is the part for you.**  The gate
-   looks for the username, not the name.  `Robert Doggett' stays in
-   `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c'
-   and `SRC/hc_utils/fgrep.c' -- you wrote those ports in 1988 and 1989
-   and the credit is in the files as their authors left them.  Taking it
-   out would falsify the history of somebody else's archive as much as
-   your own.  `DOC/os9dsk/PUBDOM19.DSK' carries it too, in a disk image
-   from the period.  And `SOURCES.txt' says *"Robert Doggett asked Allan
-   at Microware for permission"*, which I kept because the record of who
-   asked is the provenance.  The os9exec URL stays for the same reason --
-   a reader has to be told where the emulator is, and it is at
-   `github.com/peacedudes/os9exec'.
+   **What I did NOT remove.**  The gate looks for the username, not the
+   name.  `Robert Doggett' stays in `DOC/zot/zot.1', `SRC/zot/zot.c',
+   `SRC/misc/qt.c', `SRC/snap/main.c' and `SRC/hc_utils/fgrep.c', where
+   the files' own headers record who ported them -- "heavily mucked with
+   for OSK".  That line is the archive's, not ours, and removing it would
+   edit somebody else's file.  `DOC/os9dsk/PUBDOM19.DSK' carries it too,
+   in a disk image from the period.  `SOURCES.txt' says *"Robert Doggett
+   asked Allan at Microware for permission"*, kept because the record of
+   who asked is the provenance.  The os9exec URL stays for the same
+   reason -- a reader has to be told where the emulator is.
 
-   Say the word if you want any of those gone and it is a one-line change
-   to the gate's allowed list.  My reading is that the rule was about the
-   maintainer's fingerprints on the artefact, not about erasing a 1988
-   byline, but it is your name.
+   **CORRECTED 2026-09-19, by you:** *"I did not write zot or qt or snap
+   or any of the others.  I just did trivial porting work to get them
+   running.  Credit should go to the original author."*  I had written
+   this item up as "you wrote those ports", which is exactly the mistake
+   your own standing rule warns about.  The disk itself never made it:
+   `SOURCES.txt' says "The files that remain and carry that name are
+   PORTS, and say so", and `tools/terms.psv' credits Roger Murray and
+   Marc Kriguer for zot, Mike Cowlishaw and Mark Dapoz's C conversion for
+   qt, David MacKenzie for snap.  `check_disk''s gate docstring and the
+   handoff are corrected to match.
+
+   Say the word if you want any of those lines gone and it is a one-line
+   change to the gate's allowed list.
 
 ## Not a question any more, but you should know
 

@@ -1777,13 +1777,21 @@ def check_no_maintainer_identifiers(root):
     Every one of them was working-paper voice: the sentence before it
     already said the thing, and who settled it means nothing to a reader.
 
-    IT LOOKS FOR THE USERNAME, NOT THE NAME.  `Robert Doggett' is in
+    IT LOOKS FOR THE USERNAME, NOT THE NAME.  `Robert Doggett' appears in
     `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c'
-    and `SRC/hc_utils/fgrep.c' as the 1988 author of those ports, which is
-    historical fact in other people's files and stays; `Doggett' is also
-    an Irish place name in `hack''s data and a word in `draw''s.  What
-    goes is the modern attribution and the machine: the username, the
-    home path, and the account handle.
+    and `SRC/hc_utils/fgrep.c' as the person who PORTED them to OS-9 in
+    1988 and 1989 -- "heavily mucked with for OSK", in the file's own
+    words -- and that is a line the archive's own header carries, so it
+    stays as history.  **It is not an authorship credit and must not be
+    written up as one** (rdoggett, 2026-09-19: "I did not write zot or qt
+    or snap or any of the others.  I just did trivial porting work to get
+    them running.  Credit should go to the original author").  The
+    original authors are named where credit belongs -- `tools/terms.psv'
+    and `SOURCES.txt': zot is Roger Murray's and Marc Kriguer's, qt is
+    Mike Cowlishaw's by way of Mark Dapoz's C conversion, snap is David
+    MacKenzie's.  `Doggett' is also an Irish place name in `hack''s data
+    and a word in `draw''s.  What goes is the modern attribution and the
+    machine: the username, the home path, and the account handle.
 
     ALLOWED, with its reason: the os9exec URL in `SOURCES.txt'.  A reader
     has to be told where the emulator comes from, and that is where it is.

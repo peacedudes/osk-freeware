@@ -480,11 +480,22 @@ does not name us' -- reading the disk tree, `docs/' AND the template,
 with a breaker in `check_the_checks.py'.
 
 **IT LOOKS FOR THE USERNAME, NOT THE NAME, and that is a judgement
-somebody should be able to overrule.**  `Robert Doggett' is in
+somebody should be able to overrule.**  `Robert Doggett' appears in
 `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c' and
-`SRC/hc_utils/fgrep.c' as the 1988 author of those ports -- other
-people's files, their authors' bylines, and taking it out would falsify
-the archive.  `Doggett' is also an Irish place name in `hack''s data and
+`SRC/hc_utils/fgrep.c' as the person who PORTED them -- "heavily mucked
+with for OSK" is the file's own wording -- and that line is the
+archive's, so taking it out would falsify somebody else's file.
+
+**DO NOT WRITE IT UP AS AUTHORSHIP.**  I did, in the first draft of this
+entry and of the gate's docstring, and rdoggett corrected it on the day:
+*"I did not write zot or qt or snap or any of the others.  I just did
+trivial porting work to get them running.  Credit should go to the
+original author."*  The disk already does that and did all along --
+`SOURCES.txt' says "The files that remain and carry that name are PORTS,
+and say so", and `tools/terms.psv' names Roger Murray and Marc Kriguer
+for zot, Mike Cowlishaw and Mark Dapoz for qt, David MacKenzie for snap.
+The standing rule is [[os9-rdoggett-authorship-rule]]: porting is not
+authorship.  `Doggett' is also an Irish place name in `hack''s data and
 a word in `draw''s.  The os9exec URL in `SOURCES.txt' stays because a
 reader has to be told where the emulator is.  Written out as item 29 in
 `FOR-RDOGGETT.md'; if he wants any of it gone it is one line in the
