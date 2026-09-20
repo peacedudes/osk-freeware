@@ -412,6 +412,44 @@ case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
 ### What was learned -- the reusable part
 
+**THE EXCEPTION LIST IS FULL OF REASONS NOBODY RE-TESTED, and two of the
+four I picked at random were wrong.**  `tools/panel-exceptions.psv' is
+72 lines of "why this card shows nothing", each written once.  Taking
+four of them back to the emulator on 2026-09-20:
+
+  uuname   "a few short lines below the publish threshold; it does its
+           job" -- a CARD problem, not a program problem.  The card ran
+           `uuname' alone.  It now runs `uuname -l' beside it for the
+           name this machine answers to, and the exception is GONE.
+  filter   "/r0 is an OS-9 DEVICE this disk has not got" -- WRONG TWICE.
+           `mount -r=256k /r0' makes one from bash in one line, exactly
+           as DOC/README-RUNNING has said since August, and it works.
+           With it mounted filter reads its rules and MATCHES them, then
+           dies on its own temp file.  See below.
+  frm      "counts no messages in it" -- the mailbox is not empty.  804
+           bytes, a proper `From ' line, and `messages' reads the same
+           file and says there is one message in it.  Two programs
+           disagreeing about one file is a better note than an emptiness
+           that is not there.
+  lgrep    "prints nothing even for a pattern that is present" -- this
+           one HELD, and is now sharper: it forks `grep' and reads it
+           back through /PIPE, both halves work alone, and lgrep emits
+           zero bytes on stdout and stderr both.
+
+**filter's real fault is a one-line port bug, and it is a good shape to
+recognise.**  `actions.c' saves the process id in `filter_pid' for
+`save_to_folder' to use -- and the assignment sits INSIDE an
+`#ifndef OSK' block along with the fork-so-the-folder-gets-the-user's-
+group code that OS-9 does not need.  On OS-9 it never runs, so the temp
+name is built from an uninitialised variable: filter WROTE `/r0/filter.3'
+and then tried to READ `/r0/filter.26048'.  **When a porter wraps a block
+in `#ifndef OSK', check what else was inside it.**
+
+The fix is in `SRC' and NOT in the shipped binary -- building filter
+wants ELM's own `libutil.l' and `osk.l' and this tree has no `lib/'.  The
+source comment, `SOURCES.txt' and the exception all say so.
+
+
 **A GATE'S PATTERNS ARE AS NARROW AS ITS FILE LIST, and the same claim in
 other words walks straight past.**  `text names what the reader has'
 looks for "not on this disk" and "neither is on this disk".  Sweeping for
