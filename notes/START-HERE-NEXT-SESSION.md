@@ -120,6 +120,30 @@ case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
 ### What was learned -- the reusable part
 
+**A GATE'S PATTERNS ARE AS NARROW AS ITS FILE LIST, and the same claim in
+other words walks straight past.**  `text names what the reader has'
+looks for "not on this disk" and "neither is on this disk".  Sweeping for
+the same claim differently phrased -- "this disk does not carry", "there
+is no X here", "no X on this disk" -- found eight captions and one index
+entry.  Seven of the captions are facts about DATA or HARDWARE ("no
+PackIt archive is on this disk to open", "no Tektronix terminal here")
+and read correctly.  Two were real, and both told the reader their own
+OS-9 utility does not exist:
+
+  dback   "There is no `copy' program on this disk, so nothing is copied"
+          -- `copy' is Microware's, and issuing copies through it is the
+          entire point of dback, so the sentence explaining the program
+          contradicted the reason it works.
+  sieve   "there is no timing command here to pair it with" -- `time' is
+          Microware's too; it came OFF this disk on terms the day before.
+
+**The pattern to notice: both were about a utility we had just removed.**
+A program leaving on terms turns every sentence that mentioned it into a
+candidate for this mistake, because the honest way to say "we took it
+out" is one short step from "you haven't got one".  Run this sweep after
+any removal, beside `ghost_names.py'.
+
+
 **A CITATION IS DATA AND IT ROTS -- and git can repair it.**
 `tools/terms.psv' third field says where each program's terms were read.
 Of 187 rows citing `SOURCES.txt' by line number, **122 no longer landed
