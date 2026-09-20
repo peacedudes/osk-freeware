@@ -118,7 +118,7 @@ cap     is expanded with its argument, the true arm of the `#if' is kept and
 cap     the false one dropped.  `-A' asks for ordinary `#line' markers; run
 cap     without it, it writes the `#P' and `#5' markers Microware's own
 cap     preprocessor pass emits, which is what it was built to stand in for.
-try     cpp -A t.c
+try     cat t.c; cpp -A t.c
 run     builtin cd /dd/tmp
 wait    1
 run     rm -rf /dd/tmp/cppdemo > /nil 2>/nil; mkdir -p /dd/tmp/cppdemo > /nil 2>/nil
