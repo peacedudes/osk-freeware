@@ -72,7 +72,7 @@ fprintf fwrite getc putc noreader epsonlo mfput polaroid spoolqueue coords
 face damage chesstool dsave deldir e2e4 uuunexpand terminate tester syscmd
 mortgage banners channel remote rfd readstr timeio timid wabbits which6 xshar
 jpeg wermit cccp
-create insert start exit
+create insert start exit rindex
 inetdb kwin kzc lcsys libgcc1_c libgcc2_gc osktag sect0boot sector0 warranty
 tex_readme cpp
 """.split())
