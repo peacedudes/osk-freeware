@@ -1,2 +1,0 @@
-$ ispell_rebuilt
-Usage: spell [ file ... | -a | -l | -f file | -s ]

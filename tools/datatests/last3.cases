@@ -97,13 +97,19 @@ run     echo "not a macbinary file" > $W/mac.src
 run     /dd/CMDS/macstream $W/mac.src
 expect  Short file /dd/tmp/L3/mac.src
 case    buildhash-and-chardef-both-want-a-dictionary-that-is-not-here
-# The `ls' comes FIRST: the second buildhash ends the emulator session, so
+# The `wc' comes FIRST: the second buildhash ends the emulator session, so
 # anything after it would never run.
 # `wc -c', not `ls -l': ls puts a date between the size and the name, so
-# `490186 /dd/LIB/ispell.hash' is not a substring of its output and the
+# `329748 /dd/LIB/ispell.hash' is not a substring of its output and the
 # first draft of this failed against a perfectly good listing.
+#
+# 329748 is what buildhash makes of SRC/ispell/dict.191's 17,632 words.  It
+# was 490186 until 2026-09-20 -- a table for a different edition of ispell
+# that nothing here could reproduce, and the reason the shipped ispell was
+# written up as broken.  Run from a directory holding a dict.191 this
+# rebuilds it; run from one that has none, as here, it says so.
 run     /dd/CMDS/wc -c /dd/LIB/ispell.hash
 run     /dd/CMDS/buildhash
 run     /dd/CMDS/chardef
-expect  490186 /dd/LIB/ispell.hash
+expect  329748 /dd/LIB/ispell.hash
 expect  No dictionary (dict.191)

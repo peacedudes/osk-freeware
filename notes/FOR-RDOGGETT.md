@@ -35,18 +35,6 @@ only credential here.
 
 ## Decisions
 
-**23. ispell: one speller, and not the one the disk recommends.**
-Your source turns out to be the source of the shipped `CMDS/ispell`, so
-tossing it would remove the only source for the binary that works.
-`CMDS/ispell` and `CMDS/buildhash` agree with each other;
-`REBUILT/ispell_rebuilt` works only with one pre-existing hash that nothing
-here can reproduce, and given a freshly built one it reports NO misspellings
-in text full of them. Your dictionary is the better of the two: 17,632 words
-against 15,044. **Recommend:** keep `CMDS/ispell`, rebuild the hash from your
-dictionary, ship your `dict.191` in `SRC/ispell`, retire `ispell_rebuilt`.
-*If its source ships, the 1989 README grants permission to POST rather than a
-licence, and `SOURCES.txt` should say exactly that.*
-
 **28. Should "name what the reader HAS" reach the shipped READMEs?**
 The gate covers `DOC/INDEX`, `howto.psv` and the card sheets. Four
 `DOC/README-*` files use the phrasing and all four read as fact rather than

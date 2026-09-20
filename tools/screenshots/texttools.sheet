@@ -588,9 +588,10 @@ run     pageline < tmp/TXT/titles
 wait    8
 
 shot    ispell
-cap     This build of ispell lists every word of the line as unknown, correct
-cap     ones too, and stops with a bus error at its first dictionary lookup.
-cap     REBUILT/ispell_rebuilt is the edition DOC/ispell describes, and works.
+cap     ispell reading a line of Jabberwocky and naming the words its
+cap     dictionary does not hold.  The table is LIB/ispell.hash, 17,632
+cap     words, which `buildhash' makes from SRC/ispell/dict.191 -- so the
+cap     dictionary is yours to add to.
 try     ispell -l tmp/TXT/spell.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell.txt
 wait    3
@@ -600,20 +601,6 @@ run     clear
 wait    1
 run     ispell -l tmp/TXT/spell.txt
 wait    12
-
-shot    ispell_rebuilt
-cap     The words the dictionary does not hold, one to a line: -l reads the
-cap     text on standard input and skips lines that are formatter commands.
-try     ispell_rebuilt -l < tmp/TXT/spell2.txt
-os9     ispell_rebuilt -l <tmp/TXT/spell2.txt
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell2.txt
-wait    3
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     ispell_rebuilt -l < tmp/TXT/spell2.txt
-wait    8
 
 shot    buildhash
 cap     Builds ispell's hash table from a word list.  It reads `dict.191'
