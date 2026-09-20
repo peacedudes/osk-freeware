@@ -181,13 +181,45 @@ from a measured list the gate checks.
    answer for. Say the word and it goes in; it is the only reason this item
    is still here.
 
-23. **ispell: you said you would send me the source you have.**  Until then:
-   CMDS/ispell faults at its first dictionary lookup and is a different
-   edition from everything else here, and REBUILT/ispell_rebuilt -- built
-   from SRC/ispell, the edition DOC/ispell and LIB/ispell.hash belong to --
-   works.  When your source arrives I will see whether it matches the
-   shipped binary, and if it does the same treatment as `compress` applies:
-   build it, put it in CMDS, drop the twin.
+23. **ispell: your source arrived, and CMDS/ispell is not broken.**  You
+   put it in `/dd/tmp/ispell' on the freeware disk on 2026-09-20; it is
+   copied off to `Scraped/ispell-osk-1989/' (14 files, 1989, with the same
+   `os9.c' as ours BYTE FOR BYTE, so the same porting lineage) because an
+   image rebuild would have wiped it.
+
+   **It is the source of the shipped binary.**  Built with
+   `tools/rebuild': 34,582 bytes against the shipped 34,502, where
+   `ispell_rebuilt' is 33,262 -- and given the same input the new build
+   and the shipped binary behave IDENTICALLY, down to aborting at the same
+   point with the same edition number.
+
+   **And that abort is not a fault in the program.**  The two editions
+   cannot read each other's hash table, and both look for it at one
+   compiled-in name (`LIBDIR "/h0/lib"' + `/ispell.hash').  `LIB/ispell.hash'
+   is 490,186 bytes, built from the 176KB `dict.191' in `SRC/ispell'.  Your
+   edition's dictionary is a different 206KB `dict.191' -- 17,637 words --
+   and its own `buildhash' turns that into a 329,748-byte table.  Given
+   THAT table, both your edition and the shipped binary answer correctly:
+
+       ispell -l /dd/tmp/sp.txt   ->  teh / quikc / jumpd, status 0
+
+   So `DOC/INDEX' was wrong about the cause and is corrected.
+
+   **What is yours to decide.**  One compiled-in name means one hash, so as
+   things stand only one of the two editions can work:
+
+     a. leave it -- `ispell_rebuilt' works, `ispell' stops on word one;
+     b. ship your dictionary and hash instead -- `ispell' works and
+        `ispell_rebuilt' stops instead.  Nothing is gained;
+     c. rebuild your edition with `LIBDIR' pointing somewhere of its own
+        and ship BOTH hashes, and both work.  This is the only option
+        that ends with two working spellers, and it costs one `-DLIBDIR'
+        and about 330KB.
+
+   I recommend (c) and have not done it.  Terms are the other half and are
+   not settled: the README says only "I received his permission to post
+   ispell to the net", which is a posting permission from 1989 and not a
+   licence.  `SOURCES.txt' would need a line saying exactly that.
 
 24. **Twelve more programs are "a second build of" something already here,
    and your "we don't need both" would remove them.**  You asked, of
