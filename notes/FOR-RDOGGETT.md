@@ -35,12 +35,6 @@ only credential here.
 
 ## Decisions
 
-**21. `cpp`: ship it?**
-TOP's OS-9 build of the public-domain DECUS preprocessor works and writes
-Microware's line markers. It shares a name with a utility of yours, and the
-shadow-rule machinery handles that automatically now. **Recommend: ship it
-as `cpp`.** Omega is settled and out.
-
 **23. ispell: one speller, and not the one the disk recommends.**
 Your source turns out to be the source of the shipped `CMDS/ispell`, so
 tossing it would remove the only source for the binary that works.

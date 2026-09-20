@@ -17,6 +17,7 @@
 # Keep each line to one sentence or two. It is read at an OS-9 prompt, in 80
 # columns, by someone who has just been disappointed.
 
+cpp|Give it a C source file: `cpp t.c'. By default it writes Microware's `#P'/`#5' line markers, because it was built to replace their preprocessor pass; `-A' gives ordinary `#line' output instead. The file must be CR-terminated like everything else on this disk -- an LF-terminated one arrives as a single enormous line.
 orbit|It reads kepler.dat, mode.dat and a <site>.sit by bare name from the current directory, and DOC/orbit holds them: `ksh -c "cd /dd/DOC/orbit; orbit"'. Answer d for a day's table, then the site (pgh), the date, the start hour, the step and the length.
 nasa|Put NASA two-line elements in nasa.dat in the current directory and run `nasa'; it writes kepler.dat, which `orbit' reads. No element set ships; they are published for every satellite.
 pwgen|pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that.

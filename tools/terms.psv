@@ -139,6 +139,7 @@ cal|Shareware, "Copyright 1995 Bob van der Poel Software". "Under our shareware 
 cam|No copyright or licence statement in SRC/tekdemos or its documentation. The source has no comments.|SRC/tekdemos/cam.c
 canfield|BSD. Copyright (c) 1980 Regents of the University of California; the usual Berkeley notice is at the head of the source.|SOURCES.txt line 1106
 atc|BSD. Copyright (c) 1990 Regents of the University of California, with the four-clause Berkeley notice; and Copyright (c) 1987 Ed James, copy permission granted provided the notice is retained.|SRC/atc/main.c lines 1-43; SOURCES.txt, atc
+cpp|Public domain. Its own readme opens "Decus cpp is a public-domain implementation of the C preprocessor", and no other condition is stated anywhere in the distribution.|SRC/cpp/readme.txt line 1; SOURCES.txt, "Decus CPP"
 trek|BSD. Copyright (c) 1980 Regents of the University of California, with the four-clause Berkeley notice at the head of each source.|SRC/trek/main.c lines 1-32; SOURCES.txt, trek
 trek73|No terms stated: the post carries no copyright or licence statement. README2 names Jeff Okamoto and Peter Yee as its authors.|SRC/trek73/ORIG/README; SRC/trek73/ORIG/README2
 arithmetic|BSD. Copyright (c) 1989 Regents of the University of California, with the four-clause Berkeley notice at the head of the source.|SRC/arithmetic/ORIG/arithmetic.c lines 1-34; SOURCES.txt, arithmetic

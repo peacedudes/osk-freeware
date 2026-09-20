@@ -55,6 +55,7 @@ connect|bix|connect.c|||
 # vtxtcn reads vtext.dat, and neither data file was in SRC/world.  Both were
 # still in play/h4/ARR/world.ar, which the import had read only partly; see
 # SRC/world/README-RECOVERED.
+cpp|cpp|cpp1.c cpp2.c cpp3.c cpp4.c cpp5.c cpp6.c|OSK||
 world|world|demons.c helper.c motion.c parser.c verbs1.c verbs2.c world.c||/dd/LIB/rand.r|
 cookhash|cookie|cookhash.c|||
 cookie|cookie|cookie.c|||

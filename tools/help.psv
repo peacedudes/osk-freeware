@@ -8,6 +8,7 @@
 # tools/helpcap.py captures every command here into docs/help/<name>.txt,
 # whole, and the gate `cards carry real help text' checks the captures
 # against this table.  tools/help-backlog.txt lists what is not here yet.
+cpp|cpp -?|it has no help flag: any option it does not know makes it print the list, and then it reads the empty standard input and writes the OSK line markers the entry describes
 roff|roff -?|
 bm|bm -?|
 cdiff|cdiff -?|

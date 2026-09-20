@@ -1,0 +1,19 @@
+cat t.c
+#define GREET(who) "hello, " who
+#define N 3
+#if N > 2
+int big = N;
+#else
+int small = N;
+#endif
+char *s = GREET("world");
+$ cpp -A t.c
+#line 0 "t.c"
+
+
+
+
+int big = 3;
+#line 7 "t.c"
+
+char *s = "hello, " "world";

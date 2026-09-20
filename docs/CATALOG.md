@@ -1,6 +1,6 @@
 # What is on this disk
 
-1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,7 +16,7 @@
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 38 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -534,7 +534,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>38 programs</summary>
+<details><summary>39 programs</summary>
 
 **Alternates**
 
@@ -555,6 +555,12 @@
 | `assembler` | GSHELL front-end for the assembler -- the same full-screen menu as `gshell', headed `Assembler-SHELL V1.0'.  It does not assemble anything itself; `as0' and its five siblings are the assemblers<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `lnk` | the RTF Fortran link driver; it calls l68 with /h0/LIB/sys.l, which is Microware's |
 | `lnk.org` | as `lnk', the original build: the RTF Fortran linker driver. It wants `os9lib' resident, hands its line to `shell' and calls `l68' to link, and then wants the Fortran start-up code `fstart.r' -- whose source is SRC/rtf/rtfstart.a, assembled with your own r68. DOC/README-FORTRAN has the chain<br>**How:** `load /dd/CMDS/os9lib' first. Without it this calls F$Link for os9lib, gets E_MNF and exits printing nothing. DOC/README-RUNNING names the four programs that do this. |
+
+**C compilers**
+
+| | |
+|---|---|
+| `cpp` | Decus CPP, the public-domain C preprocessor: macros with arguments, `#if' arithmetic, `#include' and the rest.  It was built to stand in for Microware's own preprocessor pass and writes that pass's `#P' and `#5' line markers; `-A' turns those off and gives ordinary `#line' output.  Shares its name with the preprocessor your own OS-9 carries -- README-NAMES<br>**How:** Give it a C source file: `cpp t.c'. By default it writes Microware's `#P'/`#5' line markers, because it was built to replace their preprocessor pass; `-A' gives ordinary `#line' output instead. The file must be CR-terminated like everything else on this disk -- an LF-terminated one arrives as a single enormous line. |
 
 **C toolchain**
 

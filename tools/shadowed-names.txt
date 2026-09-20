@@ -27,6 +27,7 @@ cccp2|GCC2/cccp2
 chown|chown
 collect|GCC2/collect
 compress|compress
+cpp|cpp
 dir|dir
 dump|dump
 expand|expand

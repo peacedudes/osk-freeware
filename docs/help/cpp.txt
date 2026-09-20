@@ -1,0 +1,19 @@
+$ cpp -?
+The following options are valid:
+	-l|C			Write source file comments to output
+	-Dsymbol=value	Define a symbol with the given (optional) value
+	-I|v=directory	Add a directory to the #include search list
+	-N				Don't predefine target-specific names
+	-Stext			Specify sizes for #if sizeof
+	-Usymbol		Undefine symbol
+	-O=file			specify output filename
+	-E				ignore fatal errors
+	-A				don't generate OSK output
+#P
+stdin
+0
+#7
+
+stdin
+#5
+0

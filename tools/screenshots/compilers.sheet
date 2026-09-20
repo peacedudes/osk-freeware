@@ -111,6 +111,43 @@ snap
 send    \003
 wait    3
 
+shot    cpp
+size    26 80
+cap     Decus CPP on a file with a macro, an `#if' and a string: the macro
+cap     is expanded with its argument, the true arm of the `#if' is kept and
+cap     the false one dropped.  `-A' asks for ordinary `#line' markers; run
+cap     without it, it writes the `#P' and `#5' markers Microware's own
+cap     preprocessor pass emits, which is what it was built to stand in for.
+try     cpp -A t.c
+run     builtin cd /dd/tmp
+wait    1
+run     rm -rf /dd/tmp/cppdemo > /nil 2>/nil; mkdir -p /dd/tmp/cppdemo > /nil 2>/nil
+wait    4
+run     builtin cd /dd/tmp/cppdemo
+wait    1
+run     echo "#define GREET(who) \"hello, \" who" > t.c
+wait    3
+run     echo "#define N 3" >> t.c
+wait    3
+run     echo "#if N > 2" >> t.c
+wait    3
+run     echo "int big = N;" >> t.c
+wait    3
+run     echo "#else" >> t.c
+wait    3
+run     echo "int small = N;" >> t.c
+wait    3
+run     echo "#endif" >> t.c
+wait    3
+run     echo "char *s = GREET(\"world\");" >> t.c
+wait    3
+run     clear
+wait    1
+run     cat t.c
+wait    5
+run     cpp -A t.c
+wait    8
+
 shot    bison
 cap     GNU bison on a two-rule grammar written for it, then the report
 cap     `-v' leaves behind: the rules as bison read them, the terminals
