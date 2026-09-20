@@ -51,6 +51,17 @@ release cannot go out on a pin older than the fixes it needs -- this one
 included.  Item 1 of `FOR-RDOGGETT.md' already holds that; the F$PErr
 commit joins the list when the os9exec session sends a hash.
 
+**OS9DISK AND OS9H0 ARE EXPORTED IN THIS SHELL and point at the SDK
+overlay and a symlink, not at the collection.**  `pty_probe' took them as
+defaults in its first version, booted the SDK as /dd, found no
+`/dd/SYS/login' and died before typing anything -- which surfaced as
+`OSError: [Errno 5] Input/output error' from the pty, a message that says
+nothing about the cause.  Three tools in one day answered about a tree
+nobody pointed them at (`ghost_names', `stale_notes', then this one,
+written after fixing those two).  **Check `echo $OS9DISK' before
+believing a run**, and have a tool print the image and the emulator it
+used.
+
 **THE LESSON, and it is a big one: every harness here hands os9exec a
 PIPE.**  `screenshots.py', `datatest.py', `drive.py', `os9try.py' -- all
 of them.  A fault that needs an SCF TERMINAL is invisible to every one,
