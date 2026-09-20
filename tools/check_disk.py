@@ -1824,6 +1824,112 @@ def check_no_maintainer_identifiers(root):
         print("    %s" % b)
     return not bad, "%d line(s) naming the maintainer" % len(bad)
 
+def check_published_page_is_well_formed(root):
+    """docs/index.html parses, its data parses, and its references resolve.
+
+    The page is GENERATED, so this fails only when `gen_catalog.py' or the
+    template produces something broken -- which is the one thing no other
+    check here would notice.  Everything else about the gallery is checked
+    through the tables that feed it; nothing looked at the artefact.
+
+    Four things, each of which has a way of going wrong that leaves the
+    page looking fine to a diff:
+
+      * tags balance -- `html.parser' with a stack, so an unclosed <div>
+        in the template shows up here rather than as a collapsed layout
+        nobody opens the browser to see;
+      * the three JavaScript payloads parse as JSON.  They are written by
+        `json.dumps', so a failure means something reached them that is
+        not JSON-safe;
+      * every key in `docs/screens.js' names a program the page knows
+        about, or a card's panel can never be shown;
+      * no card points at a `docs/help/<file>' that is not there.
+
+    Run against the repo's own `docs/', not against `root': the disk tree
+    does not carry the page.  A tree with no `docs/' passes -- that is a
+    checkout without the published output, not a fault.
+    """
+    import json
+    from html.parser import HTMLParser
+    repo = os.path.dirname(os.path.abspath(root))
+    # OSK_DOCS_DIR points this at a COPY, which is how check_the_checks
+    # breaks a check that reads docs/ rather than the disk tree -- the same
+    # trick as OSK_TOOLS_DIR above, and for the same reason: without it the
+    # check reads the real docs/ whatever tree it is handed, and so can
+    # never be made to fail.
+    docs = os.environ.get("OSK_DOCS_DIR", os.path.join(repo, "docs"))
+    page = os.path.join(docs, "index.html")
+    if not os.path.exists(page):
+        return True, "no docs/index.html to read"
+
+    VOID = {"br", "img", "meta", "link", "input", "hr", "source", "col"}
+
+    class Balance(HTMLParser):
+        def __init__(self):
+            HTMLParser.__init__(self, convert_charrefs=True)
+            self.stack, self.bad = [], []
+
+        def handle_starttag(self, tag, attrs):
+            if tag not in VOID:
+                self.stack.append((tag, self.getpos()))
+
+        def handle_endtag(self, tag):
+            if tag in VOID:
+                return
+            if not self.stack:
+                self.bad.append("stray </%s> at %s" % (tag, self.getpos()))
+                return
+            if self.stack[-1][0] != tag:
+                self.bad.append("</%s> at %s closes <%s> opened at %s"
+                                % (tag, self.getpos(), self.stack[-1][0],
+                                   self.stack[-1][1]))
+                for i in range(len(self.stack) - 1, -1, -1):
+                    if self.stack[i][0] == tag:
+                        del self.stack[i:]
+                        break
+            else:
+                self.stack.pop()
+
+    src = open(page, encoding="utf-8", errors="replace").read()
+    b = Balance()
+    b.feed(src)
+    bad = list(b.bad)
+    bad += ["<%s> opened at %s and never closed" % (t, w) for t, w in b.stack]
+
+    payload = {}
+    for name in ("DATA", "BLURB", "ORDER"):
+        m = re.search(r"const %s = (\[.*?\]|\{.*?\});\n" % name, src, re.S)
+        if not m:
+            bad.append("the page has no `const %s'" % name)
+            continue
+        try:
+            payload[name] = json.loads(m.group(1))
+        except ValueError as e:
+            bad.append("`const %s' is not JSON: %s" % (name, e))
+
+    names = {d.get("name") for d in payload.get("DATA", [])}
+    js = os.path.join(docs, "screens.js")
+    if names and os.path.exists(js):
+        text = open(js, encoding="utf-8", errors="replace").read()
+        try:
+            screens = json.loads(text[text.index("{"):].rstrip().rstrip(";"))
+        except ValueError as e:
+            screens = {}
+            bad.append("docs/screens.js is not JSON: %s" % e)
+        for k in sorted(set(screens) - names)[:5]:
+            bad.append("docs/screens.js has `%s', which the page does not "
+                       "list" % k)
+    for d in payload.get("DATA", []):
+        h = d.get("help")
+        if isinstance(h, dict) and h.get("file") \
+                and not os.path.exists(os.path.join(docs, "help", h["file"])):
+            bad.append("`%s' names a help file that is not in docs/help: %s"
+                       % (d.get("name"), h["file"]))
+
+    for m in bad[:8]:
+        print("    %s" % m)
+    return not bad, "%d fault(s) in the published page" % len(bad)
+
 
 CHECKS = [
     ("line endings are CR-only", check_line_endings),
@@ -1865,6 +1971,8 @@ CHECKS = [
     ("every program is accounted for", check_every_program_is_accounted_for),
     ("panels show their own program", check_panels_show_their_program),
     ("captures match their stanzas", check_captures_match_their_stanzas),
+    ("the published page is well formed",
+     check_published_page_is_well_formed),
 ]
 
 if __name__ == "__main__":

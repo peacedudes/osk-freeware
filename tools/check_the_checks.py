@@ -592,6 +592,37 @@ def break_maintainer_identifier(root):
     return "DOC/STATUS made to name the maintainer again"
 
 
+def break_published_page(root):
+    """An unclosed <div> put into a COPY of docs/index.html.
+
+    The page is generated, so the fault this guards against comes from the
+    template or the generator, and it leaves a page that diffs cleanly and
+    lays out wrong.  OSK_DOCS_DIR points the check at the copy; the real
+    docs/ is never touched.
+    """
+    import shutil
+    # REPO, not root: `root' is the copied disk tree and has no docs/ beside
+    # it.  The page being probed is the real one, copied aside.
+    live = os.path.join(REPO, "docs")
+    if not os.path.isdir(live):
+        return None
+    copy = os.path.join(os.path.dirname(root), "docscopy")
+    if not os.path.isdir(copy):
+        shutil.copytree(live, copy)
+    p = os.path.join(copy, "index.html")
+    t = open(p, encoding="utf-8", errors="replace").read()
+    marker = "<body"
+    if marker in t:
+        i = t.index(marker)
+        j = t.index(">", i) + 1
+        t = t[:j] + "\n<div class=\"never-closed\">" + t[j:]
+    else:
+        t = "<div class=\"never-closed\">" + t
+    open(p, "w", encoding="utf-8").write(t)
+    os.environ["OSK_DOCS_DIR"] = copy
+    return "an unclosed <div> added to a COPY of docs/index.html"
+
+
 def break_absence_phrasing(root):
     """A DOC/INDEX entry that says what this disk lacks instead of what you have.
 
@@ -833,6 +864,8 @@ BREAKS = [
     ("absence phrasing", "text names what the reader has",
      break_absence_phrasing),
     ("shouting caption", "captions do not shout", break_shouting_caption),
+    ("published page", "the published page is well formed",
+     break_published_page),
     ("maintainer named", "the artefact does not name us",
      break_maintainer_identifier),
     ("cio macro", "the cio-macro list is current", break_cio_scan),
