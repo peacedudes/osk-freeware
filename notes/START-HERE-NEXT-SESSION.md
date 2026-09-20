@@ -53,6 +53,24 @@ and md5 both against what is on the disk.**
 
 ### Where it stands, and how it was checked
 
+**FOUR REPORTS THAT ARE NOT GATES, all of them at zero as of the end of
+2026-09-19, and each made to fail on purpose against a scratch tree
+before being believed.**  `tools/README.md' has them under "Reports that
+are not gates":
+
+    tools/stale_notes.py            DOC/STATUS notes the cards contradict
+    tools/ghost_names.py            shipped text naming what is not here
+    tools/absence_phrasing.py       text saying the reader lacks what they own
+    tools/sdk_overlap.py <sdk-tree> disk files byte-identical to Microware's
+
+`stale_notes' prints seven rows and all seven were read: they are the
+`floods' record kept on purpose, plus zip, arc and m4, which really do
+stop where the note says.  **Run `ghost_names' and `absence_phrasing'
+after any removal** -- a program leaving on terms is what turns a
+sentence into either mistake, and both of today's absence-phrasing hits
+were about a utility removed the day before.
+
+
 **WHERE IT STANDS AT THE END OF 2026-09-19.**  Image rebuilt from the
 current tree; `tools/datatest.py --all' 868 of 868 against it, and 868 of
 868 again on a SECOND run against the same image, which is the check
