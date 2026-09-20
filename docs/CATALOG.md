@@ -478,7 +478,7 @@
 | `dhryshamu2` | &#9733; Dhrystone 2.0, a second shamu build; see dhry |
 | `disktest` | measures disk performance: it times a read of the raw device, a write of a temporary it then removes, and a run of seeks, and prints the rates.  It asks OS-9's own `free' for the sector count first, through a pipe, and waits on that pipe until the answer comes -- so on a system where `free' is to hand it runs through, and here, where it is not, it waits.  [no military use -- DOC/EFFO-INFO]<br>`Syntax   : disktest [<opt>]` |
 | `savage` | &#9733; Savage's benchmark: a chain of functions that should cancel to an exact number, a thousand times; how far the printed value drifts measures the arithmetic's rounding |
-| `sieve` | &#9733; the sieve of Eratosthenes as a speed test: it runs the pass a hundred times over and prints `start' and then ` 100 sieves done'.  What it measures is the gap between those two lines, so it is worth running where you can time it -- there is no timing command here to pair it with.  `savage' and the twelve Dhrystone builds are the other benchmarks, and Dhrystone reports its own rate |
+| `sieve` | &#9733; the sieve of Eratosthenes as a speed test: it runs the pass a hundred times over and prints `start' and then ` 100 sieves done'.  What it measures is the gap between those two lines, so run it under your own OS-9's `time' to get a figure.  `savage' and the twelve Dhrystone builds are the other benchmarks, and Dhrystone reports its own rate |
 
 **Debugging**
 

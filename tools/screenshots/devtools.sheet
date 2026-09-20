@@ -7,8 +7,8 @@ shot    sieve
 cap     The sieve of Eratosthenes, a classic speed test: it finds the primes
 cap     below a fixed limit and repeats the whole pass a hundred times.  Its
 cap     whole output is the two lines below, and what it measures is the gap
-cap     between them -- so it is worth running where you can time it.  The
-cap     Dhrystone builds report their own rate; this one does not.
+cap     between them -- so run it under your own OS-9's `time' for a figure.
+cap     The Dhrystone builds report their own rate; this one does not.
 try     sieve
 run     sieve
 wait    10
