@@ -1039,9 +1039,11 @@ wait    8
 
 shot    sir
 for     pnmtosir sirtopnm
-cap     Solitaire Image Recorder format, out and back -- and it does not
-cap     round-trip cleanly here: the size survives, but the colour channels
-cap     come back rotated across the first half of the pixels.
+cap     Solitaire Image Recorder format, out and back.  An 8x4 red image
+cap     goes to SIR and returns byte for byte.  Until 2026 it did not: the
+cap     reader skipped one short too few of the 1536-short header and every
+cap     colour plane came back shifted two bytes.  One loop bound, in
+cap     SRC/netpbm/PNM.
 try     sirtopnm tmp/red.sir | pnmnoraw | head -n 6
 os9     sirtopnm tmp/red.sir ! pnmnoraw ! head -n 6
 run     builtin cd /dd

@@ -53,13 +53,6 @@ dictionary, ship your `dict.191` in `SRC/ispell`, retire `ispell_rebuilt`.
 *If its source ships, the 1989 README grants permission to POST rather than a
 licence, and `SOURCES.txt` should say exactly that.*
 
-**26. `pnmtosir`/`sirtopnm`: patch the 1991 bug, or preserve it?**
-One loop bound in the reader -- `i < 1531` where the header is 1532 shorts --
-so every colour plane comes back shifted two bytes. I predicted the exact
-wrong colours before touching anything and the disk produces them; three
-cases pin it. **But the loop is as the original has it**, so fixing it ships
-a netpbm that differs from the archive. Ten minutes either way.
-
 **28. Should "name what the reader HAS" reach the shipped READMEs?**
 The gate covers `DOC/INDEX`, `howto.psv` and the card sheets. Four
 `DOC/README-*` files use the phrasing and all four read as fact rather than

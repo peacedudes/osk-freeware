@@ -248,53 +248,54 @@ run     $P/pnmfile /dd/tmp/nm.ppm
 expect  PPM raw, 32 by 8
 absent  Stack Overflow
 
-# THE SIR ROUND TRIP IS OFF BY TWO BYTES, and the two bytes are in the
-# HEADER. Found by this suite 2026-08-27, diagnosed 2026-09-19 by counting
-# what each program writes and reads. `pnmtosir' writes a header of 1536
-# little-endian shorts -- 256 for the file header, 256 for the colour-map
-# header, 1024 for the map itself -- which is 3072 bytes, and a 4x1 image
-# comes out 3084 bytes, exactly 3072 + 12. `sirtopnm' reads five shorts
-# and then skips 1530 more:
+# THE SIR ROUND TRIP WAS OFF BY TWO BYTES UNTIL 2026-09-20, and the two
+# bytes were in the HEADER. `pnmtosir' writes 1536 little-endian shorts --
+# 256 file header, 256 colour-map header, 1024 map, three aligned blocks,
+# 3072 bytes, and a 4x1 image is 3084 on the nose. `sirtopnm' read five
+# shorts and skipped 1530 more, which is 1535 shorts and 3070 bytes, so it
+# started on the pixels two bytes early and every plane came back shifted.
 #
-#     for ( i = 1; i < 1531; i++ )
-#         pm_readlittleshort( ifp, &info );
+# THE DIAGNOSIS WAS CHECKED BY PREDICTION rather than by patching: with
+# cols*rows = 4 the shift says solid red must come back green, green, red,
+# red and solid green must come back blue, blue, green, green -- and that
+# is exactly what the unpatched pair produced.  Those were the assertions
+# here until the fix.
 #
-# which is 1535 shorts, 3070 bytes. So it starts on the pixel data two
-# bytes early, and every plane it reads is shifted by two.
-#
-# THAT PREDICTS THE EXACT OUTPUT, which is how the diagnosis was checked
-# rather than guessed. With cols*rows = 4 the red plane is read from
-# offset 0 of the shifted array, the green from 4 and the blue from 8, so
-# solid red comes back green for the first two pixels and correct for the
-# last two, and solid green comes back blue the same way. Both are
-# asserted below and both were measured on the disk.
-#
-# The header is 3072 bytes because it is three aligned blocks, so the
-# READER is the one that is wrong -- one more short in that loop and the
-# pair round-trips. Both programs here are built from SRC/netpbm/PNM by a
-# recipe, and the loop is as the 1991 original has it, so this is an
-# upstream defect and fixing it would mean shipping a netpbm that differs
-# from the archive. That is rdoggett's call, not a thing to do quietly;
-# notes/FOR-RDOGGETT.md carries it. Until then these cases pin what the
-# shipped pair does, so a change in either program shows up here.
-case    sir-round-trip-shifts-the-planes-by-two-bytes
+# The loop was as the 1991 original has it, so this was an upstream defect
+# and fixing it means shipping a netpbm that differs from the archive.
+# rdoggett ruled on 2026-09-20: patch it.  `i < 1532' is the whole change,
+# SRC/netpbm/PNM/sirtopnm.c carries the reasoning, and SOURCES.txt records
+# the departure.  These cases now pin the round trip instead of the bug.
+case    sir-round-trips-a-red-image-unchanged
 run     $P/ppmmake red 4 1 > /dd/tmp/k.ppm 2>/nil
 run     $P/pnmtosir /dd/tmp/k.ppm > /dd/tmp/k.sir 2>/nil
 run     $P/sirtopnm /dd/tmp/k.sir > /dd/tmp/k2.ppm 2>/nil
 run     $P/pnmnoraw /dd/tmp/k2.ppm
-expect  0 255 0  0 255 0  255 0 0  255 0 0
+expect  255 0 0  255 0 0  255 0 0  255 0 0
+absent  0 255 0
 absent  Stack Overflow
 
-case    the-same-shift-turns-green-into-blue
+case    and-a-green-one-comes-back-green
 run     $P/ppmmake green 4 1 > /dd/tmp/g.ppm 2>/nil
 run     $P/pnmtosir /dd/tmp/g.ppm > /dd/tmp/g.sir 2>/nil
 run     $P/sirtopnm /dd/tmp/g.sir > /dd/tmp/g2.ppm 2>/nil
 run     $P/pnmnoraw /dd/tmp/g2.ppm
-expect  0 0 255  0 0 255  0 255 0  0 255 0
+expect  0 255 0  0 255 0  0 255 0  0 255 0
+absent  0 0 255
 
 case    the-sir-header-is-three-aligned-blocks
 run     /dd/CMDS/wc -c /dd/tmp/k.sir
 expect  3084
+
+# A GREY IMAGE GOES THE OTHER BRANCH of sirtopnm -- MGI type 17 rather
+# than 11 -- and its header is 3076 bytes for a 4x1, so the same two-byte
+# skip had to be right for both.
+case    sir-round-trips-a-grey-image-too
+run     $P/ppmmake red 4 1 2>/nil | $P/ppmtopgm > /dd/tmp/p.pgm 2>/nil
+run     $P/pnmtosir /dd/tmp/p.pgm > /dd/tmp/p.sir 2>/nil
+run     $P/sirtopnm /dd/tmp/p.sir > /dd/tmp/p2.pgm 2>/nil
+run     $P/pnmnoraw /dd/tmp/p2.pgm
+expect  76 76 76 76
 
 # pbmtobbnbg READS STANDARD INPUT and ignores a filename given as an
 # argument -- which is the whole of why it was written off as rejecting
