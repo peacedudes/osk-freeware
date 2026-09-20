@@ -120,6 +120,44 @@ case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
 ### What was learned -- the reusable part
 
+**A CITATION IS DATA AND IT ROTS -- and git can repair it.**
+`tools/terms.psv' third field says where each program's terms were read.
+Of 187 rows citing `SOURCES.txt' by line number, **122 no longer landed
+anywhere near their program**, because SOURCES.txt has grown by several
+hundred lines since most were written.
+
+The repair is worth knowing because it generalises to any stale line
+reference in this repo:
+
+    git blame --line-porcelain tools/terms.psv    -> commit per row
+    git show <commit>:disk/SOURCES.txt            -> the file as it stood
+    take the cited lines' TEXT out of that
+    find that text in today's file, widening the fragment with context
+    lines until it occurs exactly once
+
+118 were repaired to a line holding the very words they were written
+against, spot-checked one by one against accordian, advent, aterm,
+adduser and bcd.  Four could not be made unique and now say plain
+`SOURCES.txt': **no number beats a wrong one.**  About thirty more point
+at a section that never named their program and were wrong the day they
+were written; those need a person.
+
+The DOC and SRC citations were in far better shape -- 820 inside a file
+that exists, none past its end -- but nine named a document that had
+moved into a subdirectory of its own, and six name a file that is nowhere
+on the disk.  All of it is recorded in the file's own header.
+
+**AND A CHEAP SWEEP WORTH REPEATING: check every disk path named in the
+index files.**  `DOC/INDEX', `DOC/CATEGORIES' and `readme' between them
+name thirteen paths that do not exist.  Ten are innocent -- a file a
+program creates on first run, a path on the reader's own OS-9, a
+directory the readme says is gone.  Three were not: `puzzle''s entry and
+its published card both offered `puzzle15' and `GAMES/puz15' as the
+15-puzzle you can play here, and both left the disk on terms on
+2026-09-18; `DOC/CATEGORIES' pointed at a `DOC/ioccc' that has never
+existed.
+
+
 **A DATA-TEST CASE CAN QUOTE SHIPPED TEXT, AND THE COMMIT GATE DOES NOT
 KNOW.**  `check_disk.py' green is the gate on every commit here, and it
 says nothing about `tools/datatest.py'.  On 2026-09-19 four commits
