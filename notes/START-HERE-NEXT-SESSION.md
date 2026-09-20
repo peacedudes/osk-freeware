@@ -432,10 +432,12 @@ both were found by re-testing exception reasons rather than by reading.**
               took it to 320.  The sentence now says the figure moves and
               which command answers it.
 
-**THE EXCEPTION LIST IS FULL OF REASONS NOBODY RE-TESTED, and two of the
-four I picked at random were wrong.**  `tools/panel-exceptions.psv' is
-72 lines of "why this card shows nothing", each written once.  Taking
-four of them back to the emulator on 2026-09-20:
+**THE EXCEPTION LIST IS FULL OF REASONS NOBODY RE-TESTED, AND THREE OF
+THE SIX I SAMPLED WERE WRONG.**  `tools/panel-exceptions.psv' is 72 lines
+of "why this card shows nothing", each written once, and the gate only
+checks that the program still fails -- never that the REASON is true.
+Taken back to the emulator on 2026-09-20 (`rndir' and `disktest' below
+the four here; rndir's reason was wrong, disktest's held):
 
   uuname   "a few short lines below the publish threshold; it does its
            job" -- a CARD problem, not a program problem.  The card ran
