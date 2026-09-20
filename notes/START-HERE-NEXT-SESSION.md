@@ -327,10 +327,10 @@ were about a utility removed the day before.
 
 
 **WHERE IT STANDS AT THE END OF THE NIGHT OF 2026-09-19/20.**
-`tools/datatest.py --all' 869 of 869 against the shipping image, and 869
-of 869 again on a SECOND run against that same image.  The count moved
-from 868 because `cpp' arrived with two cases, `ispell_rebuilt's case
-became an `ispell' case, and the SIR pair gained one for the grey branch.
+`tools/datatest.py --all' 871 of 871 against the shipping image, and 871
+of 871 again on a SECOND run against that same image.  The count moved
+from 868 because `cpp' arrived with two cases, the SIR pair gained one
+for the grey branch, and `ispell_rebuilt's case became an `ispell' one.
 
 The four overnight decisions are above.  Also done, unasked and small:
 `cpp' has cases so it cannot sit on the untested list; the SIR cases pin

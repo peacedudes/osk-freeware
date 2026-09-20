@@ -8,7 +8,7 @@ Updated 2026-09-20.
 
 **Four items closed overnight on your answers** -- 21 (ship `cpp`), 23
 (ispell), 24 (drop the plain duplicates) and 26 (patch the SIR reader).
-All four are done, the suite is 869 of 869 twice, and what each one
+All four are done, the suite is 871 of 871 twice, and what each one
 changed is at the top of the handoff.
 
 ## Yours alone
