@@ -126,6 +126,37 @@ from a measured list the gate checks.
    Cancelling happens on their site, in your account.  The key is
    `~/.config/usenet-rewind/os9`; say the word and I will delete it.
 
+   **CANCEL WITHOUT WAITING FOR ME -- checked properly 2026-09-20 when you
+   asked whether there was anything else we want.**  The archive stores the
+   FULL MESSAGE BODY, not a citation: every record carries an
+   `originalMessage` field, across 11,750 page files and 1.2 GB.  So
+   everything minable is already on this machine, and cancelling costs us
+   nothing.
+
+   **There IS more worth having, and all of it is already downloaded.**  The
+   OS-9 source groups hold only 22 real postings between them -- everything
+   in `sub.sources.os9` after 1995 is spam -- and three are programs this
+   disk has not got, all squarely in the era:
+
+     MNews        a news reader for OS-9, ten parts, 1992-12-23.  The only
+                  news reader here is UUCPbb's `readnews`.
+     Tass         the threaded newsreader tin grew out of, ported to OS-9,
+                  four parts, 1992-12-24.
+     Ptyman 1.3   a pseudo-terminal manager, sources AND binaries,
+                  1991-06-22, posted to `sub.sources.os9` itself.
+
+   All seventeen of those messages are extracted to
+   `Scraped/usenet-rewind/extracted/`, one file per posting, so nobody has
+   to go back through the JSON.  Pulled out beside them: the 8-bit `less`
+   diffs, Elm 2.3's patch #2 (we ship 2.4), the banner sources, and GCC
+   1.37 for OS-9/68000 -- the closest thing to source for the gcc we ship,
+   and whose part 2 of 7 is **not in the archive at all**.  That gap is the
+   one thing a live subscription might answer, and probably would not: all
+   nine group counts matched the site's own index, so it looks like the
+   original feed's gap rather than our pull's.
+
+   Nothing here is started.  Terms first for all three, as always.
+
    The message you sent was **utree 3.03b-um** -- Peter Klingebiel's
    screen-oriented file manager, a portable Unix xtree.  **It is ported,
    it works, and it is on the disk** as of 2026-09-19: the directory tree
