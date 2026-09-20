@@ -13,8 +13,10 @@ Not for the 6809 line — these are 68k binaries.
 ## What it is
 
 The community's software for OS-9, made to run again on OS-9. It ships as
-**`osk-freeware.dd`**, one RBF disk image built from `disk/`, 256 MB, with
-room left for scores, saves and your own work.
+**`osk-freeware.dd`**, one RBF disk image built from `disk/`, with room
+left for scores, saves and your own work. The build sizes it from the
+tree -- a little under twice what the tree takes -- so the figure moves;
+`ls -l osk-freeware.dd` answers it, and today that is 312 MiB.
 
 It is a data disk for an OS-9 system you already have, or for os9exec:
 your system boots as it always did, and this mounts beside it.
