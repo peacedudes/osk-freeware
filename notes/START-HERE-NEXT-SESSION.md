@@ -92,6 +92,35 @@ a place in a bootfile -- so it is out of scope for a collection of
 applications.  Recorded because it is the one real lead of its kind, and
 because the permission is unusually clean if anyone ever wants it.
 
+**THE TERMS OF ALL THREE CANDIDATES ARE READ AND THEY ARE ALL THE SAME
+SHAPE the collection already accepts** -- non-commercial, notice-
+preserving.  Read 2026-09-20 out of each posting's own COPYRIGHT file so
+nobody has to go through seventeen messages again:
+
+  MNews       Ulrich Dessauer, Germering.  "You are allowed to copy and
+              modify the source to your wishes", but not to sell any part,
+              not to charge users for an environment using it, not to
+              forward a changed source without the original, not to drop
+              the notice -- and NOT TO REDISTRIBUTE ONLY PARTS.  That last
+              one is a real constraint: the whole package ships or none of
+              it.
+  Tass        Rich Skrenta, 1990.  "You may freely copy or redistribute
+              this software, so long as there is no profit made from its
+              use, sale, trade or reproduction.  You may not change this
+              copyright notice, and it must be included prominently in any
+              copy made."
+  Ptyman 1.3  Reimer Mellin, Munich, 1989.  Reproduce and distribute by
+              any means, no fee above a nominal handling charge, notice
+              always included, commercial use or incorporation into
+              commercial software prohibited without written permission.
+
+None is a question of the kind [[os9-terms-standard]] says to stop on.
+**Ptyman is the one to leave**: a pseudo-terminal MANAGER is kernel-level
+-- `cpty.a' and `miscasm.a' are in its source list -- and belongs with
+`systemfmpaket' on the "out of scope for a collection of applications"
+side.  MNews and Tass are ordinary programs and the disk's only news
+reader is UUCPbb's `readnews'.
+
 **The wider shape: binary posting to the OS-9 groups stopped with the
 shar era.**  Distribution moved to FTP, then the web and vendor channels.
 The archive's value to this collection was always 1984-1995, and that is
