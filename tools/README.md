@@ -69,6 +69,7 @@ nothing; `drive.py` runs a batch of them and shows what came back; a
 
     tools/stale_notes.py                       # DOC/STATUS notes the cards contradict
     tools/ghost_names.py                       # shipped text naming what is not here
+    tools/absence_phrasing.py                  # text telling the reader they lack what they own
     tools/sdk_overlap.py <sdk-tree>            # disk files byte-identical to Microware's
 
 Three sweeps whose answer needs a person. `stale_notes` finds rows in
@@ -76,7 +77,13 @@ Three sweeps whose answer needs a person. `stale_notes` finds rows in
 working -- a note recording a failure outlives the fix, and thirteen of
 them did. `ghost_names` finds a name the shipped prose points at that the
 disk has not got, which is what happens when a program leaves and the
-sentences naming it stay. `sdk_overlap` hashes every file on the disk
+sentences naming it stay. `absence_phrasing` asks the same question the
+gate `text names what the reader has` asks, but in the words the gate's
+narrow pattern does not carry -- it found `dback`'s card saying "There is
+no `copy` program on this disk" when `copy` is Microware's and issuing
+copies through it is what dback is FOR. Run both after a removal: a
+program leaving on terms is what turns a sentence into either kind of
+mistake. `sdk_overlap` hashes every file on the disk
 against Microware's SDK tree, because the only thing that can tell you a
 binary is theirs is its bytes; it needs the SDK tree, which is not in this
 repository, so it can never be a gate.
