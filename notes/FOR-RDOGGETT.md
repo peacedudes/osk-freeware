@@ -24,7 +24,10 @@ the paragraph to check.
 **7. usenet-rewind: CANCELLED, access until 2026-10-14.**
 Nothing needed. Nothing is lost either -- the archive stores full message
 bodies and all 1.2 GB is on this machine, with MNews, Tass and Ptyman 1.3
-already extracted. **The key stays** (`~/.config/usenet-rewind/os9`) with
+already extracted (shar postings are plain text and came through whole;
+raw uuencoded ATTACHMENTS are stripped by the service, so those were never
+obtainable through it at all -- one 1997 posting is affected and it is a
+kernel file manager, out of scope). **The key stays** (`~/.config/usenet-rewind/os9`) with
 `pull.py` and `mine.py` beside the archive, until access expires or we
 publish, whichever comes first -- your call, 2026-09-20, in case something
 turns up that wants one more fetch. Delete the key after that; it is the

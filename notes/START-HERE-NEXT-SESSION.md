@@ -14,6 +14,39 @@ archive keeps full message bodies, all 1.2 GB of it is local, and MNews,
 Tass and Ptyman 1.3 are already extracted to
 `Scraped/usenet-rewind/extracted/'.
 
+**ONE LIMIT ON "we have everything", found 2026-09-20: the service STRIPS
+RAW UUENCODED ATTACHMENTS.**  A `begin 777 file.gz' block comes back as
+`<uuencoded_portion_removed>'.  Shar postings are unaffected -- they are
+plain text with `X' prefixes, and MNews, Tass and Ptyman's BINARIES part
+are all intact, checked file by file.  But a true binary attachment was
+never obtainable through this subscription, so cancelling loses nothing
+there either: we never had it.
+
+**AND THAT ANSWERS "are there later OS-9/68k binaries on usenet".  No.**
+From 1995 onward the fifteen OS-9 and m68k groups carry about 25,000
+messages and exactly SEVEN with any encoded payload.  Six are Windows
+malware and spam -- two are the Swen/Gibe worm posing as a Microsoft
+patch, one is a webcam advert.  The seventh is real and is the only
+post-1995 OS-9 binary posted anywhere in the archive:
+
+    1997-06-12  comp.os.os9  "System file manager"  Knut Grunwald
+    systemfmpaket.gz -- a /proc-style FILE MANAGER for OS-9, tested on
+    68302, MVME 177 and 167, Eltec E6 and the Atari ST.  `dir /sys/mod',
+    `dir /sys/proc', `dir /sys/path', and it works over OS-9 NET.  The
+    posting says "If someone likes to post it to an archive feel free to
+    do it", which is a distribution permission in the author's own words.
+
+Its payload is one of the stripped ones, so we do not have it.  It is
+also a file manager -- kernel-level, `os9-systems-dev' territory, needing
+a place in a bootfile -- so it is out of scope for a collection of
+applications.  Recorded because it is the one real lead of its kind, and
+because the permission is unusually clean if anyone ever wants it.
+
+**The wider shape: binary posting to the OS-9 groups stopped with the
+shar era.**  Distribution moved to FTP, then the web and vendor channels.
+The archive's value to this collection was always 1984-1995, and that is
+the part we have.
+
 
 **`load' HUNG THE SESSION ON A MISTYPED MODULE NAME, and it is fixed on
 both sides.**  rdoggett reported it 2026-09-19: "216 error repeating
