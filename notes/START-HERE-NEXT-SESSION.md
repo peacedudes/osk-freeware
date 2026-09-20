@@ -412,6 +412,26 @@ case.  /dd/tmp is shared too, but CLAUDE.md already warns about that one.
 
 ### What was learned -- the reusable part
 
+**TWO SHIPPED DOCUMENTS WERE WRONG ABOUT THINGS ANYONE COULD CHECK, and
+both were found by re-testing exception reasons rather than by reading.**
+
+  DOC/STATUS  "TWENTY PROGRAMS WANT A RAM DISK AT /r0, and none of them
+              can have one under os9exec: its `mount' makes devices h0
+              through hz and nothing else."  False.  `mount -r=256k /r0'
+              from bash makes one, it works (write, list, read back), and
+              `DOC/README-RUNNING' has given that line since August -- so
+              two documents on the same disk contradicted each other and
+              the wrong one was writing twenty programs off.  `ed' is the
+              plainest case: without the mount it stops at once, with one
+              it opens the file and reports its size.  The same paragraph
+              said "twenty" and then listed nine; it now says which nine
+              and sends the reader to the full list.
+  README.md   "one RBF disk image ... 256 MB".  `mkimage.sh' sizes the
+              image from the tree, `du -sm disk' x 1.9 + 8, so it grows
+              with the collection -- 312 MiB today, and one night's work
+              took it to 320.  The sentence now says the figure moves and
+              which command answers it.
+
 **THE EXCEPTION LIST IS FULL OF REASONS NOBODY RE-TESTED, and two of the
 four I picked at random were wrong.**  `tools/panel-exceptions.psv' is
 72 lines of "why this card shows nothing", each written once.  Taking
