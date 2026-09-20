@@ -3,4 +3,5 @@ $ load os9lib
 $ command for
 command: for file{,file} [-rtfopt{,rtfopt}]
 $ load nosuchthing
-load: can't load "nosuchthing" - Error #000:216 (E_PNNF) Path Name Not Found
+load: can't load "nosuchthing" - Error #000:216 (E$PNNF) That path name doesn't
+lead to anything - check the spelling and location.

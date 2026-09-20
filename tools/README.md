@@ -71,6 +71,7 @@ nothing; `drive.py` runs a batch of them and shows what came back; a
     tools/ghost_names.py                       # shipped text naming what is not here
     tools/absence_phrasing.py                  # text telling the reader they lack what they own
     tools/sdk_overlap.py <sdk-tree>            # disk files byte-identical to Microware's
+    tools/pty_probe.py "<command>"             # one command on a REAL terminal
 
 Three sweeps whose answer needs a person. `stale_notes` finds rows in
 `DOC/STATUS` that call a program broken when its published panel shows it
@@ -88,9 +89,16 @@ against Microware's SDK tree, because the only thing that can tell you a
 binary is theirs is its bytes; it needs the SDK tree, which is not in this
 repository, so it can never be a gate.
 
-Each of them was made to fail on purpose before being believed -- against
-a scratch tree, since that is the only honest way to prove a report can
-say anything at all.
+`pty_probe` is the odd one out: it is not a sweep but a single command run
+on a pseudo-terminal. Every other harness here gives os9exec a PIPE, so a
+fault that needs an SCF terminal is invisible to all 956 cards and 868
+cases -- which is how `load` came to repeat its error for ever on a
+mistyped module name with every gate green. Reach for it when a report
+contradicts a sweep.
+
+The three sweeps were each made to fail on purpose before being believed
+-- against a scratch tree, since that is the only honest way to prove a
+report can say anything at all.
 
 ## Checking the tree
 

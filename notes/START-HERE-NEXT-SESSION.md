@@ -4,6 +4,45 @@
 
 ### The one thing to read before anything else
 
+**`load' HUNG THE SESSION ON A MISTYPED MODULE NAME, and it is fixed on
+both sides.**  rdoggett reported it 2026-09-19: "216 error repeating
+forever if you load something that doesn't exist".  Reproduced on a pty
+-- ~850 repeats in twenty seconds -- and NOT reproducible with output
+piped or redirected, which is what had hidden it: every harness here
+gives os9exec a pipe, so no card, case or sweep could ever have seen it.
+
+**The cause was os9exec's, found by the os9exec session the same day.**
+F$PErr SEARCHES the path it is handed for the error's text.  `load'
+called `prerr(2, errno)', so the path was standard error -- a terminal --
+and searching it meant READING it.  With nothing typed, that read parked
+the process and returned empty; F$PErr printed the built-in message and
+returned while the process was still parked, and the dispatcher resumes a
+parked process by re-running its call.  Hence for ever.  `cpr' and
+`eunlink' call prerr too and never saw it because they pass a real file
+or 0, not a terminal.  Their fix: F$PErr searches only something that can
+be searched.  Regression test: 948 messages before, 1 after.
+
+**What ships is still our own formatting**, in `disk/SRC/load/load.c' --
+the error text now comes from SYS/errmsg on the running system, so on a
+real OS-9 it is that system's wording.  Kept deliberately even though the
+emulator is fixed: the collection cannot choose which os9exec a reader
+has, and on any older build the hang is still there.  `prerr(2, errno)'
+is the one-line way back and the source says so.
+
+**The pin.**  `.github/workflows/build-image.yml` is at 261b4b6 and the
+release cannot go out on a pin older than the fixes it needs -- this one
+included.  Item 1 of `FOR-RDOGGETT.md' already holds that; the F$PErr
+commit joins the list when the os9exec session sends a hash.
+
+**THE LESSON, and it is a big one: every harness here hands os9exec a
+PIPE.**  `screenshots.py', `datatest.py', `drive.py', `os9try.py' -- all
+of them.  A fault that needs an SCF TERMINAL is invisible to every one,
+and this collection has 956 cards and 868 cases that could not have
+caught it.  A pty driver is twenty lines of `pty.fork'; when something is
+reported that nobody's sweep saw, reach for one before doubting the
+report.
+
+
 **THE `fpu' WE SHIPPED WAS NOT THE COPY THE GRANT COVERS, AND `fpu040'
 HAD NO GRANT AT ALL.**  Item 30 of `FOR-RDOGGETT.md' has it in full.  In
 short: the grant is `fpu.doc' -- "Permission to distribute FPU is granted
