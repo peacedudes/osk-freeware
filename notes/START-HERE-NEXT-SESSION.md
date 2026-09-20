@@ -115,6 +115,36 @@ nobody has to go through seventeen messages again:
               commercial software prohibited without written permission.
 
 None is a question of the kind [[os9-terms-standard]] says to stop on.
+
+**TASS WAS TAKEN AS FAR AS A BUILD ATTEMPT ON 2026-09-20, and it stops on
+something no amount of porting fixes: it only compiles WITH MNews.**  The
+tree is extracted, verified and CR-converted at
+`Scraped/tass-os9-1992/' (16 files, every byte count matching the shar's
+own MANIFEST, pristine copies in `ORIG/'), so nobody need do that again.
+Three things were learned by building it:
+
+  1. `-DREGEXP' wants a `regexp.h' this toolchain has not got.  Dropping
+     it costs regular-expression search and nothing else.
+  2. `mail.c' typedefs `off_t', which COMPAT's `<types.h>' already
+     supplies.  Guarding it with COMPAT's OWN guard name,
+     `_OSK_COMPAT_OFF_T', is the fix -- that is what the guard is for and
+     COMPAT's header says so.
+  3. **`page.c' line 1063, in the `#ifndef MNEWS' arm, reads**
+
+         Insert your cancel-cmd here!
+
+     which is not C.  The author left the non-MNews path as a to-do.
+     Tass is written to sit ON TOP OF MNews: it takes its spool and
+     active file from `MNEWS.DIR' and `MNEWS.LIB', posts and cancels
+     through MNews's `inews', and links MNews's `8bit.l'.
+
+**So Tass cannot ship without MNews**, and MNews's own terms forbid
+redistributing only parts of it -- 137 files, 399KB, with INEWS and an
+8-bit library.  Taking Tass means taking a whole news system for OS-9 and
+finding it a spool to read.  That is a real piece of work and a real
+question about the collection's shape, not an afternoon's port.  It is
+NOT started, and the cost is written down here so the decision can be
+made with the number in hand.
 **Ptyman is the one to leave**: a pseudo-terminal MANAGER is kernel-level
 -- `cpty.a' and `miscasm.a' are in its source list -- and belongs with
 `systemfmpaket' on the "out of scope for a collection of applications"
