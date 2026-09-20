@@ -62,6 +62,19 @@ written after fixing those two).  **Check `echo $OS9DISK' before
 believing a run**, and have a tool print the image and the emulator it
 used.
 
+**NOTHING IN THIS REPO NEEDS THOSE VARIABLES**, checked 2026-09-20 when
+rdoggett asked whether he could clear the OS-9 things out of his shell.
+Every harness builds its own environment -- `dict(os.environ,
+OS9DISK=image, OS9H0=image, ...)' in datatest, drive, screenshots,
+playtest, os9try and the rest -- so the exported values are overridden
+before os9exec ever sees them, and `tools/paths.py' finds the emulator
+from `OS9EXEC_DIR' or its own default.  What DOES read them is his own
+`osk' script (`~/bin/osk' is one line, `os9exec shell "..."', with no
+disk of its own), so the `os9' alias for his SDK session depends on
+`OS9DISK', `OS9H0' and `OS9H3' entirely.  His `free' alias sets all three
+itself and is unaffected either way.  That is his call and his file;
+nothing here was touched.
+
 **THE LESSON, and it is a big one: every harness here hands os9exec a
 PIPE.**  `screenshots.py', `datatest.py', `drive.py', `os9try.py' -- all
 of them.  A fault that needs an SCF TERMINAL is invisible to every one,
