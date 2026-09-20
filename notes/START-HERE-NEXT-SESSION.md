@@ -53,6 +53,20 @@ and md5 both against what is on the disk.**
 
 ### Where it stands, and how it was checked
 
+**THE PUBLISHED PAGE WAS CHECKED STRUCTURALLY for the first time**, which
+is cheap and had never been done -- `notes/PLAN.md' has said "not yet
+read rendered in a browser" since 2026-09-09 and that is still true, but
+this is the half a machine can do.  Feeding `docs/index.html' through
+Python's own `html.parser': no unclosed tag, no mismatched close.  Its
+three JavaScript payloads all parse as JSON -- DATA 1033 programs, BLURB
+22 categories, ORDER 23 (the extra is `Uncategorised', the fallback
+bucket, empty as it should be).  All 1010 keys in `docs/screens.js' name
+a program in DATA, and no card points at a help file that is not in
+`docs/help'.  Worth re-running after any change to `gen_catalog.py':
+
+    python3 -c "from html.parser import HTMLParser; ..."   # see the log
+
+
 **FOUR REPORTS THAT ARE NOT GATES, all of them at zero as of the end of
 2026-09-19, and each made to fail on purpose against a scratch tree
 before being believed.**  `tools/README.md' has them under "Reports that
