@@ -128,22 +128,6 @@ snap
 send    \030\003
 wait    3
 
-shot    emacs.mm1
-cap     MicroEMACS 4.00 built for the MM/1 computer -- the same editor and
-cap     keys as emacs.  Control-X control-C leaves it.
-try     emacs.mm1 tmp/EDIT/jabber.txt
-run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
-wait    2
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     emacs.mm1 tmp/EDIT/jabber.txt
-wait    8
-snap
-send    \030\003
-wait    3
-
 shot    umacs
 cap     uMacs 1.0, MicroEMACS in 45K -- the same Emacs keys, no macro
 cap     language.  Its mode line names the file.  Control-X control-C leaves it.

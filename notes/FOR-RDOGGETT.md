@@ -53,13 +53,6 @@ dictionary, ship your `dict.191` in `SRC/ispell`, retire `ispell_rebuilt`.
 *If its source ships, the 1989 README grants permission to POST rather than a
 licence, and `SOURCES.txt` should say exactly that.*
 
-**24. Twelve "second build of" programs -- gone, or kept and explained?**
-You asked of `vi_cio`: "we don't need both (are there others like this)??"
-They are three different things -- our rebuilds kept beside a period binary
-on purpose, a genuinely different implementation worth having, and plain
-duplicates. **Recommend: keep the first two, drop the third**, which on that
-reading is `emacs.mm1` alone.
-
 **26. `pnmtosir`/`sirtopnm`: patch the 1991 bug, or preserve it?**
 One loop bound in the reader -- `i < 1531` where the header is 1532 shorts --
 so every colour plane comes back shifted two bytes. I predicted the exact

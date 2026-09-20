@@ -167,10 +167,8 @@ run     echo "--- infocom.tcap:"
 run     /dd/CMDS/infocom.tcap
 run     echo "--- end"
 
-drive   lnk-org-and-emacs-mm1
+drive   lnk-org
 run     /dd/CMDS/lnk.org
-run     echo "--- emacs.mm1:"
-run     /dd/CMDS/emacs.mm1
 run     echo "--- end"
 
 drive   yuvsplit-pair

@@ -477,7 +477,6 @@ elvrec|none|it takes the name of a preserved file; run bare it lists what is pre
 exrecover|none|it takes a user name and a file name and nothing else
 em|em -?|
 emacs|none|it takes file names and no help flag; its help lives inside, in the macros and help files under USR/LIB/EMACS
-emacs.mm1|none|it takes file names and no help flag; its help lives inside, in the macros and help files under USR/LIB/EMACS
 umacs|none|it takes file names and no help flag
 me|me -?|
 mg|none|it takes file names and no help flag; control-H inside it is the help key

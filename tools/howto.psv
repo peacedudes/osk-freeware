@@ -90,7 +90,6 @@ crib|Full-screen cribbage, and it wants TERM -- run it from a login session. Ans
 cribbage|The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out.
 editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu.
 emacs|Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS.
-emacs.mm1|The MM/1 build of `emacs'; the same keys, control-X control-C quits.
 gshell|A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it.
 hang|Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict.
 hotel|Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say.

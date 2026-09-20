@@ -1,6 +1,6 @@
 # What is on this disk
 
-1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -12,7 +12,7 @@
 | Category | Programs | |
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Editors](#editors) | 21 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
@@ -85,7 +85,7 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>22 programs</summary>
+<details><summary>21 programs</summary>
 
 **Alternates**
 
@@ -108,7 +108,6 @@
 |---|---|
 | `em` | MicroEMACS 3.8b, a screen editor with Emacs keys<br>**How:** A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare. |
 | `emacs` | &#9733; MicroEMACS 4.00, a full-screen editor with Emacs keys and a macro language; its macros and help are in USR/LIB/EMACS.<br>**How:** Full-screen editor, MicroEMACS keys. Control-X control-C quits. Its macros and help are in USR/LIB/EMACS. |
-| `emacs.mm1` | &#9733; MicroEMACS 4.00 built for the MM/1 -- the same editor as `emacs'<br>**How:** The MM/1 build of `emacs'; the same keys, control-X control-C quits. |
 | `me` | MicroEMACS 3.11, a screen editor with Emacs keys and German messages (Datei for File); needs TERM set<br>**How:** Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits. |
 | `mg` | &#9733; Mg, a small MicroGnuEmacs -- Emacs keys in 79K, its documentation under DOC/mg.<br>**How:** Full-screen editor, Emacs keys. Control-X control-C quits. |
 | `umacs` | &#9733; uMacs 1.0, MicroEMACS in 45K -- the same keys, no macro language Shares its name with a utility of your own -- README-NAMES<br>**How:** A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set. |
@@ -276,7 +275,7 @@
 | `ag` | finds every phrase the letters of a word or phrase make in a word list: `ag "dirty room"' gives dormitory and dirty moor; -w lists the words it could use<br>**How:** `ag "dirty room"' prints every phrase made from exactly those letters out of GAMES/words, one a line. -d names another word list (- for standard input), -s 3 drops words shorter than three letters, -a counts a and i as words, -w also lists the usable words and -W only those, -o writes to a file. Long phrases give very many answers. |
 | `anagram` | finds the anagrams of a word in the word list GAMES/words: `anagram listen' prints enlist, listen, silent and tinsel; -l also lists near misses with their leftover letters<br>**How:** `anagram listen' lists every word in GAMES/words spelled with exactly those letters. -l adds words that use some of them, with the leftovers in brackets; -m sets the shortest word counted (2); -d names another word list. |
 | `buildhash` | build ispell's dictionary hash.  It reads a word list called `dict.191' (the name is compiled in). /dd/LIB/ispell.hash is the built hash, 490,186 bytes, and it ships, so ispell itself reads that and works.  `chardef' reads the same word list. |
-| `ispell` | interactive spelling checker, another edition than the one DOC/ispell describes, with no source here.  It faults at its first dictionary lookup; REBUILT/ispell_rebuilt works<br>**How:** Interactive spelling checker, `ispell <file>', and `ispell -l <file>' for a list of the unknown words -- but this build lists correct words as unknown too and stops with a bus error at its first dictionary lookup (measured 2026-09-15). It is another edition than DOC/ispell describes, with no source on the disk. REBUILT/ispell_rebuilt is the working build: `ispell_rebuilt -l < file'. |
+| `ispell` | interactive spelling checker, a different edition from the one DOC/ispell describes.  The two editions cannot read each other's hash table and both look for it at one compiled-in name, so on this disk it stops on the first word and REBUILT/ispell_rebuilt, whose edition LIB/ispell.hash belongs to, is the one to use.  Not a fault in the program: given a table built from its own dictionary it lists the misspellings and exits 0, measured 2026-09-20<br>**How:** Interactive spelling checker, `ispell <file>', and `ispell -l <file>' for a list of the unknown words -- but this build lists correct words as unknown too and stops with a bus error at its first dictionary lookup (measured 2026-09-15). It is another edition than DOC/ispell describes, with no source on the disk. REBUILT/ispell_rebuilt is the working build: `ispell_rebuilt -l < file'. |
 | `jargon` | a browser for the Jargon File, the hackers' dictionary: `jargon -b word' opens at an entry; it reads jargon.txt and jargon.idx from VH on its own<br>**How:** A browser for the Jargon File, which is here: VH/jargon.txt, version 3.0.0 of 27 July 1993, with its index. It will not read SYS/termcap -- do `. /dd/SYS/termcap.entry' first, then `jargon -m'. |
 | `makelex` | &#9733; compiles sonnet's lex.data word list into a C array |
 | `speech` | translates English text into phonemes, the front half of a speech synthesiser: run bare it reads a line and prints its transcription; `speech in out' does a whole file<br>`Error: Cannot open input file.` |
