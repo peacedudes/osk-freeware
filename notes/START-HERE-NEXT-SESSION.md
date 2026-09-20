@@ -4,6 +4,56 @@
 
 ### The one thing to read before anything else
 
+**FOUR DECISIONS WERE TAKEN ON 2026-09-20 AND ALL FOUR ARE DONE.**  They
+were put as one question each before rdoggett went to bed, with a
+recommendation; he took all four recommendations.  FOR-RDOGGETT is down
+to eight items because of it.
+
+  21  `cpp'    SHIP IT.  Decus CPP, Martin Minow's public-domain C
+               preprocessor, in a copy already adapted for OS-9 before it
+               reached us -- SYS_OSK in cppdef.h, an #ifdef OSK in cpp4.c,
+               and Microware's `#P'/`#5' line markers instead of `#line'.
+               ONE line changed to build it (cpp.h declared sprintf as
+               char*, Microware's stdio.h has it int).  Source, recipe,
+               index entry, origin, category, howto, captured help, terms,
+               a card -- and a line in shadowed-names.txt, because it
+               wears the name of the reader's own preprocessor.
+  23  ispell   IT WAS NEVER BROKEN.  See below.
+  24  dupes    DROP THE PLAIN DUPLICATES.  Only `emacs.mm1' qualified, and
+               SOURCES.txt was wrong about it twice -- it called it "the
+               macro/config module loaded at startup" and said `emacs'
+               required it.  `emacs' never names it and it is a whole
+               131KB editor.  Checked before removing.
+  26  SIR      PATCH IT.  `i < 1532' where the 1991 original has 1531, so
+               `sirtopnm' no longer starts two bytes early.  Red comes back
+               red, an 8x4 image round-trips byte for byte, and the grey
+               branch works too.  SOURCES.txt records the one program that
+               differs from the archive.
+
+**ispell IS THE BIG ONE.**  The shipped `CMDS/ispell' and `CMDS/buildhash'
+were always the same edition as each other -- our rebuilds come to 34,582
+and 21,650 bytes against their 34,502 and 21,564 -- and `SRC/ispell' held
+a DIFFERENT edition whose only purpose was to build the twin,
+`REBUILT/ispell_rebuilt'.  `LIB/ispell.hash' was a 490,186-byte table for
+that other edition which nothing on the disk could reproduce, so the
+shipped binary stopped on the first word it looked up and every document
+here called it broken.
+
+Now: `SRC/ispell' is the edition the binaries came from, `LIB/ispell.hash'
+is `buildhash's own output over `SRC/ispell/dict.191' (17,632 words,
+329,748 bytes), and the twin is retired -- it worked ONLY with the stale
+table, and given a fresh one it reported no misspellings at all in text
+full of them.  What the card shows now:
+
+    ispell -l tmp/TXT/spell.txt
+    brilig / slithy / tovs / gyre / gimble / wabe
+
+**The reusable part: a program written off as broken was being handed the
+wrong DATA, and the data was the thing nobody could rebuild.**  Ask what
+a program's table, dictionary or index was made from, and whether
+anything here can make it again.
+
+
 **USENET-REWIND IS CANCELLED AND ACCESS ENDS 2026-10-14.**  Until then the
 key at `~/.config/usenet-rewind/os9' and `pull.py'/`mine.py' beside the
 archive STAY -- rdoggett's call, 2026-09-20 -- in case something turns up
