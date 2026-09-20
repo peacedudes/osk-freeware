@@ -3,7 +3,16 @@ r"""Run one command on a REAL TERMINAL and count what comes back.
 
     tools/pty_probe.py "load nosuchmodule"
     tools/pty_probe.py "tree /nosuchdir" --seconds 30
-    OS9DISK=<other.dd> OS9EXEC=<other binary> tools/pty_probe.py "..."
+    tools/pty_probe.py "..." --image <other.dd> --os9exec <other binary>
+
+IT IGNORES OS9DISK AND OS9H0 IN THE ENVIRONMENT, on purpose.  Both are
+commonly exported on this machine -- OS9DISK at the SDK overlay, OS9H0 at
+a symlink -- and a first version of this tool took them as defaults.  It
+then booted the SDK as /dd, found no /dd/SYS/login, and died before it
+could type anything, reporting an `Input/output error' from the pty
+rather than "I measured the wrong disk".  A tool that answers about a
+tree nobody pointed it at is the shape this collection keeps producing;
+the image and the emulator are named in the output of every run.
 
 WHY THIS EXISTS.  Every other harness here -- `screenshots.py',
 `datatest.py', `drive.py', `os9try.py' -- captures os9exec through a PIPE.
@@ -90,26 +99,38 @@ def run(command, seconds, image, emulator):
 def main(argv):
     command = "load nosuchmodule"
     seconds = 20
-    rest = []
+    opts, rest = {}, []
     i = 0
     while i < len(argv):
-        if argv[i] == "--seconds" and i + 1 < len(argv):
-            seconds = int(argv[i + 1])
+        if argv[i] in ("--seconds", "--image", "--os9exec") \
+                and i + 1 < len(argv):
+            if argv[i] == "--seconds":
+                seconds = int(argv[i + 1])
+            else:
+                opts[argv[i]] = argv[i + 1]
             i += 2
             continue
+        if argv[i].startswith("--"):
+            sys.stderr.write("pty_probe: unknown option %s\n" % argv[i])
+            return 2
         rest.append(argv[i])
         i += 1
     if rest:
         command = rest[0]
 
-    image = os.environ.get("OS9DISK", os.path.join(REPO, "osk-freeware.dd"))
-    emulator = os.environ.get(
-        "OS9EXEC", os.path.expanduser("~/Developer/os9/os9exec/os9exec"))
+    # NOT os.environ: see the header.  OS9DISK is exported on this machine
+    # and points at the SDK overlay, not at the collection.
+    image = opts.get("--image", os.path.join(REPO, "osk-freeware.dd"))
+    emulator = opts.get(
+        "--os9exec", os.path.expanduser("~/Developer/os9/os9exec/os9exec"))
     for p in (image, emulator):
         if not os.path.exists(p):
             sys.stderr.write("pty_probe: no %s\n" % p)
             return 2
 
+    print("image     %s" % image)
+    print("os9exec   %s" % emulator)
+    print("command   %s\n" % command)
     tail = run(command, seconds, image, emulator)
     print(tail)
 
