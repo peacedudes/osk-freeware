@@ -628,18 +628,25 @@ printer at all (take `dvitype`). Checked 2026-09-21, which is also a
 reminder that this section is the kind of list that goes stale silently --
 `ls disk/DOC | grep README` before believing it.
 
-**What still has no chooser**: the spelling tools, and the compression
-family's four `compress` builds -- though `README-ARCHIVERS` covers most of
-that ground already. Neither is as clearly wanted as the six that are done.
+**Both of the remaining candidates were examined on 2026-09-21 and neither
+wants one, so this section is done.** The spelling tools are `ispell` (with
+`buildhash` for its table), `look` and `agrep` -- three programs doing three
+DIFFERENT jobs, not several of a thing to choose between, so a chooser would
+be a forced shape. The compression family is already covered:
+`README-ARCHIVERS` has `compress` and `compr` side by side and sends a
+reader to the plain `gzip` unless they know which of the six REBUILT builds
+they need, and there are two compress binaries now, not four.
+
+Done when: each family has a `DOC/README-<family>` that a stranger can act
+on without installing anything -- **and that is the case.** Seven of them:
+VI, SHELLS, ARCHIVERS, KERMIT, EDITORS, GREP, DVI, beside NETPBM and
+METAFONT.
 
 Everything you need is derivable without running them: size, whether it needs
 `cio` (the star in `DOC/INDEX`), module name (collisions), source present
 (`tools/src_census.py`), documentation present (`tools/doc_census.py`), and
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
-
-Done when: each family has a `DOC/README-<family>` that a stranger can act on
-without installing anything.
 
 ### 3. Tests that can fail again — 45 programs have none
 
