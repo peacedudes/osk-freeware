@@ -81,15 +81,32 @@ that copy, `git revert` puts `fpu040` back.
 *The other five runtime modules rest on Allan's permission, which names the
 modules rather than copies, and are fine.*
 
-**31. Four programs work if a module called `shell' is resident, and I
+**31. Five programs work if a module called `shell' is resident, and I
 can make one in two minutes. Should I?**
-`run', `clock', `if' and `qp' each fork a module named `shell' -- the one
-that comes with OS-9 -- and each is written up here as doing nothing.
-Measured 2026-09-20: copy this disk's `ksh', change the MODULE name to
-`shell' with `tools/rename_module.py', load it, and `run "ls SYS"' lists
-SYS on the console and returns 0, where without it the same command
-returns 0 having printed nothing. So the want is exactly that module and
-nothing else.
+`run', `su', `clock', `if' and `qp' each fork a module named `shell' --
+the one that comes with OS-9 -- and each is written up here as doing
+nothing. Measured 2026-09-20: copy this disk's `ksh', change the MODULE
+name to `shell' with `tools/rename_module.py', load it, and
+
+    run "ls SYS"        lists SYS on the console and returns 0
+                        (without it: returns 0, prints nothing at all)
+    su tester -c whoami prints `tester' and returns 0 -- it really does
+                        change identity (without it: 221, module not found)
+
+    if loaded shell whoami endif
+                        runs whoami and prints its answer, both arms,
+                        both conditions (without it: nothing runs)
+
+`su' is the one that convinced me this is worth asking about: its card
+says there is nobody to become, and SYS/password has listed `tester',
+`uucp', `os9' and `su' all along.
+
+**But it would NOT fix all five, and that is the honest part of the
+question.** `clock' writes `banner 'Sunday' >>>-/pipe/.temp &' -- MICROWARE
+shell redirection -- and a renamed ksh answers `[0]: syntax error'. So a
+substitute shell fixes the three that hand over a plain command line and
+not the ones that hand over their own shell's syntax. Whatever is decided,
+it is three programs, not five.
 
 Shipping one would be a copy of `ksh' under a name that, on a real
 system, means Microware's shell. It would make four programs work for a
