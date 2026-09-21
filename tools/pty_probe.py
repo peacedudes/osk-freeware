@@ -14,6 +14,13 @@ rather than "I measured the wrong disk".  A tool that answers about a
 tree nobody pointed it at is the shape this collection keeps producing;
 the image and the emulator are named in the output of every run.
 
+The same applies to DEVICES.  A session used to inherit every `OS9H<n>'
+the operator exported -- on 2026-09-20 `idevs', typed inside a probe, showed
+an `h3' mounted from a tree outside this repository that nobody had asked
+for.  Nothing is inherited now (see tools/os9env.py); `--mount h5=<dir>'
+names one on purpose, and the run prints both what it mounted and what it
+ignored.
+
 WHY THIS EXISTS.  Every other harness here -- `screenshots.py',
 `datatest.py', `drive.py', `os9try.py' -- captures os9exec through a PIPE.
 A fault that only appears when a path is an SCF TERMINAL is invisible to
@@ -45,15 +52,15 @@ import sys
 import time
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from os9env import emulator_env, dropped
 
 
-def run(command, seconds, image, emulator):
+def run(command, seconds, image, emulator, mounts=None):
     pid, fd = pty.fork()
     if pid == 0:                                  # the child IS the terminal
-        env = dict(os.environ)
-        env["OS9DISK"] = image
-        env["OS9H0"] = image
-        env["TERM"] = "vt100"
+        env = emulator_env(OS9DISK=image, OS9H0=image, TERM="vt100")
+        env.update(mounts or {})
         os.execve(emulator, [emulator, "/dd/CMDS/bash", "/dd/SYS/login"], env)
 
     out = bytearray()
@@ -99,9 +106,21 @@ def run(command, seconds, image, emulator):
 def main(argv):
     command = "load nosuchmodule"
     seconds = 20
-    opts, rest = {}, []
+    opts, rest, mounts = {}, [], {}
     i = 0
     while i < len(argv):
+        if argv[i] == "--mount" and i + 1 < len(argv):
+            # --mount h5=/some/dir -- the ONLY way to give a session a device
+            # beyond /dd and /h0, now that nothing is inherited.  Name it and
+            # it is printed with the rest of the run.
+            spec = argv[i + 1]
+            if "=" not in spec:
+                sys.stderr.write("pty_probe: --mount wants hN=path\n")
+                return 2
+            dev, path = spec.split("=", 1)
+            mounts["OS9" + dev.upper().replace("/", "")] = path
+            i += 2
+            continue
         if argv[i] in ("--seconds", "--image", "--os9exec") \
                 and i + 1 < len(argv):
             if argv[i] == "--seconds":
@@ -130,8 +149,14 @@ def main(argv):
 
     print("image     %s" % image)
     print("os9exec   %s" % emulator)
+    for k in sorted(mounts):
+        print("mount     %-9s %s" % (k, mounts[k]))
+    inherited = sorted(k for k in dropped() if k not in ("OS9DISK", "OS9H0"))
+    if inherited:
+        print("ignored   %s exported here, NOT passed to the session"
+              % ", ".join(inherited))
     print("command   %s\n" % command)
-    tail = run(command, seconds, image, emulator)
+    tail = run(command, seconds, image, emulator, mounts)
     print(tail)
 
     lines = [l.strip() for l in re.split(r"[\r\n]+", tail) if l.strip()]

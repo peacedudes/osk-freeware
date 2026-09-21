@@ -56,6 +56,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from os9env import emulator_env
 import imagelock                                    # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -178,8 +179,10 @@ def run_sheet(path, image, seconds):
     work = os.path.join(OUT, "work")
     os.makedirs(os.path.join(work, "h1"), exist_ok=True)
     sh = os.path.join(work, "h1", "%s.sh" % fam["family"])
-    env = dict(os.environ, LC_ALL="C", OS9DISK=image, OS9H0=image,
-               OS9H1=os.path.join(work, "h1"))
+    # emulator_env, not dict(os.environ): see tools/os9env.py.  A harness
+    # names the devices it wants and inherits none.
+    env = emulator_env(LC_ALL="C", OS9DISK=image, OS9H0=image,
+                       OS9H1=os.path.join(work, "h1"))
 
     per, todo, raw = {}, list(fam["stanzas"]), ""
     # STRAIGHT TO A FILE, not to a pipe read at the end. A stanza that hangs

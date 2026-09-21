@@ -39,6 +39,7 @@ import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
+from os9env import emulator_env
 import imagelock                                        # noqa: E402
 import screenshots                                      # noqa: E402
 
@@ -105,8 +106,9 @@ def run(image, command, chd=None, loads=(), stdin=(), timeout=60):
     proc += list(stdin)
     with open(os.path.join(scratch, "p.proc"), "wb") as f:
         f.write(("\r".join(proc) + "\r").encode("latin-1", "replace"))
-    env = dict(os.environ, OS9DISK=image, OS9H0=image, OS9H1=SDK,
-               OS9H5=scratch)
+    # emulator_env, not dict(os.environ): see tools/os9env.py.
+    env = emulator_env(OS9DISK=image, OS9H0=image, OS9H1=SDK,
+                       OS9H5=scratch)
     try:
         out = subprocess.run([OS9EXEC, "-r", "/h1/CMDS/shell", "/h5/p.proc"],
                              stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,

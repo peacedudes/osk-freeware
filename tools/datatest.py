@@ -60,6 +60,7 @@ import sys
 
 # One writer at a time: all three harnesses write to the image itself.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from os9env import emulator_env
 import imagelock                                    # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -223,8 +224,10 @@ def run_family(path, image, workdir):
     # for a reason that had nothing to do with the program. WN is the clear
     # case: its document root is compiled in as /h0/c/unid/wn_1.14.3/osk, so
     # without this every request it is given comes back 404.
-    env = dict(os.environ, LC_ALL="C", OS9DISK=image, OS9H0=image,
-               OS9H1=os.path.join(workdir, "h1"))
+    # emulator_env, not dict(os.environ): see tools/os9env.py.  A harness
+    # names the devices it wants and inherits none.
+    env = emulator_env(LC_ALL="C", OS9DISK=image, OS9H0=image,
+                       OS9H1=os.path.join(workdir, "h1"))
 
     # RESTART WHERE THE OUTPUT STOPPED.  A case whose program takes the
     # session down with it must not silently fail every case after it: that

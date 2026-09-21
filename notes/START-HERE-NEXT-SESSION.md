@@ -1110,6 +1110,32 @@ session.  Two things are established:
     bash**, so a background job's pid cannot be captured.  `kill' is a
     bash builtin here and returns 0 having killed nothing.
 
+**EVERY HARNESS WAS MOUNTING A DEVICE NOBODY ASKED FOR, and it was
+found by typing `idevs' inside a probe session for an unrelated reason.**
+All five built their environment as `dict(os.environ, OS9DISK=..., ...)',
+which passes through every OTHER `OS9*' variable the operator happens to
+export.  On this machine that is `OS9H3', pointing at a tree outside this
+repository, so every session every harness ever started had an extra RBF
+device on it:
+
+    h3         image    rbf                 <a tree outside this repository>
+
+**Nothing read from it** -- no sheet, case or drive stanza names /h3, and
+that was checked both ways -- so no published result is wrong.  What was
+wrong is that a device appeared because of WHO RAN THE TOOL, invisibly,
+and nothing in any output said so.  `tools/os9env.py' is the fix:
+`emulator_env()' starts from a clean slate of `OS9*' and takes only what
+the harness names, and all five now use it.  `pty_probe' gained
+`--mount h5=<dir>' for the deliberate case and prints both what it
+mounted and what it ignored.
+
+Two inherited variables turned out to be harmless, and the checking is
+the point: `OS9T' names host terminals as `OS9T<n>' and its bare wildcard
+form was retired the same day, and `OS9STOP' only lets a non-super
+process run the emulator's `stop' command.  Neither changes what a
+program does.  So this is "a device you did not ask for", not "your
+results were wrong" -- say it that way.
+
 **A WAY TO TEST "IT NEEDS YOUR OWN OS-9's `shell'" WITHOUT SHIPPING ONE.**
 Several programs here fork a module called `shell' -- `run', `clock',
 `qp', `if', and anything whose `system()' goes that way -- and every one

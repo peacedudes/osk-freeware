@@ -124,6 +124,7 @@ import imagelock                                    # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
+from os9env import emulator_env
 import ansiscreen                                        # noqa: E402
 
 OS9EXEC = os.environ.get("OS9EXEC",
@@ -262,7 +263,8 @@ class Session:
         self.master, slave = pty.openpty()
         fcntl.ioctl(slave, termios.TIOCSWINSZ,
                     struct.pack("HHHH", rows, cols, 0, 0))
-        env = dict(os.environ, OS9DISK=image, OS9H0=image)
+        # emulator_env, not dict(os.environ): see tools/os9env.py.
+        env = emulator_env(OS9DISK=image, OS9H0=image)
         # Mount the reader's OS-9 system (locally, the SDK) as /h1 when OS9SDK
         # points at it, so the runb-only programs (bio, blackjack) capture
         # exactly as a reader with their own system runs them: `load
@@ -681,8 +683,8 @@ def capture_burst(image, shot):
     scratch = tempfile.mkdtemp(prefix="burst.")
     proc = os.path.join(scratch, "b.proc")
     open(proc, "wb").write(("\r".join(lines) + "\r").encode("latin-1", "replace"))
-    envd = dict(os.environ, OS9DISK=image, OS9H0=image, OS9H1=sdk,
-                OS9H6=scratch)
+    envd = emulator_env(OS9DISK=image, OS9H0=image, OS9H1=sdk,
+                        OS9H6=scratch)
     try:
         out = subprocess.run([OS9EXEC, "-r", "/h1/CMDS/shell", "/h6/b.proc"],
                              stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
