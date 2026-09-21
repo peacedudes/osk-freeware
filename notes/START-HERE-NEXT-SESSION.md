@@ -1110,6 +1110,27 @@ session.  Two things are established:
     bash**, so a background job's pid cannot be captured.  `kill' is a
     bash builtin here and returns 0 having killed nothing.
 
+**SHEETS AND CASES NAME 24 PROGRAMS THAT ARE NOT ON THE DISK, and ten
+more under the wrong directory -- `tools/stale_paths.py' lists them.**
+Found by running `cal2.drive' to check the environment change had not
+broken `drive.py': its first stanza opens with three E$PNNF lines because
+it drives `/dd/CMDS/easter', and easter came off the disk.  `system7.drive'
+still drives `/dd/CMDS/drop', which became `unkeep' on 2026-09-09.
+`/dd/CMDS/tex' is at `CMDS/TEXCMDS/tex' and `/dd/CMDS/readmsg' is at
+`CMDS/ELM/readmsg' -- the very program DOC/README-RUNNING warns about.
+
+**It is NOT a gate and should not become one**: `no-such-module' is the
+point of the case that names it.  Run it after removing or renaming a
+program, which is when the debris is created.
+
+One of them was live: `comms.cases' cleaned up with `/dd/CMDS/deldir',
+which is not on this disk, so the tsu case had been tested against
+whatever the previous run left behind -- and passed twice in a row only
+because tsu prints the same two lines either way.  It is `rm -rf' now, and
+the family passes 11 of 11 three times running on one unreset image.  **A
+cleanup step that silently does nothing is this collection's oldest shape
+of bug** and it was sitting inside the suite that exists to catch it.
+
 **EVERY HARNESS WAS MOUNTING A DEVICE NOBODY ASKED FOR, and it was
 found by typing `idevs' inside a probe session for an unrelated reason.**
 All five built their environment as `dict(os.environ, OS9DISK=..., ...)',

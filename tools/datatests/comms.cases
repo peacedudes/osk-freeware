@@ -58,8 +58,14 @@ expect  uld: no filename specified
 
 # tsu is tterm's setup program and it DOES something: it checks for the
 # directories tterm needs and makes the ones that are missing.
+#
+# THE CLEANUP HAS TO ACTUALLY CLEAN.  This line was `deldir', which is not
+# on this disk -- so for as long as it stood, the case tested tsu against
+# whatever the previous run had left, and only passed twice in a row
+# because tsu prints the same two lines either way.  A cleanup step that
+# silently does nothing is this collection's oldest shape of bug.
 case    tsu-creates-the-directories-tterm-needs
-run     /dd/CMDS/deldir /dd/USR/TTERM
+run     /dd/CMDS/rm -rf /dd/USR/TTERM
 run     /dd/CMDS/COMMS/tsu
 run     /dd/CMDS/ls /dd/USR/TTERM
 expect  Checking /dd/USR/TTERM
