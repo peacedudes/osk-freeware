@@ -685,6 +685,18 @@ by bare name, so `load' that out of `CMDS/UUCP' first. **Read the source
 header before deciding a program needs a peer**; three of the four that
 came off today were driven from a file or from standard input.
 
+**`hist` was tried on 2026-09-21 and does not capture cleanly**, so it stays
+on the list. It runs -- it takes the terminal (`tmode noecho`), accepts a
+line, and hands it on through `system()`, which this C library gives to
+`$SHELL`; its history file default is `/r0/history`, and `mount -r=256k /r0`
+provides that. But EVERY CHARACTER IT ECHOES ARRIVES DOUBLED in the
+capture -- `whoami` renders as `wwhhooaammii` -- and the `h` listing never
+drew. Sending the word in one write rather than a character at a time makes
+no difference, so it is not the send pattern. This is `snake's situation: a
+program that plays and does not photograph, and a flapping test is worse
+than a gap. Whether the doubling is hist's own echo handling or the harness
+was NOT established.
+
 **`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
 spends the hour again. Answer all three of its questions and it reaches the
 Atari A-line draw and aborts -- `E_PRCABT`, with the emulator's process dump
