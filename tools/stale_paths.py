@@ -25,10 +25,10 @@ runs `/dd/CMDS/bincheckr' and `/dd/CMDS/mkdict' and then EXPECTS
 live under `CMDS/GAMES'.  "Correcting" those two paths would delete the
 assertion.  `no-such-module' is the point of the case that names it, and a
 case may name `shell' precisely to show what happens when the reader's own
-shell is absent. A checker that
-failed on those would be turned off within a week. So this REPORTS, and the
-judgement stays with the person removing or renaming a program -- run it then,
-and after any pass that moves a program between directories.
+shell is absent.  A checker that failed on those would be turned off within
+a week.  So this REPORTS, and the judgement stays with the person removing
+or renaming a program -- run it then, and after any pass that moves a
+program between directories.
 
 It reads `tools/drives/*.drive', `tools/screenshots/*.sheet' and
 `tools/datatests/*.cases', ignores comment lines, and only considers paths
