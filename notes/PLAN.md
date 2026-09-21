@@ -648,9 +648,9 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 11 programs have none
+### 3. Tests that can fail again — 10 programs have none
 
-**Eleven, measured 2026-09-21** -- it was 45 when this heading was
+**Ten, measured 2026-09-21** -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
 not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
@@ -676,6 +676,14 @@ costs nothing; the shipped image was md5'd again afterwards and was likewise
 unchanged. That says nothing about Optimize, which nobody has run. The
 status panel still reads `Analyzing...' at forty seconds on a 312M image, so
 keys sent after that are ignored -- which is why the test sends none.
+
+`fileserv' came off with a data case, and it was on the list because nobody
+had given it a request. **Its protocol is in its own source header** --
+`SRC/uucpbb/fileserv.c': a mail message on standard input whose body holds
+`reply <address>', `help', `get <file>', `dir' or `quit'. It forks `rmail'
+by bare name, so `load' that out of `CMDS/UUCP' first. **Read the source
+header before deciding a program needs a peer**; three of the four that
+came off today were driven from a file or from standard input.
 
 **`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
 spends the hour again. Answer all three of its questions and it reaches the

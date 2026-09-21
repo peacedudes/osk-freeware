@@ -1110,6 +1110,42 @@ session.  Two things are established:
     bash**, so a background job's pid cannot be captured.  `kill' is a
     bash builtin here and returns 0 having killed nothing.
 
+**SEVEN PROGRAMS CAME OFF THE UNTESTED LIST (17 to 10), and the pattern is
+worth more than the count: most of them were not untestable, they had
+never been given what they read.**
+
+  * `fileserv' -- **its protocol is in its own source header.**
+    `SRC/uucpbb/fileserv.c' says it in words: a mail message on standard
+    input whose body holds `reply <address>', `help', `get <file>', `dir'
+    or `quit', and the help file ships at `SYS/UUCP/FileServ.help'.  Its
+    card had been an `ls' OF THE BINARY, captioned "with no request
+    waiting it has nothing to do".  It forks `rmail' by bare name, so
+    `load /dd/CMDS/UUCP/rmail' first -- the chx-not-PATH rule
+    DOC/README-RUNNING has given for printmail/readmsg all along.
+  * `splman', `splprt', `cron' -- daemons, asserted with `iprocs'.
+  * `mailx' -- asserted by what it ASKS for.
+  * `dm' -- a play-test, which turned up that its command letters are
+    LOWER case though the menu line prints them capitalised.  Capital `H'
+    does nothing; `h' lists the help.
+  * `sddemo' -- a play-test that presses nothing.  It is a defragmenter:
+    an image copy was md5'd, it was left drawing for thirty seconds, the
+    md5 was unchanged, and the shipped image was checked again afterwards.
+    **Nobody has pressed Optimize and no test should.**
+
+  `tplot' was tried and CANNOT have a data case -- answer all three of its
+  questions and it aborts where the Atari draw would start, which
+  `datatest' scores as a crash without reading the expects; answer two and
+  the third prompt repeats for ever.  Its card drives it correctly with
+  `send' and `kill'.
+
+**TWO TRAPS FROM WRITING THOSE.**  A daemon's STATE is not assertable --
+`iprocs' catches it in START rather than F$Sleep about a third of the time,
+and three cases flapped before they were rewritten to assert the name
+instead.  And a play-test that presses a key the program ignores saves a
+snap under a name that is a lie: `dm's first version pressed `H', passed,
+and left a snap called `help' with the directory panes in it -- which is
+how the card came to describe the keys wrongly in the first place.
+
 **FOUR MORE THINGS SETTLED AFTER THE ABOVE WAS WRITTEN.**
 
   * **Nothing here can set the clock, and none of the four programs is at
