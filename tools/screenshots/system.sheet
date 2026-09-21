@@ -712,8 +712,10 @@ size    24 80
 cap     vis runs a command over and over and redraws the screen with its
 cap     output, the way `watch' does elsewhere.  Its header names the
 cap     command, the delay between runs and the number of runs so far.
-try     vis -d=1 whoami
-run     vis -d=1 whoami
+cap     It runs the command here -- give it one that leaves a file behind
+cap     and the file is there -- but the screen is only ever the header.
+try     vis -d1 whoami
+run     vis -d1 whoami
 wait    4
 send    \023
 wait    1
