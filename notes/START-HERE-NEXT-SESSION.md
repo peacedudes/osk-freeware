@@ -995,6 +995,36 @@ keys.  Look at the screen.
 
 ### Left open
 
+**QUEUED FOR A QUIET MACHINE: `chardef' and `fkeys' SHIP THE VERY FILES
+THEIR EXCEPTIONS SAY THEY HAVE NOTHING TO READ.**  Found statically on
+2026-09-20 by asking which excepted programs have a `DOC/<name>'
+directory carrying something that is not a document:
+
+    DOC/chardef/test    a VT220 soft-font definition -- a name, a
+                        character code, and the glyph drawn in `*' and `.'
+    DOC/fkeys/f_keys    function-key definitions -- `6=dir\n', `11=\1b',
+                        `15=help ', `16=shell -e\n'
+
+Their exceptions say "no terminal here to load" and "it needs VT220
+hardware to program".  Both may still be true of the LOADING, but the
+programs would at least read and parse these and emit escape sequences,
+which is showable.  **This is the `logisim' mistake in CLAUDE.md, twice**
+-- a card showing a usage line while the disk carries the input.  Not
+tested yet; the machine was under a peer's load test all evening.
+
+**VERIFIED SOUND, statically, in the same pass:** `spottopgm',
+`brushtopbm', `gouldtoppm', `hpcdtoppm' and `ximtoppm' are each excepted
+for want of a sample in their format, and the disk has neither a sample
+NOR A WRITER for any of the five -- so unlike the SIR pair, which has
+`pnmtosir' beside `sirtopnm', no round trip can be built.  Those five
+exceptions are right and can be left alone.
+
+**AND A CLEAN SWEEP: every `try' line on every card names a real
+program.**  All 956 checked against the contents of `disk/CMDS' plus the
+reader's own utilities and the shell builtins.  Nothing to fix -- worth
+knowing it has been asked once.
+
+
 **`mw's CARD STARTS A COMPUTER PLAYER IN THE BACKGROUND AND NEVER STOPS
 IT**, and 74 stanzas of `games.sheet' follow it in the same emulator
 session.  Two things are established:
