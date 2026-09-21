@@ -668,6 +668,14 @@ line along the foot prints them capitalised. Capital `H' does nothing at
 all, twice over with nine seconds to answer in; `h' lists the help file.
 Index entry and caption both say so now.
 
+**`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
+spends the hour again. Answer all three of its questions and it reaches the
+Atari A-line draw and aborts -- `E_PRCABT`, with the emulator's process dump
+under it -- and `datatest` scores that as `vector=$0A`, a crash, without ever
+looking at the expects. Answer only two and the third prompt repeats for
+ever: 33KB of `x, y divisions ?` in eighteen seconds. Its card drives it
+with `send` and a `kill`, which is the right harness for it.
+
 **Do not assert the system call a daemon is sitting in.** The first version
 of those three expected `F$Sleep      splman', which is what `iprocs' shows
 a second later and what it showed every time it was measured by hand. Two
