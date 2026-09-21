@@ -22,18 +22,22 @@ the ref to the tip **commit**, taken at that moment.
 *Four fixes we depend on are on no remote: `40facae` `d401ce2` `685a4c3`
 `00fcec5`.*
 
-**Do not freeze the pin to the tip without asking them first.** As of the
-evening of 2026-09-20 the tip is `d64163b`, and the os9exec session told
-me unprompted that a change in that same commit range -- an idle-wait cap
-raised from one system tick to 50ms -- makes their own XOFF input test
-fail about one run in three, and that they were running six full suites to
-decide whether to put it back. Their words: *"if you ever build from my
-tree again, prefer a tagged commit over the tip until I have this
-settled."* Two things that are NOT affected, because I measured them on
-that very build: the `-d` tracing fix (verified against the repro that
-found it), and everything this collection's own gate and suite test --
-871 of 871 twice. But a pin is forever in a way a test run is not, so ask
-for the commit they want named rather than taking whatever is at the top.
+**The commit to pin is `60d4b0a`, and ASK THEM before taking any other.**
+This is not hypothetical and it caught one on its first outing. On the
+evening of 2026-09-20 the tip was `d64163b` -- exactly what a freeze that
+night would have taken -- and the os9exec session told me unprompted that
+an idle-wait cap raised from one system tick to 50ms in that same range
+made their own XOFF input test fail about one run in three. They have
+since put the cap back and measured it: seventeen clean full-suite runs,
+several with two suites running at once so the contention the failures
+preferred was present, then green gates across the board. `60d4b0a` is
+that correction, and it contains everything `d64163b` had.
+
+The `-d` tracing fix we depend on is two commits below the tip and both
+commits above it are independent of it, so the verification I did against
+`d64163b` still describes `60d4b0a`. Ask them for the commit they want
+named rather than taking whatever is at the top: a pin is forever in a
+way a test run is not.
 
 **3. Nobody has tried this on real hardware.**
 The guides say so plainly. If you know someone with a real system, that is

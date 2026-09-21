@@ -38,10 +38,19 @@ env:
   # commit pin at 261b4b6 (2026-08-04, on master) which would have built an
   # emulator without any of the above and reported success.
   #
-  # AT RELEASE, FREEZE IT. Replace the branch with the tip COMMIT, so that a
+  # AT RELEASE, FREEZE IT. Replace the branch with a COMMIT, so that a
   # force-push or a regression on a moving branch cannot change what a
   # tagged build produced. The tip moves fast -- 665ca8c to 7d54fa1 inside a
   # few hours on 2026-09-19 -- so take the hash at the moment of tagging.
+  #
+  # ASK FOR THE COMMIT; DO NOT JUST TAKE THE TIP. On 2026-09-20 the tip was
+  # d64163b and it carried a flake its own author knew about and we did not:
+  # an idle-wait cap that made their XOFF test fail about one run in three.
+  # A freeze that night would have taken exactly that commit. They corrected
+  # it and named 60d4b0a as the one to pin -- seventeen clean full-suite runs
+  # behind it, several under deliberate contention. The lesson is not the
+  # hash, which will be stale again: it is that the person who owns the
+  # emulator knows which commit is good and a tip does not.
   OS9EXEC_REPO: peacedudes/os9exec
   OS9EXEC_REF: fix/scf-pd-eor
 
