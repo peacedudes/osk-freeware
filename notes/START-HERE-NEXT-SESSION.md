@@ -1138,6 +1138,15 @@ never been given what they read.**
   the third prompt repeats for ever.  Its card drives it correctly with
   `send' and `kill'.
 
+**AND A THIRD, WHICH THE SUITE CAUGHT RATHER THAN ME.**  The new
+`fileserv' case creates `/dd/LOG/FileServ', and `driven.cases' asserts that
+`uulog' CANNOT open that file.  So the suite went 877 of 877 on the first
+run and 876 of 877 on the second, failing a case with nothing to do with
+fileserv.  That is the whole point of running it twice, and it is the first
+time it has caught one of mine.  Both the case and the card that runs
+fileserv put the log back now.  **If a test creates a file the disk ships
+without, delete it at the end** -- something may be asserting its absence.
+
 **TWO TRAPS FROM WRITING THOSE.**  A daemon's STATE is not assertable --
 `iprocs' catches it in START rather than F$Sleep about a third of the time,
 and three cases flapped before they were rewritten to assert the name
