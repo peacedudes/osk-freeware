@@ -1054,12 +1054,23 @@ run     uuname -l
 wait    5
 
 shot    uulog
-cap     Shows the UUCP transfer log, a line an event.  Nothing has been
-cap     transferred here, so there is no log to open and it says so; -s would
-cap     narrow a real log to one named site.
-try     uulog
-run     uulog
-wait    4
+size    24 80
+cap     Shows the UUCP transfer log, an event a line.  The log ships empty,
+cap     so the card makes an entry to read back: `rmail' attempts a local
+cap     delivery, does not find the mailbox in the shape it wants, and logs
+cap     the failure -- and uulog prints it, with the site, the time and the
+cap     reason.  `-s' narrows a real log to one named site.
+try     rmail tester; uulog
+# The log is APPENDED to, so without this the capture grows a line every
+# time the sheet is re-shot against an image that was not rebuilt -- and a
+# card whose screen changes for no reason of the program's is a card that
+# will read as drift later.  One entry is what a reader gets on a fresh
+# disk, so one entry is what the card shows.
+run     rm -f /dd/LOG/uulog
+run     clear
+wait    1
+run     rmail tester; uulog
+wait    6
 
 shot    uuclean
 cap     Removes stale jobs from the UUCP spool.  Its help lists the age
