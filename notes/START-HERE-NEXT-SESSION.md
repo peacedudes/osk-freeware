@@ -995,6 +995,28 @@ keys.  Look at the screen.
 
 ### Left open
 
+**`mw's CARD STARTS A COMPUTER PLAYER IN THE BACKGROUND AND NEVER STOPS
+IT**, and 74 stanzas of `games.sheet' follow it in the same emulator
+session.  Two things are established:
+
+  * the 74 that follow all pass, and `trek' -- the very next one --
+    scores `work', so whatever the leftover costs, it is not breaking
+    them today;
+  * **the stanza cannot kill it even if it wanted to: `$!' is 0 in this
+    bash**, so a background job's pid cannot be captured.  `kill' is a
+    bash builtin here and returns 0 having killed nothing.
+
+What is NOT established is whether the background player exits when the
+foreground game is quit with `Q'.  A timing comparison was attempted on
+2026-09-20 and is WORTHLESS: the os9exec session was running six
+deliberate spinning loops for a load test at the time, and the machine
+was at load average 12.  That is the trap
+[[os9-long-running-os9exec-is-normal]] warns about, walked straight into.
+**Redo it on a quiet machine** -- `uptime' first -- and if the player
+does outlive the game, the fix is probably to make `mw' the last stanza
+in its sheet rather than to try to kill it.
+
+
 **`snake' CANNOT HAVE A PLAY-TEST, and the reason is worth knowing
 before anyone tries again.**  It plays: the board draws, the `I' moves
 to h/j/k/l, the `$' is there and the snake chases.  But some of its
