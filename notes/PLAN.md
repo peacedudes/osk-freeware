@@ -648,9 +648,9 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 12 programs have none
+### 3. Tests that can fail again — 11 programs have none
 
-**Twelve, measured 2026-09-21** -- it was 45 when this heading was
+**Eleven, measured 2026-09-21** -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
 not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
@@ -667,6 +667,15 @@ had wrong: **its command letters are typed in LOWER case**, though the menu
 line along the foot prints them capitalised. Capital `H' does nothing at
 all, twice over with nine seconds to answer in; `h' lists the help file.
 Index entry and caption both say so now.
+
+`sddemo' came off with a play-test that asserts the map and the menu and
+**presses nothing** -- it is a defragmenter, and the disk it would rewrite
+is the collection. Before writing it, a copy of the image was md5'd, sddemo
+was left drawing for thirty seconds and the md5 was unchanged, so capturing
+costs nothing; the shipped image was md5'd again afterwards and was likewise
+unchanged. That says nothing about Optimize, which nobody has run. The
+status panel still reads `Analyzing...' at forty seconds on a 312M image, so
+keys sent after that are ignored -- which is why the test sends none.
 
 **`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
 spends the hour again. Answer all three of its questions and it reaches the

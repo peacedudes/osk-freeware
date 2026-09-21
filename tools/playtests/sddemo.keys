@@ -1,0 +1,26 @@
+name    sddemo
+prog    sddemo
+# White's Speedisk 2.10, the demo: it reads the volume, draws a block map of
+# it, and offers a menu -- Optimize, Change drive, Rescan, Disk statistics,
+# Exit -- with a legend for the four block kinds.
+#
+# NOTHING HERE PRESSES OPTIMIZE, and that is deliberate: this is a
+# defragmenter and the disk it would rewrite is the collection.  Measured
+# before this was written (2026-09-21): a copy of the image was md5'd,
+# sddemo was left drawing for thirty seconds, and the md5 was unchanged --
+# so CAPTURING it costs nothing.  That says nothing at all about Optimize,
+# which nobody has run and which this test must not.  The shipped image was
+# md5'd again after this test and was likewise unchanged.
+#
+# NO KEYS ARE SENT EITHER, and that is measurement rather than caution: the
+# status panel still reads `Analyzing...' at forty seconds on a 312M image,
+# so `d' and `e' were ignored and the snaps taken after them were the same
+# screen under a different name.  A snap named `stats' holding the map is
+# the shape that put a wrong line on dm's card, so it is not repeated here.
+rate    0.8
+size    24 80
+wait    40
+snap    map
+expect  Speedisk
+expect  E)xit Speedisk
+expect  Used Block
