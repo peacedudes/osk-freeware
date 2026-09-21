@@ -87,19 +87,24 @@ run     dump tmp/PRT/epson.out
 wait    4
 
 shot    lmargin
-cap     Sets the left margin on an Epson-compatible printer, in
-cap     characters -- its own usage line still says `epson', inherited
-cap     from the same source.  Asking it to do anything but show its
-cap     options leaves it waiting rather than answering, so this is what
-cap     there is to show.
-try     lmargin -?
-run     lmargin -?
-wait    5
+size    30 80
+cap     lmargin indents.  It reads standard input and writes it out again
+cap     with a left margin of the width you ask for, so it takes a file by
+cap     redirect or a program's output by pipe.  Nothing of it reaches a
+cap     printer: the name `epson' in its usage line came with it from a
+cap     sibling program, and the margin it sets is spaces in the text.
+try     lmargin -l4 <DOC/globe.doc
+run     clear
+wait    1
+run     lmargin -l4 <DOC/globe.doc
+wait    6
 
 shot    lp
-cap     Submits a file to the print spooler.  Without lpsched running
-cap     there is no spooler to hand it to, and it says so plainly rather
-cap     than trying.
+cap     Submits a file to the print spooler, and answers that the spooler
+cap     is not installed.  That is its answer whether or not one is
+cap     running: `lpsched' starts here and makes the `spoolqueue' event
+cap     and data module its own card shows, and lp, lpq and lpshut all
+cap     three still report none.  Start it on your own printer and see.
 try     lp tmp/PRT/letter.txt
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
 wait    2
@@ -111,7 +116,9 @@ run     lp tmp/PRT/letter.txt
 wait    5
 
 shot    lpq
-cap     Shows the spooler's queue.  With no spooler started it says so.
+cap     Shows the spooler's queue, and reports no spooler installed --
+cap     which it does even with `lpsched' running and its queue event
+cap     in the event directory.  See the lp card.
 try     lpq -?; lpq
 run     lpq -?
 wait    4
@@ -129,7 +136,9 @@ run     lprm 1
 wait    4
 
 shot    lpshut
-cap     Stops the spooler.  With none running it says so.
+cap     Stops the spooler, and reports none active -- which is its answer
+cap     even when `lpsched' is running and holding the queue.  See the
+cap     lp card.
 try     lpshut -?; lpshut
 os9     lpshut
 run     lpshut -?
@@ -148,13 +157,18 @@ run     prjob
 wait    4
 
 shot    lpsched
-cap     Starts the spooler for a printer device: its options.  Giving it
-cap     a device -- there is none on this disk -- has it wait to open
-cap     one rather than answer, so the option list is what there is to
-cap     show.
-try     lpsched -?
-run     lpsched -?
-wait    4
+size    24 80
+fresh
+cap     lpsched starts the print spooler on the devices you name.  It
+cap     forks the printer job, creates the `spoolqueue' event that the
+cap     rest of the set waits on, and stays resident -- which `edir -e'
+cap     shows.  Name your own printer where this names the bit bucket;
+cap     the spooler wants a SPOOL directory at the root, and it is there.
+try     lpsched /nil & edir -e
+run     clear
+wait    1
+run     lpsched /nil & edir -e
+wait    8
 
 shot    splman
 cap     The manager of the disk's other print spooler: it

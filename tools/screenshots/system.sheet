@@ -213,12 +213,16 @@ wait    5
 run     cat tmp/SYSB/demo.c | head -n 16
 wait    6
 shot    getsys
+size    24 80
 cap     getsys reports OS-9's system globals, reading the global page
-cap     field by field -- the count of forked processes, the memory
-cap     limits, the priority range and the system debugger's pointers.
-try     getsys | head -n 21
-os9     getsys !head -n 21
-run     getsys | head -n 21
+cap     field by field -- the module directory, the process descriptor
+cap     table, the clock, the FPU the system believes it has.  Ninety
+cap     lines in all; these are the first twenty.  A dozen or so fields
+cap     come back as notices rather than values, and those go to standard
+cap     error, which is what the redirect sets aside.
+try     getsys 2>/nil | head -n 20
+os9     getsys >>>/nil !head -n 20
+run     getsys 2>/nil | head -n 20
 wait    6
 shot    hinterhalt
 for     hinterhalt testibc

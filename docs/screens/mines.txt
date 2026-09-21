@@ -1,14 +1,14 @@
 ##A#B#C#D#E#F#G#H#I#J#K#L#M#N#O#P##
 A + + + + + + + + + + + + + + + + A
 B + + + + + + + + + + + + + + + + B
-C + + + + + + + + + + 1 1 2 + + + C
-D + + + + + + + + + + 1   1 + + + D
-E + + + + + 3 1 1 2 1 1   1 2 + + E
-F + + + + + 2               1 + + F
-G + + + + + 2             1 2 + + G
-H + + + + + 1           1 2 + + + H
-I + + + + + 1 1 1 1   1 2 + + + + I           Mines - by David Ravegum
-J + + + + + + + + 2 2 3 + + + + + J         Ported to OSK by Russ Hoffman
+C + + + + + + + + + + + + + + + + C
+D + + + + + + + + + + + + + + + + D
+E + + + + + + + + + + + + + + + + E
+F + + + + + + + + + + + + + + + + F
+G + + + + + + + + + + + + + + + + G
+H + + + + + + + 1 + + + + + + + + H
+I + + + + + + + + + + + + + + + + I           Mines - by David Ravegum
+J + + + + + + + + + + + + + + + + J         Ported to OSK by Russ Hoffman
 K + + + + + + + + + + + + + + + + K
 L + + + + + + + + + + + + + + + + L               Markers left: 40
 M + + + + + + + + + + + + + + + + M
@@ -17,7 +17,7 @@ O + + + + + + + + + + + + + + + + O
 P + + + + + + + + + + + + + + + + P
 ##A#B#C#D#E#F#G#H#I#J#K#L#M#N#O#P##
 
- ow: (A-P) y
+Row: (A-P)
 Column: (A-P)                                           ? for help
 Mark? (Y/[N])                                           * for BBS info
                                                         q to quit

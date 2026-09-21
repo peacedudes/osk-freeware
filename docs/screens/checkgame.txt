@@ -2,7 +2,7 @@ cat chess.lst
 
        score  depth  nodes  time                score  depth  nodes  time
 
- e2e4      0      0      0     9          d7d5     -3      5  29080     4
+ e2e4      0      0      0     8          d7d5     -3      5  29080     4
 
 $ checkgame chess.lst
 

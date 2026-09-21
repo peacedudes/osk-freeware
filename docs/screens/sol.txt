@@ -1,8 +1,8 @@
         1    2    3    4    5    6    7                 ACES
 
-             1    2    3    4    5    5          --   --   AS   --
+             1    2    3    4    5    6          --   AD   --   --
 
-       TD   KD   5S   9H   5C   3H   8D
+       5H   4H   4C   5C   7D   2S   2H
 
                                                         DECK
 

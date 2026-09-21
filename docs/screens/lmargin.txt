@@ -1,5 +1,13 @@
-$ lmargin -?
-usage: epson [<opts>]
-        l<int>  size of left margin in characters, 5
+lmargin -l4 <DOC/globe.doc
+    globe -- show the currently-lit face of the Earth in ASCII
 
-(C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1990
+        globe
+
+    A cute ASCII graphic hack: it draws the Earth as it is lit right now,
+    picked from thirty views spread across the day, so the globe turns from
+    one run to the next as the hours pass.  It takes no options and prints
+    one picture.
+
+    The thirty views were made by Jef Poskanzer in 1994 from 256x256 bitmaps
+    (originally from Sun) run through pbmtoascii.  Built here unchanged; the
+    original sources are in SRC/globe/ORIG.

@@ -1,7 +1,3 @@
-Enter #moves #minutes: e2e4
-Operator time=
- R N B Q K B N R
- P P P P P P P P
  - - - - - - - -
  - - - - - - - -
  - - - - - - - -
@@ -15,8 +11,12 @@ Move# 1    Target= 1    Clock: 0
  1.      7    0      21    g8f6
  2.     -6    0     116    g8f6  b1c3
  3&      0    0     229    g8f6  b1c3  b8c6
- 3.      0    1     691    g8f6  b1c3  b8c6
-Nodes= 691  Eval= 467  Hash= 0  Rate= 691  CPU= 0:1.0
+ 3.      0    0     691    g8f6  b1c3  b8c6
+ 4&    -10    0    1739    g8f6  b1c3  b8c6  d2d4
+ 4.    -10    0    3407    g8f6  b1c3  b8c6  d2d4
+ 5&    -19    1    8175    g8f6  e4e5  f6e4  d2d3  e4c5
+ 5.    -19    2   14056    g8f6  e4e5  f6e4  d2d3  e4c5
+Nodes= 14056  Eval= 4534  Hash= 0  Rate= 7028  CPU= 0:2.0
 
 My move is: g8f6
 

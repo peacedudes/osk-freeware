@@ -4,17 +4,16 @@ written by: Mike Theys - Aug. 1969
 What is your name? Tester
 Do you want a list of the rules (y/n)? n
 
-This game started at 17:13:38
-Your bankroll for this game is 579 dollars.
+This game started at 21:30:17
+Your bankroll for this game is 874 dollars.
 ** Dealer Reshuffles **
 
 Wager? 25
-Dealer shows:      Nine of Clubs
-Tester has:        Eight of Clubs, King of Hearts
+Dealer shows:      King of Spades
+Tester has:        Nine of Hearts, Two of Hearts
 ? s
-Dealer hole card Six of Hearts
-Dealer hits Jack of Clubs
-Dealer Busts.
-Tester wins this hand -- Bankroll=604 dollars.
+Dealer hole card Jack of Clubs
+Tester's count=11, Dealer's count=20
+Dealer wins this hand -- Bankroll=849 dollars.
 
 Wager?

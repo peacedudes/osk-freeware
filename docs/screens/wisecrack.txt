@@ -1,9 +1,9 @@
 $ wisecrack &
 <3>
 $ ask
-+ COVE IST SPITZE +
+VIEL SPASS MIT OSK
 
 $ ask
-AUF WIEDERSEHEN 1993
+COMPUTER-VEREIN E.V
 
 $ signal 3 0

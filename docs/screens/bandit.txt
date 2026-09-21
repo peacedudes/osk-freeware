@@ -1,19 +1,19 @@
-   +----------------------------------+              Pete Granger's
-   |*    * *** *   * *   * **** **** *|             ONE-ARMED BANDIT
-   |*    *  *  **  * **  * *    *  * *|
-   |* ** *  *  * * * * * * ***  **** *|            Combination        | Odds
-   |**  **  *  *  ** *  ** *    * *   |    ---------------------------+------
-   |*    * *** *   * *   * **** *  * *|     *BAR*    *BAR*    *BAR*   | 1000
-   +----------------------------------+      BELL     BELL     BELL   |  100
+                                                     Pete Granger's
+                                                    ONE-ARMED BANDIT
+
+                                                   Combination        | Odds
+                                           ---------------------------+------
+                                            *BAR*    *BAR*    *BAR*   | 1000
+                                             BELL     BELL     BELL   |  100
    +----------++----------++----------+     ORANGE   ORANGE   ORANGE  |   50
    |          ||          ||          |     LEMON    LEMON    LEMON   |   20
-   |  CHERRY  ||  CHERRY  ||  CHERRY  |      PLUM     PLUM     PLUM   |   10
+   |   PLUM   ||  CHERRY  ||   PLUM   |      PLUM     PLUM     PLUM   |   10
    |          ||          ||          |     CHERRY   CHERRY   CHERRY  |    5
    +----------++----------++----------+     CHERRY   CHERRY   *wild*  |    2
 
+      No winner.
+      New total (after 1 play) is 95.
 
-      Starting bankroll: 100
 
 
-
-      How much do you wish to bet (0-5)? 5
+      How much do you wish to bet (0-5)?

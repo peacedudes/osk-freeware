@@ -1,16 +1,12 @@
-Hello tester, welcome to hack!
+The kobold misses.
 
 
-
-   -------
-   |.....|
-   |.?d.@+
-   |.....|
-   |.....+
-   |.....|
-   |.....|
-   ---+---
-
+                                                       -------
+                                                       +.....|
+                                                       |.....|
+                                                       |.@d..|
+                                                       +..K..|
+                                                       --+----
 
 
 
@@ -21,4 +17,8 @@ Hello tester, welcome to hack!
 
 
 
-Level 1    Hp  15(15)   Ac 9    Str 16      Exp  1
+
+
+
+
+Level 1    Hp   9(15)   Ac 9    Str 16      Exp  1

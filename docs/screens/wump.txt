@@ -6,5 +6,7 @@ There are 3 bats and 3 pits scattered throughout the cave, and your
 quiver holds 5 custom super anti-evil Wumpus arrows.  Good luck.
 
 You are in room 15 of the cave, and have 5 arrows left.
-There are tunnels to rooms 4, 5, and 6.
+*rustle* *rustle* (must be bats nearby)
+*sniff* (I can smell the evil Wumpus nearby!)
+There are tunnels to rooms 1, 9, and 17.
 Move or shoot? (m-s)

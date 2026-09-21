@@ -404,3 +404,56 @@ Through the **shell**, a `cc` line carrying 19 `-l=` flags fails with
 measures **469 characters** against SCF's 512. The mechanism is unknown. It is
 worked around by naming only `pbm.l` three times instead of all four
 libraries, which is what the recipes do.
+
+## The trap library and EOF on a pipe you hold open for writing (2026-09-20)
+
+**Forty lines that reproduce the `-qm' / `-qixm' difference on demand.**
+CLAUDE.md already says "trap-library build fails, static build works" is a
+version-skew signature and not evidence about os9exec. This is the smallest
+case of it yet found, and it explains a program on the disk.
+
+`vis' opens an unnamed `/pipe' in update mode, dups it onto 1 and 2, forks
+the command with three paths, restores 1 and 2, and reads that pipe to EOF.
+Its curses `refresh()' comes AFTER the loop, so if EOF never arrives nothing
+is ever painted -- which is exactly what `vis' does here: the command runs
+(`vis -d1 mkdir /dd/tmp/vismark' leaves the directory behind) and the screen
+stays at the header.
+
+The same shape in isolation, built twice from ONE source file:
+
+    /* pipeprobe.c -- vis's shape and nothing else */
+    fp = fopen("/pipe", "r+");
+    save1 = dup(1);  close(1);  dup(fileno(fp));
+    save2 = dup(2);  close(2);  dup(fileno(fp));
+    pid = os9exec(os9fork, cmd[0], cmd, environ, 0, 0, 3);
+    close(1);  dup(save1);  close(save1);
+    close(2);  dup(save2);  close(save2);
+    while ((c = getc(fp)) != EOF) n++;
+    printf("read %d byte(s), then EOF\n", n);
+
+    recipe `pipeprobe|pipeprobe|pipeprobe.c|||'            (-qm, trap-free)
+      -> forked `whoami' as pid 4
+      -> read 3 byte(s), then EOF                          twice, in 12s
+
+    recipe `pipecio|pipecio|pipecio.c|CIOLINK||'           (-qixm, cio)
+      -> forked `whoami' as pid 4
+      -> nothing further, no prompt back                   twice, in 25s
+
+Same emulator, same image, same terminal, same source. The child forks and
+exits in both. **Only the trap-free build sees the EOF.**
+
+Two things follow. First, `vis' is a trap-library binary -- it carries
+`**** Can't install trap handler ****' -- so its hang is this, and not its
+own logic, not the C library's stdio in general, and not the emulator: the
+os9exec session probed the same shape at the syscall level in five variants
+and got data-then-EOF every time, and a link of a data module by name from
+another process works there too. Second, the rule in CLAUDE.md is the right
+reading of it: the archive binaries were built by their authors against
+their own matching runtime, and what we ship is `csl' 25 with `csl020' 15.
+**This says nothing about os9exec and nothing about the library as its
+authors shipped it.** It is a reason to build with `-qm', which is already
+the driver's default.
+
+The two recipes are not committed -- they build nothing that ships. Recreate
+them from the source above in any pool directory; the whole run is about
+ninety seconds including the overlay.

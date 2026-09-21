@@ -1,19 +1,19 @@
 +-----+                               +---------------------------------------+
-|6S   |                               |  Score:   0     YOU                   |
+|AD   |                               |  Score:   0     YOU                   |
 |+-----+                              | *.....:.....:.....:.....:.....:.....  |
-||9H   |                              | *.....:.....:.....:.....:.....:.....  |
+||3D   |                              | *.....:.....:.....:.....:.....:.....  |
 +|+-----+                             |                                       |
- ||9D   |                             | *.....:.....:.....:.....:.....:.....  |
+ ||5D   |                             | *.....:.....:.....:.....:.....:.....  |
  +|+-----+                            | *.....:.....:.....:.....:.....:.....  |
-  ||TS   |                            |  Score:   0      ME                   |
+  ||6C   |                            |  Score:   0      ME                   |
   +|+-----+                           +---------------------------------------+
-   ||QS   |
+   ||7D   |
    +|+-----+                           Do you need instructions for cribbage? N
-    ||KD   |                           Long (to 121) or Short (to 61)?
+    ||7C   |                           Long (to 121) or Short (to 61)?
     +|     |                           Cut to see whose crib it is -- low card
-     |   KD|                            wins? S
-     +-----+                           You cut the THREE of DIAMONDS
-                                       I cut the JACK of SPADES
+     |   7C|                            wins? S
+     +-----+                           You cut the ACE of SPADES
+                                       I cut the KING of HEARTS
                                       *Discard a card -->
  CRIB
 +-----+

@@ -1,2 +1,7 @@
-edir
-   Event Directory at 15:35:04
+lpsched /nil & edir -e
+<3>
+   Event Directory at 21:43:29
+
+#Lnk  Value Wait Inc Sig Inc Event Name
+----- ----- -------- ------- ----------
+    1     0        2      -1 spoolqueue

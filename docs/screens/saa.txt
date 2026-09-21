@@ -11,13 +11,13 @@
 
 
             S-
-                  D7    HQ    SA    C7
-            H-    CK    HT    HK    S6    H3    CA    SK    C5
-                  CT    S5    HA    H4    H7    S7    DA    S8
-            D-    SJ    H8    C8    S4    D5    D6    DJ    C9
-                  C2    C6    ST    C4    C3    D9    DQ    DK
-            C-    S3    D2    DT    D8    H2    D4    S2    CQ
-                  HJ    H6    SQ    D3    CJ    H9    S9    H5
+                  H2    DT    D7    C3
+            H-    C5    ST    D6    D9    D5    D8    S7    DA
+                  SK    S3    HA    S5    S2    C4    CJ    C2
+            D-    SJ    H5    H3    HQ    DK    HK    D4    H8
+                  S9    HJ    C6    H9    SA    C8    CQ    D3
+            C-    DQ    S4    S8    CA    C9    CT    HT    CK
+                  S6    H6    D2    SQ    C7    DJ    H7    H4
 Commands:   0,    1,    2,    3,    4,    5,    6,    7,    8,    q, r, or ?.
 
 Status:     Fresh display.  Type ? for help.

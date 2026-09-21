@@ -68,6 +68,26 @@ that copy, `git revert` puts `fpu040` back.
 *The other five runtime modules rest on Allan's permission, which names the
 modules rather than copies, and are fine.*
 
+**31. Four programs work if a module called `shell' is resident, and I
+can make one in two minutes. Should I?**
+`run', `clock', `if' and `qp' each fork a module named `shell' -- the one
+that comes with OS-9 -- and each is written up here as doing nothing.
+Measured 2026-09-20: copy this disk's `ksh', change the MODULE name to
+`shell' with `tools/rename_module.py', load it, and `run "ls SYS"' lists
+SYS on the console and returns 0, where without it the same command
+returns 0 having printed nothing. So the want is exactly that module and
+nothing else.
+
+Shipping one would be a copy of `ksh' under a name that, on a real
+system, means Microware's shell. It would make four programs work for a
+reader who has no OS-9 to supply the real one -- and it would put a
+module on the disk that answers to a name it is not. **My reading is
+don't**: the reader this collection is written for HAS OS-9, so they
+have the real `shell' already, and the cards can say "works with your own
+shell" positively instead. But it is a name-and-provenance question, which
+is yours, not mine. Nothing is on the disk either way; the test copy lives
+in a scratch directory and goes when this session does.
+
 ## Not a question, but you should know
 
 **18. `disk/` is hard-linked to a twin I cannot find.**

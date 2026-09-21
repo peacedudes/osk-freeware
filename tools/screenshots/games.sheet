@@ -729,27 +729,6 @@ wait    4
 send    y
 wait    8
 
-shot    mw
-size    24 80
-cap     The maze from above, and along the bottom the score strip for eight
-cap     players.  A computer player, started with `mw -l=5' before this game,
-cap     has joined as player 2.  `w' walks, `a' and `d' turn, `s' shoots,
-cap     `m' drops a mine and `Q' quits.
-try     mw
-run     export TERM=vt100 USER=tester
-run     mw -l=5 >/nil &
-wait    3
-run     clear
-wait    1
-run     mw
-wait    14
-send    d
-wait    3
-send    s
-wait    6
-snap
-send    Q
-wait    5
 
 shot    trek
 size    24 80
@@ -1985,3 +1964,37 @@ wait    5
 send    5\r
 wait    7
 snap
+
+# `mw' STARTS A COMPUTER PLAYER THAT OUTLIVES THE GAME.  Nothing in a
+# stanza can stop it: `$!' is 0 in this bash, so a background job's pid
+# cannot be captured, and mw has no option that bounds the automatic
+# player.  Measured 2026-09-20 on a quiet machine (load 1.76) with
+# os9exec's own `iprocs', after the foreground game was quit with `Q':
+# the player is still there, asleep in F$Sleep.  It cost the 74 stanzas
+# that used to follow it nothing measurable -- they all passed -- but a
+# leftover process that outlives its stanza is one timing change away
+# from mattering.  `fresh' ends the session after it, which is the real
+# fix; being last as well is belt and braces.
+
+shot    mw
+size    24 80
+fresh
+cap     The maze from above, and along the bottom the score strip for eight
+cap     players.  A computer player, started with `mw -l=5' before this game,
+cap     has joined as player 2.  `w' walks, `a' and `d' turn, `s' shoots,
+cap     `m' drops a mine and `Q' quits.
+try     mw
+run     export TERM=vt100 USER=tester
+run     mw -l=5 >/nil &
+wait    3
+run     clear
+wait    1
+run     mw
+wait    14
+send    d
+wait    3
+send    s
+wait    6
+snap
+send    Q
+wait    5

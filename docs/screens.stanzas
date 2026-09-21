@@ -242,7 +242,7 @@ dvitos 0d0e17b496dbc859
 dvitype 39ae706d5b4fe689
 ed 431d3e6ebaa40aa8
 ediff a77ad36bb656fd6e
-edir 7bcb58b3efcbbbb5
+edir 6705d84c45d3a791
 editor cc22a9da6564489a
 elm 202e330b419a3743
 elvis f33d9af83b3e1f10
@@ -257,9 +257,9 @@ eo c2ce1d12ad5038df
 ephem 59fd505985416455
 ephem881 b2ff1bbc463abc95
 epson 0b6f36e0dbd7e50d
-eset 0d7db79c1b26ab57
+eset 68aa2a767b9038f3
 etags 788393f941aed325
-eunlink 53f837f1df24bebb
+eunlink 7473e7b60c9e207e
 every 1a87d90bcd248316
 exist c54bb20bc7c4df89
 expand 6d527f34be7958ca
@@ -318,6 +318,7 @@ gen 6b30d496d2f747a1
 georgia 918ee7752fd6a578
 gep bfb90bd7d3f06f98
 getenv f80c67660f97119e
+getsys 6f8fb61f687c523a
 gftopk 8100bfd8bd2de516
 gftype 70dc99f00e650750
 ggrep a2320b13d3d07622
@@ -430,7 +431,7 @@ lispmtopgm 4b27b981a050464f
 lissaj d7853d340da26d5f
 listalias 505f544d04c0d606
 lmail fdbfa17739eaa823
-lmargin 0e7377b686da6c46
+lmargin a0c2af582f40bb6e
 lnk 6be6483d8b461aaa
 lnk.org 9b6dd99e779a7132
 load 104f6887d304107f
@@ -445,7 +446,7 @@ lout c0ebd5f69b37c4fd
 lp dbfb5d4e455235bd
 lpq 72048a1ea9770d4d
 lprm d1bdd7ce76063de2
-lpsched 3e994fe2a3db2a4d
+lpsched c909f7768316bd91
 lpshut 1a2217774748cd7f
 ls 7475c3da2ee7ecd8
 lua 448a54bf1e1f69a5

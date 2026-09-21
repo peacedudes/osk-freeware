@@ -1,0 +1,21 @@
+$ getsys 2>/nil | head -n 20
+System global variables (OS-9/680x0 V2.3):
+------------------------------------------
+
+set to modsync code after coldstart ......... $4afc
+prevent sysproc from sleeping if 1 .......... $0
+initialization module ptr ('init') .......... $47dc0
+address of system tick routine .............. $0
+number of ticks per second .................. 100
+year ........................................ 2026
+month ....................................... 9
+day ......................................... 20
+compatability flags ......................... $0
+0 = no FPU, 1 = 68881, 2 = 68882 ............ 1
+julian day number ........................... 2461303
+system time seconds left until midnight ..... 7285
+IRQ flag .................................... $0
+number of unknown IRQs ...................... 0
+module directory (start ptr) ................ $1080
+module directory (start end) ................ $5080
+Process Descriptor Block Table ptr .......... $5980

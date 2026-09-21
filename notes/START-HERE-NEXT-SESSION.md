@@ -1,5 +1,79 @@
 # Start here, next session
 
+## DO NEXT -- 2026-09-20 (late)
+
+**NINE `panel-exceptions' LINES CAME OUT AND NINE MORE REASONS WERE
+REWRITTEN, and every one of them was a sentence somebody wrote instead of
+a measurement.** The file went 72 rows to 64. What retired, and why it
+should never have been there:
+
+  `chardef', `fkeys'   "needs VT220 hardware" -- both only WRITE the
+                       control string that would program a terminal, and
+                       the disk ships the definition files they read.
+  `lmargin'            "writes its control codes to the printer itself" --
+                       it is a plain stdin-to-stdout filter that indents
+                       every line.  `lmargin -l4 <DOC/globe.doc'.  Its
+                       usage line says `epson', which is a leftover string
+                       from a sibling program, and DOC/INDEX had copied
+                       the mistake and sent readers to `fmt' instead.
+  `getsys'             "only unimplemented notices come back" -- it writes
+                       NINETY LINES of real system globals to stdout and
+                       the notices to stderr.  The card piped stdout into
+                       `head' and left stderr on the terminal, so the
+                       capture was the noise and none of the content.
+  `eset', `eunlink',   "nothing on this disk creates an event" --
+  `lpsched'            `lpsched /nil &' creates one.  See below.
+
+**THE PRINT SPOOLER RUNS, and that is what unlocked the events.**
+`lpsched /nil &' forks `prjob', creates the `spoolqueue' EVENT and the
+`spoolqueue' DATA MODULE, and stays resident in F$Event.  So `edir -e'
+now shows a real event with its value, `eset spoolqueue 42' shows the
+value change 0 -> 42 between two listings, and `eunlink spoolqueue' shows
+it present and then gone.  Four cards, from one program nobody had
+started.  `lpq', `lpshut' and `lp' STILL all answer "no spooler
+installed" with all of that running, and that is recorded as
+unestablished -- there is no source on the disk for any of the three.
+`disk/SPL/README' said "whatever builds `spoolqueue' is not on this
+disk"; it does now say otherwise.
+
+**A NEW SHEET DIRECTIVE, `fresh'.** It ends the emulator session after a
+stanza, for a stanza that leaves something RESIDENT the next one would
+inherit -- a background process, an event, a data module.  Without it
+only ONE of the four spooler stanzas could have had a real card, because
+a second `lpsched' in the same session answers "can't create
+spoolerqueue".  It is also the honest fix for `mw's background player.
+
+**`screenshots.py' WAS SILENTLY BLANKING `burst' CARDS.** `capture_burst'
+runs its stanza under MICROWARE's shell mounted from OS9SDK, so with the
+variable unset it returns a blank grid by design -- but `needs_sdk' only
+warned about stanzas that NAME /h1.  `back' came back ink=0 and read as a
+backgammon program that had stopped working.  `needs_sdk' now includes
+every `burst' stanza; the warning names ten instead of five.
+
+**DO NOT RUN BUILDS OR PROBES WHILE A SHEET IS SHOOTING.** Five captures
+in the games re-shoot came back thin or empty -- `game', `postprint',
+`arithmetic' at ink=0, `cfscores' and `checkgame' losing their command
+echo -- and all five were fine when re-shot with nothing else running.
+The machine was mine, not a peer's: an SDK overlay build, a rebuild
+driver run and a dozen pty probes, all while 113 stanzas were being
+timed.
+
+**`vis' IS SETTLED and it is the trap library.** It runs its command --
+`vis -d1 mkdir /dd/tmp/vismark' leaves the directory behind -- and never
+repaints, because it reads the output back through an unnamed pipe and
+the curses `refresh()' comes after a read loop that never sees EOF.  The
+same shape in forty lines of C reads its bytes and sees EOF built `-qm',
+and never returns built `CIOLINK', from ONE source file.  That is the
+version-skew signature CLAUDE.md already names; `notes/COMPILE-AUDIT.md'
+has the probe and both runs.  The os9exec session probed the pipe layer
+at the syscall level in five shapes and got data-then-EOF every time, so
+the emulator is not in it.
+
+**The card said `vis -d=1', which is the form vis's OWN HELP prints and
+not the form its getopt takes** -- `atoi("=1")' is 0, which is why every
+capture read `Delay: 0'.  Worth remembering as a shape: a program's help
+can be wrong about the program.
+
 ## DO NEXT -- 2026-09-19
 
 ### The one thing to read before anything else
@@ -1036,15 +1110,42 @@ session.  Two things are established:
     bash**, so a background job's pid cannot be captured.  `kill' is a
     bash builtin here and returns 0 having killed nothing.
 
-What is NOT established is whether the background player exits when the
-foreground game is quit with `Q'.  A timing comparison was attempted on
-2026-09-20 and is WORTHLESS: the os9exec session was running six
-deliberate spinning loops for a load test at the time, and the machine
-was at load average 12.  That is the trap
-[[os9-long-running-os9exec-is-normal]] warns about, walked straight into.
-**Redo it on a quiet machine** -- `uptime' first -- and if the player
-does outlive the game, the fix is probably to make `mw' the last stanza
-in its sheet rather than to try to kill it.
+**A WAY TO TEST "IT NEEDS YOUR OWN OS-9's `shell'" WITHOUT SHIPPING ONE.**
+Several programs here fork a module called `shell' -- `run', `clock',
+`qp', `if', and anything whose `system()' goes that way -- and every one
+of them was written off with a sentence rather than a measurement. You
+can measure it: copy this disk's `ksh', rename the MODULE (not the file)
+with `tools/rename_module.py <copy> shell --apply', put the copy on a
+host directory mounted as `/h5', and `load /h5/shell'. Done 2026-09-20
+for `run': with PORT set and that module resident, `run "ls SYS"' lists
+SYS on the console and returns 0, where without it the same command
+returns 0 having printed nothing at all. So `run' WORKS for a reader who
+has OS-9, and the card can say so positively instead of describing a
+silence. **Nothing about this goes on the disk** -- a module named
+`shell' that is not Microware's would be a decision for rdoggett, not a
+convenience for a test -- but the test costs two minutes and it turns "we
+think it wants a shell" into "it wants a shell, and here is it working".
+
+**ANSWERED 2026-09-20 on a quiet machine (load 1.76): the player DOES
+outlive the game, and `mw' is now the last stanza in `games.sheet'.**
+The question was settled without any timing comparison at all -- a
+timing comparison was the wrong instrument, and the first attempt at one
+was worthless anyway because the machine was at load average 12 under a
+peer's six spinners.  **os9exec has an internal `iprocs' that lists its
+processes, and typing it at the disk's own bash prints the table.**  The
+stanza was replayed on a pty, `Q' was sent, and then `iprocs':
+
+      Id S PId SId CId MId  Module   Prior  ... Last Syscall Name
+       2 W   0   0   4   3 $000495C0   128  ... F$Fork       bash
+       3 S   2   0   0   4 $0009BB80   128  ... F$Sleep      mw
+
+Process 3 is the computer player, still there, asleep in F$Sleep.  `mw'
+has no option that bounds it (`-l=<level>' only sets how well it plays)
+and the stanza cannot kill it, so the stanza was moved to the end of the
+sheet and now has nothing to outlive.  The comment above it in the sheet
+carries the measurement.  **Reach for `iprocs', `imdir', `ipaths' and
+`imem' next time a question is about what the emulator is holding**;
+`os9exec -ih' lists them and they work from the disk's shell.
 
 
 **`snake' CANNOT HAVE A PLAY-TEST, and the reason is worth knowing

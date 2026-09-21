@@ -2,17 +2,17 @@
  Last syscall: I$WritLn (0x008c)
     Registers: Dn=7FF00000 00000000 00000000 00000000
                   00000000 FFFFFF9D 00000204 0000001C
-               An=000D1C2A 001635DE 000CACDE 00163C2C
-                  00163C28 00163598 000DB440 00163598
-               PC=000D1C2A SR=0003
- Executing: -->000d1c2a: 4e75 4a82 6b14 4a80 6a02 RTS.L
-               000d1c2c: 4a82 6b14 4a80 6a02 6024 TST.L D2
-       Memory: Static    -     000D3440 - 00163C80  591936 bytes
-               Allocated - 000 000D3440 - 00163C80  591936 bytes
+               An=00101C2A 001935DE 000FACDE 00193C2C
+                  00193C28 00193598 0010B440 00193598
+               PC=00101C2A SR=0003
+ Executing: -->00101c2a: 4e75 4a82 6b14 4a80 6a02 RTS.L
+               00101c2c: 4a82 6b14 4a80 6a02 6024 TST.L D2
+       Memory: Static    -     00103440 - 00193C80  591936 bytes
+               Allocated - 000 00103440 - 00193C80  591936 bytes
                            001 0009C900 - 0009D900    4096 bytes
                            002 0009D900 - 0009E900    4096 bytes
-                           003 00163C80 - 00177560   80096 bytes
-                           004 00177580 - 0018AE60   80096 bytes
+                           003 000B9640 - 000CCF20   80096 bytes
+                           004 00193C80 - 001A7560   80096 bytes
                            005 000A5400 - 000A6400    4096 bytes
 # # Exception: pid=3 vector=$07 err=#000:107 ... process will be killed (x to co
 ntinue)

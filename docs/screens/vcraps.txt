@@ -2,10 +2,10 @@
 DON'T PLACE
  DON'T COME
       PLACE
-       COME
+       COME    *****
 
 ---Bankroll---  ---Point---    -----Pass Line-----  -----Come-----
-     990        #COME##OUT#           #10#
+     990            #4#               #10#
 
 ---Don't Pass---  ---Don't Come---    ---Field---    ---Big 6---  ---Big 8---
 
@@ -17,7 +17,6 @@ DON'T PLACE
 
 
 =============================================================================
-DICE  ROLL
-1##6  r
+DICE  Command [12345689abcdfhmprt$X?]:
+2##2
 =============================================================================
-            Casino pays $10 Pass Line bet at 1-1; you collect $20

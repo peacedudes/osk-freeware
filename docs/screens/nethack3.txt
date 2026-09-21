@@ -2,23 +2,23 @@ Hello tester, welcome to NetHack!
 
 
 
-           ----------
-           |........|
-           |...d@...|
-           |.......d+
-           ----+-----
 
 
 
 
 
 
+                                      ----------
+                                      +@d......|
+                                      |........|
+                                      +........|
+                                      |........|
+                                      |....!...|
+                                      |........+
+                                      ----------
 
 
 
 
-
-
-
-Tester the Troglodyte    St:18/03 Dx:12 Co:15 In:9 Wi:7 Ch:8  Lawful
-Dlvl:1  G:0  HP:16(16) Pw:1(1) AC:8  Xp:1/0
+Tester the Stripling        St:18/03 Dx:9 Co:18 In:7 Wi:7 Ch:10  Chaotic
+Dlvl:1  G:0  HP:16(16) Pw:1(1) AC:6  Xp:1/0

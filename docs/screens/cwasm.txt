@@ -1,4 +1,3 @@
-cwasm dwarf.rc imp.rc gemini.rc mice.rc
 mice.rc:
 gemini.rc:
 imp.rc:

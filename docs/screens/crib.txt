@@ -1,23 +1,19 @@
-+-----+                               +---------------------------------------+
-|AH   |                               |  Score:   0     YOU                   |
-|+-----+                              | *.....:.....:.....:.....:.....:.....  |
-||AD   |                              | *.....:.....:.....:.....:.....:.....  |
-+|+-----+                             |                                       |
- ||4C   |                             | *.....:.....:.....:.....:.....:.....  |
- +|+-----+                            | *.....:.....:.....:.....:.....:.....  |
-  ||9D   |                            |  Score:   0      ME                   |
-  +|+-----+                           +---------------------------------------+
-   ||JH   |
-   +|+-----+                           Do you need instructions for cribbage? N
-    ||QC   |                           Long (to 121) or Short (to 61)?
-    +|     |                           Cut to see whose crib it is -- low card
-     |   QC|                            wins? S
-     +-----+                           You cut the SEVEN of SPADES
-                                       I cut the TEN of CLUBS
-                                      *Discard a card -->
- CRIB
-+-----+
-|     |
-|     |
-|     |
-+-----+
+                                      +---------------------------------------+
+                                      |  Score:   0     YOU                   |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |                                       |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      | *.....:.....:.....:.....:.....:.....  |
+                                      |  Score:   0      ME                   |
+                                      +---------------------------------------+
+
+                                       Do you need instructions for cribbage? N
+                                       Long (to 121) or Short (to 61)?
+                                       Cut to see whose crib it is -- low card
+                                        wins? S
+                                       You cut the JACK of HEARTS
+                                       I cut the JACK of DIAMONDS
+                                       We tied and have to try again...
+                                      *Cut to see whose crib it is -- low card
+                                        wins?

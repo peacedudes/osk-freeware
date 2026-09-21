@@ -1,7 +1,12 @@
-eset -?
-Syntax: eset <event> <num> [<opts>]
-Function: set event to a new value
-Options:
-        -a      start all waiting processes
-$ eset testevent 1
-eset: can't link to testevent
+lpsched /nil & edir -e; eset spoolqueue 42; edir -e
+<3>
+   Event Directory at 21:43:55
+
+#Lnk  Value Wait Inc Sig Inc Event Name
+----- ----- -------- ------- ----------
+    1     0        2      -1 spoolqueue
+   Event Directory at 21:43:55
+
+#Lnk  Value Wait Inc Sig Inc Event Name
+----- ----- -------- ------- ----------
+    1    42        2      -1 spoolqueue

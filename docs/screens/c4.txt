@@ -1,6 +1,6 @@
-                           abcdefg
+                           abc efg
                           |-------|
-                          |       |
+                          |   X   |
                           |   X   |
                           |   X   |
                           |   O   |
@@ -9,4 +9,7 @@
                           |-------|
                            abcdefg
 
-                          X to move
+                          O to move
+
+
+                   Your move:

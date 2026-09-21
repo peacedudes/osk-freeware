@@ -1,4 +1,3 @@
-napoleon
 Napoleon, version 1.02, copyright (c) Pete Chown 1992
 
 

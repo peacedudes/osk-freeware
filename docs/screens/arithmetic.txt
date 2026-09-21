@@ -1,5 +1,5 @@
 $ arithmetic -o x -r 5
-4 x 5 =   12
+4 x 1 =   12
 What?
 6
 What?

@@ -1500,7 +1500,7 @@
 | | |
 |---|---|
 | `aprocs` | &#9733; a process monitor: prints the active processes as a tree -- id, parent, priority, CPU time, age and share of the CPU -- and -m measures their activity over a few seconds. `procs', `top' is the other process lister<br>`Syntax: aprocs [<opts>]` |
-| `edir` | &#9733; list the event directory -- OS-9 events and their values<br>`Syntax: edir [<opts>]` |
+| `edir` | &#9733; list the event directory -- OS-9 events and their values; `-e' is the long form, with the value and the increments. The print spooler makes one to look at: `lpsched /nil &' and `spoolqueue' is in the directory<br>`Syntax: edir [<opts>]` |
 | `eset` | &#9733; set an OS-9 event to a value -- eset <event> <num><br>`Syntax: eset <event> <num> [<opts>]` |
 | `eunlink` | &#9733; unlink an OS-9 event by name -- `eunlink <event>'. `edir' lists the events and `eset' sets one<br>`Syntax: eunlink {<event>}` |
 | `launch` | &#9733; a login helper: reads SYS/config, sets the environment for your terminal type -- and optionally a default PATH and emacs bindings -- then starts the shell you name on its command line. It does not put anything in the background<br>**How:** Says "nothing to launch" until it is configured -- see its documentation. |
@@ -1746,7 +1746,7 @@
 |---|---|
 | `alps` | &#9733; Switch an ALPS ASP-1000 printer between draft and NLQ<br>`Syntax: alps [<opts>] >/<device>` |
 | `epson` | &#9733; spline output driver for an Epson printer<br>`usage: epson [<opts>]` |
-| `lmargin` | &#9733; set the left margin on an Epson printer -- its own usage line says `epson'. For indenting text, see `fmt', `proff' and `pep'.<br>`usage: epson [<opts>]` |
+| `lmargin` | &#9733; indent text: it reads standard input and writes it out again with a left margin of the width you ask for -- `lmargin -l4 <file'. Its usage line says `epson' and its help talks about a printer; both came with it from a sibling program, and no byte of its output goes anywhere but standard output. See also `fmt', `proff' and `pep'<br>`usage: epson [<opts>]` |
 
 **Spooling**
 

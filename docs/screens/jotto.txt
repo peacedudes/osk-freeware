@@ -8,5 +8,5 @@ $ jotto
  What is your 1st guess? beach
  beach has 1 letter
 
- My 1st guess is: wield.
+ My 1st guess is: crumb.
  How many letters?

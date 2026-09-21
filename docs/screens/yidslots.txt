@@ -1,12 +1,12 @@
 .........................................................................
-.Sadie                 ..Roth                  ..stone                  .
-.Yossel                ..Guilden               ..gold                   .
--Marty                 --Eisen                 --feld                   -
-.Bernie                ..Silver                ..man                    .
-.Myron                 ..Stern                 ..baum                   .
+.Solly                 ..Feir                  ..gold                   .
+.Murray                ..Roth                  ..feld                   .
+-Barry                 --Guilden               --man                    -
+.Heshy                 ..Eisen                 ..baum                   .
+.Nathaniel             ..Silver                ..bloom                  .
 .........................................................................
 
 Place your bet (0 ends the game)                              You have:
   5                                                            95
-Marty Eisenfeld - does not pay                                Amt. of bet:
+Barry Guildenman - does not pay                               Amt. of bet:
 Place your bet (0 ends the game)                               0

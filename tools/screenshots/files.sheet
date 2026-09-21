@@ -520,45 +520,47 @@ snap
 
 shot    edir
 size    24 80
-cap     edir lists the event directory.  An OS-9 event is a counter that
-cap     processes wait on to take turns; edir prints one line per event
-cap     with its value and the processes queued on it.  Nothing on this
-cap     disk creates one, so the heading and the time are all there is.
-try     edir
+fresh
+cap     edir lists the event directory.  An OS-9 event is a counter
+cap     processes wait on to take turns.  The print spooler makes one:
+cap     start it and `spoolqueue' is there, with its value, what a waiting
+cap     process adds to it and what a signalling one does.  `-e' is the
+cap     long listing; plain `edir' prints the names alone.
+try     lpsched /nil & edir -e
 run     clear
 wait    1
-run     edir
+run     lpsched /nil & edir -e
 wait    8
 snap
 
 shot    eset
 size    24 80
+fresh
 cap     eset changes the value of an existing event, and `-a' releases
-cap     every process waiting on it.  It can only reach an event that has
-cap     already been created; asked for a name that does not exist, it
-cap     cannot link to it.
-try     eset testevent 1
+cap     every process waiting on it.  Starting the print spooler makes the
+cap     `spoolqueue' event to try it on: it is created holding 0, and
+cap     `edir -e' either side of the eset shows the 42 arrive.  eset says
+cap     nothing when it works; the event directory is the evidence.
+try     lpsched /nil & edir -e; eset spoolqueue 42; edir -e
 run     clear
 wait    1
-run     eset -?
-wait    6
-run     eset testevent 1
-wait    6
+run     lpsched /nil & edir -e; eset spoolqueue 42; edir -e
+wait    9
 snap
 
 shot    eunlink
 size    24 80
-cap     eunlink is the other end of the same pair: it drops a process's
-cap     link to an event, so the event can go away when the last user lets
-cap     go.  It takes an event name, not a filename, and reports that there
-cap     is no event of that name.
-try     eunlink testevent
+fresh
+cap     eunlink is the other end of the same pair: it drops a link to an
+cap     event, and the event goes when the last user lets go.  The print
+cap     spooler's `spoolqueue' is a real one to do it to -- listed by the
+cap     first edir, gone from the second.  It takes an event name, never a
+cap     filename.
+try     lpsched /nil & edir; eunlink spoolqueue; edir
 run     clear
 wait    1
-run     eunlink
-wait    6
-run     eunlink testevent
-wait    6
+run     lpsched /nil & edir; eunlink spoolqueue; edir
+wait    9
 snap
 
 shot    Ascii2Libr

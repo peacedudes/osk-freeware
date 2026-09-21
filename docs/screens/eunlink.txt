@@ -1,7 +1,6 @@
-eunlink
-Syntax: eunlink {<event>}
-Function: unlink an event
-Options: none
-$ eunlink testevent
-eunlink: can't unlink "testevent"  Error #000:168 (E_EVNF) Event (name) not foun
-d
+lpsched /nil & edir; eunlink spoolqueue; edir
+<3>
+   Event Directory at 21:44:23
+
+spoolqueue
+   Event Directory at 21:44:23
