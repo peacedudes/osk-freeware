@@ -18,9 +18,14 @@ Two lists, and they mean different things:
   `CMDS/ELM/readmsg' -- which is the very program whose bare-name fork
   DOC/README-RUNNING warns about.
 
-WHY THIS IS NOT A GATE.  Some of these are deliberate: `no-such-module' is
-the point of the case that names it, and a case may name `shell' precisely
-to show what happens when the reader's own shell is absent. A checker that
+WHY THIS IS NOT A GATE.  Some of these are deliberate, and one of them is
+deliberate in the WRONG-DIRECTORY list, which is the trap: `untested.cases'
+runs `/dd/CMDS/bincheckr' and `/dd/CMDS/mkdict' and then EXPECTS
+`(E$PNNF)' from both, because the point of that case is to record that they
+live under `CMDS/GAMES'.  "Correcting" those two paths would delete the
+assertion.  `no-such-module' is the point of the case that names it, and a
+case may name `shell' precisely to show what happens when the reader's own
+shell is absent. A checker that
 failed on those would be turned off within a week. So this REPORTS, and the
 judgement stays with the person removing or renaming a program -- run it then,
 and after any pass that moves a program between directories.
