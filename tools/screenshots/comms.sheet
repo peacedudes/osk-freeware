@@ -1082,18 +1082,30 @@ wait    6
 # --- File transfer --------------------------------------------------------
 
 shot    fileserv
-cap     The UUCP file server: it answers file requests from remote sites.
-cap     With no request waiting it has nothing to do and exits without a
-cap     word, so its listing is shown to confirm the module is present.
-try     fileserv
+size    24 80
+cap     The UUCP file server, and it needs no remote site: it reads a mail
+cap     message from standard input and obeys the commands in the body --
+cap     `reply <address>', `help', `get <file>', `dir' and `quit'.  Here it
+cap     answers a `help' request from the file that ships for it, builds the
+cap     reply, and hands it to `rmail' to deliver.  rmail wants the mailbox
+cap     to be a directory named for the user and says so; fileserv writes
+cap     that into its own log, which is the second half of the screen.
+try     fileserv <tmp/fsreq; cat LOG/FileServ
 run     builtin cd /dd
-wait    1
+run     mkdir -p /dd/tmp > /nil 2>/nil
+run     rm -f /dd/LOG/FileServ > /nil 2>/nil
+run     echo "From tester Mon Sep 21 00:00:00 2026" > /dd/tmp/fsreq
+run     echo "Subject: request" >> /dd/tmp/fsreq
+run     echo "" >> /dd/tmp/fsreq
+run     echo "reply tester" >> /dd/tmp/fsreq
+run     echo "help" >> /dd/tmp/fsreq
+run     echo "quit" >> /dd/tmp/fsreq
+run     load /dd/CMDS/UUCP/rmail
+wait    2
 run     clear
 wait    1
-run     ls -l CMDS/UUCP/fileserv
-wait    4
-run     fileserv
-wait    5
+run     fileserv <tmp/fsreq; cat LOG/FileServ
+wait    6
 
 shot    fixtext
 cap     Repairs the line endings of a text batch received over UUCP.  Given a

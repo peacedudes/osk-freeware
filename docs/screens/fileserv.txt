@@ -1,1 +1,4 @@
--r-xr-xr-x   1 0        0           21202 Aug  3 19:00 CMDS/UUCP/fileserv
+fileserv <tmp/fsreq; cat LOG/FileServ
+rmail: dolocal: can't change to mailbox: /dd/SPOOL/MAIL/tester/tester...error #2
+14
+(Sep 21-11:16:10) tester  (unable to fork RMAIL...error 1)

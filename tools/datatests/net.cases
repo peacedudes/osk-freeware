@@ -104,3 +104,40 @@ run     /dd/CMDS/grep -n "^fileserver" /dd/SYS/UUCP/Parameters
 expect  85:server = yes
 expect  101:server = no
 expect  104:fileserver = /dd/SPOOL/files
+
+# fileserv IS DRIVEN FROM STANDARD INPUT and needs no remote peer at all.
+# SRC/uucpbb/fileserv.c documents the protocol in its own header: a mail
+# message whose body holds commands, five of them -- `reply <address>',
+# `help', `get <filename>', `dir' and `quit'.  The help file it answers
+# `help' from ships at SYS/UUCP/FileServ.help.
+#
+# IT FORKS `rmail' BY BARE NAME to send each reply, and a bare-name fork
+# resolves against chx, never against PATH -- so from an ordinary shell it
+# answers `cannot spawn process--> rmail ... (error 216)' because rmail is
+# in CMDS/UUCP and chx is CMDS.  `load' it first and the fork succeeds.
+# That is the same trick DOC/README-RUNNING gives for printmail/readmsg.
+#
+# The chain then stops inside rmail, which wants the mailbox to be a
+# DIRECTORY named for the user -- see MAIL/README.  So what this asserts is
+# the whole of what happens here: fileserv read the request, built a reply,
+# forked rmail, and rmail said what it wants.  Measured 2026-09-21.
+case    fileserv-answers-a-request-read-from-standard-input
+run     /dd/CMDS/rm -rf /dd/tmp/FSA > /nil 2>/nil
+run     /dd/CMDS/rm -f /dd/LOG/FileServ > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/FSA
+run     echo "From tester Mon Sep 21 00:00:00 2026" > /dd/tmp/FSA/req
+run     echo "Subject: request" >> /dd/tmp/FSA/req
+run     echo "" >> /dd/tmp/FSA/req
+run     echo "reply tester" >> /dd/tmp/FSA/req
+run     echo "help" >> /dd/tmp/FSA/req
+run     echo "quit" >> /dd/tmp/FSA/req
+# rmail reads HOME, and datatest sets none -- `getuser: HOME is not
+# defined' is what it says without this, and the reply never gets as far
+# as the mailbox.  SYS/login sets it, which is why this works by hand.
+run     export HOME=/dd
+run     /dd/CMDS/load /dd/CMDS/UUCP/rmail
+run     /dd/CMDS/UUCP/fileserv < /dd/tmp/FSA/req
+run     /dd/CMDS/cat /dd/LOG/FileServ
+expect  can't change to mailbox
+expect  unable to fork RMAIL
+absent  cannot spawn process

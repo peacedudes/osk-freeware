@@ -784,7 +784,7 @@
 
 | | |
 |---|---|
-| `fileserv` | &#9733; serve files to remote sites on request |
+| `fileserv` | &#9733; the UUCP file server, and it needs no remote site to try: it reads a mail message from standard input and obeys the commands in the body -- `reply <address>', `help', `get <file>', `dir' and `quit'. The help it answers from is SYS/UUCP/FileServ.help. It forks `rmail' BY BARE NAME to deliver each reply, so `load' rmail out of CMDS/UUCP first or it answers `cannot spawn process' -- a bare-name fork looks where chx points, not along PATH. It keeps its own log in LOG/FileServ |
 | `fixtext` | &#9733; repair the line endings of a received text batch<br>`fixtext: A text file filter.  Removes escape sequences, expand tabs and change` |
 
 **Kermit**
