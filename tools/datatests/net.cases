@@ -138,6 +138,11 @@ run     export HOME=/dd
 run     /dd/CMDS/load /dd/CMDS/UUCP/rmail
 run     /dd/CMDS/UUCP/fileserv < /dd/tmp/FSA/req
 run     /dd/CMDS/cat /dd/LOG/FileServ
+# PUT THE LOG BACK.  `driven.cases' asserts that uulog cannot open
+# /DD/LOG/fileserv, so leaving this file behind fails THAT case on the
+# suite's second run -- which is what the run-it-twice rule is for, and it
+# caught this one.  The log ships absent; leave it absent.
+run     /dd/CMDS/rm -f /dd/LOG/FileServ
 expect  can't change to mailbox
 expect  unable to fork RMAIL
 absent  cannot spawn process

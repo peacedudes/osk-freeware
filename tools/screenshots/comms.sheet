@@ -1106,6 +1106,11 @@ run     clear
 wait    1
 run     fileserv <tmp/fsreq; cat LOG/FileServ
 wait    6
+snap
+# And put the log back, for the same reason the case in net.cases does:
+# it ships absent, and `driven.cases' asserts that uulog cannot open it.
+run     rm -f /dd/LOG/FileServ
+wait    1
 
 shot    fixtext
 cap     Repairs the line endings of a text batch received over UUCP.  Given a
