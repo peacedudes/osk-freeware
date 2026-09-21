@@ -648,12 +648,25 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 45 programs have none
+### 3. Tests that can fail again — 14 programs have none
 
-**870 of 915 have a data case or a play-test as of 2026-09-02** — it was 277
-of 936 when this section was written, and 209 were untested as recently as
-2026-09-01. Do not trust either figure typed here: run
+**Fourteen, measured 2026-09-21** -- it was 45 when this heading was
+written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
+not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
+
+Three came off on 2026-09-21 and all three were tested with os9exec's
+`iprocs`, because what had to be asserted was that a DAEMON IS STILL THERE
+and no program on this disk can answer that: `splman' and `splprt' stay
+resident, and `lpsched' creates the `spoolqueue' event and stays. `mailx'
+came off with an assertion about what it ASKS FOR -- a mailbox directory
+named for the user NUMBER, which resolves to `su' here.
+
+**Do not assert the system call a daemon is sitting in.** The first version
+of those three expected `F$Sleep      splman', which is what `iprocs' shows
+a second later and what it showed every time it was measured by hand. Two
+of the three failed: iprocs caught the daemon still in START. The name
+being in the process table is the assertion that cannot race.
 
 **The 45 left are the hard residue and they are sorted in
 `notes/START-HERE-NEXT-SESSION.md`** — full-screen programs that belong on a

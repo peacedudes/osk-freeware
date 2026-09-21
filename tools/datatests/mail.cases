@@ -114,3 +114,16 @@ run     /dd/CMDS/cat /dd/SPOOL/MAIL/os9
 expect  Subject: lmail case
 expect  Delivered by lmail.
 absent  unknown user
+
+# mailx AGREES WITH rmail AND WITH NEITHER OF THE OTHERS.  Both want the
+# mailbox to be a DIRECTORY named for the user; `mail', `messages' and `frm'
+# all read the plain file that ships.  mailx looks the name up by NUMBER --
+# everything here runs as 0.0, whose first entry in SYS/password is `su' --
+# which is why it asks for a directory of that name and not for `tester'.
+# Asserted because it is a fact about the disk's mail arrangements, not a
+# passing symptom: change the password file or the mailbox shape and this
+# case is the one that says so.  Measured 2026-09-21.
+case    mailx-wants-a-mailbox-directory-named-for-the-user-number
+run     /dd/CMDS/UUCP/mailx
+expect  can't change to your mailbox directory
+expect  'su'

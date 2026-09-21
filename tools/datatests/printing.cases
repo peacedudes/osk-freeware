@@ -9,6 +9,12 @@ family  printing
 # There are two separate spoolers on this disk and they do not share a queue:
 # lp/lpq/lprm/lpsched/lpshut want a `spoolqueue' data module, and the SPL set
 # (splman, splprt, splstat, prjob) has its own under /dd/SPL.
+#
+# lpsched MAKES that data module, and the event of the same name, which was
+# not known until 2026-09-21 -- every one of its clients had been written up
+# as having no spooler to talk to.  The last three cases in this file assert
+# the part of each daemon that can fail again: that it starts and stays.
+# They are LAST on purpose, because each leaves something resident.
 
 setup   export TERM=vt100
 setup   export TERMCAP=/dd/SYS/termcap
@@ -64,3 +70,44 @@ absent  0
 case    ghostscript-3.33-starts-and-names-its-version
 run     /dd/CMDS/gs33 -v
 expect  Aladdin Ghostscript 3.33
+
+# ---- the daemons ------------------------------------------------------
+# Each of these three starts something that STAYS, so they are the last
+# cases in this family.  What is asserted is what a sweep cannot see: not
+# that the program printed something, but that it is still there afterwards
+# and in the state its job implies.  os9exec's own `iprocs' is the only
+# thing that can answer that -- there is no `procs' on this disk.
+
+# DO NOT ASSERT THE SYSCALL A DAEMON IS SITTING IN.  The first version of
+# these three expected `F$Sleep      splman', which is what `iprocs' shows a
+# second later and what it showed every time it was measured by hand -- and
+# two of the three failed, because iprocs caught the daemon still in START,
+# a state it leaves in under a second.  By the NEXT case it reads F$Sleep.
+# That is a flapping test, and a gap in coverage beats one of those.  What
+# is asserted instead is the thing that cannot race: the name is in the
+# process table afterwards, so the program did not exit.
+
+# lpsched creates an event AND a data module, both called spoolqueue, and
+# stays.  `edir' is the disk's own way to see the event; `iprocs' is the
+# only way to see that the process is still there.
+case    lpsched-creates-the-spooler-queue-and-stays-resident
+run     /dd/CMDS/edir -e
+run     /dd/CMDS/lpsched /nil &
+run     /dd/CMDS/edir -e
+run     iprocs
+expect  Event Directory
+expect  spoolqueue
+expect  lpsched
+
+# splman is the OTHER spooler's manager.  It was written up as blocking on
+# a printer device; it does not -- it is a polling daemon with an empty
+# queue, and it says nothing by design.
+case    splman-stays-resident-as-a-daemon
+run     /dd/CMDS/splman &
+run     iprocs
+expect  splman
+
+case    splprt-stays-resident-as-a-daemon
+run     /dd/CMDS/splprt &
+run     iprocs
+expect  splprt
