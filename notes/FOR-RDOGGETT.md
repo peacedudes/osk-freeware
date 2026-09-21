@@ -22,6 +22,19 @@ the ref to the tip **commit**, taken at that moment.
 *Four fixes we depend on are on no remote: `40facae` `d401ce2` `685a4c3`
 `00fcec5`.*
 
+**Do not freeze the pin to the tip without asking them first.** As of the
+evening of 2026-09-20 the tip is `d64163b`, and the os9exec session told
+me unprompted that a change in that same commit range -- an idle-wait cap
+raised from one system tick to 50ms -- makes their own XOFF input test
+fail about one run in three, and that they were running six full suites to
+decide whether to put it back. Their words: *"if you ever build from my
+tree again, prefer a tagged commit over the tip until I have this
+settled."* Two things that are NOT affected, because I measured them on
+that very build: the `-d` tracing fix (verified against the repro that
+found it), and everything this collection's own gate and suite test --
+871 of 871 twice. But a pin is forever in a way a test run is not, so ask
+for the commit they want named rather than taking whatever is at the top.
+
 **3. Nobody has tried this on real hardware.**
 The guides say so plainly. If you know someone with a real system, that is
 the paragraph to check.
