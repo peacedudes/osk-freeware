@@ -159,8 +159,10 @@ wait    5
 
 shot    setimex
 cap     Checks the system clock against a hardware time source and
-cap     corrects it if it drifted.  Run bare, it just reports the time
-cap     it found.
+cap     corrects it if it drifted.  Run bare, it reports the time it
+cap     found -- and that is all it can do under os9exec, where the call
+cap     that sets the time does nothing and reports success.  On your own
+cap     system, `-s=<date>' sets the clock.
 try     setimex
 run     setimex
 wait    8
