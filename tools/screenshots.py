@@ -182,7 +182,7 @@ def parse(path):
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
                    "try": None, "os9": None, "fold": False, "burst": False,
-                   "frames": False,
+                   "frames": False, "fresh": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -216,6 +216,17 @@ def parse(path):
             cur["fold"] = True
         elif word == "frames":
             cur["frames"] = True
+        elif word == "fresh":
+            # END THE SESSION AFTER THIS STANZA.  For a stanza that leaves
+            # something RESIDENT the next one would inherit: a background
+            # process, a created event, a data module.  `lpsched /nil &'
+            # makes the `spoolqueue' event and data module that `edir',
+            # `eset' and `eunlink' each need, and a SECOND lpsched in the
+            # same session answers "can't create spoolerqueue" -- so without
+            # this only one of those four stanzas could have a real card.
+            # It is also the honest fix for a background player like `mw's,
+            # which `$!' being 0 in this bash makes unkillable from a stanza.
+            cur["fresh"] = True
         elif word == "burst":
             # Capture this stanza unthrottled (see capture_burst).  For a
             # program that paints its whole screen in one burst and never
@@ -552,6 +563,9 @@ def stanza_hash(shot):
              str(shot["size"])]
     if shot.get("frames"):
         parts.append("frames")            # only when set: older hashes hold
+    # `fresh' is deliberately NOT here: it changes what the NEXT stanza
+    # starts from, never this stanza's own screen, and the rule above is
+    # that only what alters the capture belongs in the fingerprint.
     return hashlib.sha1("\n".join(parts).encode("utf-8")).hexdigest()[:16]
 
 
@@ -793,11 +807,15 @@ def run_sheet(path, image, only=None):
                     print("      (session replaced -- %s left the console "
                           "with no automatic line feed)" % shot["name"],
                           flush=True)
-                if died or starved or poisoned or not sess.ready():
+                if shot.get("fresh"):
+                    print("      (session replaced -- %s asked for a fresh "
+                          "one)" % shot["name"], flush=True)
+                if died or starved or poisoned or shot.get("fresh") \
+                        or not sess.ready():
                     # ONE replacement, one line: `starved' and `poisoned' have
                     # already said WHY, and a second generic line under them
                     # reads as a second replacement to anyone counting them.
-                    if not (starved or poisoned):
+                    if not (starved or poisoned or shot.get("fresh")):
                         print("      (session replaced -- %s left it unusable)"
                               % shot["name"], flush=True)
                     sess.close()
@@ -808,13 +826,22 @@ def run_sheet(path, image, only=None):
 
 
 def needs_sdk(sheets, only=None):
-    """Stanza names that load from /h1 -- the reader's own OS-9, the SDK here.
+    """Stanza names that cannot be shot without OS9SDK.
 
     This exists because an unset OS9SDK does not fail, it goes quiet: /h1 is
     never mounted, the stanza's `load /h1/...' does nothing, the program it
     wanted is not resident, and the capture is an empty screen.  That put a
     blank creadoc card in front of me on 2026-09-13 and read as a program
-    broken by the fix I had just made to it.  Five stanzas load from /h1.
+    broken by the fix I had just made to it.
+
+    TWO KINDS QUALIFY, and for a while only the first was listed.  A stanza
+    that NAMES /h1 is the obvious one.  A `burst' stanza is the other, and
+    it is not obvious at all: capture_burst runs the whole stanza under
+    MICROWARE'S shell mounted from OS9SDK, so with the variable unset it
+    returns a blank grid by design -- see its own comment.  On 2026-09-20
+    `back' came back with ink=0 while the warning named only `blackjack',
+    and the backgammon board read as a program that had stopped working.
+    It had not: with OS9SDK set the same stanza draws the whole board.
     """
     names = []
     for path in sheets:
@@ -823,7 +850,7 @@ def needs_sdk(sheets, only=None):
                 continue
             text = [a for _, a in s["acts"] if isinstance(a, str)]
             text += [x for x in (s["try"], s["os9"]) if x]
-            if any("/h1/" in t for t in text):
+            if s["burst"] or any("/h1/" in t for t in text):
                 names.append(s["name"])
     return sorted(names)
 
