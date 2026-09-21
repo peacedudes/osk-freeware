@@ -394,11 +394,22 @@ run     file DOC/sox/great_oz.iff tmp/ENC/oz.au
 wait    6
 
 shot    chardef
-cap     Loads a character set into a VT220 terminal from a definition
-cap     file: its syntax.  It calls itself defchar.
-try     chardef -?
-run     chardef -?
-wait    5
+size    26 80
+cap     Loads a soft character set into a VT220 from a definition file --
+cap     a character code, then its glyph drawn in `*' and `.' -- and the
+cap     disk ships one in DOC/chardef.  What it sends is a DECDLD control
+cap     string, which a terminal that is not a VT220 will not show, so it
+cap     is put through `dump' here: `ESC P 1;1;1{' opens it and the glyph
+cap     follows as letters, one per column.  It calls itself defchar.
+try     sed -n '1,12p' DOC/chardef/test; chardef DOC/chardef/test >tmp/cd; dump tmp/cd
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     sed -n '1,12p' DOC/chardef/test
+wait    4
+run     chardef DOC/chardef/test >tmp/cd; dump tmp/cd
+wait    8
 
 # Two splitters that used to share a card here.
 

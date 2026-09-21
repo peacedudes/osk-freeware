@@ -656,12 +656,22 @@ wait    3
 snap
 
 shot    fkeys
-cap     Sets the user-defined function keys on a VT220 terminal from a
-cap     definition file.  Asked what it takes, it names the file argument;
-cap     it needs VT220 hardware to program.
-try     fkeys -?
-run     fkeys -?
-wait    5
+size    26 80
+cap     Programs a VT220's function keys from a definition file -- `6=dir\n'
+cap     makes F6 type `dir' and press return -- and the disk ships one in
+cap     DOC/fkeys.  What it sends is a DECUDK control string, which a
+cap     terminal that is not a VT220 will not show, so it is put through
+cap     `dump' here: `ESC P 0;1|' opens it, then each key as a number and
+cap     its text in hex.  It names each key as it goes.
+try     cat DOC/fkeys/f_keys; fkeys DOC/fkeys/f_keys >tmp/fk; dump tmp/fk
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     cat DOC/fkeys/f_keys
+wait    4
+run     fkeys DOC/fkeys/f_keys >tmp/fk; dump tmp/fk
+wait    8
 
 shot    sbreak
 cap     Sends a break signal on a serial (SCF) device.  Its syntax names

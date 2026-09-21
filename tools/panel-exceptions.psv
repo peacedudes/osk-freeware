@@ -17,7 +17,6 @@ splman|the spooler manager opens a printer on a serial device and blocks waiting
 splprt|the spooler's printer process wants a printer device; without one it prints nothing and returns, and the card says so
 lprm|there is no spooler running on this disk; its option list is what there is to show, and the card says so
 lpsched|there is no printer device on this disk to start the spooler on; its option list is what there is to show
-chardef|loads a VT220 character set from a definition file, and no terminal here to load; its syntax is what there is to show
 disktest|measures disk performance and does not come back here, so its syntax is what there is to show and the card says so. WHY, established 2026-09-19 with the os9exec session: it asks OS-9's own `free' for the sector count through a pipe and reads that pipe until the answer comes. It holds a write-capable path to the same pipe itself, so with no `free' to answer, the pipe never reaches EOF and it waits on itself at 0% CPU. Where `free' is to hand and the directory is on an RBF device it runs to the end -- and prints NEGATIVE rates, from its own int overflow on a 33 MB buffer. It is not destructive: the only file it writes is ./disktest.tmp, which it unlinks
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
 puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
@@ -43,7 +42,6 @@ blastem|XMODEM and YMODEM file transfer for the MM/1; it needs a modem on a seri
 newslock|the news system's file lock; it takes a temporary name and a lock name and makes the lock by LINKING one to the other, and this C library has no link(), so it returns 1 and leaves nothing behind -- measured 2026-09-19, and SRC/cnews/misc/newslock.c is four lines of which `if (link(argv[1], argv[2]) < 0) exit(1);' is the whole program
 disable|turns MTSMon off on a serial port; it needs the port's driver module resident to find it, and none is loaded
 enable|the counterpart to disable on a serial port; it too needs the port's driver module resident, and none is loaded
-fkeys|sets a VT220 terminal's function keys from a definition file; it needs VT220 hardware to program, and names its file argument without one
 setfont|loads a downloadable font into a terminal from a font file; it needs terminal hardware to receive the font, and prints its usage without one
 sbreak|sends a break signal on a serial device; there is no serial device here to send one on, so it reports that a device must be given
 wysecrack|probes for a Wyse terminal by asking it to identify itself; nothing here is a Wyse, so no reply comes and the screen stays blank

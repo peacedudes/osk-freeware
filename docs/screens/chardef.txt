@@ -1,4 +1,22 @@
-$ chardef -?
-Syntax: defchar [<path>]
-Function:defines a new Charset for VT220 Terminals
-Options: none
+sed -n '1,12p' DOC/chardef/test
+charsetX
+33:
+.......
+*......
+**.....
+***..**
+*******
+*******
+***..**
+**.....
+*......
+.......
+$ chardef DOC/chardef/test >tmp/cd; dump tmp/cd
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  1B50 313B 313B 317B 587D 7B77 6F6F 7777 .P1;1;1{X}{wooww
+0010  2F46 4240 3F3F 4040 3B49 4449 4449 4449 /FB@??@@;IDIDIDI
+0020  2F3F 3F3F 3F3F 3F3F 1B5C 1B50 313B 3538 /???????.\.P1;58
+0030  3B31 7B58 724B 4B72 724B 4B2F 4B42 424B ;1{XrKKrrKK/KBBK
+0040  4B42 421B 5C                            KBB.\
