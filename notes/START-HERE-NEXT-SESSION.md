@@ -1138,6 +1138,30 @@ never been given what they read.**
   the third prompt repeats for ever.  Its card drives it correctly with
   `send' and `kill'.
 
+**`expreserve' AND `exrecover' ARE A PAIR AND BOTH ARE ON THE DISK**, which
+neither exception line said -- `exrecover's called expreserve "what kept the
+buffer when vi died" as though it were elsewhere.  Three things stand
+between them and a card, all measured 2026-09-21:
+
+  * both binaries name `/dd/PRESERVE' and **the disk does not ship that
+    directory** (`tools/stale_paths.py' lists it);
+  * `expreserve' wants the RAM disk -- bare it stops with
+    `<expreserve> /r0: ERROR #000.215', and `mount -r=256k /r0' gets it to
+    return 0;
+  * it expects ex's own BUFFER file, not an ordinary text file: handed one
+    it returns 0 and preserves nothing.
+
+So a demonstration needs vi to have died with a live buffer, which nobody
+has staged.  **Whether PRESERVE should ship the way SPL and MAIL do is NOT
+decided** and I did not decide it: nothing has yet been shown to fail for
+want of the directory -- expreserve stops on /r0 first.  Stage the buffer
+before adding anything to the disk.
+
+`elvprsv' is NOT part of that pair, which is the other thing the lines had
+blurred: it is elvis's, `PRESERVE' in elvis's config.h is the name of the
+PROGRAM rather than a directory, and it forks a module called `shell' to
+send its notification mail.
+
 **AND A THIRD, WHICH THE SUITE CAUGHT RATHER THAN ME.**  The new
 `fileserv' case creates `/dd/LOG/FileServ', and `driven.cases' asserts that
 `uulog' CANNOT open that file.  So the suite went 877 of 877 on the first
