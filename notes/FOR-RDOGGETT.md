@@ -4,12 +4,19 @@ Things that need YOU -- nothing else. Anything decided leaves this file the
 same day. Numbers are cited from `notes/START-HERE-NEXT-SESSION.md` and stay
 stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
-Updated 2026-09-20.
+Updated 2026-09-21.
 
-**Four items closed overnight on your answers** -- 21 (ship `cpp`), 23
+**Nothing new needs you except item 31, and item 1 changed.** The night of
+the 20th went on exception reasons and harness faults, none of which is
+yours to decide: eight lines came off `panel-exceptions.psv' and fifteen
+reasons were rewritten, the gate is green, the suite is 871 of 871 twice,
+and `check_the_checks' catches 43 of 43. It is all in the handoff.
+
+**Item 1 gained a name to pin and a reason to ask before pinning** -- the
+os9exec tip that night carried a flake its own author caught.
+
+**Four items closed on your earlier answers** -- 21 (ship `cpp`), 23
 (ispell), 24 (drop the plain duplicates) and 26 (patch the SIR reader).
-All four are done, the suite is 871 of 871 twice, and what each one
-changed is at the top of the handoff.
 
 ## Yours alone
 
@@ -85,42 +92,35 @@ that copy, `git revert` puts `fpu040` back.
 *The other five runtime modules rest on Allan's permission, which names the
 modules rather than copies, and are fine.*
 
-**31. Five programs work if a module called `shell' is resident, and I
+**31. Three programs work if a module called `shell' is resident, and I
 can make one in two minutes. Should I?**
-`run', `su', `clock', `if' and `qp' each fork a module named `shell' --
-the one that comes with OS-9 -- and each is written up here as doing
-nothing. Measured 2026-09-20: copy this disk's `ksh', change the MODULE
-name to `shell' with `tools/rename_module.py', load it, and
+`run', `su' and `if' each fork a module named `shell' -- the one that
+comes with OS-9 -- and each is written up here as doing nothing. Copy
+this disk's `ksh', change the MODULE name to `shell' with
+`tools/rename_module.py', load it, and (measured 2026-09-20):
 
     run "ls SYS"        lists SYS on the console and returns 0
                         (without it: returns 0, prints nothing at all)
     su tester -c whoami prints `tester' and returns 0 -- it really does
                         change identity (without it: 221, module not found)
-
     if loaded shell whoami endif
-                        runs whoami and prints its answer, both arms,
-                        both conditions (without it: nothing runs)
+                        runs whoami, both arms, both conditions
+                        (without it: nothing runs)
 
-`su' is the one that convinced me this is worth asking about: its card
-says there is nobody to become, and SYS/password has listed `tester',
-`uucp', `os9' and `su' all along.
+`su' is what convinced me to ask: its card says there is nobody to become,
+and SYS/password has listed `tester', `uucp', `os9' and `su' all along.
 
-**But it would NOT fix all five, and that is the honest part of the
-question.** `clock' writes `banner 'Sunday' >>>-/pipe/.temp &' -- MICROWARE
-shell redirection -- and a renamed ksh answers `[0]: syntax error'. So a
-substitute shell fixes the three that hand over a plain command line and
-not the ones that hand over their own shell's syntax. Whatever is decided,
-it is three programs, not five.
+It stops at three. `clock' writes Microware shell redirection
+(`>>>-/pipe/.temp &') and a renamed ksh answers `[0]: syntax error'; `qp'
+is not in this family at all, though it looks like it.
 
-Shipping one would be a copy of `ksh' under a name that, on a real
-system, means Microware's shell. It would make four programs work for a
-reader who has no OS-9 to supply the real one -- and it would put a
-module on the disk that answers to a name it is not. **My reading is
-don't**: the reader this collection is written for HAS OS-9, so they
-have the real `shell' already, and the cards can say "works with your own
-shell" positively instead. But it is a name-and-provenance question, which
-is yours, not mine. Nothing is on the disk either way; the test copy lives
-in a scratch directory and goes when this session does.
+Shipping one would put a copy of `ksh' on the disk under a name that, on a
+real system, means Microware's shell. **My reading is don't**: the reader
+this collection is written for HAS OS-9, so they have the real one, and
+the cards can say "works with your own shell" positively instead. But it
+is a name-and-provenance question, which is yours. Nothing is on the disk
+either way -- the test copy lives in a scratch directory and goes when
+this session does.
 
 ## Not a question, but you should know
 
