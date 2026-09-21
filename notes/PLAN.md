@@ -384,7 +384,16 @@ dispatching session applies them, regenerates, audits and commits.
    and a huge log for nothing.  A program that paints its whole screen in
    one burst and never repaints (a game board) gets a `burst' stanza --
    the paced capture drops most of that burst; `burst' captures it
-   unthrottled.
+   unthrottled.  **A `burst' stanza needs `OS9SDK' set**, because it runs
+   under Microware's own shell mounted from there; without it the capture
+   is a blank grid by design, and `screenshots.py' now warns naming every
+   burst stanza rather than only the ones that mention /h1.
+   **A stanza that leaves something RESIDENT gets `fresh'** -- a background
+   process, an event, a data module -- which ends the emulator session
+   after it so the next stanza does not inherit it.  `mw' leaves a computer
+   player that cannot be killed from a stanza (`$!' is 0 in this bash), and
+   `lpsched' creates the `spoolqueue' event that a second `lpsched' in the
+   same session then cannot create.
 4. **Decide what it is**, from what it did: does the index line describe
    this program; is it in the right sub-category; does it need something
    (and does `DOC/DEPENDS` list it); is there a better invocation; is
