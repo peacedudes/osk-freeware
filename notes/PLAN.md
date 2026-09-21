@@ -619,11 +619,18 @@ missing (two were) or present and unindexed (five were).
 kind -- not "which of these five", but "here is how to make the thing this
 collection deliberately does not ship".
 
-**What still has no chooser**, if somebody wants the next one: the eleven DVI
-drivers (one per printer, and the caption on the `dvidrivers` card is
-currently doing that job), the five spelling tools, and the compression
+**The DVI chooser was written on 2026-09-02 and this paragraph did not
+notice for nineteen days.** `DOC/README-DVI` is there, and it is a proper
+one: a table of all eleven with size, the file each writes, the printer and
+the resolution, every figure measured by running the driver on
+`SYS/TEX/SAMPLES/story.tex`, and a one-line answer for somebody with no
+printer at all (take `dvitype`). Checked 2026-09-21, which is also a
+reminder that this section is the kind of list that goes stale silently --
+`ls disk/DOC | grep README` before believing it.
+
+**What still has no chooser**: the spelling tools, and the compression
 family's four `compress` builds -- though `README-ARCHIVERS` covers most of
-that ground already. None is as clearly wanted as the five that are done.
+that ground already. Neither is as clearly wanted as the six that are done.
 
 Everything you need is derivable without running them: size, whether it needs
 `cio` (the star in `DOC/INDEX`), module name (collisions), source present
