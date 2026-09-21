@@ -1,0 +1,31 @@
+name    dm
+prog    dm
+# Disk Master 1.4, a two-pane browser: the directory on the left, a file
+# information panel on the right, the disk's own figures below it.  It runs
+# the commands on its bottom line through system(), so SHELL has to name a
+# shell that can carry them out -- that is what `sh' is here for, and the
+# card's caption says the same.  Nothing below types one of those commands:
+# what is asserted is that it draws, that its help is reachable, and that
+# `q' gets you back out, which is the part a sweep cannot see.
+#
+# THE KEYS ARE LOWERCASE, though the menu line along the bottom prints them
+# capitalised -- `Attr Copy Rename ... Help Quit Shell'.  Capital `H' does
+# nothing at all, twice over with nine seconds to answer in; lowercase `h'
+# lists the help file.  That is worth knowing before deciding the program
+# ignores a key.
+rate    0.8
+size    24 80
+setup   export SHELL=/dd/CMDS/sh
+wait    10
+snap    panes
+key     h
+wait    9
+snap    help
+key     q
+wait    3
+key     q
+wait    5
+snap    back
+expect  Disk Master
+expect  File Information
+expect  Press the down arrow

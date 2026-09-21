@@ -415,7 +415,8 @@ cap     left and a file-information panel on the right, and its commands
 cap     along the foot.  It carries those out through system(), so SHELL
 cap     has to name a shell that can run them -- `sh' here.
 cap     Arrow keys move; the letter in each word on the bottom line picks
-cap     that command.
+cap     that command -- typed in LOWER case, though the line prints them
+cap     capitalised.  Capital `H' does nothing; `h' lists the help.
 try     SHELL=CMDS/sh dm SYS
 os9     setenv SHELL CMDS/sh; dm SYS
 run     builtin cd /dd

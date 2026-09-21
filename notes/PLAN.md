@@ -648,9 +648,9 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 13 programs have none
+### 3. Tests that can fail again — 12 programs have none
 
-**Thirteen, measured 2026-09-21** -- it was 45 when this heading was
+**Twelve, measured 2026-09-21** -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
 not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
@@ -661,6 +661,12 @@ and no program on this disk can answer that: `splman', `splprt' and `cron'
 stay resident, and `lpsched' creates the `spoolqueue' event and stays.
 `mailx' came off with an assertion about what it ASKS FOR -- a mailbox
 directory named for the user NUMBER, which resolves to `su' here.
+
+`dm' came off with a PLAY-TEST, and writing it turned up something the card
+had wrong: **its command letters are typed in LOWER case**, though the menu
+line along the foot prints them capitalised. Capital `H' does nothing at
+all, twice over with nine seconds to answer in; `h' lists the help file.
+Index entry and caption both say so now.
 
 **Do not assert the system call a daemon is sitting in.** The first version
 of those three expected `F$Sleep      splman', which is what `iprocs' shows
