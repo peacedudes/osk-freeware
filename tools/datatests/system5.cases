@@ -140,3 +140,14 @@ absent  Not an RS-DOS
 case    os9dsk-says-so-when-the-image-is-the-other-kind
 run     /dd/CMDS/os9dsk -dir /dd/DOC/rsdsk/PUBDOM09.DSK
 expect  Not an OS-9 .DSK file!
+
+# cron is a daemon: it reads its table, then sleeps until something is due.
+# So what can be asserted is that it is STILL THERE afterwards, and the only
+# thing that can answer that is the emulator's own `iprocs' -- there is no
+# `procs' on this disk.  DO NOT assert the system call it is sitting in:
+# iprocs can catch a just-started daemon in START rather than F$Sleep, which
+# made three cases in printing.cases flap before they were written this way.
+case    cron-starts-and-stays-resident
+run     /dd/CMDS/cron &
+run     iprocs
+expect  cron

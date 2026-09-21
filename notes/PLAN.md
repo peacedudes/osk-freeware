@@ -648,19 +648,19 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 14 programs have none
+### 3. Tests that can fail again — 13 programs have none
 
-**Fourteen, measured 2026-09-21** -- it was 45 when this heading was
+**Thirteen, measured 2026-09-21** -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
 not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
 
-Three came off on 2026-09-21 and all three were tested with os9exec's
+Four came off on 2026-09-21 and three of them were tested with os9exec's
 `iprocs`, because what had to be asserted was that a DAEMON IS STILL THERE
-and no program on this disk can answer that: `splman' and `splprt' stay
-resident, and `lpsched' creates the `spoolqueue' event and stays. `mailx'
-came off with an assertion about what it ASKS FOR -- a mailbox directory
-named for the user NUMBER, which resolves to `su' here.
+and no program on this disk can answer that: `splman', `splprt' and `cron'
+stay resident, and `lpsched' creates the `spoolqueue' event and stays.
+`mailx' came off with an assertion about what it ASKS FOR -- a mailbox
+directory named for the user NUMBER, which resolves to `su' here.
 
 **Do not assert the system call a daemon is sitting in.** The first version
 of those three expected `F$Sleep      splman', which is what `iprocs' shows
