@@ -457,3 +457,21 @@ the driver's default.
 The two recipes are not committed -- they build nothing that ships. Recreate
 them from the source above in any pool directory; the whole run is about
 ninety seconds including the overlay.
+
+**ONE OTHER SHIPPED PROGRAM MAY HAVE THIS SHAPE, and a third turned out not
+to.** `lgrep' forks `grep' into an unnamed pipe, reads it back, is a
+trap-library build and emits nothing -- a family resemblance to `vis', not a
+proof, because it RETURNS where the probe hangs. It has no source anywhere
+and no `DOC/ORIGINS' entry, so a `-qm' rebuild is not available to test it
+with; instrumenting it means disassembly.
+
+`qp' looked like the third and is not, which is worth recording because the
+resemblance was strong: it creates `/PIPE', forks into it and is likewise a
+starred trap-library build. Its failure is an OPTION SYNTAX mismatch.
+`SRC/eff_qp/qp.c' takes its shell from `$SHELL' (falling back to `zsh',
+EFFO's shell) and hands it `-ny -nl'; `SYS/login' sets `SHELL=/dd/CMDS/ksh',
+which does not take those options, so it returns 0 in silence. Point SHELL
+at a program that reports its arguments and it says so:
+`export SHELL=/dd/CMDS/ls; qp dir `whoami`' gives "ls: invalid option -- y"
+twice, once for the expansion fork and once for the chain. **A shape shared
+is not a cause shared** -- check each one.
