@@ -1110,6 +1110,34 @@ session.  Two things are established:
     bash**, so a background job's pid cannot be captured.  `kill' is a
     bash builtin here and returns 0 having killed nothing.
 
+**FOUR MORE THINGS SETTLED AFTER THE ABOVE WAS WRITTEN.**
+
+  * **Nothing here can set the clock, and none of the four programs is at
+    fault.** os9exec's `F$STime' does nothing off classic MacOS -- its
+    source says "the host clock is not set from the guest" -- and it
+    RETURNS SUCCESS.  So `setime', `setime2', `setimex' and `setyear' all
+    report the time and leave it alone, and `fixyear' can never be shown a
+    file with a pre-1970 date.  `setime's card had claimed that two of the
+    others do set it "and their cards show it"; neither half was true.
+    All three captions corrected, DOC/STATUS has the group.
+  * **`uulog' works and its card had been borrowing another stanza's log.**
+    The line on it came from the `rmail' stanza 660 lines earlier in the
+    same sheet.  It makes its own entry now -- clears the log, runs
+    `rmail tester', prints what that logged -- and two shoots running give
+    one entry, not two.
+  * **`qp' is not in the pipe family**, though it forks into `/PIPE' and is
+    a starred trap-library build like `vis' and `lgrep'.  It hands `$SHELL'
+    the option string `-ny -nl'; login sets SHELL=ksh, which does not take
+    them.  Point SHELL at `/dd/CMDS/ls' and it says "invalid option -- y"
+    twice.  **A shape shared is not a cause shared** -- I wrote it into the
+    family and had to take it out an hour later.
+  * **`frm': five hypotheses eliminated**, cause still open.  Not
+    staleness, not location, not naming the folder, not the message's age,
+    not the line ending.  The tell: with MAIL set it says "You have no
+    mail." and without it "tester has no mail." -- so it OPENS what MAIL
+    names and counts nothing, where `messages' reads the same file and
+    finds the message.
+
 **SHEETS AND CASES NAME 24 PROGRAMS THAT ARE NOT ON THE DISK, and ten
 more under the wrong directory -- `tools/stale_paths.py' lists them.**
 Found by running `cal2.drive' to check the environment change had not
