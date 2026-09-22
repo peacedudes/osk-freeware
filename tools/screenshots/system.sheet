@@ -970,9 +970,10 @@ wait    3
 shot    screen_nocio
 cap     screen_nocio is the trap-free build of `screen', a login greeting
 cap     that picks a file at random from $HOME/.SCREENS and runs it
-cap     through the shell.  It reaches the lookup where the cio build
-cap     will not start; running the greeting needs Microware's shell, and
-cap     without one the child is aborted.
+cap     through the shell.  Here it reads that directory and stops with a
+cap     bus error at the first name it accepts -- the archive's own cio
+cap     build stops at the same point, with your own OS-9's shell loaded
+cap     or not, so the fault is in the directory scan they share.
 try     screen_nocio; echo "st $?"
 run     rm -rf /dd/tmp/UTILA/home > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil
