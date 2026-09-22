@@ -80,9 +80,9 @@ of those were left spinning on 2026-09-21, the oldest for 14 hours.
   * **~330 manual pages written**, each from the program's captured help,
     its card, its howto line, and a drive run where a claim needed one.
 
-**Suite: 877 of 877, twice on one fresh image** (2026-09-22, after every
-INDEX, STATUS and README change above), and osk-freeware.dd rebuilt
-afterwards.
+**Suite: 874 of 874, twice on one fresh image** (2026-09-22, after the
+bash patch and the vi helpers' removal -- four cases went with them), and
+osk-freeware.dd rebuilt afterwards.
 
 **Writing pages for this disk's nroff:** it spaces every font-macro
 argument apart, so `.BR cio .' prints `cio .'.  Write fonts inline
