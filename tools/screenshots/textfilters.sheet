@@ -596,15 +596,17 @@ snap
 
 shot    subber
 size    24 80
-try     subber words in
+try     shell subber #1000k words in
 os9     subber #1000k words in
 cap     Substitutes word for word through a file: the list `,fox,cat' and
 cap     `,here,there' rewrites the two lines under it.  It grows its memory
 cap     as it reads and that growth is refused here, so it wants to be
-cap     started with the memory already in hand -- which is what the
-cap     `#1000k' does at your own OS-9 shell, on the second line above.
-cap     Started from this disk's bash there is no way to ask for it, and
-cap     the refusal is what comes back.
+cap     started with the memory already in hand -- the `#1000k' your own
+cap     OS-9's shell understands.  From bash, hand the line to that shell,
+cap     loaded from /h1 as SYS/login does; at the shell itself, the second
+cap     line above.
+run     load /h1/CMDS/shell
+wait    3
 run     rm -rf /dd/tmp/SUBB > /nil 2>/nil; mkdir -p /dd/tmp/SUBB; printf ',fox,cat\r,here,there\r' > /dd/tmp/SUBB/words; printf 'here is a fox\rthe fox went here\r' > /dd/tmp/SUBB/in
 wait    3
 run     builtin cd /dd/tmp/SUBB
@@ -615,8 +617,8 @@ run     cat words
 wait    3
 run     cat in
 wait    3
-run     subber words in
-wait    5
+run     shell subber #1000k words in
+wait    6
 
 shot    tcmp
 cap     tcmp compares two text files line by line and prints each line that
