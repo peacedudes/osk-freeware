@@ -849,7 +849,6 @@ fontgen|none|it reads its bitmap on standard input and takes no options
 dpark|dpark -?|
 bsplt68|none|it takes the boot file and nothing else
 signal|signal -?|
-t|none|it takes no options and prints nothing
 mexist|mexist -?|
 vis|vis -?|
 repeat|repeat -?|

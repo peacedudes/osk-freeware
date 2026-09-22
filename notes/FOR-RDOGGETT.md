@@ -6,7 +6,7 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-22.
 
-**One new question: 34, whether the `t' stub ships.**  Answered 2026-09-22: 31 (no stand-in
+**Nothing new needs you.**  Answered 2026-09-22: 34 (the `t' stub came off), 31 (no stand-in
 `shell'; load yours from /h1/CMDS/shell, as SYS/login does), 32 (the EFFO
 vi's helpers come off), 33 (bash patched).  Programs found and left out
 are catalogued for readers in DOC/README-NOT-SHIPPED.
@@ -75,14 +75,6 @@ turns up that wants one more fetch. Delete the key after that; it is the
 only credential here.
 
 ## Decisions
-
-**34. `t' ships and does nothing -- take it off?**
-CMDS/t is `int main(){return 0;}', a test stub from our own ls build tree
-(its md5 is SRC/ls/t's); DOC/INDEX calls it a trap-handler test stub.  It
-has a card showing it return 0.  **Recommend: take it off**, with its
-card and index rows; it is ours, not found software, so it needs no
-README-NOT-SHIPPED line.
-
 
 **28. Should "name what the reader HAS" reach the shipped READMEs?**
 The gate covers `DOC/INDEX`, `howto.psv` and the card sheets. Four

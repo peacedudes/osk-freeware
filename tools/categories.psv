@@ -547,7 +547,6 @@ aprocs|System & modules|Processes & memory
 dpark|System & modules|Devices & disks
 launch|System & modules|Processes & memory
 signal|System & modules|Processes & memory
-t|System & modules|Processes & memory
 top|System & modules|Processes & memory
 who|System & modules|Processes & memory
 cron|System & modules|Scheduling

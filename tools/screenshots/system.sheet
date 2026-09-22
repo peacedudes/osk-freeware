@@ -673,13 +673,6 @@ run     signal 3 0; echo "status $?"
 wait    4
 run     signal 3 0; echo "status $?"
 wait    4
-shot    t
-cap     t is a minimal trap-handler test stub: it installs, returns cleanly
-cap     and prints nothing, so a zero exit status is the whole of what it
-cap     has to show.
-try     t; echo "status $?"
-run     t; echo "status $?"
-wait    4
 shot    mexist
 cap     mexist tests whether a module is in memory and sets its exit
 cap     status -- zero when the module is there, one when it is not.
