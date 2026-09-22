@@ -1471,9 +1471,9 @@
 |---|---|
 | `keydrv.mm1` | keyboard driver |
 | `msdrv.901_340` | mouse driver |
-| `msdrv_340.901.ms` | the mouse driver's device descriptor |
+| `msdrv_340.901.ms` | the mouse driver, a second build of the same edition |
 | `rb37c65` | floppy driver (37C65 controller) |
-| `scsi_mm1a` | SCSI driver |
+| `scsi_mm1a` | the low-level SCSI routines the hard disk driver links to |
 | `snddrv` | sound driver |
 | `windio.52` | windowing terminal driver |
 

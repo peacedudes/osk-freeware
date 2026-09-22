@@ -36,7 +36,7 @@ FAMILY = {
     "CMDS/NETPBM": "netpbm", "CMDS/TEXCMDS": "tex", "CMDS/UUCP": "uucpbb",
     "CMDS/ELM": "elm", "CMDS/NEWS": "cnews", "CMDS/WN": "wn",
     "CMDS/COMMS": "comms", "CMDS/DHRY": "dhry", "CMDS/GCC2": "gcc",
-    "CMDS/GCC139": "gcc139", "CMDS/ADL": "adl",
+    "CMDS/GCC139": "gcc139", "CMDS/ADL": "adl", "CMDS/MM1": "mm1",
 }
 
 # Programs documented under ANOTHER program's name, one row each with the
