@@ -58,25 +58,6 @@ expect  -s       remove also system programs
 # notes/drives/system4.txt, and what is asserted here is only the half
 # that can be: that suspend explains itself.
 
-# exrecover is the half of vi's crash recovery that gives a buffer back.
-# With no arguments it says so; asked for a file nobody saved it says so
-# too. /dd/PRESERVE, where expreserve would put one, is not on this disk.
-case    exrecover-wants-arguments-and-says-when-there-is-nothing-saved
-run     /dd/CMDS/exrecover
-run     echo "---"
-run     /dd/CMDS/exrecover -r /dd/tmp/nothing
-expect  Wrong number of arguments to exrecover
-expect  File not found
-
-# expreserve is the other half, and it cannot be driven by hand: it takes
-# vi's own temporary buffer, not text. Given a text file it says exactly
-# that, which is the useful thing to record -- it is not broken and it is
-# not for you.
-case    expreserve-wants-an-editor-buffer-not-a-text-file
-run     echo "one line of an editor buffer" > $W/buf.txt
-run     /dd/CMDS/expreserve < $W/buf.txt
-expect  Buffer format error
-
 case    ub68020demo-prints-the-unibasic-demo-banner
 run     /dd/CMDS/DEMOS/ub68020demo < /nil
 expect  UniBasic Version 1.10

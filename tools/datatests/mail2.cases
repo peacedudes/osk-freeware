@@ -98,17 +98,6 @@ run     /dd/CMDS/UUCP/nptx < $W/n2.txt
 expect  format error: a@b
 expect  format error: John Q Public
 
-# read_mail is not vi's helper and not part of Elm: it has a mail directory
-# of its own, /dd/MAIL/mail_<user>, and quotes what it finds.
-case    read_mail-quotes-the-folder-and-N-leaves-it-alone
-run     /dd/CMDS/cat $M > /dd/MAIL/mail_tester
-run     echo "N" > $W/n.txt
-run     /dd/CMDS/read_mail < $W/n.txt
-run     /dd/CMDS/wc -c /dd/MAIL/mail_tester
-expect  > Subject: Welcome -- this is a real mail folder
-expect  [L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete
-expect  804 /dd/MAIL/mail_tester
-
 # Given a folder it can read, philmail goes straight to composing a reply
 # and names the file it opened. The paragraph of instructions is what `-?'
 # earns, and asserting both in one case fails against a working program.

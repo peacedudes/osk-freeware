@@ -1,10 +1,11 @@
-ctags.elvis exrecover.c
+ctags.elvis cmdline.c
 $ cat tags | head -n 8
-while   exrecover.c     /^      while (H.Flines > 0) {$/
-error   exrecover.c     /^error(str, inf)$/
-qucmp   exrecover.c     /^int  qucmp () ;$/
-enter   exrecover.c     /^enter(fp, fname, count)$/
-qucmp   exrecover.c     /^qucmp(p1, p2)$/
-findtmp exrecover.c     /^findtmp(dir)$/
-searchdir       exrecover.c     /^searchdir(dirname)$/
-yeah    exrecover.c     /^yeah(name)$/
+getcmdln        cmdline.c       /^char *getcmdln(firstc)$/
+do_command_line cmdline.c       /^void do_command_line(cmdline)$/
+do_exit cmdline.c       /^void do_exit()        /* v1.1 */$/
+bad_command     cmdline.c       /^void bad_command()$/
+do_e_command    cmdline.c       /^int do_e_command(arg, force)$/
+goto_command    cmdline.c       /^void goto_command(clr, firstc)$/
+msg     cmdline.c       /^void msg(s)$/
+show_message    cmdline.c       /^void show_message(s,a1,a2,a3,a4,a5,a6,a7,a8,a9
+,a10,a11,a12,a13,a14,a15,a16)$/

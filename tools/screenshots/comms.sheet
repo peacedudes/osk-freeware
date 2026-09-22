@@ -366,21 +366,6 @@ wait    1
 run     pwparse < password
 wait    6
 
-shot    read_mail
-cap     vi/elvis's own mail helper, not part of Elm: it opens your mailbox,
-cap     quotes each message, then offers to list them again, exit and delete,
-cap     or exit and keep.  Here it quotes the one message and `N' keeps it.
-try     read_mail
-run     mkdir -p /dd/MAIL > /nil 2>/nil
-run     printf "From: os9-freeware\rSubject: hello\r\rWelcome to the collection.\r" > /dd/MAIL/mail_tester
-wait    3
-run     clear
-wait    1
-run     read_mail
-wait    5
-send    N\r
-wait    4
-
 shot    readmsg
 cap     Prints a message from a folder by number.
 try     readmsg 1

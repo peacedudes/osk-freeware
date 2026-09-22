@@ -113,8 +113,6 @@ run     echo "--- philmail:"
 run     /dd/CMDS/UUCP/philmail
 run     echo "--- uupoll:"
 run     /dd/CMDS/UUCP/uupoll
-run     echo "--- read_mail:"
-run     /dd/CMDS/read_mail < /nil
 run     echo "--- end"
 
 drive   news-remaining

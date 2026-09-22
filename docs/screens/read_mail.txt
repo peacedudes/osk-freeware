@@ -1,8 +1,0 @@
-read_mail
-
-> From: os9-freeware
-> Subject: hello
->
-> Welcome to the collection.
-
-[L]ist again ,  e[X]it & delete mail ,  exit & [N]ot delete   ?  N

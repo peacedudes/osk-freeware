@@ -13,7 +13,6 @@ X11R6shl bec5c92246c472a8
 a2p 9b7a2608806a2774
 about 253c97e879e0105e
 accordian ca56c357b4bc2d6e
-add_errmsg 58882a7c07b4c410
 adduser aeb299e88a914c4d
 adlcomp 32d3f23a90138ca5
 adldebug 6c89a7e55ab1a303
@@ -170,7 +169,7 @@ cribbage 236f40fb817c182c
 cron d4fd92cf0137f205
 crypto ee96bdb3042ce625
 ctags 841abe2f2cfff6b3
-ctags.elvis be73695a040d2c13
+ctags.elvis 843ea3978178ec6f
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
 cuts e025b1f5300263c5
@@ -265,7 +264,6 @@ exist c54bb20bc7c4df89
 expand 6d527f34be7958ca
 expire 4f5c0139a9bff507
 expr 93380e70a1308318
-exrecover 7e7b5298a953fdb1
 fact 991277e06b018c6e
 factor 1ccd0e9539df7630
 fastcc 5e4a74de4c19af8a
@@ -682,7 +680,6 @@ rayshade 1e2c69998aeea301
 rdjpgcom e7bf0acbf472a866
 rdjpgcom.070 21fad5e8bdcc6030
 rdoc a0d7a1db99272266
-read_mail 75f865aec1a08c3f
 readmsg acf5e6d2c4a14d0e
 readnews d2383353e60d7d02
 rechne 59c965a157f88843
@@ -725,7 +722,7 @@ scrabble 80414d1dca9ed3e4
 screen 82b54fc99b77b5ed
 screen_nocio c44b4c396992499c
 scriptmaster c2480f44f645d209
-scsiutil 24cd2d532328b474
+scsiutil c928a84aba4e57da
 sdb a79ec8986d276df3
 sddemo c472fc5dc89bc5e1
 sed 86aff8401aaf7f06
@@ -878,7 +875,6 @@ vcraps 4a4e9c21b6113efa
 version 4cf80677f3f5a15c
 vftovp 01cee193d3f83aa4
 vi 815e0cedeedc2fec
-vi-recovery ea4fd3700d282789
 vi.elvis 8253ea73025a2ad1
 vi_1.0 912d53b32f43f229
 vi_cio 0b6faca63148c4db

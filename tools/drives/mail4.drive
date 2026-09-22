@@ -15,7 +15,6 @@
 #   rmail       /DD/SYS/UUCP/Systems, $LOGDIR, .forward
 #   makedb      /dd/usr/lib/smail/palias  ->  <name>.dir + <name>.pag
 #   uupoll      /DD/USR/LIB/UUCP/Config -> <spool>/<sys>/C.<sys>NPOLL
-#   read_mail   $USER, then /dd/MAIL/mail_<user>
 #   arepdaemon  /dd/USR/LIB/ELM/autoreply.data
 #   dotilde     ~h and ~? print its whole tilde-command help
 #   printmail   forks `readmsg' -- the question is HOW it forks it
@@ -126,18 +125,6 @@ run     echo "--- now with readmsg copied into /dd/CMDS:"
 run     /dd/CMDS/cp /dd/CMDS/ELM/readmsg /dd/CMDS/readmsg
 run     /dd/CMDS/ELM/printmail 1
 run     echo "--- end printmail"
-
-drive   read_mail
-why     it opens /dd/MAIL/mail_$USER and offers L/X/N.  The directory ships
-why     with an empty `mail_' in it; give it a real mail_tester and answer.
-run     /dd/CMDS/cat /dd/SPOOL/MAIL/tester > /dd/MAIL/mail_tester
-run     /dd/CMDS/ls -l /dd/MAIL
-run     echo "--- run it and answer N (do not delete):"
-run     echo "N" > $W/n.txt
-run     /dd/CMDS/read_mail < $W/n.txt
-run     echo "--- is the file still there?"
-run     /dd/CMDS/wc -c /dd/MAIL/mail_tester
-run     echo "--- end read_mail"
 
 drive   philmail
 why     an off-line reader for a UNIX spool file.  It prints a paragraph of

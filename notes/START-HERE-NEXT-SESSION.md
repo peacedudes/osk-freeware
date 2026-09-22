@@ -38,12 +38,10 @@ are just wasting time."*  There is no ordering question here any more.
    the program that provides what it needs; the card FILTERED the content
    away (`getsys' published its stderr).  See
    [[os9-exception-reasons-go-stale]] and the entries further down.
-3. **`expreserve' and `exrecover' wait on FOR-RDOGGETT item 32.**  They
-   are Bill Joy's ex helpers from EFFO forum 13's XENIX-derived vi port
-   -- the `vi' that came off on terms on 2026-09-18 -- and only that vi
-   makes the buffer they save, so a dying buffer cannot be staged.
-   Found 2026-09-21 by matching the binaries byte for byte against the
-   archive.  Do nothing to them until he rules.
+3. **DONE 2026-09-22: the EFFO vi's helpers came off** on rdoggett's
+   ruling -- expreserve, exrecover, add_errmsg, read_mail, SYS/vi_usage,
+   vi_errmsg, .exrc and MAIL/mail_.  DOC/README-NOT-SHIPPED lists them
+   with the vi they belonged to, and where they are.
 4. **The other 9 untested programs want hardware, G-Windows, a network, or
    do not survive capture.**  Do not spend the session on them; the reasons
    are recorded per program.

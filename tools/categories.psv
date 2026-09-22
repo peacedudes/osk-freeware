@@ -888,7 +888,6 @@ infoxpress|Communications|TCP/IP
 msntp|Communications|TCP/IP
 net|Communications|TCP/IP
 osknet|Communications|TCP/IP
-add_errmsg|System & modules|Utilities
 argproc_demo|System & modules|Utilities
 ask|Games|Other games
 biory|Amusements|Biorhythms
@@ -898,8 +897,6 @@ creadoc|Languages|Fortran
 demerge|System & modules|Utilities
 devprc|System & modules|Utilities
 em|Editors|emacs family
-expreserve|System & modules|Utilities
-exrecover|System & modules|Utilities
 fontgen|System & modules|Utilities
 ggrep|Text tools|Search & match
 umacs|Editors|emacs family
@@ -981,7 +978,6 @@ wgen|Graphics & images|Hardware demos
 btop|System & modules|Utilities
 ptob|System & modules|Utilities
 epson|Printing|Printers
-read_mail|Communications|Mail
 vecho|System & modules|Utilities
 ptxminst|System & modules|Utilities
 umusek|Needs hardware|Display

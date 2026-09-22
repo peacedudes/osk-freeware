@@ -24,17 +24,6 @@ run     /dd/CMDS/fixyear /dd/tmp/fy.txt
 expect  Fix modification year if less than 1970
 expect  -z=<file>  read file names from <file>
 
-# NO ABSOLUTE LINE COUNT HERE. add_errmsg APPENDS, so the count and the seek
-# position both move every time the family is run against an image that has
-# not been rebuilt -- a case keyed on `278' passes once and then never again.
-# What does not move is that it reports the offset it wrote at and the text
-# it wrote.
-case    add_errmsg-appends-a-line-to-vi_errmsg
-run     /dd/CMDS/add_errmsg "a test message"
-run     /dd/CMDS/tail -n 1 /dd/SYS/vi_errmsg
-expect  seek position
-expect  for 'a test message'
-
 case    epson-lpsched-and-submit-name-themselves-and-their-options
 run     /dd/CMDS/epson -?
 run     /dd/CMDS/lpsched -?

@@ -474,7 +474,6 @@ elvis|none|it takes file names; an unknown flag is ignored with a note, and DOC/
 elvis_input|none|it takes file names; an unknown flag is ignored with a note, and DOC/elvis has the manual
 elvprsv|none|elvis runs it itself when it dies; it takes no options
 elvrec|none|it takes the name of a preserved file; run bare it lists what is preserved
-exrecover|none|it takes a user name and a file name and nothing else
 em|em -?|
 emacs|none|it takes file names and no help flag; its help lives inside, in the macros and help files under USR/LIB/EMACS
 umacs|none|it takes file names and no help flag
@@ -861,7 +860,6 @@ combine|combine -?|
 demerge|demerge -?|
 ptob|ptob -?|
 trunc|trunc -?|
-add_errmsg|add_errmsg -?|
 clear|clear -?|
 lgrep|lgrep -?|
 suse|none|it takes a program name and prints nothing
@@ -897,14 +895,12 @@ snddrv|none|a device driver for the MM/1, not a program
 windio.52|none|a device driver for the MM/1, not a program
 dedit|none|it edits raw disk sectors at its own prompts and has no help flag; it writes what it is told
 env|env --help|
-expreserve|none|vi runs it itself when it dies; it takes no options and wants a /r0 to write to
 fixyear|fixyear -?|
 lfmaker|none|it takes the file to make a launch file for and nothing else
 liborder.os9|liborder.os9 -?|
 logname|logname --help|
 ptxm|none|a kernel extension module, not a program; ptxminst installs it
 ptxminst|none|it takes no options; it installs ptxm, which must be loaded first
-read_mail|none|it takes no options and asks L, X or N on standard input
 su|su --help|
 t_trtest|none|it asks for lines itself and has no help flag
 testibc|none|it asks its questions itself and has no help flag

@@ -119,13 +119,6 @@ drive   setime2
 run     /dd/CMDS/setime2 -?
 run     /dd/CMDS/today
 
-drive   add_errmsg
-why     appends to /dd/SYS/vi_errmsg -- count the lines either side
-run     /dd/CMDS/wc -l /dd/SYS/vi_errmsg
-run     /dd/CMDS/add_errmsg "a test message"
-run     /dd/CMDS/wc -l /dd/SYS/vi_errmsg
-run     /dd/CMDS/tail -3 /dd/SYS/vi_errmsg
-
 drive   t_trtest
 run     /dd/CMDS/t_trtest
 

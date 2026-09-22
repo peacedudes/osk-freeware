@@ -4,7 +4,6 @@
 #   makedb     WORKS -- writes pal.dir and pal.pag from the shipped palias
 #   uupoll     WORKS -- `uupoll nowhere' creates
 #              /dd/SPOOL/uucp/nowhere/C.nowhereAPOLL, and -gZ makes ...ZPOLL
-#   read_mail  WORKS -- quotes the message and offers [L]/[X]/[N]
 #   philmail   WORKS -- "Successfully opened mail.19 for reply"
 #   nptx       WORKS, and its format is <full name>TAB<login>: it answers
 #              `tester<TAB>John Q Public'.  Anything else is `format error'

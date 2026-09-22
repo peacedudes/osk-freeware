@@ -377,44 +377,12 @@ try     phone /t1
 run     phone /t1
 wait    28
 shot    scsiutil
-for     scsiutil expreserve
-cap     scsiutil talks to a SCSI device; expreserve is vi's crash
-cap     recovery, preserving an edit buffer when the editor dies.  Neither
-cap     has anything to work on here, and each answers with its usage.
-try     scsiutil -?; expreserve -?
+cap     scsiutil talks to a SCSI device.  With none to work on here it
+cap     answers with its usage.
+try     scsiutil -?
 run     scsiutil -?
 wait    8
-run     expreserve -?
-wait    8
-shot    vi-recovery
-size    40 80
-for     exrecover read_mail
-cap     `read_mail' reading a folder, and the vi recovery helper beside
-cap     it.  read_mail is not vi's helper despite sitting among them: it
-cap     is a small mail reader with a mail directory of its own, and it
-cap     quotes what it finds and offers to delete it.  `exrecover' brings
-cap     back a buffer that `expreserve' saved when vi died; asked for one
-cap     nobody saved it says `File not found', which is the honest answer
-cap     on a disk where vi has not crashed.  The folder is cut to seven
-cap     lines so the whole exchange fits on one screen.  read_mail reads
-cap     its answer from standard input -- `N' from a file returns, and so
-cap     does `n', while read_mail given nothing at all re-prompts without
-cap     bound and fills a capture with four megabytes of the same
-cap     question.
-try     exrecover -r tmp/nothing; cat SPOOL/MAIL/tester | head -n 7 > MAIL/mail_tester; echo "N" > tmp/rm.in; read_mail < tmp/rm.in
-os9     exrecover -r tmp/nothing; cat SPOOL/MAIL/tester !head -n 7 >MAIL/mail_tester; echo "N" >tmp/rm.in; read_mail <tmp/rm.in
-run     builtin cd /dd
-wait    1
-run     clear
-wait    1
-run     exrecover -r tmp/nothing
-wait    8
-run     cat SPOOL/MAIL/tester | head -n 7 > MAIL/mail_tester
-wait    5
-run     echo "N" > tmp/rm.in
-wait    4
-run     read_mail < tmp/rm.in
-wait    10
+
 shot    sddemo
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
 cap     volume it is about to work on.
@@ -844,23 +812,6 @@ run     trunc f 8
 wait    2
 run     ls -l f; cat f; echo
 wait    3
-shot    add_errmsg
-cap     add_errmsg appends error messages to vi's message file, one per
-cap     quoted argument.  It seeks to the end
-cap     and writes, and the file grows by the message.
-try     wc -c vi_errmsg; add_errmsg "disk full -- delete something"; wc -c vi_errmsg
-run     builtin cd /dd/SYS
-wait    1
-run     clear
-wait    1
-run     clear
-wait    1
-run     wc -c vi_errmsg
-wait    2
-run     add_errmsg "disk full -- delete something"
-wait    3
-run     wc -c vi_errmsg
-wait    2
 shot    clear
 cap     clear clears the terminal screen.  A directory listing is printed
 cap     and then wiped by clear -- only the line typed after it is left.

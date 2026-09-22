@@ -88,14 +88,6 @@ wait    5
 run     elvrec jabber.txt
 wait    5
 
-shot    exrecover
-cap     The same job for the Berkeley vi: given a user and a file name it
-cap     recovers the buffer expreserve kept when vi died.  With nothing
-cap     preserved it says so.
-try     exrecover tester jabber.txt
-run     exrecover tester jabber.txt
-wait    6
-
 shot    em
 cap     MicroEMACS 3.8b on a four-line file, with its mode line at the
 cap     foot.  Control-X control-C leaves it.
@@ -363,14 +355,14 @@ wait    1
 shot    ctags.elvis
 cap     Builds a tags file for elvis from C source: one line per function,
 cap     with the file and a search pattern that finds it.
-try     ctags.elvis exrecover.c
+try     ctags.elvis cmdline.c
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/tags
-run     cp /dd/SRC/effo_vi/exrecover.c /dd/tmp/EDIT/exrecover.c
+run     cp /dd/SRC/pvic/SRCE/cmdline.c /dd/tmp/EDIT/cmdline.c
 run     builtin cd /dd/tmp/EDIT
 wait    2
 run     clear
 wait    1
-run     ctags.elvis exrecover.c
+run     ctags.elvis cmdline.c
 wait    8
 run     cat tags | head -n 8
 wait    4

@@ -178,8 +178,6 @@ em|A screen editor. It stops with "Environment variable TERM not defined!" unles
 ask|The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20.
 ggrep|GNU grep. `ggrep <expr> <files...>'; -E, -F, -i, -v, -w and the rest as you would expect.
 fontgen|Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout.
-expreserve|Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it.
-exrecover|Recovers what expreserve saved. Again, vi's helper rather than a command you start.
 uux|Runs a command on another UUCP site. This is BLARS uucp, which reads USR/LIB/UUCP/Config -- a different configuration from UUCPbb's SYS/UUCP. Both ship.
 uupoll|Polls a UUCP site for waiting work, and it does the job in SILENCE -- which is why it reads as broken. `uupoll <site>' leaves /dd/SPOOL/uucp/<site>/C.<site>APOLL; the grade letter from -g goes into the name, so `-gZ' gives ...ZPOLL. Blars uucp; wants the `uucp' user, which SYS/password has.
 trap|The system-state trap-handler example: it installs a trap from system state. Ask for it by PATH -- `/dd/CMDS/trap' -- because `trap' is also a bash builtin, and the builtin answers first, silently.
@@ -218,7 +216,6 @@ ppmntsc|It takes a DIMFACTOR first -- 0.0 is black, 1.0 the original -- then the
 ppmtoyuvsplit|It takes a BASENAME and writes three files beside the data directory, not to standard output: <name>.Y, .U and .V. 4:2:0 subsampling, so a 32x16 image gives .Y = 512 bytes and .U = .V = 128. `yuvsplittoppm <name> <w> <h>' brings them back.
 des|It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.'
 hexed|`hexed -t=<dir> -e=<editor> <file>': the file goes out as a hex dump into <dir>, the editor opens it, and leaving the editor writes the file back. Without -t it uses /r0.
-read_mail|Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt on standard input -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound.
 rmail|Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return.
 subscribe|It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone.
 flink|never run this on a disk you care about, and never on a shipped module. It makes a directory entry aliasing the file's FD in whatever directory you are standing in; RBF has no hard links; and removing that entry leaves the original file pointing at a directory, after which `cat' answers `is a directory' for everything. It corrupted /dd/CMDS/cat that way once, and only rebuilding the image put it back.

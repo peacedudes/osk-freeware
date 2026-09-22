@@ -1,6 +1,6 @@
 # What is on this disk
 
-1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1028 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,12 +20,12 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 122 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 119 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -778,7 +778,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>96 programs</summary>
+<details><summary>95 programs</summary>
 
 **File transfer**
 
@@ -827,7 +827,6 @@
 | `philmail` | an off-line mail reader: it opens your mail file, steps through the messages with return and offers a reply; `q' quits<br>`/dd/CMDS/UUCP/philmail is an off-line mail reader for UNIX mail` |
 | `printmail` | &#9733; format a message for a printer.  It forks `readmsg' by bare name, so load it first; then it prints the message the same way `readmsg' would<br>**How:** It forks `readmsg' by bare name, and OS-9 resolves a bare-name fork against the execution directory, never against PATH -- so it is silent from everywhere except /dd/CMDS/ELM. `load /dd/CMDS/ELM/readmsg' once and it works from anywhere: a resident module is found by name with no directory search at all. |
 | `pwparse` | &#9733; reads a password file on standard input and prints the login name from each line, one to a line -- the form the mail system wants a user list in |
-| `read_mail` | &#9733; a small mail reader of its own: it opens /dd/MAIL/mail_<user> and offers `[L]ist again, e[X]it & delete mail, exit & [N]ot delete'<br>**How:** Not vi's helper and not part of Elm: it has a mail directory of its own, /dd/MAIL/mail_<user>, and $USER decides which. Answer its L/X/N prompt on standard input -- `echo N > f; read_mail < f'. With no input at all it re-asks without bound. |
 | `readmsg` | &#9733; prints selected messages from a mail folder, by number or by pattern: `readmsg 1' for the first<br>**How:** Prints messages from a mail folder: `readmsg 1' for the first. It reads the welcome message in /dd/SPOOL/MAIL/tester. |
 | `rmail` | &#9733; deliver incoming mail (invoked by uuxqt, not by you). Given a local name it builds <mailbox>/<user>, and the mailbox here is a file, so it stops with `can't change to mailbox: /dd/SPOOL/MAIL/tester/tester'.  Given a `host!user' address for remote delivery it does not return at all<br>**How:** Local delivery builds <mailbox>/<user> and stops, because the mailbox here is a file: `rmail tester' answers plainly. `rmail "site!user"' for remote delivery does not return. |
 | `smail` | &#9733; takes a mail address, works out the route to it from the map `pathalias' built, and hands the message to the mailer that carries it. -A prints the address it would map to and stops, -v says what it is doing and -d does both without delivering anything<br>`Usage:   /dd/CMDS/UUCP/smail [<options>] address...` |
@@ -1421,7 +1420,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>122 programs</summary>
+<details><summary>119 programs</summary>
 
 **Devices & disks**
 
@@ -1538,7 +1537,6 @@
 
 | | |
 |---|---|
-| `add_errmsg` | &#9733; build vi's error-message file -- it wants /dd/SYS/vi_errmsg, which is here<br>`usage: add_errmsg "msg1" ... "msgN"` |
 | `argproc_demo` | a demonstration of argproc(), a command-line argument parser: it parses the line and prints what it made of it -- `argproc_demo readme' answers `arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500'. A switch takes its argument with no space (`-x99', not `-x 99'), which the program says itself under -help. The argproc library manual is in DOC/argproc_demo/man.argproc<br>**How:** A switch takes its argument with no SPACE: `-x99', never `-x 99'. `argproc_demo readme' prints what it made of the line. |
 | `bigsetter` | Modula-2 set-operations demonstration |
 | `bootlogger` | &#9733; writes the time the machine came up into SYS/bootlog and says nothing at all.  It returns silently however it is run, so the log is the only way to see that it did anything -- and run by hand it stamps the log with the time you ran it rather than with a boot |
@@ -1552,8 +1550,6 @@
 | `demo` | egetopt option-parsing demonstration |
 | `devprc` | shows which device each process holds a path to: -a walks every process and lists its open paths and the device behind each<br>`devprc: display device(s) belonging to process(es), V.1.01` |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
-| `expreserve` | &#9733; vi's crash-recovery helper: preserves an edit buffer when the editor dies.  Like ksh it reads the terminal asking for more bytes than you type (388), so it depends on the same emulator behaviour -- see DOC/README-KSH<br>**How:** Saves a vi buffer when the editor or the line dies; vi runs it for you rather than you running it. |
-| `exrecover` | &#9733; recover a vi buffer that expreserve saved<br>**How:** Recovers what expreserve saved. Again, vi's helper rather than a command you start. |
 | `fastcc` | &#9733; a second front end for Microware's cc, with its own options: -p pipes the preprocessor's output straight into the compiler instead of through a temporary file, -r compiles to relocatable files in a directory you name, -a stops at assembler, -bp shows each command before it runs. `-?' lists them all<br>`fastcc: <opts> <files> <opts>` |
 | `fixyear` | repairs file dates, not the clock: given a file or a directory it corrects any modification year earlier than 1970, which is what a machine whose clock was wrong when the file was written leaves behind. -l logs what it changed and -q carries on past an error<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |

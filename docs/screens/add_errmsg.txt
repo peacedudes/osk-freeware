@@ -1,6 +1,0 @@
-wc -c vi_errmsg
-   7884 vi_errmsg
-$ add_errmsg "disk full -- delete something"
-seek position 7884 (decimal) for 'disk full -- delete something'
-$ wc -c vi_errmsg
-   7915 vi_errmsg

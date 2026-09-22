@@ -9,8 +9,6 @@
 # short timeout, because each is expected to end the session.
 #
 # Paths read out of the binaries:
-#   expreserve  /dd/PRESERVE/Exaa..., and mails the owner at /dd/MAIL/mail_<user>
-#   exrecover   /dd/PRESERVE
 #   testibc     /dd/sys/errmsg.ibc
 #   mvolformat  forks `format'; prompts "Hit RETURN when drive ready:"
 #   suspend     refuses unless super-user AND not run from a terminal path
@@ -20,29 +18,6 @@ family  system4
 setup   export USER=tester
 setup   W=/dd/tmp/s4
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
-
-drive   exrecover
-why     vi's "recover a saved buffer" half.  It reads /dd/PRESERVE, which
-why     is NOT on this disk -- so find out whether it says so.
-run     /dd/CMDS/exrecover
-run     echo "--- named, with no PRESERVE directory:"
-run     /dd/CMDS/exrecover -r /dd/tmp/nothing
-run     echo "--- now make the directory it wants and ask again:"
-run     /dd/CMDS/mkdir -p /dd/PRESERVE > /nil 2>/nil
-run     /dd/CMDS/ls /dd/PRESERVE
-run     /dd/CMDS/exrecover -r /dd/tmp/nothing
-run     echo "--- end exrecover"
-
-drive   expreserve
-why     the other half: it saves an editor buffer into /dd/PRESERVE and
-why     mails the owner about it.  Feed it a buffer on standard input.
-run     echo "one line of an editor buffer" > $W/buf.txt
-run     /dd/CMDS/expreserve < $W/buf.txt
-run     echo "--- what landed in PRESERVE:"
-run     /dd/CMDS/ls -l /dd/PRESERVE
-run     echo "--- and what exrecover makes of it:"
-run     /dd/CMDS/exrecover
-run     echo "--- end expreserve"
 
 drive   t_trtest
 why     the RICO trap-handler test.  It prompts `line (or .):' -- so it

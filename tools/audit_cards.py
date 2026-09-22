@@ -211,9 +211,6 @@ def main(argv):
                         "at either name, nothing printed.  The `ls' showing "
                         "error 216 for both lock names is the EVIDENCE for "
                         "that, captured on purpose, not a broken invocation",
-            "exrecover": "recovers the buffer `expreserve' kept when vi "
-                         "died.  With nothing preserved, `File not found' is "
-                         "the honest answer and the caption says so",
             "remove": "a BEFORE-AND-AFTER, and the rule reads only half of "
                       "it.  The stanza loads readmsg, shows it answering by "
                       "name with its usage line, runs `remove readmsg', then "
