@@ -56,21 +56,25 @@ wait    2
 try     gshell
 
 shot    mshell
-cap     A menu shell: it reads a file of `label,command' lines and shows
-cap     them numbered, and a number runs that command through Microware's
-cap     `shell' -- the shell that comes with your OS-9 -- so here you see
-cap     the menu it draws.
-wait    2
+cap     A menu shell: it reads a file of `label| command' lines, shows the
+cap     labels numbered, and a number runs that entry's command through
+cap     `shell' -- your own OS-9's, which SYS/login loads from /h1 -- then
+cap     waits for RETURN and draws the menu again.  Here the sample menu's
+cap     third entry, `This month', has run `cal'.  Control-C leaves.
+try     mshell DOC/samples/menu
+run     load /h1/CMDS/shell
+wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     mshell DOC/samples/menu
 wait    5
+send    3\r
+wait    6
 snap
 send    \003
 wait    2
-try     mshell DOC/samples/menu
 
 shot    env
 cap     Runs a command with a variable added to its environment: here
