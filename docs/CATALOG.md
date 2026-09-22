@@ -1773,7 +1773,7 @@
 | `less` | shows a file a screenful at a time so it does not scroll past you, and lets you move about in it: space or f for the next screen, b for the one before, / to search forward, n for the next match, h for its help screen (SYS/less.hlp), q to leave.  Reads the terminal's size and codes from TERM and TERMCAP |
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
-| `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  About 300 pages are indexed in DOC/MANPAGES.  A shell script, so you can read it |
+| `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  Every page is indexed in DOC/MANPAGES.  A shell script, so you can read it |
 
 </details>
 
