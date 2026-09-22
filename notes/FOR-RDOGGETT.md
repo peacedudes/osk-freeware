@@ -6,8 +6,9 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-21.
 
-**New: item 32** -- the EFFO vi's helpers were left behind when it came
-off, and they block handoff item 3.
+**New: items 32 and 33.** 32: the EFFO vi's helpers stayed when it came
+off, and they block handoff item 3. 33: a one-byte patch that stops the
+login shell crashing above 16 MB, tested and waiting on you.
 
 **Before that, nothing new needed you except item 31, and item 1 changed.** The night of
 the 20th and the morning of the 21st went on exception reasons, harness
@@ -155,6 +156,27 @@ the only editor that makes that buffer is the one that came off.
 same terms as vi; also add_errmsg, which has nothing left to serve. Keep
 read_mail only if you want a harmless mail-notice reader with nothing
 left that writes to it.** Nothing moves until you say.
+
+**33. `bash' crashes whenever its memory is above 16 MB. Patch one byte?**
+Found by chasing an intermittent crash; the os9exec session diagnosed
+it. bash writes BASH_VERSION with `sprintf("%s.%d")' into a 12-byte
+stack buffer, and its version string `"     1.12"' (five leading
+spaces) makes the result 12 characters, so the NUL is the 13th byte and
+lands on the saved frame pointer. Below 16 MB that byte is already zero
+and nothing happens. Above it bash dies at start-up with an illegal
+instruction. That is any real machine where bash loads that high, and
+under os9exec whenever the arena is busy.
+
+Measured: with memory pushed high (`sleep -s 12 #20000k &' at
+Microware's shell), the shipped bash crashed 2 of 2 and the patched one
+ran 3 of 3. The patch drops ONE leading space, so BASH_VERSION reads
+`    1.12.12', and re-seals the CRC. There is no bash source here, so a
+byte patch is the only fix.
+
+I did not apply it: writing disk/CMDS/bash reaches the hard-linked twin
+(item 18). `tools/patch_bash_version.py disk/CMDS/bash <copy>' makes the
+patched file and `--check' says which one you have.
+**Recommend: patch it.** It is the login shell.
 
 ## Not a question, but you should know
 

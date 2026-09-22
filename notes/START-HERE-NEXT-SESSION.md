@@ -10,14 +10,18 @@ job, and it cost him half a day he did not have.  His words: *"If you want
 me to choose the order to do things in when they all need to be done, you
 are just wasting time."*  There is no ordering question here any more.
 
-1. **Documentation depth -- 363 programs have nothing but their INDEX
-   line** (`tools/doc_census.py disk`, measured 2026-09-21: 672 of 1035
-   documented, 64%).  267 of them are in `CMDS`, 64 in `CMDS/GAMES`, 15 in
-   `CMDS/REBUILT`.  This is the biggest open block in the collection and it
-   is a grind with no shortcut.  Work it in batches by directory, write
-   into `DOC/<name>` or the family document that already covers the
-   archive, and run `doc_census.py` after each batch so the figure moves
-   visibly.  `notes/PLAN.md` section 4 has the shape and the rules.
+1. **Documentation depth is DONE: 1031 of 1035, 99%** (was 672, 64%, on
+   the morning of 2026-09-21).  The four left are the EFFO vi helpers
+   waiting on FOR-RDOGGETT item 32.  What remains in this line of work,
+   in order:
+   a. **Record provenance in DOC/ORIGINS for the ~150 programs that now
+      have a byte-identical archive copy** -- 211 programs have no
+      ORIGINS row, and the matching method below finds most of them.
+      The card then shows where the program came from.
+   b. **Pages not run on a real terminal** were written from the
+      measured records (help captures, cards, howto) plus drive runs.
+      If a page disagrees with the program, the program wins; fix the
+      page.
 2. **The remaining `panel-exceptions.psv` lines.**  About 27 of the 65 were
    re-tested on 2026-09-20/21; the rest have not been.  Three shapes found
    them all: the disk SHIPS what the reason says is missing; nobody STARTED
@@ -41,6 +45,66 @@ on a PID you captured -- `until ! pgrep -f '<pattern>'` never exits,
 because the waiting shell's own command line matches the pattern.  Fifteen
 of those were left spinning on 2026-09-21, the oldest for 14 hours.
 
+
+## DONE -- 2026-09-21 (evening): documentation from 64% to 99%
+
+**How the figure moved, so the next session can reuse the methods:**
+
+  * **The census was blind to documents under other names.**  mtools'
+    `ms*' programs are documented as `m*' pages; alternate builds share
+    a sibling's manual; guides like README-KEEP document their programs.
+    `tools/doc-shared.psv' now names each such program with the document
+    and a reason, and check_disk's `name lists point at real programs'
+    fails a row whose program or document is gone.  FAMILY in
+    doc_census gained CMDS/ADL and CMDS/MM1.
+  * **Byte-identical archive copies.**  Matching every undocumented
+    binary's md5 against the extracted pool (microware-archive, 68k_unpacked,
+    Scraped/acquisitions-*, play/h4) found ~150 exact copies, and the
+    documents beside them.  The same match is the provenance work in item
+    1a.  Only install a document from an archive whose binary MATCHES --
+    who.lzh's uniq.doc, OSKTag's tail.doc and ncurses's dump.1 all name
+    programs we have, and describe different ones.
+  * **Authors' manuals sitting in SRC trees** (`ORIG/*.6`, READMEs):
+    38 copied to DOC.  README.OSK files are our port notes, not user
+    documents; leave them in SRC.
+  * **The IF Archive's adl.tar.Z** carries ADL 3.2's manuals (the same
+    version as forum disk 3's binaries); DOC/adl, provenance in SOURCES.
+  * **~330 manual pages written**, each from the program's captured help,
+    its card, its howto line, and a drive run where a claim needed one.
+
+**Writing pages for this disk's nroff:** it spaces every font-macro
+argument apart, so `.BR cio .' prints `cio .'.  Write fonts inline
+(`\fBcio\fR.').  Its tmac.an has no `.TQ', and `.TP' ignores an indent
+argument.  Check a page with `nroff -man' on the disk, TMACDIR=/dd/LIB.
+
+**Corrected on the way** (each measured): head -20 works (INDEX said it
+was rejected); detab's default stops are every 3 columns, not 8;
+msdrv_340.901.ms is a second build of the mouse driver, not its
+descriptor; scsi_mm1a is a subroutine module, not a driver.
+
+**Behaviour now written into pages, not fixed:** combine writes its last
+byte pair twice (its own EOF loop); GNU head and mv from Kei Thomsen's
+build misbehave through this cio -- head prints `head: <file>' on stderr
+and exits 1 after a correct copy, mv calls any existing target `the
+same file'; qsort9 refuses its own -c; gmake runs recipes without a
+shell, so `echo' fails; ssl only works on a bare name in the current
+directory on /h0.
+
+**Found, not done:**
+  * **bash crashes above 16 MB** -- FOR-RDOGGETT item 33, patch ready in
+    `tools/patch_bash_version.py'.  After he says yes: write the copy
+    over disk/CMDS/bash, add a case asserting `[    1.12.12]' for
+    `echo "[$BASH_VERSION]"', and run the suite.
+  * **em's help file.**  MicroEMACS 3.8b looks for emacs.hlp in /dd/sys
+    then /dd/lib and none ships; forum disk 3's BRIEFE/emacs.hlp is the
+    3.8 one.  /dd/LIB would serve em alone.  Not shipped because it needs
+    a pty to test (a pipe makes em loop).
+  * **DOC/zot/zot.1 is C source** (dot.c), not a manual page.
+  * **The tformat card shows README-KEEP from before `drop' became
+    `unkeep'**; the capture is older than the text it reads.
+  * newsgen lp keeps writing to a pipe after head exits; os9exec says a
+    writer parks only while another path holds the pipe, and a child's
+    extra /pipe path is the lead.  Low priority.
 
 ## DO NEXT -- 2026-09-20 (late)
 
