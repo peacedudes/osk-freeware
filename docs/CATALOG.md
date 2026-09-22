@@ -1,6 +1,6 @@
 # What is on this disk
 
-1027 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **708 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1028 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 95 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -778,7 +778,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>95 programs</summary>
+<details><summary>96 programs</summary>
 
 **File transfer**
 
@@ -870,6 +870,7 @@
 | `fkeys` | loads the user-defined keys of a VT220 from a file, so the function keys send what you want. Given no file it prints its syntax<br>`Syntax: fkeys [<path>]` |
 | `initvdu` | &#9733; sets the login terminal up from its termcap entry. It knows particular VDUs; on one it has no definition for it says so and changes nothing, which is the answer rather than a failure. -d shows what it would send<br>**How:** It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal". |
 | `input` | the Unaxcess bulletin board's input helper: it copies standard input to standard output a line at a time |
+| `resize` | ask the terminal how big its window is and print LINES and COLUMNS, which less and others read before the termcap's 24 by 80.  At the login bash, `resize' sets them -- type it again after dragging the window; `resize -s' prints setenv lines for your own OS-9's shell<br>`usage: resize [-s]` |
 | `sbreak` | Send/clear an SS_Break signal on a serial path<br>`Syntax:   sbreak [/device]` |
 | `setfont` | &#9733; load a downloadable terminal font -- setfont <path>. Given a font file it writes no byte to /term, to $PORT, or to a file $PORT names, and returns exit status 0.  With no argument it answers `usage: setfont <path>'.<br>`usage: setfont <path>` |
 | `setterm` | &#9733; reports or sets the terminal type: `setterm' alone says what TERM names; give it a name to change it. When TERM names a terminal it does not know it falls back on SYS/setterm, the defaults file. DOC/setterm has the manual and a termcap.extra of further entries<br>**How:** `setterm' alone reports what TERM says; give it a terminal name to change it. Run with no arguments and a terminal it wants to configure it goes full-screen -- **ESC quits** (control-C also works, but ESC is the program's own way). SYS/setterm is the defaults file it falls back on when TERM names something it does not know, and DOC/setterm/termcap.extra has further entries you can add to SYS/termcap. |

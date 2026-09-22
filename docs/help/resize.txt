@@ -1,0 +1,5 @@
+$ resize -?
+usage: resize [-s]
+  asks the terminal its size and prints LINES and
+  COLUMNS for bash: eval `resize`
+  -s  prints setenv lines for Microware's shell

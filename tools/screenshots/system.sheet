@@ -1086,3 +1086,19 @@ run     zc 02139
 wait    3
 run     zc 99999
 wait    3
+
+shot    resize
+size    30 100
+cap     Asks the terminal how big its window is and prints LINES and COLUMNS,
+cap     for less and the other programs that read them before the termcap's
+cap     24 by 80.  This window is 30 by 100.  At the bash prompt SYS/login
+cap     gives you, typing `resize' sets the two; -s prints them for your own
+cap     OS-9's shell instead.  A terminal that does not answer gets a second,
+cap     and then resize prints nothing.
+try     resize
+run     clear
+wait    1
+run     resize
+wait    4
+run     resize -s
+wait    4

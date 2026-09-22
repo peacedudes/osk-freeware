@@ -1101,3 +1101,4 @@ compress|hc_utils|compress.c|||
 # 1553 files under DOC fit, and the default does not.  osk.c is ours --
 # SRC/utree/README.OSK says what each arm is for.
 utree|utree|main.c bind.c comm.c echo.c edit.c file.c help.c hist.c list.c stat.c term.c tree.c util.c vars.c vers.c osk.c|SYSV MEM=128k|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/blarslib.l|
+resize|resize|resize.c|||
