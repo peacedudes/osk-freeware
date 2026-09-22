@@ -94,6 +94,13 @@ Microware's", and every card still names what its program needs.
     bare `load' with no /h1 silenced the rest of the login and the prompt
     after it, which looked exactly like a hang.  A full path that fails
     does not leak.  (First written up as bash's getwd walk; that was wrong.)
+  * **To re-measure: the .bashrc cd/pwd functions may be stale.**  On
+    2026-09-22 `builtin pwd' answered correctly on the RBF image,
+    interactively after SYS/login (os9exec c5cf21e), and the os9exec
+    session found getwd stopping at the root.  The functions were also for
+    /dd as a HOST directory (cd aborting with a bus error) -- measure that
+    case before removing anything, and keep login's `builtin cd' until both
+    are shown unnecessary.
   * **Try It in the browser.**  rdoggett: host the exact same disk as a
     web page (os9exec to WebAssembly, the reader's /h1 attachable), with
     Try It "only on cards that can actually be run".  tools/tryable.py
