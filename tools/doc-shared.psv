@@ -42,3 +42,24 @@ graphsave|graph|see apfel
 showpic|graph|see apfel
 sine|graph|see apfel
 striche|graph|see apfel
+lpsched|lp|spooler.doc is the EFFO spooler's manual, and names all six of its programs
+lpq|lp|see lpsched
+lprm|lp|see lpsched
+lpshut|lp|see lpsched
+prjob|lp|see lpsched
+cribbage|crib|the same Cohen and Arnold cribbage; DOC/crib holds cribbage.6 and the crib.instr it offers to list
+cjpeg.070|cjpeg|the IJG 5a build for another processor; cjpeg.1 is the 5a manual
+djpeg.070|djpeg|see cjpeg.070
+rdjpgcom.070|rdjpgcom|see cjpeg.070
+wrjpgcom.070|wrjpgcom|see cjpeg.070
+ub68020demo|unibasic|the 68020 build of the UniBasic demonstration; DOC/unibasic is its manual
+view|elvis|elvis under the name view; elvis.doc documents every name it answers to
+gcc_cccp2|README-GCC|a pass that gcc forks, not a command; README-GCC says what each pass is and why it is in CMDS
+gcc_cc2|README-GCC|see gcc_cccp2
+gpp_cccp|README-GCC|see gcc_cccp2
+gpp_cc1plus|README-GCC|see gcc_cccp2
+gpp_collect|README-GCC|see gcc_cccp2
+math|README-FLOATINGPOINT|the runtime module for math.l; the guide measures it and says when to use it
+math881|README-FLOATINGPOINT|the runtime module for math881.l; see math
+helpindex|help|DOC/help documents the HELP package, whose index builder this is
+lessecho|less|a helper less runs to expand wildcards; less.man describes it under LESSECHO

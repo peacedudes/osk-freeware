@@ -551,7 +551,8 @@ def check_binary_magic(root):
 
 
 def check_hand_lists_have_no_duplicate_keys(root):
-    """One line per program in `tools/howto.psv' and `tools/categories.psv'.
+    """One line per program in `tools/howto.psv', `tools/categories.psv' and
+    `tools/doc-shared.psv'.
 
     Added 2026-09-02, having found FIFTEEN duplicated names in howto.psv --
     four of them added the same evening. `gen_catalog' builds a dict, so the
@@ -570,7 +571,7 @@ def check_hand_lists_have_no_duplicate_keys(root):
     # proved able to fail, which is the one thing this collection insists on.
     here = tools_dir()
     problems = []
-    for fname in ("howto.psv", "categories.psv"):
+    for fname in ("howto.psv", "categories.psv", "doc-shared.psv"):
         path = os.path.join(here, fname)
         if not os.path.exists(path):
             continue
@@ -644,6 +645,18 @@ def check_hand_files_name_real_programs(root):
             name = line.split("|")[0].strip()
             if name and name not in ondisk:
                 bad.append("%s: %s" % (fname, name))
+
+    # doc-shared.psv counts a program as documented by something named for
+    # something else, so a row is two claims: the program is here, and the
+    # document is.  Either going stale inflates the documentation figure.
+    import doc_census
+    docs = doc_census.doc_names(os.path.join(root, "DOC"))
+    for prog, doc in sorted(doc_census.shared_docs().items()):
+        if prog not in everywhere:
+            bad.append("doc-shared.psv: %s" % prog)
+        if doc.lower() not in docs:
+            bad.append("doc-shared.psv: %s names %s, not under DOC"
+                       % (prog, doc))
 
     # DOC/ORIGINS SHIPS AND SAYS "one line per program", so a row for
     # something that is not here is the same defect as a stale DOC/USAGE
