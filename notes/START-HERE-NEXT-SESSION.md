@@ -96,10 +96,13 @@ directory on /h0.
     `tools/patch_bash_version.py'.  After he says yes: write the copy
     over disk/CMDS/bash, add a case asserting `[    1.12.12]' for
     `echo "[$BASH_VERSION]"', and run the suite.
-  * **em's help file.**  MicroEMACS 3.8b looks for emacs.hlp in /dd/sys
-    then /dd/lib and none ships; forum disk 3's BRIEFE/emacs.hlp is the
-    3.8 one.  /dd/LIB would serve em alone.  Not shipped because it needs
-    a pty to test (a pipe makes em loop).
+  * **em crashes on its help key.**  MicroEMACS 3.8b looks for emacs.hlp
+    in /dd/sys then /dd/lib, and none ships; forum disk 3's
+    BRIEFE/emacs.hlp is the 3.8 one.  But driven in tmux (a real pty),
+    ESC ? stops em with a bus error, vector 2, WHETHER OR NOT the file is
+    in /dd/LIB or /dd/SYS -- so shipping it fixes nothing yet.  ^X^C
+    leaves cleanly.  Not yet known whether em or the emulator; a -d trace
+    of the F$/I$ calls just before the fault is the next step.
   * **DOC/zot/zot.1 is C source** (dot.c), not a manual page.
   * **The tformat card shows README-KEEP from before `drop' became
     `unkeep'**; the capture is older than the text it reads.
