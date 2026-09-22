@@ -81,8 +81,12 @@ Moved to `withheld/load` (binary, source, man page), not deleted, as you
 asked.  Tested: the image builds without it (tar now runs from ksh), SYS/login
 loads through your own `load` on /h1, the suite stages yours at /h1/CMDS/load
 (Microware's when OS9SDK is set, the withheld copy otherwise so CI still
-runs), and the 26 cards that load something were re-shot through your load --
-results in the handoff.  DOC/README-NOT-SHIPPED lists it.  When you are
+runs), and the 26 cards that load something were re-shot through your load.
+**Results: 874 of 874 twice with Microware's load, and with the withheld
+copy; the 26 cards unchanged but for timings and dates.**  One real bug
+surfaced and is fixed: with no load anywhere and no /h1, SYS/login went
+silent -- this bash leaks a redirection when a bare-name command is not
+found -- which would have looked like a hung browser page.  DOC/README-NOT-SHIPPED lists it.  When you are
 certain: `git rm -r withheld/load` and point `stage_reader_load` in
 tools/os9env.py at the SDK only.
 
