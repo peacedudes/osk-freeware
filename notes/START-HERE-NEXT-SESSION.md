@@ -14,11 +14,15 @@ are just wasting time."*  There is no ordering question here any more.
    the morning of 2026-09-21).  The four left are the EFFO vi helpers
    waiting on FOR-RDOGGETT item 32.  What remains in this line of work,
    in order:
-   a. **Provenance.**  118 rows added to DOC/ORIGINS on 2026-09-21, each
-      from a byte-identical archive copy.  280 programs still have no
-      row -- mostly the original base set (bash, elvis, TeX, ELM, GCC),
-      whose provenance is prose in SOURCES.txt.  Carrying those into
-      ORIGINS rows is what makes the cards show an origin.
+   a. **Provenance: 211 missing rows became 76.**  On 2026-09-21 DOC/ORIGINS
+      gained 320 rows, nearly all from a byte-identical copy found by
+      unpacking the whole pool, archives inside archives included (the TeX
+      programs and ELM were only in nested ones).  What is left: the
+      REBUILT builds (their source trees are in tools/rebuild/recipes.psv),
+      Microware's runtime modules (SOURCES.txt records their permission),
+      DESIGNA's loose utilities, a few BSD games, the GCC 1.39 passes, and
+      programs whose archive the pool no longer holds.  Each wants a row
+      written by hand from SOURCES.txt.
    b. **Pages not run on a real terminal** were written from the
       measured records (help captures, cards, howto) plus drive runs.
       If a page disagrees with the program, the program wins; fix the
