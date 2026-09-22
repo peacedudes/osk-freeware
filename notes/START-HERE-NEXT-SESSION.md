@@ -14,10 +14,11 @@ are just wasting time."*  There is no ordering question here any more.
    the morning of 2026-09-21).  The four left are the EFFO vi helpers
    waiting on FOR-RDOGGETT item 32.  What remains in this line of work,
    in order:
-   a. **Record provenance in DOC/ORIGINS for the ~150 programs that now
-      have a byte-identical archive copy** -- 211 programs have no
-      ORIGINS row, and the matching method below finds most of them.
-      The card then shows where the program came from.
+   a. **Provenance.**  118 rows added to DOC/ORIGINS on 2026-09-21, each
+      from a byte-identical archive copy.  280 programs still have no
+      row -- mostly the original base set (bash, elvis, TeX, ELM, GCC),
+      whose provenance is prose in SOURCES.txt.  Carrying those into
+      ORIGINS rows is what makes the cards show an origin.
    b. **Pages not run on a real terminal** were written from the
       measured records (help captures, cards, howto) plus drive runs.
       If a page disagrees with the program, the program wins; fix the
