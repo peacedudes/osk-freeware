@@ -10,28 +10,15 @@ job, and it cost him half a day he did not have.  His words: *"If you want
 me to choose the order to do things in when they all need to be done, you
 are just wasting time."*  There is no ordering question here any more.
 
-1. **Documentation depth is DONE: 1031 of 1035, 99%** (was 672, 64%, on
-   the morning of 2026-09-21).  The four left are the EFFO vi helpers
-   waiting on FOR-RDOGGETT item 32.  What remains in this line of work,
-   in order:
-   a. **Provenance: 211 missing rows became 35.**  On 2026-09-21 DOC/ORIGINS
-      gained 320 rows, nearly all from a byte-identical copy found by
-      unpacking the whole pool, archives inside archives included (the TeX
-      programs and ELM were only in nested ones).  What is left: the
-      REBUILT builds (their source trees are in tools/rebuild/recipes.psv),
-      Microware's runtime modules (SOURCES.txt records their permission),
-      DESIGNA's loose utilities, a few BSD games, the GCC 1.39 passes, and
-      programs whose archive the pool no longer holds.  Each wants a row
-      written by hand from SOURCES.txt.
-      Two methods found most of them: md5 of the whole file against every
-      file in the unpacked pool (bare modules included), and, for modules
-      renamed on the way in, comparing the bytes from $30 up to the
-      ORIGINAL's name offset.  Oddity found: the pool's TELECOM/cnews.tar.Z
-      is the C-Kermit binary.
-   b. **Pages not run on a real terminal** were written from the
-      measured records (help captures, cards, howto) plus drive runs.
-      If a page disagrees with the program, the program wins; fix the
-      page.
+1. **Documentation and provenance are DONE.**  Every program has a page
+   (the vi helpers came off rather than being documented), and on
+   2026-09-22 every file under CMDS got a DOC/ORIGINS row -- the last 44
+   by md5 against the pool and the local disk images, including a new
+   section for binaries from the disk that holds the Usenet .ar archives.
+   Only `wc' is unknown, and ORIGINS says so.  GCC139's gcc and gpp had
+   borrowed GCC2's rows; they are separate now.  What remains: pages not
+   run on a real terminal were written from the measured records -- if a
+   page disagrees with the program, the program wins; fix the page.
 2. **The remaining `panel-exceptions.psv` lines.**  About 27 of the 65 were
    re-tested on 2026-09-20/21; the rest have not been.  Three shapes found
    them all: the disk SHIPS what the reason says is missing; nobody STARTED
@@ -53,6 +40,40 @@ on a PID you captured -- `until ! pgrep -f '<pattern>'` never exits,
 because the waiting shell's own command line matches the pattern.  Fifteen
 of those were left spinning on 2026-09-21, the oldest for 14 hours.
 
+
+## DONE -- 2026-09-22: your own OS-9's commands, resident from /h1
+
+rdoggett: load shell from /h1/CMDS/shell, never make a module named
+`shell'; then "make it try to load everything the disk might use/need of
+Microware's", and every card still names what its program needs.
+
+  * **SYS/login loads 34 of your commands from /h1** in one loop: shell,
+    runb, the utilities programs fork by bare name (del, copy, tmode, pd,
+    date, echo...) and the compiler chain (cc, c68, r68, l68...).  `dir'
+    and `grep' are deliberately NOT loaded: the disk has its own, and a
+    resident module answers in its place.  ~540 KB resident; measured
+    with `mdir' after login.  The card harness does not run SYS/login,
+    so cards still `load' what they need, hidden before `clear'.
+  * **Programs that now do their job on their cards:** ff (needs
+    Microware's grep: it passes `-e=name', which GNU grep reads as the
+    pattern `=name'), lgrep (the same), mshell (menus are `label| command',
+    not `label,command' as every document here said), xc, clock, hist
+    (needs tmode), m4's syscmd, subber (`shell subber #1000k ...' from
+    bash), dback (`-e' runs the copies; without it it only lists), and the
+    whole RTF Fortran chain -- fact, for, lnk, lnk.org build and run
+    fact with your r68/l68/sys.l.  requires.psv names each need.
+  * **rayshade no longer makes a stand-in shell.**  Its card copied sh to
+    CMDS/shell, against the rule.  With Microware's shell it said
+    `can't execute "J"': cccp had been copied into the DATA directory, so
+    the shell ran the binary as a procedure file.  `load
+    /dd/CMDS/GCC139/gcc_cccp' (module name cccp) fixes it.  The datatest
+    case now asserts the popen failure message instead of a render.
+  * **Still open:** qp wants EFFO zsh's `-ny -nl' and no shell takes
+    them.  screen and screen_nocio both take a bus error at the first
+    name their scandir accepts -- no syscall between the last I$Read and
+    the fault, so it reads as the program's, not the emulator's;
+    unattributed.  `t' is a do-nothing stub from the ls build tree that
+    ships as a program.
 
 ## DONE -- 2026-09-21 (evening): documentation from 64% to 99%
 
