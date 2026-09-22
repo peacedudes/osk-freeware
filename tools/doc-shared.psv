@@ -63,3 +63,9 @@ math|README-FLOATINGPOINT|the runtime module for math.l; the guide measures it a
 math881|README-FLOATINGPOINT|the runtime module for math881.l; see math
 helpindex|help|DOC/help documents the HELP package, whose index builder this is
 lessecho|less|a helper less runs to expand wildcards; less.man describes it under LESSECHO
+fixyear|y2kit|one of Ken Drexler's Y2Kit utilities; the kit's readme documents each
+setyear|y2kit|see fixyear
+setime2|y2kit|see fixyear
+liborder.os9|liborder|the same program as liborder, a second build
+unpacklib.os9|unpacklib|the same program as unpacklib, a second build
+as09|xasm|asm.doc documents all six cross-assemblers of the set, as09 among them

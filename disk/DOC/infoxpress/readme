@@ -1,0 +1,1 @@
+InfoXpress is a small front end program which sets up my system forIX.  Details can be found in comments in the C source.AIF.ix and icon.ix are DeskTop(tm) files that can be used to launchInfoXpress from the GUI.  Copy icon.ix into /dd/CMDS/ICONS and copyAIF.ix to a working directory.  You should then be able to readilyfork InfoXpress from within DeskTop. - Boisy
