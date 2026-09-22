@@ -112,10 +112,11 @@ Microware's", and every card still names what its program needs.
     os9exec page understands.  The links appear only once docs/try exists
     -- how it gets there is FOR-RDOGGETT 36.
   * **Still open:** qp wants EFFO zsh's `-ny -nl' and no shell takes
-    them.  screen and screen_nocio both take a bus error at the first
-    name their scandir accepts -- no syscall between the last I$Read and
-    the fault, so it reads as the program's, not the emulator's;
-    unattributed.  `t' is a do-nothing stub from the ls build tree that
+    them.  **screen's bus error is SOLVED (2026-09-22): the program's own
+    bug** -- scandir.c's `register int filecnt;' was never set to zero.
+    REBUILT/screen_nocio is rebuilt with the one-line fix
+    (SRC/screen/README.OSK) and its card shows the greeting;
+    CMDS/screen, the archive's own cio build, still has it.  `t' is a do-nothing stub from the ls build tree that
     ships as a program.
 
 ## DONE -- 2026-09-21 (evening): documentation from 64% to 99%
