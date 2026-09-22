@@ -81,6 +81,25 @@ Microware's", and every card still names what its program needs.
     and the card harness now answers only the `ESC[999;999H ESC[6n'
     size query, with its own rows;cols, and ansiscreen honours ESC 7/8.
   * **`t' came off** (item 34).
+  * **`load' is withheld** (FOR-RDOGGETT 35) -- the clean-room one the
+    os9exec project wrote is a program named for a Microware utility.  It
+    sits in withheld/load until rdoggett says delete.  Everything that used
+    it now uses the reader's: mkimage extracts with ksh (no load needed),
+    SYS/login loads from /h1 only when /h1/CMDS/load exists and calls it by
+    full path, and datatest/drive stage a load at /h1/CMDS/load
+    (os9env.stage_reader_load -- the SDK's when OS9SDK is set, else the
+    withheld copy so CI runs).  **TRAP FOUND ON THE WAY: a command bash
+    cannot find, in SYS/login before `builtin cd', hangs the login** -- the
+    PATH search reaches the current directory and runs the getwd walk.  A
+    bare `load' with no /h1 did exactly that.
+  * **Try It in the browser.**  rdoggett: host the exact same disk as a
+    web page (os9exec to WebAssembly, the reader's /h1 attachable), with
+    Try It "only on cards that can actually be run".  tools/tryable.py
+    classes each card -- disk (877), h1 (45), no (37, tools/try-no.psv by
+    hand, gate-checked) -- gen_screens writes the class into screens.js,
+    and the card links to try/?run=<its try line>[&needs=h1], which the
+    os9exec page understands.  The links appear only once docs/try exists
+    -- how it gets there is FOR-RDOGGETT 36.
   * **Still open:** qp wants EFFO zsh's `-ny -nl' and no shell takes
     them.  screen and screen_nocio both take a bus error at the first
     name their scandir accepts -- no syscall between the last I$Read and
