@@ -35,3 +35,12 @@ run     /dd/CMDS/devprc < /nil
 expect  NAME=devprc
 expect  PROCESSPATH=0, SYSPATH=
 expect  PROCESSPATH=2, SYSPATH=
+
+case    bash-version-fits-its-buffer
+# bash builds BASH_VERSION with sprintf("%s.%d") into a 12-byte stack
+# buffer, and the shipped dist_version "     1.12" made it 13 with the NUL,
+# which cleared the top byte of the saved A5: harmless below 16 MB, a crash
+# at start-up above it.  tools/patch_bash_version.py took one leading space
+# out on 2026-09-22; this asserts it is still out.
+run     echo "[$BASH_VERSION]"
+expect  [    1.12.12]

@@ -105,10 +105,12 @@ shell, so `echo' fails; ssl only works on a bare name in the current
 directory on /h0.
 
 **Found, not done:**
-  * **bash crashes above 16 MB** -- FOR-RDOGGETT item 33, patch ready in
-    `tools/patch_bash_version.py'.  After he says yes: write the copy
-    over disk/CMDS/bash, add a case asserting `[    1.12.12]' for
-    `echo "[$BASH_VERSION]"', and run the suite.
+  * **bash crashed above 16 MB -- PATCHED 2026-09-22** with rdoggett's
+    go-ahead: one leading space out of its version string, CRC re-sealed
+    (tools/patch_bash_version.py; SOURCES.txt records it).  Case
+    `bash-version-fits-its-buffer' in system6.cases guards it.
+  * **disk/ is no longer hard-linked.**  On 2026-09-22 no file in it had a
+    second link; the twin is gone and writes touch only this tree.
   * **em's help key: SOLVED 2026-09-22.**  em builds `$PATH/emacs.hlp'
     in a short buffer before it tries /dd/sys, so a PATH over about a
     hundred characters (SYS/login's is twice that) overruns it and ESC ?
