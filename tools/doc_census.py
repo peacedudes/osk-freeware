@@ -17,7 +17,7 @@ any of four routes, tried in order:
             programs are covered by one DOC/netpbm tree
   SHARED    a document named for something else that covers it -- one of
             the collection's own guides, or an alternate build's sibling --
-            for the programs listed by name in SHARED below
+            for the programs listed by name in tools/doc-shared.psv
 
 Everything else has only its one-line entry in DOC/INDEX, which every program
 has by construction -- check_disk enforces it -- and which is a catalogue
@@ -39,24 +39,22 @@ FAMILY = {
     "CMDS/GCC139": "gcc139",
 }
 
-# Programs documented under ANOTHER program's name: the collection's own
-# guides, and alternate builds whose manual is their sibling's.  Named one by
-# one, because the name alone proves nothing -- README-NAMES is about shadowed
-# utility names, not `names', and README-VI chooses between two editors
-# without documenting either.  A row here says somebody read the document and
-# it covers the program.
-SHARED = {
-    "cio": "README-CIO",
-    "keep": "README-KEEP", "kept": "README-KEEP", "unkeep": "README-KEEP",
-    # PVIC 1.0 and 1.0a, one manual
-    "vi_1.0": "vi",
-    # GNU m4 0.50, the same program twice
-    "m4_0.5": "m4",
-    # the screens program, a trap-free build of CMDS/screen
-    "screen_nocio": "screen",
-    # elvis 1.7 under its other names; elvis.doc covers every personality
-    "vi.elvis": "elvis", "elvis_input": "elvis", "ctags.elvis": "ctags.doc",
-}
+# Programs documented under ANOTHER program's name, one row each with the
+# reason -- see the header of that file for why they are named one by one.
+SHARED_PSV = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "doc-shared.psv")
+
+
+def shared_docs(path=SHARED_PSV):
+    """program -> the DOC name that documents it, from doc-shared.psv."""
+    out = {}
+    for line in open(path):
+        if line.startswith("#") or "|" not in line:
+            continue
+        prog, doc = line.split("|")[:2]
+        out[prog.strip()] = doc.strip()
+    return out
+
 
 DOC_SUFFIX = re.compile(
     r"\.(txt|doc|man|hlp|help|me|ms|1|l|dok|nr|prf|readme|md)$", re.I)
@@ -119,6 +117,7 @@ def main(argv):
 
     names = doc_names(docroot)
     origins = origins_map(docroot)
+    shared = shared_docs()
     rows, counts = [], {"DIRECT": 0, "ARCHIVE": 0, "FAMILY": 0, "SHARED": 0, "NONE": 0}
 
     for prog, d in programs(root):
@@ -129,8 +128,8 @@ def main(argv):
             verdict, where = "ARCHIVE", names[origins[prog].lower()]
         elif FAMILY.get(d, "") in names:
             verdict, where = "FAMILY", names[FAMILY[d]]
-        elif SHARED.get(prog, "").lower() in names:
-            verdict, where = "SHARED", names[SHARED[prog].lower()]
+        elif shared.get(prog, "").lower() in names:
+            verdict, where = "SHARED", names[shared[prog].lower()]
         else:
             verdict, where = "NONE", ""
         counts[verdict] += 1

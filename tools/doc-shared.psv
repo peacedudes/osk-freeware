@@ -1,0 +1,44 @@
+# doc-shared.psv -- programs documented under ANOTHER name.  program | document | why
+#
+# tools/doc_census.py counts a program as documented when something under
+# disk/DOC is named for it, for its source archive, or for its CMDS family.
+# Everything here is documented by a document named for something else:
+# one of the collection's own guides, a package's shared manual, or an
+# alternate build's sibling.  The document column is a name under DOC --
+# a directory or a file, matched the way the census matches everything.
+#
+# Named one by one because a name alone proves nothing.  README-NAMES is
+# about shadowed utility names, not the program `names', and README-VI
+# chooses between two editors without documenting either.  A row here says
+# somebody READ the document and it covers the program.
+cio|README-CIO|the whole of what there is to know about the module, written for this collection
+keep|README-KEEP|keep, kept and unkeep are one tool with one guide, written for this collection
+kept|README-KEEP|see keep
+unkeep|README-KEEP|see keep
+vi_1.0|vi|PVIC 1.0; DOC/vi is PVIC 1.0a's manual and the two differ only in fixes
+m4_0.5|m4|the same GNU m4 0.50 as CMDS/m4, eight bytes longer for its name
+screen_nocio|screen|a trap-free build of CMDS/screen, from the same source
+vi.elvis|elvis|elvis 1.7 under the name vi; elvis.doc documents every name it answers to
+elvis_input|elvis|elvis 1.7 under the name input; elvis.doc documents every name it answers to
+ctags.elvis|ctags.doc|elvis 1.7's own ctags, documented in DOC/elvis/ctags.doc
+edir|events|edir, eset and eunlink are one package, with one document
+eset|events|see edir
+eunlink|events|see edir
+lissaj|tekdemos|one of the four Tektronix demos TekDemos.doc describes
+btop|fat_font|btop and ptob are the converter pair fat_font.doc describes
+ptob|fat_font|see btop
+basicwin|X11R6shl|one of the two examples of the X11R6shl trap handler; read_me.txt documents the handler and lists them
+xengine|X11R6shl|see basicwin
+zipnote|zip|zip.1 is the manual for zip and its companions, and gives zipnote's synopsis with zip's options
+zipsplit|zip|see zipnote
+ptxminst|ptxm|ptxm.txt is the pseudo-terminal package's manual and says how ptxminst installs it
+UnMacpack|macunpack|macunpack with four more formats; DOC/macunpack is its manual, DOC/macutils/readme.OSK says what was added
+sddemo|speedisk|the demonstration build of SpeeDisk; quikdoc is SpeeDisk's manual
+ob68kdemo|omnibasic|the demonstration build of OmniBasic; DOC/omnibasic is its manual
+ub68kdemo|unibasic|the demonstration build of UniBasic; DOC/unibasic is its manual
+apfel|graph|a demonstration of the Graph library DOC/graph documents; its source is SRC/graph
+graphdemo|graph|see apfel
+graphsave|graph|see apfel
+showpic|graph|see apfel
+sine|graph|see apfel
+striche|graph|see apfel
