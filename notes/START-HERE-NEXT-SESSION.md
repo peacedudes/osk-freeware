@@ -98,9 +98,11 @@ Microware's", and every card still names what its program needs.
     2026-09-22 `builtin pwd' answered correctly on the RBF image,
     interactively after SYS/login (os9exec c5cf21e), and the os9exec
     session found getwd stopping at the root.  The functions were also for
-    /dd as a HOST directory (cd aborting with a bus error) -- measure that
-    case before removing anything, and keep login's `builtin cd' until both
-    are shown unnecessary.
+    /dd as a HOST directory (cd aborting with a bus error).  From a SCRIPT,
+    `builtin cd' and `builtin pwd' now work on a host-directory /dd too
+    (measured 2026-09-22); what is left unmeasured is the case the comment
+    names -- an INTERACTIVE shell's first getwd on a host-directory /dd.
+    Keep login's `builtin cd' and the functions until that is shown too.
   * **Try It in the browser.**  rdoggett: host the exact same disk as a
     web page (os9exec to WebAssembly, the reader's /h1 attachable), with
     Try It "only on cards that can actually be run".  tools/tryable.py
