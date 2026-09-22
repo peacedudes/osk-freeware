@@ -38,12 +38,14 @@ case    rtf-the-compiler-itself
 run     /dd/CMDS/rtf
 expect  RTF pathname
 
-# A module that is not there must FAIL, and say so with the error number. A
-# `load' that reported success for a missing file would make every case above
-# meaningless -- it is the check that can fail.
+# A module that is not there must FAIL, with the error number as its status.
+# A `load' that reported success for a missing file would make every case
+# above meaningless -- it is the check that can fail.  The STATUS, not the
+# text: Microware's load prints `can't load "..." - ' and leaves the number
+# to the shell, which bash does not print (measured 2026-09-22).
 case    load-refuses-what-is-not-there
-run     /h1/CMDS/load /dd/CMDS/no-such-module
-expect  216
+run     /h1/CMDS/load /dd/CMDS/no-such-module; echo "load says $?"
+expect  load says 216
 
 # -l prints the pathlist it loaded from, which is how you tell WHICH copy of
 # a module you got when two are reachable.
