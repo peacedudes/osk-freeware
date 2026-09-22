@@ -69,3 +69,5 @@ setime2|y2kit|see fixyear
 liborder.os9|liborder|the same program as liborder, a second build
 unpacklib.os9|unpacklib|the same program as unpacklib, a second build
 as09|xasm|asm.doc documents all six cross-assemblers of the set, as09 among them
+splman|splstat|DOC/splstat/splstat.1 is the manual page for all three programs of the spooler
+splprt|splstat|see splman
