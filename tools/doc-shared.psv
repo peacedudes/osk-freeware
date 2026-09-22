@@ -78,3 +78,20 @@ sed_1.06|sed|the same Paschedag adaptation of sed as CMDS/sed, which answers -? 
 gzip68k_csl|gzip|gzip 1.2.4 for the 68000; gzip.1 describes the three 1.2.4 builds and how they differ
 gzip020_csl|gzip|see gzip68k_csl
 gzipcpu32k_csl|gzip|see gzip68k_csl
+dirname|basename|DOC/basename/basename.1 is the manual page for basename and dirname together
+rndname|name|DOC/name/name.1 is the manual page for name and rndname together
+strfile|fortune|DOC/fortune/fortune.6 documents fortune, strfile and unstr together
+unstr|fortune|see strfile
+csl020|csl|DOC/csl/csl.1 documents csl and csl020 together
+infocom.tcap|infocom|DOC/infocom/infocom.6 documents both builds of the interpreter
+mexist|exist|DOC/exist/exist.1 documents exist and mexist together
+me|em|DOC/em/em.1 documents the three MicroEMACS editors together
+umacs|em|see me
+toos9|todos|DOC/todos/todos.1 documents todos and toos9 together
+uuencode|uudecode|DOC/uudecode/uudecode.1 documents uuencode and uudecode together
+xkermit|kermit|the same OS-9 Kermit 1.5 as kermit, linked with cio; os9ker.doc is its manual
+ephem881|ephem|ephem built for a 68881; ephem.doc is its manual
+xlharc|lharc|C-LHarc 1.00 in a third build; lharc.doc covers it
+rsconvert|rayshade|the rayshade 3-to-4 scene converter; DOC/rayshade/readme and Changes describe the conversion
+assembler|gshell|the GSHELL menu in front of the assembler; gshell.hlp documents the menu
+editor|gshell|the GSHELL menu in front of umacs; gshell.hlp documents the menu
