@@ -62,7 +62,7 @@ ub68kdemo|UniBasic 1.10, and it does compile -- the trick is that it runs its bu
 ob68kdemo|OmniBasic 1.16, same arrangement as ub68kdemo and the same SHELL trick -- see its entry. Run it from /dd/DOC/omnibasic. DEMO VERSION, capped symbol table.
 sddemo|White's Speedisk 2.10 de-fragmenter, demo build. Wants an 80x24 screen and drops to tty mode without one.
 dhry|Dhrystone 2.0. Twelve builds of the same source sit in CMDS/DHRY -- run several and compare, which is what tells you the compiler's cost. Run under an emulator the number describes the host machine, not a 68000.
-head|First lines of a file. This GNU build wants `head -n 20 file' -- the older `head -20' form is rejected as an unrecognized option. Needs cio.
+head|First lines of a file: `head -n 20 file', or the older `head -20 file'. Needs cio.
 tac|Prints a file backwards, last line first -- cat's mirror image. Needs cio.
 as0|Assemble the sample that ships with it: `as0 /dd/DOC/xasm/sample.a0 - l s' -- the options come after a lone `-', `l' for the listing and `s' for the symbol table. There is a sample for each of the six (sample.a0, .a1, .a4, .a5, .a09, .a11) and each is written for its own processor: as09 rejects the 6800 one, correctly. as11 is the one that takes its options without the `-'. None of these is a 68000 assembler.
 oleo|GNU Oleo. It stops with an illegal instruction before drawing a cell; sc is the spreadsheet that runs.
