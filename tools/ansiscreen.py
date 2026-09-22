@@ -102,6 +102,7 @@ class Screen:
         self.rows, self.cols = rows, cols
         self.grid = [[" "] * cols for _ in range(rows)]
         self.row = self.col = 0
+        self.saved = (0, 0)        # cursor kept by ESC 7 / CSI s
         self.orphans = []          # escape sequences that arrived without ESC
         self.unknown = set()       # finals we chose not to implement
         # A vt100 keeps TWO designated sets, G0 and G1, and SO/SI (0x0E/0x0F)
@@ -234,7 +235,14 @@ class Screen:
                     continue
                 m = ESC2.match(data, i)
                 if m:
-                    i = m.end()               # keypad toggles: ignore
+                    # ESC 7 and ESC 8 save and restore the cursor -- `resize'
+                    # parks it in the corner to ask the size and comes back
+                    # with them.  The rest are keypad toggles: ignored.
+                    if m.group(1) == b"7":
+                        self.saved = (self.row, self.col)
+                    elif m.group(1) == b"8":
+                        self.row, self.col = self.saved
+                    i = m.end()
                     continue
                 i += 1
                 continue
@@ -279,6 +287,10 @@ class Screen:
                 self.reverse = True
             if 0 in ps or 27 in ps or not ps:
                 self.reverse = False
+        elif f == "s" and not params:
+            self.saved = (self.row, self.col)  # ANSI save cursor
+        elif f == "u" and not params:
+            self.row, self.col = self.saved    # ANSI restore cursor
         elif f in "hlrsu":
             pass                              # modes: not rendered
         else:

@@ -257,8 +257,18 @@ def parse(path):
 class Session:
     """One os9exec + bash on a pty, with the capture growing behind it."""
 
+    # A program asking the window's size -- `resize' -- sends the cursor to
+    # row 999, column 999 and asks where it stopped.  A real terminal answers
+    # with its bottom right corner, so the session answers exactly that
+    # query, and only that one: a general cursor-position report needs the
+    # cursor tracked, which nothing here does, and a wrong answer is worse
+    # than none.
+    SIZE_QUERY = b"\x1b[999;999H\x1b[6n"
+
     def __init__(self, image, rows=24, cols=80):
         self.buf = bytearray()
+        self.size_answer = ("\x1b[%d;%dR" % (rows, cols)).encode("latin-1")
+        self.size_asked = 0
         self.lock = threading.Lock()
         self.master, slave = pty.openpty()
         fcntl.ioctl(slave, termios.TIOCSWINSZ,
@@ -296,6 +306,10 @@ class Session:
                 break
             with self.lock:
                 self.buf.extend(chunk)
+                asked = self.buf.count(self.SIZE_QUERY)
+            while self.size_asked < asked:
+                os.write(self.master, self.size_answer)
+                self.size_asked += 1
 
     def write(self, s):
         os.write(self.master, s.encode("latin-1"))
