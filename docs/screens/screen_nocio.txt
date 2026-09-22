@@ -1,17 +1,4 @@
-  Directories: Current   - /dd/tmp/UTILA/home/.SCREENS
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
- Last syscall: I$Read (0x0089)
-    Registers: Dn=77777750 000AEC9C 00000001 00000006
-                  DDDDDDD5 00000268 000067F0 00000008
-               An=000A4716 000AEBCC 000AEEE4 000AEED6
-                  000AEED2 000AEB86 000B0740 000AEB86
-               PC=000A4716 SR=0010
- Executing: -->000a4716: 202f 0008 6100 1798 2f40 MOVE.L (A7,$0008) == $000aeb8e
-,D0
-               000a471a: 6100 1798 2f40 0004 6708 BSR.W #$1798 == 000a5eb4
-       Memory: Static    -     000A8740 - 000AEF30   26608 bytes
-               Allocated - 000 000A8740 - 000AEF30   26608 bytes
-# # Exception: pid=3 vector=$02 err=#000:102 ... process will be killed (x to co
-ntinue)
-st 102
+screen_nocio
+Today is Tuesday, the twenty-second day of September, two thousand and
+twenty-six. The time is seventeen minutes and four seconds after nine
+AM, Daylight Savings Time. The moon is in its first quarter.

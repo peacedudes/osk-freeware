@@ -85,3 +85,4 @@ lnk.org|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FOR
 run|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
 su|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
 if|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
+screen_nocio|a module named `shell' to run the greeting -- SYS/login loads yours from /h1|measured 2026-09-22

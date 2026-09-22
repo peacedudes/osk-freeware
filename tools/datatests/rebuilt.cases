@@ -86,6 +86,20 @@ expect  .screens directory
 run     $R/screen_nocio
 expect  .screens directory
 
+# And with a file there, screen_nocio gets past the directory scan: its
+# scandir never set its count to zero, and the first file it accepted was
+# stored through a garbage index -- a bus error.  Fixed here 2026-09-22,
+# SRC/screen/README.OSK.  The harness fails a case the emulator reports an
+# exception against, so reaching the echo cleanly IS the test.  (Running the
+# greeting then wants a `shell', which this harness does not borrow.)
+case    screen_nocio-scans-its-directory-without-a-bus-error
+run     /dd/CMDS/rm -rf /dd/tmp/SCRN > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/SCRN/.SCREENS
+run     echo today > /dd/tmp/SCRN/.SCREENS/hi
+run     HOME=/dd/tmp/SCRN $R/screen_nocio; echo "screen_nocio finished"
+expect  screen_nocio finished
+absent  Exception
+
 # EVERY MODULE IN HERE NOW ANSWERS TO ITS OWN FILENAME, 2026-08-30. Five of
 # these files used to carry the module name of the program in /dd/CMDS that
 # they sit beside, and OS-9 finds a program by MODULE name once it is
