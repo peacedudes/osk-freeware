@@ -75,6 +75,8 @@ cat > "$work/one.sh" <<'WORKER'
 prog=$1; dir=$2; work=$3; image=$4; exe=$5
 n=$(printf '%s' "$dir/$prog" | /usr/bin/tr -c 'A-Za-z0-9' '_')
 h1=$work/h1.$n; mkdir -p "$h1"
+# The disk ships no `load'; stage the reader's at /h1/CMDS/load (tools/os9env.py).
+python3 -c "import sys; sys.path.insert(0, '$(dirname "$0")'); import os9env; os9env.stage_reader_load('$h1')"
 # CR-only, or bash reads the whole script as one enormous line.  The loads go
 # to /nil: a library that is not there is not this program's verdict.
 { printf 'export TERM=vt100\r'
@@ -86,9 +88,9 @@ h1=$work/h1.$n; mkdir -p "$h1"
   printf 'export HELPDIR=/dd/SYS/HELP\r'
   printf 'export SIMPATH=/dd/SBPROLOG/MODLIB\r'
   printf 'export PEP=/dd/SYS/PEP\r'
-  printf '/dd/CMDS/load /dd/CMDS/os9lib >/nil 2>/nil\r'
-  printf '/dd/CMDS/load /dd/CMDS/GAMES/graph >/nil 2>/nil\r'
-  printf '/dd/CMDS/load /dd/CMDS/ptxm >/nil 2>/nil\r'
+  printf '/h1/CMDS/load /dd/CMDS/os9lib >/nil 2>/nil\r'
+  printf '/h1/CMDS/load /dd/CMDS/GAMES/graph >/nil 2>/nil\r'
+  printf '/h1/CMDS/load /dd/CMDS/ptxm >/nil 2>/nil\r'
   printf '/dd/%s/%s\r' "$dir" "$prog"; } > "$h1/run.sh"
 raw=$work/raw.$n
 gtimeout 14 env OS9DISK="$image" OS9H0="$image" OS9H1="$h1" \

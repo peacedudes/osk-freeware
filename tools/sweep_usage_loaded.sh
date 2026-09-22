@@ -29,12 +29,14 @@ cat > "$work/one.sh" <<'WORKER'
 prog=$1; dir=$2; work=$3; image=$4; exe=$5
 n=$(printf '%s' "$dir/$prog" | /usr/bin/tr -c 'A-Za-z0-9' '_')
 h1=$work/h1.$n; mkdir -p "$h1"
+# The disk ships no `load'; stage the reader's at /h1/CMDS/load (tools/os9env.py).
+python3 -c "import sys; sys.path.insert(0, '$(dirname "$0")'); import os9env; os9env.stage_reader_load('$h1')"
 { printf 'export TERM=vt100\r'
   printf 'export TERMCAP=/dd/SYS/termcap\r'
   printf 'export HOME=/dd\r'
   printf 'export USER=tester\r'
   printf 'export LOGNAME=tester\r'
-  printf '/dd/CMDS/load /dd/CMDS/os9lib >/nil 2>/nil\r'
+  printf '/h1/CMDS/load /dd/CMDS/os9lib >/nil 2>/nil\r'
   printf '/dd/%s/%s -?\r' "$dir" "$prog"; } > "$h1/run.sh"
 text=$( gtimeout 12 env OS9DISK="$image" OS9H0="$image" OS9H1="$h1" \
           "$exe" -r bash /h1/run.sh < /dev/null 2>&1 \

@@ -87,11 +87,15 @@ def extract_in_universe(path, dest, cmd):
     os.makedirs(dest, exist_ok=True)
     name = os.path.basename(path)
     open(os.path.join(dest, name), "wb").write(open(path, "rb").read())
-    # `load' puts cio in the module directory before the unpacker asks for it.
-    # This used to be OS9MDIR, an os9exec environment variable; the disk now
-    # carries the collection's own `load', which is the OS-9 way to say it.
-    script = ("/dd/CMDS/load /h5/cio\ncd /h6\n%s /h6/%s\nexit\n" % (cmd, name))
-    env = dict(os.environ, OS9DISK=img, OS9H5=cio, OS9H6=os.path.abspath(dest))
+    # `load' puts cio in the module directory before the unpacker asks for it
+    # -- the reader's own, staged at /h1/CMDS/load, since the disk ships none.
+    import tempfile
+    from os9env import emulator_env, stage_reader_load
+    h1 = tempfile.mkdtemp(prefix="xp_h1.")
+    stage_reader_load(h1)
+    script = ("/h1/CMDS/load /h5/cio\ncd /h6\n%s /h6/%s\nexit\n" % (cmd, name))
+    env = emulator_env(OS9DISK=img, OS9H1=h1, OS9H5=cio,
+                       OS9H6=os.path.abspath(dest))
     try:
         subprocess.run([exe, "-r", "bash", "/dd/SYS/login"], input=script.encode(),
                        capture_output=True, env=env, timeout=60)
