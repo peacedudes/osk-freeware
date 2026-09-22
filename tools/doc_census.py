@@ -6,7 +6,7 @@ The answer had never been measured. It was taken by hand once, in a shell, on
 re-derive is a number nobody should quote. This is that measurement as a tool.
 
 A program counts as documented if anything under disk/DOC is named for it by
-any of three routes, tried in order:
+any of four routes, tried in order:
 
   DIRECT    a file or directory named for the program itself
   ARCHIVE   named for its source archive, via DOC/ORIGINS -- a source tree
@@ -15,6 +15,8 @@ any of three routes, tried in order:
             and if; SRC/toys holds fifteen games)
   FAMILY    named for its CMDS subdirectory, which is how NETPBM's 169
             programs are covered by one DOC/netpbm tree
+  GUIDE     one of the collection's own README-<x> guides, for the few
+            programs listed by name in GUIDE below
 
 Everything else has only its one-line entry in DOC/INDEX, which every program
 has by construction -- check_disk enforces it -- and which is a catalogue
@@ -34,6 +36,16 @@ FAMILY = {
     "CMDS/ELM": "elm", "CMDS/NEWS": "cnews", "CMDS/WN": "wn",
     "CMDS/COMMS": "comms", "CMDS/DHRY": "dhry", "CMDS/GCC2": "gcc",
     "CMDS/GCC139": "gcc139",
+}
+
+# Programs whose whole documentation is one of the collection's own guides.
+# Named one by one, because a README-<x> is not always about the program <x>:
+# README-NAMES is about shadowed utility names, not `names', and README-VI
+# chooses between two editors without documenting either.  A row here says
+# somebody read the guide and it covers the program.
+GUIDE = {
+    "cio": "README-CIO",
+    "keep": "README-KEEP", "kept": "README-KEEP", "unkeep": "README-KEEP",
 }
 
 DOC_SUFFIX = re.compile(
@@ -97,7 +109,7 @@ def main(argv):
 
     names = doc_names(docroot)
     origins = origins_map(docroot)
-    rows, counts = [], {"DIRECT": 0, "ARCHIVE": 0, "FAMILY": 0, "NONE": 0}
+    rows, counts = [], {"DIRECT": 0, "ARCHIVE": 0, "FAMILY": 0, "GUIDE": 0, "NONE": 0}
 
     for prog, d in programs(root):
         low = prog.lower()
@@ -107,6 +119,8 @@ def main(argv):
             verdict, where = "ARCHIVE", names[origins[prog].lower()]
         elif FAMILY.get(d, "") in names:
             verdict, where = "FAMILY", names[FAMILY[d]]
+        elif GUIDE.get(prog, "").lower() in names:
+            verdict, where = "GUIDE", names[GUIDE[prog].lower()]
         else:
             verdict, where = "NONE", ""
         counts[verdict] += 1
@@ -119,6 +133,7 @@ def main(argv):
     print(f"      by its own name        {counts['DIRECT']}")
     print(f"      by its source archive  {counts['ARCHIVE']}")
     print(f"      by its family tree     {counts['FAMILY']}")
+    print(f"      by one of the guides   {counts['GUIDE']}")
     print(f"  NOTHING but the INDEX line {counts['NONE']}")
 
     if counts["NONE"]:
