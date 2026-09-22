@@ -7,10 +7,12 @@ in the handoff under the same name; this file is the asking.
 Updated 2026-09-21.
 
 **Nothing new needs you except item 31, and item 1 changed.** The night of
-the 20th went on exception reasons and harness faults, none of which is
-yours to decide: eight lines came off `panel-exceptions.psv' and fifteen
-reasons were rewritten, the gate is green, the suite is 871 of 871 twice,
-and `check_the_checks' catches 43 of 43. It is all in the handoff.
+the 20th and the morning of the 21st went on exception reasons, harness
+faults and tests, none of which is yours to decide: `panel-exceptions.psv'
+is 65 rows with about 27 of them re-tested, seven programs came off the
+untested list (17 to 10), the gate is green, the suite is **877 of 877
+twice**, and `check_the_checks' catches 43 of 43. It is all in the handoff,
+which now opens with the ORDER of what is left so no session has to ask.
 
 **Item 1 gained a name to pin and a reason to ask before pinning** -- the
 os9exec tip that night carried a flake its own author caught.
@@ -23,9 +25,10 @@ os9exec tip that night carried a flake its own author caught.
 **1. Nothing is pushed, and the pin waits on it.**
 `.github/workflows/build-image.yml` now names the branch os9exec is actually
 working on (`fix/scf-pd-eor`) rather than the released line, on your
-instruction. That branch is 215 commits ahead of `github/master` and
-unpushed, so CI cannot run until you push -- it never has. At tagging, freeze
-the ref to the tip **commit**, taken at that moment.
+instruction. That branch is **253 commits** ahead of `github/master` and
+unpushed, so CI cannot run until you push -- it never has. At tagging the
+ref must be frozen to a **commit**, and the next paragraph says which:
+NOT the tip.
 *Four fixes we depend on are on no remote: `40facae` `d401ce2` `685a4c3`
 `00fcec5`.*
 
@@ -39,6 +42,10 @@ since put the cap back and measured it: seventeen clean full-suite runs,
 several with two suites running at once so the contention the failures
 preferred was present, then green gates across the board. `60d4b0a` is
 that correction, and it contains everything `d64163b` had.
+
+**The tip has already moved past it** -- `c5cf21e` as of the morning of the
+21st, two commits on -- which is the whole argument in one line: whatever is
+at the top when you tag is not a thing either of us has tested.
 
 The `-d` tracing fix we depend on is two commits below the tip and both
 commits above it are independent of it, so the verification I did against
@@ -97,7 +104,7 @@ can make one in two minutes. Should I?**
 `run', `su' and `if' each fork a module named `shell' -- the one that
 comes with OS-9 -- and each is written up here as doing nothing. Copy
 this disk's `ksh', change the MODULE name to `shell' with
-`tools/rename_module.py', load it, and (measured 2026-09-20):
+`tools/rename_module.py', load it, and (measured 2026-09-21):
 
     run "ls SYS"        lists SYS on the console and returns 0
                         (without it: returns 0, prints nothing at all)
@@ -119,8 +126,9 @@ real system, means Microware's shell. **My reading is don't**: the reader
 this collection is written for HAS OS-9, so they have the real one, and
 the cards can say "works with your own shell" positively instead. But it
 is a name-and-provenance question, which is yours. Nothing is on the disk
-either way -- the test copy lives in a scratch directory and goes when
-this session does.
+either way -- the test copy lived in a scratch directory and went with the
+session that made it. Remaking it is two minutes and the handoff says how,
+so nothing is lost by it being gone.
 
 ## Not a question, but you should know
 
