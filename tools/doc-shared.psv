@@ -73,3 +73,8 @@ splman|splstat|DOC/splstat/splstat.1 is the manual page for all three programs o
 splprt|splstat|see splman
 loadmem|savemem|DOC/savemem/savemem.1 is the manual page for savemem and loadmem together
 ask|wisecrack|DOC/wisecrack/wisecrack.6 is the manual page for the server and its client together
+ggrep|grep|an earlier build of the same GNU grep; grep.man documents it
+sed_1.06|sed|the same Paschedag adaptation of sed as CMDS/sed, which answers -? identically
+gzip68k_csl|gzip|gzip 1.2.4 for the 68000; gzip.1 describes the three 1.2.4 builds and how they differ
+gzip020_csl|gzip|see gzip68k_csl
+gzipcpu32k_csl|gzip|see gzip68k_csl
