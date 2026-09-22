@@ -1,6 +1,6 @@
 # What is on this disk
 
-1028 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1027 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **708 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 118 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 117 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -1421,7 +1421,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>118 programs</summary>
+<details><summary>117 programs</summary>
 
 **Devices & disks**
 
@@ -1485,7 +1485,6 @@
 | `bsplt68` | takes an OS9Boot file apart into the modules inside it, writing each one out under its own module name. A boot file is modules end to end, so `cat a b > OS9Boot' makes one you can try it on |
 | `flink` | &#9733; makes a second directory entry for a file under a name you give -- an RBF hard link. RBF has no true hard links, and removing such an entry can leave the original pointing at the wrong place, so do not run it on a disk you care about<br>**How:** never run this on a disk you care about, and never on a shipped module. It makes a directory entry aliasing the file's FD in whatever directory you are standing in; RBF has no hard links; and removing that entry leaves the original file pointing at a directory, after which `cat' answers `is a directory' for everything. It corrupted /dd/CMDS/cat that way once, and only rebuilding the image put it back. |
 | `gen` | generates the frame of a new C program -- header block, authorship and version lines and the sectioned comments a Microware example was laid out with. It appends `.c' to whatever name you give it: `gen -p frame' leaves `frame.c'. `-m' does a module frame, `-t' a type, `-f' a function declaration<br>`Syntax: gen [<opt>] <pathname> [<opts>]` |
-| `load` | loads a module into memory, so a program that links a library module can find it -- `load /dd/CMDS/os9lib' and the RTF Fortran set comes alive. A clean-room reimplementation of Microware's load, source in SRC/load, built trap-free Shares its name with a utility of your own -- README-NAMES<br>`Syntax:   load [<opts>] {<module> [<opts>]}` |
 | `mexist` | &#9733; answers whether a module is in the module directory by its exit status rather than by printing: 0 if it is there, 1 if it is not. The name is case-sensitive, and it looks at up to 256 modules<br>`MEXIST   Version UTIL 2.40 by DESIGNA VLT 24.11.97` |
 | `os9lib` | the RTF/68K Fortran run-time library. rtf, for, lnk, biory and creadoc all link it, so `load' it into the module directory before running them. See DOC/README-FORTRAN |
 | `ptxm` | Path Table eXtension Module: a kernel extension letting user-state processes open unlimited I/O paths. Courtesyware, free. It installs into the kernel and so needs supervisor state. DOC/ptxm/ptxm.txt |

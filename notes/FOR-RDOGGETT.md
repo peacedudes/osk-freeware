@@ -6,7 +6,7 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-22.
 
-**Nothing new needs you.**  Answered 2026-09-22: 34 (the `t' stub came off), 31 (no stand-in
+**Two new items, 35 and 36, both small.**  Answered 2026-09-22: 34 (the `t' stub came off), 31 (no stand-in
 `shell'; load yours from /h1/CMDS/shell, as SYS/login does), 32 (the EFFO
 vi's helpers come off), 33 (bash patched).  Programs found and left out
 are catalogued for readers in DOC/README-NOT-SHIPPED.
@@ -75,6 +75,28 @@ turns up that wants one more fetch. Delete the key after that; it is the
 only credential here.
 
 ## Decisions
+
+**35. `load' is off the disk -- say when to delete it.**
+Moved to `withheld/load` (binary, source, man page), not deleted, as you
+asked.  Tested: the image builds without it (tar now runs from ksh), SYS/login
+loads through your own `load` on /h1, the suite stages yours at /h1/CMDS/load
+(Microware's when OS9SDK is set, the withheld copy otherwise so CI still
+runs), and the 26 cards that load something were re-shot through your load --
+results in the handoff.  DOC/README-NOT-SHIPPED lists it.  When you are
+certain: `git rm -r withheld/load` and point `stage_reader_load` in
+tools/os9env.py at the SDK only.
+
+**36. Run it in your browser: how docs/try gets onto Pages.**
+Every card now knows what trying it needs (tools/tryable.py): 877 run on the
+disk alone, 51 need your OS-9 attached as /h1, 31 need hardware and get a
+line saying why instead.  The card links to `try/?run=<its command>` (plus
+`&needs=h1`), which the os9exec page already understands.  The links stay
+hidden until docs/try/index.html exists.  What is yours: EITHER commit the
+four built files into docs/try (disk.gz is ~49 MB, under GitHub's 100 MB) --
+simplest, but 49 MB of history per rebuild -- OR let the Pages workflow build
+them, which means adding an Emscripten setup action to CI (a new
+dependency).  **Recommend: commit the build**, rebuilding only at releases.
+
 
 **28. Should "name what the reader HAS" reach the shipped READMEs?**
 The gate covers `DOC/INDEX`, `howto.psv` and the card sheets. Four

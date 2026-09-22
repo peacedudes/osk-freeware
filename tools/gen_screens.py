@@ -541,6 +541,17 @@ def main():
                                               "s": e["screen"],
                                               **({"try": e["try"]} if e.get("try") else {}),
                                               **({"os9": e["os9"]} if e.get("os9") else {})})
+    # WHAT TRYING EACH CARD NEEDS, for the page's Try It button:
+    # tools/tryable.py.  `disk' is left out to keep the file small.
+    import tryable
+    req, refused, st = (tryable._table("requires.psv"),
+                        tryable._table("try-no.psv"), tryable.stanzas())
+    for prog, entry in screens.items():
+        cls, why = tryable.classify(entry["n"], st.get(entry["n"], ""),
+                                    req, refused)
+        if cls != "disk":
+            entry["tc"] = cls
+            entry["tw"] = why
     for e in (ordered if writing else []):
         open(os.path.join(KEEP, "%s.txt" % e["name"]), "w").write(
             fold_ascii(e["screen"]) + "\n")

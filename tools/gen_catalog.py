@@ -807,6 +807,11 @@ def render(progs, template, standalone=True):
     html = html.replace("__BLURB__", json.dumps(BLURB))
     html = html.replace("__ORDER__", json.dumps(ORDER))
     html = html.replace("__TOTAL__", str(len(progs)))
+    # The browser page, when it has been built into docs/try; until then no
+    # card offers to run anything there.
+    docs = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs")
+    html = html.replace("__TRY_PAGE__", json.dumps(
+        "try/" if os.path.exists(os.path.join(docs, "try", "index.html")) else ""))
     assert "__DATA__" not in html and "__TOTAL__" not in html
     if not standalone:
         return html
