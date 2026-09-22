@@ -162,11 +162,13 @@ python3 "$HERE/mktar.py" "$SRC" "$TMP/collection.tar" || exit 1
 # Verbose on purpose: the count of extracted files is the only honest check
 # that anything happened. This collection has produced a builder that
 # reported "copied 3287/3287" while every copy failed.
-# ksh, because its `cd' is a real chdir and it forks an absolute pathname --
-# so tar needs no `load' to be found, and the build needs nothing of anyone's
-# OS-9.  (Until 2026-09-22 this used sh with tar made resident by the disk's
-# own clean-room `load', which is withheld now.)
-printf '/dd/CMDS/ksh -c "cd /%s; /dd/CMDS/tar xvf /h6/collection.tar"\r' \
+# bash itself, which is already running this script: `builtin cd' is a real
+# chdir, and tar is forked by its full path, so nothing needs to be `load'ed
+# and nothing wants a trap module -- the build uses no Microware file at all.
+# (Until 2026-09-22 this used sh with tar made resident by the disk's own
+# clean-room `load', which is withheld now; ksh would do the job too, but ksh
+# needs cio.)
+printf 'builtin cd /%s\r/dd/CMDS/tar xvf /h6/collection.tar\r' \
       "$DEV" > "$TMP/extract.sh"
 ( cd "$OUTDIR" && env OS9DISK="$SRC" \
       "OS9H${DEV#h}=$WORK" OS9H6="$TMP" \
