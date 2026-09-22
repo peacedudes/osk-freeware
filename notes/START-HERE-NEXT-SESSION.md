@@ -14,7 +14,7 @@ are just wasting time."*  There is no ordering question here any more.
    the morning of 2026-09-21).  The four left are the EFFO vi helpers
    waiting on FOR-RDOGGETT item 32.  What remains in this line of work,
    in order:
-   a. **Provenance: 211 missing rows became 47.**  On 2026-09-21 DOC/ORIGINS
+   a. **Provenance: 211 missing rows became 35.**  On 2026-09-21 DOC/ORIGINS
       gained 320 rows, nearly all from a byte-identical copy found by
       unpacking the whole pool, archives inside archives included (the TeX
       programs and ELM were only in nested ones).  What is left: the
@@ -23,6 +23,11 @@ are just wasting time."*  There is no ordering question here any more.
       DESIGNA's loose utilities, a few BSD games, the GCC 1.39 passes, and
       programs whose archive the pool no longer holds.  Each wants a row
       written by hand from SOURCES.txt.
+      Two methods found most of them: md5 of the whole file against every
+      file in the unpacked pool (bare modules included), and, for modules
+      renamed on the way in, comparing the bytes from $30 up to the
+      ORIGINAL's name offset.  Oddity found: the pool's TELECOM/cnews.tar.Z
+      is the C-Kermit binary.
    b. **Pages not run on a real terminal** were written from the
       measured records (help captures, cards, howto) plus drive runs.
       If a page disagrees with the program, the program wins; fix the
