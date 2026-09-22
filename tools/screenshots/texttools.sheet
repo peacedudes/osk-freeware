@@ -224,15 +224,15 @@ run     what CMDS/today
 wait    8
 
 shot    tformat
-cap     README-KEEP set as justified text: the ragged original refilled
-cap     into even lines.
-try     cat DOC/README-KEEP | head -n 24 | tformat
-os9     cat DOC/README-KEEP!head -n 24!tformat
+cap     The opening of PVIC's own notes refilled to sixty columns, each
+cap     line justified to both margins by spreading the spaces.
+try     head -n 12 < DOC/vi/vi.txt | tformat 60
+os9     head -n 12 <DOC/vi/vi.txt!tformat 60
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat DOC/README-KEEP | head -n 24 | tformat
+run     head -n 12 < DOC/vi/vi.txt | tformat 60
 wait    8
 
 shot    unip
