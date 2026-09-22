@@ -791,21 +791,21 @@ wait    8
 shot    rayshade
 cap     Rayshade 4.0 rendering a scene on a 68000 and reporting what it
 cap     did -- primitives, eye and shadow rays, cache hits, and the time
-cap     it took.  It preprocesses each scene through cccp by way of
-cap     popen(), which forks a program named `shell', so a shell under
-cap     that name and cccp in the data directory are put in place first.
+cap     it took.  It preprocesses each scene through `cccp' by way of
+cap     popen(), which runs it with `shell' -- your own OS-9's, which
+cap     SYS/login loads from /h1 -- so both are loaded first; the cccp
+cap     here is the one GCC 1.39 brings.
 try     rayshade -R 32 24 -O tmp/out.pic GAMES/rayshade/boxball.ray
+run     load /h1/CMDS/shell
+wait    3
+run     load /dd/CMDS/GCC139/gcc_cccp
+wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cp CMDS/sh CMDS/shell
-wait    8
-run     cp CMDS/GCC139/gcc_cccp cccp
-wait    8
 run     rayshade -R 32 24 -O tmp/out.pic GAMES/rayshade/boxball.ray
 wait    45
-
 
 shot    sphere
 size    36 80
