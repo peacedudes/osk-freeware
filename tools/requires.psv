@@ -65,3 +65,23 @@ utree|SYS/UTREE/utree.help for `H', SYS/UTREE/utree for the startup settings, SY
 submit|a module named `shell' for the commands in the .sub file -- SYS/login loads yours from /h1, and DOC/README-SHELLS says why|measured 2026-09-19: with one resident, submit ran the file's commands and printed their output; with none it prints each line and runs nothing
 m4|a module named `shell' for its syscmd -- SYS/login loads yours from /h1|DOC/README-SHELLS
 utree|room for the whole tree it is given -- open it on a subdirectory, or give `-q' for two levels, on a disk this size|measured 2026-09-19: `utree DOC' (303 dirs, 1553 files) reads whole
+ff|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-22: it forks shell with `dir -ausr ! grep -e=<name>'; with none resident it prints nothing
+ff|your own OS-9's grep, loaded: `load /h1/CMDS/grep'|measured 2026-09-22: this disk's GNU grep reads -e=<name> as the pattern `=<name>' and matches nothing
+lgrep|your own OS-9's grep, loaded: `load /h1/CMDS/grep'|measured 2026-09-22: it runs `grep -l' and prints nothing from this disk's GNU grep, and names the files from Microware's
+mshell|a module named `shell' for each menu command -- SYS/login loads yours from /h1|SRC forum9 mshell.c, os9fork("shell"); measured 2026-09-22
+xc|a module named `shell' for each marked command -- SYS/login loads yours from /h1|measured 2026-09-22: with none resident it stops with exit status 216
+clock|a module named `shell' to run banner for each line -- SYS/login loads yours from /h1|SRC/misc/clock.c; measured 2026-09-22: with none it stops on the pipe with error 216
+rayshade|a module named `shell' for its popen() -- SYS/login loads yours from /h1|measured 2026-09-22: without one, `popen of "cccp <scene>" failed!'
+rayshade|a module named `cccp', resident: `load /dd/CMDS/GCC139/gcc_cccp'|measured 2026-09-22: the shell finds a resident cccp; a copy in the data directory is run as a procedure file
+dback|your own OS-9's copy, for -e -- SYS/login loads it from /h1|SRC/dback/dback.c, os9exec of "copy"; measured 2026-09-22
+hist|your own OS-9's tmode -- SYS/login loads it from /h1|measured 2026-09-22: `shell: can't execute "tmode"' without it
+subber|room up front, `#1000k', which your own OS-9's shell gives it: `shell subber #1000k words file' from bash|measured 2026-09-22
+for|a module named `shell', and your own OS-9's r68 and del -- SYS/login loads all three from /h1|measured 2026-09-22: `for fact' compiles, assembles and deletes the assembly
+for|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN
+lnk|your own OS-9's shell and l68 (SYS/login loads both from /h1), with Microware's sys.l and rtfstart.r, assembled from SRC/rtf/rtfstart.a, in LIB on /h0|measured 2026-09-22: it links /h0/LIB/sys.l and /h0/LIB/rtfstart.r and writes /h0/CMDS/<name>
+lnk|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN
+lnk.org|as lnk, but the start-up code named fstart.r in LIB on /h0|measured 2026-09-22
+lnk.org|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN
+run|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
+su|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
+if|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-21
