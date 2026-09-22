@@ -39,7 +39,7 @@ expect  no recovered file has that exact name
 case    lnk-org-is-silent-until-os9lib-is-resident-and-then-speaks
 run     /dd/CMDS/lnk.org
 run     echo "--- nothing above this line; now load os9lib:"
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     /dd/CMDS/lnk.org
 expect  --- nothing above this line; now load os9lib:
 expect  command: lnk file{,file} [-l68opts]
@@ -49,7 +49,7 @@ expect  command: lnk file{,file} [-l68opts]
 # birth-date prompt after it needs a name typed first, so only the two
 # lines that always arrive are asserted.
 case    biory-prompts-in-german-once-os9lib-is-resident
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     /dd/CMDS/biory < /nil
 expect  Ausgabe im Listingfile 'Biory.Lis'
 expect  Name Vorname (RETURN=Ende)

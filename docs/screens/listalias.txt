@@ -1,9 +1,9 @@
 listalias
-everyone             tester,os9 (Everybody On This Machine)
 home                 os9-freeware (This Collection)
-me                   tester (The Test Account)
+self                 tester (Me)
 os9                  os9-freeware (The OS-9 Freeware Collection)
+tester               tester (The Test Account)
+me                   tester (The Test Account)
 postmaster           tester (The Postmaster)
 root                 tester (The Postmaster)
-self                 tester (Me)
-tester               tester (The Test Account)
+everyone             tester,os9 (Everybody On This Machine)

@@ -8,10 +8,10 @@ family  modules
 # real system. Six programs sat in "silent in every stage" for weeks for that
 # reason alone.
 #
-# `load' is what puts a module where F$Link can find it, and as of 2026-08-27
-# the collection HAS one: CMDS/load, clean-room, source in SRC/load. These
-# cases prove the pair -- that load works, and that the Fortran set comes
-# alive when it has.
+# `load' is what puts a module where F$Link can find it -- the reader's own,
+# at /h1/CMDS/load; the harness stages one there (os9env.stage_reader_load).
+# These cases prove the pair -- that load works, and that the Fortran set
+# comes alive when it has.
 load    /dd/CMDS/os9lib
 
 case    for-speaks-once-os9lib-is-loaded
@@ -42,13 +42,13 @@ expect  RTF pathname
 # `load' that reported success for a missing file would make every case above
 # meaningless -- it is the check that can fail.
 case    load-refuses-what-is-not-there
-run     /dd/CMDS/load /dd/CMDS/no-such-module
+run     /h1/CMDS/load /dd/CMDS/no-such-module
 expect  216
 
 # -l prints the pathlist it loaded from, which is how you tell WHICH copy of
 # a module you got when two are reachable.
 case    load-l-reports-the-path
-run     /dd/CMDS/load -l /dd/CMDS/rtfdat
+run     /h1/CMDS/load -l /dd/CMDS/rtfdat
 expect  loaded "/dd/CMDS/rtfdat"
 
 # And the module really is resident afterwards.  `mexist' PRINTS NOTHING in
@@ -71,7 +71,7 @@ absent  mexist junk says 0
 # and the module name differ, which is the case worth proving.
 case    which-names-the-file-a-module-in-memory-came-from
 run     export PATH=/dd/CMDS
-run     /dd/CMDS/load /dd/CMDS/ckermit
+run     /h1/CMDS/load /dd/CMDS/ckermit
 run     /dd/CMDS/which wermit
 expect  in memory, same as /dd/CMDS/ckermit
 

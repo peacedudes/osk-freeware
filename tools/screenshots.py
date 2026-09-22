@@ -147,6 +147,9 @@ LOGIN = ("export TERM=xterm-256color",
          "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/WN",
          "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT",
          "export PATH=$PATH:/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
+         # The reader's own OS-9, as SYS/login appends it: `load' and the
+         # rest of Microware's commands come from there, not from this disk.
+         "export PATH=$PATH:/h1/CMDS:/h1/CMDS/GAMES",
          "export TMACDIR=/dd/LIB",
          "export HELPDIR=/dd/SYS/HELP",
          "export SIMPATH=/dd/SBPROLOG/MODLIB",

@@ -52,7 +52,7 @@ run     echo "--- end wndex-under-ksh"
 drive   wndex-loaded-then-sh
 why     the other route: a RESIDENT module is forked by name with no
 why     directory search, which is the one thing sh can do.
-run     /dd/CMDS/load /dd/CMDS/WN/wndex
+run     /h1/CMDS/load /dd/CMDS/WN/wndex
 run     /dd/CMDS/mdir
 run     /dd/CMDS/sh -c "chd $W; wndex"
 run     echo "--- is index.cache there now?"

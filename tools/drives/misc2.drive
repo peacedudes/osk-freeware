@@ -109,7 +109,7 @@ run     /dd/CMDS/eo /dd/tmp/M2/list /dd/CMDS/wc -c @
 
 drive   remove
 why     it removes MODULES from memory, not files.  DOC/INDEX says files.
-run     /dd/CMDS/load /dd/CMDS/wc
+run     /h1/CMDS/load /dd/CMDS/wc
 run     /dd/CMDS/mdir
 run     /dd/CMDS/remove wc
 run     /dd/CMDS/mdir

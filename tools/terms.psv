@@ -489,7 +489,6 @@ lmargin|Only a copyright line in its usage text: "(C) oettle + reichler Datentec
 lnk.org|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 lnk|RTF/68K Fortran-77, H. von der Schmitt, Universitaet Heidelberg. No copyright line; its manual says the package "is available free" and "It is free for non-profit organizations." No source for it is in SRC/rtf.|DOC/rtf/rtfman.txt lines 36-39, 399-400, 4172-4181
 loadmem|No copyright or licence statement in the binary; EFFO PD disk 1 lists it without terms.|EFFO/pd2.lzh member CMDS/loadmem (identical), contents
-load|Contributed to this collection by the os9exec project (2026-08-27), written from Microware's published manuals. Its source states no copyright or licence.|SRC/load/load.c lines 1-13; SOURCES.txt lines 38-49
 loan|No copyright or licence statement; a comp.sources.misc posting (volume 4, issue 90) by Jane Medefesser of Bill Gregg's program.|SRC/misc/loan.c lines 1-31
 logisim|Public|DOC/logisim/info_logisim
 logname|GNU General Public License, version 2 -- the COPYING in EFFO's sh_utils73 archive. The binary names itself GNU sh-utils 1.10 (ggrep: GNU grep 2.0).|SHELLS/sh_utils73.lzh members CMDS/logname (identical) and copying lines 1-2; SOURCES.txt line 266

@@ -72,3 +72,26 @@ if __name__ == "__main__":
               "unless a harness uses emulator_env():")
         for k in sorted(have):
             print("  %-10s %s" % (k, have[k]))
+
+
+def stage_reader_load(h1):
+    """Put a `load' at <h1>/CMDS/load, where a reader's own OS-9 keeps one.
+
+    The collection ships no `load': the clean-room one written for it is
+    withheld (withheld/load), because a module named after a Microware
+    utility is Microware's to ship.  A harness that makes a module resident
+    therefore needs one on the /h1 it mounts, as a reader has.  Microware's,
+    from $OS9SDK/CMDS, when that is set -- the reader's arrangement exactly;
+    otherwise the withheld one, so that a run without an SDK (CI) still
+    tests the same cases.  Returns the source it staged from.
+    """
+    import shutil
+    sdk = os.environ.get("OS9SDK")
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    src = os.path.join(sdk, "CMDS", "load") if sdk else ""
+    if not os.path.isfile(src):
+        src = os.path.join(here, "withheld", "load", "load")
+    os.makedirs(os.path.join(h1, "CMDS"), exist_ok=True)
+    shutil.copyfile(src, os.path.join(h1, "CMDS", "load"))
+    os.chmod(os.path.join(h1, "CMDS", "load"), 0o755)
+    return src

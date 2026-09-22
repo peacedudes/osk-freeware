@@ -23,7 +23,7 @@ case    rayshade-names-the-preprocessor-it-could-not-start
 # So what is asserted here is the command it builds and that it says so
 # plainly; the render itself is on its card, taken with Microware's shell
 # loaded from /h1.  No stand-in `shell' may be made from another program.
-run     /dd/CMDS/load /dd/CMDS/GCC139/gcc_cccp
+run     /h1/CMDS/load /dd/CMDS/GCC139/gcc_cccp
 run     /dd/CMDS/ksh -c "cd /dd; /dd/CMDS/rayshade -R 32 24 -O tmp/ray6.pic GAMES/rayshade/boxball.ray" < /nil
 expect  popen of "cccp  GAMES/rayshade/boxball.ray" failed!
 

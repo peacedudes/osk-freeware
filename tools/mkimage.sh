@@ -162,7 +162,11 @@ python3 "$HERE/mktar.py" "$SRC" "$TMP/collection.tar" || exit 1
 # Verbose on purpose: the count of extracted files is the only honest check
 # that anything happened. This collection has produced a builder that
 # reported "copied 3287/3287" while every copy failed.
-printf '/dd/CMDS/load /dd/CMDS/tar\r/dd/CMDS/sh -c "chd /%s; tar xvf /h6/collection.tar"\r' \
+# ksh, because its `cd' is a real chdir and it forks an absolute pathname --
+# so tar needs no `load' to be found, and the build needs nothing of anyone's
+# OS-9.  (Until 2026-09-22 this used sh with tar made resident by the disk's
+# own clean-room `load', which is withheld now.)
+printf '/dd/CMDS/ksh -c "cd /%s; /dd/CMDS/tar xvf /h6/collection.tar"\r' \
       "$DEV" > "$TMP/extract.sh"
 ( cd "$OUTDIR" && env OS9DISK="$SRC" \
       "OS9H${DEV#h}=$WORK" OS9H6="$TMP" \

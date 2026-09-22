@@ -30,7 +30,7 @@ setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 # finishes; `head' keeps the plot itself out of the capture, since a
 # Tektronix drawing is not something to assert on anyway.
 case    wgen-runs-once-the-graph-trap-library-is-resident
-run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /h1/CMDS/load /dd/CMDS/GAMES/graph
 run     echo "10" > $W/w.in
 run     echo "100" >> $W/w.in
 run     echo "50" >> $W/w.in

@@ -78,6 +78,6 @@ run     echo "--- end psc"
 drive   remove
 run     /dd/CMDS/mdir
 run     echo "--- remove wc after loading it:"
-run     /dd/CMDS/load /dd/CMDS/wc
+run     /h1/CMDS/load /dd/CMDS/wc
 run     /dd/CMDS/remove wc
 run     echo "--- end remove"

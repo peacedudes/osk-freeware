@@ -37,7 +37,6 @@ grep|grep
 help|help
 inetd|WN/inetd
 kermit|kermit
-load|load
 make|make
 mshell|mshell
 mv|mv

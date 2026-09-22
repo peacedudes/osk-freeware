@@ -575,24 +575,6 @@ run     modinfo CMDS/MM1/windio.52 | head -n 4
 wait    12
 run     modinfo CMDS/MM1/msdrv_340.901.ms | head -n 4
 wait    12
-shot    load
-cap     load puts a module in the module directory so that a program
-cap     which links it can find it.  `for', the RTF Fortran driver,
-cap     answers only after os9lib is loaded, saying what it takes; asked
-cap     for beforehand at bash it prints nothing, `for' being a shell
-cap     keyword there too, so it is asked for with `command' ahead of it
-cap     to make bash look the name up as a program.  This is the cure
-cap     for the silence: a clean-room load, with its source in SRC/load.
-try     command for; load os9lib; command for; load nosuchthing
-os9     for; load os9lib; for; load nosuchthing
-run     command for
-wait    6
-run     load os9lib
-wait    8
-run     command for
-wait    8
-run     load nosuchthing
-wait    8
 shot    modules2
 for     ptxm wn.stb
 cap     Two more modules that are not programs: `ptxm', Nick Holgate's Path

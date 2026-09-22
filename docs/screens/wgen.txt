@@ -1,8 +1,8 @@
 wgen
 Enter resoultion(step): 256
 Fundamental harmonic intensity (0-200): 150
-S75
-40
-e20
-c10
-ond      harmonic intensity (0-200): Third       harmonic intensity (0-200): Fo
+Second      harmonic intensity (0-200): 75
+Third       harmonic intensity (0-200): 40
+Fourth      harmonic intensity (0-200): 20
+Fifth       harmonic intensity (0-200): 10
+Sixth       harmonic intensity (0-200):

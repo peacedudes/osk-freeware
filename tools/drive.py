@@ -56,7 +56,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from os9env import emulator_env
+from os9env import emulator_env, stage_reader_load
 import imagelock                                    # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,7 +128,7 @@ def parse(path):
 
 def script_for(fam, stanzas):
     lines = login_preamble()
-    lines += ["/dd/CMDS/load %s" % m for m in fam["load"]]
+    lines += ["/h1/CMDS/load %s" % m for m in fam["load"]]
     lines += fam["setup"]
     for s in stanzas:
         # A BLANK LINE BEFORE EVERY MARKER, and it is not cosmetic. Markers
@@ -179,6 +179,7 @@ def run_sheet(path, image, seconds):
     work = os.path.join(OUT, "work")
     os.makedirs(os.path.join(work, "h1"), exist_ok=True)
     sh = os.path.join(work, "h1", "%s.sh" % fam["family"])
+    stage_reader_load(os.path.join(work, "h1"))
     # emulator_env, not dict(os.environ): see tools/os9env.py.  A harness
     # names the devices it wants and inherits none.
     env = emulator_env(LC_ALL="C", OS9DISK=image, OS9H0=image,

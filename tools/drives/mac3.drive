@@ -57,7 +57,7 @@ why     ONE PROGRAM PER STANZA: creadoc aborts once os9lib is resident and
 why     took biory and lnk.org with it the first time.
 run     /dd/CMDS/creadoc
 run     echo "--- that was creadoc with nothing loaded.  Now load os9lib:"
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     echo "--- creadoc again:"
 run     echo "C@ a documentation comment" > $W/f.for
 run     echo "      PROGRAM MAIN" >> $W/f.for
@@ -67,7 +67,7 @@ run     echo "--- end creadoc-with-os9lib"
 
 drive   lnk-org-with-os9lib-loaded
 why     the linker half of the same set, on its own stanza.
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     /dd/CMDS/lnk.org
 run     echo "--- and `for', which README-RUNNING names beside it:"
 run     /dd/CMDS/for
@@ -76,7 +76,7 @@ run     echo "--- end lnk-org"
 drive   biory-with-os9lib-loaded
 why     "biory prompts for a name and a birth date in German" once os9lib
 why     is resident.  On its own stanza because it prompts.
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     echo "Tester" > $W/b.in
 run     echo "1" >> $W/b.in
 run     echo "1" >> $W/b.in

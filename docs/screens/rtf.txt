@@ -3,4 +3,4 @@ rtf div.f
  Total Errors   0   Warnings   0
  RTF normally completed
 $ ls -l div.a
--rw-------   1 0        0            1008 Sep  8 17:42 div.a
+-rw-------   1 0        0            1008 Sep 22 07:30 div.a

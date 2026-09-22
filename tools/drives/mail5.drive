@@ -40,7 +40,7 @@ setup   echo "Body of the message." >> $W/msg.txt
 drive   printmail-with-readmsg-loaded
 why     a resident module is forked BY NAME with no directory search, so
 why     `load' should fix a bare-name fork without copying any file.
-run     /dd/CMDS/load /dd/CMDS/ELM/readmsg
+run     /h1/CMDS/load /dd/CMDS/ELM/readmsg
 run     /dd/CMDS/mdir
 run     echo "--- printmail now:"
 run     /dd/CMDS/ELM/printmail 1

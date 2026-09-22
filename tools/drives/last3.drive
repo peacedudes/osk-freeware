@@ -37,7 +37,7 @@ run     /dd/CMDS/ci $W/note.txt < $W/desc2
 run     echo "--- rcsdiff BEFORE loading co:"
 run     /dd/CMDS/rcsdiff -r1.1 -r1.2 $W/note.txt
 run     echo "--- now load co and ask again:"
-run     /dd/CMDS/load /dd/CMDS/co
+run     /h1/CMDS/load /dd/CMDS/co
 run     /dd/CMDS/rcsdiff -r1.1 -r1.2 $W/note.txt
 run     echo "--- and rcsmerge:"
 run     /dd/CMDS/rcsmerge -r1.1 -r1.2 $W/note.txt
@@ -48,20 +48,20 @@ why     "unintialized User Trap #5" is a trap the program expected to be
 why     installed.  `graph' is a trap library in the same directory.
 run     /dd/CMDS/GAMES/wgen < /nil
 run     echo "--- now load the trap library beside them:"
-run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /h1/CMDS/load /dd/CMDS/GAMES/graph
 run     echo "--- wgen again:"
 run     /dd/CMDS/GAMES/wgen < /nil
 run     echo "--- end graph-demos"
 
 drive   showpic-with-graph-loaded
 why     the same, on its own so one failure does not hide the other.
-run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /h1/CMDS/load /dd/CMDS/GAMES/graph
 run     /dd/CMDS/GAMES/showpic < /nil
 run     echo "--- end showpic"
 
 drive   graphsave-with-graph-loaded
 why     and the third of the group.
-run     /dd/CMDS/load /dd/CMDS/GAMES/graph
+run     /h1/CMDS/load /dd/CMDS/GAMES/graph
 run     /dd/CMDS/GAMES/graphsave < /nil
 run     echo "--- end graphsave"
 

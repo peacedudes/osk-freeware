@@ -25,7 +25,7 @@ Case-file format (one directive per line, # comments ignored)
     family  netpbm              what to call this set
     setup   P=/dd/CMDS/NETPBM   shell lines run once, before any case
     load    /dd/CMDS/os9lib     module to `load' before anything runs
-                                (CMDS/load on the disk does it)
+                                (/h1/CMDS/load does it -- os9env.stage_reader_load)
 
     case    pnmcut-crops        start a case; everything after is part of it
     run     $P/pnmcut 0 0 16 4 /dd/tmp/s.pgm > /dd/tmp/c.pgm
@@ -60,16 +60,14 @@ import sys
 
 # One writer at a time: all three harnesses write to the image itself.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from os9env import emulator_env
+from os9env import emulator_env, stage_reader_load
 import imagelock                                    # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec", "os9exec"))
-# THE COLLECTION'S OWN `load', which is on the disk as of 2026-08-27 -- a
-# clean-room implementation contributed by the os9exec project, source in
-# SRC/load.  This used to borrow Microware's from an SDK outside the tree,
-# which meant a family with a `load' line could not be tested by anyone who
-# did not have that disk.
+# `load' IS THE READER'S, at /h1/CMDS/load: the collection ships none, and
+# os9env.stage_reader_load puts one on this harness's /h1 -- Microware's from
+# $OS9SDK when set, else the withheld clean-room one, so CI tests the same.
 MARK = "@@CASE@@"
 
 
@@ -179,7 +177,7 @@ def script_for(fam, cases=None):
     """
     lines = []
     for mod in fam["load"]:
-        lines.append("/dd/CMDS/load %s" % mod)
+        lines.append("/h1/CMDS/load %s" % mod)
     lines += fam["setup"]
     for c in (fam["cases"] if cases is None else cases):
         # A BLANK LINE BEFORE EVERY MARKER. Markers are matched at line
@@ -215,6 +213,7 @@ def run_family(path, image, workdir):
     fam = parse(path)
     os.makedirs(os.path.join(workdir, "h1"), exist_ok=True)
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
+    stage_reader_load(os.path.join(workdir, "h1"))
     # /h0 IS THIS DISK TOO, and that is not a convenience -- it is the
     # arrangement notes/DECISION-placement.md settles on and DOC/README-CIO
     # documents: mount the collection as /dd and again as /h0, so the

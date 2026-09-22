@@ -33,7 +33,7 @@ setup   echo "Body of the message." >> $W/msg.txt
 # THE CASE THAT MATTERS MOST HERE. Without the `load' it prints nothing at
 # all, and printing nothing is what its DOC/INDEX line used to record.
 case    printmail-works-once-readmsg-is-resident
-run     /dd/CMDS/load /dd/CMDS/ELM/readmsg
+run     /h1/CMDS/load /dd/CMDS/ELM/readmsg
 run     /dd/CMDS/ELM/printmail 1
 expect  Subject: Welcome -- this is a real mail folder
 expect  Elm reads mail from a folder

@@ -210,7 +210,7 @@ absent  No more memory
 # Call `rtf' DIRECTLY -- the `for' driver forks a program called `shell' to
 # run it and this disk has none, so it prints the command and stops.
 case    rtf-compiles-fortran-to-68k-assembly
-run     /dd/CMDS/load /dd/CMDS/os9lib
+run     /h1/CMDS/load /dd/CMDS/os9lib
 run     /dd/CMDS/rm -f /dd/SRC/rtf/div.a
 run     /dd/CMDS/rtf /dd/SRC/rtf/div.f
 expect  Total Errors   0

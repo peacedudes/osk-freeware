@@ -1,2 +1,2 @@
 newmail -d tester
-folder 0: "/dd/SPOOL/MAIL/tester" <tester> opened, size = 814
+folder 0: "/dd/SPOOL/MAIL/tester" <tester> opened, size = 804

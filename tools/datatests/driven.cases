@@ -63,7 +63,7 @@ case    runc-runs-a-script-that-luac-made-into-a-module
 run     /dd/CMDS/rm -f /dd/tmp/DRVRUNC/greet > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/DRVRUNC
 run     /dd/CMDS/luac -m -o /dd/tmp/DRVRUNC/greet /dd/DOC/lua/examples/hello.lua
-run     /dd/CMDS/load /dd/tmp/DRVRUNC/greet
+run     /h1/CMDS/load /dd/tmp/DRVRUNC/greet
 run     /dd/CMDS/runc greet
 expect  hello world, from Lua!
 absent  csl traphandler mismatch

@@ -135,7 +135,7 @@ run     echo "quit" >> /dd/tmp/FSA/req
 # defined' is what it says without this, and the reply never gets as far
 # as the mailbox.  SYS/login sets it, which is why this works by hand.
 run     export HOME=/dd
-run     /dd/CMDS/load /dd/CMDS/UUCP/rmail
+run     /h1/CMDS/load /dd/CMDS/UUCP/rmail
 run     /dd/CMDS/UUCP/fileserv < /dd/tmp/FSA/req
 run     /dd/CMDS/cat /dd/LOG/FileServ
 # PUT THE LOG BACK.  `driven.cases' asserts that uulog cannot open

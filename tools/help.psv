@@ -843,7 +843,6 @@ vc|none|`?' inside it is the help; a flag is read as a file name
 version|none|it prints its own version whatever it is given
 yagi|none|it asks its five questions itself
 yidslots|none|it takes no options; a file of names may be given, and otherwise GAMES/YIDSLOTS/yid-names is read
-load|load -?|
 mtst|none|it takes no options
 fontgen|none|it reads its bitmap on standard input and takes no options
 dpark|dpark -?|
