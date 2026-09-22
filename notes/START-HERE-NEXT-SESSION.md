@@ -88,10 +88,12 @@ Microware's", and every card still names what its program needs.
     SYS/login loads from /h1 only when /h1/CMDS/load exists and calls it by
     full path, and datatest/drive stage a load at /h1/CMDS/load
     (os9env.stage_reader_load -- the SDK's when OS9SDK is set, else the
-    withheld copy so CI runs).  **TRAP FOUND ON THE WAY: a command bash
-    cannot find, in SYS/login before `builtin cd', hangs the login** -- the
-    PATH search reaches the current directory and runs the getwd walk.  A
-    bare `load' with no /h1 did exactly that.
+    withheld copy so CI runs).  **TRAP FOUND ON THE WAY: this bash leaks a
+    redirection when a bare-name command is not found** -- after
+    `nosuch >/nil 2>/nil', bash's own stdout and stderr stay on /nil.  A
+    bare `load' with no /h1 silenced the rest of the login and the prompt
+    after it, which looked exactly like a hang.  A full path that fails
+    does not leak.  (First written up as bash's getwd walk; that was wrong.)
   * **Try It in the browser.**  rdoggett: host the exact same disk as a
     web page (os9exec to WebAssembly, the reader's /h1 attachable), with
     Try It "only on cards that can actually be run".  tools/tryable.py
