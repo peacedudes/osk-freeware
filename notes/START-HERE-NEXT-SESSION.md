@@ -1,5 +1,46 @@
 # Start here, next session
 
+## DO THESE IN THIS ORDER. DO NOT ASK WHICH FIRST.
+
+**Everything below needs doing, so the order is already decided and it is
+written here.  Take the top item that is not done and do it.**  On
+2026-09-21 I finished a long autonomous run and then asked rdoggett to
+choose an order for work that all needed doing.  That is handing him my
+job, and it cost him half a day he did not have.  His words: *"If you want
+me to choose the order to do things in when they all need to be done, you
+are just wasting time."*  There is no ordering question here any more.
+
+1. **Documentation depth -- 363 programs have nothing but their INDEX
+   line** (`tools/doc_census.py disk`, measured 2026-09-21: 672 of 1035
+   documented, 64%).  267 of them are in `CMDS`, 64 in `CMDS/GAMES`, 15 in
+   `CMDS/REBUILT`.  This is the biggest open block in the collection and it
+   is a grind with no shortcut.  Work it in batches by directory, write
+   into `DOC/<name>` or the family document that already covers the
+   archive, and run `doc_census.py` after each batch so the figure moves
+   visibly.  `notes/PLAN.md` section 4 has the shape and the rules.
+2. **The remaining `panel-exceptions.psv` lines.**  About 27 of the 65 were
+   re-tested on 2026-09-20/21; the rest have not been.  Three shapes found
+   them all: the disk SHIPS what the reason says is missing; nobody STARTED
+   the program that provides what it needs; the card FILTERED the content
+   away (`getsys' published its stderr).  See
+   [[os9-exception-reasons-go-stale]] and the entries further down.
+3. **Stage a dying vi buffer** so `expreserve' and `exrecover' can have a
+   card -- the evidence for what they need is further down this file, and
+   it is the only one of the 10 untested programs that does not want
+   hardware.  Then decide whether `/dd/PRESERVE' should ship the way SPL
+   and MAIL do.
+4. **The other 9 untested programs want hardware, G-Windows, a network, or
+   do not survive capture.**  Do not spend the session on them; the reasons
+   are recorded per program.
+
+**Do not burn wall clock waiting.**  `datatest.py --all' takes about 25
+minutes and holds the image lock, so BATCH every image-touching change,
+then run the suite twice at the end.  And when you background a wait, wait
+on a PID you captured -- `until ! pgrep -f '<pattern>'` never exits,
+because the waiting shell's own command line matches the pattern.  Fifteen
+of those were left spinning on 2026-09-21, the oldest for 14 hours.
+
+
 ## DO NEXT -- 2026-09-20 (late)
 
 **NINE `panel-exceptions' LINES CAME OUT AND NINE MORE REASONS WERE
