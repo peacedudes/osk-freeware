@@ -1,0 +1,1 @@
+This directory contains the source for a couple of programsthat mess around with ADL(6) binaries.  The programs are:	adldebug.c	-	ADL debugger	adltouch.c	-	Re-date an ADL save fileTo make either of these files, just type "make <name>", where<name> is one of adldebug, adltouch, or all.
