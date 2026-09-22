@@ -6,7 +6,10 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-21.
 
-**Nothing new needs you except item 31, and item 1 changed.** The night of
+**New: item 32** -- the EFFO vi's helpers were left behind when it came
+off, and they block handoff item 3.
+
+**Before that, nothing new needed you except item 31, and item 1 changed.** The night of
 the 20th and the morning of the 21st went on exception reasons, harness
 faults and tests, none of which is yours to decide: `panel-exceptions.psv'
 is 65 rows with about 27 of them re-tested, seven programs came off the
@@ -129,6 +132,29 @@ is a name-and-provenance question, which is yours. Nothing is on the disk
 either way -- the test copy lived in a scratch directory and went with the
 session that made it. Remaking it is two minutes and the handoff says how,
 so nothing is lost by it being gone.
+
+**32. The EFFO `vi' came off on 2026-09-18, and its helpers didn't.
+Remove them too?**
+All four are byte-identical to the copies in EFFO forum 13's
+`SOFTWARE/C/VI`, the package that `vi' came from, and so are
+`SYS/vi_usage', `SYS/vi_errmsg' and `SYS/.exrc':
+
+    expreserve, exrecover  Bill Joy's UCB ex code ("Bill Joy UCB November
+                           13, 1977" in expreserve.c) -- the same XENIX
+                           port you ruled off.  They save and restore
+                           THAT vi's buffer, so neither can do anything
+                           without it
+    add_errmsg             the porter's own tool for appending to
+                           SYS/vi_errmsg, which only that vi reads
+    read_mail              the porter's own login-time reader for the
+                           notices expreserve leaves in /dd/MAIL
+
+This is also why handoff item 3 (stage a dying vi buffer) can't be done:
+the only editor that makes that buffer is the one that came off.
+**Recommend: remove expreserve, exrecover and the three SYS files on the
+same terms as vi; also add_errmsg, which has nothing left to serve. Keep
+read_mail only if you want a harmless mail-notice reader with nothing
+left that writes to it.** Nothing moves until you say.
 
 ## Not a question, but you should know
 

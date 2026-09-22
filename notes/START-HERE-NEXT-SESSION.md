@@ -24,11 +24,12 @@ are just wasting time."*  There is no ordering question here any more.
    the program that provides what it needs; the card FILTERED the content
    away (`getsys' published its stderr).  See
    [[os9-exception-reasons-go-stale]] and the entries further down.
-3. **Stage a dying vi buffer** so `expreserve' and `exrecover' can have a
-   card -- the evidence for what they need is further down this file, and
-   it is the only one of the 10 untested programs that does not want
-   hardware.  Then decide whether `/dd/PRESERVE' should ship the way SPL
-   and MAIL do.
+3. **`expreserve' and `exrecover' wait on FOR-RDOGGETT item 32.**  They
+   are Bill Joy's ex helpers from EFFO forum 13's XENIX-derived vi port
+   -- the `vi' that came off on terms on 2026-09-18 -- and only that vi
+   makes the buffer they save, so a dying buffer cannot be staged.
+   Found 2026-09-21 by matching the binaries byte for byte against the
+   archive.  Do nothing to them until he rules.
 4. **The other 9 untested programs want hardware, G-Windows, a network, or
    do not survive capture.**  Do not spend the session on them; the reasons
    are recorded per program.
