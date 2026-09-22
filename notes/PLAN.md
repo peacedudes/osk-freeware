@@ -114,7 +114,7 @@ clear.
 | `tools/drives` sheets | **72**, and **140** play-tests in `tools/playtests` |
 | Screens | **964 cards**, **25** still flagged by `audit_cards.py` (44 excepted by name, each with its reason in that file) — re-measured 2026-09-18 |
 | Source here | 738 (71%) |
-| Documented beyond one index line | 671 (64%) |
+| Documented beyond one index line | 1031 of 1035 (99%), re-measured 2026-09-21 -- the four left wait on FOR-RDOGGETT item 32 |
 | Where the programs want the collection | 478 at `/dd` against 55 wanting data at `/h0`, 8.7 to 1 — `measure_layout.py` |
 
 Re-measured 2026-09-18. The tools are the authority, not this table:
@@ -729,7 +729,7 @@ strong assertion). The games have play-tests.
 Write them into the existing families in `tools/datatests/`. Make each new
 case fail once before believing it.
 
-### 4. Documentation depth — 336 programs have only an index line
+### 4. Documentation depth — done 2026-09-21 (99%); what follows is the entry-accuracy work
 
 And 815 of 892 index entries carry no dated stamp, meaning nobody has run the
 program and checked that the entry describes it. This is where the collection
