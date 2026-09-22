@@ -116,6 +116,13 @@ directory on /h0.
     hundred characters (SYS/login's is twice that) overruns it and ESC ?
     dies with a bus error.  SYS/emacs.hlp now ships (forum disk 3), and
     DOC/em/em.1 says to start em with a short PATH; verified in tmux.
+  * **With your shell loaded from /h1** (rdoggett, 2026-09-22: load
+    /h1/CMDS/shell, assume readers can; never ship a program named
+    `shell' that is not Microware's), run, if and su now show their work
+    on their cards.  Two do not: `ff termc' stays silent even though the
+    `dir -ausr ! grep termc' it builds works typed at Microware's shell,
+    and mshell with the shell resident draws only a prompt instead of its
+    menu.  Both cards were left as they were.
   * **DOC/zot/zot.1 is C source** (dot.c), not a manual page.
   * **The tformat card shows README-KEEP from before `drop' became
     `unkeep'**; the capture is older than the text it reads.

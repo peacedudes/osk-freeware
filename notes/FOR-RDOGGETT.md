@@ -6,10 +6,10 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-21.
 
-**New: item 32** -- the EFFO vi's helpers stayed when it came off, and
-they block handoff item 3.  (33, the bash patch, is applied: you cleared
-it on 2026-09-22.  18, the hard-linked twin, is gone: no file in disk/
-has a second link any more.)
+**Nothing new needs you.**  Answered 2026-09-22: 31 (no stand-in
+`shell'; load yours from /h1/CMDS/shell, as SYS/login does), 32 (the EFFO
+vi's helpers come off), 33 (bash patched).  Programs found and left out
+are catalogued for readers in DOC/README-NOT-SHIPPED.
 
 **Before that, nothing new needed you except item 31, and item 1 changed.** The night of
 the 20th and the morning of the 21st went on exception reasons, harness
@@ -103,60 +103,6 @@ no document. I swapped `fpu` for the granted copy (12,724 bytes, md5
 that copy, `git revert` puts `fpu040` back.
 *The other five runtime modules rest on Allan's permission, which names the
 modules rather than copies, and are fine.*
-
-**31. Three programs work if a module called `shell' is resident, and I
-can make one in two minutes. Should I?**
-`run', `su' and `if' each fork a module named `shell' -- the one that
-comes with OS-9 -- and each is written up here as doing nothing. Copy
-this disk's `ksh', change the MODULE name to `shell' with
-`tools/rename_module.py', load it, and (measured 2026-09-21):
-
-    run "ls SYS"        lists SYS on the console and returns 0
-                        (without it: returns 0, prints nothing at all)
-    su tester -c whoami prints `tester' and returns 0 -- it really does
-                        change identity (without it: 221, module not found)
-    if loaded shell whoami endif
-                        runs whoami, both arms, both conditions
-                        (without it: nothing runs)
-
-`su' is what convinced me to ask: its card says there is nobody to become,
-and SYS/password has listed `tester', `uucp', `os9' and `su' all along.
-
-It stops at three. `clock' writes Microware shell redirection
-(`>>>-/pipe/.temp &') and a renamed ksh answers `[0]: syntax error'; `qp'
-is not in this family at all, though it looks like it.
-
-Shipping one would put a copy of `ksh' on the disk under a name that, on a
-real system, means Microware's shell. **My reading is don't**: the reader
-this collection is written for HAS OS-9, so they have the real one, and
-the cards can say "works with your own shell" positively instead. But it
-is a name-and-provenance question, which is yours. Nothing is on the disk
-either way -- the test copy lived in a scratch directory and went with the
-session that made it. Remaking it is two minutes and the handoff says how,
-so nothing is lost by it being gone.
-
-**32. The EFFO `vi' came off on 2026-09-18, and its helpers didn't.
-Remove them too?**
-All four are byte-identical to the copies in EFFO forum 13's
-`SOFTWARE/C/VI`, the package that `vi' came from, and so are
-`SYS/vi_usage', `SYS/vi_errmsg' and `SYS/.exrc':
-
-    expreserve, exrecover  Bill Joy's UCB ex code ("Bill Joy UCB November
-                           13, 1977" in expreserve.c) -- the same XENIX
-                           port you ruled off.  They save and restore
-                           THAT vi's buffer, so neither can do anything
-                           without it
-    add_errmsg             the porter's own tool for appending to
-                           SYS/vi_errmsg, which only that vi reads
-    read_mail              the porter's own login-time reader for the
-                           notices expreserve leaves in /dd/MAIL
-
-This is also why handoff item 3 (stage a dying vi buffer) can't be done:
-the only editor that makes that buffer is the one that came off.
-**Recommend: remove expreserve, exrecover and the three SYS files on the
-same terms as vi; also add_errmsg, which has nothing left to serve. Keep
-read_mail only if you want a harmless mail-notice reader with nothing
-left that writes to it.** Nothing moves until you say.
 
 ## Not a question, but you should know
 
