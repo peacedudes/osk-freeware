@@ -422,10 +422,12 @@ wait    6
 shot    m4
 cap     m4, the macro processor.  `define' names a macro with a parameter,
 cap     and each later use of it is expanded -- here `greet(reader)'
-cap     becomes a short welcome with the name filled in.  One thing needs
-cap     more than this disk: `syscmd' forks a module called `shell' and is
-cap     silent without one, so keep your own shell loaded.
+cap     becomes a short welcome with the name filled in -- and `syscmd'
+cap     runs a command where it stands, through your own OS-9's `shell',
+cap     which SYS/login loads from /h1; without it syscmd is silent.
 try     m4 tmp/m.m4
+run     load /h1/CMDS/shell
+wait    3
 run     builtin cd /dd
 wait    1
 run     clear
@@ -433,6 +435,8 @@ wait    1
 run     echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
 wait    5
 run     echo "greet(reader)" >> tmp/m.m4
+wait    5
+run     echo "syscmd(whoami)" >> tmp/m.m4
 wait    5
 run     cat tmp/m.m4
 wait    5

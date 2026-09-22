@@ -206,14 +206,25 @@ shot    hist
 cap     A command-line editor with C-shell-style history, in front of
 cap     Microware's shell: cursor movement, word and line deletion, and
 cap     command recall; `h' lists what you typed and `logout' leaves.
-cap     It runs every command through that shell and keeps its history
-cap     in a file on a RAM disk unless you name one.  With neither here,
-cap     it stops at the first command.
+cap     It runs every command through your own OS-9's `shell' and sets the
+cap     line up with its `tmode', both loaded from /h1, and keeps its
+cap     history on the RAM disk /r0 unless you name a file.
+try     hist
+run     load /h1/CMDS/shell /h1/CMDS/tmode
+wait    3
+run     mount -r=256k /r0
+wait    3
+run     clear
+wait    1
 run     hist
 wait    3
 send    whoami\r
 wait    4
-try     hist
+send    today\r
+wait    5
+snap
+send    logout\r
+wait    2
 
 shot    printf
 cap     printf for the shell: widths, numbers, floating point.
