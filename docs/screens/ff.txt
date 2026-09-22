@@ -1,4 +1,8 @@
 ff
 
 Was soll'n gesucht wer'n ey ???
-$ ff termcap
+$ ff term
+setterm
+termcap
+termcap.entry
+UTREE/utree-xterm-256color

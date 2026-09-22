@@ -393,18 +393,22 @@ snap
 
 shot    ff
 size    26 80
-cap     ff -- find file -- asks in dialect what to look for when it is
-cap     given nothing: `Was soll'n gesucht wer'n ey ???', and exits without
-cap     waiting for the answer.  Given a name it builds the command
-cap     `dir -ausr ! grep <name>' and hands it to Microware's `shell' to
-cap     run -- the shell that comes with your OS-9.  `find' searches a tree
-cap     by name and needs nothing else.
+cap     ff -- find file -- lists every file under the current directory
+cap     whose name contains the word given.  It builds the command
+cap     `dir -ausr ! grep -e=<name>' and hands it to `shell', so it wants
+cap     your own OS-9's shell and grep resident; SYS/login loads the shell
+cap     from /h1, and grep is loaded the same way.  Given nothing it asks
+cap     in dialect what to look for.
 try     ff
+run     load /h1/CMDS/shell /h1/CMDS/grep
+wait    3
+run     builtin cd /dd/SYS
+wait    1
 run     clear
 wait    1
 run     ff
 wait    8
-run     ff termcap
+run     ff term
 wait    10
 snap
 
