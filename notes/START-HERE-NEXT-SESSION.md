@@ -68,6 +68,19 @@ Microware's", and every card still names what its program needs.
     the shell ran the binary as a procedure file.  `load
     /dd/CMDS/GCC139/gcc_cccp' (module name cccp) fixes it.  The datatest
     case now asserts the popen failure message instead of a render.
+  * **Three things rdoggett hit at the prompt, all fixed in /dd/.bashrc:**
+    `hack' (and larn, ularn) by bare name -- aliases to the full path,
+    because this bash passes the bare word as argv[0]; `typefast' (and sc,
+    gnuchess, gnuchessn) -- functions that hand the program
+    SYS/termcap.entry for one run, measured over all 95 termcap programs;
+    and `less' laid out for 24 lines in a bigger window -- the new
+    `resize' (SRC/resize, written here) asks the terminal with the VT100
+    cursor-report trick and sets LINES/COLUMNS at login and on demand.
+    Traps met on the way: SCF's default EOF character is ESC, so the
+    answer's first byte read as end of file until sg_eofch was cleared;
+    and the card harness now answers only the `ESC[999;999H ESC[6n'
+    size query, with its own rows;cols, and ansiscreen honours ESC 7/8.
+  * **`t' came off** (item 34).
   * **Still open:** qp wants EFFO zsh's `-ny -nl' and no shell takes
     them.  screen and screen_nocio both take a bus error at the first
     name their scandir accepts -- no syscall between the last I$Read and
