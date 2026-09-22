@@ -280,7 +280,11 @@ SPARSE_OK = {"rain",
              # edir    lists the event directory, and with nothing on this
              #         disk creating an event the heading is the listing --
              #         an empty `ls' is still an answer.
-             "sieve", "qt", "setterm", "edir"}
+             "sieve", "qt", "setterm", "edir",
+             # su      becomes `tester' and runs whoami, which answers
+             #         `tester' -- one word, and the whole proof that it
+             #         changed identity (2026-09-22).
+             "su"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

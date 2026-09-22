@@ -134,17 +134,20 @@ try     expr 355 / 113
 
 shot    if
 cap     Conditional execution for a script: `if def <var>', `if loaded
-cap     <module>' or `if varval <var> <value>', then one command to run.
-cap     It hands that command to Microware's `shell' to run, so on your
-cap     own OS-9 it does the work; the picture below is what it does
-cap     without one.  bash has an `if' of its own, a reserved word;
-cap     `command if' reaches this one instead.
-run     command if -?
-wait    4
-run     command if def TERM today endif
+cap     <module>' or `if varval <var> <value>', then the commands to run,
+cap     `else' and `endif'.  It hands the chosen commands to your own
+cap     OS-9's `shell'.  bash has an `if' of its own, a reserved word;
+cap     `command if' reaches this one.
+run     load /h1/CMDS/shell
+wait    3
+run     clear
+wait    1
+run     command if def TERM whoami endif
 wait    5
-try     command if -?
-os9     if -?
+run     command if loaded nosuch whoami else today endif
+wait    5
+try     command if def TERM whoami endif
+os9     if def TERM whoami endif
 
 shot    qp
 cap     Expands back-quotes in a command line for a shell that cannot:
@@ -176,13 +179,20 @@ try     xc tmp/SHL/cmds.txt
 
 shot    run
 cap     Runs a program with its input and output rebound to the terminal
-cap     that PORT names, for a program started somewhere else.  Here the
-cap     console is that terminal already, and nothing comes back from it.
-run     run
-wait    4
-run     export PORT=/term; run 'whoami'
-wait    5
-try     run
+cap     that PORT names -- for a program started from somewhere else.  Here
+cap     PORT is the console, so the listing comes straight back.  It hands
+cap     the command to your own OS-9's `shell', which SYS/login loads from
+cap     /h1.
+run     load /h1/CMDS/shell
+wait    3
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     export PORT=/term; run "ls SYS"
+wait    6
+try     export PORT=/term; run "ls SYS"
+os9     setenv PORT /term; run "ls SYS"
 
 shot    hist
 cap     A command-line editor with C-shell-style history, in front of
@@ -226,14 +236,16 @@ wait    3
 try     logname
 
 shot    su
-cap     GNU su.  Its options, and an attempt to become tester, which on a
-cap     disk where every file is owned 0.0 has no one to become and
-cap     returns without a word.
-run     su --help
+cap     GNU su becomes another user from the password file and runs a
+cap     command as them: here `tester', asked who it is.  It starts that
+cap     user's shell, your own OS-9's, which SYS/login loads from /h1.
+run     load /h1/CMDS/shell
+wait    3
+run     clear
+wait    1
+run     su tester whoami
 wait    5
-run     su tester
-wait    4
-try     su --help
+try     su tester whoami
 
 shot    submit
 size    20 80

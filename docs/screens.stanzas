@@ -379,7 +379,7 @@ hpcdtoppm 35b8593fab141bfd
 i_am_i 65844e506a55c3e6
 icon 50772be6a1eb3fef
 ident d24209e786b1ac02
-if 068c045eb61550f9
+if 45a1cc35331331b8
 ifdef 75f94280c21c0ca5
 ilbm 2a57f92f5f4ad67a
 imgtoppm e385dad9fd237200
@@ -710,7 +710,7 @@ rsconvert 3272aa842e730f1c
 rsdsk 3e73920d5c3625ff
 rstory 186316bb231b33c3
 rtf 776edbaac827f947
-run c11d6dbde30fe3a8
+run 64391d70e434b8f9
 runc cfd55f670e3d1059
 rxmod 7653c9295e274a56
 saa 0c5f06c37b890764
@@ -781,7 +781,7 @@ stone 1a340282f3de4054
 strfile aacbe8f2cbb58af8
 striche 78cf3953bcc12164
 strings a69f26e3b152e77c
-su a6743cd58fbaac7c
+su 656fc07e87250304
 subber 81b180d052153876
 submit 62a641b4f30f1b4b
 subscribe f1d8ed44b7523917

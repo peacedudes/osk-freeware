@@ -1,12 +1,6 @@
-$ command if -?
-Syntax: if [not] <cond> {<arg>} {<cmd1>} [else {<cmd2>}] endif
-Function: if the [negated] condition <cond> depending on the arguments
-          <arg> is true, then hand the commands <cmd1> to the shell for
-          execution, else, if provided, <cmd2>.
-Conditions available:
-    def    <var>              true, if environment variable <var> is defined
-    loaded <mod>              true, if module <mod> is already loaded
-    varval <var> <val>        true, if envir. variable <var> has value <val>
-Options:
-     (none)
-$ command if def TERM today endif
+command if def TERM whoami endif
+su
+$ command if loaded nosuch whoami else today endif
+Today is Tuesday, the twenty-second day of September, two thousand and
+twenty-six. The time is exactly seven minutes before one AM, Daylight
+Savings Time. The moon is in its first quarter.
