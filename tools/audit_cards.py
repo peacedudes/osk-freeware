@@ -227,12 +227,10 @@ def main(argv):
                      "and the caption says why.  See CLAUDE.md, which forbids "
                      "running it in a test at all",
             "lgrep": "its card ALREADY runs a real search -- `lgrep ksh "
-                     "SYS/password', where `ksh' is genuinely in that file -- "
-                     "and lgrep prints nothing and exits 0.  That silence IS "
-                     "the finding, the caption says so and sends the reader "
-                     "to `grep -l', and DOC/README-GREP compares the "
-                     "searchers.  Scored THIN-HELP for the usage line above "
-                     "the search, not for want of trying one",
+                     "SYS/password SYS/login SYS/motd', with the reader's "
+                     "own OS-9 grep loaded, and it names SYS/login.  Scored "
+                     "THIN-HELP for the usage line above the search, not "
+                     "for want of trying one",
             "run": "its card ALREADY does the real thing -- `export "
                    "PORT=/term; run \"whoami\"' -- and nothing comes back, "
                    "because run rebinds stdio to the terminal PORT names and "

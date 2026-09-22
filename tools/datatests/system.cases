@@ -72,10 +72,11 @@ run     /dd/CMDS/ggrep -i -l termcap /dd/SYS/login /dd/SYS/motd
 expect  50:TERMCAP=$ROOT/SYS/termcap
 expect  /dd/SYS/login
 
-# lgrep is on this disk and produces NOTHING for a string that IS in the
-# file, where `grep -l' names it. Asserted so the claim in DOC/INDEX rests on
-# a test rather than on somebody's memory of a run.
-case    lgrep-is-silent-where-grep-l-answers
+# lgrep runs `grep -l' and expects YOUR OS-9's grep to answer it; handed this
+# disk's GNU grep -- all there is without /h1 -- it produces NOTHING for a
+# string that IS in the file.  With Microware's grep loaded it names the file
+# (its card shows that; this harness has no /h1 of Microware's to load from).
+case    lgrep-is-silent-on-this-disks-grep
 run     /dd/CMDS/lgrep TERMCAP /dd/SYS/login > /dd/tmp/lg.out
 run     /dd/CMDS/wc -c /dd/tmp/lg.out
 run     /dd/CMDS/grep -l TERMCAP /dd/SYS/login

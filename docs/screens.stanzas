@@ -140,7 +140,7 @@ cjpeg d3d0a901439eb926
 cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
 clear a45512bf7a197623
-clock f694aa1ec8a552c8
+clock cd545a63f99cd365
 cls 73477bc60bd42a76
 col 6c2dbd2160aea05c
 collect f300802e1e634ae9
@@ -417,7 +417,7 @@ less d6f842a2c01ad42a
 lessecho 54e47f4bb0aa4054
 lesskey d392f6e111e10d1c
 letters cbacb6d31db1c8c2
-lgrep f1ef4ef5180533dc
+lgrep 5c6cbb622c438212
 lha 52340e9187ace34b
 lharc 5ac6c1ea77ae2c9a
 lharcs 9b5fb0c1c42ee105
@@ -916,7 +916,7 @@ wysetime f4698b8097414beb
 xargs 7c5ffd5e9d0881c4
 xbm db7087d7e8969392
 xbmtopbm 699141463bda5b4d
-xc 49d190da131fcb1d
+xc 9dc10694f0a5376d
 xcrypt 3777b93cf87757e6
 xd 7ffede9c9392ffe8
 xengine 5722aee171787384

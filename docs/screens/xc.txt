@@ -1,8 +1,9 @@
 cat tmp/SHL/cmds.txt
 notes to myself
-% echo one
 % whoami
+$ wc -l SYS/motd
 more notes
 $ xc tmp/SHL/cmds.txt
- echo one
-xc:  ** Exit status 2726:056 **
+ whoami
+su
+      1 SYS/motd

@@ -263,7 +263,7 @@ ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. 
 mshell|`mshell <menufile>': one `label| command' per line, up to ten. A number picks an entry; it hands the command to Microware's `shell', which must be loaded, then waits for RETURN. Control-C leaves it.
 if|bash's own `if' is a reserved word; `command if' reaches the one on this disk.
 qp|Runs its expanded command through Microware's `shell'.
-xc|`xc <file>': lines beginning `% ' are commands, the rest is notes. It forks them through Microware's `shell' to run.
+xc|`xc <file>': lines beginning `% ' are commands, shown and run; `$ ' runs them quietly; the rest is notes. It forks them through Microware's `shell', which must be loaded (`load /h1/CMDS/shell').
 checkenv|`checkenv <name> , <value>' with spaces round the comma. Meant to return an error when they differ; it returns 0 either way.
 chemtab|Full-screen. Space passes the title page; answer n (or y) to extra explanations and to keeping a transcript. On the main menu 1 looks up one element -- 3, then a symbol such as Fe and Return, shows its melting and boiling points, density, radius, electronegativity and discovery year; 2 selects elements by up to three properties, 3 lists them, 4 marks them on the periodic table, 5 graphs one property against another, 6 quits. Names are typed in lower case. The data is in LIB/chemtab and the manual pages in DOC/chemtab.
 hist|A command-line editor with C-shell-style history in front of Microware's shell, which runs each command it is given. `hist <file>' keeps the history in that file (the default is /r0/history, on a RAM disk); `h' lists it and `logout' leaves.

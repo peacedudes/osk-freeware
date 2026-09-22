@@ -155,8 +155,10 @@ os9     if def TERM whoami endif
 
 shot    qp
 cap     Expands back-quotes in a command line for a shell that cannot:
-cap     the output of the quoted command replaces it.  It runs the result
-cap     through Microware's `shell', the one that comes with your OS-9.
+cap     the output of the quoted command replaces it.  It hands both halves
+cap     to $SHELL with the options `-ny -nl', which belong to the EFFO shell
+cap     it was written for; no shell here takes them, Microware's included,
+cap     so the second line runs and nothing comes back.
 run     qp -?
 wait    4
 run     qp echo `whoami`
@@ -164,12 +166,14 @@ wait    5
 try     qp -?
 
 shot    xc
-cap     Runs the commands marked in a file and leaves the rest alone: a
-cap     line starting `% ' is a command, anything else is notes.  The
-cap     first command is echoed and then it stops with an exit status,
-cap     because it forks the marked commands through Microware's `shell',
-cap     the one that comes with your OS-9.
-run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "notes to myself\r%% echo one\r%% whoami\rmore notes\r" > /dd/tmp/SHL/cmds.txt
+cap     Runs the commands marked in a file and leaves the rest alone, so
+cap     the build line of a program can live in a comment in its source.
+cap     A line starting `% ' is shown and run, one starting `$ ' is run
+cap     quietly, and anything else is notes.  It hands each one to `shell',
+cap     your own OS-9's, which SYS/login loads from /h1.
+run     load /h1/CMDS/shell
+wait    3
+run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "notes to myself\r%% whoami\r$ wc -l SYS/motd\rmore notes\r" > /dd/tmp/SHL/cmds.txt
 wait    2
 run     builtin cd /dd
 wait    1

@@ -82,12 +82,22 @@ try     bootgen -?
 run     bootgen -?
 wait    8
 shot    clock
-cap     clock displays a running clock, and cannot here: it opens a pipe
-cap     to feed its display and answers `Popen error 216' when that pipe
-cap     cannot be made.
-try     clock; echo "clock returned $?"
-run     clock; echo "clock returned $?"
-wait    6
+size    30 80
+cap     A full-screen clock: the day, the date and the time in large
+cap     letters, redrawn as the time changes.  It draws each line by running
+cap     `banner' through `shell' -- your own OS-9's, which SYS/login loads
+cap     from /h1 -- and reading the banner back from a pipe.  Control-C
+cap     stops it.
+try     clock
+run     load /h1/CMDS/shell
+wait    3
+run     clear
+wait    1
+run     clock
+wait    10
+snap
+send    \003
+wait    2
 shot    config
 cap     config reports this machine's C type properties as the #defines a
 cap     portable program would want.
@@ -825,19 +835,20 @@ wait    1
 run     echo "the listing above was wiped by clear"
 wait    2
 shot    lgrep
-cap     lgrep lists the files a pattern appears in; its banner claims the
-cap     same result as `grep -l'.  It prints nothing even for a string
-cap     that is present, so `grep -l' is the one to reach for.
-cap     DOC/README-GREP compares the searchers.
-try     lgrep -?; lgrep ksh SYS/password; echo "found nothing, status $?"
+cap     lgrep lists the files a pattern appears in, names only: it runs
+cap     `grep -l' and strips what grep adds, so the list can go straight
+cap     onto another command line.  The grep it runs is your own OS-9's,
+cap     loaded from /h1 -- this disk's GNU grep answers differently and
+cap     lgrep prints nothing from it.  DOC/README-GREP compares the searchers.
+try     lgrep ksh SYS/password SYS/login SYS/motd
+run     load /h1/CMDS/grep
+wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     lgrep -?
-wait    3
-run     lgrep ksh SYS/password; echo "found nothing, status $?"
-wait    3
+run     lgrep ksh SYS/password SYS/login SYS/motd
+wait    4
 shot    suse
 cap     suse is meant to print a program's usage line.  It prints nothing
 cap     for any module tried, and returns success regardless.
