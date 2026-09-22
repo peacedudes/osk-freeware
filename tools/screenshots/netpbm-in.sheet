@@ -207,18 +207,16 @@ run     bioradtopgm tmp/NPIB/nr.ppm
 wait    5
 
 shot    brushtopbm
-cap     Reads a Xerox doodle brush file into a bitmap.  No file in that
-cap     format ships here; handed a colour picture it reports the bad magic
-cap     number rather than guessing.
-try     brushtopbm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
+cap     Reads a Xerox doodle brush file into a bitmap.  DOC/samples holds a
+cap     small one, made here from the format this program reads, of the
+cap     letters OS9; pbmtoascii shows the bitmap it becomes.
+try     brushtopbm DOC/samples/os9.brush | pbmtoascii
 run     builtin cd /dd
 wait    1
 run     clear
-run     brushtopbm tmp/NPIB/nr.ppm
-wait    5
+wait    1
+run     brushtopbm DOC/samples/os9.brush | pbmtoascii
+wait    6
 
 shot    gouldtoppm
 cap     Reads a Gould scanner image into a colour picture.  No file in that

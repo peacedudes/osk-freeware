@@ -1,2 +1,6 @@
-brushtopbm tmp/NPIB/nr.ppm
-brushtopbm: bad magic number 1
+brushtopbm DOC/samples/os9.brush | pbmtoascii
+
+    o"""o   o""""   o"""o
+    M   M   "ooo    "oooM
+    M   M       M      o"
+     """    """"     ""

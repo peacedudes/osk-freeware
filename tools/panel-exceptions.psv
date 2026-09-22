@@ -17,7 +17,6 @@ puzzle|a G-Windows program: at a terminal one line of its tile frame is all it d
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
-brushtopbm|reads a Xerox brush file, no sample ships; its card shows it naming what it wants
 gouldtoppm|reads a Gould scanner file, no sample ships; its card shows it naming what it wants
 hpcdtoppm|reads a PhotoCD image, no sample ships; its card shows it naming what it wants
 spottopgm|reads a SPOT satellite image, no sample ships; its card shows its usage
