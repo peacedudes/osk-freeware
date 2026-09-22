@@ -1,12 +1,4 @@
-$ bootgen -?
-Syntax:   bootgen [<opts>] <device> {<path> [<opts>] }
-Function: maintain boot file on disk
-Options:  [<n> is 'dd' or '$hh']
-    -a         append files to end of existing boot
-    -b[=]<size>[K]  copy buffer size
-    -h         hook 'os9boot' into ID sector
-    -n[=]<n>   make new boot file <n> sectors long
-    -r         remove ID sector hook
-    -v         don't read-verify boot file
-    -x         pathlists starts from execution dir
-    -z[=<path>]  get list of module names from <path> (stdin)
+bootgen -n=256 /r0 wc head
+$ ls -l /r0
+total 65536
+-rw-r--r--   1 0        0           65280 Sep 22 09:13 OS9boot

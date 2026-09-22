@@ -75,12 +75,23 @@ try     bigsetter
 run     bigsetter
 wait    8
 shot    bootgen
-cap     bootgen builds an OS9Boot file for a machine to start from -- you
-cap     name the device and the modules to put in it.  There is no boot
-cap     file to build here, so it answers with its command format.
-try     bootgen -?
-run     bootgen -?
-wait    8
+cap     bootgen builds the boot file a machine starts from -- the modules
+cap     it loads before anything else, one after another in one file.
+cap     Here it makes a new one, 256 sectors, on a RAM disk from two
+cap     modules, wc and head; -h would also hook it into the disk's
+cap     identification sector so the machine finds it, which is left alone
+cap     here.  The RAM disk was made first with `mount -r=256k /r0'.
+try     bootgen -n=256 /r0 wc head
+run     mount -r=256k /r0 > /nil 2>/nil
+wait    3
+run     builtin cd /dd/CMDS
+wait    1
+run     clear
+wait    1
+run     bootgen -n=256 /r0 wc head
+wait    6
+run     ls -l /r0
+wait    4
 shot    clock
 size    30 80
 cap     A full-screen clock: the day, the date and the time in large
