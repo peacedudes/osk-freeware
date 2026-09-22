@@ -72,3 +72,4 @@ as09|xasm|asm.doc documents all six cross-assemblers of the set, as09 among them
 splman|splstat|DOC/splstat/splstat.1 is the manual page for all three programs of the spooler
 splprt|splstat|see splman
 loadmem|savemem|DOC/savemem/savemem.1 is the manual page for savemem and loadmem together
+ask|wisecrack|DOC/wisecrack/wisecrack.6 is the manual page for the server and its client together
