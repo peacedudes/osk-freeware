@@ -1,3 +1,9 @@
-.../CMDS/for div.f
-rtf div.f
- STOP: compilation aborted
+.../CMDS/for fact
+rtf fact
+ RTF/68K Version 2.14 (19-May-1987)
+ Total Errors   0   Warnings   0
+ RTF normally completed
+r68 fact.a -qo=fact.r
+del fact.a
+$ ls
+fact.f      fact.r      oskdefs.d   rtfstart.a

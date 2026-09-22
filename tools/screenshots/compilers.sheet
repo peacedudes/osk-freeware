@@ -546,22 +546,23 @@ run     ls -l y.tab.c
 wait    6
 
 shot    fact
-size    40 80
-cap     The Fortran example, end to end: the source, this disk's compiler
-cap     accepting it, and the finished program printing 1! to 12!.  Twelve is
-cap     as far as a 32-bit integer reaches -- 13! overflows.
-cap     RTF/68K compiles Fortran-77 to 68000 assembly, so the step from
-cap     `fact.a' to a program needs an assembler and a linker, which come
-cap     with your OS-9 and not with this disk.  CMDS/fact was assembled and
-cap     linked that way; everything else on this card is this disk doing the
-cap     work.  Every RTF program wants the run-time library resident first,
-cap     which is what `load os9lib' is for.
-try     load os9lib; fact
-run     rm -f /dd/tmp/FACT/fact.f /dd/tmp/FACT/fact.a; mkdir -p /dd/tmp/FACT > /nil 2>/nil
+size    50 80
+cap     The Fortran example, end to end: the source, this disk's RTF/68K
+cap     compiling it to 68000 assembly, your own OS-9's `r68' assembling
+cap     that and the Fortran start-up code, `l68' linking both against its
+cap     `sys.l', and the finished program printing 1! to 12!.  Twelve is as
+cap     far as a 32-bit integer reaches -- 13! overflows.  r68, l68, sys.l
+cap     and the `oskdefs.d' r68 reads come from /h1 and were put in place
+cap     first, with the run-time library every RTF program wants: `load
+cap     os9lib'.  l68 writes the program to your execution directory, in
+cap     place of the fact that ships -- which was removed first, so what
+cap     runs here is the one just built.
+try     rtf fact.f
+run     rm -rf /dd/tmp/FACT > /nil 2>/nil; mkdir -p /dd/tmp/FACT
 wait    3
-run     cp /dd/SRC/rtf/fact.f /dd/tmp/FACT/fact.f
-wait    3
-run     load /dd/CMDS/os9lib
+run     cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /h1/LIB/sys.l /dd/tmp/FACT; rm -f /dd/CMDS/fact
+wait    4
+run     load /dd/CMDS/os9lib /h1/CMDS/r68 /h1/CMDS/l68
 wait    5
 run     builtin cd /dd/tmp/FACT
 wait    1
@@ -570,7 +571,13 @@ wait    1
 run     cat fact.f
 wait    4
 run     rtf fact.f
-wait    18
+wait    15
+run     r68 -q fact.a -o=fact.r
+wait    8
+run     r68 -q rtfstart.a -o=rtfstart.r
+wait    8
+run     l68 rtfstart.r fact.r -l=sys.l -o=fact
+wait    8
 run     fact
 wait    8
 
@@ -597,59 +604,77 @@ run     ls -l div.a
 wait    6
 
 shot    for
-cap     The RTF Fortran compile driver: it prints the `rtf' command it
-cap     means to run, then stops, because it forks a separate shell to run
-cap     it.  Called directly, `rtf' needs no shell and does the compile.
-cap     At the bash prompt `for' is also the loop keyword, so it is reached
-cap     by path.
-try     .../CMDS/for div.f
-os9     for div.f
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    3
-run     load /dd/CMDS/os9lib
+cap     The RTF Fortran compile driver: `for fact' compiles fact.f with
+cap     `rtf', assembles the result with `r68' and deletes the assembly,
+cap     printing each command as it runs it through `shell'.  The shell,
+cap     r68 and del are your own OS-9's, loaded from /h1 with the Fortran
+cap     run-time, os9lib; fact.r is what is left for `lnk'.  At the bash
+cap     prompt `for' is also the loop keyword, so it is reached by path.
+try     .../CMDS/for fact
+os9     for fact
+run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB
+wait    4
+run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
-run     builtin cd /dd/tmp/CMPA
+run     builtin cd /dd/tmp/FORA
 wait    1
 run     clear
 wait    1
-run     .../CMDS/for div.f
-wait    10
+run     .../CMDS/for fact
+wait    15
+run     ls
+wait    3
 
 shot    lnk
-cap     The RTF Fortran link driver: it prints the `l68' command it means
-cap     to run -- the linker and library from your OS-9 -- and stops the
-cap     same way `for' does, forking a shell to run it.
-try     lnk div.f
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    3
-run     load /dd/CMDS/os9lib
+cap     The RTF Fortran link driver: `lnk fact' links fact.r with the
+cap     Fortran start-up code and Microware's `sys.l' into a program, and
+cap     prints the `l68' command it runs.  It looks for both in LIB on /h0
+cap     and writes the program to CMDS there, as its authors' systems were
+cap     laid out: here sys.l was copied into LIB from /h1, rtfstart.r
+cap     assembled from SRC/rtf/rtfstart.a, fact compiled with `for', and
+cap     the fact that ships removed, all first -- so the fact that runs is
+cap     the one lnk just made.
+try     lnk fact
+run     rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
+wait    4
+run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
-run     builtin cd /dd/tmp/CMPA
+run     builtin cd /dd/tmp/LNKA
 wait    1
+run     r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r
+wait    5
+run     .../CMDS/for fact > /nil
+wait    15
 run     clear
 wait    1
-run     lnk div.f
+run     lnk fact
 wait    10
+run     fact
+wait    6
 
 shot    lnk.org
-cap     The original build of `lnk', the RTF Fortran linker driver.  It
-cap     wants `os9lib' resident, hands its command line to `shell', and
-cap     calls `l68' to link -- the last two your own OS-9's, and all three
-cap     loaded here, which is how it gets as far as the linker.  What it
-cap     stops on is the Fortran start-up code, `fstart.r': its source is
-cap     SRC/rtf/rtfstart.a and assembling it with your own `r68' completes
-cap     the chain.  DOC/README-FORTRAN says so and lists what is here.
-try     lnk.org div.f
-run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f
-wait    3
-run     load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/l68
-wait    8
-run     builtin cd /dd/tmp/CMPA
+cap     The original build of `lnk', the RTF Fortran link driver.  It does
+cap     the same job and names the start-up code `fstart.r' where lnk says
+cap     `rtfstart.r' -- the same SRC/rtf/rtfstart.a, assembled under the
+cap     other name into LIB on /h0, beside Microware's `sys.l'.  Set up as
+cap     lnk's card is, it links fact.r without a word, and the program runs.
+try     lnk.org fact
+run     rm -rf /dd/tmp/LNKB > /nil 2>/nil; mkdir -p /dd/tmp/LNKB /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKB; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
+wait    4
+run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
+wait    5
+run     builtin cd /dd/tmp/LNKB
 wait    1
+run     r68 -q rtfstart.a -o=/dd/LIB/fstart.r
+wait    5
+run     .../CMDS/for fact > /nil
+wait    15
 run     clear
 wait    1
-run     lnk.org div.f
+run     lnk.org fact
 wait    10
+run     fact
+wait    6
 
 shot    creadoc
 size    28 90

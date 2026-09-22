@@ -22,6 +22,9 @@ $ rtf fact.f
  RTF/68K Version 2.14 (19-May-1987)
  Total Errors   0   Warnings   0
  RTF normally completed
+$ r68 -q fact.a -o=fact.r
+$ r68 -q rtfstart.a -o=rtfstart.r
+$ l68 rtfstart.r fact.r -l=sys.l -o=fact
 $ fact
    n         n!
            1           1
