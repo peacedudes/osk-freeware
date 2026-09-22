@@ -678,19 +678,18 @@ wait    4
 shot    vis
 size    24 80
 cap     vis runs a command over and over and redraws the screen with its
-cap     output, the way `watch' does elsewhere.  Its header names the
-cap     command, the delay between runs and the number of runs so far.
-cap     It runs the command here -- give it one that leaves a file behind
-cap     and the file is there -- but the screen is only ever the header.
-try     vis -d1 whoami
-run     vis -d1 whoami
-wait    4
-send    \023
+cap     output each time, the way `watch' does elsewhere.  Its header names
+cap     the command, the delay between runs in seconds and the number of
+cap     runs so far; here `today', once a second.  Control-C stops it.
+try     vis -d1 today
+run     clear
 wait    1
+run     vis -d1 today
+wait    6
 snap
-send    \021
 send    \003
 wait    2
+
 shot    repeat
 size    24 80
 cap     repeat runs a command a number of times -- `repeat 2 today' runs

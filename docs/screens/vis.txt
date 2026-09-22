@@ -1,0 +1,5 @@
+Command:  today                   Delay:  1                           Exec:  7
+
+Today is Tuesday, the twenty-second day of September, two thousand and
+twenty-six. The time is twenty minutes and fifty-five seconds after nine
+AM, Daylight Savings Time. The moon is in its first quarter.
