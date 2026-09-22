@@ -1,5 +1,10 @@
-dback tmp/FILESA/db tmp/FILESA/dbk
-Backing up tmp/FILESA/db/  to tmp/FILESA/db/~ onto tmp/FILESA/dbk
-copy -r -b=4k   tmp/FILESA/db/one tmp/FILESA/dbk/one
-$ ls -l tmp/FILESA/dbk
-total 0
+dback db dbk
+Backing up db/  to db/~ onto dbk
+copy -r -b=4k   db/one dbk/one
+copy -r -b=4k   db/two dbk/two
+$ dback -e db dbk
+Backing up db/  to db/~ onto dbk
+copy -r -b=4k   db/one dbk/one
+copy -r -b=4k   db/two dbk/two
+$ ls dbk
+one  two
