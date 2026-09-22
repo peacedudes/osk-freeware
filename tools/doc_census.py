@@ -15,8 +15,9 @@ any of four routes, tried in order:
             and if; SRC/toys holds fifteen games)
   FAMILY    named for its CMDS subdirectory, which is how NETPBM's 169
             programs are covered by one DOC/netpbm tree
-  GUIDE     one of the collection's own README-<x> guides, for the few
-            programs listed by name in GUIDE below
+  SHARED    a document named for something else that covers it -- one of
+            the collection's own guides, or an alternate build's sibling --
+            for the programs listed by name in SHARED below
 
 Everything else has only its one-line entry in DOC/INDEX, which every program
 has by construction -- check_disk enforces it -- and which is a catalogue
@@ -38,14 +39,23 @@ FAMILY = {
     "CMDS/GCC139": "gcc139",
 }
 
-# Programs whose whole documentation is one of the collection's own guides.
-# Named one by one, because a README-<x> is not always about the program <x>:
-# README-NAMES is about shadowed utility names, not `names', and README-VI
-# chooses between two editors without documenting either.  A row here says
-# somebody read the guide and it covers the program.
-GUIDE = {
+# Programs documented under ANOTHER program's name: the collection's own
+# guides, and alternate builds whose manual is their sibling's.  Named one by
+# one, because the name alone proves nothing -- README-NAMES is about shadowed
+# utility names, not `names', and README-VI chooses between two editors
+# without documenting either.  A row here says somebody read the document and
+# it covers the program.
+SHARED = {
     "cio": "README-CIO",
     "keep": "README-KEEP", "kept": "README-KEEP", "unkeep": "README-KEEP",
+    # PVIC 1.0 and 1.0a, one manual
+    "vi_1.0": "vi",
+    # GNU m4 0.50, the same program twice
+    "m4_0.5": "m4",
+    # the screens program, a trap-free build of CMDS/screen
+    "screen_nocio": "screen",
+    # elvis 1.7 under its other names; elvis.doc covers every personality
+    "vi.elvis": "elvis", "elvis_input": "elvis", "ctags.elvis": "ctags.doc",
 }
 
 DOC_SUFFIX = re.compile(
@@ -109,7 +119,7 @@ def main(argv):
 
     names = doc_names(docroot)
     origins = origins_map(docroot)
-    rows, counts = [], {"DIRECT": 0, "ARCHIVE": 0, "FAMILY": 0, "GUIDE": 0, "NONE": 0}
+    rows, counts = [], {"DIRECT": 0, "ARCHIVE": 0, "FAMILY": 0, "SHARED": 0, "NONE": 0}
 
     for prog, d in programs(root):
         low = prog.lower()
@@ -119,8 +129,8 @@ def main(argv):
             verdict, where = "ARCHIVE", names[origins[prog].lower()]
         elif FAMILY.get(d, "") in names:
             verdict, where = "FAMILY", names[FAMILY[d]]
-        elif GUIDE.get(prog, "").lower() in names:
-            verdict, where = "GUIDE", names[GUIDE[prog].lower()]
+        elif SHARED.get(prog, "").lower() in names:
+            verdict, where = "SHARED", names[SHARED[prog].lower()]
         else:
             verdict, where = "NONE", ""
         counts[verdict] += 1
@@ -133,7 +143,7 @@ def main(argv):
     print(f"      by its own name        {counts['DIRECT']}")
     print(f"      by its source archive  {counts['ARCHIVE']}")
     print(f"      by its family tree     {counts['FAMILY']}")
-    print(f"      by one of the guides   {counts['GUIDE']}")
+    print(f"      by another's document  {counts['SHARED']}")
     print(f"  NOTHING but the INDEX line {counts['NONE']}")
 
     if counts["NONE"]:
