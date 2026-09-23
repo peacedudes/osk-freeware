@@ -74,8 +74,20 @@ if __name__ == "__main__":
             print("  %-10s %s" % (k, have[k]))
 
 
+def login_loads():
+    """The reader's commands SYS/login makes resident: its `for m in' list."""
+    import re
+    login = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         "disk", "SYS", "login")
+    text = open(login, newline="").read().replace("\r", "\n")
+    found = re.search(r"^\s*for m in (.*?)\n\s*do\b", text, re.S | re.M)
+    if not found:
+        raise SystemExit("os9env: no `for m in' load list in %s" % login)
+    return tuple(found.group(1).replace("\\", " ").split())
+
+
 def stage_reader_load(h1):
-    """Put the reader's own load, unlink and a few more in <h1>/CMDS, from $OS9SDK.
+    """Put the reader's own load and the commands SYS/login loads in <h1>/CMDS, from $OS9SDK.
 
     The collection ships no `load': the clean-room one written for it was
     withheld on 2026-09-22 and then deleted on rdoggett's word, because a
@@ -97,14 +109,15 @@ def stage_reader_load(h1):
     # stays resident at link count 0 -- as on a real OS-9 -- and answers for
     # a second file of the same module name run later in the same session.
     # `/h1/CMDS/unlink <name>' between them is what a case does about it.
-    # `shell', `qsort', `touch', `dir' and `del' (2026-09-23): nnmaster,
-    # v7make and creadoc fork the reader's shell, nnmaster -I sorts with
-    # qsort, nncheck's first run touches .nn/rc, and creadoc reads the
-    # listing of Microware's dir and clears with del -- no case could reach
-    # them without.  A family that wants one says `load /h1/CMDS/shell', as
-    # SYS/login does.  Staging never makes one resident: the disk has a
-    # `dir' of its own, and only a family that loads the reader's gets it.
-    for name in ("load", "unlink", "shell", "qsort", "touch", "dir", "del"):
+    # And every command SYS/login loads from the reader's /h1 (2026-09-23),
+    # read from that file so the two cannot drift: nnmaster, v7make and
+    # creadoc fork the reader's shell, nnmaster -I sorts with qsort, hist
+    # sets the line with tmode, and so on -- no case could reach them
+    # without.  Plus `dir', which creadoc reads the listing of.  A family
+    # that wants one says `load /h1/CMDS/shell', as SYS/login does; staging
+    # never makes one resident, so the disk's own `dir' still answers
+    # everywhere else.
+    for name in ("load", "dir") + login_loads():
         src = os.path.join(sdk, "CMDS", name) if sdk else ""
         # TAKE THE OLD ONE AWAY FIRST.  The work directory survives between
         # runs, so a `load' staged by an earlier run with $OS9SDK set was

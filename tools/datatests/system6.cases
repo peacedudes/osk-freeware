@@ -68,3 +68,20 @@ expect  Maximum transfer
 case    dmode-returns-221-when-no-descriptor-is-resident
 run     /dd/CMDS/dmode /nosuchdev < /nil; echo "status $?"
 expect  status 221
+
+# hist reads command lines, keeps them in the history file it is named, and
+# runs each through the reader's own shell, setting the line up with the
+# reader's tmode.  Its input is a file here, so tmode says the path is not
+# a terminal; the command still runs.  `today' prints `Today is', which the
+# typed line cannot match.
+case    hist-runs-a-line-and-keeps-it-in-its-history-file
+load    /h1/CMDS/shell
+load    /h1/CMDS/tmode
+run     /dd/CMDS/rm -rf /dd/tmp/HST > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/HST
+run     /dd/CMDS/printf 'today\rlogout\r' > /dd/tmp/HST/in
+run     /dd/CMDS/hist /dd/tmp/HST/hfile < /dd/tmp/HST/in
+run     /dd/CMDS/ls /dd/tmp/HST
+expect  Today is
+expect  hfile
+absent  can't execute
