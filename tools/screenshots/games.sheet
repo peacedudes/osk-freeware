@@ -164,11 +164,9 @@ size    26 80
 cap     Pac-Man in an ASCII maze: you are `OS9', chased by four ghosts named
 cap     for old operating systems, and the keypad moves you -- 8 up, 2 down,
 cap     4 left, 6 right.  It asks your name and whether you want instructions,
-cap     then draws with OS-9's own screen codes -- $01 home, $02 row col, $03
-cap     erase line -- and no escape sequences at all.  A console that reads
-cap     those shows the maze; a VT100 or an xterm, which is what this is,
-cap     shows almost nothing.  Its maze, help and score files are in
-cap     GAMES/pacman.
+cap     then draws the board with TeleVideo cursor codes, which this terminal
+cap     does not paint, so little of it reaches the screen.  Its maze, help
+cap     and score files are in GAMES/pacman.
 try     pacman
 run     clear
 run     pacman

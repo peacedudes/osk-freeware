@@ -45,4 +45,3 @@ striche|an Atari GRAPH program written to run in supervisor state; from a shell 
 graphdemo|an Atari GRAPH program written to run in supervisor state; from a shell it aborts
 graphsave|an Atari GRAPH program written to run in supervisor state; from a shell it aborts
 showpic|an Atari GRAPH program written to run in supervisor state; from a shell it aborts
-pacman|draws with OS-9's own screen codes, which a browser terminal does not read
