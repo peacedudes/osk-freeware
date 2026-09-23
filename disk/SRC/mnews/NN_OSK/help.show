@@ -1,0 +1,1 @@
+;:ASHOW COMMAND;:Ashow kill		show auto kill/select entries for current			groups and all groups.show groups		show groups with unread articles (= Y command)show groups all		show all subscribed groupsshow groups total	show all available groupsshow map key/menu/show	show key bindings

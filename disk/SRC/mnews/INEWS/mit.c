@@ -1,0 +1,1 @@
+# include	"inews.h"voidmail_it (rec)char *rec;{	mail_to (rec, "This is a moderated group", NULL, newstmp);}

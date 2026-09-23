@@ -1,0 +1,1 @@
+# include	"inews.h"voidsendsys (){	char	*from;	if (!(from = find_from (TRUE)))		from = "news";	do_log ("Received Sendsys Control Message from %s\n", from);	mail_to (from, "Request of sys-file from site", fhost, SYS_FILE);}

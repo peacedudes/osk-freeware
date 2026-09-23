@@ -1,0 +1,1 @@
+CC=	ccG=	-gCFLAGS=	-qt=/dd/TMP $GLIBS=	-l=/dd/LIB/os9lib.lLFLAGS=	-q -bg $(LIBS) $GODIR=	/h0/ETC/CMDSencode:	encode.rdecode:	decode.rtags:	encode.c decode.c	echo "Ctags:" $?	ctags $?

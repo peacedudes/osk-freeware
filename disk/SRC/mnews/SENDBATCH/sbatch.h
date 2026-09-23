@@ -1,0 +1,1 @@
+# include "../news.h"# define	BATCH_TMP	"batch_tmp"# define	DEF_MAXSIZ	50000# ifndef EXTERN# define EXTERN	extern# endif EXTERNEXTERN int	error;EXTERN char	buffer[512];EXTERN char	*uux;EXTERN char	*encode;EXTERN char	*compress;EXTERN char	*batchdir;EXTERN char	*newsdir;EXTERN int	maxsiz;		/* maximum size of spoolfiles		*/

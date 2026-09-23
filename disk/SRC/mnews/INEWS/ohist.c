@@ -1,0 +1,1 @@
+# include	<ctype.h># include	<modes.h># include	"inews.h"intopen_hist (id, mode)char *id;int mode;{	int	fd;	char	fn[80];	char	*ptr;	ptr = id;	while (*ptr && (!isalnum (*ptr)))		++ptr;	sprintf (fn, HIST_FILE, *ptr ? tolower (*ptr) : '_');	if ((fd = open (fn, mode)) < 0)		if (mode & S_IWRITE)			fd = create (fn, mode, 03);	return (fd);}

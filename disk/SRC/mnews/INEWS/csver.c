@@ -1,0 +1,1 @@
+# include	"inews.h"voidsendversion (){	char	*from;	char	buf[128];	if (!(from = find_from (TRUE)))		from = "news";	do_log ("Received Sendversion Control Message from %s\n", from);# ifndef	PATCHLEVEL	strcpy (buf, VERSION);# else		PATCHLEVEL	sprintf (buf, VERSION, PATCHLEVEL);# endif		PATCHLEVEL	mail_to (from, "Current News-Version", buf, NULL);}	

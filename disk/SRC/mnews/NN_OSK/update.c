@@ -1,0 +1,1 @@
+#include "patchlevel.h"#include "update.h"int Update_Level = UPDATE;int Patch_Level = PATCHLEVEL;

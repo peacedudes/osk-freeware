@@ -1,0 +1,1 @@
+cdif [ $# -eq 0 ] ; then	echo "usage: nngrep -a pattern"	exit 1fiif [ "$1" = "-a" ] ; then	grep "$2" .nn/rcelse	grep "^[+=] .* .*$1" .nn/rcfi |awk '{print $3}'

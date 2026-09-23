@@ -1,0 +1,1 @@
+# include	"inews.h"voidsenduuname (){	char	*from;	if (!(from = find_from (TRUE)))		from = "news";	do_log ("Received Senduuname Control Message from %s\n", from);	mail_to (from, "Request of uuname from site", fhost, UUNAME_FILE);}	

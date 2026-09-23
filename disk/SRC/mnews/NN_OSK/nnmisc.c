@@ -1,0 +1,1 @@
+main (argc, argv, envp)int argc;char *argv[];char *envp[];{	extern int	chainc ();	argv[0] = PNAME;	os9exec (chainc, findmod ("/h0/ETC/CMDS/nn", "nn"), argv, envp, 0, 0, 3);}

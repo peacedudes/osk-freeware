@@ -1,0 +1,1 @@
+/* *	log_entry type string *	 *	Enter a message in the Log. */main(argc, argv)int argc;char *argv[];{    if (argc != 3) exit(1);    init_global(0);        if (log_entry(argv[1][0], "%s", argv[2]) == 0)	exit(1);        nn_exit(0);}nn_exit(n)int n;{    exit(n);}user_error(){    nn_exit(1);}suspend_nn(){}

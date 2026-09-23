@@ -1,0 +1,1 @@
+CC=	ccG=	-gCFLAGS=	-qt=/dd/TMP $GLIBS=	-l=/dd/LIB/os9lib.lLFLAGS=	-q $(LIBS) $GODIR=	/h0/ETC/CMDSRNEWSC=	main.c send.c compr.c compr7.c logit.c mail.cRNEWSR=	main.r send.r compr.r compr7.r logit.r mail.rrnews:	$(RNEWSR)	$(CC) $(LFLAGS) $(RNEWSR) -f=$(ODIR)/rnewstags:	$(RNEWSC)	echo "Ctags:" $?	ctags $?

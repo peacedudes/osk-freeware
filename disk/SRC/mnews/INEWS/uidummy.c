@@ -1,0 +1,1 @@
+# include	"inews.h"voiduser_interface (a, b)int a;char *b;{	_errmsg (1, "This version doesn't support the user-inteface feature, try `mnews'\n");}

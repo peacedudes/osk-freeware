@@ -1,0 +1,1 @@
+# include	"inews.h"charc *get_header_line (id)int id;{	charc	*tmp;	if ((id < 0) || (id > HEADER_MAX))		return (NULL);	tmp = head;	while (tmp)		if (!_strnccmp (tmp->text, hlines[id] + 2, strlen (hlines[id] + 2)))			break;		else			tmp = tmp->next;	return (tmp);}

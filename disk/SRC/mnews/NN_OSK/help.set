@@ -1,0 +1,1 @@
+;:ASET COMMAND;:A:set			show current variables:set VARIABLE VALUE	set variable:unset VARIABLE		reset variable :toggle VARIABLE;:Chelp.variables

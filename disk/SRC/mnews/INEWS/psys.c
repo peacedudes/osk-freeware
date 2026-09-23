@@ -1,0 +1,1 @@
+# include	"inews.h"intprocess_sys (){	sys	*stmp;	stmp = hsys;	while (stmp) {		if (stmp->fwd)			if (stmp->cmd)				pipe_it (stmp->cmd);			else				write_it (stmp);		stmp = stmp->next;	}	return (0);}
