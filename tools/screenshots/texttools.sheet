@@ -251,7 +251,7 @@ run     sepwords < DOC/README-CIO | sort | unip | head -n 18
 wait    10
 
 shot    btop
-cap     btop turns each character of a file into a grid of O and space --
+cap     btop turns each character of a file into a grid of O and + --
 cap     how a font or a bitmap moved through a mail system that would only
 cap     carry text, long before uuencode.  ptob turns the grid back into
 cap     bytes; diff finding nothing to report is the proof the twelve
