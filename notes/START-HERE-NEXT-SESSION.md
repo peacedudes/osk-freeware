@@ -102,6 +102,10 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    8BIT/ and a LOCK/ library; it too reads SysInfo.  Its terms are the same
    "whole package" terms, so taking tass means shipping mtp's MNews whole
    too -- decide between one MNews or both once SysInfo works.
+   **rn 4.3 BUILDS (recipes in AUDIT-pool) but needs C News's relay**, which
+   is the unbuilt `package build' in SRC/cnews -- that is the next port after
+   MNews, and it is what turns rn, Pnews and the disk's C News tools into a
+   working second news system.
 2. **Socket programs -- os9exec is building a /socket front end.**  ttcp,
    nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
    When os9exec sends the commit: pin it, re-run their cards, and take a
