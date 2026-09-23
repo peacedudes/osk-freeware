@@ -121,8 +121,9 @@ send    \030\003
 wait    3
 
 shot    umacs
-cap     uMacs 1.0, MicroEMACS in 45K -- the same Emacs keys, no macro
-cap     language.  Its mode line names the file.  Control-X control-C leaves it.
+cap     uMacs 1.0, MicroEMACS in 45K -- the same Emacs keys, keyboard
+cap     macros included.  Its mode line names the file.  Control-X
+cap     control-C leaves it.
 try     umacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
