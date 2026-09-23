@@ -94,8 +94,10 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    LESSONS: blarslib's link() (ln.c) writes raw directory sectors and, with
    os9exec's I$Delete ignoring FD_LNK (REPORTED to os9exec 2026-09-23),
    turned LOCK into a directory -- relaynews now links SRC/cnews/libosk/
-   linkcopy.c (ours) FIRST.  newsrun is not installed: it needs blarson's
-   `trlf', which is in no archive.  rn needs /r0 mounted; newsetup forks
+   linkcopy.c (ours) FIRST.  newsrun SHIPS since ba018b13, with trlf
+   WRITTEN for it (SRC/cnews/libosk/trlf.c) and renamecopy.c, ours, for
+   its rename(); it runs trlf/compress through the reader's shell, so
+   `load /dd/CMDS/NEWS/trlf'.  cnews.cases asserts both routes.  rn needs /r0 mounted; newsetup forks
    the reader's shell.  newslock NOW WORKS (link count 2) -- its panel
    exception is stale; re-card it.
    **Parallel agents, 2026-09-23 evening** (all committed): README-NEWS
