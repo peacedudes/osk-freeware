@@ -678,3 +678,31 @@ ttcp and BIND -- which the SDK here does not carry (it has the later
 `socket.l').  No licence of Powis's own; BSD notices on the BSD parts.
 With a working /socket, rsh/rcp against a host daemon would be the first
 live network demo, so it is worth a second look then, not before.
+
+### `rn' 4.3 (`TELECOM/file4352') -- BUILDS, parked behind C News's relay
+
+Bob Larson's OS-9 port of Larry Wall's rn 4.3 (Wall: copy freely, no
+profit, no pretending you wrote it).  rn, Pnews, newsetup and norm.saver
+all build clean on 2026-09-23 through the GNU-cpp path; the recipes, for
+a tree named `rn43', are:
+
+    rn|rn43|addng.c art.c artio.c artsrch.c backpage.c bits.c cheat.c final.c head.c help.c init.c intrp.c kfile.c last.c ng.c ngdata.c ngsrch.c ngstuff.c only.c rcln.c rcstuff.c respond.c rn.c search.c sw.c term.c util.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+    Pnews|rn43|Pnews.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+    newsetup|rn43|newsetup.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+    norm.saver|rn43|norm.saver.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+
+(`gethostname' comes from the driver's shim.)  Two findings on the way:
+`<sgstat.h>' must come from DEFS/os9unix, whose copy adds the B50..B19200
+baud codes rn's term.c switches on -- blarsdefs' copy is Microware's bare
+header -- and `<sys/stat.h>' needs CPP2 because Microware's cpp will not
+search -V for a name with a directory in it.
+
+WHY PARKED: rn reads a C News spool (numbered article files, a
+`group high low flag' active file at /h0/ulib/news/active), and Larson's
+Pnews does not write that spool -- it drops the article in C News's
+incoming directory for `newsrun'/relay to file.  The disk carries C News
+as source (SRC/cnews) with only six small tools built; relay is the
+`package build, not a recipe' recipes.psv already describes.  MNews's
+spool is a different layout (`grp:low high' active, pointer files for
+crossposts), so rn cannot sit on MNews instead.  Next step, when this is
+picked up: build C News's relay and newsrun from SRC/cnews, then rn.
