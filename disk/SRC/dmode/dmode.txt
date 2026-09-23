@@ -1,0 +1,1 @@
+Compiling dmode===============dmode compiles with the standard OSK C compilercc -i dmode.cshould compile and link dmode so it uses the cio module.Everything else needed to use it can be found in the manpageor the dmode help display. Run dmode with no arguments orwith the -? option to show help information.
