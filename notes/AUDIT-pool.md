@@ -462,3 +462,86 @@ program waiting for a terminal.
   * The pool also holds `OS-9_6809_Level1_Source.tar.gz' WITH a copyright
     notice.  6809, out of scope, and not to be mined.
 
+
+## 2026-09-23 -- MINING PASS 2, the network and BBS candidates
+
+Four candidate groups went out in parallel.  Two are settled here.
+
+### `ttcp' -- TAKE IT, and it found three things in os9exec's socket layer
+
+`mw/dl/osk_ttcp.tar` (identical to `ftp/mw/OSK_NETWORK_ISP/ttcp.tar`):
+README, the Unix man page, a FasTrak makefile, `ttcp.c`, the OS-9 binary
+`ttcp.os9` (31,114 bytes, module name `ttcp`, links NOTHING at run time --
+no `cio`, so an unstarred entry) and a SunOS a.out that is not ours.
+
+**Terms are clean and explicit**, in the source shipped beside the binary:
+"Mike Muuss and Terry Slattery have released this code to the Public
+Domain."  Ported to OS-9 by Pete Kockritz, 31 July 1996.  The makefile
+carries a third party's home path and would be stripped if it ships.
+
+It runs, prints a full two-screen usage unaided, and **fails with a named
+error rather than silence**: `ttcp-r: socket: 000:221 (E$MNF)`, because it
+opens `/socket` and there is no stack here presenting one -- which is
+exactly what `DOC/INDEX` already says of the shipped `inetd`.
+
+**THREE os9exec FINDINGS, measured, not inferred.**  They are recorded here
+because they are what the mining is for; they have NOT been sent anywhere.
+
+  1. **`/socket` is not routed to the SPF file manager.**  os9exec
+     classifies a socket path by the single prefix `/ip0`, and the
+     1993-96 Microware socket library opens `/socket`, so `I$Open`
+     answers E$MNF (221) and no ISP-1.x program can reach the new layer
+     at all.  Repro: `ttcp -r -s`.  The shipped `inetd` and `wn` are in
+     the same position.
+
+  2. **The older library uses the direct setstat codes, which are
+     unimplemented.**  With the path patched to `/ip0` in a SCRATCH copy
+     of the module (nothing in `disk/` was touched), the open succeeds
+     and then `SS_Bind` ($6C) and `SS_Connect` ($6E) answer E$UnkSvc
+     (208): os9exec implements those operations only INSIDE an `SS_SPF`
+     ($48) block, where this library issues them as the setstat function
+     itself.  Same numbers, one level out.
+
+  3. **`SS_Resv` ($6F) is answered 0 for every path -- a silent success.**
+     That code with a 12-byte block is how the library asks for
+     `socket(domain, type, protocol)`.  os9exec returns success having
+     created nothing, so `ttcp` prints its own "socket" progress line and
+     carries on holding a path that is not a socket.  This collection's
+     own "make every check fail once" rule, in the emulator.
+
+If 1 and 2 were fixed, `ttcp` stops being a for-a-real-system entry and
+becomes the collection's first live network demo against a host listener.
+
+### NETTIME `ntp' -- REJECTED, no terms
+
+`mw/dl/osk_ntp.tar.gz`, module `ntp`, 5,938 bytes.  **No copyright, no
+licence, no grant anywhere in the archive**, and the pre-OS-9 original is
+not named -- only "adopted to OS9 6/14/95 by Allan R. Batteiger".  Its own
+header describes it as an example of RFC 867/868, which reads like a
+published textbook example, unverified.  It also links Microware's
+`inetdb`, which is not ours to ship, and it prints NOTHING on failure
+(`tcp_open` is `exit(errno)` with no message).  `msntp` already ships and
+does the job.  Nothing here is worth the terms risk.
+
+### RCIS BBS (`TELECOM/rn.tar.Z') -- REJECTED on terms
+
+The file is an LHa, not a tar: 230 members, 842,542 bytes, Nov/Dec 1993.
+RCIS 2.3, a multi-user dial-up BBS for OS-9/68000 K-Windows by Steve
+Rottinger.  123 modules, 29 man pages, **no source of any kind**.
+
+"All rights reserved.  RCIS Systems, Inc. Hereby grants the purchaser one,
+and only one copy of this product."  It is a crippled demo with a postal
+registration procedure: `rcis` and `conference` read `/dd/datafiles/licence`
+and refuse to run anywhere but `/term`.  A clearer no than Notesfiles, which
+merely had no terms.
+
+Two further reasons agree.  **81 of the 123 modules are BASIC09 I-code**
+(type $02/lang $02) needing Microware's `runb`, which this disk loads from
+the reader's own system.  And nothing in it does anything visible without
+the BBS data tree, a resident `conmod`, a modem port and that licence file
+-- a usage line or a banner is the ceiling.  Its only freely-distributable
+member, Info-ZIP's `zipinfo`, is ALREADY on the disk.
+
+Worth knowing for future mining: **bash reports an I-code module as
+`cannot execute binary file`**, which reads like a corrupt binary and is
+not.  Check `M$Lang` at header offset 0x13 before believing it.
