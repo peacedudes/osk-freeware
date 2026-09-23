@@ -365,8 +365,16 @@ $4AFC module once, bare, stdin /nil, 8 second limit.
 
 ### Buckets 2, 3 and 6 (327 archives, 529 modules)
 
-**The one emulator-shaped finding, reported to the os9exec session:** EOF on
-/nil is not seen by some cio-linked 68000 builds.
+**What looked like an emulator finding was NOT one -- measured by the os9exec
+session, 2026-09-22, and the correction matters more than the guess.**  Three
+programs die when their input is /nil, and every one of them is the PROGRAM:
+at EOF `scanf' never assigns, the conversion then runs on a value it never
+got, and the C library's own overflow check fires TRAPV.  Real hardware would
+do the same.  The `RTS' in every dump is simply the NEXT instruction, because
+a TRAPV saves the PC after the one that trapped.  The read path is right:
+I$ReadLn on /nil returns E$EOF in d1 as documented.  And the "emulator message
+table readable from guest memory" I reported was OUR OWN disk/SYS/errmsg,
+which a guest program had read in.  The programs:
   * `textb' -- SHIPPED, md5 09246838 -- prints its four prompts and dies,
     `vector=$07' at an RTS on the I$WritLn path.  The same program's 68020
     build (textb.020, same archive) reads /nil and exits 0, and the shipped
@@ -375,8 +383,9 @@ $4AFC module once, bare, stdin /nil, 8 second limit.
   * `xlisp' from EFFO pd4/pd5 (md5 f8acbfb1, NOT our copy) never sees EOF:
     re-prompts for ever, megabytes of `r' and NULs, then vector=$02 at
     I$SetStt.  The xlisp WE ship (md5 0038e019, another build) exits 0.
-  * Lower priority, already on its card: `cpu' dies vector=$07 after its
-    banner.  Its "22-Sep-19126" is the program's own Y2K bug, not os9exec's.
+  * `cpu' dies vector=$07 after its banner, on a terminal as well as on
+    /nil, so its trap is its own arithmetic rather than anything about EOF.
+    Its "22-Sep-19126" is the program's own Y2K bug too.
 
 **Everything else that threw an exception was the harness's own doing:**
 `os9lib' (shipped, byte-identical) is the RTF Fortran LIBRARY with M$Type=1,
