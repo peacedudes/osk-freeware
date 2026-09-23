@@ -706,3 +706,27 @@ as source (SRC/cnews) with only six small tools built; relay is the
 spool is a different layout (`grp:low high' active, pointer files for
 crossposts), so rn cannot sit on MNews instead.  Next step, when this is
 picked up: build C News's relay and newsrun from SRC/cnews, then rn.
+
+### `tass' (Rich Skrenta 1990, OS-9 posting 1992-12-24) -- BUILDS, parked on MNews versions
+
+Builds clean 2026-09-23 with the recipe
+
+    tass|tass|curses.c art.c group.c mail.c main.c misc.c page.c prompt.c screen.c select.c time.c sigs.c|REGEXP APPEND_SIG MNEWS INCSTR LOCK_INDEX RAND_SIG MEM=20k|/dd/LIB/8bit.l /dd/LIB/termlib.l /dd/LIB/os9lib.l|-V=../mnews/NN_OSK
+
+-- Spencer's regexp.h from MNews's NN_OSK, os9lib's regcomp/regexec, COMPAT
+on, and the one-line off_t guard in mail.c that Scraped/tass-os9-1992
+already carries.  `8bit.l' is built from TELECOM/mtp.lzh's MNEWS/8BIT
+(recipe `8bit.l|mtp/MNEWS/8BIT|inp.c conv.c c8type.c|NOCOMPAT||-V=/dd/DEFS/os9lib',
+plus c8type.h on the include path).  It runs and draws its Group Selection
+screen.
+
+WHY PARKED: tass was written against MNews "pre 2" (mtp.lzh, Jan 1993),
+not the 1990 prerelease that ships with nn.  The two write DIFFERENT
+active files -- the prerelease `grp:low high flag' (wact.c: "%s:%05d
+%05d"), pre-2 `grp high low flag' (wact.c: "%s %08d %08d") -- and tass
+reads pre-2's, so on this disk it lists `comp.os.os9:00000' as a group
+name.  It also asks SysInfo for MNEWS.LIB/MNEWS.DIR where the prerelease
+uses NEWS.LIB/NEWS.DIR.  Shipping tass working means shipping pre-2 MNews
+as well (whole package, same terms), whose inews/rnews/sbatch collide by
+name with the prerelease's, while nn 6.3's OS-9 port reads the
+prerelease format.  One news system or the other, not both on one spool.

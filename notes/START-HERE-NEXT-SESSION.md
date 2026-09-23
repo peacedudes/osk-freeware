@@ -85,8 +85,8 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    learned: rnews and sbatch fork inews/uux BY BARE NAME, so `load' them;
    nnmaster -I reads stdin for OK and `reuse GROUPS? (y)' and loops on EOF;
    nnmaster forks the reader's `shell'; `Q' in nn asks one more question.
-   Still to do here: tass on top of it (needs mtp.lzh's 8bit.l -- mtp.lzh
-   is MNews "pre 2" and its terms are whole-package too).
+   tass BUILDS but is parked: it reads MNews pre-2's active format, not the
+   prerelease's that nn reads (AUDIT-pool has the recipes and the detail).
    **rn 4.3 BUILDS (recipes in AUDIT-pool) but needs C News's relay**, which
    is the unbuilt `package build' in SRC/cnews -- that is the next port after
    MNews, and it is what turns rn, Pnews and the disk's C News tools into a
