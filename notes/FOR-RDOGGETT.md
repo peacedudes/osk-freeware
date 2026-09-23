@@ -111,6 +111,36 @@ absent, which is the respectful thing to say. Widening the FILE LIST is one
 line and safe; widening the PATTERNS would flag seven captions that are
 right. **Recommend: widen the list, leave the patterns.**
 
+**37. Three licence calls from mining pass 2, all the same shape.**
+Each is a program that WORKS and that I would otherwise have shipped; each
+has a terms question only you can settle. None is urgent and none blocks
+anything else.
+
+  * **`UAC_view'** -- a 124 KB system-analysis viewer with a 1996 snapshot
+    of a live OS-9/68040 VMEbus machine, and the most interesting single
+    find of the pass: on a terminal it draws sessions, a process dependency
+    tree, hardware exceptions, interrupt and I/O monitoring. **No copyright
+    anywhere**, author given only as "P. Enlund", published on Microware's
+    own public hobbyist archive. Same footing as the other no-notice archive
+    binaries already here, or not? **Recommend: ship it** -- unattributed
+    but plainly published, which is the case the terms standard allows.
+  * **`checksoa'** (BIND 4.8.3) -- carries no notice at all because it is
+    example code from Albitz and Liu's "DNS and BIND" (O'Reilly, 1992),
+    two named authors, a copyrighted book. **Recommend: leave it out** --
+    `nsquery` covers the same ground and has the Berkeley licence.
+  * **`ttcp', `nslookup', `nsquery'** -- these are clean (public domain and
+    4-clause Berkeley respectively), but all three statically link
+    Microware's `socklib.l`/`netdb.l` from the Internet Support Package.
+    The shipped `CMDS/WN/inetd` already does, so there is precedent, but
+    those are ISP PRODUCT libraries rather than the C library, which is one
+    step past the carve-out as CLAUDE.md words it. **Recommend: ship, and
+    say so in SOURCES.txt** -- but it is your call, not mine.
+
+Taking the Berkeley pair also obliges the disk to print, in its own
+documentation, "This product includes software developed by the University
+of California, Berkeley and its contributors". That is a licence condition,
+not a courtesy; it costs one sentence.
+
 ## Not a question, but you should know
 
 **19. The stray save file stays.**
