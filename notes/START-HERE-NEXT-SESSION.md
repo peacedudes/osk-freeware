@@ -69,95 +69,39 @@ still describes `60d4b0a'.  A pin is forever in a way a test run is not.
 
 ## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
-1. **Re-run the suite twice on a fresh image, then rebuild the two disks.**
-   **THIS IS GENUINELY OUTSTANDING, 2026-09-23:** the additions below went
-   in with the GATE green (38 checks) and with each affected family run
-   directly -- `encoding' 24/24, `utils' strcmp 3/3, `web' 9/9 -- but the
-   full double run was stopped part-way when rdoggett needed the machine.
-   The last complete run was 876 of 882, and all six failures were the new
-   cases meeting an image built before those programs existed; each has
-   since passed on a current image.  Run it twice and confirm.
-   Four things landed after that run (compface, uncompface, strcmp, and
-   WN's CGI examples).  His `free' alias opens the repo's own image, so a session
-   that changes `disk/' and does not rebuild leaves him a stale one.
+**rdoggett, 2026-09-23: NO FULL-SUITE RUNS until the backlog is through.**
+The double `datatest.py --all' takes an hour.  Per addition run its own
+case family and `check_disk.py'; the full suite runs ONCE, at the end,
+twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
 
-       OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk <scratch>.dd
-       OS9SDK=$HOME/Developer/os9/play/oskBoot tools/datatest.py --all --image <scratch>.dd   # twice
-       OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
-       gzip -c osk-freeware.dd > docs/try/disk.gz            # <- BOTH, not just the first
+    OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
+    gzip -c osk-freeware.dd > docs/try/disk.gz
 
-   **TWO FILES, NOT ONE.**  `docs/try/disk.gz' is the browser demo's copy of
-   the collection.  It is gitignored, and the CI workflow rebuilds it from
-   the image it just built, so what Pages serves is always current -- but a
-   LOCAL docs/try page serves whatever that file holds, and on 2026-09-23 it
-   was a day stale because this step said only "rebuild osk-freeware.dd".
-   The browser page runs `bash /dd/SYS/login', so a session there gets the
-   same environment as a real login, SHELL included.
-
-   $OS9SDK matters now: the collection ships no `load', so the harnesses
-   stage the reader's own from there (tools/os9env.py, stage_reader_load).
-   Without it the cases that load a module fail, and say so.
-
-2. **MINING PASS 2 -- the main work, and what the os9exec tag waits on.**
-   Pass 1 ran every module in the unmined pool once under the emulator: 650
-   archives, ~1,010 modules, **no os9exec defect**.  The table is
-   `notes/mining-pass1.tsv' (861 rows kept; the extractions were scratch and
-   are gone -- re-extract from ~/Developer/os9/Scraped with
-   `tools/list_archive.py' to see inside an archive again).
-   `notes/AUDIT-pool.md' has the full write-up, the traps, and the candidate
-   list.  Pass 2 is: for each candidate, **read its terms, run it, card it,
-   commit it**.  TOP release 2 is done (six taken, the rest rejected with
-   reasons in AUDIT-pool).  Still to weigh, roughly in order of value:
-     * `ttcp' (mw/dl/osk_ttcp.tar) and `ntp'/NETTIME -- they would exercise
-       os9exec's new socket layer, which nothing here does.
-     * BIND 4.8.3's `nslookup', `nsquery', `checksoa'.
-     * The RCIS BBS (microware-archive/TELECOM/rn.tar.Z, which is an LZH):
-       120 modules, 29 man pages.  A whole BBS; needs a judgement about
-       scope before any of it is carded.
-     * `isofont', `UAC_view', `dsw', `j', `strcmp', the WN CGI samples.
-     * Source-only, no binary here: MNews, tass, nn 6.3.10, rn 4.3, OSKBox,
-       compface, LinkUp, dmode, mtools 3.6, CTeX, gdbm 1.4.  These are
-       "can it compile" work, not "does it run" work.
-     * **Terms that forbid or restrict:** the SMB file manager (distribute
-       complete and unmodified, no bundling), SYSMON (Max Planck
-       "proprietary confidential"), EFFO forum 12's `msfm' (the name this
-       collection already screens as Microware's).  Do not ship these.
-
-3. **MINING PASS 2's INTEGRATION QUEUE -- judged, not yet shipped.**
-   `notes/AUDIT-pool.md' (2026-09-23) has the evidence for each.
-
-     * **`ttcp'** -- public domain on Muuss and Slattery's own words, runs,
-       fails with a named error.  **CLEARED TO SHIP 2026-09-23** (rdoggett:
-       ship it, and record the static link to Microware's ISP
-       `socklib.l'/`netdb.l' in SOURCES.txt; `CMDS/WN/inetd' is the
-       precedent).
-     * **BIND 4.8.3's `nslookup' and `nsquery'** -- 4-clause Berkeley WITH
-       the advertising clause, so taking them obliges the disk to print the
-       Berkeley acknowledgement in its own documentation.  Same item 37
-       question about the ISP libraries -- **both CLEARED TO SHIP
-       2026-09-23**, with the Berkeley acknowledgement sentence to be
-       printed in the disk's own documentation as the licence requires.
-       **`checksoa' is OUT, decided 2026-09-23**: O'Reilly book example
-       code with no notice at all, and `nsquery' covers the same ground.  Whatever is decided about the
-       binaries, `RES/select.c' -- a `select()' that works on SOCKMAN paths
-       -- is worth having in `SRC/'.
-     * **`UAC_view'** -- works beautifully on a pty, has NO terms at all.
-       **CLEARED TO SHIP 2026-09-23** (rdoggett: unattributed but plainly
-       published is the case the terms standard allows).  Needs a pty card.
-     * **The WN CGI samples -- DONE, shipped 2026-09-23.**  `counter`,
-       `doform.cgi`, `sample.cgi` with their C source, the pages they
-       serve, and the `index`/`index.cache` WN needs, under
-       `disk/c/unid/wn_1.14.3/osk/EXAMPLES'.  `qr.cgi' was left out --
-       "All Rights Reserved" against a cgihtml library whose licence is not
-       in the archive.  **What cost an hour and is now written down in
-       three places**: WN runs a CGI through `system()', which forks the
-       shell, so **SHELL MUST BE SET** or every CGI request answers `500
-       Can't exec CGI program' -- while the module runs perfectly by hand,
-       its attributes are right and its cache entry is right.  `SYS/login'
-       sets it and `datatest.py' does not, so `web.cases' sets it itself
-       and also asserts the 500 without it.  `DOC/README-SHELLS' has the
-       measurement.  Note too that `wndex' will not descend: the cache for
-       EXAMPLES has to be built in that directory, and it ships.
+1. **MNews + nn -- source SHIPPED (0491265f), binaries WAITING ON os9exec.**
+   All nine build clean from `SRC/mnews' (recipes in recipes.psv; new
+   `NOCOMPAT' flag and `shims/os9errlog.c').  Every program reads TOP's
+   SysInfo data module; TOP's own `setup' (top/x/CMDS/setup, 1989) builds
+   it and `imdir' shows it resident -- but os9exec's F$DatMod leaves the
+   module's type 0, so `modlink("SysInfo", MT_DATA)' answers E$MNF and
+   inews stops "Can't initialize the mess".  REPORTED to os9exec-0c
+   2026-09-23 with a probe (`datprobe').  When fixed: ship `setup' and
+   `getinfo' (TOP binaries, os9lib's terms), a SYS/sysinfo (hostname,
+   NEWS.DIR/LIB/BATCH, rnews.seq/rnews.batch/lck.inews as `,l' locks),
+   the binaries into ETC/CMDS (compiled-in: /h0/ETC/CMDS, /h0/USR/LIB/NEWS,
+   /h0/SPOOL/NEWS, /h0/USR/LIB/NN, /h0/SPOOL/NN), then create groups
+   (`inews -c=newgroup:<g> -v </nil'), post one, run nnmaster, read with
+   nn, card it.  MNews's `rnews' collides with UUCP/rnews -- needs a line in
+   module-name-duplicates.txt.  Then tass (Scraped/tass-os9-1992) builds
+   on it; it wants MNews' `8bit.l', which is NOT in the package -- find it.
+2. **Socket programs -- os9exec is building a /socket front end.**  ttcp,
+   nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
+   When os9exec sends the commit: pin it, re-run their cards, and take a
+   second look at OSKBox (AUDIT-pool) and the WN inetd/authwn/inetdc and
+   msntp panel exceptions.
+3. **The usenet attributions** -- rdoggett 2026-09-23: make every bare
+   "Usenet" origin name its newsgroup and approximate date.  A research
+   pass writes scratch `usenet-origins.tsv'; apply it to DOC/ORIGINS (and
+   SOURCES.txt/terms.psv where they are bare).
 
 4. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
    re-tested.  Three shapes keep recurring: the disk SHIPS what the reason
