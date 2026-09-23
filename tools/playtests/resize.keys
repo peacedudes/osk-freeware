@@ -1,0 +1,14 @@
+name    resize
+prog    read go; resize
+# resize asks the terminal where the cursor went after a move to 999;999,
+# and a terminal answers ESC [ <rows> ; <cols> R.  The answer is typed here
+# as a terminal would send it, within the second resize waits for it --
+# which is shorter than the harness's pause after `prog', so a `read'
+# holds resize back until the first key.
+rate    0.05
+key     \r
+esc
+keys    [30;100R
+wait    3
+snap    answered
+expect  LINES=30; COLUMNS=100; export LINES COLUMNS

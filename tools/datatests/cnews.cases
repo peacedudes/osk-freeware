@@ -33,3 +33,13 @@ run     /dd/CMDS/cat /h0/SPOOL/CNEWS/in.coming/0local1
 expect  Newsgroups: junk
 expect  From: tester@osk.UUCP
 expect  post body
+
+# newsetup writes the .newsrc rn reads into HOME: every group in the
+# active file, each marked `!', not subscribed.
+case    newsetup-writes-a-newsrc-from-the-active-file
+run     /dd/CMDS/rm -f $W/.newsrc
+run     HOME=$W /dd/CMDS/NEWS/newsetup
+run     /dd/CMDS/cat $W/.newsrc
+expect  Creating .newsrc in /dd/tmp/CNT
+expect  control!
+expect  junk!

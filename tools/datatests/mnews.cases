@@ -3,8 +3,7 @@ family  mnews
 # TOP's SysInfo table first, so `setup' builds it from SYS/sysinfo; the
 # spool, the active file and nn's database are reset so a second run of
 # this family starts where the first did (the image is not reset between
-# runs).  nn and nnmaster are on their cards: nnmaster forks the reader's
-# own `shell' and nn wants a terminal.
+# runs).  nn is on its card: it wants a terminal.
 
 setup   export PATH=/dd/CMDS/MNEWS:$PATH
 # nn's programs stop with `No HOME environment variable' without these.
@@ -12,6 +11,7 @@ setup   export HOME=/dd USER=tester
 setup   W=/dd/tmp/MNT
 setup   /dd/CMDS/rm -rf $W /h0/SPOOL/MNEWS/comp /h0/SPOOL/MNEWS/control /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 setup   /dd/CMDS/rm -f /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+setup   /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER /h0/SPOOL/NN/DATA/*.? > /nil 2>/nil
 setup   /dd/CMDS/printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
 setup   /dd/CMDS/mkdir -p $W
 setup   /dd/CMDS/setup
@@ -70,3 +70,32 @@ run     sbatch nbr 2>&1
 run     /dd/CMDS/cp $W/sys.save /h0/USR/LIB/NEWS/Sys
 expect  Spooling news for nbr
 expect  uux: Unknown Host 'nbr'
+
+# nnmaster -I builds nn's database, forking the reader's own shell and, for
+# a new GROUPS file, the reader's own qsort; nncheck then reads it.  A first
+# nncheck makes the user's .nn files (with the reader's touch) and prints
+# nn's welcome; the second answers the question it is for.
+case    nnmaster-builds-the-database-nncheck-reads
+load    /h1/CMDS/shell
+load    /h1/CMDS/qsort
+load    /h1/CMDS/touch
+run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
+run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok
+run     /dd/CMDS/ls /h0/SPOOL/NN
+run     /dd/CMDS/mkdir -p $W/.nn
+run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil > /nil
+run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil
+expect  Initializing master data base...
+expect  MASTER
+expect  No News (is good news)
+absent  can't execute
+
+# cvt_help turns nn's help markup (`;:A') into the control codes nn prints
+# and back: the source's help.welcome converts to exactly what ships in
+# USR/LIB/NN, and converting that returns the markup.
+case    cvt_help-converts-help-markup-both-ways
+run     /dd/CMDS/MNEWS/cvt_help < /dd/SRC/mnews/NN_OSK/help.welcome > $W/hw
+run     /dd/CMDS/diff $W/hw /dd/USR/LIB/NN/help.welcome && echo same-as-shipped
+run     /dd/CMDS/MNEWS/cvt_help < $W/hw | /dd/CMDS/head -1
+expect  same-as-shipped
+expect  ;:AWelcome to the nn news reader;:A
