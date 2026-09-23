@@ -207,12 +207,17 @@
   @media (max-width:1100px){
     .cols{grid-template-columns:minmax(280px,1fr) minmax(340px,1.4fr)}
     .col.kinds-col{grid-column:1;grid-row:1;border-right:0;border-bottom:1px solid var(--rule);
-                   overflow-x:auto;overflow-y:hidden;max-height:none;height:auto}
+                   overflow-x:hidden;overflow-y:auto;max-height:34vh;height:auto}
     .cols{grid-template-rows:auto 1fr}
     .col.progs-col{grid-column:1;grid-row:2}
     .col.panel-col{grid-column:2;grid-row:1 / span 2}
+    /* THE KINDS STAY A LIST, one per line.  They used to become a strip
+       that scrolled sideways under the alphabet, which is awkward to read
+       and worse to aim at -- rdoggett, 2026-09-23: "weirdly horizontal
+       scroll and should be vertical".  Below 1100px they keep their column
+       and scroll DOWN in it, like the programs beside them. */
     .kinds-col h2{display:none}
-    .kinds{display:flex;gap:4px;padding:8px 10px;white-space:nowrap}
+    .kinds{display:block;padding:8px 10px}
     .kinds li{padding:5px 9px;font-size:13px}
     .abc{display:flex;gap:2px;padding:0 10px 8px;overflow-x:auto}
     .abc button{padding:5px 6px}

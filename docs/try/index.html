@@ -163,6 +163,18 @@
       const c = ch.charCodeAt(0);
       Module.os9keys.push(KEYMAP[c] ?? c);
     }
+    // FORGET IT ONCE TYPED.  Reloading -- or attaching a disk as /h1, which
+    // reloads this same address -- would otherwise type the command again,
+    // and the reader who had wandered off into OS-9 half an hour ago gets
+    // `rain' a second time with no idea why.  rdoggett, 2026-09-23:
+    // "Poof! rain again.  Surprises, not in a good way."  Dropping `run'
+    // from the address leaves the session as it is and takes the surprise
+    // out of the next reload.
+    try {
+      params.delete('run');
+      const q = params.toString();
+      history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
+    } catch (e) { /* a browser that refuses replaceState loses nothing else */ }
   }
 
   // Send what a Unix terminal sends: Enter as LF, which the emulator's
