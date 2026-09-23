@@ -73,18 +73,20 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
        -- is worth having in `SRC/'.
      * **`UAC_view'** -- works beautifully on a pty, has NO terms at all.
        Item 37.
-     * **The WN CGI samples** -- GPL, already the disk's own WN package, and
-       **PARTLY DONE: the files are installed** under
-       `disk/c/unid/wn_1.14.3/osk/EXAMPLES' (qr.cgi left out, its terms are
-       not clear).  **They do not serve yet**: WN answers `500 Can't exec
-       CGI program'.  Ruled out already -- the module runs fine by hand
-       (rc=0), its attributes match `/dd/CMDS/cat', `load'ing it first
-       changes nothing, and the document root really is compiled in at the
-       `osk' directory so `/EXAMPLES/...' is the right request.  A subagent
-       reported these serving correctly and was asked what differed; if that
-       answer is not in the transcript, **either resolve it or back the
-       files out** -- do not ship a demo that returns 500.  The `cio' count
-       in `DOC/README-CIO' is 305 without them and 308 with them.
+     * **The WN CGI samples -- DONE, shipped 2026-09-23.**  `counter`,
+       `doform.cgi`, `sample.cgi` with their C source, the pages they
+       serve, and the `index`/`index.cache` WN needs, under
+       `disk/c/unid/wn_1.14.3/osk/EXAMPLES'.  `qr.cgi' was left out --
+       "All Rights Reserved" against a cgihtml library whose licence is not
+       in the archive.  **What cost an hour and is now written down in
+       three places**: WN runs a CGI through `system()', which forks the
+       shell, so **SHELL MUST BE SET** or every CGI request answers `500
+       Can't exec CGI program' -- while the module runs perfectly by hand,
+       its attributes are right and its cache entry is right.  `SYS/login'
+       sets it and `datatest.py' does not, so `web.cases' sets it itself
+       and also asserts the 500 without it.  `DOC/README-SHELLS' has the
+       measurement.  Note too that `wndex' will not descend: the cache for
+       EXAMPLES has to be built in that directory, and it ships.
 
 4. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
    re-tested.  Three shapes keep recurring: the disk SHIPS what the reason
