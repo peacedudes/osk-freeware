@@ -716,7 +716,7 @@ LIMIT=240
 # GNU ls were both written against.
 run() {       # $1 pool  $2 command-file  $3 output file
   ( cd "$REPO" && gtimeout "$LIMIT" env OS9DISK="$OS9CLEAN" OS9H0="$OS9CLEAN" \
-      OS9H6="$1" OS9H7="$OS9COMPAT" \
+      OS9H6="$1" OS9H7="${H7DIR:-$OS9COMPAT}" \
       "$EXE" -r shell < "$2" 2>&1 | /usr/bin/tr -d '\000' ) > "$3"
   /usr/bin/head -c 400000 "$3"
   [ "$(/usr/bin/wc -c < "$3")" -gt 500000 ] && printf '\n[... output truncated ...]\n'
@@ -740,7 +740,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # One pass over the field, not three substitutions: `${defs/KNR/}' turns
   # `KNR=a.c,b.c' into `=a.c,b.c', which then reaches cc as `-D=a.c,b.c'.
   OSKDEF=-DOSK
-  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; MEMSZ=16k; LINKFIRST=""; keep=""
+  KNRMODE=0; KNRFILES=""; CPP2MODE=0; LONGREF=0; M020=0; GCCMODE=0; GPPMODE=0; ASMMODE=0; MODNAME=""; TRAPFREE=0; CIOLINK=0; LIBWANT=0; LIBGOT=0; MEMSZ=16k; LINKFIRST=""; H7DIR=""; keep=""
   for x in $defs; do
     case "$x" in
       NOOSK)  OSKDEF="";;
@@ -778,6 +778,13 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       # binary came out the same size, 372,630 bytes, with and without the shim
       # (2026-09-15).
       LINKFIRST=*) LINKFIRST=$(printf '%s' "${x#LINKFIRST=}" | /usr/bin/tr ',' ' ');;
+      # NOCOMPAT takes SRC/COMPAT off the include path: /h7 becomes an empty
+      # directory.  For a tree written against os9lib's own DEFS, which
+      # define stat and types themselves -- COMPAT's stat.h and types.h pull
+      # in DEFS/UNIX/stat.h, and every struct in it is then defined twice.
+      # MNews is the case (2026-09-23): 96 `multiple definition' errors per
+      # file with COMPAT, none without.
+      NOCOMPAT) H7DIR="$WORK/nocompat"; mkdir -p "$H7DIR";;
       *)      keep="$keep $x";;
     esac
   done
@@ -970,6 +977,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
       *"'strucmp' unresolved"*|*"'strnucmp' unresolved"*|*"'strstr' unresolved"*|*"'rename' unresolved"*) shim=os9alib.c;;
       *"'ctime' unresolved"*)                                                     shim=os9ctime.c;;
       *"'strtol' unresolved"*|*"'strtoul' unresolved"*)                            shim=os9strtol.c;;
+      *"'error_log' unresolved"*)                                                 shim=os9errlog.c;;
       *"'isgraph' unresolved"*)                                                   shim=os9isgraph.c;;
     esac
     [ -n "$shim" ] || break

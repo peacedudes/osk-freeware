@@ -1105,3 +1105,16 @@ utree|utree|main.c bind.c comm.c echo.c edit.c file.c help.c hist.c list.c stat.
 resize|resize|resize.c|||
 compface|compface|cmain.c compface.c arith.c file.c compress.c gen.c|||
 uncompface|compface|uncmain.c arith.c file.c compress.c gen.c uncompface.c|||
+# MNews and nn (Ulrich Dessauer, 1990-92; nn 6.3 port by Dessauer and Frank Kaefer).
+# Written against TOP's os9lib DEFS, so NOCOMPAT; regexp.h is the package's own, in NN_OSK.
+# nn and nnmaster call error_log(), from TOP's err.l, which is in no archive here -- the
+# driver adds shims/os9errlog.c.  SRC/mnews/README.OSK has the rest.
+inews|mnews/INEWS|inews.c pargs.c wgrp.c wit.c mit.c pit.c crth.c ctrl.c ccan.c cnew.c crm.c cssys.c csuu.c csver.c cchk.c getd.c mcan.c delh.c ghead.c makh.c ihead.c mhead.c rhead.c shead.c spch.c app.c ddst.c achk.c ract.c wact.c psys.c rsys.c tsys.c build.c crct.c exp.c sect.c ffrom.c mail.c mid.c misc.c ohist.c sinfo.c unln.c rsat.c inrd.c uidummy.c ../../unixlib/strdup.c|NOCOMPAT|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib -V=../NN_OSK
+rnews.mnews|mnews/RNEWS|main.c send.c compr.c compr7.c logit.c mail.c ../../unixlib/strdup.c|NOCOMPAT MODNAME=rnews|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib -V=../NN_OSK
+sbatch|mnews/SENDBATCH|batch.c s_batch.c s_none.c s_com.c s_com7.c s_file.c s_exec.c ../../unixlib/strdup.c|NOCOMPAT void=int|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib -V=../NN_OSK
+encode|mnews/MISC|encode.c|NOCOMPAT|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+decode|mnews/MISC|decode.c|NOCOMPAT|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+nn|mnews/NN_OSK|nn.c admin.c update.c global.c options.c active.c db.c nntp.c init.c variable.c term.c keymap.c macro.c regexp.c menu.c more.c rc.c group.c folder.c articles.c sequence.c selection.c kill.c answer.c reroute.c save.c unshar.c decode.c execute.c pack_date.c pack_name.c pack_subject.c news.c digest.c match.c ../../unixlib/strdup.c ../../unixlib/vsprintf.c|NOCOMPAT M_SIGINFO=80 MEM=50k|/dd/LIB/termlib.l /dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+nnmaster|mnews/NN_OSK|master.c collect.c expire.c update.c global.c options.c active.c db.c nntp.c pack_date.c pack_name.c pack_subject.c news.c digest.c match.c ../../unixlib/strdup.c ../../unixlib/vsprintf.c|NOCOMPAT M_SIGINFO=80 MEM=20k|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+nnadmin|mnews/NN_OSK|nnmisc.c|NOCOMPAT M_SIGINFO=80 PNAME="nnadmin"|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+nnaux|mnews/NN_OSK|aux.c|NOCOMPAT M_SIGINFO=80 MEM=6k|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
