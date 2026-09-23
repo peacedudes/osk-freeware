@@ -125,6 +125,8 @@ byteflip|none|it takes the database to swap and no options; with nothing named i
 c7decode|none|a filter with no options: encoded news on standard input, the article out
 dbz|dbz -?|
 relaynews|relaynews -?|
+newsrun|none|it takes no options: any argument at all turns on -v, a line for each batch
+trlf|trlf -?|
 rn|none|its options are in DOC/rn/rn.1; asked -? it says it is ignoring the switch and starts reading
 Pnews|none|it asks its questions as it goes: distribution, newsgroup, subject; -h <file> -s posts a prepared article
 newsetup|none|it takes no options: run once, it writes your .newsrc

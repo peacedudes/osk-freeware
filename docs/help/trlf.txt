@@ -1,0 +1,5 @@
+$ trlf -?
+Syntax:   trlf -s  |  trlf <file> ...
+Function: LF to CR, for C News's newsrun
+          -s  standard input to standard output
+          otherwise each file is converted in place

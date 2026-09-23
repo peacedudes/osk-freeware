@@ -1,0 +1,16 @@
+newsrun -v; cat junk/1
+Processsing `..' Name restriction
+Processsing `.' Name restriction
+Processsing `.keep' Name restriction
+Processsing `1' done
+Processsing `..' Name restriction
+Processsing `.' Name restriction
+Processsing `.keep' Name restriction
+Path: osk!far!someone
+From: someone@far
+Newsgroups: junk
+Subject: from a Unix site
+Message-ID: <7@far>
+Date: 23 Sep 1990 10:00:00 GMT
+
+filed by newsrun

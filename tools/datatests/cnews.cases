@@ -43,3 +43,31 @@ run     /dd/CMDS/cat $W/.newsrc
 expect  Creating .newsrc in /dd/tmp/CNT
 expect  control!
 expect  junk!
+
+# trlf, written for this disk because newsrun calls it: LF to CR in place,
+# or standard input to standard output with -s.  A CR file is unchanged.
+case    trlf-turns-lf-into-cr-in-place-and-as-a-filter
+run     /dd/CMDS/printf 'one\012two\012' > $W/lf
+run     /dd/CMDS/NEWS/trlf $W/lf
+run     /dd/CMDS/dump $W/lf
+run     /dd/CMDS/printf 'three\012' | /dd/CMDS/NEWS/trlf -s > $W/cr
+run     /dd/CMDS/dump $W/cr
+expect  6F6E 650D 7477 6F0D
+expect  7468 7265 650D
+
+# newsrun takes each batch in in.coming through trlf and relaynews, and
+# removes it once filed.  It runs trlf through the reader's shell, so trlf
+# is loaded for the shell to find.  Pnews's post is cleared first: its
+# name starts with a digit, so newsrun would file it too.
+case    newsrun-files-a-unix-batch-through-trlf-and-relaynews
+load    /h1/CMDS/shell
+load    /dd/CMDS/NEWS/trlf
+run     /dd/CMDS/rm -f /h0/SPOOL/CNEWS/in.coming/0local* > /nil 2>/nil
+run     /dd/CMDS/printf 'Path: far!someone\012From: someone@far\012Newsgroups: junk\012Subject: via newsrun\012Message-ID: <7@far>\012Date: 23 Sep 1990 10:00:00 GMT\012\012unix line endings\012' > /h0/SPOOL/CNEWS/in.coming/1
+run     /dd/CMDS/NEWS/newsrun -v
+run     /dd/CMDS/cat /h0/SPOOL/CNEWS/junk/*
+run     /dd/CMDS/ls /h0/SPOOL/CNEWS/in.coming
+expect  Processsing `1' done
+expect  Path: osk!far!someone
+expect  unix line endings
+absent  can't execute

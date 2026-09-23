@@ -552,6 +552,45 @@ run     clear
 run     relaynews -n < article; relaynews -n < article
 wait    6
 
+shot    newsrun
+fresh
+cap     Files the batches waiting in C News's in.coming directory: each is
+cap     uncompressed if it needs it, given OS-9 line endings by trlf, handed
+cap     to relaynews and removed.  -v reports each name it meets.  This one
+cap     came from a Unix site, LF-terminated, and is filed in junk.
+try     newsrun -v; cat junk/1
+run     set +H
+run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /h0/SPOOL/CNEWS/in.coming/bad > /nil 2>/nil
+run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/SPOOL/CNEWS/in.coming/1 /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+run     printf '' > /h0/USR/LIB/CNEWS/history
+run     builtin cd /h0/USR/LIB/CNEWS
+run     dbz history
+run     builtin cd /h0/SPOOL/CNEWS
+run     printf 'Path: far!someone\012From: someone@far\012Newsgroups: junk\012Subject: from a Unix site\012Message-ID: <7@far>\012Date: 23 Sep 1990 10:00:00 GMT\012\012filed by newsrun\012' > in.coming/1
+run     load /h1/CMDS/shell
+run     load /dd/CMDS/NEWS/trlf
+wait    3
+run     clear
+run     newsrun -v; cat junk/1
+wait    8
+
+shot    trlf
+cap     Turns LF line endings into OS-9's CR, which is what newsrun needs
+cap     of a batch from a Unix site.  A file is converted in place; -s
+cap     reads standard input and writes standard output.  The dumps show
+cap     the 0A bytes before and the 0D bytes after.
+try     trlf unix
+run     rm -rf /dd/tmp/TRL > /nil 2>/nil
+run     mkdir -p /dd/tmp/TRL
+run     builtin cd /dd/tmp/TRL
+run     printf 'from a\012Unix site\012' > unix
+wait    2
+run     clear
+run     dump unix; trlf unix; dump unix
+wait    4
+
 shot    Pnews
 cap     Posts an article to C News.  Bare it asks for the distribution,
 cap     newsgroup and subject; -h names a file that already has its

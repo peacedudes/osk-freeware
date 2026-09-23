@@ -1,6 +1,6 @@
 # What is on this disk
 
-1058 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **739 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1060 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **741 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 112 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -785,7 +785,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>112 programs</summary>
+<details><summary>114 programs</summary>
 
 **File transfer**
 
@@ -856,6 +856,7 @@
 | `newsetup` | writes a .newsrc for rn from the groups in the active file, each marked unsubscribed until you choose.  rn runs it for a newcomer, through your own OS-9's `shell'; run directly it needs nothing<br>**How:** Writes a .newsrc for rn from the groups in the active file, each marked unsubscribed; it needs nothing else. rn runs it for you when there is no .newsrc, and that route goes through your own OS-9's `shell'. |
 | `newshist` | &#9733; looks message-ids up in the news history and reports what it finds, or that there is no entry for them: `newshist "<id@site>" ...'. -df names a history file other than the system's<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
 | `newslock` | &#9733; the news system's lock: `newslock <tempname> <lockname>' makes the lock by linking one name to the other -- blarslib's link(), which writes the second directory entry itself, since RBF has no hard links.  It returns 0 and both names share one file, link count 2 (measured 2026-09-23). relaynews uses a copying link() instead; see SRC/cnews/README.OSK<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
+| `newsrun` | runs the batches waiting in SPOOL/CNEWS/in.coming through relaynews, one by one: uncompresses one that is compressed, turns its line endings into CR with trlf, and removes it once filed -- a refused batch goes to in.coming/bad.  `newsrun -v' says what it does with each.  It runs trlf and compress through your own OS-9's `shell', so load trlf first<br>**How:** Files the batches waiting in SPOOL/CNEWS/in.coming through relaynews and removes each once filed. It runs `compress -d' and `trlf' through your own OS-9's `shell', so `load /dd/CMDS/NEWS/trlf' first; relaynews it runs by its full path. `newsrun -v' names each file and what became of it. |
 | `nn` | the nn newsreader, release 6.3.10: a full-screen menu of the unread articles in each group, read by subject, with threads, kill files and online help (`?').  `nn <group>' opens one group; it reads the database nnmaster keeps<br>**How:** The nn newsreader. Needs `setup' run and nn's database built (`nnmaster -I', answering OK, then `nnmaster'); then `nn <group>'. Space reads on, `?' is help, `q' quits. Its first run makes .nn in your home directory with `makdir' through your own OS-9's `shell'; with neither resident it opens but keeps no place. |
 | `nnadmin` | looks inside nn's database and log, checks it, and tells a running nnmaster what to do<br>**How:** Looks inside nn's database; it needs nnmaster to have built one. |
 | `nnaux` | the helper nn runs to post, follow up or reply: it collects the article and hands it to inews<br>**How:** nn's helper for posting and replying; nn runs it. |
@@ -869,6 +870,7 @@
 | `rnews` | &#9733; unpacks a batch of articles received from another site and hands each to inews -- by bare name, so `load' inews first, or it repeats `Can't execute 'inews'' for ever.  A compressed (`cunbatch') batch goes through a module named `uncompress' under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>**How:** Two programs, one name (DOC/README-NEWS). MNews's (CMDS/MNEWS): run `setup', then `load /dd/CMDS/MNEWS/inews' first -- it forks inews by bare name and without it repeats `Can't execute 'inews'' for ever; a `#! cunbatch' batch needs a module named `uncompress'. UUCPbb's (CMDS/UUCP): `rnews <batch>' files each article under SPOOL/news. |
 | `sbatch` | collects the articles waiting for a neighbouring site into batches to send it: `sbatch <system>', -c to compress.  It forks uux by bare name, so `load' UUCP's uux first<br>**How:** Batches the articles waiting for a neighbour: `sbatch <system>'. Sys in USR/LIB/NEWS names the neighbours; this disk's names none. It forks `uux' by bare name, so `load /dd/CMDS/UUCP/uux' first or it stops with `Can't fork 'uux ...' (errno = 221)'. |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |
+| `trlf` | turns LF into CR, for newsrun: `trlf <file>' converts the file in place, `trlf -s' standard input to standard output.  A file already in OS-9's form is unchanged.  Written for this disk<br>`Syntax:   trlf -s  \|  trlf <file> ...` |
 | `unsubscribe` | &#9733; drops a newsgroup from your subscription list: `!' replaces `:' in /dd/.newsrc. For a group that is already off it prints `Newsgroup 684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%'<br>`unsubscribe: unsubscribe from Usenet newsgroup(s)` |
 
 **TCP/IP**
