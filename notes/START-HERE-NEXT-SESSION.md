@@ -343,11 +343,12 @@ should never have been there:
 now shows a real event with its value, `eset spoolqueue 42' shows the
 value change 0 -> 42 between two listings, and `eunlink spoolqueue' shows
 it present and then gone.  Four cards, from one program nobody had
-started.  `lpq', `lpshut' and `lp' STILL all answer "no spooler
-installed" with all of that running, and that is recorded as
-unestablished -- there is no source on the disk for any of the three.
-`disk/SPL/README' said "whatever builds `spoolqueue' is not on this
-disk"; it does now say otherwise.
+started.  `lpq', `lpshut' and `lp' then still answered "no spooler
+installed" with all of that running -- until os9exec b5da6df
+(2026-09-23), whose F$DatMod makes a Data-type module: the clients
+modlink() the queue by that type (SRC/eff_lp/lpq.c, line 39), and now
+`lp' queues, `lpq' lists and `lpshut' stops it.  DOC/STATUS and
+`disk/SPL/README' carry the measurement.
 
 **A NEW SHEET DIRECTIVE, `fresh'.** It ends the emulator session after a
 stanza, for a stanza that leaves something RESIDENT the next one would

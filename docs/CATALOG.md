@@ -873,7 +873,7 @@
 |---|---|
 | `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
-| `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With no server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach<br>**How:** Sets the clock from a network time server. |
+| `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With no server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach, and it loads Microware's `netdb' module to look an address up, even a dotted number -- your own networking supplies it<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
 | `nslookup` | BIND 4.8.3's name server lookup: `nslookup <host>' asks the server for a name's addresses, and run bare it takes queries at its own prompt.  It reads the server's address from resolv.conf at the root of /h0 (an example is in DOC/bind) and wants Microware's ISP networking under it<br>**How:** Looks a host name up in the domain name system: `nslookup <host>', or bare for its own prompt. It reads the server from resolv.conf at the root of /h0 -- DOC/bind/resolv.conf is an example to copy there -- and needs Microware's ISP networking. Here it reads that file, names the server it found, and stops at the socket. |
 | `nsquery` | BIND 4.8.3's small resolver test: `nsquery <host> [server]' prints a host's names and addresses.  Same resolv.conf, same networking as nslookup<br>**How:** `nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line. |
@@ -1810,7 +1810,7 @@
 | `colortest` | &#9733; reports how G-Windows has its colour look-up table set up. At a terminal it says so and stops -- it wants the /win device, which is the G-Windows display<br>`colortest` |
 | `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
 | `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
-| `lfmaker` | makes a G-Windows launch file. It asks the allocator for an address as if it were a length, so the request is refused: `2470464192-byte request refused, 32682944 bytes free'. The number moves with the environment, which is what identifies it as an address. It happens only once the module is already resident: run it bare first, then with an argument |
+| `lfmaker` | makes a G-Windows launch file.  Before anything else it asks its terminal for a G-Windows setstat, so run it on a G-Windows screen; on a terminal without one it is told E$UnkSvc and stops there in silence, with status 208 |
 | `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  It is here for a real OS-9 workstation that has G-Windows |
 | `scriptmaster` | &#9733; G-Windows scripting tool |
 
@@ -1842,7 +1842,7 @@
 | `lpsched` | &#9733; starts the lp print spooler on a printer device; -r restarts it<br>`Syntax: lpsched [-r] {<devname>}` |
 | `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
 | `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
-| `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when its queue is empty: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |
+| `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when it is not running: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |
 
 </details>
 
