@@ -489,49 +489,45 @@ gives it a pty, and that is the one to believe.
 > `booz` wanted a bare letter and not `-l`. Check the invocation before you
 > write the program off, and write down what the right one is.
 
-### 1. Module-name collisions — the five in REBUILT are done, 27 names remain
+### 1. Module-name collisions — DONE; every duplicate left is deliberate
 
-Done 2026-08-31: `CMDS/REBUILT/{arc,compress,kermit,screen,VI}` are now
-`arc_5.12`, `compress_rebuilt`, `kermit_cio` (since dropped as a duplicate,
-2026-09-12), `screen_nocio` and `vi_1.0`,
-file and module together, with `tools/rename_module.py`. `bush` also left the
-disk (a countdown to the end of a 1989 administration). `makeinfo` and
-`gnuchess` are NOT done.
+Re-measured 2026-09-23: **11 module names over 25 files**, every one listed
+with its reason in `tools/module-name-duplicates.txt`, and `one module name,
+one file` is green. This section used to say "27 names remain" and listed an
+alternates batch as next; that batch landed on 2026-08-31 in `d0171a7b`.
 
-**The measurement that mattered.** The plan used to say "ten names in two
-directories, eight sharing a module name". Measured per FILE rather than per
-name, it is **32 module names over 76 files**. The five above were the ones
-the decision covered; the rest fall into three groups:
+- **Renamed** (file and module together, `tools/rename_module.py`):
+  `REBUILT/{arc_5.12,compress_rebuilt,screen_nocio,vi_1.0}` (2026-08-31);
+  then 25 alternates made to answer to the filename they already had --
+  `compress_4.0`, `diff_1.1`, `m4_0.5`, `sed_1.06`, `zoo_2.1`, six `gzip*`,
+  `vi.elvis`, `ctags.elvis`, `input.elvis` (now `elvis_input`), the four
+  `*.070`, `kermit2`, `ephem881`, `infocom.tcap`, `lnk.org`, and `wc.cio`,
+  `vi_cio`, `emacs.mm1`, which have since left the disk.
+- **Kept, with a reason each:** `csl`/`math` (trap libraries linked BY
+  name), `msdrv` (a descriptor binds a driver by name), the gcc passes and
+  drivers (forked by filename; do not load both toolchains), `gnuchess`
+  (two ports, the book one is first on PATH), `rnews` (UUCP asks for it by
+  that name).
+- `makeinfo`: one copy now. `wish`: one copy now (`hackwish` is distinct).
 
-- **Must not be renamed.** `csl`/`csl020` and `math`/`math881` are Microware
-  trap libraries: a program links them BY NAME, and the second of each pair
-  exists to answer to that name on another CPU. `MM1/msdrv.901_340` and
-  `msdrv_340.901.ms` are two editions of one driver, bound by a descriptor.
-- **The gcc passes.** `gcc_cc1plus`, `gpp_cc1plus` and `GCC2/cc1plus` are all
-  module `cc1plus`, and the same for `cccp2`, `collect` and `cc2`. They are
-  forked by FILENAME, so a compiler run is not misdirected; it is still a
-  reason not to load both compilers. Documented in `DOC/STATUS`, not changed.
-- **Alternates whose filename is already distinct but whose module is not** —
-  about 25 files: `compress_4.0`, `diff_1.1`, `m4_0.5`, `sed_1.06`, `zoo_2.1`,
-  the six `gzip*`, `vi.elvis`, `ctags.elvis`, `input.elvis`, `wc.cio`,
-  `vi_cio`, `kermit2`, the four `*.070` jpeg tools, `emacs.mm1`, `ephem881`,
-  `infocom.tcap`, `lnk.org`. Making each module match the filename it already
-  has takes nothing away from the archive and is the obvious next batch.
+**argv[0] is the word TYPED, in every shell -- measured 2026-09-23** with a
+probe built as FILE `fileprobe`, MODULE `modtag`, on a pty, os9exec
+`b5da6df`:
 
-  **One hazard, found before it bit.** Elvis's wrappers pick their personality
-  from the LAST LETTER of `argv[0]` — `alias.c` maps `w`→`-R` (view),
-  `t`→`-i` (input), anything else→plain vi. If `argv[0]` comes from the module
-  name rather than the filename, renaming `input.elvis`'s module from `input`
-  to `input.elvis` ends the letter on `s` and turns it into plain vi. **Measure
-  which one OS-9 passes before renaming those three.** `input.elvis` is the
-  discriminating test: its file already ends in `s` and its module in `t`.
+    typed                 bash            ksh             Microware shell
+    /h5/fileprobe A       /h5/fileprobe   /h5/fileprobe   /h5/fileprobe
+    fileprobe (PATH/chx)  fileprobe       fileprobe       fileprobe
+    ./fileprobe           ./fileprobe     ./fileprobe     --
+    load; modtag          modtag          modtag          modtag
 
-Still open from the original decision: `makeinfo` (`CMDS` and `GCC139` are
-BYTE-IDENTICAL — delete the GCC139 copy) and `gnuchess` (`CMDS` and `GAMES`
-are different ports; the CMDS one has siblings `gnuchessn` and `gnuchessr` and
-shares their `-x xwndw` usage line, so `gnuchessx` would keep that family
-together while leaving GAMES the plain name). `wish` collides by filename
-only — `wish` against `B_wish` — and is lowest priority.
+The header name reaches argv[0] only when you TYPE it, running a resident
+module. So a module named after its file gives the same last letter either
+way, and elvis's `w`/`t` personality test (`alias.c`) is decided by the
+filename -- which is why `input.elvis` (ends `s`) never opened in insert
+mode and `elvis_input` does (`tools/playtests/elvis_input.keys`).
+`rename_module.py` re-checked on copies the same day: `ident` reports good
+CRC and parity, `module_census` shows the new name, and the renamed probe
+loads and runs by it.
 
 ### 1a. Gallery cards that show nothing but a usage line — 27 left of 31 found
 
