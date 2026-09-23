@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
 
 def stage_reader_load(h1):
-    """Put the reader's own load, unlink, shell, qsort, touch in <h1>/CMDS, from $OS9SDK.
+    """Put the reader's own load, unlink and a few more in <h1>/CMDS, from $OS9SDK.
 
     The collection ships no `load': the clean-room one written for it was
     withheld on 2026-09-22 and then deleted on rdoggett's word, because a
@@ -97,11 +97,14 @@ def stage_reader_load(h1):
     # stays resident at link count 0 -- as on a real OS-9 -- and answers for
     # a second file of the same module name run later in the same session.
     # `/h1/CMDS/unlink <name>' between them is what a case does about it.
-    # `shell', `qsort' and `touch' (2026-09-23): nnmaster, v7make and creadoc
-    # fork the reader's shell, nnmaster -I sorts with qsort, and nncheck's
-    # first run touches .nn/rc, so no case could reach them without.  A
-    # family that wants one says `load /h1/CMDS/shell', as SYS/login does.
-    for name in ("load", "unlink", "shell", "qsort", "touch"):
+    # `shell', `qsort', `touch', `dir' and `del' (2026-09-23): nnmaster,
+    # v7make and creadoc fork the reader's shell, nnmaster -I sorts with
+    # qsort, nncheck's first run touches .nn/rc, and creadoc reads the
+    # listing of Microware's dir and clears with del -- no case could reach
+    # them without.  A family that wants one says `load /h1/CMDS/shell', as
+    # SYS/login does.  Staging never makes one resident: the disk has a
+    # `dir' of its own, and only a family that loads the reader's gets it.
+    for name in ("load", "unlink", "shell", "qsort", "touch", "dir", "del"):
         src = os.path.join(sdk, "CMDS", name) if sdk else ""
         # TAKE THE OLD ONE AWAY FIRST.  The work directory survives between
         # runs, so a `load' staged by an earlier run with $OS9SDK set was

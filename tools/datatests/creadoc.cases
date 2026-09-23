@@ -1,0 +1,23 @@
+family  creadoc
+# creadoc lists the .f files through the reader's own `dir -eadu', reading
+# each name from column 54 where Microware's dir puts it, and clears its
+# temporary with the reader's `del'.  Its own family, because a resident
+# Microware `dir' answers in place of this disk's own for the rest of the
+# session.  It needs the RTF run-time, os9lib, resident as well.
+
+setup   W=/dd/tmp/CRT
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W
+
+# DOC/rtf/biory.doc is creadoc's output for biory.f, as it shipped.
+case    creadoc-writes-the-header-biory-doc-was-made-from
+load    /dd/CMDS/os9lib
+load    /h1/CMDS/shell
+load    /h1/CMDS/dir
+load    /h1/CMDS/del
+run     /dd/CMDS/cp /dd/SRC/rtf/biory.f $W/biory.f
+run     builtin cd $W
+run     /dd/CMDS/creadoc
+run     /dd/CMDS/diff creadoc.txt /dd/DOC/rtf/biory.doc && echo same-as-biory-doc
+expect  Processing file biory.f
+expect  same-as-biory-doc
