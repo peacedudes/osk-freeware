@@ -545,3 +545,103 @@ member, Info-ZIP's `zipinfo`, is ALREADY on the disk.
 Worth knowing for future mining: **bash reports an I-code module as
 `cannot execute binary file`**, which reads like a corrupt binary and is
 not.  Check `M$Lang` at header offset 0x13 before believing it.
+
+### BIND 4.8.3 -- `nslookup' and `nsquery' worth taking, `checksoa' is a terms question
+
+`ftp/mw/OSK_NETWORK_ISP/bind.4.8.3.lzh`, 189 files, ported by Andrzej
+Kotanski (Cracow, 23 September 1994) with gcc2 2.5.8 under OS-9 2.4 and
+Microware ISP 1.3.  Pass 1 never opened this archive, so these were run for
+the first time on 2026-09-23.  Binaries AND the whole source tree with the
+OSK changes marked `#ifdef OSK`, plus nine man pages.
+
+`nslookup` 85,744, `nsquery` 30,708, `checksoa` 32,520; module name equals
+filename in all three.
+
+**Terms: 4-clause Berkeley, advertising clause PRESENT**, on 95 files, and
+condition (2) binds us -- shipping the binaries obliges the disk to display
+"This product includes software developed by the University of California,
+Berkeley and its contributors" in its documentation.  Cheap, but it has to
+be written into SOURCES.txt, not merely noted.
+
+**`checksoa` carries NO notice of any kind.**  It is the example code from
+Albitz and Liu's "DNS and BIND" (O'Reilly, 1992) -- `EXAMPLES/Readme` says
+so and a diff against `EXAMPLES/ch13.check_soa.c` is three include swaps and
+an event block.  Unattributed example code from a copyrighted book with two
+named authors is the "real question" shape, not the "unattributed but
+public" shape.  Held for rdoggett.
+
+All three RUN and fail fast with a message naming the cause: they open
+`/h0/resolv.conf` (compiled in, and parsed correctly -- `nslookup` echoes
+the nameserver back), then `/socket` once, then exit.  No hang, no loop.
+The port is TCP-only by Kotanski's own admission.
+
+`RES/select.c` -- a `select()` that works on SOCKMAN paths, built from the
+Munich TOP group's PD implementation -- is the scarcest thing in the archive
+and belongs in `SRC/` whatever is decided about the binaries.
+
+Two defects, both the porter's, neither os9exec's: `nsquery.c` copies a
+12-byte template into `char evname[10]`, and `nslookup` still looks for its
+help at `/usr/share/misc/nslookup.help`, a path the port never patched.
+
+**A SECOND, INDEPENDENT SIGHTING OF THE `/socket` GAP.**  This agent and the
+`ttcp` one reached the same place from different archives, and it is worth
+recording that os9exec ALREADY CARRIES a built-in `socket` descriptor
+(`modstuff.c`, names `sockdvr`/`sockman`/`socket`) which `F$Link` can find
+and which `I$Open("/socket")` never reaches.  Its caveat is also worth
+keeping: the SDK's own `socket.l` opens `/ip0#1/tcp0` where this generation
+of `socklib.l` opens `/socket`, so widening the prefix test may only move
+the failure -- two generations of Microware networking, possibly two
+protocols.  Four programs want it: `ttcp`, `nslookup`, `nsquery` and the
+SHIPPED `CMDS/WN/inetd`.
+
+### The six small candidates
+
+**`strcmp' -- TAKEN, 2026-09-23.**  `SHELLS/sh75.lzh`, 6,250 bytes, and it
+is the fourth of a set of which three already ship: the disk's `basename` is
+BYTE-IDENTICAL to that archive's copy, so they came from here.  Same terms,
+already quoted in SOURCES.txt for its siblings.  It is `test` for strings,
+with `ct` (contains) and `bw` (begins with), which a shell's own test has no
+operator for.  **Measured cio-less: it DOES need cio**, so it is starred and
+in the grid, which is now All 315.  **Its own manual is wrong**: it says a
+parameter error returns 4, and it returns 0.
+**This corrects the row above** that lumped `strcmp` in with "library and
+test fragments, not programs" -- it is a program, with a manual and a demo
+script.
+
+**The WN CGI samples -- worth taking, four of five.**  `TELECOM/wn2.zip`,
+the OSK release: `counter`, `envi`, `doform.cgi`, `sample.cgi`, all with C
+source, all under WN 1.14.3's GPL which this disk already carries.  They
+were served for real through the disk's own `wn`, including a server-side
+include whose counter increments across requests.  **`qr.cgi` is NOT clean**
+-- "Copyright (C) 1996 Eugene Eric Kim / All Rights Reserved", built against
+a cgihtml library whose source and licence are not in the archive.  Take
+`EXAMPLES/counter` (1,638), not `COUNTER/counter` (1,992): the latter emits
+an `<img>` per digit and those GIFs are not in the archive.  Two traps when
+carding: `counter.data` must ship PUBLICLY WRITABLE or it fails, and
+`COUNTER/index` carries the porter's email address, which would be published
+verbatim in a served page.
+
+**`UAC_view' -- works, and is the best thing in the batch, but has NO
+terms.**  `CMDS/uac_tar.z`, 124,206 bytes, plus 15 real data files (~470 KB)
+from a live 1996 OS-9/68040 VMEbus machine.  Driven on a pty it draws a full
+VT100 review screen -- site `BVM4000`, 15 sessions, 116 processes, free
+memory at startup, CPU type -- with menus for the process dependency tree,
+hardware exceptions, interrupt and I/O monitoring.  Down a pipe it draws but
+never sees `Q` (the known getc-in-raw-mode shape, not a defect).  No
+copyright anywhere, author "P. Enlund"; published on Microware's own public
+hobbyist archive.  The data holds no people's names.  **The no-terms
+question is rdoggett's.**  This corrects the row above rejecting it as "a
+private system's data viewer" -- that was decided without running it.
+
+**REJECTED: `isofont'** -- not a program but a data module (an ISO 8859/1
+screen font), derived from a font "supplied with OS-9" on Cumana's Atari ST
+product, loaded by a `setscreen` this disk has not got.  **`dsw'** --
+"Copyright (C) 1994 by OS-9 International and Marc Balmer ... All rights
+reserved", plus EFFO's "personal use only" disclaimer.  **`j'** -- a joke
+program, same magazine's copyright, whose own usage line says it "does not
+provide any meaningful user-accessible functionality".
+
+**A pool defect worth knowing**: `usenet/decoded/isofont-cumana-1991__isofont.Z`
+is 3,116 bytes where the posting's own `size` line says 3,086, and a clean
+re-decode gives exactly 3,086.  That is the shar off-by-one trap, so
+anything else in `decoded/` should be re-checked against its size line.
