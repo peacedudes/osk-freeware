@@ -131,12 +131,10 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    SRC/ls/os9stubs.c (c2ac8f3f); gtar, browse and nn link the same stat
    and would record or compare owner 0 -- not fixed, not yet seen to
    matter.  `dir -e' is the owner truth.
-2. **When docs/try is next synced from os9exec (c337765 or later):** its
-   `?run=' TYPES the command and the reader presses Enter -- a link must
-   never run something against the reader's own /h1.  Change the card
-   link in tools/catalog.template.html (runItHTML) from "Run it in your
-   browser" to say the command is typed and Enter runs it, in the same
-   commit as the new page, not before.
+2. **docs/try synced from os9exec d992145 (2026-09-23)**: `?run=' types
+   and the reader presses Enter, and the card link says so.  Our one edit
+   to os9exec's page -- forget `run' from the address once typed -- is
+   carried across by hand; do that again at every sync.
    **Socket programs -- os9exec is building a /socket front end.**  ttcp,
    nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
    When os9exec sends the commit: pin it, re-run their cards, and take a

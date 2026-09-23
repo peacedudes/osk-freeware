@@ -364,7 +364,7 @@ function runItHTML(shot){
   const cmd = os9 ? 'shell "'+shot.os9.replace(/"/g, '\\"')+'"' : shot.try;
   const h1 = shot.tc==="h1" || !!os9;
   const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"");
-  return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Run it in your browser</a>`+
+  return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Try it in your browser</a> &mdash; the command is typed for you; press Enter to run it`+
     (h1?` &mdash; needs your own OS-9 attached as /h1`:"")+`</p>`;
 }
 function tryFor(shot){
