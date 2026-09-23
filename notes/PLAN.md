@@ -805,8 +805,9 @@ called MacPack, xyt has no ZMODEM, hotel is for two OR MORE and plays
 tiles by number, oleo RUNS (fixed 2026-09-11, the entry never caught up),
 setime2 counts years from 1900, sh is version 2.1 edition 75 and not
 "Bourne shell v7.5", umacs has keyboard macros, and btop, vlen,
-infocom.tcap and wn had a wrong detail each.  NOT settled: mw's `n builds
-a wall' -- no source and no string for it; it wants a play session.
+infocom.tcap and wn had a wrong detail each.  mw's `n builds a wall' was
+questioned (no string for it) and a play session settled it: `n' puts a
+`[]' block square in front of the player.  The entry was right.
 
 ### 5. Housekeeping
 
