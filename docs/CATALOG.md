@@ -1,6 +1,6 @@
 # What is on this disk
 
-1040 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **721 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1041 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **722 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 118 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 119 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -1432,7 +1432,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>118 programs</summary>
+<details><summary>119 programs</summary>
 
 **Devices & disks**
 
@@ -1517,6 +1517,7 @@
 | `signal` | &#9733; sends a signal to a process by number, and can wait first: `signal <pid> <code> [<seconds>]' delays that many seconds and then sends it. Code 0 ends the process; sent to an id nothing holds it answers 228. Run a program with `&' and bash prints the id it got in angle brackets. `snd_sig' beside it takes several processes at once and defaults to the wake signal<br>`Syntax: signal <process-id> <signal-code> [<seconds>]` |
 | `time` | times a program: it runs the command you give it and then prints how long that took -- real, user and system time. `time wc <file>'.  EFFO submission, revision 6 |
 | `top` | show the busiest processes by their share of the CPU, refreshed every few seconds: `top' lists only those that have used any, `top -a' lists them all, and `top <seconds>' sets how often.  Interrupt to leave. `aprocs' is the other process lister here<br>`Syntax: top [<opts>] [<num>]` |
+| `UAC_view` | reviews what a UAC system monitor recorded on an OS-9 machine: sessions, the processes each one ran, exceptions and I/O, on full-screen pages with a menu at the foot.  UAC holds fifteen sessions from a 68040 VMEbus system in January 1996; `cd /dd/UAC' and `UAC_view -w=DATA' with PORT naming your terminal.  Arrow keys choose, the letters shown pick a page, Q leaves<br>**How:** Full-screen, and it wants PORT set to your terminal (`/term'). From the UAC directory, `UAC_view -w=DATA' opens the session directory for the fifteen recorded sessions: arrow keys choose one, S opens it, D its process pages, Q goes back and quits. |
 | `vis` | run a command over and over and refresh the screen with its output -- what `watch' does on other systems: `vis {opts} <command> <args>'.  Not the Unix `vis' that makes non-printing characters visible<br>`vis: illegal option -- ?` |
 | `who` | 'who is logged in'.  Written in Microware shell syntax |
 

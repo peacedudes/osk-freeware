@@ -176,6 +176,7 @@ msntp|Sets the clock from a network time server.
 ttcp|Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <host>' on the other, and it times a megabyte going across. It needs Microware's ISP networking under it; run bare, it prints its full usage.
 nslookup|Looks a host name up in the domain name system: `nslookup <host>', or bare for its own prompt. It reads the server from resolv.conf at the root of /h0 -- DOC/bind/resolv.conf is an example to copy there -- and needs Microware's ISP networking. Here it reads that file, names the server it found, and stops at the socket.
 nsquery|`nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line.
+UAC_view|Full-screen, and it wants PORT set to your terminal (`/term'). From the UAC directory, `UAC_view -w=DATA' opens the session directory for the fifteen recorded sessions: arrow keys choose one, S opens it, D its process pages, Q goes back and quits.
 umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set.
 em|A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare.
 ask|The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20.

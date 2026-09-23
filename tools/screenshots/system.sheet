@@ -472,6 +472,22 @@ run     top -a 3
 wait    12
 snap
 kill
+
+shot    UAC_view
+size    24 80
+cap     The session directory a UAC system monitor kept on a 68040 VMEbus
+cap     machine in January 1996: when each session ran, how many processes
+cap     it started and how many errors it logged.  The highlighted one opens
+cap     its process pages; Q quits.  Run it in the UAC directory, with
+cap     PORT naming your terminal.
+try     PORT=/term UAC_view -w=DATA
+os9     setenv PORT /term; UAC_view -w=DATA
+run     cd UAC
+run     clear
+run     PORT=/term UAC_view -w=DATA
+wait    6
+snap
+quit    Q
 shot    tty
 for     tty vecho lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin

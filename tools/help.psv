@@ -168,6 +168,7 @@ msntp|none|it takes the address of a time server and no help flag
 ttcp|ttcp|
 nslookup|none|it takes a host name or runs its own prompt; its `help' command wants a file at a Unix path, and DOC/bind/nslookup.help is that file
 nsquery|nsquery|
+UAC_view|UAC_view -?|
 atp|none|it takes no options: it reads atprc or .atprc from the data directory
 infoxpress|none|it takes no options: it opens its serial device and waits for the host
 uucp|uucp -?|

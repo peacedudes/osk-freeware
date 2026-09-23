@@ -1,4 +1,4 @@
-# system6 -- two system tools that had no case (2026-09-14): a 68000
+# system6 -- system tools that had no case (2026-09-14, UAC_view 2026-09-23): a 68000
 # disassembler run over a module on the disk, and mtools' bad-block scan
 # run over the FAT floppy image in /dd/DOS.
 
@@ -44,3 +44,15 @@ case    bash-version-fits-its-buffer
 # out on 2026-09-22; this asserts it is still out.
 run     echo "[$BASH_VERSION]"
 expect  [    1.12.12]
+
+# UAC_view: its options, and that it names PORT when PORT is not set.
+# The review pages themselves are on its card; a case cannot drive them,
+# because down a pipe it draws the directory and then never sees a key.
+case    UAC_view-lists-its-options
+run     /dd/CMDS/UAC_view -? < /nil
+expect  Utility program to access data files produced by UAC system monitor software.
+expect  -w=<Alternative Data Directory>
+
+case    UAC_view-says-when-PORT-is-not-set
+run     unset PORT; /dd/CMDS/UAC_view -w=/dd/UAC/DATA < /nil
+expect  Environment variable PORT undefined

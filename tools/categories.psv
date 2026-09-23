@@ -549,6 +549,7 @@ dpark|System & modules|Devices & disks
 launch|System & modules|Processes & memory
 signal|System & modules|Processes & memory
 top|System & modules|Processes & memory
+UAC_view|System & modules|Processes & memory
 who|System & modules|Processes & memory
 cron|System & modules|Scheduling
 clock|System & modules|System state

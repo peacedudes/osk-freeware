@@ -1,0 +1,9 @@
+$ UAC_view -?
+UAC_view [options]
+Utility program to access data files produced by UAC system monitor software.
+Options:
+	-c <Load the Current UAC session directly>
+	-p=<OS9 Print device name> (default is to UAC/LOG directory)
+	-w=<Alternative Data Directory> (default is current working UAC directory)
+	-t=<number of lines in terminal window> (default is #li from termcap entry)
+	-? This message
