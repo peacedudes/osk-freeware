@@ -1042,8 +1042,10 @@ wait    14
 snap
 
 shot    hotel
-cap     hotel, a two-player board game played by coordinates.  It asks how
-cap     many are playing and then draws the board.
+cap     hotel, a hotel-chain board game in the manner of Acquire: it asks
+cap     how many are playing -- two here -- and draws the board, the
+cap     numbered tiles in hand and the seven chains' shares.  Each turn
+cap     you play a tile by its number.
 try     hotel
 run     hotel
 wait    5
