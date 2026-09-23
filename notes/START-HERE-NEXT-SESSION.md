@@ -18,6 +18,30 @@ three pieces (os9exec, this collection, the Claude skills) and plans to push
 around the end of the month.  He is holding the os9exec tag until the mining
 below is finished, because unfamiliar binaries are what find emulator bugs.
 
+## What backs the three claims in your letter
+
+  * **"no Microware code apart from the runtime modules you ok'd, as well
+    as fpu ... unchanged".**  Checked 2026-09-22: exactly five modules ship
+    (cio, csl, csl020, math, math881), plus `fpu' -- 12,724 bytes, md5
+    3f5b0760, the copy its own notice travels with, with DOC/fpu.doc beside
+    it.  `fpu040' and `cio020' are not on the disk, and no Microware
+    utility, header, library or compiler is.  **That closes item 30: the
+    granted copy is what ships, unchanged.**  The one program NAMED for a
+    Microware utility -- the clean-room `load' the os9exec project wrote --
+    was deleted on your word, so nothing here is even a rewrite of theirs.
+    DOC/ORIGINS now carries a row for every file under CMDS.
+  * **"making sure things run and the sources compile".**  Every program
+    has a card taken by running it; the suite is 875 of 875, twice, on a
+    fresh image; 573 of the 771 programs whose source is here are built by
+    a recipe.  Mining pass 1 is closing the gaps in that: `gawk' shipped
+    with the WRONG version's source (2.00 Beta against a 2.11 binary) until
+    today, and `proff' could not be rebuilt at all until `ltb' and its
+    symbol file came back.
+  * **"tried in a browser with no download or setup".**  The page runs the
+    whole disk, and every card knows whether it can run there and on what:
+    877 on the disk alone, 45 needing your own OS-9 attached as /h1, 37
+    that need hardware and say so instead of offering a button.
+
 ## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
 1. **Re-run the suite twice on a fresh image, then rebuild the two disks.**
@@ -78,17 +102,23 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
    `notes/AUDIT-pool.md' (2026-09-23) has the evidence for each.
 
      * **`ttcp'** -- public domain on Muuss and Slattery's own words, runs,
-       fails with a named error.  **Blocked only on FOR-RDOGGETT item 37**
-       (it statically links Microware's ISP `socklib.l'/`netdb.l').
+       fails with a named error.  **CLEARED TO SHIP 2026-09-23** (rdoggett:
+       ship it, and record the static link to Microware's ISP
+       `socklib.l'/`netdb.l' in SOURCES.txt; `CMDS/WN/inetd' is the
+       precedent).
      * **BIND 4.8.3's `nslookup' and `nsquery'** -- 4-clause Berkeley WITH
        the advertising clause, so taking them obliges the disk to print the
        Berkeley acknowledgement in its own documentation.  Same item 37
-       question about the ISP libraries.  `checksoa' is held: O'Reilly book
-       example code with no notice at all.  Whatever is decided about the
+       question about the ISP libraries -- **both CLEARED TO SHIP
+       2026-09-23**, with the Berkeley acknowledgement sentence to be
+       printed in the disk's own documentation as the licence requires.
+       **`checksoa' is OUT, decided 2026-09-23**: O'Reilly book example
+       code with no notice at all, and `nsquery' covers the same ground.  Whatever is decided about the
        binaries, `RES/select.c' -- a `select()' that works on SOCKMAN paths
        -- is worth having in `SRC/'.
      * **`UAC_view'** -- works beautifully on a pty, has NO terms at all.
-       Item 37.
+       **CLEARED TO SHIP 2026-09-23** (rdoggett: unattributed but plainly
+       published is the case the terms standard allows).  Needs a pty card.
      * **The WN CGI samples -- DONE, shipped 2026-09-23.**  `counter`,
        `doform.cgi`, `sample.cgi` with their C source, the pages they
        serve, and the `index`/`index.cache` WN needs, under

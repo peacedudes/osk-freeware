@@ -1,46 +1,19 @@
 # For rdoggett
 
-Things that need YOU -- nothing else. Anything decided leaves this file the
-same day. Numbers are cited from `notes/START-HERE-NEXT-SESSION.md` and stay
+Open questions ONLY. Anything decided leaves the same day; numbers are
 stable, so a gap means an answered question. The evidence for every item is
-in the handoff under the same name; this file is the asking.
-Updated 2026-09-22, after your letter to Allan.
+in `notes/START-HERE-NEXT-SESSION.md` under the same name -- this file is
+just the asking, and it is meant to stay short.
+Updated 2026-09-23.
 
-**Three need you: 1 (push, then pin), 36 (how the browser page gets onto
-Pages) and 28 (a wording question, one line either way).**  Everything else
-is answered.
+**Three need you: 1 (push, then pin), 36 (how the browser page reaches
+Pages) and 28 (a wording question, one line either way).**
 
-**Closed since you last read this:** 29 (your 1988 lines in the archives'
-own files stay; the SOURCES line naming you and Allan is gone, and the gate
-now catches the name, not just the username), 30 (`fpu' -- below), 31 (load
-your shell from /h1), 32 (the EFFO vi's helpers came off), 33 (bash
-patched), 34 (the `t' stub came off), 35 (`load' deleted, not just
-withheld).  Programs found and left out are catalogued for readers in
-DOC/README-NOT-SHIPPED.
-
-## What backs the three claims in your letter
-
-  * **"no Microware code apart from the runtime modules you ok'd, as well
-    as fpu ... unchanged".**  Checked 2026-09-22: exactly five modules ship
-    (cio, csl, csl020, math, math881), plus `fpu' -- 12,724 bytes, md5
-    3f5b0760, the copy its own notice travels with, with DOC/fpu.doc beside
-    it.  `fpu040' and `cio020' are not on the disk, and no Microware
-    utility, header, library or compiler is.  **That closes item 30: the
-    granted copy is what ships, unchanged.**  The one program NAMED for a
-    Microware utility -- the clean-room `load' the os9exec project wrote --
-    was deleted on your word, so nothing here is even a rewrite of theirs.
-    DOC/ORIGINS now carries a row for every file under CMDS.
-  * **"making sure things run and the sources compile".**  Every program
-    has a card taken by running it; the suite is 875 of 875, twice, on a
-    fresh image; 573 of the 771 programs whose source is here are built by
-    a recipe.  Mining pass 1 is closing the gaps in that: `gawk' shipped
-    with the WRONG version's source (2.00 Beta against a 2.11 binary) until
-    today, and `proff' could not be rebuilt at all until `ltb' and its
-    symbol file came back.
-  * **"tried in a browser with no download or setup".**  The page runs the
-    whole disk, and every card knows whether it can run there and on what:
-    877 on the disk alone, 45 needing your own OS-9 attached as /h1, 37
-    that need hardware and say so instead of offering a button.
+**Answered 2026-09-23 --** 37, the three licence calls from mining pass 2:
+ship `UAC_view', leave `checksoa' out, and ship `ttcp'/`nslookup'/`nsquery'
+with their static link to Microware's ISP libraries recorded in SOURCES.txt.
+Earlier: 29, 30, 31, 32, 33, 34, 35. Programs found and left out are
+catalogued for readers in DOC/README-NOT-SHIPPED.
 
 ## Yours alone
 
@@ -110,36 +83,6 @@ discouragement; two are about Microware's own files being deliberately
 absent, which is the respectful thing to say. Widening the FILE LIST is one
 line and safe; widening the PATTERNS would flag seven captions that are
 right. **Recommend: widen the list, leave the patterns.**
-
-**37. Three licence calls from mining pass 2, all the same shape.**
-Each is a program that WORKS and that I would otherwise have shipped; each
-has a terms question only you can settle. None is urgent and none blocks
-anything else.
-
-  * **`UAC_view'** -- a 124 KB system-analysis viewer with a 1996 snapshot
-    of a live OS-9/68040 VMEbus machine, and the most interesting single
-    find of the pass: on a terminal it draws sessions, a process dependency
-    tree, hardware exceptions, interrupt and I/O monitoring. **No copyright
-    anywhere**, author given only as "P. Enlund", published on Microware's
-    own public hobbyist archive. Same footing as the other no-notice archive
-    binaries already here, or not? **Recommend: ship it** -- unattributed
-    but plainly published, which is the case the terms standard allows.
-  * **`checksoa'** (BIND 4.8.3) -- carries no notice at all because it is
-    example code from Albitz and Liu's "DNS and BIND" (O'Reilly, 1992),
-    two named authors, a copyrighted book. **Recommend: leave it out** --
-    `nsquery` covers the same ground and has the Berkeley licence.
-  * **`ttcp', `nslookup', `nsquery'** -- these are clean (public domain and
-    4-clause Berkeley respectively), but all three statically link
-    Microware's `socklib.l`/`netdb.l` from the Internet Support Package.
-    The shipped `CMDS/WN/inetd` already does, so there is precedent, but
-    those are ISP PRODUCT libraries rather than the C library, which is one
-    step past the carve-out as CLAUDE.md words it. **Recommend: ship, and
-    say so in SOURCES.txt** -- but it is your call, not mine.
-
-Taking the Berkeley pair also obliges the disk to print, in its own
-documentation, "This product includes software developed by the University
-of California, Berkeley and its contributors". That is a licence condition,
-not a courtesy; it costs one sentence.
 
 ## Not a question, but you should know
 
