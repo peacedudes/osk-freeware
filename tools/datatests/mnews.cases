@@ -7,6 +7,8 @@ family  mnews
 # own `shell' and nn wants a terminal.
 
 setup   export PATH=/dd/CMDS/MNEWS:$PATH
+# nn's programs stop with `No HOME environment variable' without these.
+setup   export HOME=/dd USER=tester
 setup   W=/dd/tmp/MNT
 setup   /dd/CMDS/rm -rf $W /h0/SPOOL/MNEWS/comp /h0/SPOOL/MNEWS/control /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 setup   /dd/CMDS/rm -f /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
@@ -42,3 +44,24 @@ expect  Received 1 articles
 case    encode-and-decode-round-trip
 run     echo hello world | encode | decode
 expect  hello world
+
+# nnadmin takes its menu keys as an argument; C is the configuration.
+case    nnadmin-prints-where-nn-keeps-everything
+run     nnadmin C
+expect  BIN:  /h0/CMDS/MNEWS
+expect  NEWS: /h0/SPOOL/MNEWS
+
+# sbatch: a neighbour named in Sys gets the waiting article batched and
+# handed to uux -- which, like rnews's inews, is forked by bare name and so
+# has to be resident.  Sys is restored afterwards.
+case    sbatch-batches-an-article-for-a-neighbour
+load    /dd/CMDS/UUCP/uux
+run     /dd/CMDS/rm -f /h0/SPOOL/BATCH/nbr > /nil 2>/nil
+run     /dd/CMDS/cp /h0/USR/LIB/NEWS/Sys $W/sys.save
+run     echo 'nbr:.*:*' >> /h0/USR/LIB/NEWS/Sys
+run     /dd/CMDS/printf 'Newsgroups: junk\rSubject: onward\r\rbody\r' > $W/o
+run     inews -h < $W/o
+run     sbatch nbr 2>&1
+run     /dd/CMDS/cp $W/sys.save /h0/USR/LIB/NEWS/Sys
+expect  Spooling news for nbr
+expect  uux: Unknown Host 'nbr'
