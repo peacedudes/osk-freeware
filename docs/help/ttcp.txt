@@ -1,0 +1,13 @@
+$ ttcp
+Usage: ttcp -t [-options] host <in
+	-l##	length of bufs written to network (default 1024)
+	-s	source a pattern to network
+	-n##	number of bufs written to network (-s only, default 1024)
+	-p##	port number to send to (default 2000)
+	-u	use UDP instead of TCP
+Usage: ttcp -r [-options] >out
+	-l##	length of network read buf (default 1024)
+	-s	sink (discard) all data from network
+	-p##	port number to listen at (default 2000)
+	-B	Only output full blocks, as specified in -l## (for TAR)
+	-u	use UDP instead of TCP

@@ -19,6 +19,7 @@ trap|a trap handler, which only system state can install
 puzzle|a G-Windows program
 uucico|talks to a UUCP peer over a serial line
 msntp|sets the clock from a network time server
+ttcp|measures throughput between two networked machines
 blastem|XMODEM and YMODEM over a modem
 disable|switches off a serial port's monitor
 enable|switches on a serial port's monitor

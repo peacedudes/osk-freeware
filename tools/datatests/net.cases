@@ -37,6 +37,16 @@ run     /dd/CMDS/NETWORK/atp < /nil
 expect  Reading Configuration file...
 expect  Unable to open configuration file /dd/atprc or .atprc !
 
+# `ttcp' asserts its usage and nothing more.  Asked to receive it stops at
+# the socket today (E$MNF: this generation of Microware's socket library
+# opens /socket), but once the emulator answers /socket it would LISTEN,
+# and a case that waits for a peer is the msntp trap below.
+case    ttcp-prints-both-halves-of-its-usage
+run     /dd/CMDS/NETWORK/ttcp < /nil
+expect  Usage: ttcp -t [-options] host <in
+expect  Usage: ttcp -r [-options] >out
+expect  use UDP instead of TCP
+
 # `msntp' IS DELIBERATELY NOT A CASE ANY MORE.  It wanted csl edition 25,
 # which has shipped since 2026-09-04, and it then stopped where every
 # program here stopped: "unable to allocate socket for NTP", no network to

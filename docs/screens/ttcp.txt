@@ -1,0 +1,4 @@
+$ ttcp -r -s
+ttcp-r: nbuf=1024, buflen=1024, port=2000
+ttcp-r: socket: 000:221 (E$MNF) That module isn't currently loaded.
+errno=221

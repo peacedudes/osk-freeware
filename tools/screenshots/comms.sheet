@@ -971,6 +971,16 @@ try     msntp 127.0.0.1
 run     msntp 127.0.0.1
 wait    6
 
+shot    ttcp
+cap     Times a transfer between two machines: `ttcp -r -s' waits on one,
+cap     `ttcp -t -s <host>' on the other sends a megabyte, and each side
+cap     prints the rate.  Asked to receive here it names its settings and
+cap     then stops at the socket, because the Microware ISP networking it
+cap     was built for is what supplies one.
+try     ttcp -r -s
+run     ttcp -r -s
+wait    4
+
 shot    atp
 size    24 80
 cap     ATP 1.40, an off-line reader for QWK mail packets -- the bundles a

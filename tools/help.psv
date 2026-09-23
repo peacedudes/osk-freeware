@@ -165,6 +165,7 @@ finger|finger -?|
 net|none|it takes the name of a startup file and no options; `help' at its `net>' prompt lists its commands
 osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
 msntp|none|it takes the address of a time server and no help flag
+ttcp|ttcp|
 atp|none|it takes no options: it reads atprc or .atprc from the data directory
 infoxpress|none|it takes no options: it opens its serial device and waits for the host
 uucp|uucp -?|
