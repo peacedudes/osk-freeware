@@ -1,23 +1,22 @@
-/* Small x such that 1.0-x != 1.0 = 1.11022e-16 */
-/* Smallest x such that 1.0+base**x != 1.0 = -52 */
-/* Smallest x such that 1.0+x != 1.0 = 2.22045e-16 */
+$ config | head -20
+/* Char = 8 bits, signed */
+/* Maximum short = 32767 (= 2**15-1) */
+/* Maximum int = 2147483647 (= 2**31-1) */
+/* Maximum long = 2147483647 (= 2**31-1) */
+/* Alignments for char=1 short=2 int=2 long=2 */
+/* Char pointers = 32 bits */
+/* Int pointers = 32 bits */
+
+/* Properties of float: */
+/* Base = 2 */
+# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
+/* Significant base digits = 24 (= at least 7 decimal digits) */
+/* Smallest x such that 1.0-base**x != 1.0 = -24 */
+/* Small x such that 1.0-x != 1.0 = 5.96046e-08 */
+/* Smallest x such that 1.0+base**x != 1.0 = -23 */
+/* Smallest x such that 1.0+x != 1.0 = 1.19209e-07 */
 /* Arithmetic chops but uses guard digits */
-/* Number of bits used for exponent = 11 */
-/* Minimum normalised exponent = -1021 */
-/* Minimum normalised positive number = 2.22507e-308 */
+/* Number of bits used for exponent = 8 */
+/* Minimum normalised exponent = -125 */
+/* Minimum normalised positive number = 1.17549e-38 */
 /* The smallest numbers are normalised */
-/* Maximum exponent = 1025 */
-/* Maximum number = 1.79769e+308 */
-/* Arithmetic uses a hidden bit */
-
-/* Expressions are evaluated in double precision */
-# No more memory: 1073745920-byte request refused, 32852032 bytes free in a 3355
-4432-byte arena
-# No more memory: 536875008-byte request refused, 32852032 bytes free in a 33554
-432-byte arena
-# No more memory: 268439552-byte request refused, 32852032 bytes free in a 33554
-432-byte arena
-# No more memory: 10 allocation failures so far, still failing (latest 2101248 b
-ytes)
-
-/* Memory mallocatable ~= 32082 Kbytes */
