@@ -216,11 +216,10 @@ wait    8
 snap
 
 shot    mswrite
-cap     mswrite writes a file onto the DOS disk exactly as it is, byte
-cap     for byte, with none of the DOS filename rules or text conversion
-cap     mcopy applies. Reading it back with msread and checksumming both
-cap     files shows the same number twice: nothing changed in the round
-cap     trip.
+cap     mswrite is mscopy under another name, the same program: without
+cap     -t it copies byte for byte.  Written onto the DOS disk and read
+cap     back with msread, the file checksums the same both times: nothing
+cap     changed in the round trip.
 try     mswrite motd a:RAW.TXT; msread a:RAW.TXT raw.out; chksum motd raw.out
 run     rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB; cp /dd/SYS/motd /dd/tmp/DOSB/motd
 wait    6
@@ -239,8 +238,8 @@ wait    8
 snap
 
 shot    msread
-cap     msread is the other half of mswrite: it reads a file off the DOS
-cap     disk raw, byte for byte, into a file on OS-9.
+cap     msread is mscopy under another name, the same program: here it
+cap     copies a file off the DOS disk, byte for byte, into a file on OS-9.
 try     msread a:RAW.TXT raw.out; cat raw.out
 run     rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB
 wait    4

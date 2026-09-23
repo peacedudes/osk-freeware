@@ -718,7 +718,7 @@
 | | |
 |---|---|
 | `booz` | &#9733; extracts or lists a zoo archive: `booz l' lists, `booz x' extracts, `booz t' tests<br>**How:** Lists and extracts zoo archives: `booz l file.zoo' lists with a bare letter, `booz x' extracts. fiz repairs a zoo archive that will not open. |
-| `fiz` | &#9733; repairs a damaged zoo archive by walking its directory entries |
+| `fiz` | &#9733; finds what survives in a damaged zoo archive: it prints the position of each directory entry and stored file it can find, and zoo then lists or extracts starting from one.  It changes nothing itself |
 
 </details>
 
@@ -744,7 +744,7 @@
 | `crypto` | &#9733; cryptogram puzzle solver's assistant<br>**How:** `crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a filter it ends the emulator session here, so read the help rather than piping through it. |
 | `des` | &#9733; DES file encryption -- it writes `<file>.n' and removes the original.  It does not restore a file run through it twice with the same key (the result checksums 00000000), so for a round trip use `xcrypt'<br>**How:** It takes files and has no option flags at all -- `des file ...'. `-e' and `-?' are read as filenames and earn `Can't read -e.' |
 | `md5` | the MD5 digest of each file named |
-| `xcrypt` | &#9733; a file cipher that cannot be driven here.  It prints `en/decrypt <input-file> <output-file>' and stops, whatever it is given -- two filenames, a `-k' key, or nothing.  The binary carries a `Key:' prompt and a `your key is rather short' warning, so the key was meant to be typed, but nothing reaches it.  No source came with it.<br>`en/decrypt <input-file> <output-file>` |
+| `xcrypt` | &#9733; scrambles a file against a key typed at its `Key:' prompt: `xcrypt <input-file> <output-file>'.  The output file must exist already -- it creates with a Unix permission word, which OS-9 refuses, and the syntax line is that refusal -- and a name starting with `e' encrypts while anything else, `xcrypt' included, decrypts.  Source in SRC/xrand<br>`en/decrypt <input-file> <output-file>` |
 
 **Macintosh**
 
@@ -767,7 +767,7 @@
 | `atob` | decodes what btoa encoded, back to the bytes<br>`Bad args to atob` |
 | `bcd` | prints text as an 80-column punched card, the holes marked in each row: `bcd OS-9' |
 | `btoa` | encodes a binary file as printable text, five characters for every four bytes with a checksum on the last line -- denser than uuencode; atob decodes it<br>`Bad args to btoa` |
-| `compface` | compresses a 48x48 black-and-white face into the short line of printable characters that goes in a mail header's `X-Face:' field, which readers show beside the message.  It wants the image as 576 hex words -- 48 rows of `0x%04X,0x%04X,0x%04X,' -- and DOC/compface/face.hex is one to try it on.  `uncompface' is the other direction |
+| `compface` | compresses a 48x48 black-and-white face into the short line of printable characters that goes in a mail header's `X-Face:' field, which readers show beside the message.  It wants the image as 144 hex words, 576 digits -- 48 rows of `0x%04X,0x%04X,0x%04X,' -- and DOC/compface/face.hex is one to try it on.  `uncompface' is the other direction |
 | `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes, which is the half worth having.  The encoder (`-e') asks for billions of bytes of memory, is refused, and writes empty data lines until it is stopped.<br>**How:** Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused. |
 | `mimecode` | encode or decode base64, MIME's transfer encoding. `mimecode -e' turns a file into printable base64 and `-d' turns it back; uuencode and btoa are the older kinds, this is the one mail and the web use.  Tim Kientzle's, from DDJ.<br>`Usage: mimecode <options>` |
 | `morse` | writes text as Morse code -- dit and daw, or dots and dashes with -s<br>`morse: illegal option -- ?` |
@@ -775,7 +775,7 @@
 | `todos` | &#9733; turns OS-9 line endings into DOS ones -- every CR becomes CR LF, and one stray LF lands at the end of the file.  It writes the converted text into todos.$$$.<n> in the data directory, not beside the file you named, and then forks OS-9's own `del' and `rename' to move it over the original.  Those come with your system; on this disk alone the move does not happen, and OS-9's rename wants a name rather than a pathname in any case.  Stand in the directory, give a bare name, and rename the result yourself -- or use `autolf -c -C -L' as a filter, which renames nothing<br>**How:** It writes the DOS version into `todos.$$$.<n>' in the directory you are standing in, not over the file you named -- it forks OS-9's own `del' and `rename' to finish and stops there. Rename the temporary yourself, or use `autolf -c -C -L < in > out', which renames nothing. |
 | `toos9` | &#9733; turns DOS line endings into OS-9 ones -- CR LF back to CR -- and appends one 0xFF byte at the end. Like todos it leaves the converted text in toos9.$$$.<n> in the data directory, because it cannot rename that over the original; rename it yourself. `autolf -C' does the job as a filter<br>**How:** The same the other way round: the OS-9 version is left in `toos9.$$$.<n>' for you to rename, and it appends one 0xFF byte at the end. `autolf -C' does the job as a filter. |
 | `translit` | transliterates text between alphabets by a table: KOI8, KOI7, ALT and GOSTCII Russian, Library of Congress and phonetic romanization, LaTeX; `translit -t koi8-lc.rus -i in -o out'<br>**How:** Converts text from one alphabet or coding to another by a table: `translit -t koi8-lc.rus -i in -o out'. Eighteen tables for Russian are in LIB/translit -- KOI8, KOI7, ALT and GOSTCII codings, Library of Congress, GOST and Pokrovsky transliteration, phonetic spelling and LaTeX -- and a table named without -t is taken the same way. Without -i and -o it is a filter. It will not write over an existing -o file. TRANSP names another table directory and TRANSF the default table. The manual is DOC/translit/translit.txt.A and .B. The post's examples are in SRC/translit/ORIG: example.ko8.UU and example.alt.UU are uuencoded, with DOS line ends that `autolf -C' turns into OS-9 ones. |
-| `uncompface` | turns an `X-Face:' line back into the 576 hex words `compface' made it from, so the picture can be looked at again |
+| `uncompface` | turns an `X-Face:' line back into the 144 hex words `compface' made it from, so the picture can be looked at again |
 | `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |
 | `uuencode` | &#9733; uuencode. Give it one argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'. Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
 | `uuexpand` | expands a file into a run of `0' and `1' characters, one per bit -- despite the shared prefix, unrelated to uuencode -- so it survives a copy between machines with different byte or character sizes; `uuexpand -u' (or `uuunexpand') reverses it<br>**How:** Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines. |
@@ -894,7 +894,7 @@
 | `aterm` | ATerm 2.6, a terminal emulator for a serial line: `aterm /t1'. Its configuration is in SYS/ATERM; run it from a login session rather than as the machine's first process. Manual in DOC/aterm, source in SRC/aterm<br>`ATerm : A terminal program for OS9/68000` |
 | `cls` | clears the screen, reading TERM and the termcap to find out how. `clear' beside it does the same job from a different author; either will do<br>`Syntax: cls` |
 | `connect` | &#9733; joins two paths -- your terminal and a remote device -- so what you type reaches one and what it sends comes back on the other. Both default to standard input and output, the switches before each path set echo, CR/LF and XON/XOFF for that path alone, and control-E quits<br>`Usage: connect [<switches>] [<path1>] [<switches>] [<path2>]` |
-| `fkeys` | loads the user-defined keys of a VT220 from a file, so the function keys send what you want. Given no file it prints its syntax<br>`Syntax: fkeys [<path>]` |
+| `fkeys` | loads the user-defined keys of a VT220 from a file, so the function keys send what you want. Given no file it reads the definitions from standard input; -? prints its syntax<br>`Syntax: fkeys [<path>]` |
 | `initvdu` | &#9733; sets the login terminal up from its termcap entry. It knows particular VDUs; on one it has no definition for it says so and changes nothing, which is the answer rather than a failure. -d shows what it would send<br>**How:** It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal". |
 | `input` | the Unaxcess bulletin board's input helper: it copies standard input to standard output a character at a time |
 | `resize` | ask the terminal how big its window is and print LINES and COLUMNS, which less and others read before the termcap's 24 by 80.  At the login bash, `resize' sets them -- type it again after dragging the window; `resize -s' prints setenv lines for your own OS-9's shell<br>`usage: resize [-s]` |
@@ -1656,11 +1656,11 @@
 | `msmd` | mtools 3.6: makes a directory on a DOS disk<br>`msmd: illegal option -- ?` |
 | `msmove` | mtools 3.6: moves files between directories on a DOS disk<br>`msmove: illegal option -- ?` |
 | `msrd` | mtools 3.6: removes an empty directory from a DOS disk<br>`msrd: illegal option -- ?` |
-| `msread` | mtools 3.6: reads a file off a DOS disk byte for byte into an OS-9 file<br>`msread: illegal option -- ?` |
+| `msread` | mtools 3.6: mscopy under another name -- the same program, which copies whichever way its arguments say<br>`msread: illegal option -- ?` |
 | `msren` | mtools 3.6: renames a file on a DOS disk<br>`msren: illegal option -- ?` |
 | `mstoolstest` | mtools 3.6: prints mtools' resolved configuration -- the drives it knows and the image file behind each -- rather than testing anything<br>**How:** Prints mtools' resolved configuration -- the drives it knows and the image file behind each one -- not a diagnostic test of anything. |
 | `mstype` | mtools 3.6: prints a file that lives on a DOS disk<br>`mstype: illegal option -- ?` |
-| `mswrite` | mtools 3.6: writes a file onto a DOS disk byte for byte, with none of the name rules or text conversion mscopy applies; msread is its reverse<br>`mswrite: illegal option -- ?` |
+| `mswrite` | mtools 3.6: mscopy under another name -- the same program, which copies whichever way its arguments say; -t converts text line endings here too<br>`mswrite: illegal option -- ?` |
 | `mtools` | the mtools 3.6 suite's own front end: run bare it lists every sub-command, each of which is also its own program here. Drives a: and b: are set up in SYS/mtools.conf, backed by the disk images in DOS<br>`Supported commands:` |
 
 </details>

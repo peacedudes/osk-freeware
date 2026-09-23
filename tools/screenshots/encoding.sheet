@@ -107,7 +107,7 @@ shot    compface
 cap     A 48x48 black-and-white face, squeezed into the short line of
 cap     printable characters that goes in a mail header's `X-Face:' field.
 cap     Readers that understand the field show the picture beside the
-cap     message.  The image goes in as 576 hex words, 48 rows of three.
+cap     message.  The image goes in as 144 hex words, 48 rows of three.
 cap     It writes the line without a line feed after it, so this keeps the
 cap     output in a file and prints that.
 try     compface DOC/compface/face.hex > tmp/CFACE/x; cat tmp/CFACE/x
@@ -122,7 +122,7 @@ run     compface DOC/compface/face.hex > tmp/CFACE/x; cat tmp/CFACE/x
 wait    6
 
 shot    uncompface
-cap     The other direction: an `X-Face:' line turned back into the 576 hex
+cap     The other direction: an `X-Face:' line turned back into the 144 hex
 cap     words it was made from, so the picture can be looked at again.  All
 cap     48 rows come out; the last of them are what stays on the screen.
 try     uncompface tmp/CFACE/y > tmp/CFACE/back; cat tmp/CFACE/back
