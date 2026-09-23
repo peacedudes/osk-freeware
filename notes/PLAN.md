@@ -900,27 +900,15 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **17 runnable programs under no test** (re-measured 2026-09-19 with
-   `tools/worklist.py --programs --no-test`; this said 75, and 22 before
-   that pass).  It went 22 -> 15 -> 17 in one night and both moves were
-   deliberate: `tools/datatests/refusals.cases` took seven, and then
-   `mailx` and `msntp` were given back -- mailx because its answer would
-   not reproduce, msntp because os9exec grew sockets that day and it now
-   waits instead of failing, and a case that hangs is worse than a gap.
-   The six that stuck are colortest, dclock, lmargin, sterm, kermit and
-   kermit2, on the principle that **a refusal is a measurement**: three of
-   them name, in the same words every time, the G-Windows display or the
-   modem port they are missing, and recording the words is what stops a
-   later change turning "it says it needs G-Windows" into "it says
-   nothing".
-
-   The seventeen left are hardware (`showpic`, `splman`, `splprt`,
-   `tplot`, `wysecrack`, `puzzle`, `scriptmaster`), programs that end the
-   session (`graphsave`, `cron`), full-screen ones (`dm`, `sddemo`,
-   `snake`, `fileserv`), `hist` (wants Microware's shell in front of it),
-   `creadoc` (lists its directory through your own OS-9's `dir` and forks
-   its `shell`, both off /h1, which datatest does not mount), and the two
-   given back above.
+1. **8 runnable programs under no test** (2026-09-23, `tools/worklist.py
+   --programs --no-test`): `graphsave`, `showpic` (Atari GRAPH display),
+   `puzzle`, `scriptmaster` (G-Windows), `msntp` (network, waits), `snake`
+   (orphaned escapes), `tplot` (A-line trap), and none else.  `wysecrack`
+   came off the hardware list the same day: it is not a probe at all but
+   a quip a minute for a Wyse status line (its INDEX entry was invented),
+   and its card now shows two.  Harnesses stage every command SYS/login
+   loads, so a program that needs the reader's shell, tmode or qsort is
+   testable -- that is what took hist, creadoc, nnmaster and v7make off.
 
    **`mailx` was a finding, not just a case.**  It reads MAIL as the
    DIRECTORY the mailbox sits in where elm and frm read it as the mailbox
