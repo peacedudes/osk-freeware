@@ -1,6 +1,6 @@
 # What is on this disk
 
-1041 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **722 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1042 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **723 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -25,7 +25,7 @@
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 119 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 120 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -1432,7 +1432,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>119 programs</summary>
+<details><summary>120 programs</summary>
 
 **Devices & disks**
 
@@ -1441,6 +1441,7 @@
 | `dam` | &#9733; display the disk allocation map -- dam [<drive>] |
 | `dedit` | BASIC09 disk sector editor -- read, edit and write raw sectors, decode a disk's identification sector.  I-CODE, not 68000 code: run it with runb and the bare module name, like bio and wysetime.  Nine modules in the one file. |
 | `dinfo` | &#9733; reports on an RBF disk -- volume name, creation date, capacity, how much is free and in how many blocks -- doing the job your own `free' does and saying more. -e extends the display and -f reports fragmentation<br>`Syntax:   dinfo [<opts>] {<device name> [<opts>]}` |
+| `dmode` | shows and changes the parameters in an RBF device descriptor -- what `xmode' is to a terminal, for a disk: drive, step rate, density, sides, sectors per track, sector size and the rest. `dmode /d1' lists them; `dmode /d1 stp=3 vfy=$01' changes the descriptor in memory and re-initialises the device.  It works on a descriptor that is resident, so load your own OS-9's first<br>**How:** `dmode /<device>' lists the parameters of that disk's descriptor; `key=n' on the same line changes them in memory and re-initialises the device (hex keys take 0x or $). It needs the descriptor resident: on os9exec, `load' one of your own OS-9's first -- the card loads the RAM disk's, r0. |
 | `dpark` | &#9733; parks the disk head: `dpark [/device]' restores an RBF device's head to track 00, which is what you did before moving a drive<br>`Syntax:   dpark [/device]` |
 | `freeb` | lists the free space on a disk block by block -- how many free blocks there are, how big each one is and where it starts.  -t counts them by size, -a lists every one, -h leaves the header out and -s the total<br>`Usage:` |
 | `os9dsk` | reads a CoCo OS-9 disk image -- the .DSK files a Color Computer emulator uses.  `os9dsk -dir <file>.DSK' lists it, -get copies a file out, -proc shows the file descriptor.  A 1985 disk reads as easily as a new one<br>`Usage:	os9dsk -dir filename.DSK DSKpath` |

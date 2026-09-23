@@ -1,0 +1,23 @@
+dmode /r0
+Parameters for                      /r0
+Drive number           (drv) =      0
+Step rate              (stp) =      0
+Device type            (typ) =   0x00
+Media density          (dns) =   0x00
+Number of cylinders    (cyl) =      0
+Number of sides        (sid) =      0
+Verify disk writes     (vfy) =   0x01 Verify off
+Sectors per track      (sct) =   3072
+Sectors on track 0     (tos) =      0
+Segment allocation     (sas) =      4
+Interleave factor      (ilv) =      0
+Track base offset      (tof) =      0
+Sector base offset     (sof) =      0
+Sector size (bytes)    (siz) =    256
+Control word           (ctl) = 0x000b Nofmt M/secI/O Autosize
+Retry count            (try) =      0 (driver default)
+Hard disk park cyl     (prk) =      0
+Logical sector offset  (lsn) =      0
+Total cylinders        (tot) =      0
+Rpm, xfr rate          (rts) =   0x00
+Maximum transfer       (xfr) =     -2 bytes

@@ -56,3 +56,15 @@ expect  -w=<Alternative Data Directory>
 case    UAC_view-says-when-PORT-is-not-set
 run     unset PORT; /dd/CMDS/UAC_view -w=/dd/UAC/DATA < /nil
 expect  Environment variable PORT undefined
+
+# dmode: its help, and that it answers E$MNF (221) for a device whose
+# descriptor is not resident -- which, under os9exec, is every device
+# until one is loaded.  The card loads one from the reader's OS-9.
+case    dmode-lists-the-descriptor-fields-it-knows
+run     /dd/CMDS/dmode -? < /nil
+expect  Syntax    : dmode <RBF descriptor> [<RBF parameter list>]
+expect  Maximum transfer
+
+case    dmode-returns-221-when-no-descriptor-is-resident
+run     /dd/CMDS/dmode /nosuchdev < /nil; echo "status $?"
+expect  status 221

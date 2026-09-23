@@ -1,0 +1,19 @@
+$ dmode -?
+dmode v2.5 (c) Ron D.Voights, M.C.Gregorie, 2005
+
+Syntax    : dmode <RBF descriptor> [<RBF parameter list>]
+Function  : Change RBF device parameters in a descriptor
+            The device is detached, changed, and re-attached
+            If it isn't in use this should re-initialise it.
+Parameters:
+     drv      = Drive number               stp      = Step rate
+     typ(hex) = Device type                dns(hex) = Media density
+     cyl      = Number of cylinders        sid      = Number of sides
+     vfy(hex) = Verify disk writes         sct      = Sectors per track
+     tos      = Sectors on track 0         sas      = Segment allocation
+     ilv      = Interleave factor          tof      = Track base offset
+     sof      = Sector base offset         siz      = Sector size (bytes)
+     ctl(hex) = Control word               try      = Retry count
+     prk      = Hard disk park cyl         lsn      = Logical sector offset
+     tot      = Total cylinders            rts(hex) = Rpm, xfr rate
+     xfr      = Maximum transfer

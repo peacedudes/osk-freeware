@@ -536,6 +536,7 @@ wish|Shells|Shells
 
 # ---- System & modules ----
 dinfo|System & modules|Devices & disks
+dmode|System & modules|Devices & disks
 shdev|System & modules|Devices & disks
 bootgen|System & modules|OS-9 modules
 flink|System & modules|OS-9 modules

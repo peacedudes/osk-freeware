@@ -488,6 +488,18 @@ run     PORT=/term UAC_view -w=DATA
 wait    6
 snap
 quit    Q
+
+shot    dmode
+cap     The parameters of the RAM disk's device descriptor, r0, loaded
+cap     from your own OS-9 -- a disk's descriptor has to be resident for
+cap     dmode to find it.  Hex fields are decoded: `ctl' here is no
+cap     format, multi-sector I/O and autosize.  `key=n' after the device
+cap     changes a field in memory.
+try     dmode /r0
+run     load /h1/CMDS/BOOTOBJS/r0
+run     clear
+run     dmode /r0
+wait    3
 shot    tty
 for     tty vecho lmargin
 cap     tty names the terminal; vecho writes without a newline; lmargin
