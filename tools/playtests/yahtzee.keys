@@ -1,0 +1,16 @@
+name    yahtzee
+prog    yahtzee
+setup   . /dd/SYS/termcap.entry
+# One player, named, then the game board with its first roll.
+rate    0.8
+wait    5
+snap    asks
+expect  number of players
+key     1
+key     \r
+wait    2
+keys    ann
+key     \r
+wait    4
+snap    board
+expect  small straight

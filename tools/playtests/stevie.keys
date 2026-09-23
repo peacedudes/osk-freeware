@@ -1,0 +1,15 @@
+name    stevie
+prog    stevie /dd/DOC/README-CIO
+# Editor: open a file, move down a page, leave without saving.
+allow   trap handler
+rate    0.6
+wait    5
+snap    opened
+key     \006
+wait    2
+snap    paged
+expect  README-CIO
+esc
+keys    :q!
+key     \r
+wait    2
