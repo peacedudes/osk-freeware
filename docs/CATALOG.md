@@ -20,11 +20,11 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 113 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 112 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 122 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
@@ -785,7 +785,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>113 programs</summary>
+<details><summary>112 programs</summary>
 
 **File transfer**
 
@@ -901,7 +901,6 @@
 | `tput` | prints what a terminal needs for a capability, read from termcap: `tput -Tvt100 clear' emits the clear-screen escape and `tput cols' prints 80.  The capability names are the System V ones -- clear, bold, cup, lines, cols<br>`Usage: tput [ -Ttype ] [ -e ] [ -nlines ] capname [ x y ]` |
 | `tsmon2` | watches a terminal device and starts the login program when someone types RETURN on it -- the job your own `tsmon' does, with more control: -i starts login as soon as carrier appears instead of waiting for a key. Zeller, 1989<br>`**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller` |
 | `vttest` | the VT100 compatibility test: a menu of pages for cursor movement, screen features, character sets, double-size lines, the keyboard, status reports, VT52 mode and VT102 editing, each saying what a correct terminal shows.  0 leaves<br>**How:** Full-screen menu of VT100 tests. Type a test's number and RETURN; each page says what a correct terminal should show, and RETURN moves on. 0 leaves, printing `That's all, folks!'. Run it on the terminal you mean to judge: the keyboard and reports tests read what that terminal sends back. |
-| `wysecrack` | &#9733; probe a Wyse terminal: it sends the code that asks the terminal to identify itself (`Anybody out there?' is in the binary) and reads the reply to sense its baud rate. With a Wyse terminal on the line it answers; without one it waits.  Companion to wysetime, which sets that terminal's clock |
 | `wysetime` | Wyse terminal clock-setter, in BASIC09.  `runb wysetime' prints the escape sequence a Wyse terminal reads to set its own display clock; run it by bare name at an OS-9 shell. |
 
 **Terminal & transfer**
@@ -1386,7 +1385,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>32 programs</summary>
+<details><summary>33 programs</summary>
 
 **Biorhythms**
 
@@ -1407,6 +1406,7 @@
 | `telewords` | spells a telephone number every way its keypad letters allow, one a line: `telewords 43' prints gd ge gf ... if<br>**How:** `telewords 43' prints every spelling of the number with the letters on its keys, one a line -- gd, ge ... if. 0 and 1 stand for themselves; -<digit><letters> changes what a key spells. |
 | `trigraph` | prints its own C source spelled in ANSI trigraphs -- ??< for {, ??= for # -- a 1990 obfuscated-C contest entry<br>**How:** `trigraph' prints its own source with every # { } [ ] \ ^ \| ~ written as its ANSI trigraph -- ??= ??< and the rest. Microware's cpp does not read trigraphs, so SRC/ioccc/OSK holds the translated copy it was built from. |
 | `westley` | picks a daisy: `westley 7' pulls seven petals, loves me, loves me not, and says how it came out.  A 1990 obfuscated-C contest entry, and the one that won Best Layout -- its source is written to be read as a letter<br>**How:** `westley <number>' picks a daisy with that many petals -- loves me, loves me not -- and says how it came out. The 1990 contest's Best Layout: its source is written to be read as English correspondence, letter by letter, and the judges' note reads the first block as "charlie, doubletime me, OXFACE! not interested, get out". Reading the source is the point of it. |
+| `wysecrack` | &#9733; wisecracks for a Wyse terminal's status line: once a minute it sends ESC F and a line -- `Anybody out there?', `Ouch! Stop typing so hard!', twelve in all, ending with `Park Disk Before Shut-Down !!!' -- and then it stops. ESC F is the Wyse's host-message field; another terminal shows the lines in the text.  Nothing appears for the first minute.  Companion to wysetime |
 
 **Generators**
 

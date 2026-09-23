@@ -1110,12 +1110,14 @@ run     input <lines.txt
 wait    5
 
 shot    wysecrack
-cap     Probes for a Wyse terminal by asking it to identify itself and
-cap     waiting for the reply.  Nothing here is a Wyse, so no answer comes
-cap     and the screen stays blank.
+cap     Wisecracks for a Wyse terminal: a line a minute, twelve of them,
+cap     sent after ESC F so that a Wyse shows each in its status line.
+cap     This terminal is not a Wyse, so they land in the text, the first
+cap     a minute in, each behind the F of the ESC F it does not know.
 try     wysecrack
-run     /dd/CMDS/COMMS/wysecrack
-wait    6
+run     clear
+run     wysecrack
+wait    126
 kill
 
 # --- Terminal & transfer --------------------------------------------------

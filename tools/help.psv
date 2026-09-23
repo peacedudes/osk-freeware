@@ -156,7 +156,7 @@ tsmon2|tsmon2 -?|
 connect|connect -?|
 tsu|none|it takes no options: run it and it checks tterm's directories, creating what is missing
 input|none|a filter with no options
-wysecrack|none|it takes no options: it sends the identify request and waits for the terminal's reply
+wysecrack|none|it takes no options: it sends a line a minute to the terminal's status line and stops after twelve
 wysetime|none|a BASIC09 program run by runb; it takes no options
 sterm|sterm -?|
 tterm|tterm -?|

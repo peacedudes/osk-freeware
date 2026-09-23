@@ -33,7 +33,6 @@ disable|turns MTSMon off on a serial port; it needs the port's driver module res
 enable|the counterpart to disable on a serial port; it too needs the port's driver module resident, and none is loaded
 setfont|loads a downloadable terminal font into a terminal that can receive one. THE DISK DOES SHIP FONTS FOR IT -- six 768-byte files in DOC/wolk -- so the old reason here, that it "prints its usage without one", was answering a question nobody had asked it. Measured 2026-09-20 with DOC/wolk/std.us.font: it returns status 0 and writes NO byte, to the screen or anywhere else, which is what DOC/INDEX has recorded all along. It opens /term and the font goes to the terminal hardware; there is nothing for a card to show either way
 sbreak|sends a break signal on a serial device; there is no serial device here to send one on, so it reports that a device must be given
-wysecrack|probes for a Wyse terminal by asking it to identify itself; nothing here is a Wyse, so no reply comes and the screen stays blank
 authwn|WN's authenticator for a password-protected area; inetd and wn invoke it per request, and run alone it has nothing to authenticate
 inetdc|what inetd forks to handle each connection; run by hand with nothing to serve it exits in silence
 basicwin|an X11 basic-window demo; with no X server here it stops at "cannot connect to X server"

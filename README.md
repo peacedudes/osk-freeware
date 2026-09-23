@@ -118,11 +118,11 @@ is no help until you already know the name you want.
 | **Languages** | 16 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| **Communications** | 113 | Kermit in several builds, terminal sessions, and networking. |
+| **Communications** | 112 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| **Amusements** | 32 | Generators, simulators and diversions that are not quite games. |
+| **Amusements** | 33 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 122 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |

@@ -27,7 +27,6 @@ disable|switches off a serial port's monitor
 enable|switches on a serial port's monitor
 setfont|loads a font into a terminal that takes downloadable fonts
 sbreak|sends a break on a serial line
-wysecrack|asks a Wyse terminal to identify itself
 basicwin|an X11 program
 xengine|an X11 program
 transfer|reads a GDOS disk drive
