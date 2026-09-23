@@ -777,6 +777,25 @@ Three were real and are corrected:
 `Function:` line still need running one at a time, and that is what the
 per-program pass has been doing.
 
+**READ AGAINST SOURCE, 2026-09-23.**  543 entries whose program has source
+here (src_census DIRECT or RECIPE, netpbm left out, dated entries left
+out) were read against that source by six read-only agents, and every
+claimed contradiction was then RUN before an entry changed.  27 entries
+corrected -- wysecrack (not a probe: a quip a minute for a Wyse status
+line), suse (a sieve benchmark, not a usage printer), t_trtest (a tree
+test, not a trap test), diff (Decus, not GNU), etags (writes vi's form by
+default), wgen (needs no trap now), fiz (finds, does not repair),
+msread/mswrite (mscopy under two more names), sqrtx, lcasep, os9dsk,
+input, pacman, wanderer, epson, nptx, nnaux, qp, xcrypt, fkeys, compface
+and uncompface.  About a third of the agents' claims were WRONG, and all
+the same way: **the source tree the census credits is not what the binary
+was built from.**  fgrep, strings, chown, spline, uupoll and uuencode each
+have a same-named source under SRC whose options or output differ from the
+shipped binary's own help or card; bmgtest's source describes a bug the
+binary no longer has.  So src_census's DIRECT route over-counts, and "has
+source" for those six means "has A source".  Not fixed; it is a census
+question, and the binaries are right.
+
 ### 5. Housekeeping
 
 - `notes/` is 7300 lines across 42 files. It was pruned once, at rdoggett's
