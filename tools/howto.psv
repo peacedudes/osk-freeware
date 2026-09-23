@@ -163,7 +163,7 @@ frm|Lists who your mail is from, one line each. Reads $MAIL, which SYS/login set
 newalias|Rebuilds the Elm alias database from USR/LIB/ELM/aliases.text after you edit it.
 wn|A real HTTP server (WN 1.14.3, GPL). It starts and opens its log -- the path /h0/c/unid/wn_1.14.3/osk/logs is compiled into the binary, and that directory is on this disk so it can. To serve, it needs TCP/IP under it (KA9Q or osknet, in CMDS/NETWORK). It is an inetd-style server -- one request in on standard input, one response out -- so you can hand it a request by hand and read the reply. Its manual is 30 HTML files in DOC/wn.
 wndex|Builds the index.cache WN will not serve without. It works on the current directory and ignores a directory given as an argument -- on this disk that means ksh, whose `cd' is a real chdir where bash's is not: `ksh -c "cd <dir>; /dd/CMDS/WN/wndex"'. On its own it says "Can't open ./index -- skipping it", which means you are not where you think you are. The site that ships at /dd/c/unid/wn_1.14.3/osk already has its cache built; that is WN's compiled-in document root.
-inetd|The listener that hands incoming connections to wn. Needs a network.
+inetd|The listener that hands incoming connections to wn: `inetd <port> wn'. It needs Microware's ISP `inetdb' module, which names the protocols; without it the answer is `tcp protocol unknown'.
 adlcomp|From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it.
 adlrun|`adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves.
 adldebug|`adldebug tiny' on a compiled world; ? lists its commands, `o 0-4' dumps the first objects, q leaves.
