@@ -166,7 +166,7 @@ def feed(spec, master, with_keys, cap=None, marks=None,
                      "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:"
                      "/dd/CMDS/UUCP:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM",
                      "export PATH=$PATH:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
-                     "/dd/CMDS/NEWS:/dd/CMDS/WN:/dd/CMDS/ADL",
+                     "/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN:/dd/CMDS/ADL",
                      "export PATH=$PATH:/dd/CMDS/REBUILT:/dd/CMDS/DEMOS:"
                      "/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
                      "export HELPDIR=/dd/SYS/HELP",

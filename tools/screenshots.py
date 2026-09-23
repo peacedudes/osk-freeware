@@ -144,7 +144,7 @@ LOGIN = ("export TERM=xterm-256color",
          "export MAIL=/dd/SPOOL/MAIL/tester",
          "export PATH=/dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP",
          "export PATH=$PATH:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS",
-         "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/WN",
+         "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN",
          "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT",
          "export PATH=$PATH:/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
          # The reader's own OS-9, as SYS/login appends it: `load' and the
@@ -693,7 +693,7 @@ def capture_burst(image, shot):
            "setenv PORT /term",
            "setenv PATH /dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP:"
            "/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
-           "/dd/CMDS/NEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:"
+           "/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:"
            "/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:/h1/CMDS",
            "chx /dd/CMDS", "chd /dd")
     lines = ["-nx"] + list(env) + cmds + stdin

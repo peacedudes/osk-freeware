@@ -61,7 +61,7 @@ ENV = (
     "setenv MAIL /dd/SPOOL/MAIL/tester",
     "setenv PATH /dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP:"
     "/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
-    "/dd/CMDS/NEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:/dd/CMDS/DEMOS:"
+    "/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:/dd/CMDS/DEMOS:"
     "/dd/CMDS/DHRY:/dd/CMDS/GCC139:/h1/CMDS:/h1/CMDS/GAMES",
     "setenv TMACDIR /dd/LIB",
     "setenv HELPDIR /dd/SYS/HELP",

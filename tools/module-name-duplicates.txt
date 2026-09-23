@@ -31,3 +31,8 @@ gnuchess  CMDS/gnuchess and CMDS/GAMES/gnuchess are different ports.  Both
           collection being /h0) and is first on PATH, so `gnuchess' runs it
           and answers 1.e4 with a book move.  The GAMES build opens its book
           by bare name.  Kept as two ports; the user gets the book one.
+rnews     Two news systems, two receivers: UUCP/rnews is UUCPbb's and files
+          into SPOOL/news, MNEWS/rnews is MNews's and hands each article to
+          MNews's inews.  A remote site runs `rnews' by name, so a system
+          runs whichever of the two it has chosen; PATH and `load' decide.
+          Both keep the name because that is the name UUCP asks for.

@@ -1118,3 +1118,5 @@ nn|mnews/NN_OSK|nn.c admin.c update.c global.c options.c active.c db.c nntp.c in
 nnmaster|mnews/NN_OSK|master.c collect.c expire.c update.c global.c options.c active.c db.c nntp.c pack_date.c pack_name.c pack_subject.c news.c digest.c match.c ../../unixlib/strdup.c ../../unixlib/vsprintf.c|NOCOMPAT M_SIGINFO=80 MEM=20k|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
 nnadmin|mnews/NN_OSK|nnmisc.c|NOCOMPAT M_SIGINFO=80 PNAME="nnadmin"|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
 nnaux|mnews/NN_OSK|aux.c|NOCOMPAT M_SIGINFO=80 MEM=6k|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+nncheck|mnews/NN_OSK|nnmisc.c|NOCOMPAT M_SIGINFO=80 PNAME="nncheck"|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+cvt_help|mnews/NN_OSK|cvt_help.c|NOCOMPAT M_SIGINFO=80|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib

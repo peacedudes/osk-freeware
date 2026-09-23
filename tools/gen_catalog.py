@@ -467,7 +467,7 @@ def load_howto(path):
 PROGRAM_DIRS = ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/REBUILT",
                 "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
                 "CMDS/UUCP", "CMDS/ADL", "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK",
-                "CMDS/NEWS", "CMDS/TEXCMDS", "CMDS/WN")
+                "CMDS/NEWS", "CMDS/MNEWS", "CMDS/TEXCMDS", "CMDS/WN")
 
 
 def shared_names(root):
