@@ -780,7 +780,7 @@ per-program pass has been doing.
 **READ AGAINST SOURCE, 2026-09-23.**  543 entries whose program has source
 here (src_census DIRECT or RECIPE, netpbm left out, dated entries left
 out) were read against that source by six read-only agents, and every
-claimed contradiction was then RUN before an entry changed.  27 entries
+claimed contradiction was then RUN before an entry changed.  23 entries
 corrected -- wysecrack (not a probe: a quip a minute for a Wyse status
 line), suse (a sieve benchmark, not a usage printer), t_trtest (a tree
 test, not a trap test), diff (Decus, not GNU), etags (writes vi's form by
