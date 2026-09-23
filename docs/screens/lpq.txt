@@ -1,7 +1,7 @@
-$ lpq -?
-Syntax: lpq [-p=dev] [user]
-Function: shows spoolerqueue
-Options:
-       -d=dev     shows queue of printer dev
-$ lpq
-lpq: no spooler installed
+lpq
+Defaultprinter: /pipe/prt
+other Printers:
+2 Spoolfiles
+  Id         User      St  #   Printer   Size   File
+------ --------------- -- ---- -------- ------  ----
+No Spooljobs for printer

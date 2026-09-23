@@ -1,2 +1,2 @@
-lp tmp/PRT/letter.txt
-lp: Spooler not installed
+lp tmp/PRT/letter.txt tmp/PRT/listing
+Spoolid : 1

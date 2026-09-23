@@ -100,51 +100,69 @@ run     lmargin -l4 <DOC/globe.doc
 wait    6
 
 shot    lp
-cap     Submits a file to the print spooler, and answers that the spooler
-cap     is not installed.  That is its answer whether or not one is
-cap     running: `lpsched' starts here and makes the `spoolqueue' event
-cap     and data module its own card shows, and lp, lpq and lpshut all
-cap     three still report none.  Start it on your own printer and see.
-try     lp tmp/PRT/letter.txt
+fresh
+cap     Submits files to the print spooler -- the two named here go as one
+cap     job -- and answers with the job's number.  The spooler here -- started with `lpsched /pipe/prt &'
+cap     -- prints into a pipe nobody reads, so the jobs wait in the queue
+cap     for lpq and lprm to find.  Name your own printer to print.
+try     lp tmp/PRT/letter.txt tmp/PRT/listing
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
-wait    2
+run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
 run     builtin cd /dd
-wait    1
+run     lpsched /pipe/prt &
+wait    3
 run     clear
-wait    1
-run     lp tmp/PRT/letter.txt
+run     lp tmp/PRT/letter.txt tmp/PRT/listing
 wait    5
 
 shot    lpq
-cap     Shows the spooler's queue, and reports no spooler installed --
-cap     which it does even with `lpsched' running and its queue event
-cap     in the event directory.  See the lp card.
-try     lpq -?; lpq
-run     lpq -?
-wait    4
+fresh
+cap     The spooler's queue: the default printer and how many files wait
+cap     -- two listings, behind a printer that is a pipe nobody reads.
+cap     Its table below lists none of them for that printer, though it
+cap     counts them; why is not established.
+try     lpq
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
+run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
+run     builtin cd /dd
+run     lpsched /pipe/prt &
+wait    3
+run     lp tmp/PRT/listing; lp tmp/PRT/listing
+wait    3
+run     clear
 run     lpq
-wait    4
+wait    5
 
 shot    lprm
-cap     Removes a job from the spooler's queue by its id: its options.
-cap     With no spooler managing a queue there is nothing to link to,
-cap     and it says exactly that instead of trying to remove anything.
-try     lprm -?; lprm 1
-run     lprm -?
-wait    4
-run     lprm 1
-wait    4
+fresh
+cap     Takes a job out of the spooler's queue by its number, or all of
+cap     them with `-'.  Two listings wait; after `lprm 2', lpq counts one.
+try     lprm 2; lpq
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
+run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
+run     builtin cd /dd
+run     lpsched /pipe/prt &
+wait    3
+run     lp tmp/PRT/listing; lp tmp/PRT/listing
+wait    3
+run     clear
+run     lprm 2; lpq
+wait    6
 
 shot    lpshut
-cap     Stops the spooler, and reports none active -- which is its answer
-cap     even when `lpsched' is running and holding the queue.  See the
-cap     lp card.
-try     lpshut -?; lpshut
-os9     lpshut
-run     lpshut -?
-wait    4
-run     lpshut
-wait    4
+fresh
+cap     Stops the print spooler.  With `lpsched' running on a printer here,
+cap     lpshut answers that the spooler is not active and lpq still finds
+cap     its printer afterwards -- what it checks for is not established.
+try     lpshut; lpq
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
+run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
+run     builtin cd /dd
+run     lpsched /pipe/prt &
+wait    3
+run     clear
+run     lpshut; lpq
+wait    6
 
 shot    prjob
 cap     Prints a queued job.  With no spooler installed it says so --

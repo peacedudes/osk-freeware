@@ -1,5 +1,5 @@
-$ lpshut -?
-Syntax: lpshut
-Function:  stops Printerspooler
-$ lpshut
-lpshut: no spooler active
+lpshut; lpq
+Spooler is not active
+Defaultprinter: /pipe/prt
+other Printers:
+Spoolerqueue is empty

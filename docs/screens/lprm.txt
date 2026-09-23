@@ -1,8 +1,7 @@
-$ lprm -?
-Syntax: lprm [-d=dev] [-] job..
-Function: delete job from spoolerqueue
-Options:
-       -          deletes all entries
-       -d=dev     take queue of printer dev
-$ lprm 1
-lprm: can't link to 'spoolqueue'
+lprm 2; lpq
+Defaultprinter: /pipe/prt
+other Printers:
+1 Spoolfiles
+  Id         User      St  #   Printer   Size   File
+------ --------------- -- ---- -------- ------  ----
+No Spooljobs for printer
