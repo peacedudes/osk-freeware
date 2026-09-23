@@ -256,8 +256,10 @@ run     cat tags | head -n 8
 wait    4
 
 shot    etags
-cap     Builds the TAGS file emacs uses, as ctags does for vi: it says nothing
-cap     and leaves the file in the current directory.
+cap     Builds a tag table: by default `tags' in the form vi reads -- a
+cap     name, its file and a search for its line -- or with -e the TAGS
+cap     file emacs reads.  RBF names ignore case, so the two share a name
+cap     here and differ only in what is inside.
 try     etags about.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS
 run     cp /dd/SRC/keep/about.c /dd/tmp/DEV/about.c
@@ -267,7 +269,7 @@ run     clear
 wait    1
 run     etags about.c
 wait    8
-run     ls -l TAGS
+run     head -4 tags
 wait    4
 
 shot    cxref

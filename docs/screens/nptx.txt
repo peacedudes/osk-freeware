@@ -1,2 +1,10 @@
 nptx <name.txt
-jqpublic        John Q Public
+Public  jqpublic
+J.Public        jqpublic
+John.Public     jqpublic
+Q.Public        jqpublic
+Q.Public        jqpublic
+J.Q.Public      jqpublic
+John.Q.Public   jqpublic
+J.Q.Public      jqpublic
+John.Q.Public   jqpublic

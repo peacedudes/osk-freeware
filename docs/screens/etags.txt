@@ -1,3 +1,6 @@
 etags about.c
-$ ls -l TAGS
--rw-------   1 0        0             565 Sep 13 07:43 TAGS
+$ head -4 tags
+Mabout  about.c /^main(argc, argv)$/
+entry_for       about.c /^static int entry_for(line, prog, indent)$/
+exists  about.c /^static int exists(path)$/
+find_collection about.c /^static int find_collection()$/

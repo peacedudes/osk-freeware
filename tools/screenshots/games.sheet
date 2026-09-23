@@ -161,8 +161,8 @@ wait    2
 
 shot    pacman
 size    26 80
-cap     Pac-Man in an ASCII maze: you are `OS9', chased by four ghosts named
-cap     for old operating systems, and the keypad moves you -- 8 up, 2 down,
+cap     Pac-Man in an ASCII maze: you are `OS9', chased by four ghosts
+cap     labelled CPM, MPM, RAM and ROM, and the keypad moves you -- 8 up, 2 down,
 cap     4 left, 6 right.  It asks your name and whether you want instructions,
 cap     then draws the board with TeleVideo cursor codes, which this terminal
 cap     does not paint, so little of it reaches the screen.  Its maze, help
@@ -275,7 +275,7 @@ wait    3
 shot    wanderer
 cap     Wanderer, a Boulderdash: `<|>' is you, the dots are earth you can
 cap     dig through and the diamonds are what you are after -- forty-five on
-cap     the first screen, with a thousand moves to get them.  Its thirty
+cap     the first screen, with a thousand moves to get them.  Its 49
 cap     screens are in GAMES/WAND.
 try     wanderer
 run     wanderer

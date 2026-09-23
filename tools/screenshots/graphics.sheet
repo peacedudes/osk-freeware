@@ -1359,13 +1359,10 @@ snap
 
 
 shot    wgen
-cap     A Tektronix waveform generator.  With the Graph trap library
-cap     resident it runs and asks for a resolution and then the intensity
-cap     of each harmonic; given those it emits Tektronix plotting codes,
-cap     for which there is no Tektronix terminal here.
+cap     A Tektronix waveform generator: it asks for a resolution and then
+cap     the intensity of each harmonic, and given those it emits Tektronix
+cap     plotting codes, for which there is no Tektronix terminal here.
 try     wgen
-run     load /dd/CMDS/GAMES/graph
-wait    4
 run     clear
 wait    1
 run     wgen

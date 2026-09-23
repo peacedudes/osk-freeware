@@ -1,4 +1,5 @@
-$ suse cat; echo "status $?"
-status 0
-$ suse today; echo "status $?"
-status 0
+$ time suse
+
+Real time     :   1    s
+User time     :   0.01 s
+System time   :   0.00 s

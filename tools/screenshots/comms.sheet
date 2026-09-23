@@ -305,10 +305,11 @@ run     newmail -d tester
 wait    8
 
 shot    nptx
-cap     The address it builds from one name-and-login line: given the full
-cap     name and the login separated by a tab, it answers with the pair.
+cap     The forms of a full name that mail may be addressed to, each with
+cap     the login it belongs to: given the login and the name separated by
+cap     a tab, it writes the surname, the initialled forms and the whole.
 try     nptx <name.txt
-run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "John Q Public\tjqpublic\r" > /dd/tmp/EC/name.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "jqpublic\tJohn Q Public\r" > /dd/tmp/EC/name.txt
 wait    3
 run     builtin cd /dd/tmp/EC
 wait    1
@@ -758,7 +759,7 @@ wait    6
 shot    nnaux
 size    24 80
 fresh
-cap     What nn runs to post, follow up or reply.  nn hands it a work file
+cap     What nn runs to post, follow up, reply or mail.  nn hands it a work file
 cap     holding the article, the line to start an editor on, and what to
 cap     do first; `send' posts without asking.  It gives the file to inews
 cap     and removes it, and the article is filed in its group.

@@ -876,13 +876,12 @@ wait    1
 run     lgrep ksh SYS/password SYS/login SYS/motd
 wait    4
 shot    suse
-cap     suse is meant to print a program's usage line.  It prints nothing
-cap     for any module tried, and returns success regardless.
-try     suse cat; echo "status $?"; suse today; echo "status $?"
-run     suse cat; echo "status $?"
-wait    3
-run     suse today; echo "status $?"
-wait    3
+cap     A CPU benchmark in 190 bytes of assembler: the Sieve of
+cap     Eratosthenes run a thousand times, then it exits.  It prints
+cap     nothing, so the time it takes is its result.
+try     time suse
+run     time suse
+wait    8
 shot    pri
 cap     pri changes a process's priority: `pri <pid> <priority>'.  It
 cap     prints nothing whatever happens, so the exit status is all there

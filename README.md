@@ -113,7 +113,7 @@ is no help until you already know the name you want.
 | **Editors** | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | **Text tools** | 138 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
-| **Developer tools** | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| **Developer tools** | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 16 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -123,7 +123,7 @@ is no help until you already know the name you want.
 | **Games** | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 33 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 122 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 121 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 19 | Calculators, plotting, orbits and number theory. |

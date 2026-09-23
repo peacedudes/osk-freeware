@@ -47,7 +47,7 @@ run     cursive Freeware
 wait    6
 
 shot    diff
-cap     GNU diff 1.1 on two versions of the same file, in context form:
+cap     A Decus C diff on two versions of the same file, in context form:
 cap     the changed line marked with `!' in each.
 try     diff -c tmp/a.txt tmp/b.txt
 run     builtin cd /dd

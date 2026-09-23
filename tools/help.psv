@@ -382,7 +382,7 @@ sine|none|it takes no options; it calls the Graph trap library, so load graph fi
 graphdemo|none|it takes no options; it calls the Graph trap library, so load graph first
 graphsave|none|it takes no options; it calls the Graph trap library, so load graph first
 showpic|none|it takes no options; it calls the Graph trap library, so load graph first
-wgen|none|it takes no options: it asks for a resolution and the intensity of each harmonic, with the Graph trap library loaded first
+wgen|none|it takes no options: it asks for a resolution and the intensity of each harmonic
 loadmem|loadmem -?|
 savemem|savemem -?|
 snap|snap -?|
@@ -883,7 +883,7 @@ ptob|ptob -?|
 trunc|trunc -?|
 clear|clear -?|
 lgrep|lgrep -?|
-suse|none|it takes a program name and prints nothing
+suse|none|it is a benchmark: it takes no arguments, prints nothing and exits when the sieve is done
 pri|none|`pri <pid> <priority>'; there is no help flag
 snd_sig|snd_sig -?|
 setime2|setime2 -?|
