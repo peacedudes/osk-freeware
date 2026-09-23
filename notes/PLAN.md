@@ -689,7 +689,7 @@ datatest/os9env now stage every command SYS/login loads (read from the
 file), so a case can `load /h1/CMDS/<name>' for any of them.  The same
 day `nnmaster', `nncheck', `nnaux', `cvt_help', `newsetup', `v7make',
 `creadoc' and `resize' (a play-test that types the terminal's answer) got
-tests; nine remain, all hardware, G-Windows, a network, or `snake'/`tplot'.
+tests; eight remain, all hardware, G-Windows, a network, or `snake'/`tplot'.
 
 **`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
 spends the hour again. Answer all three of its questions and it reaches the
