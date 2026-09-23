@@ -15,4 +15,4 @@ Usage: weekday [-svdDmMywjnah] [<date>]
             -n gives day of month
             -a gives everything it knows (default)
             -h give a usage message
-15 September 2026 is on a Tuesday on julian day 258 in week 38
+23 September 2026 is on a Wednesday on julian day 266 in week 39

@@ -1,0 +1,11 @@
+$ diff3 -?
+diff3: illegal option -- ?
+Usage:	diff3 [ -exEX3 ] [ -i ] file1 file2 file3
+Options:
+         -e      generate an ed-script
+         -x      suppress info on non-overlapping diffs
+         -E      flag deleted lines in file1 and -e
+         -X      same as exE
+         -3      supress info on overlapping diffs
+         -i      include a write-command at the end (like in SYSV)
+	Only one of [exEX3] allowed

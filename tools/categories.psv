@@ -1089,3 +1089,6 @@ man|Documentation|Help & pagers
 resize|Communications|Terminal & session
 ltb|Compilers & build|Make & generators
 stevie|Editors|vi clones
+diff3|Text tools|Sort, compare & merge
+more|Documentation|Help & pagers
+v7make|Compilers & build|Make & generators

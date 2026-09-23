@@ -676,6 +676,29 @@ wait    10
 run     fact
 wait    6
 
+shot    v7make
+size    24 80
+cap     The make of Seventh Edition Unix: a makefile names a target, what it
+cap     depends on and the commands to bring it up to date, and v7make runs
+cap     those whose target is older than its dependencies.  It prints each
+cap     command as it runs it, and hands it to `shell' -- your own OS-9's,
+cap     which SYS/login loads from /h1.  Public domain.
+try     v7make count
+run     load /h1/CMDS/shell
+wait    3
+run     rm -rf /dd/tmp/VMK > /nil 2>/nil; mkdir -p /dd/tmp/VMK
+wait    3
+run     cp /dd/DOC/samples/jabber.txt /dd/tmp/VMK/poem; printf "count: poem\r\twc poem\r" > /dd/tmp/VMK/makefile
+wait    3
+run     builtin cd /dd/tmp/VMK
+wait    1
+run     clear
+wait    1
+run     cat makefile
+wait    3
+run     v7make count
+wait    6
+
 shot    ltb
 size    24 80
 cap     Builds a lexical table: it reads a list of words and writes the hash

@@ -1,6 +1,6 @@
 # What is on this disk
 
-1029 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **711 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **714 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,10 +13,10 @@
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 137 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -30,7 +30,7 @@
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
-| [Documentation](#documentation) | 6 | Pagers, readers and the help system. |
+| [Documentation](#documentation) | 7 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | [Needs hardware](#needs-hardware) | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
@@ -145,7 +145,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>137 programs</summary>
+<details><summary>138 programs</summary>
 
 **Alternates**
 
@@ -256,6 +256,7 @@
 | `cdiff` | a context diff: compares two text files and prints what changed, each difference headed by a line such as `>>>> INSERT BEFORE 2'<br>`TRY: diff oldfile newfile` |
 | `comm` | compares two sorted files: the lines only in the first, only in the second, and in both, in three columns; -1, -2 and -3 leave a column out<br>`comm: illegal option -- ?` |
 | `diff` | &#9733; GNU diff 1.1: compares two text files and prints the lines that differ, in normal, context (-c) or ed-script (-e) form; reads CR-terminated text<br>`diff: illegal option -- diff: requires two file names.  Usage: diff [-options] file1 file2` |
+| `diff3` | compares THREE files at once and shows where each differs from the others -- GNU diff3 1.4, the tool a three-way merge is built on.  `diff3 mine older theirs'.  Source in SRC/gnudiff<br>`diff3: illegal option -- ?` |
 | `ediff` | put `diff' output into plain English: `diff <f1> <f2> ! ediff', or `ediff <file' for a diff you already have.  A one-line change comes out as `-------- 1 line changed at 3 from: ... to: ...'.  `diff' does the comparing; this makes the answer readable<br>`Syntax   : 'ediff <file'  or  'diff <f1> <f2> ! ediff'` |
 | `fcomp` | &#9733; compares two text files line by line and names the lines inserted, deleted or changed between them<br>`Syntax: fcomp <file_1> <file_2>` |
 | `join` | GNU join -- relational join of two sorted files<br>``join: unrecognized option `-?'`` |
@@ -534,7 +535,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>40 programs</summary>
+<details><summary>41 programs</summary>
 
 **Alternates**
 
@@ -597,6 +598,7 @@
 | `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe.  Its `syscmd' needs a `shell' module: it forks one by that bare name and is silent without it, so keep your own shell loaded -- DOC/README-SHELLS<br>`Syntax   : m4 [<opts>] [<files>]` |
 | `make` | &#9733; make -- maintains a target. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both Shares its name with a utility of your own -- README-NAMES<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a pathname rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>``makeinfo: unrecognized option `-?'`` |
+| `v7make` | the make of Seventh Edition Unix, public domain: reads a makefile of targets, dependencies and commands, and runs the commands whose target is older than what it depends on. It hands each command to `shell', your own OS-9's, so load that first.  The module calls itself V7make |
 | `yacc` | yacc parser generator, rebuilt `-qm' from SRC/effo_yacc. It reads a grammar and writes y.tab.c into the data directory.  `bison' is the other parser generator here and reports states and conflicts<br>`Syntax   : yacc [-dltv] [-b <prefix>] filename` |
 
 **Translators**
@@ -1761,7 +1763,7 @@
 
 *Pagers, readers and the help system.*
 
-<details><summary>6 programs</summary>
+<details><summary>7 programs</summary>
 
 | | |
 |---|---|
@@ -1771,6 +1773,7 @@
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 | `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  Every page is indexed in DOC/MANPAGES.  A shell script, so you can read it |
+| `more` | the plain pager: a screenful at a time, SPACE for the next. `less' is the fuller one; this is the one every Unix had |
 
 </details>
 

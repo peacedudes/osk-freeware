@@ -1,0 +1,11 @@
+diff3 mine older theirs
+====
+1:2,3c
+  TWO
+  three
+2:2,3c
+  two
+  three
+3:2,3c
+  two
+  THREE

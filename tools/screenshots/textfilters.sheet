@@ -594,6 +594,39 @@ run     dump tmp/TEXTA/back.txt
 wait    4
 snap
 
+shot    more
+size    24 80
+cap     The plain pager, the one every Unix had: it shows a screenful and
+cap     waits for SPACE.  Given a short file it simply prints it and stops.
+cap     `less' is the fuller one on this disk, with searching and backwards
+cap     movement; this is the small one.
+try     more DOC/samples/jabber.txt
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     more DOC/samples/jabber.txt
+wait    5
+
+shot    diff3
+size    24 80
+cap     Compares THREE files at once -- yours, the one you both started from,
+cap     and theirs -- and says which of the three each difference belongs to.
+cap     `====' opens a difference; `1:', `2:' and `3:' are the files.  Here
+cap     the second file changed the middle line and the third changed the
+cap     last.  GNU diff3 1.4; the source is in SRC/gnudiff.
+try     diff3 mine older theirs
+run     rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C
+wait    3
+run     printf "one\rtwo\rthree\r" > /dd/tmp/D3C/older; printf "one\rTWO\rthree\r" > /dd/tmp/D3C/mine; printf "one\rtwo\rTHREE\r" > /dd/tmp/D3C/theirs
+wait    3
+run     builtin cd /dd/tmp/D3C
+wait    1
+run     clear
+wait    1
+run     diff3 mine older theirs
+wait    5
+
 shot    subber
 size    24 80
 try     shell subber #1000k words in

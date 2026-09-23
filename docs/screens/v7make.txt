@@ -1,0 +1,6 @@
+cat makefile
+count: poem
+        wc poem
+$ v7make count
+    wc poem
+      4     23    137 poem

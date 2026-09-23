@@ -111,10 +111,10 @@ is no help until you already know the name you want.
 |---|--:|---|
 | **Shells** | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| **Text tools** | 137 | Search, sort, compare, reformat, split and spell-check. |
+| **Text tools** | 138 | Search, sort, compare, reformat, split and spell-check. |
 | **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| **Compilers & build** | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 16 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | **Encoding & conversion** | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -128,7 +128,7 @@ is no help until you already know the name you want.
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 19 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
-| **Documentation** | 6 | Pagers, readers and the help system. |
+| **Documentation** | 7 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
 | **Needs hardware** | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 

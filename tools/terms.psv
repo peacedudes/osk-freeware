@@ -1069,3 +1069,6 @@ man|Written for this collection and given away: anyone who wants it can have it,
 resize|Written for this collection and given away: anyone who wants it can have it, for any purpose.|the collection's own program
 ltb|As proff, which it belongs to: EFFO forum disk 8, no terms stated in the archive.|SRC/proff (proff.zoo); DOC/ORIGINS
 stevie|"STEVIE may be freely distributed. The source isn't copyrighted or restricted in any way. If you pass the program along, please include all the documentation and, if practical, the source as well." Tony Andrews and G. R. (Fred) Walter. The documentation ships in DOC/stevie; no source was in the archive.|DOC/stevie/stevie.doc
+diff3|GNU General Public License: "GNU DIFF and DIFF3 utilities, version 1.4.  See file COPYING for copying conditions."  The whole source tree ships in SRC/gnudiff, COPYING included.|SRC/gnudiff/README, SRC/gnudiff/COPYING
+more|No terms stated: it came in the TOP release with no notice of its own, and the binary carries none.|DOC/ORIGINS; TOP release 2
+v7make|"this is a public domain 'make'", from the source posted to net.sources; no copyright is claimed in it.|TOP release 2, USR/SRC/v7make.t.Z

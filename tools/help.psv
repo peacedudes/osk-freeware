@@ -1041,3 +1041,6 @@ man|none|a shell script -- run it with no arguments and it prints its own syntax
 resize|resize -?|
 ltb|none|it takes the word list and the name for the table it writes
 stevie|none|it takes the file to edit; `:q' leaves and `:wq' saves
+diff3|diff3 -?|
+more|none|it takes the files to page, or reads standard input
+v7make|none|it reads `makefile' in the data directory; name a target to make that one
