@@ -2,10 +2,18 @@
 
 ## WHERE THINGS STAND, 2026-09-23
 
-The collection is **1,040 programs** on one RBF image, every one with a card
-taken by running it.  `tools/check_disk.py disk' is the gate and it is green
-(38 checks).  Read `notes/FOR-RDOGGETT.md' -- **four** items need him now:
-the three that stood, plus **37, three licence calls from mining pass 2**.
+Every program on the one RBF image has a card taken by running it, and
+`tools/check_disk.py disk' is the gate (read its list, not a count here).
+`notes/FOR-RDOGGETT.md' has what needs him: items 1 (push and pin
+os9exec) and 38 (harnesses as `tester').
+
+**Late 2026-09-23:** the INDEX was read against every program's SOURCE and,
+for the ones with none, against its strings, help and card -- 37 entries
+corrected, each run first (PLAN section 4 has the list and the six
+binaries whose source tree did not build them).  A caption pass over all
+cards is the same idea one layer out.  newsrun ships with a trlf written
+for it; nnmaster, nncheck, nnaux, cvt_help, newsetup, v7make, creadoc,
+hist and resize got tests; harnesses stage what SYS/login loads.
 
 **Added 2026-09-23:** `compface'/`uncompface' (James Ashton's X-Face encoder,
 1990 -- built here from source, round trip asserted in the suite) and
