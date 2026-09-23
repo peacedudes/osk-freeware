@@ -415,3 +415,50 @@ a gzip of osknet.tar, and `DRIVERS/ptxm.lzh' is a README with no members.
   * Source-only, no binaries: nn 6.3.10, rn 4.3 (twice), MNews, OSKBox
     (rsh/rcp/lpr over the net), uutools, rex, Vprint, view 4.5a, CTeX.
 
+### Pass 1 complete -- all six buckets, 2026-09-22
+
+**650 archives, 1,010 modules run, ZERO os9exec defects.**  15 exception rows:
+3 programs that overflow at EOF (above), 4 runs of `os9lib' (a library the
+harness wrongly forked), 2 archive builds -- xlisp and `world' -- whose
+SHIPPED counterparts run fine, 1 module with a bad CRC in the archive itself
+(forum13's vi), and `cpu'.  About 42 timeouts, every one an interactive
+program waiting for a terminal.
+
+**Tool lessons, both now fixed or written down:**
+  * `smoke_pool.py' used one helper-script name, so two runs over one
+    directory overwrote each other's script and modules ran each other's
+    commands -- one bucket's table showed `cat' printing `watch's usage and
+    two programs recorded TIMEOUT that never ran.  Each run now writes
+    `_smoke.<pid>.sh'.
+  * Archives lie about their format: `.tgz' that is LHA, `.zip' that is a
+    PDF, `.zip' that is a gzipped tar, `.lzh' that is a README or a compress
+    stream or a bare module, `.ytar' that is a compress'd tar.  Sniff, do not
+    trust the suffix.
+  * OS-9 tars write typeflag `0x20' where POSIX writes `0', so python's
+    tarfile skips every member; and the host filesystem is case-insensitive,
+    so unpacking `less.tar.Z' (which holds `LESS/') beside a file called
+    `less' silently loses the tree.
+
+**What pass 1 found, for pass 2 to weigh** (nothing added yet):
+  * `os9/top/top.tar' -- the TOP Muenchen release, 117 modules, 59 not here:
+    the complete Notesfile system (18), nethack, tetrix, sokoban2, wanderer2,
+    robots2, yahtzee, puzzle15, stevie, more, diff3, hd, errno, upatch,
+    V7make, watch, where, crontab, vcron, logon, rz, sz.
+  * `TELECOM/rn.tar.Z' (really an LZH) -- the whole RCIS BBS, 120 modules
+    with 29 man pages.
+  * `omega' (540 KB, top's GAMES) -- already ruled out 2026-09-18.
+  * `ttcp' (osk_ttcp.tar) and `ntp'/NETTIME -- would exercise os9exec's new
+    socket layer.  BIND 4.8.3's `nslookup', `nsquery', `checksoa'.
+  * rz/sz 3.24 and 3.36 with source; LinkUp and LaTerm for KWindows; Sterm
+    and MSterm with source; `time' and `loglist' from the EFFO disks; the
+    CPUCACHE package; F68K's loader; `isofont'; `UAC_view'; `PwDialog',
+    `x9eyes', `setbgptn', `RGTool' (all want the PW/X GUI).
+  * Source only, program not here: MNews, tass, nn 6.3.10, rn 4.3, OSKBox,
+    compface, LinkUp, dmode, raypaint, mtools 3.6, CTeX, gdbm 1.4.
+  * **Terms that forbid or restrict shipping:** the SMB file manager
+    (Levinson: distribute complete and unmodified, no bundling), SYSMON (Max
+    Planck "proprietary confidential"), and EFFO forum 12 carries an `msfm'
+    binary -- the same name this collection already screens as Microware's.
+  * The pool also holds `OS-9_6809_Level1_Source.tar.gz' WITH a copyright
+    notice.  6809, out of scope, and not to be mined.
+
