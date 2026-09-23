@@ -214,7 +214,7 @@
   @media (max-width:1100px){
     .cols{grid-template-columns:minmax(280px,1fr) minmax(340px,1.4fr)}
     .col.kinds-col{grid-column:1;grid-row:1;border-right:0;border-bottom:1px solid var(--rule);
-                   overflow-x:hidden;overflow-y:auto;max-height:34vh;height:auto}
+                   overflow-x:hidden;overflow-y:auto;max-height:16vh;height:auto}
     .cols{grid-template-rows:auto 1fr}
     .col.progs-col{grid-column:1;grid-row:2}
     .col.panel-col{grid-column:2;grid-row:1 / span 2}
@@ -223,8 +223,12 @@
        and worse to aim at.  Below 1100px they keep their column and scroll
        DOWN in it, like the programs beside them. */
     .kinds-col h2{display:none}
-    .kinds{display:block;padding:8px 10px}
-    .kinds li{padding:5px 9px;font-size:13px}
+    .kinds{display:block;padding:4px 10px}
+    .kinds li{padding:3px 9px;font-size:13px}
+    /* The programs are what the reader is here for: the kinds and the
+       alphabet above them are kept to about a sixth of the height between
+       them, and scroll if there are more kinds than fit. */
+    .abc{padding:0 10px 6px}
     .abc{display:flex;gap:2px;padding:0 10px 8px;overflow-x:auto}
     .abc button{padding:5px 6px}
     .top{grid-template-columns:auto 1fr;gap:8px 16px}
