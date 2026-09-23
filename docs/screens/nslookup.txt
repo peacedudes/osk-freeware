@@ -1,0 +1,4 @@
+nslookup ftp.funet.fi
+socket (vc) failed: module not found
+*** Can't find server name for address 127.0.0.1: Unspecified error
+*** Default servers are not available

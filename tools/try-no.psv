@@ -20,6 +20,8 @@ puzzle|a G-Windows program
 uucico|talks to a UUCP peer over a serial line
 msntp|sets the clock from a network time server
 ttcp|measures throughput between two networked machines
+nslookup|looks names up on a network name server
+nsquery|looks a host up on a network name server
 blastem|XMODEM and YMODEM over a modem
 disable|switches off a serial port's monitor
 enable|switches on a serial port's monitor

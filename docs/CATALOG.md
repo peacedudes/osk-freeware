@@ -1,6 +1,6 @@
 # What is on this disk
 
-1038 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **719 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1040 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **721 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 97 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 99 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -785,7 +785,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>97 programs</summary>
+<details><summary>99 programs</summary>
 
 **File transfer**
 
@@ -865,6 +865,8 @@
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
 | `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With no server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach<br>**How:** Sets the clock from a network time server. |
 | `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
+| `nslookup` | BIND 4.8.3's name server lookup: `nslookup <host>' asks the server for a name's addresses, and run bare it takes queries at its own prompt.  It reads the server's address from resolv.conf at the root of /h0 (an example is in DOC/bind) and wants Microware's ISP networking under it<br>**How:** Looks a host name up in the domain name system: `nslookup <host>', or bare for its own prompt. It reads the server from resolv.conf at the root of /h0 -- DOC/bind/resolv.conf is an example to copy there -- and needs Microware's ISP networking. Here it reads that file, names the server it found, and stops at the socket. |
+| `nsquery` | BIND 4.8.3's small resolver test: `nsquery <host> [server]' prints a host's names and addresses.  Same resolv.conf, same networking as nslookup<br>**How:** `nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line. |
 | `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
 | `ttcp` | measures TCP or UDP throughput between two machines: start `ttcp -r -s' on one, then `ttcp -t -s <host>' on the other, and it sends a megabyte and times it.  Built against Microware's ISP networking, so it wants that stack and its /socket device under it; DOC/ttcp has the manual<br>**How:** Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <host>' on the other, and it times a megabyte going across. It needs Microware's ISP networking under it; run bare, it prints its full usage. |
 

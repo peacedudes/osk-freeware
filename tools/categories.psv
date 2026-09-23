@@ -888,6 +888,8 @@ msntp|Communications|TCP/IP
 net|Communications|TCP/IP
 osknet|Communications|TCP/IP
 ttcp|Communications|TCP/IP
+nslookup|Communications|TCP/IP
+nsquery|Communications|TCP/IP
 argproc_demo|System & modules|Utilities
 ask|Games|Other games
 biory|Amusements|Biorhythms

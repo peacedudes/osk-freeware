@@ -1,0 +1,2 @@
+$ nsquery ftp.funet.fi
+nsquery: ftp.funet.fi: Host name lookup failure

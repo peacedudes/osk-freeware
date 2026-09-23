@@ -47,6 +47,20 @@ expect  Usage: ttcp -t [-options] host <in
 expect  Usage: ttcp -r [-options] >out
 expect  use UDP instead of TCP
 
+# BIND's two: the usage line, and that nslookup READS resolv.conf -- it
+# names the server the file gives before it reaches for the socket.  The
+# file goes at the root of /h0 because that path is compiled in; the case
+# removes it again, since the image is not reset between runs.
+case    nsquery-prints-its-usage
+run     /dd/CMDS/NETWORK/nsquery < /nil
+expect  usage: nsquery [-d] host [server]
+
+case    nslookup-reads-the-server-from-resolv-conf
+run     /dd/CMDS/cat /dd/DOC/bind/resolv.conf > /h0/resolv.conf
+run     /dd/CMDS/NETWORK/nslookup ftp.funet.fi < /nil
+run     /dd/CMDS/rm -f /h0/resolv.conf
+expect  address 127.0.0.1
+
 # `msntp' IS DELIBERATELY NOT A CASE ANY MORE.  It wanted csl edition 25,
 # which has shipped since 2026-09-04, and it then stopped where every
 # program here stopped: "unable to allocate socket for NTP", no network to

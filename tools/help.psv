@@ -166,6 +166,8 @@ net|none|it takes the name of a startup file and no options; `help' at its `net>
 osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
 msntp|none|it takes the address of a time server and no help flag
 ttcp|ttcp|
+nslookup|none|it takes a host name or runs its own prompt; its `help' command wants a file at a Unix path, and DOC/bind/nslookup.help is that file
+nsquery|nsquery|
 atp|none|it takes no options: it reads atprc or .atprc from the data directory
 infoxpress|none|it takes no options: it opens its serial device and waits for the host
 uucp|uucp -?|

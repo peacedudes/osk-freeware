@@ -135,3 +135,8 @@ disk/SRC/gcc142/math_68881.h
 # overlap is with DEFS/GCC2/stdarg.h, gcc 2's header (__builtin_saveregs,
 # __GNUC__ > 1), which shares gcc's argument-rounding macros.
 disk/SRC/gcc142/va_osk.h
+# ntypes.h is Andrzej Kotanski's 1994 fd_set header for the BIND port's
+# select(): MAX_NOFILE, NBBY and the four FD_ macros that 4.3BSD defined in
+# sys/types.h.  The overlap is with those same BSD macros, not with any
+# Microware text; 1,032 bytes, no notice.
+disk/SRC/bind/RES/ntypes.h

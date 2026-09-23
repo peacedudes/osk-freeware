@@ -1,0 +1,2 @@
+$ nsquery
+usage: nsquery [-d] host [server]
