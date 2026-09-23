@@ -358,8 +358,17 @@ function runItHTML(shot){
   if(!TRY_PAGE || !shot || !shot.try) return "";
   if(shot.tc==="no")
     return `<p class="runit none">Not in a browser: ${esc(shot.tw)}.</p>`;
-  const h1 = shot.tc==="h1";
-  const url = TRY_PAGE+"?run="+encodeURIComponent(shot.try)+(h1?"&needs=h1":"");
+  // RUN WHAT THE READER IS BEING SHOWN.  With the OS-9 shell chosen, the
+  // card shows that shell's spelling, so the demo must run THAT -- handed to
+  // `shell', which is the reader's own and comes from /h1.  The page boots
+  // bash, so the bash spelling needs nothing extra.
+  // Quoted, because the line goes to bash first: an OS-9 line with a `;' in
+  // it (`setenv SHELL CMDS/sh; dm SYS') would otherwise be split by bash and
+  // only half of it would reach the shell that understands it.
+  const os9 = shell==="os9" && shot.os9;
+  const cmd = os9 ? 'shell "'+shot.os9.replace(/"/g, '\\"')+'"' : shot.try;
+  const h1 = shot.tc==="h1" || !!os9;
+  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"");
   return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Run it in your browser</a>`+
     (h1?` &mdash; needs your own OS-9 attached as /h1`:"")+`</p>`;
 }
