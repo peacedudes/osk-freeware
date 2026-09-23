@@ -809,6 +809,18 @@ infocom.tcap and wn had a wrong detail each.  mw's `n builds a wall' was
 questioned (no string for it) and a play session settled it: `n' puts a
 `[]' block square in front of the player.  The entry was right.
 
+**CAPTIONS, the same evening:** every card's caption read against its own
+captured screen and help.  About thirty corrected: numbers (dam 255 MB,
+djpeg.070 869 bytes, dvimac 144 and dvitos 180 dpi, detab's default of
+three), wrong programs or files (printers named Printronix and ran EPSI,
+ptob `dots' that are byte $B7, spline -- a Tektronix demo that reads
+nothing, where the card called its codes PostScript), and cards whose
+setup was wrong: modules asked this grep for `-a', which it lacks, and
+showed six usage errors; gnuan was fed its moves on one line and so
+stopped at the third.  Two captures were simply OLD -- sir's predated the
+fix that made it round-trip, and ls's predated its owner fix -- which is
+the stale-capture check now described in the handoff.
+
 ### 5. Housekeeping
 
 - `notes/` is 7300 lines across 42 files. It was pruned once, at rdoggett's
