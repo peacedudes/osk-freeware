@@ -1,0 +1,10 @@
+Article 1 in junk:
+Message-ID: <1@osk.UUCP>
+Date: Wed, 23 Sep 2026 13:43:04 GMT
+
+Subject: posted with Pnews
+From: tester@osk.UUCP
+
+read back with rn
+
+End#of#article#1#(of#1)--what#next?#[npq]

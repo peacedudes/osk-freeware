@@ -1,0 +1,35 @@
+family  cnews
+# C News's relaynews and rn's Pnews (2026-09-23).  The state is reset each
+# run -- the image is not -- and the dbz index rebuilt for an empty history.
+# rn itself is on its card; it wants a terminal.
+
+setup   set +H
+setup   export HOME=/dd USER=tester
+setup   W=/dd/tmp/CNT
+setup   /dd/CMDS/rm -rf $W /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control > /nil 2>/nil
+setup   /dd/CMDS/rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+setup   /dd/CMDS/printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+setup   /dd/CMDS/printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+setup   /dd/CMDS/printf '' > /h0/USR/LIB/CNEWS/history
+setup   builtin cd /h0/USR/LIB/CNEWS
+setup   /dd/CMDS/NEWS/dbz history
+setup   /dd/CMDS/mkdir -p $W
+
+case    relaynews-files-an-article-and-refuses-it-again
+run     /dd/CMDS/printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: case\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rcase body\r' > $W/art
+run     /dd/CMDS/NEWS/relaynews -n < $W/art
+run     /dd/CMDS/NEWS/relaynews -n < $W/art
+run     /dd/CMDS/cat /h0/SPOOL/CNEWS/junk/1
+run     /dd/CMDS/cat /h0/USR/LIB/CNEWS/active
+expect  + <1@somewhere>
+expect  - <1@somewhere> duplicate
+expect  Path: osk!somewhere!someone
+expect  junk 0000000001 00001 y
+
+case    Pnews-leaves-a-post-for-relaynews-in-in-coming
+run     /dd/CMDS/printf 'Newsgroups: junk\rSubject: posted\r\rpost body\r' > $W/post
+run     /dd/CMDS/NEWS/Pnews -h $W/post -s > /nil
+run     /dd/CMDS/cat /h0/SPOOL/CNEWS/in.coming/0local1
+expect  Newsgroups: junk
+expect  From: tester@osk.UUCP
+expect  post body

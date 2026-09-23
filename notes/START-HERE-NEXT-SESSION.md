@@ -87,10 +87,17 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    nnmaster forks the reader's `shell'; `Q' in nn asks one more question.
    tass BUILDS but is parked: it reads MNews pre-2's active format, not the
    prerelease's that nn reads (AUDIT-pool has the recipes and the detail).
-   **rn 4.3 BUILDS (recipes in AUDIT-pool) but needs C News's relay**, which
-   is the unbuilt `package build' in SRC/cnews -- that is the next port after
-   MNews, and it is what turns rn, Pnews and the disk's C News tools into a
-   working second news system.
+   **C News relaynews + rn 4.3 -- WORKING 2026-09-23, being carded.**
+   relaynews, rn, Pnews, newsetup in CMDS/NEWS; LIB/libcnews.l; USR/LIB/CNEWS
+   (active, sys, history + dbz index, artnum), USR/LIB/RN (norm.saver),
+   SPOOL/CNEWS/in.coming.  config.c/config.h path edits kept as .ori.
+   LESSONS: blarslib's link() (ln.c) writes raw directory sectors and, with
+   os9exec's I$Delete ignoring FD_LNK (REPORTED to os9exec 2026-09-23),
+   turned LOCK into a directory -- relaynews now links SRC/cnews/libosk/
+   linkcopy.c (ours) FIRST.  newsrun is not installed: it needs blarson's
+   `trlf', which is in no archive.  rn needs /r0 mounted; newsetup forks
+   the reader's shell.  newslock NOW WORKS (link count 2) -- its panel
+   exception is stale; re-card it.
 2. **Socket programs -- os9exec is building a /socket front end.**  ttcp,
    nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
    When os9exec sends the commit: pin it, re-run their cards, and take a

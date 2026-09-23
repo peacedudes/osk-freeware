@@ -124,6 +124,10 @@ bdecode|none|it takes the file to decode and no options
 byteflip|none|it takes the database to swap and no options; with nothing named it waits on standard input
 c7decode|none|a filter with no options: encoded news on standard input, the article out
 dbz|dbz -?|
+relaynews|relaynews -?|
+rn|none|its options are in DOC/rn/rn.1; asked -? it says it is ignoring the switch and starts reading
+Pnews|none|it asks its questions as it goes: distribution, newsgroup, subject; -h <file> -s posts a prepared article
+newsetup|none|it takes no options: run once, it writes your .newsrc
 cvt_help|none|a filter: it reads a help file on standard input and writes the converted one; no options
 decode|none|a filter from standard input to standard output; no options
 encode|none|a filter from standard input to standard output; no options

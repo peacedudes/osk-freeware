@@ -521,6 +521,113 @@ wait    6
 run     ls tmp/MAILA/tmplock tmp/MAILA/reallock
 wait    5
 
+shot    relaynews
+cap     C News's relay: it files an article under its newsgroup, numbers
+cap     it and records its Message-ID in the history.  Its log line says
+cap     what happened -- `+' filed, and fed the same article again, `-'
+cap     refused as a duplicate.
+try     relaynews -n < article; relaynews -n < article
+run     set +H
+run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
+run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+run     printf '' > /h0/USR/LIB/CNEWS/history
+run     builtin cd /h0/USR/LIB/CNEWS
+run     dbz history
+run     mkdir -p /dd/tmp/CNC
+run     builtin cd /dd/tmp/CNC
+run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
+run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+wait    3
+run     clear
+run     relaynews -n < article; relaynews -n < article
+wait    6
+
+shot    Pnews
+cap     Posts an article to C News.  Bare it asks for the distribution,
+cap     newsgroup and subject; -h names a file that already has its
+cap     header and -s sends it without asking.  A first-timer gets its
+cap     advice first.  The post waits in C News's incoming directory
+cap     until relaynews files it.
+try     Pnews -h post -s
+run     set +H
+run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
+run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+run     printf '' > /h0/USR/LIB/CNEWS/history
+run     builtin cd /h0/USR/LIB/CNEWS
+run     dbz history
+run     mkdir -p /dd/tmp/CNC
+run     builtin cd /dd/tmp/CNC
+run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
+run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+wait    3
+run     rm -f /dd/.pnewsexpert > /nil 2>/nil
+run     clear
+run     Pnews -h post -s
+wait    6
+
+shot    rn
+size    24 80
+cap     rn, Larry Wall's newsreader, on C News's spool: one article waits
+cap     in junk, posted with Pnews and filed by relaynews, and `y' opens
+cap     it.  Space pages on, n goes to the next article, q leaves.  rn
+cap     keeps its scratch files on a RAM disk, /r0, mounted first.
+try     rn junk
+run     set +H
+run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
+run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+run     printf '' > /h0/USR/LIB/CNEWS/history
+run     builtin cd /h0/USR/LIB/CNEWS
+run     dbz history
+run     mkdir -p /dd/tmp/CNC
+run     builtin cd /dd/tmp/CNC
+run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
+run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+wait    3
+run     mount -r=256k /r0 > /nil 2>/nil
+run     mkdir -p /dd/News > /nil 2>/nil
+run     Pnews -h post -s > /nil
+run     relaynews -r -n < /h0/SPOOL/CNEWS/in.coming/0local1
+run     printf 'junk:\r' > /dd/.newsrc
+wait    3
+run     clear
+run     rn junk
+wait    6
+send    y
+wait    5
+snap
+quit    qqq
+
+shot    newsetup
+cap     Writes the .newsrc rn reads -- every group in C News's active file,
+cap     one to a line -- for someone reading news for the first time.  It
+cap     forks your own OS-9's shell, loaded first.
+try     newsetup; cat .newsrc
+run     set +H
+run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
+run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
+run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
+run     printf '' > /h0/USR/LIB/CNEWS/history
+run     builtin cd /h0/USR/LIB/CNEWS
+run     dbz history
+run     mkdir -p /dd/tmp/CNC
+run     builtin cd /dd/tmp/CNC
+run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
+run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+wait    3
+run     load /h1/CMDS/shell
+run     builtin cd /dd
+run     rm -f .newsrc .oldnewsrc > /nil 2>/nil
+run     clear
+run     newsetup; cat .newsrc
+wait    6
+
 shot    setup
 size    40 80
 fresh

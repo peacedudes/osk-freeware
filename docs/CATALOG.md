@@ -1,6 +1,6 @@
 # What is on this disk
 
-1054 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **735 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1058 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **739 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 109 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 113 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -785,7 +785,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>109 programs</summary>
+<details><summary>113 programs</summary>
 
 **File transfer**
 
@@ -853,15 +853,19 @@
 | `encode` | B News 2.11's encode: turns a binary file -- a compressed news batch -- into printable text a seven-bit link can carry<br>**How:** B News's encode: a binary on standard input becomes printable text on standard output. decode reverses it. |
 | `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |
 | `inews` | stores and forwards news articles.  `inews -h < article' posts one, filling in the headers it lacks; `inews -c=newgroup:<group>' creates a group, -e=<days> expires old articles and -r rebuilds the active file<br>**How:** MNews's article store: run `setup' first, then `inews -c=newgroup:<group> </nil' makes a group and `inews -h < file' posts the article in the file. Articles land in /h0/SPOOL/MNEWS, one file per article. |
+| `newsetup` | writes a .newsrc for rn from the groups in the active file, each marked unsubscribed until you choose.  It forks your own OS-9's `shell'<br>**How:** Writes a .newsrc for rn from the groups in the active file. It forks your own OS-9's `shell', so load that first. |
 | `newshist` | &#9733; looks message-ids up in the news history and reports what it finds, or that there is no entry for them: `newshist "<id@site>" ...'. -df names a history file other than the system's<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
-| `newslock` | &#9733; the news system's lock: `newslock <tempname> <lockname>' makes the lock by linking one name to the other, which is how a lock is made atomic on a Unix filesystem.  This C library has no link(), so it returns 1 and leaves nothing behind -- the same gap that stops zip, arc and todos finishing.  SRC/cnews/misc/newslock.c is four lines and says so<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
+| `newslock` | &#9733; the news system's lock: `newslock <tempname> <lockname>' makes the lock by linking one name to the other -- blarslib's link(), which writes the second directory entry itself, since RBF has no hard links.  It returns 0 and both names share one file, link count 2 (measured 2026-09-23). relaynews uses a copying link() instead; see SRC/cnews/README.OSK<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
 | `nn` | the nn newsreader, release 6.3.10: a full-screen menu of the unread articles in each group, read by subject, with threads, kill files and online help (`?').  `nn <group>' opens one group; it reads the database nnmaster keeps<br>**How:** The nn newsreader. Needs `setup' run and nn's database built (`nnmaster -I', answering OK, then `nnmaster'); then `nn <group>'. Space reads on, `?' is help, `q' quits. |
 | `nnadmin` | looks inside nn's database and log, checks it, and tells a running nnmaster what to do<br>**How:** Looks inside nn's database; it needs nnmaster to have built one. |
 | `nnaux` | the helper nn runs to post, follow up or reply: it collects the article and hands it to inews<br>**How:** nn's helper for posting and replying; nn runs it. |
 | `nncheck` | says whether there is news you have not read: `There are 327 unread articles in 25 groups', or `No News (is good news)'<br>**How:** Says whether you have unread news, once nnmaster has built nn's database. |
 | `nnmaster` | builds and keeps nn's database of articles.  `nnmaster -I' initialises it, `nnmaster' collects what has arrived since, and -r keeps it running as a daemon<br>**How:** Keeps nn's database: `nnmaster -I' once (it asks for OK), then `nnmaster' after new articles arrive. It forks your own OS-9's `shell'. |
+| `Pnews` | posts an article to C News: it asks for the distribution, newsgroup and subject, or with -h <file> -s sends a file that has its header.  The post waits in SPOOL/CNEWS/in.coming for relaynews<br>**How:** Posts an article to C News: bare it asks for the distribution, newsgroup and subject and opens an editor; `Pnews -h <file> -s' posts a file that already has its header. relaynews then files it. |
 | `postnews` | &#9733; post an article to a newsgroup<br>`/dd/CMDS/UUCP/postnews: illegal option -- ?` |
 | `readnews` | &#9733; read Usenet news articles: it opens the reader and asks about each newsgroup in the active file not yet in .newsrc, then answers `**** End of newsgroups' when the news spool is empty<br>`readnews: read Usenet news articles` |
+| `relaynews` | C News's relay: files an article or a batch under its newsgroup, numbers it, updates the active file and the history, and refuses a Message-ID it has seen.  `relaynews -r -n < file'; -r sends its log to USR/LIB/CNEWS<br>**How:** C News's article filer: `relaynews -r -n < article' files one article (or a batch) under its newsgroup in SPOOL/CNEWS and updates USR/LIB/CNEWS/active. Pnews leaves posts in SPOOL/CNEWS/in.coming for it. |
+| `rn` | Larry Wall's newsreader, release 4.3: `rn <group>' offers each group with unread news, y reads, space pages, q leaves. Mount a RAM disk first (`mount -r=256k /r0') -- it keeps its scratch files there.  DOC/rn has its manual<br>**How:** Larry Wall's newsreader, on the C News spool. Mount a RAM disk first (`mount -r=256k /r0'), then `rn <group>'; y reads, space pages, q quits. A .newsrc in your home directory lists the groups; newsetup writes one. |
 | `rnews` | &#9733; unpacks a batch of articles received from another site -- compressed or not -- and hands each to inews under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
 | `sbatch` | collects the articles waiting for a neighbouring site into batches to send it: `sbatch <system>', -c to compress<br>**How:** Batches the articles waiting for a neighbour: `sbatch <system>'. Sys in USR/LIB/NEWS names the neighbours; this disk's names none. |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |

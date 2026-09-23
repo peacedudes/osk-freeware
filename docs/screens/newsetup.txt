@@ -1,0 +1,9 @@
+newsetup; cat .newsrc
+Creating .newsrc in /dd to be used by news programs.
+If you have never used the news system before, you may find the articles
+in news.announce.newusers to be helpful.  There is also a manual entry for rn.
+
+To get rid of newsgroups you aren't interested in, use the 'u' command.
+Type h for help at any time while running rn.
+control!
+junk!

@@ -883,6 +883,10 @@ bdecode|Communications|News
 byteflip|Communications|News
 c7decode|Communications|News
 dbz|Communications|News
+relaynews|Communications|News
+rn|Communications|News
+Pnews|Communications|News
+newsetup|Communications|News
 cvt_help|Communications|News
 decode|Communications|News
 encode|Communications|News

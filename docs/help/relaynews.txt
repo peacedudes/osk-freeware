@@ -1,0 +1,3 @@
+$ relaynews -?
+/dd/CMDS/NEWS/relaynews: unknown option -?
+usage: /dd/CMDS/NEWS/relaynews [-inrs][-d fhlmt][-x site]

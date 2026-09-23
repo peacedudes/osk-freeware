@@ -171,6 +171,10 @@ adltouch|`adltouch tiny 7' writes 7 into the first four bytes of the compiled wo
 osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
 net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q.
 dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system.
+relaynews|C News's article filer: `relaynews -r -n < article' files one article (or a batch) under its newsgroup in SPOOL/CNEWS and updates USR/LIB/CNEWS/active. Pnews leaves posts in SPOOL/CNEWS/in.coming for it.
+rn|Larry Wall's newsreader, on the C News spool. Mount a RAM disk first (`mount -r=256k /r0'), then `rn <group>'; y reads, space pages, q quits. A .newsrc in your home directory lists the groups; newsetup writes one.
+Pnews|Posts an article to C News: bare it asks for the distribution, newsgroup and subject and opens an editor; `Pnews -h <file> -s' posts a file that already has its header. relaynews then files it.
+newsetup|Writes a .newsrc for rn from the groups in the active file. It forks your own OS-9's `shell', so load that first.
 inews|MNews's article store: run `setup' first, then `inews -c=newgroup:<group> </nil' makes a group and `inews -h < file' posts the article in the file. Articles land in /h0/SPOOL/MNEWS, one file per article.
 nn|The nn newsreader. Needs `setup' run and nn's database built (`nnmaster -I', answering OK, then `nnmaster'); then `nn <group>'. Space reads on, `?' is help, `q' quits.
 nnmaster|Keeps nn's database: `nnmaster -I' once (it asks for OK), then `nnmaster' after new articles arrive. It forks your own OS-9's `shell'.
