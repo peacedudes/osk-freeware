@@ -1,6 +1,6 @@
 # What is on this disk
 
-1028 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1029 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **711 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -12,7 +12,7 @@
 | Category | Programs | |
 |---|--:|---|
 | [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
-| [Editors](#editors) | 21 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
+| [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 137 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
@@ -85,7 +85,7 @@
 
 *vi and emacs in several flavours, line and stream editors, and editors for binary and hex.*
 
-<details><summary>21 programs</summary>
+<details><summary>22 programs</summary>
 
 **Alternates**
 
@@ -128,6 +128,7 @@
 | `elvis_input` | elvis under its `input' personality -- it opens already in insert mode. The name is load-bearing: elvis's wrapper picks its personality from the last letter of the name it was invoked by, so a name ending in another letter falls through to plain vi. CMDS/input is a different program entirely |
 | `elvprsv` | preserves elvis's buffer when elvis dies, for elvrec to recover; elvis runs it itself |
 | `elvrec` | Recover an elvis buffer preserved when elvis died. Run with no arguments it lists what is recoverable, so silence means nothing was preserved. It reads /usr/preserve/Index, and OS-9 has no /usr -- a leading /name is a device, not a directory -- so it finds nothing here whatever is placed under /dd. expreserve is the half that saves. DOC/elvrec/elvrec.doc.<br>**How:** Bare, it lists what elvis preserved; nothing listed means nothing was preserved. |
+| `stevie` | STEVIE, a vi clone: the movement, the operators and the colon commands of vi in a small editor that needs no termcap of its own beyond TERM.  `stevie <file>' opens it, `:q' leaves and `:wq' saves.  DOC/stevie is its quick reference |
 | `vi.elvis` | elvis 1.7 under the name `vi'.  CMDS/vi is PVIC, so these are two unrelated vi clones |
 | `view` | elvis opened read-only |
 

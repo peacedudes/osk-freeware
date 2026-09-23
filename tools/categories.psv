@@ -1088,3 +1088,4 @@ fact|Languages|Fortran
 man|Documentation|Help & pagers
 resize|Communications|Terminal & session
 ltb|Compilers & build|Make & generators
+stevie|Editors|vi clones

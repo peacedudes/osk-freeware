@@ -167,6 +167,26 @@ snap
 send    \030\003
 wait    3
 
+shot    stevie
+size    24 80
+cap     STEVIE -- "Simply Try this Editor for VI Enthusiasts" -- a small vi
+cap     clone: the same movement keys, operators and colon commands.  Here it
+cap     has the sample poem open, with `~' marking the lines past the end of
+cap     the file the way vi does.  `:q' leaves, `:wq' saves.  Its quick
+cap     reference is DOC/stevie.
+try     stevie poem
+run     rm -rf /dd/tmp/STV > /nil 2>/nil; mkdir -p /dd/tmp/STV; cp /dd/DOC/samples/jabber.txt /dd/tmp/STV/poem
+wait    4
+run     builtin cd /dd/tmp/STV
+wait    1
+run     clear
+wait    1
+run     stevie poem
+wait    6
+snap
+send    :q\r
+wait    2
+
 shot    hexed
 cap     A hex editor made out of your text editor: it writes the file out as
 cap     a hex dump, opens that in the editor -e names, and when you leave it

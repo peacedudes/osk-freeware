@@ -1040,3 +1040,4 @@ fact|none|its output is its whole behaviour; it takes no options
 man|none|a shell script -- run it with no arguments and it prints its own syntax, but the SDK shell the help capture runs at cannot fork a script, so the card carries the syntax from the script itself
 resize|resize -?|
 ltb|none|it takes the word list and the name for the table it writes
+stevie|none|it takes the file to edit; `:q' leaves and `:wq' saves
