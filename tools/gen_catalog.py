@@ -810,8 +810,13 @@ def render(progs, template, standalone=True):
     # The browser page, when it has been built into docs/try; until then no
     # card offers to run anything there.
     docs = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs")
+    # `try/index.html', not `try/': opened from the Finder over file://, a
+    # directory link just opens another Finder window (rdoggett hit this).
+    # Naming the file at least opens the page, which then says it needs to be
+    # served -- fetch() and WebAssembly both refuse a file:// origin.
     html = html.replace("__TRY_PAGE__", json.dumps(
-        "try/" if os.path.exists(os.path.join(docs, "try", "index.html")) else ""))
+        "try/index.html" if os.path.exists(os.path.join(docs, "try", "index.html"))
+        else ""))
     assert "__DATA__" not in html and "__TOTAL__" not in html
     if not standalone:
         return html
