@@ -1,0 +1,6 @@
+time wc DOC/samples/jabber.txt
+      4     23    137 DOC/samples/jabber.txt
+
+Real time     :   1    s
+User time     :   0.01 s
+System time   :   0.00 s

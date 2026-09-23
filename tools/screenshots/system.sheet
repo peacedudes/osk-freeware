@@ -675,6 +675,19 @@ run     mexist bash; echo "status $?"
 wait    4
 run     mexist nosuchmodule; echo "status $?"
 wait    4
+shot    time
+size    24 80
+cap     Times a program: it runs the command you give it, lets that command
+cap     print whatever it prints, and then adds how long it took -- real
+cap     time, and the processor time spent in the program and in the system.
+try     time wc DOC/samples/jabber.txt
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     time wc DOC/samples/jabber.txt
+wait    5
+
 shot    vis
 size    24 80
 cap     vis runs a command over and over and redraws the screen with its

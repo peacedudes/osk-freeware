@@ -1073,3 +1073,4 @@ diff3|GNU General Public License: "GNU DIFF and DIFF3 utilities, version 1.4.  S
 more|No terms stated: it came in the TOP release with no notice of its own, and the binary carries none.|DOC/ORIGINS; TOP release 2
 v7make|"this is a public domain 'make'", from the source posted to net.sources; no copyright is claimed in it.|TOP release 2, USR/SRC/v7make.t.Z
 yahtzee|No terms stated: it came in the TOP release with no notice of its own, and the binary carries none.|DOC/ORIGINS; TOP release 2
+time|No terms stated: an EFFO public-domain disk submission, the form recording only "Time the execution of a command" and its revision.|DOC/time/time.doc; DOC/ORIGINS
