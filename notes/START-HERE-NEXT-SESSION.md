@@ -1,45 +1,105 @@
 # Start here, next session
 
-## DO THESE IN THIS ORDER. DO NOT ASK WHICH FIRST.
+## WHERE THINGS STAND, 2026-09-23
 
-**Everything below needs doing, so the order is already decided and it is
-written here.  Take the top item that is not done and do it.**  On
-2026-09-21 I finished a long autonomous run and then asked rdoggett to
-choose an order for work that all needed doing.  That is handing him my
-job, and it cost him half a day he did not have.  His words: *"If you want
-me to choose the order to do things in when they all need to be done, you
-are just wasting time."*  There is no ordering question here any more.
+The collection is **1,037 programs** on one RBF image, every one with a card
+taken by running it.  `tools/check_disk.py disk' is the gate and it is green.
+The suite was **875 of 875 twice** before the last six additions; re-run it
+(below).  Read `notes/FOR-RDOGGETT.md' -- three items need him and nothing
+else does.
 
-1. **Documentation and provenance are DONE.**  Every program has a page
-   (the vi helpers came off rather than being documented), and on
-   2026-09-22 every file under CMDS got a DOC/ORIGINS row -- the last 44
-   by md5 against the pool and the local disk images, including a new
-   section for binaries from the disk that holds the Usenet .ar archives.
-   Only `wc' is unknown, and ORIGINS says so.  GCC139's gcc and gpp had
-   borrowed GCC2's rows; they are separate now.  What remains: pages not
-   run on a real terminal were written from the measured records -- if a
-   page disagrees with the program, the program wins; fix the page.
-2. **The remaining `panel-exceptions.psv` lines.**  About 27 of the 65 were
-   re-tested on 2026-09-20/21; the rest have not been.  Three shapes found
-   them all: the disk SHIPS what the reason says is missing; nobody STARTED
-   the program that provides what it needs; the card FILTERED the content
-   away (`getsys' published its stderr).  See
-   [[os9-exception-reasons-go-stale]] and the entries further down.
-3. **DONE 2026-09-22: the EFFO vi's helpers came off** on rdoggett's
-   ruling -- expreserve, exrecover, add_errmsg, read_mail, SYS/vi_usage,
-   vi_errmsg, .exrc and MAIL/mail_.  DOC/README-NOT-SHIPPED lists them
-   with the vi they belonged to, and where they are.
-4. **The other 9 untested programs want hardware, G-Windows, a network, or
-   do not survive capture.**  Do not spend the session on them; the reasons
-   are recorded per program.
+**The release is near.**  rdoggett has written to Microware describing all
+three pieces (os9exec, this collection, the Claude skills) and plans to push
+around the end of the month.  He is holding the os9exec tag until the mining
+below is finished, because unfamiliar binaries are what find emulator bugs.
 
-**Do not burn wall clock waiting.**  `datatest.py --all' takes about 25
-minutes and holds the image lock, so BATCH every image-touching change,
-then run the suite twice at the end.  And when you background a wait, wait
-on a PID you captured -- `until ! pgrep -f '<pattern>'` never exits,
-because the waiting shell's own command line matches the pattern.  Fifteen
-of those were left spinning on 2026-09-21, the oldest for 14 hours.
+## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
+1. **Re-run the suite twice on a fresh image, then rebuild osk-freeware.dd.**
+   Six programs landed after the last full run (stevie, diff3, v7make, more,
+   yahtzee, time).  His `free' alias opens the repo's own image, so a session
+   that changes `disk/' and does not rebuild leaves him a stale one.
+
+       OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk <scratch>.dd
+       OS9SDK=$HOME/Developer/os9/play/oskBoot tools/datatest.py --all --image <scratch>.dd   # twice
+       OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
+
+   $OS9SDK matters now: the collection ships no `load', so the harnesses
+   stage the reader's own from there (tools/os9env.py, stage_reader_load).
+   Without it the cases that load a module fail, and say so.
+
+2. **MINING PASS 2 -- the main work, and what the os9exec tag waits on.**
+   Pass 1 ran every module in the unmined pool once under the emulator: 650
+   archives, ~1,010 modules, **no os9exec defect**.  The table is
+   `notes/mining-pass1.tsv' (861 rows kept; the extractions were scratch and
+   are gone -- re-extract from ~/Developer/os9/Scraped with
+   `tools/list_archive.py' to see inside an archive again).
+   `notes/AUDIT-pool.md' has the full write-up, the traps, and the candidate
+   list.  Pass 2 is: for each candidate, **read its terms, run it, card it,
+   commit it**.  TOP release 2 is done (six taken, the rest rejected with
+   reasons in AUDIT-pool).  Still to weigh, roughly in order of value:
+     * `ttcp' (mw/dl/osk_ttcp.tar) and `ntp'/NETTIME -- they would exercise
+       os9exec's new socket layer, which nothing here does.
+     * BIND 4.8.3's `nslookup', `nsquery', `checksoa'.
+     * The RCIS BBS (microware-archive/TELECOM/rn.tar.Z, which is an LZH):
+       120 modules, 29 man pages.  A whole BBS; needs a judgement about
+       scope before any of it is carded.
+     * `isofont', `UAC_view', `dsw', `j', `strcmp', the WN CGI samples.
+     * Source-only, no binary here: MNews, tass, nn 6.3.10, rn 4.3, OSKBox,
+       compface, LinkUp, dmode, mtools 3.6, CTeX, gdbm 1.4.  These are
+       "can it compile" work, not "does it run" work.
+     * **Terms that forbid or restrict:** the SMB file manager (distribute
+       complete and unmodified, no bundling), SYSMON (Max Planck
+       "proprietary confidential"), EFFO forum 12's `msfm' (the name this
+       collection already screens as Microware's).  Do not ship these.
+
+3. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
+   re-tested.  Three shapes keep recurring: the disk SHIPS what the reason
+   says is missing; nobody STARTED the program that provides what it needs;
+   the card FILTERED the content away.
+
+4. **Pages not run on a real terminal.**  If a page disagrees with the
+   program, the program wins; fix the page.
+
+## WHAT CHANGED ON 2026-09-22/23, so you do not re-derive it
+
+  * **`load' is DELETED** (not just withheld) on rdoggett's word: a program
+    named for a Microware utility is Microware's to ship.  SYS/login loads
+    **34 of the reader's own commands from /h1** in one guarded loop --
+    shell, runb, del, copy, tmode, pd, the compiler chain -- but never `dir'
+    or `grep', which this disk has of its own.  mkimage extracts with bash
+    itself now, so the build uses no Microware file at all.
+  * **This bash leaks a redirection when a bare-name command is not found**
+    (`nosuch >/nil 2>/nil' leaves bash's own output on /nil).  That is why
+    SYS/login guards the loop with `[ -f /h1/CMDS/load ]' and uses full
+    paths.  A silent session is this, not a hang.
+  * **`resize'** (new, written here, SRC/resize) asks the terminal its size
+    with the VT100 cursor report and sets LINES/COLUMNS; `.bashrc' runs it
+    at login and it can be re-run after resizing the window.  SCF's EOF
+    character is ESC, which is why it clears sg_eofch while it reads.
+  * **/dd/.bashrc now carries**: aliases for `hack', `larn', `ularn' (this
+    bash passes a bare argv[0], which they re-open themselves by), and
+    functions for `sc', `gnuchess', `gnuchessn', `typefast', `yahtzee'
+    (they read TERMCAP as the DESCRIPTION, not a filename).
+  * **Fixed programs**: `screen_nocio' (its scandir never set its count to
+    zero -- one line, SRC/screen/README.OSK), `vis' (rebuilt -qm; the cio
+    build never repainted), `ltb' (built, so `proff' is rebuildable end to
+    end), `bash' (the BASH_VERSION overrun, patched earlier).
+  * **`gawk' shipped with the WRONG version's source** -- 2.00 Beta against
+    a 2.11 binary.  Its own 2.11 source is now SRC/gawk2.11.
+  * **The browser demo**: `docs/try/' holds the page and the WebAssembly
+    build (committed, 1.5 MB); `disk.gz' is NOT committed -- the workflow
+    copies the image it just built into place before publishing Pages.
+    Every card carries a Try It link, and `tools/tryable.py' says which of
+    three classes it is in: 877 run on the disk alone, 45 need the reader's
+    own OS-9 as /h1, 37 need hardware and get a line instead of a button
+    (`tools/try-no.psv', gate-checked).  With the OS-9 shell chosen the link
+    runs that card's OS-9 line through `shell', quoted.
+  * **New tools**: `list_archive.py' (lists a Zoo, an Arc or an OS-9 `ar'
+    by running the DISK's own tools under the emulator -- archives lie about
+    their format, so sniff), `smoke_pool.py' (runs every module in a
+    directory once; one helper script per run, because two runs over one
+    directory used to overwrite each other's), `tryable.py'.
 
 ## DONE -- 2026-09-22: your own OS-9's commands, resident from /h1
 
