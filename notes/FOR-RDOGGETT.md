@@ -6,7 +6,7 @@ stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
 Updated 2026-09-22.
 
-**Two new items, 35 and 36, both small.**  Answered 2026-09-22: 34 (the `t' stub came off), 31 (no stand-in
+**Two new items, 35 and 36, both small.**  Answered 2026-09-22: 34 (the `t' stub came off), 29 (your 1988 lines in the archives' own files stay; the SOURCES line naming you and Allan is gone, and the gate now catches the name, not just the username), 31 (no stand-in
 `shell'; load yours from /h1/CMDS/shell, as SYS/login does), 32 (the EFFO
 vi's helpers come off), 33 (bash patched).  Programs found and left out
 are catalogued for readers in DOC/README-NOT-SHIPPED.
@@ -109,16 +109,6 @@ discouragement; two are about Microware's own files being deliberately
 absent, which is the respectful thing to say. Widening the FILE LIST is one
 line and safe; widening the PATTERNS would flag seven captions that are
 right. **Recommend: widen the list, leave the patterns.**
-
-**29. Your username was on six published cards; what stays is yours to say.**
-All nine occurrences are gone and a gate with a breaker keeps them gone. What
-I kept: `Robert Doggett` in `zot.1`, `zot.c`, `qt.c`, `snap/main.c` and
-`fgrep.c`, where the files' own headers record who ported them -- the
-archive's line, not ours -- the same in a period disk image, "Robert Doggett
-asked Allan at Microware" in `SOURCES.txt`, and the os9exec URL. Each is one
-line in the gate's allowed list if you want it gone.
-*You corrected me for writing those up as authorship; they are port credits,
-and the disk credits the original authors.*
 
 **30. `fpu`: I acted, and you can reverse it.**
 The `fpu` we shipped was not the copy its grant travels with, and `fpu040`

@@ -1815,8 +1815,17 @@ def check_no_maintainer_identifiers(root):
     the published page with the data not yet poured in, so it is read
     here as though it were under `docs/'.
     """
-    pat = re.compile(rb"rdoggett|peacedudes", re.I)
+    pat = re.compile(rb"rdoggett|peacedudes|Robert\s+Doggett", re.I)
     allowed = (b"https://github.com/peacedudes/os9exec",)
+    # The archive's OWN files say who ported them, in 1988, in the author's
+    # words.  rdoggett, 2026-09-22: "If I put it in the source file way back
+    # then, you can leave it.  Don't add my name yourself to anything."  So
+    # these five are allowed and everything else is not -- which is what
+    # caught SOURCES.txt naming him as the one who asked Microware.
+    allowed_files = ("DOC/zot/zot.1", "SRC/zot/zot.c", "SRC/misc/qt.c",
+                     "SRC/snap/main.c", "SRC/hc_utils/fgrep.c",
+                     # a period disk image, with the same 1988 stamp inside
+                     "DOC/os9dsk/PUBDOM19.DSK")
     repo = os.path.dirname(os.path.abspath(root))
     roots = [root, os.path.join(repo, "docs")]
     extra = [os.path.join(tools_dir(), "catalog.template.html")]
@@ -1834,6 +1843,9 @@ def check_no_maintainer_identifiers(root):
         except OSError:
             continue
         if not pat.search(b):
+            continue
+        if any(os.path.relpath(p, repo).replace(os.sep, "/").endswith(a)
+               for a in allowed_files):
             continue
         for line in b.replace(b"\r\n", b"\n").replace(b"\r", b"\n").split(b"\n"):
             m = pat.search(line)
