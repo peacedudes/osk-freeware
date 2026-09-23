@@ -6,11 +6,10 @@ Updated 2026-09-23.
 
 ## Needs you
 
-**1. Push os9exec, then pin the commit we test against.**
-Nothing is pushed, so CI has never run.  `60d4b0a` was the tested pin, but
-two fixes in flight today (F$DatMod, which MNews needs, and /socket, which
-ttcp and BIND need) will move it -- I will name the new commit once I have
-re-run those cards against it.
+**1. Push os9exec, then pin `a4b338e`.**
+Nothing is pushed, so CI has never run.  `a4b338e` carries today's four
+fixes the new programs need (F$DatMod, Ev$Wait, /socket, zero-byte
+F$SRqMem); MNews, nn, ttcp and BIND were verified against a build of it.
 
 ## No action, just so you know
 

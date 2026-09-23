@@ -77,31 +77,16 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
     OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
     gzip -c osk-freeware.dd > docs/try/disk.gz
 
-1. **MNews + nn -- source SHIPPED (0491265f), binaries WAITING ON os9exec.**
-   All nine build clean from `SRC/mnews' (recipes in recipes.psv; new
-   `NOCOMPAT' flag and `shims/os9errlog.c').  Every program reads TOP's
-   SysInfo data module; TOP's own `setup' (top/x/CMDS/setup, 1989) builds
-   it and `imdir' shows it resident -- but os9exec's F$DatMod leaves the
-   module's type 0, so `modlink("SysInfo", MT_DATA)' answers E$MNF and
-   inews stops "Can't initialize the mess".  REPORTED to os9exec-0c
-   2026-09-23 with a probe (`datprobe'); os9exec FIXED it in their working
-   tree the same day.  SECOND BLOCKER, also reported: Ev$Wait returns the
-   value AFTER the wait increment (manual: the in-range value), so TOP's
-   `while (_ev_wait(id,0,0) != 0);' deadlocks -- inews sits in F$Event with
-   SysInfo's event at 1.  Probes `evprobe'/`evread' in scratch pool.
-   When both are in a commit: ship `setup' and
-   `getinfo' (TOP binaries, os9lib's terms), a SYS/sysinfo (hostname,
-   NEWS.DIR/LIB/BATCH, rnews.seq/rnews.batch/lck.inews as `,l' locks),
-   the binaries into ETC/CMDS (compiled-in: /h0/ETC/CMDS, /h0/USR/LIB/NEWS,
-   /h0/SPOOL/NEWS, /h0/USR/LIB/NN, /h0/SPOOL/NN), then create groups
-   (`inews -c=newgroup:<g> -v </nil'), post one, run nnmaster, read with
-   nn, card it.  MNews's `rnews' collides with UUCP/rnews -- needs a line in
-   module-name-duplicates.txt.  Then tass (Scraped/tass-os9-1992) builds
-   on it; it wants MNews' `8bit.l', which is NOT in the package.  FOUND:
-   `TELECOM/mtp.lzh' is MNews "pre 2. Release" (Jan 1993, 150 files) with
-   8BIT/ and a LOCK/ library; it too reads SysInfo.  Its terms are the same
-   "whole package" terms, so taking tass means shipping mtp's MNews whole
-   too -- decide between one MNews or both once SysInfo works.
+1. **MNews + nn -- SHIPPED AND WORKING 2026-09-23** (86dda4ee..02ae3418).
+   CMDS/MNEWS (11), TOP's setup/getinfo, SYS/sysinfo, USR/LIB/NEWS and NN,
+   SPOOL/MNEWS, NN, BATCH, RNEWS; cards for all but rnews (UUCP's has the
+   name -- module-name-duplicates.txt) and nnaux (panel exception);
+   tools/datatests/mnews.cases.  Needs os9exec a4b338e or later.  Things
+   learned: rnews and sbatch fork inews/uux BY BARE NAME, so `load' them;
+   nnmaster -I reads stdin for OK and `reuse GROUPS? (y)' and loops on EOF;
+   nnmaster forks the reader's `shell'; `Q' in nn asks one more question.
+   Still to do here: tass on top of it (needs mtp.lzh's 8bit.l -- mtp.lzh
+   is MNews "pre 2" and its terms are whole-package too).
    **rn 4.3 BUILDS (recipes in AUDIT-pool) but needs C News's relay**, which
    is the unbuilt `package build' in SRC/cnews -- that is the next port after
    MNews, and it is what turns rn, Pnews and the disk's C News tools into a
