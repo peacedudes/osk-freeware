@@ -220,7 +220,9 @@ fi
 # The overlay's LIB is the SDK's and does not carry them, so without this every
 # one of those 168 fails at link with the library simply absent.  Added
 # 2026-08-27, after exactly that happened to the first six.
-for l in pbm pgm ppm pnm; do
+# libcnews is C News's own library (2026-09-23), built by its recipe from
+# disk/SRC/cnews and linked by relaynews the same way.
+for l in pbm pgm ppm pnm libcnews; do
     if [ -f "$REPO/disk/LIB/$l.l" ]; then
         cp "$REPO/disk/LIB/$l.l" "$DEST/LIB/$l.l"
         echo "  added $l.l"

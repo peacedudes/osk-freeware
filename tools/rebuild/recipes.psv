@@ -1120,3 +1120,17 @@ nnadmin|mnews/NN_OSK|nnmisc.c|NOCOMPAT M_SIGINFO=80 PNAME="nnadmin"|/dd/LIB/os9l
 nnaux|mnews/NN_OSK|aux.c|NOCOMPAT M_SIGINFO=80 MEM=6k|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
 nncheck|mnews/NN_OSK|nnmisc.c|NOCOMPAT M_SIGINFO=80 PNAME="nncheck"|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
 cvt_help|mnews/NN_OSK|cvt_help.c|NOCOMPAT M_SIGINFO=80|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
+# C News's relay and its library (Collyer and Spencer; Bob Larson's OS-9 port), 2026-09-23.
+# Everything goes through GNU cpp (CPP2): the sources include <sys/...> names, which
+# Microware's cpp will not look for along -V.  DEFS/os9unix supplies the Unix errno names
+# and baud codes blarslib's headers leave out.  The disk's blarslib.l was built without
+# stat, gethostname, ftime and makenv; those come from SRC/blarslib here, linked FIRST
+# because libcnews.l calls them and l68 reads its libraries in one pass.
+libcnews.l|cnews|libbig/active.fast.c libbig/sys.fast.c libcnews/complain.c libcnews/gethdr.c libcnews/ngmatch.c libcnews/string.c libcnews/hostname.c libcnews/strlower.c libcnews/config.c libcnews/time.c libcnews/ltoza.c libcnews/case.c libcnews/fopenclex.c libc/efopen.c libc/fgetmfs.c libc/getdate.c libc/nfclose.c libc/standard.c libc/stdfdopen.c libc/emalloc.c libc/closeall.c libc/error.c libc/warning.c dbz/dbz.c libfake/fsync.c libfake/symlink.c libosk/clsexec.c libosk/fopenexcl.c libosk/setgid.c libosk/freespace.c|CPP2 NOCOMPAT||-V=/h6/cnews/Include -V=/h6/cnews/relay -V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+relaynews|cnews/relay|relaynews.c active.c article.c caches.c mkdirs.c control.c fileart.c hdrdefs.c hdrparse.c hdrmunge.c history.c io.c msgs.c procart.c sys.c transmit.c trbatch.c ihave.c ../../blarslib/gethostname.c ../../blarslib/ftime.c ../../blarslib/stat.c ../../blarslib/makenv.c ../libfake/putenv.c ../libosk/linkcopy.c|CPP2 NOCOMPAT VOID=void FLUSHEVERY=6 MEM=64k HOSTNAME="osk" LINKFIRST=../libosk/linkcopy.c,../../blarslib/gethostname.c,../../blarslib/ftime.c,../../blarslib/stat.c,../../blarslib/makenv.c,../libfake/putenv.c|/dd/LIB/libcnews.l /dd/LIB/blarslib.l|-V=/h6/cnews/Include -V=/h6/cnews/relay -V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+# rn 4.3 and its Pnews (Larry Wall; Bob Larson's port).  <sgstat.h> must be os9unix's --
+# it adds the baud codes term.c switches on -- so os9unix leads.
+rn|rn43|addng.c art.c artio.c artsrch.c backpage.c bits.c cheat.c final.c head.c help.c init.c intrp.c kfile.c last.c ng.c ngdata.c ngsrch.c ngstuff.c only.c rcln.c rcstuff.c respond.c rn.c search.c sw.c term.c util.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+Pnews|rn43|Pnews.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+newsetup|rn43|newsetup.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+norm.saver|rn43|norm.saver.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs

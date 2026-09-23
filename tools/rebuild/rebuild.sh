@@ -436,8 +436,14 @@ compile_cpp2_post() {  # $1 arch  $2 sources  $3 prog  $4 extra  $5 libs  $6 dir
     fi
   done
   printf 'del ctmp.parts.l\nmerge -z=ctmp.list >ctmp.parts.l\n'
-  printf 'cc ctmp_%s.r %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
-         "$(tmpbase "$mainsrc" "$2")" "$QMFLAG" "${MODNAME:-$3}" "$1" "$3" "$4" "$5"
+  # LINKFIRST on this path too (2026-09-23, C News's relaynews): its
+  # libcnews.l calls gethostname and ftime, which come from sources in the
+  # recipe -- in ctmp.parts.l, which l68 has passed before it reads
+  # libcnews.l.  Their objects go on the link line beside main's instead.
+  local first="" s
+  for s in $LINKFIRST; do first="$first ctmp_$(tmpbase "$s" "$2").r"; done
+  printf 'cc ctmp_%s.r%s %s -n=%s -f=/h6/%s/R_%s -l=ctmp.parts.l -l=ctmp.parts.l -l=ctmp.parts.l %s%s' \
+         "$(tmpbase "$mainsrc" "$2")" "$first" "$QMFLAG" "${MODNAME:-$3}" "$1" "$3" "$4" "$5"
   printf '%s\n' "$QMLIBS"
   printf '\033\n\004\n'
 }
