@@ -869,12 +869,27 @@ if __name__ == "__main__":
             print("     %s" % n)
         if check:
             raise SystemExit(1)
-    elif check:
-        print("  every program on the disk is in the catalogue and has a category")
-        raise SystemExit(0)
-
     repo = os.path.abspath(os.path.join(here, os.pardir))
     out  = args[1] if len(args) > 1 else os.path.join(repo, "docs", "index.html")
+
+    if check:
+        # Every program having a category is not the same as the published
+        # page saying what DOC/INDEX says: on 2026-09-23 an INDEX edit passed
+        # the whole gate while docs/index.html still carried the old text.
+        md = os.path.join(os.path.dirname(os.path.abspath(out)), "CATALOG.md")
+        wanted = [(out, render(progs, os.path.join(here, "catalog.template.html"))),
+                  (md, render_markdown(progs)),
+                  (os.path.join(root, "DOC", "CATEGORIES"), render_disk_index(progs))]
+        stale = [p for p, text in wanted
+                 if not os.path.exists(p)
+                 or open(p, encoding="utf-8", newline="").read() != text]
+        for p in stale:
+            print("  %s is stale -- run tools/gen_catalog.py %s"
+                  % (os.path.relpath(p, repo), root))
+        if stale:
+            raise SystemExit(1)
+        print("  every program on the disk is in the catalogue and has a category")
+        raise SystemExit(0)
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     open(out, "w", encoding="utf-8").write(
         render(progs, os.path.join(here, "catalog.template.html")))

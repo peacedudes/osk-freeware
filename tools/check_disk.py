@@ -391,13 +391,15 @@ def check_categories(root):
     Delegated to gen_catalog.py, which owns the rule. Without this a new
     program joins the disk and lands nowhere in the guide -- visible in the
     alphabetical index and invisible to anyone browsing by what they want.
+    It also fails when the catalogue it writes -- docs/index.html,
+    docs/CATALOG.md, DOC/CATEGORIES -- is not what it would write now.
     """
     gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_catalog.py")
     done = subprocess.run([sys.executable, gen, root, "--check"],
                           capture_output=True, text=True)
     if done.returncode:
         print("    " + done.stdout.strip().replace("\n", "\n    "))
-    return done.returncode == 0, "some programs have no category"
+    return done.returncode == 0, "a program has no category, or the catalogue is stale"
 
 
 def check_depends(root):
