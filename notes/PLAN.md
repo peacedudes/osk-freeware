@@ -922,7 +922,10 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 1. **8 runnable programs under no test** (2026-09-23, `tools/worklist.py
    --programs --no-test`): `graphsave`, `showpic` (Atari GRAPH display),
    `puzzle`, `scriptmaster` (G-Windows), `msntp` (network, waits), `snake`
-   (orphaned escapes), `tplot` (A-line trap), and none else.  `wysecrack`
+   (orphaned escapes -- 2026-09-23 probes RULED OUT tgoto (its bytes are
+   right), termlib's and curses.l's tputs, and an _UNBUF stdout: each keeps
+   the ESC in place on a pty.  What snake has that they lack is its
+   getchar()-driven loop with only echo turned off; start there), `tplot` (A-line trap), and none else.  `wysecrack`
    came off the hardware list the same day: it is not a probe at all but
    a quip a minute for a Wyse status line (its INDEX entry was invented),
    and its card now shows two.  Harnesses stage every command SYS/login
