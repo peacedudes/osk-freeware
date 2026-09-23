@@ -796,6 +796,18 @@ binary no longer has.  So src_census's DIRECT route over-counts, and "has
 source" for those six means "has A source".  Not fixed; it is a census
 question, and the binaries are right.
 
+**THE 292 WITH NO SOURCE HERE, the same day**, read against the binary's
+strings, its captured help, its card and any document: 14 more corrected,
+each checked on the binary first -- dld and uld had their directions
+backwards (in their own words dld downloads FROM the file), sterm's -e is
+an error limit not an escape character, UnMacpack does not know a format
+called MacPack, xyt has no ZMODEM, hotel is for two OR MORE and plays
+tiles by number, oleo RUNS (fixed 2026-09-11, the entry never caught up),
+setime2 counts years from 1900, sh is version 2.1 edition 75 and not
+"Bourne shell v7.5", umacs has keyboard macros, and btop, vlen,
+infocom.tcap and wn had a wrong detail each.  NOT settled: mw's `n builds
+a wall' -- no source and no string for it; it wants a play session.
+
 ### 5. Housekeeping
 
 - `notes/` is 7300 lines across 42 files. It was pruned once, at rdoggett's
