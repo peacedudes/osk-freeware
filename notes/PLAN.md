@@ -681,17 +681,15 @@ by bare name, so `load' that out of `CMDS/UUCP' first. **Read the source
 header before deciding a program needs a peer**; three of the four that
 came off today were driven from a file or from standard input.
 
-**`hist` was tried on 2026-09-21 and does not capture cleanly**, so it stays
-on the list. It runs -- it takes the terminal (`tmode noecho`), accepts a
-line, and hands it on through `system()`, which this C library gives to
-`$SHELL`; its history file default is `/r0/history`, and `mount -r=256k /r0`
-provides that. But EVERY CHARACTER IT ECHOES ARRIVES DOUBLED in the
-capture -- `whoami` renders as `wwhhooaammii` -- and the `h` listing never
-drew. Sending the word in one write rather than a character at a time makes
-no difference, so it is not the send pattern. This is `snake's situation: a
-program that plays and does not photograph, and a flapping test is worse
-than a gap. Whether the doubling is hist's own echo handling or the harness
-was NOT established.
+**`hist` HAS A CASE since 2026-09-23** (system6.cases).  The doubled echo
+of 2026-09-21 was hist echoing while SCF echoed too: it turns SCF's echo
+off with the READER'S `tmode', which nothing had loaded.  With tmode and
+shell resident from /h1 the card is clean and a piped case runs `today'.
+datatest/os9env now stage every command SYS/login loads (read from the
+file), so a case can `load /h1/CMDS/<name>' for any of them.  The same
+day `nnmaster', `nncheck', `nnaux', `cvt_help', `newsetup', `v7make',
+`creadoc' and `resize' (a play-test that types the terminal's answer) got
+tests; nine remain, all hardware, G-Windows, a network, or `snake'/`tplot'.
 
 **`tplot` was tried on 2026-09-21 and cannot have a data case**, so nobody
 spends the hour again. Answer all three of its questions and it reaches the
