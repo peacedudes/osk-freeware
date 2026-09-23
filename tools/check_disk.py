@@ -840,6 +840,12 @@ def check_no_absence_phrasing(root):
     pats = [re.compile(r"\b(?:not|neither)\b[^.]{0,40}?on this disk"),
             re.compile(r"there is no `[^']+' here")]
     targets = [os.path.join(root, "DOC", "INDEX")]
+    # The shipped READMEs too (FOR-RDOGGETT item 28, 2026-09-23): five of
+    # them said it, and DOC/README's was false as well as unkind -- it
+    # called elvis's binary absent while CMDS/elvis shipped.
+    doc = os.path.join(root, "DOC")
+    targets += [os.path.join(doc, f) for f in sorted(os.listdir(doc))
+                if f.startswith("README")]
     here = os.path.dirname(os.path.abspath(__file__))
     targets.append(os.path.join(here, "howto.psv"))
     sheets = os.path.join(here, "screenshots")
