@@ -55,7 +55,13 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
     877 on the disk alone, 45 needing your own OS-9 attached as /h1, 37
     that need hardware and say so instead of offering a button.
 
-## Item 1's evidence -- why `60d4b0a' and not the tip
+## Item 1's evidence
+
+**Now `d992145'** (2026-09-23 evening): the os9exec session gated it and
+named it; the suite is 912 of 912 twice on a fresh image built with it,
+and docs/try is built from it.  What follows is why a named commit and not
+the tip -- the reasoning stands, the older hash in it does not.
+
 
 `FOR-RDOGGETT.md' asks the question in two sentences; this is the backing,
 moved here 2026-09-23 because that file is meant to stay short.
