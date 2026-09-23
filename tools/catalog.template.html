@@ -381,9 +381,9 @@ function rank(p, q){
 // The list gives each program one line: the first sentence of its entry.
 // The whole entry is on its page.
 // ABBREVIATIONS ARE NOT SENTENCE ENDS.  `bugs' read "a Dr" in the list,
-// because its entry opens "a Dr. Mario lookalike" -- rdoggett, 2026-09-22:
-// "not enough".  A full stop after one of these, or after a single letter,
-// is skipped and the sentence carries on.
+// because its entry opens "a Dr. Mario lookalike", which was not enough to
+// tell anyone what it is.  A full stop after one of these, or after a
+// single letter, is skipped and the sentence carries on.
 const ABBREV = /(^|\s)(Dr|Mr|Mrs|Ms|St|Jr|Sr|Prof|Inc|Co|vs|No|Fig|Ed|approx|etc|e\.g|i\.e|[A-Za-z])$/;
 function lead(d){
   const s = d || "";
