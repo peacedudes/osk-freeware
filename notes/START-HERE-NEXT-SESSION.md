@@ -107,10 +107,13 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    When os9exec sends the commit: pin it, re-run their cards, and take a
    second look at OSKBox (AUDIT-pool) and the WN inetd/authwn/inetdc and
    msntp panel exceptions.
-3. **The usenet attributions** -- rdoggett 2026-09-23: make every bare
-   "Usenet" origin name its newsgroup and approximate date.  A research
-   pass writes scratch `usenet-origins.tsv'; apply it to DOC/ORIGINS (and
-   SOURCES.txt/terms.psv where they are bare).
+3. **The usenet attributions -- DONE 2026-09-23.**  114 ORIGINS rows now name
+   the newsgroup, volume/issue and date (94 confirmed by line-matching the
+   postings in Scraped/usenet-rewind, 20 marked `probably'); 16 that said
+   "Usenet eff_*.ar" were EFFO forum disks and now say so; `xmas' and `card'
+   named the wrong posting.  24 stay unfound (BSD sources never posted, and
+   a handful with no match) -- notes/usenet-origins.tsv has the evidence,
+   Message-IDs included, for every row.
 
 4. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
    re-tested.  Three shapes keep recurring: the disk SHIPS what the reason
