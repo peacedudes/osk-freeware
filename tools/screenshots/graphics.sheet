@@ -1040,8 +1040,7 @@ wait    8
 shot    sir
 for     pnmtosir sirtopnm
 cap     Solitaire Image Recorder format, out and back.  An 8x4 red image
-cap     goes to SIR and back: all but the first two pixels return exactly,
-cap     and those two come back green.  Until 2026 it was worse: the
+cap     goes to SIR and returns byte for byte.  Until 2026 it did not: the
 cap     reader skipped one short too few of the 1536-short header and every
 cap     colour plane came back shifted two bytes.  One loop bound, in
 cap     SRC/netpbm/PNM.
