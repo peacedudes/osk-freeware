@@ -92,7 +92,8 @@ CAPTIONS = {
     "me":       ("me, a screen editor, showing DOC/README-CIO.", "final"),
     "mg":       ("mg, the small emacs, showing the same file.", "final"),
     "netpbm-convert": ("A netpbm session at the shell: a ramp made, cut down "
-                       "with pnmcut, and identified at each step.",
+                       "with pnmcut and tiled, then all three identified "
+                       "by pnmfile at the end.",
                        "final"),
     "nobs":     ("nobs, a cribbage variant, dealing its cards.", "final"),
     "piano":    ("piano plays notes through the terminal bell; with no "

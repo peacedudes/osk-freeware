@@ -1,6 +1,9 @@
 cat bits
 + O + + O + + +
-+ O O + O + + O
++ O O + + O + O
++ O O + O O + +
++ O O + O O + +
++ O O + O O O O
 $ ptob bits > back
 $ cat back; echo
-Hi
+Hello

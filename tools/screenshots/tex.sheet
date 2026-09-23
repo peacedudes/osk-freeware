@@ -285,8 +285,8 @@ wait    5
 
 shot    dvimac
 size    36 80
-cap     The DVI driver for the Apple ImageWriter (120 dpi): it scales the
-cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
+cap     The DVI driver for the Apple ImageWriter (144 dpi): it asks for 120
+cap     dpi fonts and scales the shipped 300 dpi ones by nearest neighbor and renders the page.
 try     dvimac story.dvi; ls -l story.dvi_*
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
@@ -315,8 +315,8 @@ wait    5
 
 shot    dvitos
 size    36 80
-cap     The DVI driver for Toshiba printers (166 dpi): it scales the
-cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
+cap     The DVI driver for the Toshiba P-1351 (180 dpi): it asks for 166
+cap     dpi fonts and scales the shipped 300 dpi ones by nearest neighbor and renders the page.
 try     dvitos story.dvi; ls -l story.dvi_*
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40

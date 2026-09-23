@@ -220,7 +220,7 @@ shot    detab
 size    30 80
 cap     detab replaces tabs with spaces.  The line of the holidays file with
 cap     09 09 between the date and the name comes out with a run of 20s;
-cap     `-t4' puts the tab stops every four columns instead of eight.
+cap     `-t4' puts the tab stops every four columns instead of three.
 try     dump tmp/TEXTA/tab.txt; detab tmp/TEXTA/tab.txt > tmp/TEXTA/notab.txt; dump tmp/TEXTA/notab.txt; detab -t4 tmp/TEXTA/tab.txt > tmp/TEXTA/tab4.txt; dump tmp/TEXTA/tab4.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
@@ -612,7 +612,7 @@ size    24 80
 cap     Compares THREE files at once -- yours, the one you both started from,
 cap     and theirs -- and says which of the three each difference belongs to.
 cap     `====' opens a difference; `1:', `2:' and `3:' are the files.  Here
-cap     the second file changed the middle line and the third changed the
+cap     the first file changed the middle line and the third changed the
 cap     last.  GNU diff3 1.4; the source is in SRC/gnudiff.
 try     diff3 mine older theirs
 run     rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C

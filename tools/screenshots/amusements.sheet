@@ -324,7 +324,7 @@ wait    2
 shot    drawl
 size    24 80
 cap     drawl gives text a broad Texan accent, dropping g's and stretching
-cap     vowels -- going becomes goin', to becomes tuh, the becomes thuh.
+cap     vowels -- going to becomes gunna, to becomes tuh, the becomes thuh.
 cap     Pipe any text through it.
 try     echo "I am going to the store to buy some food." | drawl
 run     echo "I am going to the store to buy some food." | drawl

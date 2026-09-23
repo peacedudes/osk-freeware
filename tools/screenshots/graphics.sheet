@@ -269,8 +269,8 @@ wait    10
 
 shot    pbmclean
 cap     Removes lone pixels from a bitmap.  Run here over threshold-dithered
-cap     noise, which is nothing but lone pixels, and shown as text either
-cap     side of the clean: most of the speckle is gone.
+cap     noise, which is nothing but lone pixels, and shown as text after
+cap     the clean: most of the speckle is gone.
 try     pbmclean noise.pbm | pbmtoascii -2x4
 os9     pbmclean noise.pbm ! pbmtoascii -2x4
 run     rm -rf tmp/PBMA
@@ -650,8 +650,8 @@ wait    15
 
 shot    pnmtile
 size    24 156
-cap     pnmtile repeats a small image to fill a larger one; pbmpscale then
-cap     enlarges a bitmap without the staircase.
+cap     pnmtile repeats a small image to fill a larger one: here a small
+cap     greymap tiled across a wide strip, shown as text.
 try     pnmtile 150 40 tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
 os9     pnmtile 150 40 tmp/t.pgm ! pgmtopbm -threshold -value 0.4 ! pbmtoascii
 run     builtin cd /dd
@@ -767,8 +767,8 @@ wait    20
 
 shot    printers
 for     pbmtolj pbmtoepson pbmto10x pbmtoepsi
-cap     The printer drivers: LaserJet, Epson, Star 10x and Printronix, each
-cap     turning the same bitmap into that printer's own language.  Their
+cap     The printer drivers: LaserJet, Epson, Star 10x, an EPS preview and
+cap     Printronix, each turning the same bitmap into its own language.  Their
 cap     sizes are the interesting part -- this is what a page cost.
 try     pbmtolj tmp/base.pbm | wc
 os9     pbmtolj tmp/base.pbm ! wc
@@ -784,7 +784,7 @@ run     pbmto10x tmp/base.pbm | wc
 wait    8
 run     pbmtoepsi tmp/base.pbm | head -n 10
 wait    8
-run     pbmtoptx < /nil
+run     pbmtoptx tmp/base.pbm | wc
 wait    8
 
 
@@ -959,8 +959,8 @@ for     spottopgm sputoppm ximtoppm xvminitoppm
 cap     Sixteen of the readers here decode formats that no file on this disk
 cap     is in -- confocal microscopes, ray tracers, AutoCAD slides, Atari
 cap     Spectrum pictures, Photo CD, Amiga brushes, Gould scanners.  Handed
-cap     something else, they say so rather than guessing, which is the
-cap     behaviour you want.  Three of the sixteen are shown; the rest answer
+cap     something else, most say so rather than guessing -- sputoppm, which
+cap     trusts its fixed 320x200 size, writes a header without complaint.  Three of the sixteen are shown; the rest answer
 cap     the same way -- and the four that had never been asked at all are
 cap     asked below so that "the rest answer the same way" is shown rather
 cap     than assumed.
@@ -1040,7 +1040,8 @@ wait    8
 shot    sir
 for     pnmtosir sirtopnm
 cap     Solitaire Image Recorder format, out and back.  An 8x4 red image
-cap     goes to SIR and returns byte for byte.  Until 2026 it did not: the
+cap     goes to SIR and back: all but the first two pixels return exactly,
+cap     and those two come back green.  Until 2026 it was worse: the
 cap     reader skipped one short too few of the 1536-short header and every
 cap     colour plane came back shifted two bytes.  One loop bound, in
 cap     SRC/netpbm/PNM.
@@ -1062,9 +1063,10 @@ shot    writeonly
 for     ppmtoicr ppmtouil pbmto4425 pbmtox10bm
 cap     Six drivers with no reader here, for machines that are gone: an NCR
 cap     terminal, a Mitsubishi dye-sublimation printer, DEC sixel, Motif UIL
-cap     source, an AT&T 4425 and an X10 bitmap.  What each made of the same
-cap     picture, in bytes -- that is what a page cost.  All six are asked
-cap     for below, one line each.
+cap     source, an AT&T 4425 and an X10 bitmap.  The four colour ones are
+cap     given the same picture and counted in bytes -- what a page cost;
+cap     the two bitmap ones get a grey pattern, and the X10 one is shown as
+cap     the C source it writes.
 try     ppmtosixel tmp/q.ppm | wc
 os9     ppmtosixel tmp/q.ppm ! wc
 run     builtin cd /dd
@@ -1139,7 +1141,7 @@ wait    35
 shot    djpeg.070
 size    24 80
 cap     djpeg.070, a build for another processor, decoding the JPEG the
-cap     68000 cjpeg has just written -- a 767-byte JPEG back to the full
+cap     68000 cjpeg has just written -- an 869-byte JPEG back to the full
 cap     3,469-byte PNM it came from.
 try     djpeg.070 -pnm tmp/GFXA/j.jpg > tmp/GFXA/d70.ppm
 os9     djpeg.070 -pnm tmp/GFXA/j.jpg >tmp/GFXA/d70.ppm

@@ -7,11 +7,11 @@ ppmtoicr: 6 colors found
 ppmtoicr: creating window tmp/q.ppm ...
 ppmtoicr: downloading colormap for tmp/q.ppm ...
 ppmtoicr: sending picture data ...
-      0   1759   7646
+      0   1064   7646
 $ ppmtouil tmp/q.ppm | wc
 ppmtouil: computing colormap...
 ppmtouil: 6 colors found
-     67    119   3482
+     67    117   3416
 $ pbmmake -g 40 20 | pbmto4425 | wc
      23      8    182
 $ pbmmake -g 40 20 | pbmtox10bm | head -n 6

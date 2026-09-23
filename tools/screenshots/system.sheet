@@ -126,7 +126,7 @@ run     cpu
 wait    10
 shot    dam
 cap     The disk allocation map: one character per cluster across a
-cap     253-megabyte volume, so you can see where the collection sits on
+cap     255-megabyte volume, so you can see where the collection sits on
 cap     it.
 try     dam /dd | head -n 21
 os9     dam /dd !head -n 21
@@ -142,7 +142,7 @@ shot    devprc
 for     devprc ptxminst t_trtest
 cap     devprc shows which device each process holds a path to: `-a' walks
 cap     every process and lists its open paths and their devices.  `ptxminst'
-cap     installs Ptxm, and `t_trtest' exercises a trap handler.
+cap     installs Ptxm, and `t_trtest' is a test driver for tree functions.
 try     devprc -a; ptxminst -?; t_trtest
 run     devprc -a
 wait    8
@@ -419,19 +419,17 @@ try     shdev
 run     shdev
 wait    6
 shot    spline
-cap     spline fits a curve through points and writes PostScript -- the
-cap     `%!' at the head of the line is the PostScript magic.  It writes
-cap     the same stream whatever it is given, including -?, so it never
-cap     tells you what it wants.
-try     echo "0 0" > tmp/pts; spline tmp/pts | head -n 14
-os9     echo "0 0" >tmp/pts; spline tmp/pts !head -n 14
+cap     A B-spline surface demonstration: it draws a fixed 5x5 mesh and the
+cap     surface fitted through it in Tektronix graphics codes, which a
+cap     character terminal shows as text.  It reads nothing -- the stream is
+cap     the same whatever it is given -- and at the end waits for a key.
+try     spline | head -n 14
+os9     spline !head -n 14
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "0 0" > tmp/pts
-wait    2
-run     spline tmp/pts | head -n 14
+run     spline | head -n 14
 wait    5
 shot    sqrtx
 cap     A square-root demonstration -- one of the small programs the forums
@@ -534,9 +532,9 @@ run     vc
 wait    8
 quit    q\r
 shot    version
-cap     version prints a module's own edition number -- `version <module>'
-cap     reads the edition byte from the module header, whatever the file is
-cap     named.
+cap     version prints its own version and nothing else, whatever module it
+cap     is named: asked about today, it answers for itself.  modinfo shows a
+cap     module's edition.
 try     version CMDS/today
 run     builtin cd /dd
 wait    1
@@ -816,13 +814,14 @@ wait    4
 run     ls -l
 wait    3
 shot    ptob
+size    46 80
 cap     ptob turns a file of bit patterns back into characters, the other
-cap     half of `btop': `Hi' becomes rows of dots and O's, and ptob reads
-cap     those back to `Hi'.
+cap     half of `btop': `Hello' becomes rows of dots and O's, and ptob
+cap     reads those back to `Hello'.
 try     cat bits; ptob bits > back; cat back
 os9     cat bits; ptob bits >back; cat back
 run     mkdir -p /dd/tmp/UTILA/pb > /nil 2>/nil
-run     printf 'Hi' > /dd/tmp/UTILA/pb/t
+run     printf 'Hello' > /dd/tmp/UTILA/pb/t
 run     btop /dd/tmp/UTILA/pb/t > /dd/tmp/UTILA/pb/bits
 run     builtin cd /dd/tmp/UTILA/pb
 wait    1
@@ -922,7 +921,8 @@ wait    4
 shot    setime2
 cap     setime2 sets the system date and time from the fields
 cap     `yyy mm dd hh mm ss' at its prompt -- yyy counts years from 1900,
-cap     so 126 is 2026 -- and prints the date it set.
+cap     so 126 is 2026 -- and prints the date.  os9exec does not move the
+cap     clock, so what it prints is today's date, not the one typed.
 try     setime2
 run     clear
 wait    1

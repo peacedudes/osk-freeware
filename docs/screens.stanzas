@@ -678,7 +678,7 @@ preset 040d066815e788ab
 pri b40e32065e225ad0
 primes f8e35036f13e68a0
 printenv a557b5b8c28a798e
-printers 4f456d597c40ea47
+printers fab1bbba4747c178
 printf 046d0cf3de983021
 printmail 25f7441eb0ab9b5c
 prjob 5d31d13e051d89d7
@@ -686,7 +686,7 @@ proff dd5084898c3b214a
 psc 0bdca397b0d3f04e
 psidtopgm f1c1848f751ebeab
 psychic 77d3cca369ceebc6
-ptob adf4ce6f8152f623
+ptob 80677589d0e5bd78
 pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
@@ -792,7 +792,7 @@ speech f88a9038e6143955
 spew 5ae678a4781190b7
 sphere 47bf7b09f3b0d8ab
 spiff 77b977066ba81c85
-spline 1376cdc970be1997
+spline 92b2803d9579fda4
 split 6e90775ab9b17fef
 splstat f223ff456a981b4f
 spottopgm f14a2c92ed428c34

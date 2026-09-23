@@ -437,9 +437,8 @@ wait    22
 kill
 
 shot    gnuchessc
-cap     GNU Chess 4.0 built for a curses display.  Its display files are
-cap     compiled to a path this disk does not carry, so it draws no board;
-cap     it still plays, taking a move as `e2e4' and printing its own reply
+cap     GNU Chess 4.0 built to be driven by `chesstool', which draws the
+cap     board itself, so this one prints none -- by design; it still plays, taking a move as `e2e4' and printing its own reply
 cap     on the next line.  For a board, see `gnuchess' or `nchess'.
 try     gnuchessc
 run     gnuchessc

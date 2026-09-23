@@ -1699,8 +1699,8 @@ wait    4
 shot    uustat
 cap     uustat reports on the UUCP job queue -- what is waiting, for which
 cap     system, and who queued it -- and can kill a job or rejuvenate one.
-cap     Nothing has been queued on this disk, so it reaches the spool, finds
-cap     no jobs waiting, and says so.
+cap     With nothing queued on this disk it reports only `uucp is possibly
+cap     active' and stops.
 try     uustat
 run     uustat -?
 wait    4

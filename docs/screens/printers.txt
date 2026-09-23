@@ -15,5 +15,5 @@ $ pbmtoepsi tmp/base.pbm | head -n 10
 % 555555555555
 % aaaaaaaaaaaa
 % 555555555555
-$ pbmtoptx < /nil
-pbmtoptx: EOF / read error reading magic number
+$ pbmtoptx tmp/base.pbm | wc
+     24     24    240

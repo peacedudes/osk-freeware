@@ -152,8 +152,8 @@ snap
 
 shot    msdeltree
 cap     msdeltree removes a directory and everything inside it in one
-cap     step, naming each file as it goes. The count afterward includes
-cap     the two directory-entry markers DOS carries along with the file.
+cap     step, naming each file as it goes.  Beforehand the directory holds
+cap     three -- the file and the two markers DOS keeps; afterwards it is gone.
 try     msdir a:/DOCS; msdeltree a:/DOCS; msdir a: | grep -c DOCS
 os9     msdir a:/DOCS; msdeltree a:/DOCS; msdir a: ! grep -c DOCS
 run     mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msmd a:/DOCS > /nil; mscopy /dd/SYS/motd a:/DOCS/README.TXT > /nil

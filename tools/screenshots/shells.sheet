@@ -13,7 +13,7 @@ wait    4
 try     bash -c "echo bash $BASH_VERSION, running a one-line script"
 
 shot    sh
-cap     A small Bourne shell, version 7.5, running as a program under
+cap     An sh-like shell, version 2.1 edition 75, running as a program under
 cap     bash: its own # prompt, and a real chd that moves the data
 cap     directory, as pwd shows.
 run     sh

@@ -305,7 +305,7 @@ wait    3
 
 shot    vi.elvis
 cap     Elvis under the name a Unix hand types.  Kept in CMDS/REBUILT
-cap     because CMDS/vi is the Berkeley one.
+cap     because CMDS/vi is PVIC, a different vi clone.
 try     vi.elvis tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
