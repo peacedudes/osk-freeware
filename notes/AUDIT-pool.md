@@ -306,3 +306,49 @@ available for rebuilding modules. For 68k work that is false.
 - `tools/list_pool.py` — the lister, rerunnable
 - `notes/pool-members.tsv` — every archive and every member
 - `pool-absent.txt` — the 101 with no program on the disk; (deleted in the 2026-08-27 notes prune; `git log --diff-filter=D --name-only -- notes/` finds it)
+
+## 2026-09-22 -- the unlistable archives, listed at last (in universe)
+
+rdoggett: *"you tried these archives in universe?  That's where they were
+probably made."*  They were.  `tools/list_archive.py` now runs the DISK's own
+`zoo`, `arc`, `ar2`, `lharc` and `unzip` under os9exec, all archives in one
+session, and falls back to host readers only where there is no image.  **56
+of the 57 archives no host tool could read are now listed**; only
+`APPS/ant.ytar` resists (no reader anywhere for that format).
+
+Two traps met: `ar2`'s listing option is `-t`, not `t` -- given `t` it prints
+its usage, which reads exactly like a 12-member listing and fooled the first
+pass.  And the host Zoo reader truncates a long member name to 13 characters
+(`grafikde.c`) where the disk's `zoo` prints `grafikdemo.c`, because Zoo keeps
+the long name in the entry's varying part.  Another reason to ask the disk.
+
+What the listings show:
+
+  * **`GRAPHICS/pbmsrc.ar` and `pbmdoc.ar` add almost nothing.**  They are the
+    original PBM (1988 Poskanzer, adapted 1993).  Of their 25 programs, 14 are
+    not on the disk by name -- and netpbm's `pnm` equivalents cover every one
+    of them (`pnmcrop`, `pnmcut`, `pnmenlarge`, `pnmflip`, `pnminvert`,
+    `pnmcat`, `pnmtops`, `rasttopnm`, `pnmtorast`, `xwdtopnm`, `pnmpaste`).
+    The only pair with no equivalent here is `cbmtopbm`/`pbmtocbm`, a compact
+    bitmap format nothing else on the disk reads and for which no sample
+    ships.
+  * **`APPS/hl10osrc.zoo` is already mined** -- the Home Librarian source is
+    `SRC/homelibr`.
+  * **`PROGRAMME/C/PROFF/ZOO/proff.zoo`**, which `proff` itself came from,
+    also holds `CMDS/ltb`, never installed.  It is not a user program: ltb.c
+    (which DOES ship, in `SRC/proff`) is proff's Lexical Table Builder, the
+    tool that compiles `lextab.d` into `lextab.h` when proff is rebuilt.  A
+    first build of it from the shipped source failed; worth an hour if anyone
+    wants proff rebuildable end to end, worth nothing otherwise.
+  * **`mw/dl/osk_ctexsrc.ar` (268 K) is a real candidate**: TeX in C, 41
+    files, 1992.  The disk's TeX binaries come from `TeXSystem.lzh` and have
+    NO source here.  Whether this source corresponds to those binaries is
+    unchecked -- shipping source that does not build the shipped program
+    would be worse than shipping none.
+  * The rest are out of scope or already answered: the `c09_*` and
+    `OS9_6X09_*` archives are 6809/CoCo (smallc, potd, qtip20, scribe40,
+    uptime, verdisk, uucpsrc, helpsrc, makesrc); `rzsz_*` and `sterm.ar` are
+    refused already; `LIB/unix.zoo` and `LIB/auxlib.ar` are compatibility
+    headers and libraries, most of which `SRC/COMPAT` and `LIB` already
+    carry; `bigdev.zoo` is one 2 MB screen dump; `scf14.ar` is an IPC patch
+    note; `bix.arc` is a BIX download set.
