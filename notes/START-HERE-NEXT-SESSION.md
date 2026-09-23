@@ -42,6 +42,31 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
     877 on the disk alone, 45 needing your own OS-9 attached as /h1, 37
     that need hardware and say so instead of offering a button.
 
+## Item 1's evidence -- why `60d4b0a' and not the tip
+
+`FOR-RDOGGETT.md' asks the question in two sentences; this is the backing,
+moved here 2026-09-23 because that file is meant to stay short.
+
+`.github/workflows/build-image.yml' names the branch os9exec is actually
+working on, `fix/scf-pd-eor', on rdoggett's instruction.  That branch is
+253 commits ahead of `github/master' and **unpushed**, so CI has never
+run.  Four fixes this collection depends on are on no remote at all:
+`40facae' `d401ce2' `685a4c3' `00fcec5'.
+
+**Pin `60d4b0a', and ask them before taking any other.**  On the evening of
+2026-09-20 the tip was `d64163b' -- exactly what a freeze that night would
+have taken -- and the os9exec session volunteered that an idle-wait cap
+raised from one system tick to 50ms in that same range made their own XOFF
+input test fail about one run in three.  They put the cap back and measured
+it: seventeen clean full-suite runs, several with two suites running at once
+so the contention the failures preferred was present.  `60d4b0a' is that
+correction and contains everything `d64163b' had.  The tip had already moved
+two commits past it by the next morning (`c5cf21e'), which is the argument in
+one line: whatever is at the top when you tag is not a thing either of us has
+tested.  The `-d' tracing fix we depend on sits two below the tip and both
+commits above it are independent, so verification done against `d64163b'
+still describes `60d4b0a'.  A pin is forever in a way a test run is not.
+
 ## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
 1. **Re-run the suite twice on a fresh image, then rebuild the two disks.**
