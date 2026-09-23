@@ -107,7 +107,15 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    typed in bash, ksh AND Microware's shell.
    **HARNESS_USER=tester** (datatest.py, opt-in): runs a family via the
    disk's `su -s /dd/CMDS/bash tester'.  FOR-RDOGGETT item 38 is the
-   question of switching every harness.
+   question of switching every harness.  Measured as tester: 169 of 173;
+   the four left need the super-user by design (inews admin = owner of
+   the inews module; uupoll's private spool; combine makes its output
+   with NO permission bits -- its card says so now).  **`ls -l' showed
+   owner 0 for every file**: GNULIB/os9lib.l's stat never fills st_uid or
+   st_gid (no source for that library).  ls fixed via os9_owner() in
+   SRC/ls/os9stubs.c (c2ac8f3f); gtar, browse and nn link the same stat
+   and would record or compare owner 0 -- not fixed, not yet seen to
+   matter.  `dir -e' is the owner truth.
 2. **Socket programs -- os9exec is building a /socket front end.**  ttcp,
    nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
    When os9exec sends the commit: pin it, re-run their cards, and take a
