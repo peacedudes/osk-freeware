@@ -183,7 +183,7 @@ nnaux|nn's helper for posting and replying; nn runs it.
 cvt_help|Converts nn's help files; USR/LIB/NN already holds converted ones.
 finger|`finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine.
 msntp|Sets the clock from a network time server.
-ttcp|Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <host>' on the other, and it times a megabyte going across. It needs Microware's ISP networking under it; run bare, it prints its full usage.
+ttcp|Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <address>' on the other, and it times a megabyte going across. Both on one machine works too: `ttcp -r -s & ttcp -t -s 127.0.0.1'. It needs Microware's ISP networking (the /socket device) under it; give the other machine as a dotted address, as there is no host table here.
 nslookup|Looks a host name up in the domain name system: `nslookup <host>', or bare for its own prompt. It reads the server from resolv.conf at the root of /h0 -- DOC/bind/resolv.conf is an example to copy there -- and needs Microware's ISP networking. Here it reads that file, names the server it found, and stops at the socket.
 nsquery|`nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line.
 UAC_view|Full-screen, and it wants PORT set to your terminal (`/term'). From the UAC directory, `UAC_view -w=DATA' opens the session directory for the fifteen recorded sessions: arrow keys choose one, S opens it, D its process pages, Q goes back and quits.

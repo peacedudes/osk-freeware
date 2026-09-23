@@ -1213,20 +1213,21 @@ run     msntp 127.0.0.1
 wait    6
 
 shot    ttcp
-cap     Times a transfer between two machines: `ttcp -r -s' waits on one,
-cap     `ttcp -t -s <host>' on the other sends a megabyte, and each side
-cap     prints the rate.  Asked to receive here it names its settings and
-cap     then stops at the socket, because the Microware ISP networking it
-cap     was built for is what supplies one.
-try     ttcp -r -s
-run     ttcp -r -s
-wait    4
+cap     Times a transfer between two machines -- here one machine and
+cap     itself: `ttcp -r -s' waits in the background, `ttcp -t -s' sends it
+cap     a megabyte over TCP, and each side reports the rate.  Name the
+cap     other machine's address to measure a real link.
+try     ttcp -r -s & ttcp -t -s 127.0.0.1
+run     clear
+run     ttcp -r -s & ttcp -t -s 127.0.0.1
+wait    8
 
 shot    nslookup
 cap     Looks a host name up in the domain name system.  It reads the name
 cap     server's address from resolv.conf at the root of /h0 -- the example
-cap     in DOC/bind, copied there, names 127.0.0.1 -- and then asks it over
-cap     Microware's ISP networking, which is where it stops here.
+cap     in DOC/bind, copied there, names 127.0.0.1 -- and asks it; nothing
+cap     answers there, so it says the server is not available.  Name a real
+cap     name server in resolv.conf to get addresses back.
 try     nslookup ftp.funet.fi
 run     cat /dd/DOC/bind/resolv.conf > /h0/resolv.conf
 run     clear

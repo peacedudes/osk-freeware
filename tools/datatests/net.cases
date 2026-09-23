@@ -37,10 +37,17 @@ run     /dd/CMDS/NETWORK/atp < /nil
 expect  Reading Configuration file...
 expect  Unable to open configuration file /dd/atprc or .atprc !
 
-# `ttcp' asserts its usage and nothing more.  Asked to receive it stops at
-# the socket today (E$MNF: this generation of Microware's socket library
-# opens /socket), but once the emulator answers /socket it would LISTEN,
-# and a case that waits for a peer is the msntp trap below.
+# `ttcp': its usage, and a real transfer.  The receiver waits in the
+# background and the sender gives it a megabyte through the loopback, on a
+# port of its own so nothing else on the host is in the way.  Needs an
+# os9exec that answers /socket (a4b338e and later).
+case    ttcp-sends-a-megabyte-to-itself-over-tcp
+run     /dd/CMDS/NETWORK/ttcp -r -s -p28765 > $W/ttcp.r 2>&1 &
+run     /dd/CMDS/NETWORK/ttcp -t -s -p28765 127.0.0.1 2>&1
+run     /dd/CMDS/cat $W/ttcp.r
+expect  ttcp-t: 1048576 bytes processed
+expect  ttcp-r: 1048576 bytes processed
+
 case    ttcp-prints-both-halves-of-its-usage
 run     /dd/CMDS/NETWORK/ttcp < /nil
 expect  Usage: ttcp -t [-options] host <in

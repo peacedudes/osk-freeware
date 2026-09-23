@@ -1,4 +1,16 @@
-$ ttcp -r -s
+ttcp -r -s & ttcp -t -s 127.0.0.1
+<3>
 ttcp-r: nbuf=1024, buflen=1024, port=2000
-ttcp-r: socket: 000:221 (E$MNF) That module isn't currently loaded.
-errno=221
+ttcp-t: nbuf=1024, buflen=1024, port=2000
+ttcp-r: socket
+ttcp-t: socket
+ttcp-r: accept
+ttcp-t: connect
+ttcp-t: 0.01 CPU secs in 0.01 elapsed secs (100%)
+ttcp-t: 1048576 bytes processed
+ttcp-t:      0.01 CPU sec  =    102400 KB/cpu sec,     819200 Kbits/cpu sec
+ttcp-t:      0.01 real sec =    102400 KB/real sec,    819200 Kbits/sec
+$ ttcp-r: 0.01 CPU secs in 0.01 elapsed secs (100%)
+ttcp-r: 1048576 bytes processed
+ttcp-r:      0.01 CPU sec  =    102400 KB/cpu sec,     819200 Kbits/cpu sec
+ttcp-r:      0.01 real sec =    102400 KB/real sec,    819200 Kbits/sec
