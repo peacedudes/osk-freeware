@@ -84,7 +84,12 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    it and `imdir' shows it resident -- but os9exec's F$DatMod leaves the
    module's type 0, so `modlink("SysInfo", MT_DATA)' answers E$MNF and
    inews stops "Can't initialize the mess".  REPORTED to os9exec-0c
-   2026-09-23 with a probe (`datprobe').  When fixed: ship `setup' and
+   2026-09-23 with a probe (`datprobe'); os9exec FIXED it in their working
+   tree the same day.  SECOND BLOCKER, also reported: Ev$Wait returns the
+   value AFTER the wait increment (manual: the in-range value), so TOP's
+   `while (_ev_wait(id,0,0) != 0);' deadlocks -- inews sits in F$Event with
+   SysInfo's event at 1.  Probes `evprobe'/`evread' in scratch pool.
+   When both are in a commit: ship `setup' and
    `getinfo' (TOP binaries, os9lib's terms), a SYS/sysinfo (hostname,
    NEWS.DIR/LIB/BATCH, rnews.seq/rnews.batch/lck.inews as `,l' locks),
    the binaries into ETC/CMDS (compiled-in: /h0/ETC/CMDS, /h0/USR/LIB/NEWS,
