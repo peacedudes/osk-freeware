@@ -1525,6 +1525,25 @@ wait    1
 send    yes\r
 wait    2
 
+shot    yahtzee
+size    24 80
+cap     Yahtzee for one player or several: it asks how many are playing and
+cap     their names, then rolls five dice a turn, keeps the ones you choose
+cap     and re-rolls the rest, and scores the box you pick.  A different
+cap     program from `yahtzee2' beside it.  It wants the terminal
+cap     description in TERMCAP rather than the name of a file, which the
+cap     login shell's own .bashrc arranges for you.
+try     yahtzee
+run     . /dd/SYS/termcap.entry
+wait    2
+run     clear
+wait    1
+run     yahtzee
+wait    6
+snap
+send    \003
+wait    2
+
 shot    yahtzee2
 size    24 80
 cap     Yahtzee 2.1, the poker-dice game, with a curses scoreboard: up to

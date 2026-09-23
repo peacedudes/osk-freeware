@@ -1072,3 +1072,4 @@ stevie|"STEVIE may be freely distributed. The source isn't copyrighted or restri
 diff3|GNU General Public License: "GNU DIFF and DIFF3 utilities, version 1.4.  See file COPYING for copying conditions."  The whole source tree ships in SRC/gnudiff, COPYING included.|SRC/gnudiff/README, SRC/gnudiff/COPYING
 more|No terms stated: it came in the TOP release with no notice of its own, and the binary carries none.|DOC/ORIGINS; TOP release 2
 v7make|"this is a public domain 'make'", from the source posted to net.sources; no copyright is claimed in it.|TOP release 2, USR/SRC/v7make.t.Z
+yahtzee|No terms stated: it came in the TOP release with no notice of its own, and the binary carries none.|DOC/ORIGINS; TOP release 2

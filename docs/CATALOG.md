@@ -1,6 +1,6 @@
 # What is on this disk
 
-1032 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **714 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1033 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **715 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 112 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 117 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1184,7 +1184,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>112 programs</summary>
+<details><summary>113 programs</summary>
 
 **Adventure & fiction**
 
@@ -1257,6 +1257,7 @@
 | `solx` | a harder solitaire with no deck: every card is dealt into runs, which may be split -- `m run position destination'; h lists the commands<br>**How:** Full-screen, and harder than sol: there is no deck, every card is dealt into runs that may be split, and the layout runs sideways so runs can grow long. m takes a run, the card position to split at, and the destination run (or a for an ace pile); h lists the commands and r the rules; q quits. |
 | `tttt` | tic-tac-toe on a four-by-four board, so three in a row is not enough. Name a square as a column letter and a row digit, `b1'; `q' quits<br>**How:** Full-screen tic-tac-toe on a four-by-four board. Name a square as a column letter and a row digit, `b1'. `q' quits. |
 | `vcraps` | casino craps, full screen: bet with p (pass line), c, dp, f, h and more -- type the amount and Return -- then r rolls; ? lists every bet, ESC abandons an entry, X quits<br>**How:** Full-screen casino craps with $1000 to start. Space clears each message at the bottom. p bets the pass line: type the amount and Return. r rolls the dice. c is a come bet, dp don't pass, dc don't come, f the field, b6 and b8 big 6 and 8, h22 to h55 the hard ways, a7 any seven, ac any craps; a number then c, p, dc or dp bets on that number. t takes a bet down, $ totals the bets, m reviews messages, ? lists all of it, ESC abandons an entry, X quits. -b sets the bankroll and -s plays single odds. |
+| `yahtzee` | Yahtzee for one player or several, each in turn: it asks how many are playing and their names, rolls five dice, and you keep or re-roll and choose a box to score in.  Not the same program as yahtzee2 beside it |
 | `yahtzee2` | Yahtzee 2.1: the poker-dice game on a curses scoreboard. Up to six players, human or computer, roll five dice up to three times a turn and bank each roll in one of thirteen categories.  Enter the player count; for each player, space toggles human or computer and `n' names them.  In play a digit holds a die, space rerolls, `b' shows the rules and `q' quits. High scores are kept in GAMES/YAHTZEE |
 
 **Chess utilities**
