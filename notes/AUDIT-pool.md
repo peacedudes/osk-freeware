@@ -352,3 +352,57 @@ What the listings show:
     headers and libraries, most of which `SRC/COMPAT` and `LIB` already
     carry; `bigdev.zoo` is one 2 MB screen dump; `scf14.ar` is an IPC patch
     note; `bix.arc` is a BIX download set.
+
+## 2026-09-22 -- MINING PASS 1, six buckets in parallel
+
+rdoggett wants every unmined archive put through the emulator quickly, because
+an unfamiliar binary is what finds holes in os9exec and his release waits on
+that confidence.  650 deduplicated archives (87 MB) were split six ways; each
+agent had its own image copy, its own scratch directory and read-only access
+to the repo.  Extraction host-side where the host can, and with the DISK's own
+`zoo'/`arc'/`ar2' where it cannot; then `tools/smoke_pool.py' runs every
+$4AFC module once, bare, stdin /nil, 8 second limit.
+
+### Buckets 2, 3 and 6 (327 archives, 529 modules)
+
+**The one emulator-shaped finding, reported to the os9exec session:** EOF on
+/nil is not seen by some cio-linked 68000 builds.
+  * `textb' -- SHIPPED, md5 09246838 -- prints its four prompts and dies,
+    `vector=$07' at an RTS on the I$WritLn path.  The same program's 68020
+    build (textb.020, same archive) reads /nil and exits 0, and the shipped
+    68000 build given real input draws its Mandelbrot correctly.  A 68000/68020
+    pair from one source is a bisect handle.
+  * `xlisp' from EFFO pd4/pd5 (md5 f8acbfb1, NOT our copy) never sees EOF:
+    re-prompts for ever, megabytes of `r' and NULs, then vector=$02 at
+    I$SetStt.  The xlisp WE ship (md5 0038e019, another build) exits 0.
+  * Lower priority, already on its card: `cpu' dies vector=$07 after its
+    banner.  Its "22-Sep-19126" is the program's own Y2K bug, not os9exec's.
+
+**Everything else that threw an exception was the harness's own doing:**
+`os9lib' (shipped, byte-identical) is the RTF Fortran LIBRARY with M$Type=1,
+so the smoke driver forks it and it bus-errors on a garbage A0 -- running a
+library is not a use.  `world' from TOP is a different build from ours; the
+shipped one plays.  Every TIMEOUT was an interactive program waiting (rz, sz,
+kermit, sc, sysmon, SEDT, dm, less, the WN cgihtml demos): none hung.
+
+**Traps worth remembering:** five tars fell through a one-file fallback
+because the filesystem is CASE-INSENSITIVE (`less.tar.Z' holds `LESS/' and the
+decompressed file was `less'); `ar2' lists with `-t', not `t'; and several
+archives are misnamed -- `DRIVERS/y2kit.tgz' is an LHA of the PTYS driver
+source, `DRIVERS/ptylev.zip' is LHA, `EFFO/pd0.lzh' is a compress stream,
+`TELECOM/rn_4_3_blars.lzh' is a text note about WN, `NETWORK/smbfm11t.zip' is
+a gzip of osknet.tar, and `DRIVERS/ptxm.lzh' is a README with no members.
+
+**Candidates these three buckets turned up** (none acted on yet):
+  * `os9/top/top.tar.Z' is the big one: 117 modules, 60 not here -- the whole
+    Notesfile system (notes, nfmail, nfprint...), nethack, tetrix, sokoban2,
+    wanderer2, robots2, yahtzee, stevie, more, diff3, v7make, crontab, vcron.
+  * `ttcp' (mw/dl/osk_ttcp.tar) -- a TCP throughput tester, which would
+    exercise os9exec's new socket layer.
+  * rz/sz 3.36 and 3.24 with full source; SMB file manager at six versions
+    (terms REQUIRE complete unmodified distribution -- Ilja V. Levinson);
+    LinkUp for KWindows; Sterm and MSterm with source; `time' and `loglist'
+    from EFFO pd1/pd2; the CPUCACHE package; F68K's loader; ntp/NETTIME.
+  * Source-only, no binaries: nn 6.3.10, rn 4.3 (twice), MNews, OSKBox
+    (rsh/rcp/lpr over the net), uutools, rex, Vprint, view 4.5a, CTeX.
+
