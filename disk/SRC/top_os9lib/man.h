@@ -1,0 +1,1 @@
+# include <stdio.h>extern int	os9forkc ();/* Some static datas */# define PROFF		"proff"# define PAGER		"less"# define INDEX		"/h0/USR/DOC/.MAN/.index"# define MANDIR		"/h0/USR/DOC/.MAN"# define WORKSPACE	"SOURCE"# define PRINTERPORT	"/p"# define PRINTER	"dumb"# define EDITOR		"me"# define SHELL		"shell"# define STRINGS	"strings"

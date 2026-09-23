@@ -1,0 +1,1 @@
+SET COMMAND:set			show current variables:set VARIABLE VALUE	set variable:unset VARIABLE		reset variable :toggle VARIABLEhelp.variables
