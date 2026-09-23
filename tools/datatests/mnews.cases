@@ -45,11 +45,14 @@ case    encode-and-decode-round-trip
 run     echo hello world | encode | decode
 expect  hello world
 
-# nnadmin takes its menu keys as an argument; C is the configuration.
-case    nnadmin-prints-where-nn-keeps-everything
+# nnadmin takes its menu keys as an argument; C is the configuration --
+# once nnmaster has built nn's database, which needs the reader's own
+# shell (the harness stages only `load' and `unlink' on /h1).  On a fresh
+# disk it says so; the nnadmin card builds the database first and shows C.
+case    nnadmin-names-the-database-it-needs
+run     /dd/CMDS/rm -f /h0/SPOOL/NN/MASTER > /nil 2>/nil
 run     nnadmin C
-expect  BIN:  /h0/CMDS/MNEWS
-expect  NEWS: /h0/SPOOL/MNEWS
+expect  Cannot open file /h0/SPOOL/NN/MASTER
 
 # sbatch: a neighbour named in Sys gets the waiting article batched and
 # handed to uux -- which, like rnews's inews, is forked by bare name and so

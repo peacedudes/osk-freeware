@@ -98,6 +98,16 @@ twice on a fresh image, then rebuild osk-freeware.dd AND docs/try/disk.gz:
    `trlf', which is in no archive.  rn needs /r0 mounted; newsetup forks
    the reader's shell.  newslock NOW WORKS (link count 2) -- its panel
    exception is stale; re-card it.
+   **Parallel agents, 2026-09-23 evening** (all committed): README-NEWS
+   chooser (3ae55b76, 9a56222d); stale-notes audit (0bd9435a, 1887c5fa --
+   sticky gcc modules on a4b338e+ mean the two toolchains answer for each
+   other; cases `unlink' between them and os9env stages the reader's
+   `unlink' too); module-name renames were ALREADY DONE on 2026-08-31
+   (d0171a7b), PLAN section 1 corrected (b9257bc9).  argv[0] is the word
+   typed in bash, ksh AND Microware's shell.
+   **HARNESS_USER=tester** (datatest.py, opt-in): runs a family via the
+   disk's `su -s /dd/CMDS/bash tester'.  FOR-RDOGGETT item 38 is the
+   question of switching every harness.
 2. **Socket programs -- os9exec is building a /socket front end.**  ttcp,
    nslookup, nsquery shipped 2026-09-23 as for-a-real-system entries.
    When os9exec sends the commit: pin it, re-run their cards, and take a
