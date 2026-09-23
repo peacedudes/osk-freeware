@@ -1,0 +1,31 @@
+family  untested2
+# Programs that had no case on 2026-09-23 (tools/worklist.py --no-test).
+
+setup   W=/dd/tmp/UT2
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W
+
+# diff3: three versions of one file.  Only the third changes line two, so
+# diff3 reports one hunk, marked ====3, with the third file's line.
+case    diff3-finds-the-one-file-that-differs
+run     /dd/CMDS/printf 'one\rtwo\rthree\r' > $W/a
+run     /dd/CMDS/printf 'one\rtwo\rthree\r' > $W/b
+run     /dd/CMDS/printf 'one\rTWO\rthree\r' > $W/c
+run     /dd/CMDS/diff3 $W/a $W/b $W/c
+expect  ====3
+expect    TWO
+
+# ltb: proff's lexical table builder.  Given the symbol file SRC/proff
+# carries, it writes lextab.h -- and what it writes is the lextab.h that
+# ships beside it, which is how proff is rebuildable.
+case    ltb-rebuilds-proffs-lextab-exactly
+run     /dd/CMDS/cp /dd/SRC/proff/proffsym.new $W/proffsym.new
+run     builtin cd $W
+run     /dd/CMDS/ltb proffsym.new lextab
+run     /dd/CMDS/diff lextab.h /dd/SRC/proff/lextab.h && echo same-lextab
+expect  same-lextab
+
+# v7make is NOT here: it hands every command to the reader's own `shell',
+# and the harness stages only the reader's `load' on /h1.  Measured on a
+# terminal with the SDK as /h1 (2026-09-23): `wc -c makefile' as a rule
+# prints `30 makefile' through it.  Its card is the evidence.
