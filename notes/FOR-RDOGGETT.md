@@ -18,7 +18,9 @@ permission checks.  Recommend: switch at the final verification pass
 (one full re-shoot and suite run), not piecemeal.  Measured: every case
 family as `tester' passes 169 of 173; the four are the super-user's by
 design (inews admin, uupoll's private spool) or combine's output having no
-permissions at all, now said on its card.
+permissions at all, now said on its card.  Running as tester has since
+found one real multi-user fault su hid: nn's GROUPS file is owner-only
+after `nnmaster -I' (README-NEWS now says `attr -pr' it).
 
 ## No action, just so you know
 
