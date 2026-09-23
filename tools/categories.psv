@@ -517,6 +517,7 @@ worms|Screen toys|Screen toys
 # ---- Shells ----
 checkenv|Shells|Shell helpers
 exist|Shells|Shell helpers
+strcmp|Shells|Shell helpers
 fc|Files & directories|Split & join
 getenv|Shells|Shell helpers
 hist|Shells|Shell helpers
@@ -999,6 +1000,8 @@ wump|Games|Other games
 xmas|Screen toys|Screen toys
 unshar|Archives & compression|Create & extract
 mimecode|Encoding & conversion|Text encodings
+compface|Encoding & conversion|Text encodings
+uncompface|Encoding & conversion|Text encodings
 bcd|Encoding & conversion|Text encodings
 caesar|Encoding & conversion|Ciphers & hashes
 col|Text tools|Format & typeset

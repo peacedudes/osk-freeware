@@ -1,0 +1,3 @@
+compface DOC/compface/face.hex > tmp/CFACE/x; cat tmp/CFACE/x
+ 2BVq@<lUro7.:;x;v*>wwg!9aM%E-bT0BjT,!3|MQtFIdk!76,)EfG<9#82"w)Vr4)zk/OP
+ }Gkk)xt|Z^/lbQ7v5YsGNfqhScag6`O&uS!zA66*Tc-As%Erw&a!!^y3#

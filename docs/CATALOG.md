@@ -1,6 +1,6 @@
 # What is on this disk
 
-1034 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **716 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1037 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **718 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -11,7 +11,7 @@
 
 | Category | Programs | |
 |---|--:|---|
-| [Shells](#shells) | 24 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
+| [Shells](#shells) | 25 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
@@ -19,7 +19,7 @@
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 96 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -38,7 +38,7 @@
 
 *Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.*
 
-<details><summary>24 programs</summary>
+<details><summary>25 programs</summary>
 
 **Shell helpers**
 
@@ -53,6 +53,7 @@
 | `printf` | formatted print from the shell, as on Unix: widths, numbers and floating point<br>**How:** printf as on Unix: `printf "%-8s\|%5d\n" name 12'. Widths, numbers and floating point all work. |
 | `qp` | &#9733; expands back-quotes in a command line, which Microware's shell does not do for itself: `qp <cmd> <args>'. It forks a `shell' to run the result, so it wants Microware's on your execution path<br>**How:** Hands its expanded command to $SHELL with the options `-ny -nl', which belong to the EFFO shell it was written for; no shell here takes them, your own OS-9's included, so here it expands nothing. |
 | `run` | runs a program with its input and output on the terminal PORT names: `run '<program> <args>''<br>**How:** `run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal. |
+| `strcmp` | &#9733; compares two strings and answers in its exit status, which is what a shell `if' reads: `strcmp abc eq abc' is true, and the operators are eq lt gt le ge ne, plus `ct' for contains and `bw' for begins with. `-c' ignores case, `-p' prints the answer as well as returning it. The two that have no `test' equivalent are the useful ones. DOC/strcmp has the manual and a demonstration script<br>`strcmp v2.1 (c) M.C.Gregorie, 1994` |
 | `submit` | &#9733; runs the commands in a .sub file one after another, printing each line before it runs it -- a batch job. The file is named without its suffix, `submit demo' for demo.sub. Every line goes to `shell', so your own OS-9's shell has to be resident; SYS/login loads it from /h1<br>`Syntax: submit [<opts>] [<submit file>] [{<parameter>)]` |
 | `xargs` | builds command lines out of what it reads and runs them: `ls \| xargs cat' hands the names to cat as arguments rather than as input |
 | `xc` | runs the commands marked in a file -- a line beginning `% ' -- and leaves the rest as notes.  Forks them through Microware's `shell' to run<br>**How:** `xc <file>': lines beginning `% ' are commands, shown and run; `$ ' runs them quietly; the rest is notes. It forks them through Microware's `shell', which must be loaded (`load /h1/CMDS/shell'). |
@@ -724,7 +725,7 @@
 
 *Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>30 programs</summary>
+<details><summary>32 programs</summary>
 
 **Audio**
 
@@ -765,6 +766,7 @@
 | `atob` | decodes what btoa encoded, back to the bytes<br>`Bad args to atob` |
 | `bcd` | prints text as an 80-column punched card, the holes marked in each row: `bcd OS-9' |
 | `btoa` | encodes a binary file as printable text, five characters for every four bytes with a checksum on the last line -- denser than uuencode; atob decodes it<br>`Bad args to btoa` |
+| `compface` | compresses a 48x48 black-and-white face into the short line of printable characters that goes in a mail header's `X-Face:' field, which readers show beside the message.  It wants the image as 576 hex words -- 48 rows of `0x%04X,0x%04X,0x%04X,' -- and DOC/compface/face.hex is one to try it on.  `uncompface' is the other direction |
 | `cuts` | &#9733; Coco Usenet Transfer Utility -- encodes a binary as text that will pass through electronic mail, in a form that survives gateways between ASCII and EBCDIC machines; `-d' decodes, which is the half worth having.  The encoder (`-e') asks for billions of bytes of memory, is refused, and writes empty data lines until it is stopped.<br>**How:** Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused. |
 | `mimecode` | encode or decode base64, MIME's transfer encoding. `mimecode -e' turns a file into printable base64 and `-d' turns it back; uuencode and btoa are the older kinds, this is the one mail and the web use.  Tim Kientzle's, from DDJ.<br>`Usage: mimecode <options>` |
 | `morse` | writes text as Morse code -- dit and daw, or dots and dashes with -s<br>`morse: illegal option -- ?` |
@@ -772,6 +774,7 @@
 | `todos` | &#9733; turns OS-9 line endings into DOS ones -- every CR becomes CR LF, and one stray LF lands at the end of the file.  It writes the converted text into todos.$$$.<n> in the data directory, not beside the file you named, and then forks OS-9's own `del' and `rename' to move it over the original.  Those come with your system; on this disk alone the move does not happen, and OS-9's rename wants a name rather than a pathname in any case.  Stand in the directory, give a bare name, and rename the result yourself -- or use `autolf -c -C -L' as a filter, which renames nothing<br>**How:** It writes the DOS version into `todos.$$$.<n>' in the directory you are standing in, not over the file you named -- it forks OS-9's own `del' and `rename' to finish and stops there. Rename the temporary yourself, or use `autolf -c -C -L < in > out', which renames nothing. |
 | `toos9` | &#9733; turns DOS line endings into OS-9 ones -- CR LF back to CR -- and appends one 0xFF byte at the end. Like todos it leaves the converted text in toos9.$$$.<n> in the data directory, because it cannot rename that over the original; rename it yourself. `autolf -C' does the job as a filter<br>**How:** The same the other way round: the OS-9 version is left in `toos9.$$$.<n>' for you to rename, and it appends one 0xFF byte at the end. `autolf -C' does the job as a filter. |
 | `translit` | transliterates text between alphabets by a table: KOI8, KOI7, ALT and GOSTCII Russian, Library of Congress and phonetic romanization, LaTeX; `translit -t koi8-lc.rus -i in -o out'<br>**How:** Converts text from one alphabet or coding to another by a table: `translit -t koi8-lc.rus -i in -o out'. Eighteen tables for Russian are in LIB/translit -- KOI8, KOI7, ALT and GOSTCII codings, Library of Congress, GOST and Pokrovsky transliteration, phonetic spelling and LaTeX -- and a table named without -t is taken the same way. Without -i and -o it is a filter. It will not write over an existing -o file. TRANSP names another table directory and TRANSF the default table. The manual is DOC/translit/translit.txt.A and .B. The post's examples are in SRC/translit/ORIG: example.ko8.UU and example.alt.UU are uuencoded, with DOS line ends that `autolf -C' turns into OS-9 ones. |
+| `uncompface` | turns an `X-Face:' line back into the 576 hex words `compface' made it from, so the picture can be looked at again |
 | `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |
 | `uuencode` | &#9733; uuencode. Give it one argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'. Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
 | `uuexpand` | expands a file into a run of `0' and `1' characters, one per bit -- despite the shared prefix, unrelated to uuencode -- so it survives a copy between machines with different byte or character sizes; `uuexpand -u' (or `uuunexpand') reverses it<br>**How:** Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines. |

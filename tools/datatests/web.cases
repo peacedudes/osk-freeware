@@ -102,3 +102,34 @@ expect  the marker
 case    sh-chd-moves-it-too-but-sh-cannot-fork-an-absolute-path
 run     /dd/CMDS/sh -c "chd $W; /dd/CMDS/cat marker.txt"
 expect  file not found
+
+# WN's OWN CGI EXAMPLES, added 2026-09-23 from the WN 1.14.3 OSK release.
+# They live under $R/EXAMPLES with their own index.cache, which ships: wndex
+# works on the CURRENT directory and will not descend into a subdirectory,
+# so a cache built at the document root does not cover them.
+#
+# THE ONE THING THAT MAKES OR BREAKS THIS: `wn' runs a CGI through the C
+# library's system(), which forks the shell, so SHELL MUST BE SET. Without
+# it every CGI request answers `500 Can't exec CGI program' -- the module
+# itself runs perfectly by hand, its attributes are right and the cache
+# entry is right, which makes the failure read like a broken binary. It is
+# the same load-bearing SHELL that DOC/README-SHELLS is about. SYS/login
+# sets it; this harness does not, so the case sets it itself.
+setup   SHELL=/dd/CMDS/ksh
+
+case    wn-runs-a-cgi-program
+run     echo "GET /EXAMPLES/sample.cgi HTTP/1.0" > $W/cgi.cr
+run     echo "" >> $W/cgi.cr
+run     /dd/CMDS/autolf -c -C -L < $W/cgi.cr > $W/cgi.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/cgi.crlf
+expect  HTTP/1.0 200 OK
+expect  Title: Sample of executable script (run it)
+expect  WN_DIR_PATH=/h0/c/unid/wn_1.14.3/osk/EXAMPLES
+expect  REQUEST_METHOD=GET
+
+# And the variables above come from nowhere but wn, so the fork really
+# happened. Without SHELL the same request is a 500; that is asserted here
+# so the requirement cannot quietly stop being true.
+case    wn-cannot-run-a-cgi-without-a-shell
+run     SHELL= /dd/CMDS/WN/wn -L /nil -l /nil < $W/cgi.crlf
+expect  HTTP/1.0 500 Can't exec CGI program

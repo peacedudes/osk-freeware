@@ -1046,3 +1046,6 @@ more|none|it takes the files to page, or reads standard input
 v7make|none|it reads `makefile' in the data directory; name a target to make that one
 yahtzee|none|it asks how many are playing at the first prompt
 time|none|it takes the command to run, with that command's own options after it
+compface|none|it takes `[infile [outfile]]' and prints a usage line only when handed more than two of them; with none it reads standard input
+uncompface|none|the same shape as compface: `[infile [outfile]]', no help flag, standard input when no file is named
+strcmp|strcmp -?|

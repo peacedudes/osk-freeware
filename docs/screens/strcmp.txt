@@ -1,0 +1,3 @@
+strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
+0
+1

@@ -1103,3 +1103,5 @@ compress|hc_utils|compress.c|||
 # SRC/utree/README.OSK says what each arm is for.
 utree|utree|main.c bind.c comm.c echo.c edit.c file.c help.c hist.c list.c stat.c term.c tree.c util.c vars.c vers.c osk.c|SYSV MEM=128k|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/blarslib.l|
 resize|resize|resize.c|||
+compface|compface|cmain.c compface.c arith.c file.c compress.c gen.c|||
+uncompface|compface|uncmain.c arith.c file.c compress.c gen.c uncompface.c|||

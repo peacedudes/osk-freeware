@@ -126,6 +126,21 @@ wait    4
 try     exist SYS/motd; echo "exist says $?"
 os9     exist SYS/motd
 
+shot    strcmp
+cap     Compares two strings and answers in its exit status, the way a shell
+cap     `if' reads it -- 0 for true.  Besides eq lt gt le ge ne it has `ct'
+cap     for contains and `bw' for begins with, and `-c' ignores case; those
+cap     are the comparisons a shell's own test has no operator for.  `-p'
+cap     prints the answer as well as returning it.
+try     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
+os9     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
+wait    4
+
 shot    expr
 cap     GNU expr, evaluating an expression for a script.
 run     expr 355 / 113

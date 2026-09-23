@@ -149,6 +149,7 @@ colrm f2bccdfd04b918a9
 column f707f3f864db525f
 combine 206d5cbdc2d7267e
 comm d41baa7bc4a2c62b
+compface 51958baaf68730f7
 compiler a1cfa4c684d609b5
 compr 6f55fb11df248478
 compress ec67ee6d6af394aa
@@ -779,6 +780,7 @@ ssl 14b797edbedf2d17
 sterm ad3781050e051e44
 stevie 37e9afa88771dcfd
 stone 1a340282f3de4054
+strcmp 3ebf05c9ea2651e1
 strfile aacbe8f2cbb58af8
 striche 78cf3953bcc12164
 strings a69f26e3b152e77c
@@ -846,6 +848,7 @@ uld 5ba781c0c11e10df
 umacs 979e0b76ff348e9b
 umusek f710027837dfa4e8
 unc 9663e5bf8af552d9
+uncompface 212b72a133307697
 undel 26f8baa790812507
 undump a6173dc352ed242d
 unexpand 78737392555a4a4e

@@ -191,3 +191,28 @@ expect  | o   .  o|
 case    bcd-punches-a-card
 run     /dd/CMDS/bcd OS9
 expect  /OS9
+
+# compface is the X-Face encoder mail headers use, and it round-trips like
+# the rest -- but its input is not arbitrary bytes: 576 hex words, which is
+# what DOC/compface/face.hex holds. The encoded form is short enough to read,
+# so the case asserts its length as well as the round trip. A work directory
+# of its own, because /dd/tmp is shared by every sheet and every case file.
+setup   F=/dd/DOC/compface/face.hex
+
+case    compface-round-trips-a-face
+run     /dd/CMDS/rm -f /dd/tmp/CFC > /nil 2>/nil; /dd/CMDS/mkdir -p /dd/tmp/CFC
+run     /dd/CMDS/compface $F > /dd/tmp/CFC/f.xf
+run     /dd/CMDS/uncompface /dd/tmp/CFC/f.xf > /dd/tmp/CFC/f.back
+run     /dd/CMDS/md5 /dd/tmp/CFC/f.back
+expect  92bf906fc82c68ab80975a56b9847b10
+
+# The input is 1,056 bytes.  `absent' reads the WHOLE case's output, so the
+# size of the input cannot be asserted in the same case as the size of the
+# output -- doing that made this case find its own 1056 and fail.
+case    compface-reads-the-face-the-disk-ships
+run     /dd/CMDS/wc -c < $F
+expect  1056
+
+case    compface-really-compresses
+run     /dd/CMDS/wc -c < /dd/tmp/CFC/f.xf
+absent  1056

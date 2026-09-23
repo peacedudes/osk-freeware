@@ -1,0 +1,20 @@
+$ strcmp -?
+strcmp v2.1 (c) M.C.Gregorie, 1994
+
+Syntax:   strcmp <opts> string1 op string2 <opts>
+Function: Carry out requested comparison
+Options:
+          -c  ignore case for comparison
+          -d  debug mode
+          -p  write reply to stdout
+          -s  suppress displays
+
+Op codes:                             Result:
+          eq  equal                           0  test was TRUE
+          lt  less than                       1  test was FALSE
+          gt  greater than                    4  parameter errors found
+          le  less or equal to
+          ge  greater or equal to                The result is returned
+          ne  not equal                          as the exit code.
+          ct  contains
+          bw  begins with

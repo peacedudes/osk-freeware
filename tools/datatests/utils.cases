@@ -75,3 +75,26 @@ expect  /dd/tmp/UTL/dup/a/f
 case    howfrag-counts-a-files-segments
 run     /dd/CMDS/howfrag /dd/SYS/motd < /nil
 expect  /dd/SYS/motd: 1 segments
+
+# strcmp answers in its EXIT STATUS, so the status is what these assert -- and
+# `ct' (contains) and `bw' (begins with) are the two a shell's own test has no
+# operator for, which is the reason it is here beside basename and dirname.
+# Its own manual says a parameter error gives 4; measured 2026-09-23 it gives
+# 0, so nothing here asserts 4 and DOC/INDEX does not repeat the claim.
+case    strcmp-compares-and-answers-in-its-status
+run     /dd/CMDS/strcmp abc eq abc; echo "equal says $?"
+expect  equal says 0
+run     /dd/CMDS/strcmp abc eq abd; echo "unequal says $?"
+expect  unequal says 1
+
+case    strcmp-contains-and-begins-with
+run     /dd/CMDS/strcmp Mississippi ct ssiss; echo "contains says $?"
+expect  contains says 0
+run     /dd/CMDS/strcmp Mississippi bw sipp; echo "begins says $?"
+expect  begins says 1
+
+case    strcmp-c-ignores-case
+run     /dd/CMDS/strcmp -c aaaXXXddd ct xxx; echo "caseless says $?"
+expect  caseless says 0
+run     /dd/CMDS/strcmp aaaXXXddd ct xxx; echo "cased says $?"
+expect  cased says 1
