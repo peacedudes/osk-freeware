@@ -16,6 +16,26 @@ each day (see "Recovery, day by day").
 
 ---
 
+## ROWS BELOW THAT ARE ALREADY DONE -- checked 2026-09-22, do not re-port
+
+Twenty-two rows that still read as outstanding are on the disk, verified by
+name under `disk/CMDS`, by tree under `disk/SRC`, by recipe, and by a
+`DOC/ORIGINS` row each:
+
+  almanac  zc  moria (UMoria, from TOP's source)  nethack3  mw (Mazewar)
+  bandit  typefast  bs  sod  dc (B8 still says "there is still no dc")
+  wns  scpp  cpp (cpp.decus)  gnugo  agrep (B4 has it as only ASSESSED)
+  juggle  napoleon  gawk2.0  bison  dvips source  ptxm  passwd
+
+`vh` is here too, as the program `jargon` (DOC/ORIGINS: vh_1.4.lzh).
+
+Three more are redundant rather than missing: `lftocr` (autolf and toos9
+already convert both ways), `tar 1.9` (GNU tar 1.10 ships), `rot13` (what
+`caesar` does; the disk's `rot` is a different program).
+
+[[os9-plan-rows-go-stale]] is the standing rule this list serves: check by
+name AND by archive name before porting anything below.
+
 ## Where the material is
 
 Everything the 2026-09-11 searches downloaded is kept, outside the repo, at
