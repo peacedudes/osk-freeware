@@ -134,30 +134,72 @@ def arc(path):
     return out
 
 
+def tar_members(data):
+    """Members of a tar, read header by header.
+
+    macOS's tar refuses a v7 archive with no `ustar' magic -- CMDS/
+    compress.tar.Z is one -- so the headers are walked here instead: a
+    100-byte name, and the size as octal at offset 124.
+    """
+    out, i = [], 0
+    while i + 512 <= len(data):
+        head = data[i:i + 512]
+        if head.strip(b"\0") == b"":
+            break
+        name = head[:100].split(b"\0")[0].decode("latin-1", "replace")
+        raw = head[124:136].replace(b"\0", b" ").strip() or b"0"
+        try:
+            size = int(raw, 8)
+        except ValueError:
+            return out or None
+        if not name:
+            return out or None
+        out.append("%-40s %8d" % (name, size))
+        i += 512 + (size + 511) // 512 * 512
+    return out or None
+
+
 def host(path):
-    """Whatever the host can list: tar in its three wrappings, then Zoo/Arc."""
+    """Whatever the host can list, and a decompressed file is not always a tar.
+
+    `.Z' and `.gz' wrap one file as often as they wrap a tar -- compress.tar.Z
+    is a tar, ckermit.doc.Z is a document -- so decompress first and look for
+    tar's `ustar' magic before deciding.  A lone file is reported as itself,
+    which is the honest listing for it, and a shar by the files it writes.
+    """
     low = path.lower()
-    if low.endswith((".tar.z", ".t.z", ".z")) and not low.endswith(".tar.gz"):
+    data = None
+    if low.endswith((".gz", ".tgz")):
+        data = subprocess.run(["gzip", "-dc", path], capture_output=True).stdout
+    elif low.endswith(".z"):
         data = subprocess.run(["uncompress", "-c", path], capture_output=True).stdout
-        with tempfile.NamedTemporaryFile(suffix=".tar") as t:
-            t.write(data)
-            t.flush()
-            r = subprocess.run(["tar", "tf", t.name], capture_output=True)
-        return [l for l in r.stdout.decode("latin-1").splitlines() if l.strip()] or None
-    cmd = (["tar", "tzf", path] if low.endswith((".tar.gz", ".tgz")) else
-           ["tar", "tf", path] if low.endswith(".tar") else
-           ["lha", "l", path] if low.endswith((".lzh", ".lha")) else
+    if data is not None:
+        if not data:
+            return None
+        got = tar_members(data)
+        if got:
+            return got
+        kind = ("text" if all(32 <= c < 127 or c in (9, 10, 13) for c in data[:400])
+                else "OS-9 module" if data[:2] == b"\x4a\xfc" else "data")
+        return ["%-28s %8d  (one %s, not an archive)"
+                % (os.path.basename(path).rsplit(".", 1)[0], len(data), kind)]
+    if low.endswith(".tar"):
+        return tar_members(open(path, "rb").read())
+    cmd = (["lha", "l", path] if low.endswith((".lzh", ".lha")) else
            ["unzip", "-l", path] if low.endswith(".zip") else None)
     if cmd:
         r = subprocess.run(cmd, capture_output=True)
         return [l for l in r.stdout.decode("latin-1").splitlines()
                 if l.strip() and not NOISE.match(l.strip())] or None
+    if low.endswith(".shar"):
+        text = open(path, "rb").read().decode("latin-1", "replace")
+        got = re.findall(r"^(?:sed [^>]*>\s*|cat\s*>\s*)'?\"?([\w.+/-]+)", text, re.M)
+        return ["%-28s  (shar member)" % n for n in got] or None
     if low.endswith(".zoo"):
         return zoo(path)
     if low.endswith(".arc"):
         return arc(path)
     return None
-
 
 def main(argv):
     names_only = "--names" in argv
