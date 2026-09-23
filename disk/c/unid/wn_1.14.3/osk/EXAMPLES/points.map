@@ -1,0 +1,1 @@
+# Sample image map file for the WN server# There is no default when the point method is used -- closest point wins.# Red points -- coordinates for each point which refers to this URL.point	points.html?red	44,15 179,40 109,115# Green pointspoint	points.html?green 29,65 129,10 174,110# Yellow pointspoint   points.html?yellow	35,115 94,55 204,85

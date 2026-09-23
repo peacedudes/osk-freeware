@@ -1,0 +1,1 @@
+#include <stdio.h>main() {    int i = 0;	extern char **environ;        printf("Content-type: text/html\012");        printf("\012");        printf("<body>\012");	while(*environ++)  {        if(i>15 && i<25)        	printf("%s<br>\l", *environ);        i++;	}        printf("</body>\012");}
