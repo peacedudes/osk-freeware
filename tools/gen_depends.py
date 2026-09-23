@@ -68,7 +68,7 @@ these are FALLBACK paths compiled into the binary that the program never
 actually opens.  Nineteen mtools programs list /dd/sys/mtools as missing and
 every one of them works, because they read /dd/sys/mtools.conf, which is
 here.  The same is true of /dd/SYS/errmsg.short, /dd/SYS/utmp and /dd/TEMP --
-`env', `expr', `ci', `co' and `cjpeg' all list one of those and all run.
+`env', `expr' and `cjpeg' all list one of those and all run.
 So a `--' here is NOT evidence that a program is broken.  Run it and see.
 
 Most entries are /h0/sys/termcap -- %d programs want termcap at that exact
