@@ -15,7 +15,10 @@ works on it for the first time.
 **38. Run the harnesses as `tester', not `su'?**
 Every card, case and probe runs as super-user, which RBF lets past
 permission checks.  Recommend: switch at the final verification pass
-(one full re-shoot and suite run), not piecemeal.
+(one full re-shoot and suite run), not piecemeal.  Measured: every case
+family as `tester' passes 169 of 173; the four are the super-user's by
+design (inews admin, uupoll's private spool) or combine's output having no
+permissions at all, now said on its card.
 
 ## No action, just so you know
 

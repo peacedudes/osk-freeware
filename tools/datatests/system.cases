@@ -31,6 +31,8 @@ run     /dd/CMDS/dump /dd/tmp/cl.bin
 expect  7 /dd/tmp/cl.bin
 expect  1B5B 481B 5B32 4A
 
+# Needs the super-user: combine makes its output with no permission bits,
+# so run as anyone else the cat below is refused (E_FNA).
 case    combine-interleaves-byte-by-byte
 run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
 run     /dd/CMDS/cat /dd/tmp/mix.txt

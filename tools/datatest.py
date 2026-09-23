@@ -237,9 +237,20 @@ def run_family(path, image, workdir):
     per, todo, text = {}, list(fam["cases"]), ""
     for _attempt in range(len(fam["cases"]) + 1):
         open(sh, "w", newline="").write(script_for(fam, todo))
+        run_sh = "/h1/%s.sh" % fam["family"]
+        # HARNESS_USER=tester runs the family as that user instead of the
+        # super-user every harness has always used -- RBF lets 0.0 past
+        # permission checks, so a file a reader cannot write passes as 0.0.
+        # Opt-in (2026-09-23) while the question of switching every harness
+        # is rdoggett's; the disk's GNU su hands the script to bash.
+        user = os.environ.get("HARNESS_USER")
+        if user:
+            wrap = sh[:-3] + ".as.sh"
+            open(wrap, "w", newline="").write(
+                "/dd/CMDS/su -s /dd/CMDS/bash %s %s\r" % (user, run_sh))
+            run_sh = "/h1/%s.as.sh" % fam["family"]
         chunk = capped(
-            ["gtimeout", "300", OS9EXEC, "-r", "bash",
-             "/h1/%s.sh" % fam["family"]], env)
+            ["gtimeout", "300", OS9EXEC, "-r", "bash", run_sh], env)
         text += chunk
         got = split_output(chunk, fam)
         for k, v in got.items():

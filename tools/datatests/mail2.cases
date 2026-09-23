@@ -63,6 +63,8 @@ expect  804 /dd/SPOOL/MAIL/tester
 # uupoll's whole job is to leave a POLL file in the queue for a site, and
 # it does it in silence -- which is why it read as broken. The grade letter
 # goes into the name: no -g is `A', `-gZ' is `Z'.
+# Needs the super-user to LIST the result: uupoll becomes uucp and makes the
+# site directory owner-only, so another user's ls is refused.
 case    uupoll-queues-a-poll-file-and-the-grade-is-in-its-name
 run     /dd/CMDS/UUCP/uupoll nowhere
 run     /dd/CMDS/UUCP/uupoll -gZ nowhere

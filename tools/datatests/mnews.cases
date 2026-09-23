@@ -21,6 +21,8 @@ run     /dd/CMDS/getinfo -a
 expect  NEWS.DIR              String      /h0/SPOOL/MNEWS
 expect  lck.inews             Lock        not locked
 
+# Needs the super-user: inews obeys a control message only when the caller
+# is the owner of the inews module, 0.0 here, and says so otherwise.
 case    inews-makes-a-group-and-files-an-article-in-it
 run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: case\r\rbody text\r' > $W/art
 run     inews -c=newgroup:comp.os.os9 < /nil

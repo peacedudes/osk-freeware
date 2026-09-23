@@ -50,9 +50,11 @@ expect  From: The OS-9 Freeware Collection
 # user rather than reporting that it could not -- and then counts no
 # messages in it, where `messages' counts one and `readmsg' prints it. It
 # says the same for -s new, -s old and a folder named on the command line.
+# Run as the super-user it names tester ("tester has no mail"); run as
+# tester it says "You have no mail."  Either way it counts none.
 case    frm-sees-no-messages-in-a-folder-that-has-one
 run     /dd/CMDS/ELM/frm
-expect  tester has no mail
+expect  no mail
 absent  Welcome
 
 case    lcasep-lower-cases-an-address
@@ -104,13 +106,16 @@ expect  Missing header
 case    lmail-delivers-into-a-users-mail-folder
 # lmail locks the recipient in SYS/.LOCKS/MAIL.LOCKS, which ships.  Without
 # that directory it retries the lock every ten seconds for twenty minutes,
-# which reads as a hang.  Delivered to os9 so tester's folder stays as it is.
-run     /dd/CMDS/rm -f /dd/SPOOL/MAIL/os9 > /nil 2>/nil
+# which reads as a hang.  Delivered to tester, whose folder is put back
+# afterwards: os9's folder would do as the super-user, but lmail makes it
+# owner-only, and os9 is 0.0, so a case run as tester could not read it.
+run     /dd/CMDS/cat /dd/SPOOL/MAIL/tester > /dd/tmp/lmail.save
 run     echo "Subject: lmail case" > /dd/tmp/lmail.msg
 run     echo "" >> /dd/tmp/lmail.msg
 run     echo "Delivered by lmail." >> /dd/tmp/lmail.msg
-run     /dd/CMDS/UUCP/lmail os9 < /dd/tmp/lmail.msg
-run     /dd/CMDS/cat /dd/SPOOL/MAIL/os9
+run     /dd/CMDS/UUCP/lmail tester < /dd/tmp/lmail.msg
+run     /dd/CMDS/cat /dd/SPOOL/MAIL/tester
+run     /dd/CMDS/cat /dd/tmp/lmail.save > /dd/SPOOL/MAIL/tester
 expect  Subject: lmail case
 expect  Delivered by lmail.
 absent  unknown user
@@ -118,12 +123,11 @@ absent  unknown user
 # mailx AGREES WITH rmail AND WITH NEITHER OF THE OTHERS.  Both want the
 # mailbox to be a DIRECTORY named for the user; `mail', `messages' and `frm'
 # all read the plain file that ships.  mailx looks the name up by NUMBER --
-# everything here runs as 0.0, whose first entry in SYS/password is `su' --
-# which is why it asks for a directory of that name and not for `tester'.
+# run as 0.0, whose first entry in SYS/password is `su', it asks for a
+# directory named `su' and not `tester', however USER is set.
 # Asserted because it is a fact about the disk's mail arrangements, not a
 # passing symptom: change the password file or the mailbox shape and this
 # case is the one that says so.  Measured 2026-09-21.
 case    mailx-wants-a-mailbox-directory-named-for-the-user-number
 run     /dd/CMDS/UUCP/mailx
 expect  can't change to your mailbox directory
-expect  'su'
