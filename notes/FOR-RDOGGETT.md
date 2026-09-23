@@ -6,10 +6,16 @@ Updated 2026-09-23.
 
 ## Needs you
 
-**1. Push os9exec, then pin `a4b338e`.**
-Nothing is pushed, so CI has never run.  `a4b338e` carries today's four
-fixes the new programs need (F$DatMod, Ev$Wait, /socket, zero-byte
-F$SRqMem); MNews, nn, ttcp and BIND were verified against a build of it.
+**1. Push os9exec, then pin `b5da6df`.**
+Nothing is pushed, so CI has never run.  `b5da6df` carries today's fixes the
+new programs need (F$DatMod, Ev$Wait, /socket, zero-byte F$SRqMem); the
+families they touch pass on a build of it, 58 of 58, and the lp spooler
+works on it for the first time.
+
+**38. Run the harnesses as `tester', not `su'?**
+Every card, case and probe runs as super-user, which RBF lets past
+permission checks.  Recommend: switch at the final verification pass
+(one full re-shoot and suite run), not piecemeal.
 
 ## No action, just so you know
 
