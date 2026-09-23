@@ -2,15 +2,14 @@
 
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail lives in `notes/START-HERE-NEXT-SESSION.md` under the same number.
-Updated 2026-09-23.
+Updated 2026-09-23 (evening).
 
 ## Needs you
 
-**1. Push os9exec, then pin `b5da6df`.**
-Nothing is pushed, so CI has never run.  `b5da6df` carries today's fixes the
-new programs need (F$DatMod, Ev$Wait, /socket, zero-byte F$SRqMem); the
-families they touch pass on a build of it, 58 of 58, and the lp spooler
-works on it for the first time.
+**1. Push os9exec, then pin `d992145`.**
+Nothing is pushed, so CI has never run.  `d992145' is the tip the os9exec
+session gated and named safe (2026-09-23); the whole suite passes on a
+fresh image built with it, 912 of 912, twice.  docs/try is built from it.
 
 **38. Run the harnesses as `tester', not `su'?**
 Every card, case and probe runs as super-user, which RBF lets past
