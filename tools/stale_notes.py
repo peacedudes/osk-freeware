@@ -39,6 +39,7 @@ import audit_panels                                      # noqa: E402
 FAILURE = re.compile(
     r"\b(floods?|hangs?|never returns?|aborts?|dies|crash\w*|does nothing|"
     r"prints nothing|silent|broken|wedges?|cannot|can't|fails?)\b", re.I)
+RECORDED = re.compile(r"\b(FIXED|WORKS|NO LONGER)\b")
 ROW = re.compile(r"^ {2,6}([A-Za-z_][A-Za-z0-9_.]{1,20})\s{2,}(\S.*)$")
 
 
@@ -84,6 +85,11 @@ def main(argv):
         # the same line, `SILENT -> OK', and the old half is a failure word
         # by construction.
         if "-> OK" in prose:
+            continue
+        # Nor is one whose own continuation says it was mended: `etags
+        # floods ... -- FIXED 2026-08-31' was reported as stale because
+        # only its first line was read.
+        if RECORDED.search(" ".join([prose] + tail)):
             continue
         found += 1
         print("STATUS:%d  %-14s %s" % (n, name, prose[:72]))
