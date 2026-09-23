@@ -249,6 +249,7 @@ run     ./gpp -v -c hello.c
 wait    16
 
 shot    cccp2
+fresh
 cap     The GCC 2.x preprocessor pass, expanding a small C file.  The
 cap     `# 1 "..."' line is the source marker it adds; there are no macros
 cap     here to expand.  It is run from the GCC2 directory, off the
@@ -267,6 +268,7 @@ run     cat hello.i
 wait    5
 
 shot    cc2
+fresh
 cap     The GCC 2.x C compiler pass -- the stage that turns preprocessed
 cap     C into assembly.  The driver runs it for you; on its own it
 cap     reports its version and the code-generation options it was built
@@ -279,6 +281,7 @@ run     ./cc2 -version
 wait    8
 
 shot    cc1plus
+fresh
 cap     A GCC C++ compiler pass (version 1.40.3) from the GCC2 directory.
 cap     The driver calls it; run alone it reports its version.
 try     ./cc1plus -version
@@ -289,6 +292,7 @@ run     ./cc1plus -version
 wait    8
 
 shot    cc2plus
+fresh
 cap     A second C++ compiler pass (version 2.5.8) in the GCC2 directory,
 cap     reporting its version and code-generation options.
 try     ./cc2plus -version
@@ -299,6 +303,7 @@ run     ./cc2plus -version
 wait    8
 
 shot    collect
+fresh
 cap     collect2, which builds the table of global constructors and
 cap     destructors a C++ program needs before linking.  It lives in the
 cap     GCC2 directory with the other passes, off the command path, so it

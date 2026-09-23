@@ -194,11 +194,9 @@ shot    fastcc
 size    32 80
 for     fastcc lfmaker
 cap     fastcc, a quicker front end for cc, and lfmaker, which builds a
-cap     G-Windows launch file.  lfmaker asks the memory allocator for an
-cap     address as though it were a length, so a real argument gets the
-cap     request refused in a very large, very specific-looking number --
-cap     it moves with the environment, which is what gives away that it
-cap     is really an address.  Run bare first it prints nothing.
+cap     G-Windows launch file.  lfmaker prints nothing, bare or given a
+cap     file, and returns 208 (E$UnkSvc): it asks the terminal for a
+cap     G-Windows service a character terminal does not have.
 try     fastcc -?; lfmaker; lfmaker readme
 run     fastcc -?
 wait    6
@@ -782,7 +780,9 @@ shot    combine
 cap     combine interleaves two files byte by byte -- the even bytes from
 cap     one, the odd bytes from the other -- which is how a 16-bit EPROM
 cap     image is rebuilt from its two 8-bit halves.  Eight A's and eight
-cap     B's go in; the interleaved result comes out.
+cap     B's go in; the interleaved result comes out.  The file it makes
+cap     has no permissions set: anyone but the super-user gives it some
+cap     with attr before reading it.
 try     combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix; cat tmp/UTILA/cmb/mix; echo
 run     rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil
 run     mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil

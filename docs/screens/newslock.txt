@@ -1,4 +1,8 @@
-newslock tmp/MAILA/tmplock tmp/MAILA/reallock
-$ ls tmp/MAILA/tmplock tmp/MAILA/reallock
-ls: tmp/MAILA/tmplock: error 216
-ls: tmp/MAILA/reallock: error 216
+newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+status 0
+$ ls -l tmp/MAILA
+total 1024
+-rw-rw-rw-   2 0        0               2 Sep 23 09:23 reallock
+-rw-rw-rw-   2 0        0               2 Sep 23 09:23 tmplock
+$ newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+status 1

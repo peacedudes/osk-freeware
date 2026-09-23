@@ -151,9 +151,8 @@ wait    6
 
 shot    lpshut
 fresh
-cap     Stops the print spooler.  With `lpsched' running on a printer here,
-cap     lpshut answers that the spooler is not active and lpq still finds
-cap     its printer afterwards -- what it checks for is not established.
+cap     Stops the print spooler, saying nothing.  `Spooler is not active'
+cap     is lpq's line afterwards, reporting that it has stopped.
 try     lpshut; lpq
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing

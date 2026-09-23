@@ -506,20 +506,28 @@ run     newshist "<one@site.uucp>"
 wait    6
 
 shot    newslock
-cap     The news system's lock, given a temporary name and the real
-cap     lock name.  It leaves no trace here -- no file at either name,
-cap     nothing printed.
-try     newslock tmplock reallock
+cap     The news system's lock, given a temporary name and the real lock
+cap     name: it links one to the other, so both names show the same file
+cap     -- link count 2 in ls -l.  Run again while the lock exists, it
+cap     fails, which is what makes it a lock.
+# NEVER delete what this card links: os9exec's I$Delete frees a shared
+# descriptor on the first delete (reported 2026-09-23), so rm of a linked
+# pair corrupts the image.  Shots run on a fresh image, so MAILA is new.
+try     newslock tmplock reallock; echo "status $?"
 run     mkdir -p /dd/tmp/MAILA > /nil 2>/nil
 wait    2
 run     builtin cd /dd
 wait    1
+run     echo $$ > tmp/MAILA/tmplock
+wait    1
 run     clear
 wait    1
-run     newslock tmp/MAILA/tmplock tmp/MAILA/reallock
-wait    6
-run     ls tmp/MAILA/tmplock tmp/MAILA/reallock
-wait    5
+run     newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+wait    4
+run     ls -l tmp/MAILA
+wait    3
+run     newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+wait    4
 
 shot    relaynews
 cap     C News's relay: it files an article under its newsgroup, numbers
@@ -605,8 +613,8 @@ quit    qqq
 
 shot    newsetup
 cap     Writes the .newsrc rn reads -- every group in C News's active file,
-cap     one to a line -- for someone reading news for the first time.  It
-cap     forks your own OS-9's shell, loaded first.
+cap     one to a line, each marked `!' (not subscribed) until you choose --
+cap     for someone reading news for the first time.
 try     newsetup; cat .newsrc
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
@@ -621,7 +629,6 @@ run     builtin cd /dd/tmp/CNC
 run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
 run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
 wait    3
-run     load /h1/CMDS/shell
 run     builtin cd /dd
 run     rm -f .newsrc .oldnewsrc > /nil 2>/nil
 run     clear
