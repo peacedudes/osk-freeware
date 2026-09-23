@@ -6,18 +6,21 @@ System revision       = 1
 Module size           = 18058
 Owner Id              = 1.0
 Offset to module name = 00004396H
-$ modinfo CMDS/csl | grep -a "name\|Edition\|size"
-grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo CMDS/csl020 | grep -a "name\|Edition\|size"
-grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo CMDS/math | grep -a "name\|Edition\|size"
-grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo CMDS/math881 | grep -a "name\|Edition\|size"
-grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
-$ modinfo CMDS/os9lib | grep -a "name\|Edition\|size"
-grep: illegal option -- a
-usage: grep [-[[AB] ]<num>] [-[CEFGVchilnqsvwx]] [-[ef]] <expr> [<files...>]
+$ modinfo CMDS/csl | grep "Module name\|Edition"
+Module name           = csl
+Edition               = 25
+$ modinfo CMDS/csl020 | grep "Module name\|Edition"
+Module name           = csl
+Edition               = 15
+$ modinfo CMDS/math | grep "Module name\|Edition"
+Module name           = math
+Edition               = 13
+$ modinfo CMDS/math881 | grep "Module name\|Edition"
+Module name           = math
+Edition               = 6
+$ modinfo CMDS/os9lib | grep "Module name\|Edition"
+Module name           = os9lib
+Edition               = 0
+$ modinfo CMDS/rtfdat | grep "Module name\|Edition"
+Module name           = rtfdat
+Edition               = 1

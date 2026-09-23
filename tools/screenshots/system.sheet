@@ -562,31 +562,32 @@ wait    5
 send    4\r
 wait    10
 shot    modules
+size    32 80
 for     cio csl csl020 math math881 os9lib rtfdat
 cap     The runtime modules the starred programs need.  They are not
 cap     programs -- you cannot run them -- so this is what they look like to
 cap     `modinfo': name, type, edition and CRC. cio and math ship here by
-cap     Microware's permission; SOURCES.txt records the exchange.  All seven
-cap     are asked for below, one line each.
-try     modinfo CMDS/cio | head -n 6; modinfo CMDS/csl | grep -a "name\|Edition\|size"; modinfo CMDS/csl020 | grep -a "name\|Edition\|size"; modinfo CMDS/math | grep -a "name\|Edition\|size"; modinfo CMDS/math881 | grep -a "name\|Edition\|size"; modinfo CMDS/os9lib | grep -a "name\|Edition\|size"; modinfo CMDS/rtfdat | grep -a "name\|Edition\|size"
-os9     modinfo CMDS/cio !head -n 6; modinfo CMDS/csl !grep "name\|Edition\|size"; modinfo CMDS/csl020 !grep "name\|Edition\|size"; modinfo CMDS/math !grep "name\|Edition\|size"; modinfo CMDS/math881 !grep "name\|Edition\|size"; modinfo CMDS/os9lib !grep "name\|Edition\|size"; modinfo CMDS/rtfdat !grep "name\|Edition\|size"
+cap     Microware's permission; SOURCES.txt records the exchange.  cio is
+cap     shown whole, and for the other six the module name and edition.
+try     modinfo CMDS/cio | head -n 6; modinfo CMDS/csl | grep "Module name\|Edition"; modinfo CMDS/csl020 | grep "Module name\|Edition"; modinfo CMDS/math | grep "Module name\|Edition"; modinfo CMDS/math881 | grep "Module name\|Edition"; modinfo CMDS/os9lib | grep "Module name\|Edition"; modinfo CMDS/rtfdat | grep "Module name\|Edition"
+os9     modinfo CMDS/cio !head -n 6; modinfo CMDS/csl !grep "Module name\|Edition"; modinfo CMDS/csl020 !grep "Module name\|Edition"; modinfo CMDS/math !grep "Module name\|Edition"; modinfo CMDS/math881 !grep "Module name\|Edition"; modinfo CMDS/os9lib !grep "Module name\|Edition"; modinfo CMDS/rtfdat !grep "Module name\|Edition"
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     modinfo CMDS/cio | head -n 6
 wait    12
-run     modinfo CMDS/csl | grep -a "name\|Edition\|size"
+run     modinfo CMDS/csl | grep "Module name\|Edition"
 wait    12
-run     modinfo CMDS/csl020 | grep -a "name\|Edition\|size"
+run     modinfo CMDS/csl020 | grep "Module name\|Edition"
 wait    12
-run     modinfo CMDS/math | grep -a "name\|Edition\|size"
+run     modinfo CMDS/math | grep "Module name\|Edition"
 wait    12
-run     modinfo CMDS/math881 | grep -a "name\|Edition\|size"
+run     modinfo CMDS/math881 | grep "Module name\|Edition"
 wait    12
-run     modinfo CMDS/os9lib | grep -a "name\|Edition\|size"
+run     modinfo CMDS/os9lib | grep "Module name\|Edition"
 wait    12
-run     modinfo CMDS/rtfdat | grep -a "name\|Edition\|size"
+run     modinfo CMDS/rtfdat | grep "Module name\|Edition"
 wait    12
 shot    drivers
 for     keydrv.mm1 msdrv.901_340 msdrv_340.901.ms rb37c65 scsi_mm1a snddrv windio.52

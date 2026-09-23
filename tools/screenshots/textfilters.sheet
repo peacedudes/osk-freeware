@@ -507,9 +507,8 @@ wait    4
 snap
 
 shot    head
-cap     head prints the first lines of a file, `-n 3' for three.  Named as
-cap     an argument, the file's name is printed after its lines; through a
-cap     pipe it is not.
+cap     head prints the first lines of a file, `-n 3' for three, the same
+cap     whether the file is named or comes through a pipe.
 try     cat tmp/TEXTA/hol.txt; head -n 3 tmp/TEXTA/hol.txt; cat tmp/TEXTA/hol.txt | head -n 3
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3
