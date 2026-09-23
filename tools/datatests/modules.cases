@@ -43,6 +43,12 @@ expect  RTF pathname
 # above meaningless -- it is the check that can fail.  The STATUS, not the
 # text: Microware's load prints `can't load "..." - ' and leaves the number
 # to the shell, which bash does not print (measured 2026-09-22).
+#
+# IT HAS BEEN MADE TO FAIL, which is this collection's rule for a check.
+# With the SDK's `load' staged on /h1 the status is 216; with no `load'
+# there at all, bash's own not-found path answers 0 and this case fails
+# `missing 216' (measured 2026-09-23).  So it tests `load', not the
+# shell's ability to say no.
 case    load-refuses-what-is-not-there
 run     /h1/CMDS/load /dd/CMDS/no-such-module; echo "load says $?"
 expect  load says 216
