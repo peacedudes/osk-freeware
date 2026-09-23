@@ -114,3 +114,20 @@ run     /dd/CMDS/ls $W
 expect  Subject: via nnaux
 expect  posted by nnaux
 absent  nnaux.art
+
+# The GROUPS file nnmaster -I makes is its owner's alone (`------wr'), so
+# another user's nncheck cannot read it until the super-user gives it
+# public read.  Needs the super-user, for the attr.
+case    another-users-nn-reads-groups-only-after-attr-pr
+load    /h1/CMDS/shell
+load    /h1/CMDS/qsort
+load    /h1/CMDS/touch
+run     /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER
+run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
+run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok > /nil
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/mkdir -p /dd/tmp/MNT/tu/.nn; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil > /nil; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
+run     /h1/CMDS/attr -pr /h0/SPOOL/NN/GROUPS
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
+expect  Cannot open file /h0/SPOOL/NN/GROUPS
+expect  ----r-wr  /h0/SPOOL/NN/GROUPS
+expect  No News (is good news)
