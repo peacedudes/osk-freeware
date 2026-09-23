@@ -64,12 +64,18 @@ expect  module not found
 
 # The version numbers, which DOC/INDEX had wrong: `gpp' is not a GCC 2.x
 # driver and CMDS/GCC2/gcc is not GCC 2 either.
+# GCC2 and GCC139 each have a `gcc' and a `gpp' of the same module name,
+# and all four are STICKY (attributes $C0): the first to run stays resident
+# at link count 0 and answers for the other, run by pathlist or not -- as on
+# a real OS-9, and in os9exec since a4b338e.  Unlink between the two sets.
 case    each-driver-names-its-own-version
 run     /dd/CMDS/GCC2/gcc2 -v
 run     /dd/CMDS/GCC2/gcc -v
 run     /dd/CMDS/GCC2/gpp -v
+run     /h1/CMDS/unlink gcc gpp
 run     /dd/CMDS/GCC139/gcc -v
 run     /dd/CMDS/GCC139/gpp -v
+run     /h1/CMDS/unlink gcc gpp
 expect  gcc version 2.5.6
 expect  gcc version 1.42
 expect  gpp version 1.40.3 (based on GCC 1.40)

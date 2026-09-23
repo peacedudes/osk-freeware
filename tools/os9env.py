@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
 
 def stage_reader_load(h1):
-    """Put the reader's own `load' at <h1>/CMDS/load, from $OS9SDK.
+    """Put the reader's own `load' and `unlink' in <h1>/CMDS, from $OS9SDK.
 
     The collection ships no `load': the clean-room one written for it was
     withheld on 2026-09-22 and then deleted on rdoggett's word, because a
@@ -83,24 +83,35 @@ def stage_reader_load(h1):
     harness that makes a module resident therefore needs the reader's own,
     on the /h1 it mounts -- exactly the arrangement SYS/login describes.
 
-    Returns the path staged from, or None when $OS9SDK names no load: the
-    caller says so, and the cases that load a module fail with a reason.
+    Returns the path `load' was staged from, or None when $OS9SDK names no
+    load: the caller says so, and the cases that load a module fail with a
+    reason.
     CI never needs it -- it builds the image and runs the checks, not the
     suite.
     """
     import shutil
     sdk = os.environ.get("OS9SDK")
-    src = os.path.join(sdk, "CMDS", "load") if sdk else ""
-    # TAKE THE OLD ONE AWAY FIRST.  The work directory survives between runs,
-    # so a `load' staged by an earlier run with $OS9SDK set was still there
-    # for a later run without it -- and twelve cases that cannot work without
-    # a load all passed, on 2026-09-22, for that reason alone.
-    dst = os.path.join(h1, "CMDS", "load")
-    if os.path.exists(dst):
-        os.remove(dst)
-    if not os.path.isfile(src):
-        return None
-    os.makedirs(os.path.join(h1, "CMDS"), exist_ok=True)
-    shutil.copyfile(src, dst)
-    os.chmod(dst, 0o755)
-    return src
+    staged = None
+    # `unlink' comes with it, and for a reason measured 2026-09-23: most
+    # modules here are STICKY, so since os9exec a4b338e one that has run
+    # stays resident at link count 0 -- as on a real OS-9 -- and answers for
+    # a second file of the same module name run later in the same session.
+    # `/h1/CMDS/unlink <name>' between them is what a case does about it.
+    for name in ("load", "unlink"):
+        src = os.path.join(sdk, "CMDS", name) if sdk else ""
+        # TAKE THE OLD ONE AWAY FIRST.  The work directory survives between
+        # runs, so a `load' staged by an earlier run with $OS9SDK set was
+        # still there for a later run without it -- and twelve cases that
+        # cannot work without a load all passed, on 2026-09-22, for that
+        # reason alone.
+        dst = os.path.join(h1, "CMDS", name)
+        if os.path.exists(dst):
+            os.remove(dst)
+        if not os.path.isfile(src):
+            continue
+        os.makedirs(os.path.join(h1, "CMDS"), exist_ok=True)
+        shutil.copyfile(src, dst)
+        os.chmod(dst, 0o755)
+        if name == "load":
+            staged = src
+    return staged

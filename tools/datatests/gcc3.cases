@@ -43,10 +43,17 @@ expect  time in sched:
 expect  time in shorten-branch:
 expect  191 /dd/tmp/GCC3/t2.s
 
+# All three register the module name `cc1plus' and all three are STICKY
+# (attributes $C0), so once one has run it stays resident at link count 0
+# and the next, run by pathlist, is answered by the resident one -- as on
+# a real OS-9, and in os9exec since a4b338e.  Unlink it between them.
 case    the-three-cplusplus-passes-are-two-compilers-under-three-names
 run     /dd/CMDS/GCC2/cc1plus $W/t.i -o $W/p1.s
+run     /h1/CMDS/unlink cc1plus
 run     /dd/CMDS/GCC139/gcc_cc1plus $W/t.i -o $W/p2.s
+run     /h1/CMDS/unlink cc1plus
 run     /dd/CMDS/gpp_cc1plus $W/t.i -o $W/p3.s
+run     /h1/CMDS/unlink cc1plus
 run     /dd/CMDS/wc -c $W/p1.s $W/p2.s $W/p3.s
 expect   int main ()
 expect  246 /dd/tmp/GCC3/p1.s
