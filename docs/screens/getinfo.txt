@@ -1,0 +1,15 @@
+getinfo -a
+SYSINFO Rev. 1
+
+Name                  Type        Parameter
+
+hostname              String      osk
+hostdomain            String      UUCP
+NEWS.DIR              String      /h0/SPOOL/MNEWS
+NEWS.LIB              String      /h0/USR/LIB/NEWS
+NEWS.BATCH            String      /h0/SPOOL/BATCH
+lck.inews             Lock        not locked
+rnews.seq             Lock        not locked
+rnews.batch           Lock        not locked
+lck.sbatch            Lock        not locked
+lck.nnmaster          Lock        not locked

@@ -1,0 +1,5 @@
+$ setup -?
+Syntax: setup {<opts>} [<path>] {<opts>}
+Function: setup sysinfo module with data from <path>
+Options:
+     -d[=][<num>]        debug mode (<num> is debug level)

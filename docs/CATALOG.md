@@ -1,6 +1,6 @@
 # What is on this disk
 
-1042 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **723 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1054 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **735 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,12 +20,12 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 99 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 109 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 32 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 120 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 122 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
@@ -785,7 +785,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>99 programs</summary>
+<details><summary>109 programs</summary>
 
 **File transfer**
 
@@ -847,13 +847,23 @@
 | `bdecode` | &#9733; decodes a C News batch: it skips forward to the line `Decode the following with bdecode', decodes what follows and checks the CRC at the end. Given anything else it says `Missing header'. Source in SRC/cnews/input |
 | `byteflip` | &#9733; reorders the bytes of every word it reads on standard input, so a dbz database written on one architecture can be read on another.  Four things say how: the word length, where each byte comes from, the word length again, and where each byte goes -- `byteflip 4 0 1 2 3 4 3 2 1 0' turns every four-byte word end for end.  Give it those numbers: with none the word length is zero and it reads zero bytes for ever<br>**How:** It is in CMDS/NEWS, and it reads standard input rather than a file. Four things say how to swap: the word length, where each byte comes from, the word length again, and where each byte goes -- `byteflip 4 0 1 2 3 4 3 2 1 0 < in > out' turns every four-byte word end for end, so `ABCDEFGH' becomes `DCBAHGFE'. With no arguments the word length is zero and it reads zero bytes for ever. Measured 2026-09-19. |
 | `c7decode` | &#9733; the inverse of C News's c7encode: it reads the seven-bit-safe form a news batch is put into to cross a link that eats the eighth bit, and writes the eight-bit original back. Source in SRC/cnews/input |
+| `cvt_help` | turns nn's help files from their portable markup into the control codes nn prints them with -- what installing nn's help means.  USR/LIB/NN holds files it has already converted<br>**How:** Converts nn's help files; USR/LIB/NN already holds converted ones. |
 | `dbz` | &#9733; builds and maintains C News's history index -- the .dir and .pag pair beside the history file that lets the news system find an article by message-id without reading the whole of it. `dbz database [file]...'<br>**How:** The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system. |
+| `decode` | B News 2.11's decode, carried by MNews: turns the printable text encode made back into the original bytes<br>**How:** Reverses encode. |
+| `encode` | B News 2.11's encode: turns a binary file -- a compressed news batch -- into printable text a seven-bit link can carry<br>**How:** B News's encode: a binary on standard input becomes printable text on standard output. decode reverses it. |
 | `expire` | &#9733; delete news articles past their expiry date<br>`/dd/CMDS/UUCP/expire: illegal option -- ?` |
+| `inews` | stores and forwards news articles.  `inews -h < article' posts one, filling in the headers it lacks; `inews -c=newgroup:<group>' creates a group, -e=<days> expires old articles and -r rebuilds the active file<br>**How:** MNews's article store: run `setup' first, then `inews -c=newgroup:<group> </nil' makes a group and `inews -h < file' posts the article in the file. Articles land in /h0/SPOOL/MNEWS, one file per article. |
 | `newshist` | &#9733; looks message-ids up in the news history and reports what it finds, or that there is no entry for them: `newshist "<id@site>" ...'. -df names a history file other than the system's<br>`/dd/CMDS/NEWS/newshist: unknown option -?` |
 | `newslock` | &#9733; the news system's lock: `newslock <tempname> <lockname>' makes the lock by linking one name to the other, which is how a lock is made atomic on a Unix filesystem.  This C library has no link(), so it returns 1 and leaves nothing behind -- the same gap that stops zip, arc and todos finishing.  SRC/cnews/misc/newslock.c is four lines and says so<br>`Usage: /dd/CMDS/NEWS/newslock tempname lockname` |
+| `nn` | the nn newsreader, release 6.3.10: a full-screen menu of the unread articles in each group, read by subject, with threads, kill files and online help (`?').  `nn <group>' opens one group; it reads the database nnmaster keeps<br>**How:** The nn newsreader. Needs `setup' run and nn's database built (`nnmaster -I', answering OK, then `nnmaster'); then `nn <group>'. Space reads on, `?' is help, `q' quits. |
+| `nnadmin` | looks inside nn's database and log, checks it, and tells a running nnmaster what to do<br>**How:** Looks inside nn's database; it needs nnmaster to have built one. |
+| `nnaux` | the helper nn runs to post, follow up or reply: it collects the article and hands it to inews<br>**How:** nn's helper for posting and replying; nn runs it. |
+| `nncheck` | says whether there is news you have not read: `There are 327 unread articles in 25 groups', or `No News (is good news)'<br>**How:** Says whether you have unread news, once nnmaster has built nn's database. |
+| `nnmaster` | builds and keeps nn's database of articles.  `nnmaster -I' initialises it, `nnmaster' collects what has arrived since, and -r keeps it running as a daemon<br>**How:** Keeps nn's database: `nnmaster -I' once (it asks for OK), then `nnmaster' after new articles arrive. It forks your own OS-9's `shell'. |
 | `postnews` | &#9733; post an article to a newsgroup<br>`/dd/CMDS/UUCP/postnews: illegal option -- ?` |
 | `readnews` | &#9733; read Usenet news articles: it opens the reader and asks about each newsgroup in the active file not yet in .newsrc, then answers `**** End of newsgroups' when the news spool is empty<br>`readnews: read Usenet news articles` |
-| `rnews` | &#9733; takes an incoming news batch apart and files each article under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
+| `rnews` | &#9733; unpacks a batch of articles received from another site -- compressed or not -- and hands each to inews under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>`rnews [-x debug_level] [-n inital_newsgroup] [-z] newsfile` |
+| `sbatch` | collects the articles waiting for a neighbouring site into batches to send it: `sbatch <system>', -c to compress<br>**How:** Batches the articles waiting for a neighbour: `sbatch <system>'. Sys in USR/LIB/NEWS names the neighbours; this disk's names none. |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |
 | `unsubscribe` | &#9733; drops a newsgroup from your subscription list: `!' replaces `:' in /dd/.newsrc. For a group that is already off it prints `Newsgroup 684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%'<br>`unsubscribe: unsubscribe from Usenet newsgroup(s)` |
 
@@ -1432,7 +1442,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>120 programs</summary>
+<details><summary>122 programs</summary>
 
 **Devices & disks**
 
@@ -1535,9 +1545,11 @@
 | | |
 |---|---|
 | `clock` | a full-screen clock, the digits drawn with `banner'.  For each one it runs banner into a named pipe through system() and reads the pipe back, and this C library's system() forks a module called `shell' -- your own OS-9 has one; load it first.  With none resident nothing writes the pipe and it stops on the open.  Source in SRC/misc/clock.c |
+| `getinfo` | shows TOP Munich's SysInfo table: `getinfo' lists its locks, `getinfo -a' every entry, and -u releases a lock a program left behind.  setup builds the table<br>**How:** Shows the SysInfo table: bare it lists the locks, -a lists everything, -u <name> releases a lock. |
 | `oskversion` | &#9733; reports the system: OS-9 level, version, revision and edition, and the CPU twice over -- what the init module claims and what the system globals say the processor really is, which are not always the same machine<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
 | `setime` | sets the system time. It prompts with `YYMMDDHHMMSS' and then does not set it: the clock is unchanged whether the answer comes from standard input or from six fields on the command line Shares its name with a utility of your own -- README-NAMES |
+| `setup` | builds TOP Munich's SysInfo table -- a resident data module of named settings and locks that MNews, nn and other TOP software read -- from SYS/sysinfo, or from the file named<br>**How:** Builds TOP's SysInfo table from SYS/sysinfo (or a file you name). Run it once before MNews or nn; `getinfo -a' shows the result. |
 
 **Users and login**
 

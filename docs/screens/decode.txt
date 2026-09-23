@@ -1,0 +1,2 @@
+echo hello world | encode | decode
+hello world

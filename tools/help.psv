@@ -124,6 +124,16 @@ bdecode|none|it takes the file to decode and no options
 byteflip|none|it takes the database to swap and no options; with nothing named it waits on standard input
 c7decode|none|a filter with no options: encoded news on standard input, the article out
 dbz|dbz -?|
+cvt_help|none|a filter: it reads a help file on standard input and writes the converted one; no options
+decode|none|a filter from standard input to standard output; no options
+encode|none|a filter from standard input to standard output; no options
+inews|inews -?|
+nn|none|its help is inside it: `?' at any prompt, `:help' and `:man'
+nnadmin|none|it takes commands at its own prompt, or as arguments; DOC/nn/nnadmin.1m lists them
+nnaux|none|nn runs it to post and reply; run alone it answers `Missing options'
+nncheck|none|it takes -Q, -r, -t and -f; DOC/nn/nncheck.1 describes them
+nnmaster|none|its options are in DOC/nn/nnmaster.1m; asked for help it answers `unknown option'
+sbatch|sbatch -?|
 expire|expire -?|
 newshist|newshist -?|
 newslock|newslock -?|
@@ -170,6 +180,8 @@ nslookup|none|it takes a host name or runs its own prompt; its `help' command wa
 nsquery|nsquery|
 UAC_view|UAC_view -?|
 dmode|dmode -?|
+getinfo|getinfo -?|
+setup|setup -?|
 atp|none|it takes no options: it reads atprc or .atprc from the data directory
 infoxpress|none|it takes no options: it opens its serial device and waits for the host
 uucp|uucp -?|

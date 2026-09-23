@@ -175,6 +175,7 @@ ctags.elvis 843ea3978178ec6f
 cursive b6556ab83fc099c5
 cut db89f25fada4b2e9
 cuts e025b1f5300263c5
+cvt_help 617b2fefa1ceb7c9
 cvtbase 9f4a0465f3919336
 cwasm 35542b5a99b2deb9
 cwdis 49bb773ef35fdfef
@@ -186,6 +187,7 @@ dbz 574c22070aaf4b57
 dc e0f9226797b9f6f5
 dclock 9081125499f001ad
 dds 2191b5d3d78f3b96
+decode 28aec78a5073e009
 delbak 5afa330f2759aa23
 demerge 5d1401233cb0522a
 demo 56e8d37beec6bcf8
@@ -254,6 +256,7 @@ elvrec e3a4ae2e4a7041dc
 em ffb237c4c74742fe
 emacs 514b4e95ff91f5c5
 enable f3b946f52217bade
+encode fa2dcc45f1f032d0
 england d6027b06875145fc
 env b204bde44766916f
 eo c2ce1d12ad5038df
@@ -320,6 +323,7 @@ gen 6b30d496d2f747a1
 georgia 918ee7752fd6a578
 gep bfb90bd7d3f06f98
 getenv f80c67660f97119e
+getinfo 2a9122dfe128c2cf
 getsys 6f8fb61f687c523a
 gftopk 8100bfd8bd2de516
 gftype 70dc99f00e650750
@@ -387,6 +391,7 @@ ilbm 2a57f92f5f4ad67a
 imgtoppm e385dad9fd237200
 indent b8de68b935d4c012
 inetd de3c4ab4195bc57d
+inews c0e79169794c64b3
 infocom b49b2bc0582349eb
 infocom.tcap 2b652fc03ad80016
 inimf f97af714700a6cfb
@@ -536,6 +541,10 @@ newmail 49da0d4333233604
 newsgen f1b7a2263cd50784
 newshist ceedd2cb3f480714
 newslock 6fc4ff0ff643b066
+nn 1967c9f3c6ba4443
+nnadmin a461ffa79daf34fd
+nncheck 87473252ad12aea3
+nnmaster 479321e09e8aa678
 nobs 054e8a73fee05633
 noreader e04559edcefa0d2c
 nptx 2511f673227aa21f
@@ -721,6 +730,7 @@ rxmod 7653c9295e274a56
 saa 0c5f06c37b890764
 savage 478adc0a252dfa33
 savemem 773f224fc922d92f
+sbatch 9f3f2a83e46a5874
 sbreak 0d4d861694242fa2
 sc b31b921dc9ee7460
 scales d22cb38358ab8626
@@ -739,6 +749,7 @@ sepwords 2946a889b8fd59d2
 setime2 51ad4508112afdfc
 setimex c0f3cf92c42028ee
 setterm 845175284bbbb72a
+setup 460f6fba49b11f15
 setup-image 98fc8faa8576a97d
 setyear f1b6ef80d36a4746
 sgrep 63636bbc5818b85b

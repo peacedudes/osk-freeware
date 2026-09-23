@@ -1,0 +1,25 @@
+setup -d
+info_num  = 10
+info_size = 800
+info      = 49074
+data_ptr  = 4920c
+Line = 'hostname,s=osk'
+name = 'hostname', type = 's', len  = 4, data = 'osk'
+Line = 'hostdomain,s=UUCP'
+name = 'hostdomain', type = 's', len  = 6, data = 'UUCP'
+Line = 'NEWS.DIR,s=/h0/SPOOL/MNEWS'
+name = 'NEWS.DIR', type = 's', len  = 16, data = '/h0/SPOOL/MNEWS'
+Line = 'NEWS.LIB,s=/h0/USR/LIB/NEWS'
+name = 'NEWS.LIB', type = 's', len  = 18, data = '/h0/USR/LIB/NEWS'
+Line = 'NEWS.BATCH,s=/h0/SPOOL/BATCH'
+name = 'NEWS.BATCH', type = 's', len  = 16, data = '/h0/SPOOL/BATCH'
+Line = 'lck.inews,l'
+name = 'lck.inews', type = 'l', len  = 44
+Line = 'rnews.seq,l'
+name = 'rnews.seq', type = 'l', len  = 44
+Line = 'rnews.batch,l'
+name = 'rnews.batch', type = 'l', len  = 44
+Line = 'lck.sbatch,l'
+name = 'lck.sbatch', type = 'l', len  = 44
+Line = 'lck.nnmaster,l'
+name = 'lck.nnmaster', type = 'l', len  = 44

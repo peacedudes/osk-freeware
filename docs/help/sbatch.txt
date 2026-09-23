@@ -1,0 +1,9 @@
+$ sbatch -?
+Syntax: sbatch [<opts>] <system> [<opts>]
+Function: sends spoolt newsarticle to <system>
+Options:
+     -c      Send articles compressed
+     -c7     Send articles compressed and encoded
+     -b      Send articles batched (default)
+     -s      Send articles as single files
+     -f=<nr> sets the maximum spoolfile size to <nr> kByte

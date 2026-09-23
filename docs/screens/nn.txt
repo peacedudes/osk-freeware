@@ -1,0 +1,17 @@
+$ setup
+$ rm -rf /dd/tmp/MNC > /nil 2>/nil
+$ rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+$ rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+$ rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+$ rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+$ rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+$ rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+< 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+$ mkdir -p /dd/tmp/MNC
+$ builtin cd /dd/tmp/MNC
+< on this disk\r\rPosted with inews, read back with nn.\r' > article
+$ load /h1/CMDS/shell
+$ inews -c=newgroup:comp.os.os9 < /nil
+$ inews -h < article
+$ printf 'OK\ry\r' > ok
+$ nnmaster -I < ok > /nil

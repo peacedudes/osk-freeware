@@ -1,0 +1,14 @@
+$ inews -?
+Syntax: inews [<opts>]
+Function: stores and forwards news articles
+Options:
+     -a        runs in admin mode (execute control-messages)
+     -e=<days> removes all article that are longer than <days> on the machine
+     -r        rebuilds the active file
+     -h        create a new message (insert missing header lines)
+     -v        verbose mode, prints log messages on screen, too
+     -c=<ctrl> send <ctrl> as control message
+     -g=<grps> specify list of groups
+     -d=<dist> specify list of distribution(s)
+     -m=<mode> mode of user-interface (mode can be `read' or `write'
+     -p=<rec>  if mode is <mail> these are the receivers

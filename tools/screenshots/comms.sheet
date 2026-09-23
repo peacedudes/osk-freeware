@@ -521,6 +521,247 @@ wait    6
 run     ls tmp/MAILA/tmplock tmp/MAILA/reallock
 wait    5
 
+shot    setup
+size    40 80
+fresh
+cap     Builds TOP Munich's SysInfo table, a resident module of named
+cap     settings and locks, from SYS/sysinfo.  -d shows each line as it is
+cap     read: the host name, where MNews keeps its news, and the locks its
+cap     programs take.  MNews and nn read it, so run it once first.
+try     setup -d
+run     builtin cd /dd
+run     clear
+run     setup -d
+wait    4
+
+shot    getinfo
+fresh
+cap     What setup put in the SysInfo table: every entry with -a, its
+cap     type and value, and each lock free or held.  Bare it lists only the
+cap     locks; -u releases one a program left behind.
+try     getinfo -a
+run     setup
+run     clear
+run     getinfo -a
+wait    4
+
+shot    inews
+fresh
+cap     MNews's article store.  -c=newgroup makes a group; -h posts the
+cap     article on standard input, filling in the header lines it lacks.
+cap     -v reports each step as it goes.
+try     inews -h -v < article
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     clear
+run     inews -c=newgroup:comp.os.os9 -v < /nil
+wait    4
+run     inews -h -v < article
+wait    5
+
+shot    nnmaster
+size    24 80
+fresh
+cap     Builds nn's database of the articles MNews has stored: -I sets it
+cap     up (it asks for OK, and whether to reuse a GROUPS file), and a
+cap     plain run collects what has arrived since.  Here the answers come
+cap     from a file; nnadmin's C shows where it keeps everything.
+try     nnmaster -I < ok
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     load /h1/CMDS/shell
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < article
+run     printf 'OK\ry\r' > ok
+wait    2
+run     clear
+run     nnmaster -I < ok
+wait    6
+run     nnmaster < /nil
+wait    6
+
+shot    nn
+size    24 80
+fresh
+cap     The nn newsreader on the group MNews filed the article in: a menu
+cap     of articles by subject, each with a letter to pick it.  Space reads
+cap     on, `?' is help, Q quits.  It reads the database nnmaster keeps.
+try     nn comp.os.os9
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     load /h1/CMDS/shell
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < article
+run     printf 'OK\ry\r' > ok
+run     nnmaster -I < ok > /nil
+run     nnmaster < /nil
+wait    4
+run     clear
+run     nn comp.os.os9
+wait    8
+send    \s
+wait    6
+snap
+quit    Q
+
+shot    nnadmin
+fresh
+cap     nn's database administrator.  Given its commands as an argument
+cap     it runs without a menu: C prints the configuration -- where nn's
+cap     library, database, news spool and programs are.
+try     nnadmin C
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     load /h1/CMDS/shell
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < article
+run     printf 'OK\ry\r' > ok
+run     nnmaster -I < ok > /nil
+run     nnmaster < /nil
+wait    4
+run     clear
+run     nnadmin C
+wait    6
+
+shot    encode
+cap     B News's encode, which MNews carries: bytes in, printable text
+cap     out, for a link that cannot carry eight bits.  decode turns it
+cap     back.
+try     echo hello world | encode
+run     clear
+run     echo hello world | encode
+wait    4
+
+shot    decode
+cap     The other half of encode: the printable text back into the bytes
+cap     it came from.
+try     echo hello world | encode | decode
+run     clear
+run     echo hello world | encode | decode
+wait    4
+
+shot    cvt_help
+cap     Converts nn's help files: each `;:' pair and the letter after it
+cap     become one control byte, which nn reads as a highlight.  xd
+cap     shows the bytes it made -- 01 either side of the word.
+try     echo ';:Ahello;:A' | cvt_help | xd
+run     clear
+run     echo ';:Ahello;:A' | cvt_help | xd
+wait    4
+
+shot    sbatch
+fresh
+cap     Collects the articles waiting for a neighbouring site and passes
+cap     them on as a batch.  Here a neighbour `nbr' has been added to the
+cap     Sys file for the purpose and one article posted; sbatch spools it
+cap     and hands the batch to uux -- which answers that UUCP has no host
+cap     called nbr, as it would until one is set up.
+try     sbatch nbr
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     rm -f /h0/SPOOL/BATCH/nbr > /nil 2>/nil
+run     cp /h0/USR/LIB/NEWS/Sys sys.save
+run     echo 'nbr:.*:*' >> /h0/USR/LIB/NEWS/Sys
+run     load /dd/CMDS/UUCP/uux
+run     inews -h < article
+wait    3
+run     clear
+run     sbatch nbr
+wait    8
+snap
+run     cp sys.save /h0/USR/LIB/NEWS/Sys
+
+shot    nncheck
+fresh
+cap     Says whether there is news you have not read.  nn has to have been
+cap     run once to set up your own files first; after that nncheck counts
+cap     what is waiting.
+try     nncheck
+run     setup
+run     rm -rf /dd/tmp/MNC > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
+run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
+run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     mkdir -p /dd/tmp/MNC
+run     builtin cd /dd/tmp/MNC
+run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+wait    2
+run     load /h1/CMDS/shell
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < article
+run     printf 'OK\ry\r' > ok
+run     nnmaster -I < ok > /nil
+run     nnmaster < /nil
+wait    4
+run     nn comp.os.os9
+wait    8
+send    Q
+wait    4
+send    \r
+wait    3
+run     clear
+run     nncheck
+wait    5
+
 shot    postnews
 size    30 80
 cap     Composes a Usenet article, prompting for newsgroup, subject,

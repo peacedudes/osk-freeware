@@ -1,0 +1,10 @@
+inews -c=newgroup:comp.os.os9 -v < /nil
+---> Wed Sep 23 06:10:04 2026
+---> Wed Sep 23 06:10:04 2026
+Received Control Message: newgroup comp.os.os9
+New newsgroup: comp.os.os9
+<=== Wed Sep 23 06:10:04 2026
+<=== Wed Sep 23 06:10:04 2026
+$ inews -h -v < article
+---> Wed Sep 23 06:10:09 2026
+<=== Wed Sep 23 06:10:09 2026

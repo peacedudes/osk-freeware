@@ -1,0 +1,44 @@
+family  mnews
+# MNews, the news system in CMDS/MNEWS (2026-09-23).  Every program reads
+# TOP's SysInfo table first, so `setup' builds it from SYS/sysinfo; the
+# spool, the active file and nn's database are reset so a second run of
+# this family starts where the first did (the image is not reset between
+# runs).  nn and nnmaster are on their cards: nnmaster forks the reader's
+# own `shell' and nn wants a terminal.
+
+setup   export PATH=/dd/CMDS/MNEWS:$PATH
+setup   W=/dd/tmp/MNT
+setup   /dd/CMDS/rm -rf $W /h0/SPOOL/MNEWS/comp /h0/SPOOL/MNEWS/control /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+setup   /dd/CMDS/rm -f /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+setup   /dd/CMDS/printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+setup   /dd/CMDS/mkdir -p $W
+setup   /dd/CMDS/setup
+
+case    setup-builds-the-sysinfo-table-mnews-reads
+run     /dd/CMDS/getinfo -a
+expect  NEWS.DIR              String      /h0/SPOOL/MNEWS
+expect  lck.inews             Lock        not locked
+
+case    inews-makes-a-group-and-files-an-article-in-it
+run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: case\r\rbody text\r' > $W/art
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < $W/art
+run     /dd/CMDS/cat /h0/SPOOL/MNEWS/comp/os/os9/1
+expect  Newsgroups: comp.os.os9
+expect  Subject: case
+expect  body text
+
+# rnews forks inews by bare name, which is looked up in the execution
+# directory -- /dd/CMDS -- so inews has to be resident first.
+case    rnews-hands-a-batch-to-inews
+load    /dd/CMDS/MNEWS/inews
+run     /dd/CMDS/printf 'Newsgroups: junk\rSubject: batched\rFrom: a@b\rMessage-ID: <1@b>\r\rbody\r' > $W/a
+run     LEN=$(/dd/CMDS/cat $W/a | /dd/CMDS/wc -c)
+run     /dd/CMDS/printf '#! rnews %s\r' $LEN > $W/batch
+run     /dd/CMDS/cat $W/a >> $W/batch
+run     /dd/CMDS/MNEWS/rnews -d=1 $W/batch
+expect  Received 1 articles
+
+case    encode-and-decode-round-trip
+run     echo hello world | encode | decode
+expect  hello world

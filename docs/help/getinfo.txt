@@ -1,0 +1,8 @@
+$ getinfo -?
+Syntax: getinfo [<opts>] {<parm> [<opts>]}
+Function: display or modify sysinfo data
+Options:
+     -l   display locks (default)
+     -a   display not only locks
+     -c   clear sysinfo event
+     -u   unlock devices (given as parm)

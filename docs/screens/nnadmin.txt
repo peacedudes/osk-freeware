@@ -1,0 +1,16 @@
+nnadmin C
+
+Configuration:
+
+BIN:  /h0/CMDS/MNEWS
+LIB:  /h0/USR/LIB/NN
+DB:   /h0/SPOOL/NN
+NEWS: /h0/SPOOL/MNEWS
+ACTIVE: /h0/USR/LIB/NEWS/active
+Database format is machine dependent (byte order and alignment)
+Recording usage statistics
+Default pager: /h0/CMDS/less
+Default printer: /h0/CMDS/pr -t
+Mail delivery program: /h0/CMDS/cmail
+Query for appending .signature DISABLED
+Max pathname length is 255 bytes

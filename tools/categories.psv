@@ -536,6 +536,8 @@ wish|Shells|Shells
 
 # ---- System & modules ----
 dinfo|System & modules|Devices & disks
+getinfo|System & modules|System state
+setup|System & modules|System state
 dmode|System & modules|Devices & disks
 shdev|System & modules|Devices & disks
 bootgen|System & modules|OS-9 modules
@@ -881,6 +883,16 @@ bdecode|Communications|News
 byteflip|Communications|News
 c7decode|Communications|News
 dbz|Communications|News
+cvt_help|Communications|News
+decode|Communications|News
+encode|Communications|News
+inews|Communications|News
+nn|Communications|News
+nnadmin|Communications|News
+nnaux|Communications|News
+nncheck|Communications|News
+nnmaster|Communications|News
+sbatch|Communications|News
 newshist|Communications|News
 newslock|Communications|News
 atp|Communications|Mail

@@ -171,6 +171,16 @@ adltouch|`adltouch tiny 7' writes 7 into the first four bytes of the compiled wo
 osknet|Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc.
 net|KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q.
 dbz|The news history database from C News: `dbz [-a] [-x] [-c] database [file]...'. Part of a news system.
+inews|MNews's article store: run `setup' first, then `inews -c=newgroup:<group> </nil' makes a group and `inews -h < file' posts the article in the file. Articles land in /h0/SPOOL/MNEWS, one file per article.
+nn|The nn newsreader. Needs `setup' run and nn's database built (`nnmaster -I', answering OK, then `nnmaster'); then `nn <group>'. Space reads on, `?' is help, `q' quits.
+nnmaster|Keeps nn's database: `nnmaster -I' once (it asks for OK), then `nnmaster' after new articles arrive. It forks your own OS-9's `shell'.
+sbatch|Batches the articles waiting for a neighbour: `sbatch <system>'. Sys in USR/LIB/NEWS names the neighbours; this disk's names none.
+encode|B News's encode: a binary on standard input becomes printable text on standard output. decode reverses it.
+decode|Reverses encode.
+nnadmin|Looks inside nn's database; it needs nnmaster to have built one.
+nncheck|Says whether you have unread news, once nnmaster has built nn's database.
+nnaux|nn's helper for posting and replying; nn runs it.
+cvt_help|Converts nn's help files; USR/LIB/NN already holds converted ones.
 finger|`finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine.
 msntp|Sets the clock from a network time server.
 ttcp|Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <host>' on the other, and it times a megabyte going across. It needs Microware's ISP networking under it; run bare, it prints its full usage.
@@ -178,6 +188,8 @@ nslookup|Looks a host name up in the domain name system: `nslookup <host>', or b
 nsquery|`nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line.
 UAC_view|Full-screen, and it wants PORT set to your terminal (`/term'). From the UAC directory, `UAC_view -w=DATA' opens the session directory for the fifteen recorded sessions: arrow keys choose one, S opens it, D its process pages, Q goes back and quits.
 dmode|`dmode /<device>' lists the parameters of that disk's descriptor; `key=n' on the same line changes them in memory and re-initialises the device (hex keys take 0x or $). It needs the descriptor resident: on os9exec, `load' one of your own OS-9's first -- the card loads the RAM disk's, r0.
+setup|Builds TOP's SysInfo table from SYS/sysinfo (or a file you name). Run it once before MNews or nn; `getinfo -a' shows the result.
+getinfo|Shows the SysInfo table: bare it lists the locks, -a lists everything, -u <name> releases a lock.
 umacs|A small Emacs (uMacs 1.0). Full-screen: it takes the display and shows "== uMacs 1.0 == main ==" at the foot. It needs only TERM set.
 em|A screen editor. It stops with "Environment variable TERM not defined!" unless TERM is set -- SYS/login sets it, so run it from a login shell rather than bare.
 ask|The reader for `wisecrack': it takes the next slogan from the pipe wisecrack writes to and prints it, one a call, in German. Start the server first -- `wisecrack &' -- or ask says "No Wisecracks coming". From EFFO forum 20.
