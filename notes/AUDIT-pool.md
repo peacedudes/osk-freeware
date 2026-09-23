@@ -645,3 +645,36 @@ provide any meaningful user-accessible functionality".
 is 3,116 bytes where the posting's own `size` line says 3,086, and a clean
 re-decode gives exactly 3,086.  That is the shar off-by-one trap, so
 anything else in `decoded/` should be re-checked against its size line.
+
+### Source-only candidates, 2026-09-23 -- four judged
+
+**`dmode' -- TAKEN** (e68753f2).  Voights 1988, Gregorie's OS-9/68000
+port to 2.5 (2005).  Built -qm.  Its `rbfparams.h' is Microware's
+`rbf.h' options structure copied out (OS-9 3.0 generation) and is NOT
+shipped; the recipe is therefore not in recipes.psv -- to rebuild, take
+the header from pool `CMDS/dmode.lzh'.  os9exec presents no RBF
+descriptor modules, so the card loads the SDK's `r0' from /h1.
+
+**`mtools' 3.6 -- ALREADY SHIPPED.**  CMDS/ms*, SRC/mtools/MTOOLS_3.6.
+The pass-1 row was stale.
+
+**CTeX (`mw/dl/osk_ctexsrc.ar') -- NOT TAKEN.**  It is Pat Monardo's
+CommonTeX (1992, 41 files).  The disk's TeX says "This is TeX, C
+Version 3.14" and reads `tex.pool' -- a tangle-to-C build, not CommonTeX
+-- so this is not the source of anything shipped, and a second TeX adds
+nothing.  Kept in the pool.
+
+**`gdbm' 1.4 (`LIB/gdbm_1.4.t.Z') -- NOT TAKEN.**  GPL, an OSK port
+(jl, 1992) of the library alone: the test programs its README lists
+(testgdbm.c, testdbm.c, testndbm.c, conv2gdbm.c) are not in the archive,
+nothing on the disk uses gdbm, and its dbm/ndbm layer creates `file.dir'
+with link(), which RBF has no equivalent of.  Kept in the pool.
+
+**OSKBox (`TELECOM/OSKBox.lzh') -- NOT YET; revisit when os9exec's
+`/socket' front end lands.**  Ivan Powis (Nottingham, 1992): rsh, rshd,
+rcp, lpr, rmt and GNU tar remote-device diffs, SOURCE ONLY (its CMDS is
+empty).  Built against ISP 1.3's `socklib.l' -- the same generation as
+ttcp and BIND -- which the SDK here does not carry (it has the later
+`socket.l').  No licence of Powis's own; BSD notices on the BSD parts.
+With a working /socket, rsh/rcp against a host daemon would be the first
+live network demo, so it is worth a second look then, not before.
