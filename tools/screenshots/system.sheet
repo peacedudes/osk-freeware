@@ -1080,7 +1080,8 @@ size    16 80
 cap     Reads a Color Computer .DSK disk image -- the format a CoCo emulator
 cap     keeps a floppy in -- and lists the OS-9 disk inside it.  The image
 cap     here is a public-domain disk from 1985, and reads as easily as a new
-cap     one.  -get copies a file out of it; -proc shows a file descriptor.
+cap     one.  -get copies a file out of it; -proc prints a procedure file
+cap     of makdir, chd and -get lines that extracts the whole tree.
 try     os9dsk -dir PUBDOM19.DSK; os9dsk -dir PUBDOM19.DSK CMDS
 run     builtin cd /dd/DOC/os9dsk
 wait    1

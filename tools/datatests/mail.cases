@@ -57,10 +57,15 @@ run     /dd/CMDS/ELM/frm
 expect  no mail
 absent  Welcome
 
+# lcasep lowers a line up to its first tab and copies the rest as it is:
+# the host name of a pathalias line, not its path.
 case    lcasep-lower-cases-an-address
 run     echo "Some.Body@Example.COM" > /dd/tmp/name.txt
 run     /dd/CMDS/UUCP/lcasep -f /dd/tmp/name.txt
+run     /dd/CMDS/printf 'Host.Name\tSome.Path!USER\r' > /dd/tmp/pa.txt
+run     /dd/CMDS/UUCP/lcasep -f /dd/tmp/pa.txt
 expect  some.body@example.com
+expect  host.name	Some.Path!USER
 
 case    pwparse-lists-the-accounts-in-the-password-file
 run     /dd/CMDS/UUCP/pwparse /dd/SYS/password

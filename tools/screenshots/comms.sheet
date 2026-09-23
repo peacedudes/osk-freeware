@@ -1137,7 +1137,7 @@ wait    6
 
 shot    input
 cap     The Unaxcess bulletin board's input helper: it copies standard input
-cap     straight to standard output, a line at a time.
+cap     straight to standard output, a character at a time.
 try     input <lines.txt
 run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "the first line\rthe second line\rand the third\r" > /dd/tmp/EC/lines.txt
 wait    3
