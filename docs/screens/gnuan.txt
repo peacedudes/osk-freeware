@@ -1,18 +1,55 @@
+Input the maximum number of minutes per move you want to use.
+1
+
+You will search to 2 half moves
+
+With no search taking more than 1 minutes
+
+
+Move White Black      Score Depth     Best Line
+------------------------------------------------------------------
+  1   e2e4              -     -    book
+            e7e5        -     -    book
+  2   g1f3              -     -    book
+            b8c6        -     -    book
+  3   f1b5              -     -    book
+            a7a6        -     -    book
+
+Move# 4    Target= 6000    Clock: 0
+ 2.    125    0     1181   b5c6  d7c6  f3e5
+Ambiguous Move!
+
+Bad move.    Board position is:
+
+ R - B Q K B N R
+ - P P P - P P P
+ P - N - - - - -
+ - b - - P - - -
+ - - - - p - - -
+ - - - - - n - -
+ p p p p - p p p
+ r n b q k - - r
+
+
+Process   Pid: 3, gnuan, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
         Files: 00 fCons /term
  Last syscall: I$WritLn (0x008c)
     Registers: Dn=7FF00000 00000000 00000000 00000000
                   00000000 FFFFFF9D 00000204 0000001C
-               An=00101C2A 001935DE 000FACDE 00193C2C
-                  00193C28 00193598 0010B440 00193598
-               PC=00101C2A SR=0003
- Executing: -->00101c2a: 4e75 4a82 6b14 4a80 6a02 RTS.L
-               00101c2c: 4a82 6b14 4a80 6a02 6024 TST.L D2
-       Memory: Static    -     00103440 - 00193C80  591936 bytes
-               Allocated - 000 00103440 - 00193C80  591936 bytes
-                           001 0009C900 - 0009D900    4096 bytes
-                           002 0009D900 - 0009E900    4096 bytes
-                           003 000B9640 - 000CCF20   80096 bytes
-                           004 00193C80 - 001A7560   80096 bytes
-                           005 000A5400 - 000A6400    4096 bytes
+               An=000DA9AA 0016C358 000D3A5E 0016C9CC
+                  0016C9C8 0016C312 000E41C0 0016C312
+               PC=000DA9AA SR=0003
+ Executing: -->000da9aa: 4e75 4a82 6b14 4a80 6a02 RTS.L
+               000da9ac: 4a82 6b14 4a80 6a02 6024 TST.L D2
+       Memory: Static    -     000DC1C0 - 0016CA20  591968 bytes
+               Allocated - 000 000DC1C0 - 0016CA20  591968 bytes
+                           001 0009E240 - 0009F240    4096 bytes
+                           002 000A4500 - 000A5500    4096 bytes
+                           003 0016CA40 - 00180320   80096 bytes
+                           004 00180340 - 00193C20   80096 bytes
+                           005 000AA280 - 000AB280    4096 bytes
 # # Exception: pid=3 vector=$07 err=#000:107 ... process will be killed (x to co
 ntinue)

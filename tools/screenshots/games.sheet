@@ -392,14 +392,18 @@ send    \003
 wait    3
 
 shot    gnuan
-size    30 80
+size    72 80
 cap     GNU Chess's analyser: give it a file of moves and a search depth and
 cap     it annotates the game move by move, scoring each and naming the best
 cap     line it found.  Moves it recognises from the opening book are marked
-cap     `book'.  At the end of the file it prints the position reached and
-cap     stops with `Bad move', which is how it reads end of input.
+cap     `book'.  The file holds one move pair to a line.  Past its end it
+cap     searches the next move itself, then says `Ambiguous Move!' and `Bad
+cap     move', which is how it reads end of input, and prints the position
+cap     reached -- and then its
+cap     floating-point code raises an overflow trap (TRAPV) that nothing
+cap     handles, so the process is stopped: that is the dump under the board.
 try     gnuan
-run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo "e2e4 e7e5 g1f3 b8c6 f1b5 a7a6" > /dd/tmp/GAMESA/moves
+run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; printf 'e2e4 e7e5\rg1f3 b8c6\rf1b5 a7a6\r' > /dd/tmp/GAMESA/moves
 wait    4
 run     builtin cd /dd
 wait    1
