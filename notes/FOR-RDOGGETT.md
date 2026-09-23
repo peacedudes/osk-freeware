@@ -4,26 +4,43 @@ Things that need YOU -- nothing else. Anything decided leaves this file the
 same day. Numbers are cited from `notes/START-HERE-NEXT-SESSION.md` and stay
 stable, so a gap means an answered question. The evidence for every item is
 in the handoff under the same name; this file is the asking.
-Updated 2026-09-22.
+Updated 2026-09-22, after your letter to Allan.
 
-**One item, 36.**  35 is answered: `load' is deleted, not just withheld.  Answered 2026-09-22: 34 (the `t' stub came off), 29 (your 1988 lines in the archives' own files stay; the SOURCES line naming you and Allan is gone, and the gate now catches the name, not just the username), 31 (no stand-in
-`shell'; load yours from /h1/CMDS/shell, as SYS/login does), 32 (the EFFO
-vi's helpers come off), 33 (bash patched).  Programs found and left out
-are catalogued for readers in DOC/README-NOT-SHIPPED.
+**Three need you: 1 (push, then pin), 36 (how the browser page gets onto
+Pages) and 28 (a wording question, one line either way).**  Everything else
+is answered.
 
-**Before that, nothing new needed you except item 31, and item 1 changed.** The night of
-the 20th and the morning of the 21st went on exception reasons, harness
-faults and tests, none of which is yours to decide: `panel-exceptions.psv'
-is 65 rows with about 27 of them re-tested, seven programs came off the
-untested list (17 to 10), the gate is green, the suite is **877 of 877
-twice**, and `check_the_checks' catches 43 of 43. It is all in the handoff,
-which now opens with the ORDER of what is left so no session has to ask.
+**Closed since you last read this:** 29 (your 1988 lines in the archives'
+own files stay; the SOURCES line naming you and Allan is gone, and the gate
+now catches the name, not just the username), 30 (`fpu' -- below), 31 (load
+your shell from /h1), 32 (the EFFO vi's helpers came off), 33 (bash
+patched), 34 (the `t' stub came off), 35 (`load' deleted, not just
+withheld).  Programs found and left out are catalogued for readers in
+DOC/README-NOT-SHIPPED.
 
-**Item 1 gained a name to pin and a reason to ask before pinning** -- the
-os9exec tip that night carried a flake its own author caught.
+## What backs the three claims in your letter
 
-**Four items closed on your earlier answers** -- 21 (ship `cpp`), 23
-(ispell), 24 (drop the plain duplicates) and 26 (patch the SIR reader).
+  * **"no Microware code apart from the runtime modules you ok'd, as well
+    as fpu ... unchanged".**  Checked 2026-09-22: exactly five modules ship
+    (cio, csl, csl020, math, math881), plus `fpu' -- 12,724 bytes, md5
+    3f5b0760, the copy its own notice travels with, with DOC/fpu.doc beside
+    it.  `fpu040' and `cio020' are not on the disk, and no Microware
+    utility, header, library or compiler is.  **That closes item 30: the
+    granted copy is what ships, unchanged.**  The one program NAMED for a
+    Microware utility -- the clean-room `load' the os9exec project wrote --
+    was deleted on your word, so nothing here is even a rewrite of theirs.
+    DOC/ORIGINS now carries a row for every file under CMDS.
+  * **"making sure things run and the sources compile".**  Every program
+    has a card taken by running it; the suite is 875 of 875, twice, on a
+    fresh image; 573 of the 771 programs whose source is here are built by
+    a recipe.  Mining pass 1 is closing the gaps in that: `gawk' shipped
+    with the WRONG version's source (2.00 Beta against a 2.11 binary) until
+    today, and `proff' could not be rebuilt at all until `ltb' and its
+    symbol file came back.
+  * **"tried in a browser with no download or setup".**  The page runs the
+    whole disk, and every card knows whether it can run there and on what:
+    877 on the disk alone, 45 needing your own OS-9 attached as /h1, 37
+    that need hardware and say so instead of offering a button.
 
 ## Yours alone
 
@@ -76,16 +93,14 @@ only credential here.
 
 ## Decisions
 
-**36. Run it in your browser: how docs/try gets onto Pages.**
-Every card now knows what trying it needs (tools/tryable.py): 877 run on the
-disk alone, 51 need your OS-9 attached as /h1, 31 need hardware and get a
-line saying why instead.  The card links to `try/?run=<its command>` (plus
-`&needs=h1`), which the os9exec page already understands.  The links stay
-hidden until docs/try/index.html exists.  What is yours: EITHER commit the
-four built files into docs/try (disk.gz is ~49 MB, under GitHub's 100 MB) --
-simplest, but 49 MB of history per rebuild -- OR let the Pages workflow build
-them, which means adding an Emscripten setup action to CI (a new
-dependency).  **Recommend: commit the build**, rebuilding only at releases.
+**36. The browser page: commit the build, or build it in CI?**
+Your letter settles that it goes on GitHub with the collection's
+documentation, so only HOW is left.  EITHER commit the four built files into
+docs/try -- disk.gz is ~49 MB, inside GitHub's 100 MB, rebuilt only at
+releases -- OR let the Pages workflow build them, which adds an Emscripten
+setup action to CI, a new dependency.  **Recommend: commit the build.**  Say
+which and I will do it; the Try It links on the cards appear the moment
+docs/try/index.html exists.
 
 
 **28. Should "name what the reader HAS" reach the shipped READMEs?**
@@ -95,16 +110,6 @@ discouragement; two are about Microware's own files being deliberately
 absent, which is the respectful thing to say. Widening the FILE LIST is one
 line and safe; widening the PATTERNS would flag seven captions that are
 right. **Recommend: widen the list, leave the patterns.**
-
-**30. `fpu`: I acted, and you can reverse it.**
-The `fpu` we shipped was not the copy its grant travels with, and `fpu040`
-had no grant at all -- both came from a terminal program's archive carrying
-no document. I swapped `fpu` for the granted copy (12,724 bytes, md5
-`3f5b0760`, also the newer module) and removed `fpu040`. If you read
-"Permission to distribute FPU" as covering the module generally rather than
-that copy, `git revert` puts `fpu040` back.
-*The other five runtime modules rest on Allan's permission, which names the
-modules rather than copies, and are fine.*
 
 ## Not a question, but you should know
 
