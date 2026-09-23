@@ -75,23 +75,32 @@ if __name__ == "__main__":
 
 
 def stage_reader_load(h1):
-    """Put a `load' at <h1>/CMDS/load, where a reader's own OS-9 keeps one.
+    """Put the reader's own `load' at <h1>/CMDS/load, from $OS9SDK.
 
-    The collection ships no `load': the clean-room one written for it is
-    withheld (withheld/load), because a module named after a Microware
-    utility is Microware's to ship.  A harness that makes a module resident
-    therefore needs one on the /h1 it mounts, as a reader has.  Microware's,
-    from $OS9SDK/CMDS, when that is set -- the reader's arrangement exactly;
-    otherwise the withheld one, so that a run without an SDK (CI) still
-    tests the same cases.  Returns the source it staged from.
+    The collection ships no `load': the clean-room one written for it was
+    withheld on 2026-09-22 and then deleted on rdoggett's word, because a
+    program named after a Microware utility is Microware's to ship.  A
+    harness that makes a module resident therefore needs the reader's own,
+    on the /h1 it mounts -- exactly the arrangement SYS/login describes.
+
+    Returns the path staged from, or None when $OS9SDK names no load: the
+    caller says so, and the cases that load a module fail with a reason.
+    CI never needs it -- it builds the image and runs the checks, not the
+    suite.
     """
     import shutil
     sdk = os.environ.get("OS9SDK")
-    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     src = os.path.join(sdk, "CMDS", "load") if sdk else ""
+    # TAKE THE OLD ONE AWAY FIRST.  The work directory survives between runs,
+    # so a `load' staged by an earlier run with $OS9SDK set was still there
+    # for a later run without it -- and twelve cases that cannot work without
+    # a load all passed, on 2026-09-22, for that reason alone.
+    dst = os.path.join(h1, "CMDS", "load")
+    if os.path.exists(dst):
+        os.remove(dst)
     if not os.path.isfile(src):
-        src = os.path.join(here, "withheld", "load", "load")
+        return None
     os.makedirs(os.path.join(h1, "CMDS"), exist_ok=True)
-    shutil.copyfile(src, os.path.join(h1, "CMDS", "load"))
-    os.chmod(os.path.join(h1, "CMDS", "load"), 0o755)
+    shutil.copyfile(src, dst)
+    os.chmod(dst, 0o755)
     return src

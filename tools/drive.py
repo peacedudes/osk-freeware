@@ -179,7 +179,9 @@ def run_sheet(path, image, seconds):
     work = os.path.join(OUT, "work")
     os.makedirs(os.path.join(work, "h1"), exist_ok=True)
     sh = os.path.join(work, "h1", "%s.sh" % fam["family"])
-    stage_reader_load(os.path.join(work, "h1"))
+    if not stage_reader_load(os.path.join(work, "h1")) and fam["load"]:
+        print("  no `load' staged: set OS9SDK to your OS-9 system, "
+              "or the cases that load a module will fail")
     # emulator_env, not dict(os.environ): see tools/os9env.py.  A harness
     # names the devices it wants and inherits none.
     env = emulator_env(LC_ALL="C", OS9DISK=image, OS9H0=image,

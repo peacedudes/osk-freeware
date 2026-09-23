@@ -66,8 +66,7 @@ import imagelock                                    # noqa: E402
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OS9EXEC = os.environ.get("OS9EXEC", os.path.join(REPO, "..", "os9exec", "os9exec"))
 # `load' IS THE READER'S, at /h1/CMDS/load: the collection ships none, and
-# os9env.stage_reader_load puts one on this harness's /h1 -- Microware's from
-# $OS9SDK when set, else the withheld clean-room one, so CI tests the same.
+# os9env.stage_reader_load puts the reader's own there from $OS9SDK.
 MARK = "@@CASE@@"
 
 
@@ -213,7 +212,9 @@ def run_family(path, image, workdir):
     fam = parse(path)
     os.makedirs(os.path.join(workdir, "h1"), exist_ok=True)
     sh = os.path.join(workdir, "h1", "%s.sh" % fam["family"])
-    stage_reader_load(os.path.join(workdir, "h1"))
+    if not stage_reader_load(os.path.join(workdir, "h1")) and fam["load"]:
+        print("  no `load' staged: set OS9SDK to your OS-9 system, "
+              "or the cases that load a module will fail")
     # /h0 IS THIS DISK TOO, and that is not a convenience -- it is the
     # arrangement notes/DECISION-placement.md settles on and DOC/README-CIO
     # documents: mount the collection as /dd and again as /h0, so the

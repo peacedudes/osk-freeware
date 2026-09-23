@@ -81,14 +81,14 @@ Microware's", and every card still names what its program needs.
     and the card harness now answers only the `ESC[999;999H ESC[6n'
     size query, with its own rows;cols, and ansiscreen honours ESC 7/8.
   * **`t' came off** (item 34).
-  * **`load' is withheld** (FOR-RDOGGETT 35) -- the clean-room one the
+  * **`load' is deleted** -- the clean-room one the
     os9exec project wrote is a program named for a Microware utility.  It
-    sits in withheld/load until rdoggett says delete.  Everything that used
+    was deleted on 2026-09-22 on rdoggett's word (`git log` has it).  Everything that used
     it now uses the reader's: mkimage extracts with ksh (no load needed),
     SYS/login loads from /h1 only when /h1/CMDS/load exists and calls it by
     full path, and datatest/drive stage a load at /h1/CMDS/load
-    (os9env.stage_reader_load -- the SDK's when OS9SDK is set, else the
-    withheld copy so CI runs).  **TRAP FOUND ON THE WAY: this bash leaks a
+    (os9env.stage_reader_load, from $OS9SDK; CI runs the gate and the image
+    build, not the suite).  **TRAP FOUND ON THE WAY: this bash leaks a
     redirection when a bare-name command is not found** -- after
     `nosuch >/nil 2>/nil', bash's own stdout and stderr stay on /nil.  A
     bare `load' with no /h1 silenced the rest of the login and the prompt
