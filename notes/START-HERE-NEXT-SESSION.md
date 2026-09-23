@@ -14,6 +14,11 @@ binaries whose source tree did not build them).  A caption pass over all
 cards is the same idea one layer out.  newsrun ships with a trlf written
 for it; nnmaster, nncheck, nnaux, cvt_help, newsetup, v7make, creadoc,
 hist and resize got tests; harnesses stage what SYS/login loads.
+A card older than its program's last binary change is a stale-capture
+candidate (sir's green pixels were a capture from before its 2026-09-20
+fix): compare `git log -1 --format=%ct' of docs/screens/<card>.txt with
+each binary its stanza names (shot + `for').  Re-shot all nine flagged on
+2026-09-23; only ls's capture changed.
 
 **Added 2026-09-23:** `compface'/`uncompface' (James Ashton's X-Face encoder,
 1990 -- built here from source, round trip asserted in the suite) and
