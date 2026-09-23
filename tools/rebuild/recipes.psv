@@ -241,6 +241,7 @@ advcom|advint|advcom.c advfcn.c advscn.c advexp.c advavl.c advfio.c|||
 advint|advint|advmsg.c advtrm.c advprs.c advdbs.c advint.c advjunk.c advexe.c|||
 cut|cutpaste|cut.c getopt.c spaste.c|||
 paste|cutpaste|getopt.c paste.c spaste.c|||
+ltb|proff|ltb.c look.c|||
 proff|proff|proff.c proff01.c proff02.c lookup.c pinit.c putwrd.c pxlex.c pxxparse.c dostuff2.c eval.c stack.c map.c|||
 buildhash|ispell|buildhash.c hash.c|||
 # SRC/ispell is the edition BOTH shipped binaries were built from: our builds

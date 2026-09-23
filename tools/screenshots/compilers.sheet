@@ -676,6 +676,31 @@ wait    10
 run     fact
 wait    6
 
+shot    ltb
+size    24 80
+cap     Builds a lexical table: it reads a list of words and writes the hash
+cap     table for them as C, ready to compile in.  This is what makes `proff'
+cap     rebuildable -- the words are proff's own requests, from SRC/proff,
+cap     and what comes out is the lextab.h and lextab.d its parser is
+cap     compiled from, byte for byte as they ship.
+try     ltb proffsym.new lextab
+run     rm -rf /dd/tmp/LTB > /nil 2>/nil; mkdir -p /dd/tmp/LTB
+wait    3
+run     cp /dd/SRC/proff/proffsym.new /dd/tmp/LTB
+wait    3
+run     builtin cd /dd/tmp/LTB
+wait    1
+run     clear
+wait    1
+run     head -n 3 < proffsym.new
+wait    3
+run     ltb proffsym.new lextab
+wait    6
+run     ls -l
+wait    4
+run     head -n 4 < lextab.h
+wait    4
+
 shot    creadoc
 size    28 90
 cap     An early Fortran documentation generator: it walks the `.f' files

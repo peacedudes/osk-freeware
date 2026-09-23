@@ -1,0 +1,14 @@
+head -n 3 < proffsym.new
+
+! proff symbols
+! flag value of 1 indicate
+$ ltb proffsym.new lextab
+$ ls -l
+total 14336
+-rw-------   1 0        0             856 Sep 22 21:10 lextab.d
+-rw-------   1 0        0            9281 Sep 22 21:10 lextab.h
+-rw-rw-rw-   1 0        0            3452 Aug  3 19:00 proffsym.new
+$ head -n 4 < lextab.h
+#ifndef STRUC_DEFINED
+
+/*      lextab.h        */

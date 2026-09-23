@@ -1,6 +1,6 @@
 # What is on this disk
 
-1027 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **709 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1028 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **710 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,7 +16,7 @@
 | [Text tools](#text-tools) | 137 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 36 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 39 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 40 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 30 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
@@ -533,7 +533,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>39 programs</summary>
+<details><summary>40 programs</summary>
 
 **Alternates**
 
@@ -592,6 +592,7 @@
 | `dmake` | &#9733; dmake 3.70 - parallel make with its own makefile dialect<br>`Usage:` |
 | `flex` | flex, the fast lexical analyser generator: turns a rules file into a C scanner, lex.yy.c. DOC/flex/README-FLEX has what to know first<br>`Syntax   : flex [-bcdfinpstvFILT8 -C[efmF] -Sskeleton] [filename ...]` |
 | `gmake` | GNU make: builds targets from a makefile's rules -- -f names the file, -n prints what it would do, -k keeps going past errors<br>`Usage: gmake [options] [target] ...` |
+| `ltb` | lexical table builder: reads a list of words and writes the hash table for them as C, ready to compile in.  It is what makes `proff' rebuildable -- `ltb proffsym.new lextab' writes the lextab.h and lextab.d its parser is compiled from, and SRC/proff carries both the input and the result |
 | `m4` | m4 macro processor.  It expands macros correctly, from a file or a pipe.  Its `syscmd' needs a `shell' module: it forks one by that bare name and is silent without it, so keep your own shell loaded -- DOC/README-SHELLS<br>`Syntax   : m4 [<opts>] [<files>]` |
 | `make` | &#9733; make -- maintains a target. Two rules catch people: a command line must begin with a TAB (which will not survive being typed at this terminal, so copy DOC/make/demo.mk rather than echoing one), and a recipe must have no shell metacharacter -- `cp a b' runs, `cat a > b' gets `That path name doesn't lead to a file'.  DOC/STATUS has both Shares its name with a utility of your own -- README-NAMES<br>**How:** It works. Copy `/dd/DOC/make/demo.mk` rather than writing a makefile at the shell -- a command line must begin with a TAB and a tab does not survive being typed at this terminal. And keep shell metacharacters out of a recipe: `cp a b` runs, `cat a > b` gets "That path name doesn't lead to a file", because make forks bash with the line as a pathname rather than with -c. The default rules are in default.mk beside it, and make looks for that along your PATH. |
 | `makeinfo` | GNU makeinfo -- Texinfo to info<br>``makeinfo: unrecognized option `-?'`` |
