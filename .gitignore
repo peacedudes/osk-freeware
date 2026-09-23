@@ -12,6 +12,13 @@
 *.dd
 *.dd.gz
 
+# The browser demo's disk: docs/try serves the collection as a web page
+# (os9exec built to WebAssembly).  The three small files -- index.html,
+# os9exec.js, os9exec.wasm -- are committed; the 49 MB disk.gz is not.  The
+# workflow gzips the image it has just built into place before publishing
+# Pages, so what the page serves is always the disk from that commit.
+/docs/try/disk.gz
+
 # macOS
 .DS_Store
 ._*

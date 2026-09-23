@@ -156,6 +156,14 @@ jobs:
       # .html file shows its source. The catalogue is only inviting once Pages
       # serves it, so publish it there. Requires Pages enabled for the repo
       # with "GitHub Actions" as the source; until then this step is skipped.
+      # The browser demo serves the disk it was built with.  docs/try holds
+      # the page and the WebAssembly build of os9exec; the image is not in
+      # the repository, so it is put in place here, from the one just built.
+      - name: Put the disk under the browser demo
+        run: |
+          cp osk-freeware.dd.gz docs/try/disk.gz
+          ls -lh docs/try
+
       - name: Rebuild the catalogue
         run: tools/gen_catalog.py disk docs/index.html
 
