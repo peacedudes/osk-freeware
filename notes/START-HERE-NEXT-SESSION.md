@@ -20,14 +20,30 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
 
 ## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
-1. **Re-run the suite twice on a fresh image, then rebuild osk-freeware.dd.**
-   Three programs landed after the last full run (compface, uncompface,
-   strcmp).  His `free' alias opens the repo's own image, so a session
+1. **Re-run the suite twice on a fresh image, then rebuild the two disks.**
+   **THIS IS GENUINELY OUTSTANDING, 2026-09-23:** the additions below went
+   in with the GATE green (38 checks) and with each affected family run
+   directly -- `encoding' 24/24, `utils' strcmp 3/3, `web' 9/9 -- but the
+   full double run was stopped part-way when rdoggett needed the machine.
+   The last complete run was 876 of 882, and all six failures were the new
+   cases meeting an image built before those programs existed; each has
+   since passed on a current image.  Run it twice and confirm.
+   Four things landed after that run (compface, uncompface, strcmp, and
+   WN's CGI examples).  His `free' alias opens the repo's own image, so a session
    that changes `disk/' and does not rebuild leaves him a stale one.
 
        OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk <scratch>.dd
        OS9SDK=$HOME/Developer/os9/play/oskBoot tools/datatest.py --all --image <scratch>.dd   # twice
        OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk osk-freeware.dd
+       gzip -c osk-freeware.dd > docs/try/disk.gz            # <- BOTH, not just the first
+
+   **TWO FILES, NOT ONE.**  `docs/try/disk.gz' is the browser demo's copy of
+   the collection.  It is gitignored, and the CI workflow rebuilds it from
+   the image it just built, so what Pages serves is always current -- but a
+   LOCAL docs/try page serves whatever that file holds, and on 2026-09-23 it
+   was a day stale because this step said only "rebuild osk-freeware.dd".
+   The browser page runs `bash /dd/SYS/login', so a session there gets the
+   same environment as a real login, SHELL included.
 
    $OS9SDK matters now: the collection ships no `load', so the harnesses
    stage the reader's own from there (tools/os9env.py, stage_reader_load).
