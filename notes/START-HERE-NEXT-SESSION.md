@@ -2,11 +2,16 @@
 
 ## WHERE THINGS STAND, 2026-09-23
 
-The collection is **1,037 programs** on one RBF image, every one with a card
-taken by running it.  `tools/check_disk.py disk' is the gate and it is green.
-The suite was **875 of 875 twice** before the last six additions; re-run it
-(below).  Read `notes/FOR-RDOGGETT.md' -- three items need him and nothing
-else does.
+The collection is **1,040 programs** on one RBF image, every one with a card
+taken by running it.  `tools/check_disk.py disk' is the gate and it is green
+(38 checks).  Read `notes/FOR-RDOGGETT.md' -- **four** items need him now:
+the three that stood, plus **37, three licence calls from mining pass 2**.
+
+**Added 2026-09-23:** `compface'/`uncompface' (James Ashton's X-Face encoder,
+1990 -- built here from source, round trip asserted in the suite) and
+`strcmp' (M.C. Gregorie, the fourth of the set whose basename and dirname
+already shipped; measured cio-less, so it is starred and the grid is now
+All 315).
 
 **The release is near.**  rdoggett has written to Microware describing all
 three pieces (os9exec, this collection, the Claude skills) and plans to push
@@ -16,8 +21,8 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
 ## DO THESE IN THIS ORDER.  DO NOT ASK WHICH FIRST.
 
 1. **Re-run the suite twice on a fresh image, then rebuild osk-freeware.dd.**
-   Six programs landed after the last full run (stevie, diff3, v7make, more,
-   yahtzee, time).  His `free' alias opens the repo's own image, so a session
+   Three programs landed after the last full run (compface, uncompface,
+   strcmp).  His `free' alias opens the repo's own image, so a session
    that changes `disk/' and does not rebuild leaves him a stale one.
 
        OS9EXEC_DIR=$HOME/Developer/os9/os9exec tools/mkimage.sh disk <scratch>.dd
@@ -53,12 +58,40 @@ below is finished, because unfamiliar binaries are what find emulator bugs.
        "proprietary confidential"), EFFO forum 12's `msfm' (the name this
        collection already screens as Microware's).  Do not ship these.
 
-3. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
+3. **MINING PASS 2's INTEGRATION QUEUE -- judged, not yet shipped.**
+   `notes/AUDIT-pool.md' (2026-09-23) has the evidence for each.
+
+     * **`ttcp'** -- public domain on Muuss and Slattery's own words, runs,
+       fails with a named error.  **Blocked only on FOR-RDOGGETT item 37**
+       (it statically links Microware's ISP `socklib.l'/`netdb.l').
+     * **BIND 4.8.3's `nslookup' and `nsquery'** -- 4-clause Berkeley WITH
+       the advertising clause, so taking them obliges the disk to print the
+       Berkeley acknowledgement in its own documentation.  Same item 37
+       question about the ISP libraries.  `checksoa' is held: O'Reilly book
+       example code with no notice at all.  Whatever is decided about the
+       binaries, `RES/select.c' -- a `select()' that works on SOCKMAN paths
+       -- is worth having in `SRC/'.
+     * **`UAC_view'** -- works beautifully on a pty, has NO terms at all.
+       Item 37.
+     * **The WN CGI samples** -- GPL, already the disk's own WN package, and
+       **PARTLY DONE: the files are installed** under
+       `disk/c/unid/wn_1.14.3/osk/EXAMPLES' (qr.cgi left out, its terms are
+       not clear).  **They do not serve yet**: WN answers `500 Can't exec
+       CGI program'.  Ruled out already -- the module runs fine by hand
+       (rc=0), its attributes match `/dd/CMDS/cat', `load'ing it first
+       changes nothing, and the document root really is compiled in at the
+       `osk' directory so `/EXAMPLES/...' is the right request.  A subagent
+       reported these serving correctly and was asked what differed; if that
+       answer is not in the transcript, **either resolve it or back the
+       files out** -- do not ship a demo that returns 500.  The `cio' count
+       in `DOC/README-CIO' is 305 without them and 308 with them.
+
+4. **The remaining `tools/panel-exceptions.psv' lines** -- 60-odd, about half
    re-tested.  Three shapes keep recurring: the disk SHIPS what the reason
    says is missing; nobody STARTED the program that provides what it needs;
    the card FILTERED the content away.
 
-4. **Pages not run on a real terminal.**  If a page disagrees with the
+5. **Pages not run on a real terminal.**  If a page disagrees with the
    program, the program wins; fix the page.
 
 ## WHAT CHANGED ON 2026-09-22/23, so you do not re-derive it
