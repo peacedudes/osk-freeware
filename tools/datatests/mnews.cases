@@ -99,3 +99,18 @@ run     /dd/CMDS/diff $W/hw /dd/USR/LIB/NN/help.welcome && echo same-as-shipped
 run     /dd/CMDS/MNEWS/cvt_help < $W/hw | /dd/CMDS/head -1
 expect  same-as-shipped
 expect  ;:AWelcome to the nn news reader;:A
+
+# nnaux is what nn runs to post: `nnaux post <work file> <line> <first
+# action>', and `send' as the first action posts without asking.  It hands
+# the file to `inews -h' through the reader's shell, so inews is loaded for
+# the shell to find, then removes the work file, as it does for nn.
+case    nnaux-posts-the-work-file-nn-hands-it
+load    /h1/CMDS/shell
+load    /dd/CMDS/MNEWS/inews
+run     /dd/CMDS/printf 'Newsgroups: junk\rSubject: via nnaux\r\rposted by nnaux\r' > $W/nnaux.art
+run     /dd/CMDS/MNEWS/nnaux post $W/nnaux.art 1 send
+run     /dd/CMDS/cat /h0/SPOOL/MNEWS/junk/*
+run     /dd/CMDS/ls $W
+expect  Subject: via nnaux
+expect  posted by nnaux
+absent  nnaux.art

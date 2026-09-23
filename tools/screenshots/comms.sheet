@@ -716,6 +716,32 @@ wait    6
 run     nnmaster < /nil
 wait    6
 
+shot    nnaux
+size    24 80
+fresh
+cap     What nn runs to post, follow up or reply.  nn hands it a work file
+cap     holding the article, the line to start an editor on, and what to
+cap     do first; `send' posts without asking.  It gives the file to inews
+cap     and removes it, and the article is filed in its group.
+try     nnaux post article 1 send; cat junk/1
+run     setup
+run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
+run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+run     rm -f /h0/SPOOL/MNEWS/article /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     builtin cd /h0/SPOOL/MNEWS
+run     printf 'Newsgroups: junk\rSubject: posted by nnaux\r\rnn hands nnaux the article to post.\r' > article
+wait    2
+run     load /h1/CMDS/shell
+run     load /dd/CMDS/MNEWS/inews
+wait    2
+run     clear
+run     nnaux post article 1 send
+wait    6
+run     cat junk/1
+wait    2
+
 shot    nn
 size    24 80
 fresh
