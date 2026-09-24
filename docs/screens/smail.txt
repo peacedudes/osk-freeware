@@ -1,19 +1,18 @@
-$ smail -?
-Usage:   smail [<options>] address...
-Options:
-   -d              debug - verbose and don't invoke mailers.
-   -v              verbose - just verbose.
-   -A              print mapped addresses.  don't invoke mailers.
-   -h hostname     set hostname
-   -H hostdomain   set hostdomain (default hostname.MYDOM)
-   -p pathfile     path database filename
-   -r              force routing of host!address
-   -R              reroute even explicit path!user
-   -l              user@domain goes to local mailer
-   -L              all mail goes local
-   -q number       mail queueing cost threshold
-   -m number       limit on number of uux_noqueue jobs
-   -n namelist     list of full names for simple aliases
-   -u string       string of flags for uux
-   -F address      name to substitute in From: line
-   -a aliasfile    aliases filename (not used with SENDMAIL)
+smail -h milkyway -p paths -d ralph@pirsqrd <letter
+resolve: parse address 'ralph@pirsqrd' = 'ralph' @ 'pirsqrd' (DOMAIN)
+getpath: looking for '.pirsqrd'
+getpath: looking for 'pirsqrd'
+route:  'pirsqrd' (pirsqrd) = 'phoenix!seabass!pirsqrd!%s' (101)
+resolve: parse route 'phoenix!seabass!pirsqrd!ralph' = 'seabass!pirsqrd!ralph' @
+ 'phoenix' (UUCP)
+resolve 'ralph@pirsqrd' = 'seabass!pirsqrd!ralph' @ 'phoenix' (UUCP)
+COMMAND: /dd/etc/cmds/uux -a'nobody' -r - 'phoenix!rmail' '(seabass!pirsqrd!ralp
+h)'
+From nobody  Thu Sep 24 14:55:13 2026 remote from milkyway
+Received: by milkyway (smail2.5)
+        id AA00004; 24 Sep 26 14:55:13 CST (Thu)
+Subject: hello
+Message-Id: <12609241455.AA00004@milkyway>
+Date: 24 Sep 26 14:55:13 CST (Thu)
+From: nobody@milkyway
+To: ralph@pirsqrd

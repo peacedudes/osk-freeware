@@ -410,10 +410,23 @@ run     ls tester
 wait    3
 
 shot    smail
-cap     The options it lists.
-try     smail -?
-run     smail -?
-wait    8
+size    24 80
+cap     The UUCP mail router.  Given a path file -- made here by pathalias
+cap     from a three-hop map -- it turns ralph@pirsqrd into a UUCP route,
+cap     phoenix!seabass!pirsqrd!ralph, and with -d it shows its working and
+cap     the uux command and letter it would send, without sending them.
+cap     -h names this host; a real system names it in SYS/hostname.  For
+cap     any user but the super-user it signs the letter `nobody': it looks
+cap     the sender up by user number alone.
+try     smail -h milkyway -p paths -d ralph@pirsqrd <letter
+run     rm -rf /dd/tmp/SMAIL; mkdir -p /dd/tmp/SMAIL
+run     builtin cd /dd/tmp/SMAIL
+run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > map
+run     pathalias -l milkyway map | sort > paths
+run     echo "Subject: hello" > letter
+run     clear
+run     smail -h milkyway -p paths -d ralph@pirsqrd <letter
+wait    6
 
 shot    uupoll
 super

@@ -2,7 +2,7 @@
 
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
-the same number; 45-49 each have a staged tool that says what it does.
+the same number; 45-50 each have a staged tool that says what it does.
 Updated 2026-09-24 (afternoon).
 
 ## Needs you
@@ -56,6 +56,15 @@ defs.h makes a real LF under OSK -- an OS-9 blank line is a CR (the ELM
 source is on the disk, SRC/infoxpress); tools/patch_elm_linefeed.py changes `cmpi.b #$0A'
 to `#$0D' in both, and on a scratch image frm then lists the welcome
 letter.  Recommend: yes.
+
+**50. Patch smail so mail from a user outside group 0 is signed with their
+name (one instruction)?**  smail signs every letter from anyone but the
+super-user `From nobody': it stores the password file's user number
+alone and compares it with getuid()'s whole group.user word -- 45's bug in
+another program.  tools/patch_smail_uid.py loads the port's own whole-word
+field instead (6 bytes at 0x2ca0, CRC recomputed); on a scratch image
+tester's letter then says `From: tester@milkyway' and the super-user's is
+unchanged.  Recommend: yes.
 
 ## No action, just so you know
 

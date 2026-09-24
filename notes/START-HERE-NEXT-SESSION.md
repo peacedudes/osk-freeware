@@ -28,9 +28,9 @@ session's narrative goes into the history file, not here.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
-1 (push os9exec, pin `e2c7f7b`), 45-49 (five one-instruction or header
+1 (push os9exec, pin `e2c7f7b`), 45-50 (six one-instruction or header
 patches to shipped binaries -- elm, bash, logname + ELM filter, mw, frm +
-newmail -- each with a staged tool under `tools/patch_*.py`).  Binary patches are his
+newmail, smail -- each with a staged tool under `tools/patch_*.py`).  Binary patches are his
 call; do not apply them.
 
 ## Work, in order -- take the top one not done, never ask which

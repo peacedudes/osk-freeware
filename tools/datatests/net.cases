@@ -196,3 +196,22 @@ expect  Subject: Fileserver unavailable
 expect  To: tester
 expect  Sorry, the fileserver is not available now.
 absent  cannot spawn process
+
+# smail ROUTES through a path file pathalias made, and -d shows the route,
+# the uux command and the letter without sending anything.  It signs the
+# letter `nobody' for any user but the super-user: pwparse() keeps the user
+# number alone and getuid() is the whole group.user word.  That half is a
+# KNOWN DEFECT pinned here; tools/patch_smail_uid.py (FOR-RDOGGETT 50) is
+# the one-instruction fix, and applying it turns `nobody' into `tester'.
+case    smail-routes-through-a-pathalias-path-file
+run     /dd/CMDS/rm -rf /dd/tmp/SMR > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/SMR
+run     cd /dd/tmp/SMR
+run     /dd/CMDS/printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > map
+run     /dd/CMDS/UUCP/pathalias -l milkyway map | /dd/CMDS/sort > paths
+run     echo "Subject: hello" > letter
+run     /dd/CMDS/UUCP/smail -h milkyway -p paths -d ralph@pirsqrd < letter
+expect  route:  'pirsqrd' (pirsqrd) = 'phoenix!seabass!pirsqrd!%s'
+expect  'phoenix!rmail' '(seabass!pirsqrd!ralph)'
+expect  To: ralph@pirsqrd
+expect  From: nobody@milkyway

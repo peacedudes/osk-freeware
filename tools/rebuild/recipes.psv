@@ -419,6 +419,13 @@ testpad|gtar/GNUTAR|testpad.c|||
 # `less' (it #defines off_t), a types.h in smail's own directory is found by
 # COMPAT's `#include <types.h>' and loops, and -UOSK sends every other file
 # down the wrong arm.
+# THIS BUILD IS NOT A DROP-IN FOR THE SHIPPED smail (measured 2026-09-24).
+# It links blarslib's getpwent, which reads a UNIX-style /dd/sys/passwd that
+# does not exist here; the shipped 1993 binary reads /DD/SYS/Password and
+# /dd/sys/hostname through the port's own OSK/*.c, which this line leaves
+# out.  So built this way it finds no user at all.  It proves the source
+# compiles; it is not what ships.  tools/patch_smail_uid.py is the fix
+# for the shipped binary.
 smail|smail/BNU/SMAIL_2.5/SRC|main.c map.c resolve.c deliver.c misc.c alias.c pw.c headers.c getpath.c str.c||/dd/LIB/blarslib.l /dd/LIB/unix.l| -V=/dd/DEFS/UNIX
 lcasep|smail/BNU/SMAIL_2.5/SRC|lcasep.c||/dd/LIB/blarslib.l|
 nptx|smail/BNU/SMAIL_2.5/SRC|nptx.c pw.c str.c||/dd/LIB/blarslib.l|
