@@ -86,6 +86,13 @@ every commit and every message.  A pre-rewrite mirror is at
 when you are satisfied.
 
 
+**Source added 2026-09-24:** 35 programs that shipped without source now
+have it, each from its own archive (SOURCES.txt, "SOURCE ADDED").  One
+judgement you may want to know about: ADL and hotel say to distribute
+the sources unmodified / verbatim, and their text was converted LF to
+CR like every text file here, nothing else changed.  Say if you would
+rather they shipped as the original postings.
+
 **Answered 2026-09-24:** 38 (harnesses run as tester -- done); 39 (both
 gccs ship with source); 40 (k37 net replaces k35c, built from its own
 source; K5JB's mailer is `bm', the Boyer-Moore grep is `bmg'); 41 (tass

@@ -22,9 +22,20 @@ session's narrative goes into the history file, not here.
   the working branch `release-pass-2026-08-21` only; never `main` or a tag
   (either starts CI, which needs os9exec's branch published).  Never make
   it public.
-- `tools/audit_cards.py`: 0 cards flagged.  `tools/worklist.py --programs
+- `tools/audit_cards.py`: 0 cards flagged (honestly -- it read tester's
+  `bash$' as work until 2026-09-24).  `tools/worklist.py --programs
   --no-test`: 6 programs, all display-bound or needing Microware's
   `netdb` -- see PLAN section 3.
+- **Source: 883 of 1123 programs (78%)**, up from 850 in one afternoon.
+  Three audits on 2026-09-24: trees short of their archives (ELM's LIB,
+  ten others -- restored), programs with `--' whose source sat in their
+  own archive (35 added, 35 more ORIGINS rows pointed at trees already
+  here), and getuid()'s group.user word (FOR-RDOGGETT 45-51).  PLAN 1c
+  has what was left and why.
+- **Reading source corrected four INDEX entries**: pri queues files for
+  printing (not a priority setter), answer takes phone messages, adltouch
+  re-dates save files, rndir works given the reader's own dir.  An INDEX
+  line with no source behind it is a guess until checked.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
@@ -43,6 +54,8 @@ call; do not apply them.
    hold for tester (perluid.cases); lpsched's `user&&0xffff` is recorded
    in DOC/STATUS (untestable here); frm's "no mail" is FOR-RDOGGETT 49.
    `browse` printing the year as 126 is period behaviour and stays.
+   mw's `-1[%dX' is mw sending termcap's `ec=\E[%dX' without a count --
+   the program's bug; the termcap entry is right.
    **The ELM 2.4 source is on the disk at SRC/infoxpress/BNU/ELM_2.4** --
    a tree in SRC is named by ARCHIVE; `frm's panel reason said there was
    none.  Read it before guessing at any ELM program.
