@@ -7,6 +7,22 @@ Every program on the one RBF image has a card taken by running it, and
 `notes/FOR-RDOGGETT.md' has what needs him: items 1 (push and pin
 os9exec) and 38 (harnesses as `tester').
 
+**Night of 2026-09-23 -- the last candidates and every exclusion.**
+rdoggett asked for both before he releases os9exec.  Shipped: bru (BRU/OS-9
+backup, keeps owners/attributes/dates), ken, biff, discord, sifi, ogrify,
+taxlaw (the `silly' collection -- six others out on content), drawpoker
+(Nic Smith's; its rules had been orphaned in GAMES/LIB since the import),
+inform (Inform 1.0's compiler, byte-exact on hellow), slice (with a
+re_comp over os9lib), uue/uud.  Re-run and still standing: splitalf,
+dearc, pbmexec, robots2, gnuchess 4.0 main, dg/pjr, PtyMan and the
+OS-9 International drivers; the library-gap set re-read (NOT-INCLUDED.md
+"Re-verified").  WAITING ON os9exec (reported to its session with repros):
+boa, which needs SS_Ready to answer on a listening socket -- scratch
+cand_web/ship holds a finished integration; and whetstone, which needs
+clock() to count (scratch whet/).  Questions parked as FOR-RDOGGETT 39-42.
+The tester WIP is in `git stash' (tester-wip) with the sheet patch at
+scratch excl/tester-wip.patch -- it goes in with the final full re-shoot.
+
 **Late 2026-09-23:** the INDEX was read against every program's SOURCE and,
 for the ones with none, against its strings, help and card -- 37 entries
 corrected, each run first (PLAN section 4 has the list and the six
