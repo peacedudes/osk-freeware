@@ -43,7 +43,11 @@ CAPS = os.path.join(REPO, "notes", "playtests")
 # card with fourteen lines of real output scored work=0 and was reported
 # NOTHING.  Measured 2026-09-12; `strings' is the only capture affected,
 # but the shape would silently hide any program whose output starts `$'.
-PROMPT = re.compile(r"^(bash#|os9\$|\$(?=\s))\s?")
+# `bash$' is tester's prompt: the harnesses have run as tester since
+# 2026-09-24, and until this pattern knew it every capture scored its own
+# trailing prompt as a line of WORK -- `puzzle', which prints nothing,
+# passed on the strength of it.
+PROMPT = re.compile(r"^(bash[#$]|os9\$|\$(?=\s))\s?")
 
 USAGE = re.compile(r"(?i)^\s*(usage|syntax|use\b|options?)\s*[:\-]"
                    r"|^\s*usage\s*$")
@@ -146,7 +150,7 @@ def main(argv):
         return 0
 
     sheets = sheet_commands()
-    rows = []
+    rows, stale = [], []
     # TWO CARDS ARE FLAGGED CORRECTLY BY THE RULE AND WRONGLY BY THE POINT.
     # `perr' turns an OS-9 error number into its message, so error text IS
     # its output and a screen full of `Error #000:216' is exactly right.
@@ -402,6 +406,12 @@ def main(argv):
                # near-empty screen carrying a syntax line says there is not.
                "THIN-HELP" if usage and work <= 3 else "")
         if name in fine:
+            if not why:
+                # An exception outlives its reason the moment a card is
+                # re-shot and starts showing work -- `lpsched' stood here as
+                # "the option list is all that can safely be shown" long
+                # after its card showed the spooler running.
+                stale.append(name)
             why = ""
         rows.append((name, why, usage, err, work, body))
 
@@ -416,6 +426,11 @@ def main(argv):
     print("\n%d of %d cards flagged" % (len(flagged), len(rows)))
     for name, why in sorted(fine.items()):
         print("  (not flagged, by name: %-12s %s)" % (name, why))
+    carded = {r[0] for r in rows}
+    stale += [n for n in fine if n not in carded]
+    if stale:
+        print("\nexceptions no longer needed -- take them out: %s"
+              % " ".join(sorted(set(stale))))
     return 0
 
 

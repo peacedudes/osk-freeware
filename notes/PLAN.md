@@ -529,13 +529,17 @@ mode and `elvis_input` does (`tools/playtests/elvis_input.keys`).
 CRC and parity, `module_census` shows the new name, and the renamed probe
 loads and runs by it.
 
-### 1a. Gallery cards that show nothing but a usage line — none left (2026-09-24)
+### 1a. Gallery cards that show nothing but a usage line — 19 flagged (2026-09-24)
 
-`tools/audit_cards.py` flags 0 of 1025.  The last four: `mailx` and
-`rmail` now get a MAIL directory and show a letter delivered and read;
-`puzzle` (prints nothing at all -- its INDEX entry claimed a rule of plus
-signs, not reproducible on any os9exec back to 2d175af), `splman`, `uulog`
-and `rex` are listed in the tool with their reasons.  Keep it at zero.
+`tools/audit_cards.py` said 0 of 1025 on 2026-09-24 and was wrong: its
+prompt pattern knew `bash#' and not tester's `bash$', so every capture
+taken as tester scored its own trailing prompt as a line of WORK.  Fixed
+the same day; the honest figure is 19.  Most are for-a-real-system
+entries (a modem, an X server, a /t1 port) whose one line IS the finding
+and want an exception with the reason, and some want a better card.  The
+tool now also names exceptions that no longer apply -- 26 on that day --
+and those come out as their cards are checked.  `mailx' and `rmail' came
+off by being given a MAIL directory.
 
 
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
