@@ -2,8 +2,8 @@
 
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
-the same number; 45-48 each have a staged tool that says what it does.
-Updated 2026-09-24 (early morning).
+the same number; 45-49 each have a staged tool that says what it does.
+Updated 2026-09-24 (afternoon).
 
 ## Needs you
 
@@ -47,6 +47,16 @@ says 30.95 -- left from the machine it was linked on.  So everyone but the
 super-user gets "Can't setuid, please check File/Moduleowner!", and the
 published card shows exactly that.  tools/patch_mw_owner.py sets the owner
 to 0.0 and re-seals parity and CRC; no code changes.  Recommend: yes.
+
+**49. Patch ELM's frm and newmail so they see a header end (one byte
+each)?**  frm says "You have no mail." over a folder that elm, messages
+and readmsg all read one letter from: it counts a message at the blank
+line after its header, tested against LINE_FEED, which the port's own
+defs.h makes a real LF under OSK -- an OS-9 blank line is a CR.  The ELM
+2.4 source travels with these binaries in InfoXpress_FrontEnd.lzh, which
+is how this was found; tools/patch_elm_linefeed.py changes `cmpi.b #$0A'
+to `#$0D' in both, and on a scratch image frm then lists the welcome
+letter.  Recommend: yes.
 
 ## No action, just so you know
 

@@ -28,19 +28,24 @@ session's narrative goes into the history file, not here.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
-1 (push os9exec, pin `e2c7f7b`), 45-48 (four one-instruction or header
-patches to shipped binaries -- elm, bash, logname + ELM filter, mw -- each
-with a staged tool under `tools/patch_*.py`).  Binary patches are his
+1 (push os9exec, pin `e2c7f7b`), 45-49 (five one-instruction or header
+patches to shipped binaries -- elm, bash, logname + ELM filter, mw, frm +
+newmail -- each with a staged tool under `tools/patch_*.py`).  Binary patches are his
 call; do not apply them.
 
 ## Work, in order -- take the top one not done, never ask which
 
 1. **Defects found and not yet fixed** (each needs a measurement first):
-   ksh's `test -O` answers "unknown operand"; nn's `st_gid` from os9lib's
-   stat is never filled; ELM `fastmail`/`newmail` mask getuid() the way
-   filter does (FOR-RDOGGETT 47 covers filter); lpsched's `&&`; the `mw`
-   screen's `-1[%dX` glitch.  `browse` printing the year as 126 is period
-   behaviour and stays.
+   nn's `st_gid` from os9lib's stat is never filled; ELM `fastmail` and
+   `newmail` mask getuid() the way filter does (FOR-RDOGGETT 47 covers
+   filter); the `mw` screen's `-1[%dX` glitch.  Settled 2026-09-24: ksh's
+   `test -O` is not a defect -- this pdksh spells it `-U`, and `-U`/`-G`
+   hold for tester (perluid.cases); lpsched's `user&&0xffff` is recorded
+   in DOC/STATUS (untestable here); frm's "no mail" is FOR-RDOGGETT 49.
+   `browse` printing the year as 126 is period behaviour and stays.
+   **The ELM 2.4 source is in InfoXpress_FrontEnd.lzh** (the pool), which
+   the disk's notes said did not exist -- read it before guessing at any
+   ELM program.
 2. **`snake`'s stray cursor moves.**  PLAN section 3 lists what was ruled
    out; the source's own comment (disk/SRC/snake/move.c, above `cook()`)
    has the byte stream.  If it is the emulator's, write a repro for the

@@ -165,7 +165,8 @@ shot    frm
 cap     Lists who your mail is from, one line each.  On this disk it
 cap     opens the folder, names you, and answers that there is no mail --
 cap     even though `messages' and `readmsg' both find the one message
-cap     that is there.
+cap     that is there.  The port waits for a line feed to end each
+cap     header, and an OS-9 folder's blank line is a carriage return.
 try     frm
 run     frm
 wait    6
