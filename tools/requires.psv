@@ -135,3 +135,4 @@ expire|the super-user|SRC/uucpbb/expire.c: "you are not the superuser!"; tools/d
 rnews|the super-user (UUCP/rnews; MNEWS/rnews is another program)|SRC/uucpbb/rnews.c: "Must be root"; tools/datatests/superuser.cases
 rendsk|the super-user|SRC/eff_rendsk/rendsk.c: "allowed for superuser only!"; tools/datatests/superuser.cases
 bootlogger|the super-user|measured 2026-09-24 as tester: "BOOTLOGGER can be run only by the SYSTEM !"; tools/datatests/superuser.cases
+rndir|your own OS-9's dir, rename and del, loaded: `load /h1/CMDS/dir' above all|measured 2026-09-24: with this disk's dir answering it renames nothing; tools/datatests/rndir.cases

@@ -1062,12 +1062,24 @@ try     mvolformat
 run     mvolformat
 wait    3
 shot    rndir
-cap     rndir converts the names of the subdirectories in a directory to
-cap     upper or lower case; `-l' makes them lower case, `-q' works
-cap     quietly.  Its options.
-try     rndir -?
-run     rndir -?
-wait    4
+size    24 80
+cap     rndir renames the subdirectories of the current directory to upper
+cap     case, or to lower with -l.  It runs your own OS-9's dir, rename and
+cap     del through its shell, found by name -- so load them, dir above all:
+cap     this disk has a dir of its own that does not know -uadr, and with
+cap     that one answering rndir finds nothing and quietly does nothing.
+try     rndir -l
+run     load /h1/CMDS/dir
+run     load /h1/CMDS/del
+run     load /h1/CMDS/rename
+run     load /h1/CMDS/shell
+run     rm -rf /dd/tmp/RNDIRC; mkdir -p /dd/tmp/RNDIRC/Notes /dd/tmp/RNDIRC/Papers
+run     builtin cd /dd/tmp/RNDIRC
+run     clear
+run     rndir -l
+wait    6
+run     ls
+wait    2
 
 shot    freeb
 size    14 80

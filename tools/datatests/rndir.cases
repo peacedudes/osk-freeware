@@ -1,0 +1,26 @@
+family  rndir
+# rndir renames the subdirectories of the current directory to lower case
+# (-l) or upper case.  It does the work through the shell: `dir -uadr' to
+# list them, `rename' for each, `del' for its temporary file -- the reader's
+# own OS-9 commands.  THE DISK HAS A `dir' OF ITS OWN, which SYS/login
+# deliberately leaves unloaded, and by bare name that one answers: it does
+# not know -uadr, rndir finds no directories, and it exits 0 having done
+# nothing -- which is how it was recorded until 2026-09-24.  Load the
+# reader's dir and it works.
+
+load    /h1/CMDS/shell
+load    /h1/CMDS/dir
+load    /h1/CMDS/rename
+load    /h1/CMDS/del
+setup   /dd/CMDS/rm -rf /dd/tmp/RNDIR > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/RNDIR/Notes /dd/tmp/RNDIR/Papers
+
+case    rndir-l-lowers-each-subdirectory-name
+run     cd /dd/tmp/RNDIR
+run     /dd/CMDS/rndir -l
+run     /dd/CMDS/ls /dd/tmp/RNDIR
+expect  rename: Notes notes
+expect  DIRECTORIES RENAMED:     2
+expect  notes
+expect  papers
+absent  can't execute
