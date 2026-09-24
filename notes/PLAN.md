@@ -529,7 +529,14 @@ mode and `elvis_input` does (`tools/playtests/elvis_input.keys`).
 CRC and parity, `module_census` shows the new name, and the renamed probe
 loads and runs by it.
 
-### 1a. Gallery cards that show nothing but a usage line — 27 left of 31 found
+### 1a. Gallery cards that show nothing but a usage line — none left (2026-09-24)
+
+`tools/audit_cards.py` flags 0 of 1025.  The last four: `mailx` and
+`rmail` now get a MAIL directory and show a letter delivered and read;
+`puzzle` (prints nothing at all -- its INDEX entry claimed a rule of plus
+signs, not reproducible on any os9exec back to 2d175af), `splman`, `uulog`
+and `rex` are listed in the tool with their reasons.  Keep it at zero.
+
 
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
 help is only valuable if the help isn't shown some other way, and there is no

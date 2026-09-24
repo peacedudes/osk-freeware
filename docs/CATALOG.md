@@ -1878,7 +1878,7 @@
 | `cyberwar` | &#9733; CyberWar -- a game that needs G-Windows |
 | `dclock` | &#9733; a digital clock for G-Windows<br>`dclock - digital clock for G-windows` |
 | `lfmaker` | makes a G-Windows launch file.  Before anything else it asks its terminal for a G-Windows setstat, so run it on a G-Windows screen; on a terminal without one it is told E$UnkSvc and stops there in silence, with status 208 |
-| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it gets one rule of plus signs out -- the top edge of the tile frame -- and stops.  It is here for a real OS-9 workstation that has G-Windows |
+| `puzzle` | &#9733; sliding-tile puzzle for G-Windows -- it draws through G-Windows, so at a terminal it prints nothing and returns. It is here for a real OS-9 workstation that has G-Windows |
 | `scriptmaster` | &#9733; G-Windows scripting tool |
 
 </details>

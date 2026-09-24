@@ -250,14 +250,24 @@ send    x
 wait    2
 
 shot    mailx
-cap     The mail reader and sender, from the UUCP set.  It goes looking for
-cap     a mailbox directory of its own and names the login name the password
-cap     file gives for the numeric owner -- `su', logged in as the super
-cap     user, which has no mailbox here.  `mail', beside it, keeps its
-cap     mailboxes in the MAIL directory at the root of the disk and works.
+cap     The mail reader and sender from the UUCP set.  It reads MAIL as a
+cap     directory holding one mailbox directory per user -- elm and frm read
+cap     MAIL as the mailbox file itself, which is how SYS/login sets it --
+cap     so here MAIL names a directory and rmail has delivered one letter
+cap     into it.  mailx counts the mail, and Enter shows the first letter.
 try     mailx
+run     rm -rf /dd/tmp/MAILX
+run     mkdir -p /dd/tmp/MAILX/tester
+run     export MAIL=/dd/tmp/MAILX
+run     echo 'Subject: hello' > /dd/tmp/MAILX/letter
+run     echo '' >> /dd/tmp/MAILX/letter
+run     echo 'a line of mail' >> /dd/tmp/MAILX/letter
+run     rmail tester < /dd/tmp/MAILX/letter
+run     clear
 run     mailx
-wait    8
+wait    6
+send    \r
+wait    4
 
 shot    makedb
 cap     Builds smail's path-alias database from a text source, writing two
@@ -380,12 +390,23 @@ run     readmsg 1
 wait    6
 
 shot    rmail
-cap     Delivers incoming mail -- invoked by uuxqt, not typed by hand.
-cap     Local delivery expects a mailbox directory; the one that ships
-cap     is a plain file, so it stops there.
-try     rmail tester
-run     rmail tester
-wait    6
+cap     Delivers incoming mail -- uuxqt runs it, not a person.  Local
+cap     delivery reads MAIL as a directory with one mailbox directory per
+cap     user, and writes each letter there as a file of its own.  SYS/login
+cap     sets MAIL to a mailbox FILE, for elm, so here it names a directory.
+try     rmail tester < letter
+run     rm -rf /dd/tmp/RMAIL
+run     mkdir -p /dd/tmp/RMAIL/tester
+run     export MAIL=/dd/tmp/RMAIL
+run     builtin cd /dd/tmp/RMAIL
+run     echo 'Subject: hello' > letter
+run     echo '' >> letter
+run     echo 'a line of mail' >> letter
+run     clear
+run     rmail tester < letter
+wait    4
+run     ls tester
+wait    3
 
 shot    smail
 cap     The options it lists.

@@ -1,3 +1,3 @@
-$ rmail tester
-rmail: dolocal: can't change to mailbox: /dd/SPOOL/MAIL/tester/tester...error #2
-14
+rmail tester < letter
+$ ls tester
+m201260924134047  mail..list

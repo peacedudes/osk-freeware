@@ -251,6 +251,24 @@ def main(argv):
                        "one -- there is no printer here -- it WAITS to open "
                        "it rather than answering, so the option list is all "
                        "that can safely be shown",
+            "puzzle": "draws through G-Windows and at a terminal prints "
+                      "NOTHING and returns 0 -- measured 2026-09-24 as "
+                      "tester and as the super-user, with and without the "
+                      "tmode reset, on four os9exec builds.  No sample is "
+                      "published; the caption says why",
+            "rex": "one of the OS-9/NET remote tools, shipped for real "
+                   "systems and untested here: each opens a network "
+                   "device like /n0, which os9exec does not provide, so "
+                   "its option list and remdate's `Can't open /n0' are "
+                   "what it can say",
+            "uulog":"prints the UUCP log, and the one entry a fresh disk "
+                     "can make is a delivery `rmail' could not do -- rmail "
+                     "logs failures, not successes (measured 2026-09-24: "
+                     "a delivery that works leaves the log empty).  The "
+                     "error text is the LOG's content, shown by uulog",
+            "splman":"opens a printer on a serial device before anything "
+                      "else and WAITS for one; with none here there is "
+                      "nothing to show, and the caption says so",
             "lpshut": "its card already runs `lpshut' for real and gets "
                       "`lpshut: no spooler active', which is the true state",
             # TRIED TWICE 2026-09-13 and it cannot be carded.  snd_sig wakes a

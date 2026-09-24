@@ -1,3 +1,7 @@
-$ mailx
+>From  Thu, 24 Sep 26 13:40:19 -0500
+Subject: hello
+Status: NEW
 
-mailx: can't change to your mailbox directory: 'tester'...error 214
+a line of mail
+
+mailx>
