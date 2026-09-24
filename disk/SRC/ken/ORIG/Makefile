@@ -1,0 +1,1 @@
+#Makefile for ken#Put in your favourite lex or C compiler hereLEX = lexCC = ccCLIBS = -llCFLAGS = -O -sRM = /bin/rmken:	ken.l	$(LEX) ken.l	$(CC) $(CFLAGS) -o ken lex.yy.c $(CLIBS)	$(RM) -f lex.yy.c

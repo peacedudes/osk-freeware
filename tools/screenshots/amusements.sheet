@@ -330,6 +330,62 @@ try     echo "I am going to the store to buy some food." | drawl
 run     echo "I am going to the store to buy some food." | drawl
 wait    2
 
+shot    biff
+size    24 80
+cap     biff writes like B1FF, the Usenet caricature of an over-excited
+cap     newcomer: all capitals, zeros for o's, and exclamation marks with
+cap     a 1 among them.  Pipe any text through it.
+try     echo "Please mend the computer program, thanks, you are cool" | biff
+run     echo "Please mend the computer program, thanks, you are cool" | biff
+wait    2
+
+shot    discord
+size    24 80
+cap     discord learns which word follows which in the text it is given,
+cap     then writes new paragraphs by following those chains at random.
+cap     Here it has read the disk's own note on ksh.
+try     discord < README-KSH | head -n 20
+run     builtin cd /dd/DOC
+run     clear
+run     discord < README-KSH | head -n 20
+wait    4
+
+shot    ken
+size    24 80
+cap     ken turns English into Cockney, with rhyming slang for the
+cap     computer words.  Pipe any text through it.
+try     echo "What are you doing with my computer and your mother" | ken
+run     echo "What are you doing with my computer and your mother" | ken
+wait    2
+
+shot    ogrify
+size    24 80
+cap     ogrify folds text to lower case, wraps it at 40 columns, and swaps
+cap     words at random for words from the list it is given -- here
+cap     thirty in a hundred, from the list it was posted with.
+try     echo "The quick brown fox jumps over a dog" | ogrify ogre.words -30
+run     builtin cd /dd/DOC/ogrify
+run     clear
+run     echo "The quick brown fox jumps over a dog" | ogrify ogre.words -30
+wait    2
+
+shot    sifi
+size    24 80
+cap     sifi writes the plot of a science-fiction film: who comes to
+cap     Earth, what they want, and how it ends.  The number is how many
+cap     chapters.
+try     sifi -2
+run     sifi -2
+wait    2
+
+shot    taxlaw
+size    24 80
+cap     taxlaw writes imitation tax regulations, section and paragraph
+cap     references included.  The number is how many sentences.
+try     taxlaw 1
+run     taxlaw 1
+wait    2
+
 shot    lame
 size    24 80
 cap     lame rewrites its arguments into IRC "leet-speak" -- o becomes 0 or

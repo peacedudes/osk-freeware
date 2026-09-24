@@ -1139,3 +1139,9 @@ Pnews|rn43|Pnews.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEF
 newsetup|rn43|newsetup.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
 norm.saver|rn43|norm.saver.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
 bru|bru|bru_main.c bru_misc.c bru_file.c bru_backup.c bru_restore.c bru_list.c|||
+ken|ken|lex.yy.c yywrap.c||/dd/LIB/rand.r|
+biff|biff|lex.yy.c yywrap.c||/dd/LIB/rand.r|
+discord|discord|discord.c ../unixlib/strdup.c|-Drandom=rand -Dsrandom=srand|/dd/LIB/rand.r|
+sifi|sifi|sifi.c||/dd/LIB/rand.r|
+ogrify|ogrify|ogrify.c||/dd/LIB/rand.r|
+taxlaw|taxlaw|taxmain.c taxlaw.c index.c wrap.c rnd.c||/dd/LIB/rand.r|

@@ -72,6 +72,7 @@ bcheck 129a9acf434dd876
 bdecode 3d8e88f1697a9b18
 beav 5c4c9333df878ea7
 bibtex 851e0756eed6be3b
+biff 5974699784b4d2fc
 bigsetter a65afaeb5077cfad
 bincheckr 00003df49784821c
 binhex abe31b8b77dfffa3
@@ -217,6 +218,7 @@ dinfo 0051d35cb9088d43
 dir db672f433ae4e3eb
 dirname 234180d3f267aa9f
 disable 392a7269b17d81d7
+discord f46ea2df7741e7a1
 disdvi e1ada0a46a4b8270
 disktest cef9b1c52f746013
 divide 5d42d00640eb98f9
@@ -411,6 +413,7 @@ jumble 398ffe8a8a7e2af7
 jumble2 7f172d3db77300c6
 kalah 51036908cd5f8cab
 keep 5c6b4b40fea22151
+ken da734166418fdff3
 kept ec53bd61950c86f3
 kermit ed49abee7f893498
 kermit2 28b91e5e0320a6d8
@@ -559,6 +562,7 @@ nsort 13434acb0c4303cb
 nsquery 89f8557b48981adf
 number 7b35c5f6ba180f86
 ob68kdemo f3ecd32662b190e2
+ogrify ead302864982a444
 oleo 4ccee3ed8b453f20
 orbit 3699a62f5f60136b
 os9dsk 11679b5b5d0c5d01
@@ -767,6 +771,7 @@ shire 73eb937ead616c9c
 showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
 sieve 066145397b3012fe
+sifi 4faa716b2597847b
 signal dbbf720d268c4eb2
 sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
@@ -819,6 +824,7 @@ tac 6dece2f23a527633
 tail 6ea68bae59eb265a
 tangle 7d4969b60893eedf
 tar f899633bf18895d6
+taxlaw 17e3e54f1c43dc72
 tcmp 762791b8abc9e457
 teachgammon 9f9cf6fe5e075e8f
 telenum 98d176bcd7bd2aae

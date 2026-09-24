@@ -1,0 +1,1 @@
+# Released upon the public domain.CC	= gccOPT	= -O2DEBUG	= -gFNORD	=CFLAGS	= $(OPT) $(DEBUG) $(FNORD)LFLAGS	=discord:	discord.c	$(CC) $(CFLAGS) -o discord discord.c $(LFLAGS)

@@ -1,0 +1,1 @@
+/* flex needs yywrap; ken.l provides its own main. */int yywrap(){    return 1;}

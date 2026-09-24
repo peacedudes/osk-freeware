@@ -1,6 +1,6 @@
 # What is on this disk
 
-1061 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **742 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1067 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **748 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -24,7 +24,7 @@
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
-| [Amusements](#amusements) | 33 | Generators, simulators and diversions that are not quite games. |
+| [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 121 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
@@ -1389,7 +1389,7 @@
 
 *Generators, simulators and diversions that are not quite games.*
 
-<details><summary>33 programs</summary>
+<details><summary>39 programs</summary>
 
 **Biorhythms**
 
@@ -1416,13 +1416,17 @@
 
 | | |
 |---|---|
+| `biff` | rewrites text as B1FF, the Usenet caricature of an over-excited newcomer: capitals, zeros for o's, `C00L!!!', `WAREZ!1!!'. `echo text \| biff'.  Mild swearing comes out stronger |
 | `chef` | talk like the Swedish Chef: a filter that rewrites English into his mock accent -- the->zee, w->v, o->oo -- and barks "Bork Bork Bork!" at each sentence end.  `echo text \| chef` |
+| `discord` | reads text on standard input, learns which word follows which, and writes new paragraphs by walking those chains at random, with the odd `fnord'.  Each paragraph opens with nroff's `.PP' |
 | `drawl` | give text a broad Texan accent: drops the g from -ing and swaps in tuh/thuh.  `echo text \| drawl`, a stdin filter |
 | `fudd` | talk like Elmer Fudd: a filter that turns r and l into w and th into d, so text comes out in his lisp.  `echo text \| fudd` |
+| `ken` | turns English into Cockney, with rhyming slang for the computer words: `computer' becomes `French Tutor', `file' `Royal Mile'.  `echo text \| ken' |
 | `lame` | rewrites its arguments into IRC leet-speak -- o->0, you->U, and->&, i->1 -- the way a lamer types.  `lame your text` |
 | `lotto` | picks lottery numbers after a testimonial and a demand that you believe -- answer y or n; six from 1 to 49 unless -n, -b and -t say otherwise<br>**How:** `lotto' asks whether to hear testimonials, whether you believe and whether you really believe -- answer y or n -- and then draws six numbers from 1 to 49, a second apart. -n, -b and -t change how many and the range; -a sets how many testimonials. End of input quits. |
 | `name` | &#9733; invents pronounceable names for the characters in a tabletop game, as many as you ask for, dealing vowels and consonants in turn with the letter frequencies of a Scrabble set |
 | `newsgen` | &#9733; makes up a news bulletin at random from parts -- a top story of public figures, deeds, places and reactions, then the weather -- different every run<br>`"news" or "news lp"` |
+| `ogrify` | folds text to lower case, wraps it at 40 columns and swaps words at random for words from a list -- five in a hundred, or `-50' for half.  Name the list first: the one it came with is DOC/ogrify/ogre.words<br>`Usage: ogrify [ogre.words] [-p] [-lnnn] [-nnn] [-u] [-n]` |
 | `pig` | turns English into pig latin: every word of two letters or more moves its first letter to the end and adds `a'.  `echo text \| pig'<br>**How:** Pipe English through it: `echo "pig latin" \| pig' prints `igpa atinla'. Each word of two or more letters moves its first letter to the end and adds `a'; one-letter words and punctuation pass unchanged. |
 | `pwgen` | &#9733; pronounceable passwords: `pwgen <length> [how many]'<br>**How:** pwgen <length> [count]: length 4 to 16. It takes a few seconds over each password, so allow for that. |
 | `repunsel` | a pun filter: English comes out full of plants and gardens -- `and I would root' becomes `ANT I WOOD ROOT'.  `echo text \| repunsel'<br>**How:** Pipe English through it: `echo "And I would root" \| repunsel' prints `ANT I WOOD ROOT'. Each word it has a garden pun for -- and, would, not, over, leave, care -- comes out in capitals; the rest passes through. |
@@ -1431,7 +1435,9 @@
 | `rpoem` | &#9733; writes verses at random from a grammar and a word list in GAMES/SNOBOL; a number says how many, thirty without one |
 | `rstory` | a cumulative tale in the shape of The Old Woman and Her Pig, the animal, the obstacle and every helper drawn at random; `rstory \| tformat' sets it justified under a dated heading. Data: GAMES/SNOBOL |
 | `scales` | &#9733; deals scales and chords into a random practice order, a tick-box each, in `scales.lst' in the current directory (or a file you name): -d diatonic scales, -a altered scales, -m modes, -c chords; each entry gives the key signature and the spelling<br>**How:** Pick at least one of -d -a -m -c or it asks what you had in mind; `scales -d -c' writes 195 entries to scales.lst, and a trailing name writes elsewhere. |
+| `sifi` | writes the plot of a science-fiction film -- who comes to Earth, what they want, and how it ends.  `sifi -3' writes three chapters<br>`Science Fiction plot generator` |
 | `spew` | builds mock National Enquirer headlines from a grammar of phrases -- almost a yacc in reverse; `spew 5' makes five |
+| `taxlaw` | writes sentences of imitation tax regulation, section and paragraph references included: `taxlaw 3' writes three<br>`usage: taxlaw [number of sentences]` |
 
 **Simulated weather**
 

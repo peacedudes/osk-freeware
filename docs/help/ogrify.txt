@@ -1,0 +1,8 @@
+$ ogrify -h
+Usage: ogrify [ogre.words] [-p] [-lnnn] [-nnn] [-u] [-n]
+       ogre.words - Ogre words database.
+       -p         - Leave punctuation alone.
+       -lnnn      - Set line width to nnn.
+       -nnn       - Set the Ogre probability to nnn.
+       -u         - Change the characters to upper-case.
+       -n         - Leave punctuation/character-case alone.

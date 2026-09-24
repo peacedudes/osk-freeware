@@ -1,0 +1,1 @@
+/* flex needs yywrap; biff.x provides its own main. */int yywrap(){    return 1;}

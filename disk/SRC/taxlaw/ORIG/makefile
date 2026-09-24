@@ -1,0 +1,1 @@
+CFLAGS=-I.OBJS=\taxmain.o \taxlaw.o \index.o \wrap.o \rnd.otaxlaw:	$(OBJS)	cc -o taxlaw $(OBJS)

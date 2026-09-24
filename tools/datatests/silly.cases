@@ -1,0 +1,58 @@
+# silly -- the 1992 `silly' collection's remaining filters and generators,
+# shipped 2026-09-23.  Each is fed a sentence, or asked for
+# output, and asserted on what it printed.
+
+family  silly
+
+setup   export USER=tester
+setup   W=/dd/tmp/SILLYP
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+case    ken-speaks-cockney
+run     echo "What are you doing with my computer and your mother" | /dd/CMDS/ken
+expect  Wotcher doin' wiv me French Tutor and yer muvver
+
+case    biff-speaks-b1ff
+run     echo "Please mend the computer program, thanks, you are cool" | /dd/CMDS/biff
+expect  PLEEZ MEND THE C-64 WAREZ!1!!, THANX, U R C00L!!!
+
+case    discord-rechains-its-input
+run     echo "alpha beta gamma. alpha beta gamma." | /dd/CMDS/discord
+expect  .PP
+expect  amma.
+absent  delta
+
+case    discord-reads-a-document
+run     /dd/CMDS/discord < /dd/DOC/README-KEEP | /dd/CMDS/grep PP
+expect  .PP
+
+case    sifi-plots-chapters
+run     /dd/CMDS/sifi -3
+expect  The End.
+
+case    sifi-usage
+run     /dd/CMDS/sifi x
+expect  Science Fiction plot generator
+expect  sifi -number_of_chapters
+
+case    taxlaw-writes-sentences
+run     /dd/CMDS/taxlaw 3 > $W/t.out
+run     /dd/CMDS/grep -c "^$" $W/t.out
+expect  3
+
+case    taxlaw-usage
+run     /dd/CMDS/taxlaw
+expect  usage: taxlaw [number of sentences]
+
+case    ogrify-at-zero-only-folds-case
+run     echo "Hello, World. The Quick fox" | /dd/CMDS/ogrify /dd/DOC/ogrify/ogre.words -0
+expect  hello world the quick fox
+
+case    ogrify-at-hundred-replaces-every-word
+run     /dd/CMDS/printf 'zork\n' > $W/one.words
+run     echo "Hello World The Quick fox jumps" | /dd/CMDS/ogrify $W/one.words -100 -u
+expect  ZORK ZORK ZORK
+absent  HELLO
+absent  QUICK
+absent  hello

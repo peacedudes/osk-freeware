@@ -1,0 +1,1 @@
+extern void exit();main(argc, argv)int argc;char *argv[];{int i,j;        if(argc < 2)        {                puts("usage: taxlaw [number of sentences]");                exit(-1);        }        j = atoi(argv[1]);        for(i = 0; i < j;i++)                taxlaw();}

@@ -1,0 +1,21 @@
+discord < README-KSH | head -n 20
+.PP
+Line editor is not a
+count to wait for The
+third, variable assignment and
+ksh does know it is
+exit expreserve' vi's crash recovery
+helper is read waited for
+bytes.
+Path, and
+expansion, PWD, so
+ksh c, line,
+flex', which was checked
+do, so ksh hello
+from ksh is a minimal
+reproduction in do, variable
+assignment and all but three
+ask for one byte read
+interactively both are in assembly, with c, PWD, and all but does
+not a byte read still
+hangs.

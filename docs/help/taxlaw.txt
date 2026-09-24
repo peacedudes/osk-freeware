@@ -1,0 +1,2 @@
+$ taxlaw
+usage: taxlaw [number of sentences]

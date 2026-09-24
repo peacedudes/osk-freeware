@@ -263,6 +263,12 @@ dm|Copyright (c) 1995 Bob Devries. "DiskMaster is SHAREWARE. Please pass it arou
 dotilde|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/dotilde.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1854
 dpark|No copyright or licence statement anywhere in the smallutils package -- its one document, its sources or its binaries.|DOC/smallutils/utils.doc; every file of smallutils.tar.Z (68k archive)
 drawl|None stated; a joke filter, carried as posted.|SOURCES.txt line 1087
+biff|None stated; a joke filter, carried as posted.|SRC/biff/ORIG/biff.x
+discord|Public domain: the Makefile says "Released upon the public domain."|SRC/discord/ORIG/Makefile
+ken|The README: "Make copies if you want etc.etc."|SRC/ken/ORIG/README
+ogrify|None stated; carried as posted.|SRC/ogrify/ORIG/ogrify.c
+sifi|None stated; carried as posted.|SRC/sifi/ORIG/sifi.c
+taxlaw|None stated; carried as posted.|SRC/taxlaw/ORIG
 draw|No copyright or licence statement in SRC/draw or its documentation.|SRC/draw/main.c; SRC/draw/draw.h; SRC/draw/command.c
 dump|No copyright or licence statement in the binary; EFFO PD disk 1 calls it a "slightly improved version of dump". DOC/dump/dump.1 documents a different program, Pavel Curtis's terminfo dump.|EFFO/pd2.lzh member CMDS/dump (identical), contents line 76; DOC/dump/dump.1 lines 1-3
 du|No copyright or licence statement; the source says it is based on Size.C by Avy Moise (1987), modified by Tom Leitner.|SRC/eff_du/du.c lines 1-8

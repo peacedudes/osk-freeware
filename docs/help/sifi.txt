@@ -1,0 +1,3 @@
+$ sifi x
+Science Fiction plot generator
+sifi -number_of_chapters
