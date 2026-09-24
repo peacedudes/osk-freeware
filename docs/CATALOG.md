@@ -119,7 +119,7 @@
 |---|---|
 | `ed` | &#9733; GNU ed 0.2, the line editor.  It keeps its scratch file on /r0, a RAM disk, so mount one (`mount -r=256k /r0'); DOC/README-RUNNING has the details<br>**How:** Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits. |
 | `editor` | a full-screen file picker that hands the file you choose to `umacs': a lettered list of the directory, `+' and `-' to page, `.' to change directory.  Run it bare; given a path on the command line it stops on an illegal instruction. `gshell' and `assembler' are the same menu in front of other programs.<br>**How:** Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu. |
-| `sed` | &#9733; sed, the stream editor: substitutes, deletes and prints, with -n for no default output, -e for a script line and -f for a script file<br>`Syntax   : sed [<opts>] [<file>]` |
+| `sed` | &#9733; sed, the stream editor: substitutes, deletes and prints, with -n for no default output, -e for a script line and -f for a script file.  DOC/sed/sed.man is the manual<br>`Syntax   : sed [<opts>] [<file>]` |
 
 **vi clones**
 
