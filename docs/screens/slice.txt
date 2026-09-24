@@ -1,0 +1,22 @@
+slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
+slice: 14 lines rejected to /nil
+$ ls -l
+total 24064
+-rw-rw-rw-   1 0        0           11332 Aug  3 19:00 README-SHELLS
+-rw-------   1 0        0            8746 Sep 23 21:51 part1
+-rw-------   1 0        0             541 Sep 23 21:51 part2
+-rw-------   1 0        0             599 Sep 23 21:51 part3
+-rw-------   1 0        0             780 Sep 23 21:51 part4
+$ cat part2
+CHOOSING
+--------
+
+  You want a shell to work in                            bash
+  You want $SHELL to name a shell that can parse         ksh
+  You want the smallest real Bourne shell                sh
+  You want a real `chd' that moves the data directory    sh
+  You have no cio and cannot get one                     bash or sh
+  You want a menu for somebody else to use               gshell
+
+  If you take exactly one file: `bash'.  If you take two, `bash' and `ksh',
+  and set SHELL to the ksh -- SYS/login on this disk shows the line.

@@ -83,6 +83,7 @@ gawk|gawk -?|
 expand|expand -?|
 head|head -?|
 split|split -?|
+slice|slice -?|
 sum|none|it takes no options of its own: name the files to sum
 tac|tac -?|
 unexpand|unexpand -?|

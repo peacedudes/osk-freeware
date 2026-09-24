@@ -1,0 +1,3 @@
+$ slice -?
+slice: Unknown flag -?
+Usage: slice [-f filename] [-a|-x] [-i<n>] [-w] [-m|-s|-n<n>] [-r file] [-e expression | expression] [format...]

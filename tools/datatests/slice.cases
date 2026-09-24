@@ -1,0 +1,61 @@
+# slice -- Gary Puckering's file splitter (comp.sources.unix v13i073, 1987),
+# built 2026-09-23 with a re_comp/re_exec shim over os9lib's regexp.
+
+family  slice
+
+setup   /dd/CMDS/rm -rf /dd/tmp/SLC > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/SLC > /nil 2>/nil
+setup   echo "preamble" > /dd/tmp/SLC/in
+setup   echo "== one" >> /dd/tmp/SLC/in
+setup   echo "apple" >> /dd/tmp/SLC/in
+setup   echo "== two" >> /dd/tmp/SLC/in
+setup   echo "banana" >> /dd/tmp/SLC/in
+setup   echo "cherry" >> /dd/tmp/SLC/in
+
+case    slice-splits-at-each-matching-line
+run     cd /dd/tmp/SLC
+run     /dd/CMDS/slice -f in -r rej '^==' part#n; echo "status $?"
+run     /dd/CMDS/cat part1
+run     echo "--"
+run     /dd/CMDS/cat part2
+run     echo "--"
+run     /dd/CMDS/cat rej
+expect  status 0
+expect  == one
+expect  apple
+expect  == two
+expect  cherry
+expect  preamble
+
+case    slice-x-drops-the-cut-line
+run     cd /dd/tmp/SLC
+run     /dd/CMDS/rm -f x1 x2
+run     /dd/CMDS/slice -f in -x '^==' x#n
+run     /dd/CMDS/cat x2
+expect  banana
+absent  == two
+
+# -n is as posted: the first n-1 lines go to the reject file, and every
+# slice after that starts on an n'th line -- here lines 2-3, 4-5 and 6.
+case    slice-every-n-lines-names-them-after-the-input
+run     cd /dd/tmp/SLC
+run     /dd/CMDS/slice -f in -n2
+run     /dd/CMDS/cat in.001
+run     /dd/CMDS/cat in.003
+expect  == one
+expect  apple
+expect  cherry
+expect  1 lines rejected
+
+case    slice-m-files-a-mailbox-by-date
+run     cd /dd/tmp/SLC
+run     echo "From amy Tue Sep 15 15:08:23 EDT 1987" > box
+run     echo "first letter" >> box
+run     echo "From bob Mon Mar 02 09:00:00 EST 1987" >> box
+run     echo "second letter" >> box
+run     /dd/CMDS/slice -f box -m; echo "status $?"
+run     /dd/CMDS/cat box.1987.03.02
+run     /dd/CMDS/cat box.1987.09.15
+expect  status 0
+expect  second letter
+expect  first letter

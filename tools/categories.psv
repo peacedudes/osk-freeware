@@ -709,6 +709,7 @@ dhryshamu2|Developer tools|Benchmarks
 expand|Text tools|Transform & filter
 head|Text tools|Transform & filter
 split|Text tools|Split & join
+slice|Text tools|Split & join
 sum|Text tools|Count & inspect
 tac|Text tools|Transform & filter
 unexpand|Text tools|Transform & filter

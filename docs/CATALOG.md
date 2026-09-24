@@ -1,6 +1,6 @@
 # What is on this disk
 
-1069 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **750 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1070 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **751 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -13,7 +13,7 @@
 |---|--:|---|
 | [Shells](#shells) | 25 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
-| [Text tools](#text-tools) | 138 | Search, sort, compare, reformat, split and spell-check. |
+| [Text tools](#text-tools) | 139 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
@@ -146,7 +146,7 @@
 
 *Search, sort, compare, reformat, split and spell-check.*
 
-<details><summary>138 programs</summary>
+<details><summary>139 programs</summary>
 
 **Alternates**
 
@@ -287,6 +287,7 @@
 | | |
 |---|---|
 | `sepwords` | splits text into one word per line -- the first step towards a word list or an index<br>`Syntax: sepwords [<in_path> [<out_path>]]` |
+| `slice` | splits a file into pieces, at every line matching a pattern or every n lines, into files named by a format: `slice -f notes -x '^--' part#n' writes part1, part2 ... without the cut lines, and -m files a mailbox by the date of each message. DOC/slice/slice.1 is the manual<br>`slice: Unknown flag -?` |
 | `split` | GNU split: cuts a file into pieces of so many lines (-l) or bytes (-b), named after a prefix -- partaa, partab and so on<br>``split: unrecognized option `-?'`` |
 
 **TeX**

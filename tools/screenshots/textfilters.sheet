@@ -524,6 +524,26 @@ run     cat tmp/TEXTA/hol.txt | head -n 3
 wait    4
 snap
 
+shot    slice
+cap     slice cutting a document into one file per section: each line in
+cap     capitals starts a new file, named by the format -- part1, part2
+cap     and on.  The lines before the first heading go to /nil unless
+cap     -r names a file for them.
+try     slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
+run     rm -rf /dd/tmp/SLK > /nil 2>/nil; mkdir -p /dd/tmp/SLK
+run     cp /dd/DOC/README-SHELLS /dd/tmp/SLK
+wait    2
+run     builtin cd /dd/tmp/SLK
+wait    1
+run     clear
+wait    1
+run     slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
+wait    4
+run     ls -l
+wait    2
+run     cat part2
+wait    2
+
 shot    split
 cap     split cuts a file into pieces of a given size -- `-l 10' ten lines
 cap     each -- named partaa, partab and so on after the prefix given.  The
