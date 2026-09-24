@@ -1,0 +1,14 @@
+name    utree
+prog    utree -v 0 /dd/tmp/UTE
+# A tree holding an EMPTY directory.  utree sorted an unallocated list for
+# it and died with a bus error until 2026-09-23 (SRC/utree/list.c, OSK arm).
+setup   /dd/CMDS/rm -rf /dd/tmp/UTE
+setup   /dd/CMDS/mkdir -p /dd/tmp/UTE/full /dd/tmp/UTE/empty
+setup   echo x > /dd/tmp/UTE/full/f
+wait    10
+snap    tree
+expect  dir(s)
+absent  vector=
+key     Q
+wait    2
+key     y
