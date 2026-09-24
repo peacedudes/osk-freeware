@@ -1010,9 +1010,9 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    handler (nothing here can run an X client); less 1.77's 44 sources
    (less 3.32 is what ships); cowen_tools' hex.c and owner1.c; eff_bench's
    btree/ISAM files; hc_utils' other sources (hc_utils is under
-   rdoggett's authorship ruling -- leave it).  Makefile-only gaps in
-   about 28 trees are listed in scratch audit notes and matter only to a
-   rebuild.  `tools/archive_gaps.py` cannot see any of this (its
+   rdoggett's authorship ruling -- leave it).  About 28 trees lack only a
+   makefile or build script for some machine; that matters only to a
+   rebuild, and the list was not kept -- re-run the comparison.  `tools/archive_gaps.py` cannot see any of this (its
    docstring says why); compare a tree with its archive directory.
 
 1b. **(historical) 75 runnable programs under no test.** They are the awkward residue and
