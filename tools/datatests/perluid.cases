@@ -1,0 +1,21 @@
+family  perluid
+# perl's -o and -O asked whether st_uid equals $< -- a 16-bit user number
+# against getuid()'s whole group.user word -- so they were false for every
+# user but the super-user, even on a file the user had just made.  And
+# unix.l's stat had the owner's two bytes the wrong way round: a file owned
+# by 1.7 came back with uid 1 and gid 7.  Runs as tester (1.7).
+setup   /dd/CMDS/rm -rf /dd/tmp/perluid > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/perluid
+
+case    perl-owns-the-file-it-just-made
+run     echo x > /dd/tmp/perluid/mine
+run     /dd/CMDS/perl -e '$f="/dd/tmp/perluid/mine"; print "o=", (-o $f) ? "yes" : "no", " O=", (-O $f) ? "yes" : "no", "\n";'
+expect  o=yes O=yes
+
+case    perl-does-not-own-the-super-users-file
+run     /dd/CMDS/perl -e '$f="/dd/SYS/motd"; print "o=", (-o $f) ? "yes" : "no", "\n";'
+expect  o=no
+
+case    perl-stat-gives-user-then-group
+run     /dd/CMDS/perl -e '@s=stat("/dd/tmp/perluid/mine"); print "uid=$s[4] gid=$s[5]\n";'
+expect  uid=7 gid=1

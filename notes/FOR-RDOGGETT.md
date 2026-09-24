@@ -30,6 +30,15 @@ blocked writer is gone and 119 of 120 cases pass either way.  The one
 thing it changes is a child reading a redirection of path 3 and up
 (`5>file'), which already broke bash's own script.  Recommend: yes.
 
+**47. Two more one-instruction patches of the same kind as 45: logname
+and ELM's filter?**  Both mask getuid() to the user number and then ask a
+getpwuid that compares the whole group.user word, so for anyone outside
+group 0 logname says "no login name" and filter exits silently.
+tools/patch_uid_mask.py fixes both (report-only unless told; checks the
+bytes, recomputes the CRC); cases staged in Scraped/.../staged/uidmask.
+ELM's fastmail and newmail have the same masked call but cannot be shown
+failing here.  Recommend: yes, with 45.
+
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
