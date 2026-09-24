@@ -1,3 +1,21 @@
-rmail: dolocal: can't change to mailbox: /dd/SPOOL/MAIL/tester/tester...error #2
-14
-(Sep 24-01:29:01) tester  (unable to fork RMAIL...error 1)
+fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
+m201260924142417  mail..list
+$ cat tmp/FSMAIL/tester/m2*
+>From FILESERV Thu, 24 Sep 26 14:24:17 -0500
+Received: by milkyway.andromeda.org (RMail OS-9/68K UUCP)
+        id <AA00003@milkyway.andromeda.org>; Thu, 24 Sep 26 14:24:17 -0500
+From: OS-9 FileServer <milkyway.andromeda.org!FILESERV>
+Message-Id: <1260924142417.AA00003@milkyway.andromeda.org>
+Subject: Fileserver unavailable
+Reply-To: nobody@milkyway.andromeda.org
+To: tester
+Date: Thu, 24 Sep 26 14:24:17 -0500
+X-Fileserver: OS-9 FileServ -- Version 2.1 (94Sep30)
+
+Sorry, the fileserver is not available now.
+
+If you have questions about the server or need help, you can send mail to:
+milkyway.andromeda.org!postmaster.
+
+      Sincerely,
+      milkyway!fileserv

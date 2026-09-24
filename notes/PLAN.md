@@ -529,7 +529,7 @@ mode and `elvis_input` does (`tools/playtests/elvis_input.keys`).
 CRC and parity, `module_census` shows the new name, and the renamed probe
 loads and runs by it.
 
-### 1a. Gallery cards that show nothing but a usage line — 19 flagged (2026-09-24)
+### 1a. Gallery cards that show nothing but a usage line — 0 flagged, honestly (2026-09-24)
 
 `tools/audit_cards.py` said 0 of 1025 on 2026-09-24 and was wrong: its
 prompt pattern knew `bash#' and not tester's `bash$', so every capture
@@ -538,8 +538,10 @@ the same day; the honest figure is 19.  Most are for-a-real-system
 entries (a modem, an X server, a /t1 port) whose one line IS the finding
 and want an exception with the reason, and some want a better card.  The
 tool now also names exceptions that no longer apply -- 26 on that day --
-and those come out as their cards are checked.  `mailx' and `rmail' came
-off by being given a MAIL directory.
+and they came out the same day.  Of the 19: `fileserv', like `mailx' and
+`rmail', now delivers its reply into a MAIL directory; the other 18 show
+the one thing they can here and carry their reasons in the tool (`elm' and
+`mw' point at FOR-RDOGGETT 45 and 48).
 
 
 rdoggett, 2026-08-31: *"Sample output that does nothing more than show the

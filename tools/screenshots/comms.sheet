@@ -1630,16 +1630,18 @@ wait    6
 shot    fileserv
 size    24 80
 cap     The UUCP file server, and it needs no remote site: it reads a mail
-cap     message from standard input and obeys the commands in the body --
-cap     `reply <address>', `help', `get <file>', `dir' and `quit'.  Here it
-cap     answers a `help' request from the file that ships for it, builds the
-cap     reply, and hands it to `rmail' to deliver.  rmail wants the mailbox
-cap     to be a directory named for the user and says so; fileserv writes
-cap     that into its own log, which is the second half of the screen.
-try     fileserv <tmp/fsreq; cat LOG/FileServ
+cap     message on standard input and obeys the commands in its body --
+cap     `reply <address>', `help', `get <file>', `dir', `quit' -- sending
+cap     each answer through `rmail'.  Here it answers that the server is
+cap     off: SYS/UUCP/Parameters sets `server' twice, and the second, `no',
+cap     is the one that counts.  rmail wants MAIL to be a directory, one
+cap     mailbox directory per user, so the card gives it one.
+try     fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
 run     builtin cd /dd
-run     mkdir -p /dd/tmp > /nil 2>/nil
 run     rm -f /dd/LOG/FileServ > /nil 2>/nil
+run     rm -rf /dd/tmp/FSMAIL
+run     mkdir -p /dd/tmp/FSMAIL/tester
+run     export MAIL=/dd/tmp/FSMAIL
 run     echo "From tester Mon Sep 21 00:00:00 2026" > /dd/tmp/fsreq
 run     echo "Subject: request" >> /dd/tmp/fsreq
 run     echo "" >> /dd/tmp/fsreq
@@ -1650,8 +1652,10 @@ run     load /dd/CMDS/UUCP/rmail
 wait    2
 run     clear
 wait    1
-run     fileserv <tmp/fsreq; cat LOG/FileServ
+run     fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
 wait    6
+run     cat tmp/FSMAIL/tester/m2*
+wait    3
 snap
 # And put the log back, for the same reason the case in net.cases does:
 # it ships absent, and `driven.cases' asserts that uulog cannot open it.

@@ -221,6 +221,47 @@ def main(argv):
                      "logs failures, not successes (measured 2026-09-24: "
                      "a delivery that works leaves the log empty).  The "
                      "error text is the LOG's content, shown by uulog",
+            # FLAGGED ONCE THE AUDIT COULD READ TESTER'S PROMPT (2026-09-24).
+            # Each capture was read that day.  These show the one thing each
+            # can show here: a device, a display, a network or a second user
+            # this disk does not have, and the caption names it.
+            "elm": "as any user but the super-user it answers `You have no "
+                   "password entry!' -- it compares the password file's user "
+                   "number with getuid()'s whole group.user word.  "
+                   "FOR-RDOGGETT 45 is the one-instruction patch; until "
+                   "that is decided the refusal is the true card",
+            "mw": "`Can't setuid, please check File/Moduleowner!' for anyone "
+                  "but the super-user: its module header names owner 30.95. "
+                  "FOR-RDOGGETT 48 is the header patch",
+            "authwn": "WN's per-request authenticator; inetd and wn run it, "
+                      "and alone it has nothing to authenticate",
+            "inetdc": "what inetd forks per connection; no message strings, "
+                      "and alone nothing to serve",
+            "elvprsv": "elvis runs it when it dies with a file open; by hand "
+                       "there is nothing to preserve",
+            "infoxpress": "opens a serial line and waits for the far end, "
+                          "which no line here provides",
+            "basicwin": "an X11 client, and there is no X server here",
+            "xengine": "an X11 client, and there is no X server here",
+            "x9eyes": "X68000 PW/X window programs; there is no window "
+                      "system here (`/win', PwCreateMap)",
+            "blastem": "XMODEM over a modem path, /t0 by default; there is "
+                       "no serial device here",
+            "xyt": "tterm's batch transfer; it names the MODEM port it "
+                   "needs, and none is set",
+            "vt100": "the MM/1 terminal program; no serial port to open",
+            "disable": "turns a port's monitor off and wants the port's "
+                       "descriptor resident; no /t1 is",
+            "enable": "the other half of `disable', and the same need",
+            "msntp": "SNTP needs a network time server and Microware's "
+                     "`netdb' to look one up; neither is here",
+            "nslookup": "asks a name server, and none answers here",
+            "mesg": "mesg, msg and speak work between users logged in at "
+                    "once and recorded in SYS/utmp by logon; the card has "
+                    "one user",
+            "pdraw": "WRONGLY by the rule: its report of every setting it "
+                     "read -- `Options : Xlabel = X-AXIS' -- matches the "
+                     "usage pattern.  The card shows the plot written",
             "splman":"opens a printer on a serial device before anything "
                       "else and WAITS for one; with none here there is "
                       "nothing to show, and the caption says so",

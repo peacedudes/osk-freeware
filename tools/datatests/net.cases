@@ -178,4 +178,21 @@ run     /dd/CMDS/cat /dd/LOG/FileServ
 run     /dd/CMDS/rm -f /dd/LOG/FileServ
 expect  can't change to mailbox
 expect  unable to fork RMAIL
+
+# GIVE rmail THE MAILBOX DIRECTORY IT WANTS and the reply is delivered: MAIL
+# names a directory holding one directory per user, and each letter lands
+# there as a file of its own.  The reply says the server is off, because
+# the second `server' line above is the one that counts.  Measured
+# 2026-09-24.
+case    fileserv-delivers-its-reply-to-a-mailbox-directory
+run     /dd/CMDS/rm -rf /dd/tmp/FSB > /nil 2>/nil
+run     /dd/CMDS/mkdir -p /dd/tmp/FSB/tester
+run     export HOME=/dd MAIL=/dd/tmp/FSB
+run     /h1/CMDS/load /dd/CMDS/UUCP/rmail
+run     /dd/CMDS/UUCP/fileserv < /dd/tmp/FSA/req
+run     /dd/CMDS/cat /dd/tmp/FSB/tester/m2*
+run     /dd/CMDS/rm -f /dd/LOG/FileServ
+expect  Subject: Fileserver unavailable
+expect  To: tester
+expect  Sorry, the fileserver is not available now.
 absent  cannot spawn process
