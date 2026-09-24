@@ -981,7 +981,9 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    once, and a minimal echo-off cursor-move-then-getchar() probe never
    gets a key at all (its getchar() waits for a whole line, where snake's
    returns per key -- that difference is itself unexplained).  Next: find
-   what makes snake's reads per-key, then hand os9exec a repro.  2026-09-24 took four off: the gcc 1.37 passes run by hand
+   what makes snake's reads per-key, then hand os9exec a repro.
+
+   2026-09-24 took four off: the gcc 1.37 passes run by hand
    (`gcc137.cases'), `timeout' ends the Microware shell that ran it
    (`legacy.cases', with a control), and play-tests for `tplot''s
    dialogue and `wysecrack''s first quip at the minute.  `wysecrack`
@@ -996,6 +998,22 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    FILE, and `SYS/login` sets it their way -- so mailx stops under a login
    session and starts without one.  Its card said the cause was the super
    user having no mailbox; the caption now says what was measured.
+
+1c. **Source trees against their archives** (audit of 2026-09-24, 366
+   trees).  Restored that day: ELM's LIB and OSK/DEFS, and ten trees'
+   worth of files their own makefiles name (SOURCES.txt, "RESTORED
+   2026-09-24"); eset.c and pri.p.  Deliberately NOT taken, with reasons
+   in SOURCES: rna/lib's three System V libc files, forum7's rand.c
+   (8-bit German text), trap's tstart.a (adapted from Microware's manual).
+   Left as scope questions, none needed to rebuild anything that ships:
+   the X11R6 link libraries and 2.4 MB of headers for the X11R6shl trap
+   handler (nothing here can run an X client); less 1.77's 44 sources
+   (less 3.32 is what ships); cowen_tools' hex.c and owner1.c; eff_bench's
+   btree/ISAM files; hc_utils' other sources (hc_utils is under
+   rdoggett's authorship ruling -- leave it).  Makefile-only gaps in
+   about 28 trees are listed in scratch audit notes and matter only to a
+   rebuild.  `tools/archive_gaps.py` cannot see any of this (its
+   docstring says why); compare a tree with its archive directory.
 
 1b. **(historical) 75 runnable programs under no test.** They are the awkward residue and
    they divide into three kinds -- wrong invocation, ends-the-session, and
