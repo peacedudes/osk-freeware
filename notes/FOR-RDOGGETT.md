@@ -1,7 +1,8 @@
 # For rdoggett
 
 Open questions only, two sentences each. Ask and I will explain any of them;
-the detail lives in `notes/START-HERE-NEXT-SESSION.md` under the same number.
+the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
+the same number; 45-48 each have a staged tool that says what it does.
 Updated 2026-09-24 (early morning).
 
 ## Needs you

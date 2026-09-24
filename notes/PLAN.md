@@ -717,7 +717,7 @@ of the three failed: iprocs caught the daemon still in START. The name
 being in the process table is the assertion that cannot race.
 
 **The 45 left are the hard residue and they are sorted in
-`notes/START-HERE-NEXT-SESSION.md`** — full-screen programs that belong on a
+`notes/HISTORY-2026-09.md`** — full-screen programs that belong on a
 card, programs that end the emulator session, programs wanting hardware or a
 peer that is not here, and two blocked by the stopped clock. Ten names came
 off that list on 2026-09-01/02 and **every one of them had a wrong invocation
@@ -834,9 +834,12 @@ the stale-capture check now described in the handoff.
 
 ### 5. Housekeeping
 
-- `notes/` is 7300 lines across 42 files. It was pruned once, at rdoggett's
-  request, and has grown back. A finding belongs in the file it belongs to —
-  the handoff, `DOC/STATUS`, `COMPILE-AUDIT.md` — not in a new dated file.
+- `notes/` was 7300 lines across 42 files, and 16,000 across 30 by
+  2026-09-24, when the 5,600-line handoff went whole into
+  `HISTORY-2026-09.md` and a one-page handoff replaced it.  It was pruned
+  once before, at rdoggett's request.  A finding belongs in the file it
+  belongs to -- `DOC/STATUS`, `COMPILE-AUDIT.md`, this plan -- not in a new
+  dated file, and a finished session's narrative goes to the history file.
 - Older prose in `DOC/STATUS` and `DOC/INDEX` still shouts in places. Fix it
   where you are editing anyway; do not do a sweep, an automated pass was
   tried and lower-cased filenames and table labels.
@@ -981,7 +984,7 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 1b. **(historical) 75 runnable programs under no test.** They are the awkward residue and
    they divide into three kinds -- wrong invocation, ends-the-session, and
-   wants-hardware -- which `notes/START-HERE-NEXT-SESSION.md` lists. Decide
+   wants-hardware -- which `notes/HISTORY-2026-09.md` lists. Decide
    which one you have before spending time on it.
 
    **The three hazards this pass found are worth more than any of the
@@ -1025,7 +1028,7 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    services (an X server, a modem, `/t1`, `/r0`, a mailbox, a socket,
    `/etc/utmp`), 11 are programs that genuinely say nothing when run
    alone, and 4 are a tail where a better card is possible.
-   `notes/START-HERE-NEXT-SESSION.md` lists them by family. Before
+   `notes/HISTORY-2026-09.md` lists them by family. Before
    quoting any of this, run the tool: written from memory it came out
    with two wrong names and sixteen entries for fifteen slots.
 3. **The family chooser documents.** `DOC/README-SHELLS` was written this
