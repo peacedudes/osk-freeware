@@ -645,6 +645,10 @@ on without installing anything -- **and that is the case.** Seven of them:
 VI, SHELLS, ARCHIVERS, KERMIT, EDITORS, GREP, DVI, beside NETPBM and
 METAFONT.
 
+`DOC/README-GCC` became a four-way chooser on 2026-09-24, when GCC137 and
+GCC272 arrived with their source: a table of version, size, source and
+module needs, and which to take.  When a family grows, its chooser has to.
+
 Everything you need is derivable without running them: size, whether it needs
 `cio` (the star in `DOC/INDEX`), module name (collisions), source present
 (`tools/src_census.py`), documentation present (`tools/doc_census.py`), and
