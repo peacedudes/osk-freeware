@@ -1,0 +1,1 @@
+Boa writes access_log and error_log here.  The directory must existand be writable, or boa stops at start-up with "Could not openerror log".

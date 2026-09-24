@@ -1,0 +1,58 @@
+family  boa
+# BOA IS A WEB SERVER THAT LISTENS ON A PORT OF ITS OWN -- where `wn' is
+# handed one request on standard input by an inetd.  So these cases start
+# it in the background, send it a request over TCP, and read what it wrote
+# in its access log: `ttcp -t' sends standard input to a port and prints
+# nothing of the reply, and the log line is boa's own account of the
+# answer -- the status and the byte count.
+#
+# The server root is a work directory of its own, with its own boa.conf on
+# a port nothing else here uses, so the shipped one on 8080 is untouched.
+# `-c' names a server root; boa wants CONF/boa.conf and CONF/mime.types
+# under it, and a logs directory it can write.
+#
+# THE SERVER IS STARTED AND STOPPED FROM ONE ksh, NOT FROM THIS bash:
+# the disk's bash reports $! as 0 for a background job, so `kill $!' there
+# signals the script's own process group and takes the session down with
+# `got errno 201 while waiting for 1'.  ksh's $! is the real process id,
+# and boa answers SIGTERM by finishing its requests and exiting 15.  ksh's
+# `wait' after that never returns, so there is none.
+#
+# Needs an os9exec whose SS_Ready answers for a LISTENING socket with a
+# connection waiting: boa's select() polls exactly that, as the port's
+# readme says Microware's ISP required.
+setup   W=/dd/tmp/BOAT
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W/CONF $W/logs $W/html > /nil 2>/nil
+setup   /dd/CMDS/cp /dd/c/unid/boa/osk/CONF/mime.types $W/CONF/mime.types
+setup   echo "Port 28081" > $W/CONF/boa.conf
+setup   echo "User 0" >> $W/CONF/boa.conf
+setup   echo "Group 0" >> $W/CONF/boa.conf
+setup   echo "ServerName localhost" >> $W/CONF/boa.conf
+setup   echo "ErrorLog logs/error_log" >> $W/CONF/boa.conf
+setup   echo "AccessLog logs/access_log" >> $W/CONF/boa.conf
+setup   echo "DocumentRoot /dd/c/unid/boa/osk/HTML" >> $W/CONF/boa.conf
+setup   echo "DirectoryIndex index.html" >> $W/CONF/boa.conf
+setup   echo "DirectoryCache /dd/tmp" >> $W/CONF/boa.conf
+setup   echo "DefaultType text/plain" >> $W/CONF/boa.conf
+setup   echo "AddType application/x-httpd-cgi cgi" >> $W/CONF/boa.conf
+setup   echo "ScriptAlias /cgi-bin/ /dd/c/unid/wn_1.14.3/osk/EXAMPLES/" >> $W/CONF/boa.conf
+setup   SHELL=/dd/CMDS/ksh
+
+case    boa-serves-a-page-and-runs-a-cgi-over-tcp
+run     echo "GET /index.html HTTP/1.0" > $W/r1.cr
+run     echo "" >> $W/r1.cr
+run     /dd/CMDS/autolf -c -C -L < $W/r1.cr > $W/r1.crlf
+run     echo "GET /cgi-bin/doform.cgi?pizza=anchovies HTTP/1.0" > $W/r2.cr
+run     echo "" >> $W/r2.cr
+run     /dd/CMDS/autolf -c -C -L < $W/r2.cr > $W/r2.crlf
+run     echo "GET /nosuch.html HTTP/1.0" > $W/r3.cr
+run     echo "" >> $W/r3.cr
+run     /dd/CMDS/autolf -c -C -L < $W/r3.cr > $W/r3.crlf
+run     /dd/CMDS/ksh -c "/dd/CMDS/NETWORK/boa -c $W & P=\$!; for r in r1 r2 r3; do /dd/CMDS/NETWORK/ttcp -t -p28081 127.0.0.1 < $W/\$r.crlf > /nil 2>&1; done; kill \$P"
+run     /dd/CMDS/cat $W/logs/error_log
+run     /dd/CMDS/cat $W/logs/access_log
+expect  boa: starting server
+expect  "GET /index.html HTTP/1.0" 200
+expect  "GET /cgi-bin/doform.cgi?pizza=anchovies HTTP/1.0" 200
+expect  "GET /nosuch.html HTTP/1.0" 404

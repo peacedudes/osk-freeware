@@ -1394,6 +1394,28 @@ try     msntp 127.0.0.1
 run     msntp 127.0.0.1
 wait    6
 
+shot    boa
+cap     Boa serving a page: started in the background on port 8080, sent
+cap     one request with ttcp (it carries what it reads to a port), and its
+cap     access log shows the answer -- 200 and the size.  A browser pointed
+cap     at the port gets the same page.
+try     boa -c . &
+run     rm -rf /dd/tmp/BOAK > /nil 2>/nil; mkdir -p /dd/tmp/BOAK/CONF /dd/tmp/BOAK/logs
+run     cp /dd/c/unid/boa/osk/CONF/boa.conf /dd/c/unid/boa/osk/CONF/mime.types /dd/tmp/BOAK/CONF
+run     echo "GET /index.html HTTP/1.0" > /dd/tmp/BOAK/r.cr; echo "" >> /dd/tmp/BOAK/r.cr
+run     autolf -c -C -L < /dd/tmp/BOAK/r.cr > /dd/tmp/BOAK/get.req
+wait    2
+run     builtin cd /dd/tmp/BOAK
+wait    1
+run     clear
+wait    1
+run     boa -c . &
+wait    3
+run     ttcp -t -p8080 127.0.0.1 < get.req > /nil
+wait    3
+run     cat logs/access_log
+wait    2
+
 shot    ttcp
 cap     Times a transfer between two machines -- here one machine and
 cap     itself: `ttcp -r -s' waits in the background, `ttcp -t -s' sends it

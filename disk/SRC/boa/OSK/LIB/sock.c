@@ -1,0 +1,1 @@
+#include <types.h>#include <sgstat.h>/*	flag = 1 : SET NOBLOCK   	flag = 0 : SET BLOCK*/   int _skt_noblock(int fd, int flag){	struct sgbuf buf;	if(_gs_opt(fd, &buf) == -1)		return -1;	buf.sg_noblock = flag;	if(_ss_opt(fd, &buf) == -1)		return -1;}

@@ -1,0 +1,1 @@
+host - - [01/Apr/1997:15:39:30 +0600] "GET /docs/ HTTP/1.0" 200 2933 "" "miniGet (tiny HTTP client) v1.0"

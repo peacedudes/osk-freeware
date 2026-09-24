@@ -915,6 +915,7 @@ msntp|Communications|TCP/IP
 net|Communications|TCP/IP
 osknet|Communications|TCP/IP
 ttcp|Communications|TCP/IP
+boa|Communications|TCP/IP
 nslookup|Communications|TCP/IP
 nsquery|Communications|TCP/IP
 argproc_demo|System & modules|Utilities

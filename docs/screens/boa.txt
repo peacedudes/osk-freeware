@@ -1,0 +1,16 @@
+boa -c . &
+<3>
+boa: Warning, the server_root directory specified on the command line,
+$ ., is relative. CGI programs expect the environment
+variable SERVER_ROOT to be an absolute path.
+Setting SERVER_ROOT to /dd/tmp/BOAK to conform.
+ttcp -t -p8080 127.0.0.1 < get.req > /nil
+ttcp-t: nbuf=1024, buflen=1024, port=8080
+ttcp-t: socket
+ttcp-t: connect
+ttcp-t: 0.01 CPU secs in 0.01 elapsed secs (100%)
+ttcp-t: 28 bytes processed
+ttcp-t:      0.01 CPU sec  =   2.73438 KB/cpu sec,     21.875 Kbits/cpu sec
+ttcp-t:      0.01 real sec =   2.73438 KB/real sec,    21.875 Kbits/sec
+$ cat logs/access_log
+127.0.0.1 - - [23/Sep/2026:23:08:37] "GET /index.html HTTP/1.0" 200 247

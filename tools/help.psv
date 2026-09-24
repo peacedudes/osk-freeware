@@ -183,6 +183,7 @@ net|none|it takes the name of a startup file and no options; `help' at its `net>
 osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
 msntp|none|it takes the address of a time server and no help flag
 ttcp|ttcp|
+boa|none|it takes -c <server root> and nothing else; started bare it serves c/unid/boa/osk on port 8080
 nslookup|none|it takes a host name or runs its own prompt; its `help' command wants a file at a Unix path, and DOC/bind/nslookup.help is that file
 nsquery|nsquery|
 UAC_view|UAC_view -?|

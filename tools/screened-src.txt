@@ -140,3 +140,13 @@ disk/SRC/gcc142/va_osk.h
 # sys/types.h.  The overlap is with those same BSD macros, not with any
 # Microware text; 1,032 bytes, no notice.
 disk/SRC/bind/RES/ntypes.h
+# PTXM, "Copyright (c) 1995 Nick Holgate ... courtesyware, it is entirly
+# free" -- it names system globals because it is a P2 module, not because it
+# is Microware's.  The other three are boa's porter's compatibility headers:
+# a community pwd.h (os9lib's, build overlay only; not in the pristine SDK),
+# GNU getopt.h (FSF, GPL), and "stat.h for OSK : 89/04/10 by A.Seyama" with
+# R. Wilcke's 1994 changes.  Screened 2026-09-23.
+disk/SRC/boa/OSK/ADDONS/ptxm.c
+disk/SRC/boa/OSK/DEFS/pwd.h
+disk/SRC/boa/OSK/DEFS/getopt.h
+disk/SRC/boa/OSK/DEFS/SYS/stat.h

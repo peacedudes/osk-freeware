@@ -1,0 +1,1 @@
+CC = uccDEBUG = #-gCFLAGS = $(DEBUG) -v=../DEFS -v=/h0/isp/defs #-DUSE_EVENTRFLAGS = -qRDIR  = RELSODIR = ..OBJS =  getopt.r  stat.r  dup2.r sock.r pw.r\        string.r exec.r select.r getcwd.r unix.rOBJS2 = os9: $(OBJS) $(OBJS2)         chd $(RDIR); libgen $(OBJS) -c -o=$(ODIR)/os9.l

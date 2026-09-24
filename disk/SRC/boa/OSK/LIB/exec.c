@@ -1,0 +1,1 @@
+/* It's simple */extern os9exec(), os9forkc();int execve(char *prog, char **argv, char **envp){		/* os9exec always searches PATH */	return os9exec(os9forkc, prog, argv, envp, 0, 0, 3 );}

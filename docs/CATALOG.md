@@ -1,6 +1,6 @@
 # What is on this disk
 
-1074 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **755 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1075 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **755 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -20,7 +20,7 @@
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 115 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 116 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
@@ -791,7 +791,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>114 programs</summary>
+<details><summary>115 programs</summary>
 
 **File transfer**
 
@@ -883,6 +883,7 @@
 
 | | |
 |---|---|
+| `boa` | &#9733; Boa 0.92, a small web server that listens on a port of its own: `boa &' serves c/unid/boa/osk/HTML on port 8080 and runs what is under /cgi-bin/ as CGI (WN's examples here); `boa -c <dir>' takes another root with its own CONF and logs.  Each request is logged in logs/access_log |
 | `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
 | `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With no server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach, and it loads Microware's `netdb' module to look an address up, even a dotted number -- your own networking supplies it<br>**How:** Sets the clock from a network time server. |

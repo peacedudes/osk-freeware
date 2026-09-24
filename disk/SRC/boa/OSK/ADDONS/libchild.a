@@ -1,0 +1,1 @@
+        psect libchild,0,0,0,0,0_sigchild:               move.l d1,d2               move.l d0,d1               move.l #F$UAcct,d0               OS9 F$UAcct               bcs chlderr               move.l #0,d0               rtschlderr:   	   move.l d1,d0               rts        ends
