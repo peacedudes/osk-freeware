@@ -237,12 +237,15 @@ expect  No Wisecracks coming
 # full suite ask still ran before wisecrack had made its pipe; measured that
 # day it took anywhere from 1 to 11 tries of ask, and `ls /pipe/txtpipe' is
 # no guide (it failed 20 times in a run where ask then succeeded).  So ask
-# is simply asked again, up to 30 times, and only its last answer counts.
+# is simply asked again, and only its last answer counts.  It was up to 30
+# times until the full suite of 2026-09-24 failed once on 30 refusals; 33
+# runs of the case on its own could not repeat that, so the limit is 200
+# -- an allowance for a slow start, not a change to what is asserted.
 # `kill $!' ends the server: left running, it held the session open until
 # the harness's 300-second timeout, on every run of this family.
 case    wisecrack-and-ask-work-as-a-pair
 run     /dd/CMDS/GAMES/wisecrack &
-run     for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30; do /dd/CMDS/ask "and now" > /dd/tmp/ask.out 2>&1; /dd/CMDS/grep "No Wisecracks coming" /dd/tmp/ask.out > /nil || break; done
+run     n=0; while [ $n -lt 200 ]; do n=$((n+1)); /dd/CMDS/ask "and now" > /dd/tmp/ask.out 2>&1; /dd/CMDS/grep "No Wisecracks coming" /dd/tmp/ask.out > /nil || break; done
 run     /dd/CMDS/cat /dd/tmp/ask.out
 run     /dd/CMDS/grep "[A-Z][A-Z]" /dd/tmp/ask.out > /nil && echo "ask was answered"
 run     kill $!
