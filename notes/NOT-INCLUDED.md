@@ -116,6 +116,17 @@ or driver support -- confirmed with its session). The silly collection's
 `newspeak`, `rock`/`madrock.sp`, `belief`, `funky`, `jroff` and `biffa` stay
 out on content (named real people mocked, slurs); six others shipped.
 
+Also re-read against the libraries as they stand, and still holding: `spiro`
+(plot(3X)), `ufo` (ualarm/ftime), `rise_set` (ftime, one hard-coded
+observer), `molecule` (frame-buffer library), `marquis` (terminal status line),
+`dialog` (no ACS_ or colour in any curses here), `vcron` (multi-user daemon),
+`unTC` (no TC archive anywhere), `SmallTeX` (needs `pfont`), `ocompress`
+(duplicate of compress). `rdate` (Klebsch 1995, GPL) is source only and its
+RFC 868 time service still answers, but it needs ISP 1.x's INET/netdb.h, which
+this SDK copy lacks (only the later SPF tree has a netdb.h). `slice` may be
+buildable now: gcc's libgpp carries GNU regex with `re_comp`/`re_exec` --
+untried.
+
 ## Images deliberately not shipped
 
 `jessica1.gif` and `school46.gif` came as test material with `mgif`. They look
