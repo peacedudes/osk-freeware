@@ -972,7 +972,16 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
    right), termlib's and curses.l's tputs, and an _UNBUF stdout: each keeps
    the ESC in place on a pty.  What snake has that they lack is its
    getchar()-driven loop with only echo turned off; start there), and
-   none else.  2026-09-24 took four off: the gcc 1.37 passes run by hand
+   none else.  2026-09-24, measured: NOT tcapbuf[128] overflowing (a
+   1024-byte build is as bad); the recipe build reproduces it as the
+   archive binary does; the raw bytes show ONE ESC held back until the
+   next ESC arrives -- `S\n[3;62H\e\e[C' where `S\e[3;62H\e[C' was
+   written -- which points at the output path, not the program.  Two
+   routes to a repro failed: with stdout sent to a file snake exits at
+   once, and a minimal echo-off cursor-move-then-getchar() probe never
+   gets a key at all (its getchar() waits for a whole line, where snake's
+   returns per key -- that difference is itself unexplained).  Next: find
+   what makes snake's reads per-key, then hand os9exec a repro.  2026-09-24 took four off: the gcc 1.37 passes run by hand
    (`gcc137.cases'), `timeout' ends the Microware shell that ran it
    (`legacy.cases', with a control), and play-tests for `tplot''s
    dialogue and `wysecrack''s first quip at the minute.  `wysecrack`
