@@ -105,7 +105,7 @@ run     echo "A posted article" >> $W/post.txt
 run     echo "" >> $W/post.txt
 run     echo "wrong" >> $W/post.txt
 run     /dd/CMDS/UUCP/postnews < $W/post.txt
-expect  From: su@milkyway.andromeda.org
+expect  From: tester@milkyway.andromeda.org
 expect  Message-ID: <
 expect  Invalid -- valid values for "Distribution" are:
 expect  world

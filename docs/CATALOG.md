@@ -65,7 +65,7 @@
 |---|---|
 | `env` | &#9733; GNU env: runs a command with variables added to its environment, `env FOO=bar printenv'<br>`Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]` |
 | `expr` | &#9733; GNU expr: evaluates an expression for a script -- arithmetic, comparisons, string length and matching |
-| `logname` | &#9733; prints the login name the password file gives for the number your process actually runs as -- which is not necessarily $USER: logged in here it answers `su' where $USER says `tester'. GNU's<br>`Usage: logname [OPTION]...` |
+| `logname` | &#9733; prints the login name the password file gives for the number your process actually runs as -- which is not necessarily $USER: as the super-user it answers `su'.  It finds only group 0's names, so an ordinary user such as tester gets `logname: no login name' where whoami names them. GNU's<br>`Usage: logname [OPTION]...` |
 | `su` | &#9733; GNU su: become another user; its options are under `su --help' Shares its name with a utility of your own -- README-NAMES<br>`Usage: su [OPTION]... [-] [USER [ARG]...]` |
 | `whoami` | &#9733; prints who you are running as, the same answer `logname' gives and for the same reason: it reads the process's owner number and looks it up, where $USER is only what the environment was told. GNU's, and the same as `id -un'<br>`Usage: whoami [OPTION]...` |
 

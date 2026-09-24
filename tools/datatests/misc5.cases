@@ -34,11 +34,6 @@ expect  7+0 records out
 expect  40 /dd/tmp/MS5/dd.out
 expect  7 /dd/tmp/MS5/dd7.out
 
-case    ssl-shows-a-files-segment-list
-run     /dd/CMDS/ssl $W/plain.txt
-expect  File descriptor sector /dd/tmp/MS5/plain.txt:
-expect   Seg#     start    lenght
-
 case    compr-compresses-a-file-to-a-dot-Z
 run     /dd/CMDS/rm -f $W/plain.txt.Z > /nil 2>/nil
 run     /dd/CMDS/compr $W/plain.txt

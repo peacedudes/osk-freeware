@@ -11,13 +11,14 @@ setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
 
 # tty and whoami are one line each, and the pair says who and where you
-# are: `su' because a bare session is group 0, `term' because that is the
+# are: `tester' because the harness runs as tester (whoami looks the
+# process's owner number up in SYS/password), `term' because that is the
 # only device os9exec presents.
 case    tty-and-whoami-report-the-terminal-and-the-user
 run     /dd/CMDS/tty
 run     /dd/CMDS/whoami
 expect  term
-expect  su
+expect  tester
 case    vlen-builds-a-variable-length-record-store-and-reports-its-mapper
 run     /dd/CMDS/rm -f /dd/test.mp /dd/test.st > /nil 2>/nil
 run     /dd/CMDS/vlen < /nil
@@ -45,12 +46,6 @@ expect  Advanced HELP system for OS-9 68k, (c) 1989 by Lukas Zeller
 expect   - Type "?" at any prompt to get a list of available topics
 expect   bm             dinfo          effo           help           indent
 expect  Topic ?
-
-case    uuclean-explains-how-it-ages-the-spool
-run     /dd/CMDS/UUCP/uuclean -?
-expect  uuclean: removed old UUCP files, rotate UUCP and FileServ log files
-expect          -nX     Remove those files over X days old (default is 7)
-expect          -x      Set debug option on (files are not touched)
 
 case    ispell-lists-its-options-and-names-the-personal-dictionary
 run     /dd/CMDS/ispell

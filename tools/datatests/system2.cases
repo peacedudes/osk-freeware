@@ -32,11 +32,6 @@ expect  number of characters per line
 expect  Function:  starts Printerspooler
 expect  The submit file must have the suffix .sub
 
-case    the-uucp-adduser-can-remove-as-well-as-add
-run     /dd/CMDS/UUCP/adduser -?
-expect  ADDUSER: add a user to or remove a user from the system
-expect  adduser -r <username>
-
 # suse's own entry says it prints nothing for anything. Asserted by measuring
 # the bytes rather than by looking at a screen, because "it printed nothing"
 # and "the capture was lost" look identical otherwise.
@@ -47,12 +42,12 @@ run     /dd/CMDS/wc -c /dd/tmp/su1 /dd/tmp/su2
 expect  0 /dd/tmp/su1
 expect  0 /dd/tmp/su2
 
-case    ptxminst-and-bootlogger-are-silent-too
+# bootlogger's silence is the super-user's: to anyone else it answers
+# `BOOTLOGGER can be run only by the SYSTEM !', so it is in superuser.cases.
+case    ptxminst-is-silent-too
 run     /dd/CMDS/ptxminst > /dd/tmp/pt1 2>&1
-run     /dd/CMDS/bootlogger -? > /dd/tmp/pt2 2>&1
-run     /dd/CMDS/wc -c /dd/tmp/pt1 /dd/tmp/pt2
+run     /dd/CMDS/wc -c /dd/tmp/pt1
 expect  0 /dd/tmp/pt1
-expect  0 /dd/tmp/pt2
 
 # lfmaker: silent bare, and a refused allocation the moment it is given an
 # argument. It carries NO trap-13 stubs at all, so this is NOT the cio

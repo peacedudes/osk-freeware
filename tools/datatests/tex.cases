@@ -60,6 +60,8 @@ expect  l.10 \documentstyle
 # and the failure finally names itself. Both halves are asserted: a case that
 # only tested the loud form would pass while the quiet one went unnoticed.
 case    the-tex-wrapper-is-silent-with-no-SHELL-set
+# su exports SHELL, so the case takes it away; the next case sets it again.
+run     unset SHELL
 run     $T/tex $S/SAMPLES/story.tex > /dd/tmp/w.out 2>/dd/tmp/w.err
 run     /dd/CMDS/wc -c /dd/tmp/w.out /dd/tmp/w.err
 expect  0 /dd/tmp/w.out

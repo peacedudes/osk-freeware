@@ -33,7 +33,9 @@ expect  Error: Directory /usr/spool/mail not found
 expect  Sorry, Chapter 2 will help you set up correctly.
 
 case    atp-wants-a-configuration-file-and-says-which
-run     /dd/CMDS/NETWORK/atp < /nil
+# HOME IS NAMED because atp looks for $HOME/atprc and su sets HOME to the
+# user's own directory, /dd/USR/TESTER.
+run     HOME=/dd /dd/CMDS/NETWORK/atp < /nil
 expect  Reading Configuration file...
 expect  Unable to open configuration file /dd/atprc or .atprc !
 

@@ -95,7 +95,7 @@ bru|the super-user: anyone else is refused with status 214|SRC/bru/README.OSK
 drawpoker|less, in the execution directory or resident, to page the rules it offers first|SRC/poker/README.OSK
 boa|a TCP/IP stack with its /socket device -- Microware ISP or SPF on a real system; os9exec from e2c7f7b on|SRC/boa/README.OSK; SOURCES.txt
 chown|the super-user: only 0.0 may give a file to another owner|OS-9's RBF rule; its card is shot as su (2026-09-23)
-adduser|the super-user, to write SYS/password|its card is shot as su (2026-09-23)
+adduser|the super-user, to write SYS/password|its card is shot as su (2026-09-23); SRC/uucpbb/adduser.c: "Sorry, only the Superuser can use this utility!"; tools/datatests/superuser.cases
 setime|the super-user, to set the system clock|its card is shot as su (2026-09-23)
 setime2|the super-user, to set the system clock|its card is shot as su (2026-09-23)
 setimex|the super-user, to set the system clock|its card is shot as su (2026-09-23)
@@ -129,3 +129,9 @@ uid|SYS/password; SYS/group for group names; a login in SYS/utmp to answer with 
 mwb|a manual directory, USR/DOC/.MAN on /h0|mwb -?; the binary
 loadmem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester
 savemem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester
+ssl|the super-user: it reads the file descriptor sector off the raw disk, and refuses anyone else|SRC/effo_wolk/ssl.c: "Sie sind doch nicht der Superuser - ooooder ?"; tools/datatests/superuser.cases
+uuclean|the super-user|SRC/uucpbb/uuclean.c: "you are not the superuser!"; tools/datatests/superuser.cases
+expire|the super-user|SRC/uucpbb/expire.c: "you are not the superuser!"; tools/datatests/superuser.cases
+rnews|the super-user (UUCP/rnews; MNEWS/rnews is another program)|SRC/uucpbb/rnews.c: "Must be root"; tools/datatests/superuser.cases
+rendsk|the super-user|SRC/eff_rendsk/rendsk.c: "allowed for superuser only!"; tools/datatests/superuser.cases
+bootlogger|the super-user|measured 2026-09-24 as tester: "BOOTLOGGER can be run only by the SYSTEM !"; tools/datatests/superuser.cases

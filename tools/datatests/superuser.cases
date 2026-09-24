@@ -73,3 +73,78 @@ expect  Initializing master data base...
 expect  MASTER
 expect  No News (is good news)
 absent  can't execute
+
+# --- moved from the tester families on 2026-09-24 ------------------------
+# Each of these REFUSES anyone but the super-user, in its own words, before
+# doing anything at all -- measured as tester, the message is quoted.
+
+# ssl reads a file's descriptor sector off the raw device.  As tester:
+# `Sie sind doch nicht der Superuser - ooooder ?'  (from misc5)
+# It finds the file BY NAME IN THE DATA DIRECTORY -- its own header says the
+# file must be in the current directory -- so it is run there; given a path
+# it printed the headings over sector 0 and an empty list.
+case    ssl-shows-a-files-segment-list
+run     /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/ssl plain.txt"
+expect  File descriptor sector plain.txt:
+expect   Seg#     start    lenght
+
+# As tester: `uuclean: you are not the superuser!'  (from misc6)
+case    uuclean-explains-how-it-ages-the-spool
+run     /dd/CMDS/UUCP/uuclean -?
+expect  uuclean: removed old UUCP files, rotate UUCP and FileServ log files
+expect          -nX     Remove those files over X days old (default is 7)
+expect          -x      Set debug option on (files are not touched)
+
+# As tester: `expire: you are not the superuser!'  (from news)
+case    expire-explains-itself-when-given-an-illegal-option
+run     /dd/CMDS/UUCP/expire -?
+expect  expire: illegal option -- ?
+expect  news article expire utility
+expect  -e<days>   expire articles older than specified number of days
+expect  expires all articles older than 14 days
+
+# As tester: `Must be root'.  (from news)
+case    rnews-files-a-batched-article-under-its-newsgroup
+# rnews numbers articles from SYS/UUCP/active and writes the new high
+# water mark back, so the case keeps a copy of active and puts it back:
+# a second run would otherwise file a2, a3 ...
+run     /dd/CMDS/cp /dd/SYS/UUCP/active $W/active.save
+run     /dd/CMDS/rm -rf /dd/SPOOL/news/COMP $W/rn > /nil 2>/nil
+run     /dd/CMDS/mkdir -p $W/rn
+run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: rnews case\r\rhello there\r' > $W/rn/art.txt
+run     LEN=$(/dd/CMDS/cat $W/rn/art.txt | /dd/CMDS/wc -c)
+run     /dd/CMDS/printf '#! rnews %s\r' $LEN > $W/rn/batch.txt
+run     /dd/CMDS/cat $W/rn/art.txt >> $W/rn/batch.txt
+run     /dd/CMDS/UUCP/rnews $W/rn/batch.txt
+run     /dd/CMDS/ls /dd/SPOOL/news/COMP/OS/OS9
+run     /dd/CMDS/cat /dd/SPOOL/news/COMP/OS/OS9/a*
+run     /dd/CMDS/cp $W/active.save /dd/SYS/UUCP/active
+expect  Subject: rnews case
+expect  hello there
+
+# As tester: `adduser: Sorry, only the Superuser can use this utility!'
+# (from system2)
+case    the-uucp-adduser-can-remove-as-well-as-add
+run     /dd/CMDS/UUCP/adduser -?
+expect  ADDUSER: add a user to or remove a user from the system
+expect  adduser -r <username>
+
+# As tester: `rendsk: allowed for superuser only!'  (from tail)
+case    rendsk-says-what-it-is-missing
+run     /dd/CMDS/rendsk
+expect  rendsk: Requires two parameters
+
+# bootlogger is silent for the super-user; to anyone else it prints
+# `BOOTLOGGER can be run only by the SYSTEM !'.  (from system2)
+case    bootlogger-is-silent
+run     /dd/CMDS/bootlogger -? > /dd/tmp/pt2 2>&1
+run     /dd/CMDS/wc -c /dd/tmp/pt2
+expect  0 /dd/tmp/pt2
+
+# logname names the super-user; for any other user it says `no login name'
+# (tail.cases asserts that half).
+case    logname-names-the-super-user
+run     /dd/CMDS/logname
+expect  su
+absent  no login name

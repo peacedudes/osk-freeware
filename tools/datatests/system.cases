@@ -71,9 +71,12 @@ expect  3 /dd/tmp/v2.bin
 absent  6F6E 650D
 
 case    ggrep-counts-lists-and-numbers-like-grep
-run     /dd/CMDS/ggrep -n TERMCAP /dd/SYS/login
+# The numbered file is the case's own: SYS/login gained a line on
+# 2026-09-24 and `50:' became `51:' under a case that pinned it.
+run     /dd/CMDS/printf 'alpha\rbeta\rTERMCAP=x\rgamma\r' > /dd/tmp/gg.txt
+run     /dd/CMDS/ggrep -n TERMCAP /dd/tmp/gg.txt
 run     /dd/CMDS/ggrep -i -l termcap /dd/SYS/login /dd/SYS/motd
-expect  50:TERMCAP=$ROOT/SYS/termcap
+expect  3:TERMCAP=x
 expect  /dd/SYS/login
 
 # lgrep runs `grep -l' and expects YOUR OS-9's grep to answer it; handed this

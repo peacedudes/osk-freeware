@@ -88,7 +88,10 @@ run     /dd/CMDS/logname
 run     /dd/CMDS/eset
 expect  Usage:  chown [-z] {numerical-uid | username} [file [... file]]
 expect  Function: set event to a new value
-expect  su
+# logname names only the super-user: 0.0 is `su', and for tester (1.7), uucp
+# and anon it says `no login name' where whoami answers `tester' (measured
+# 2026-09-24).  superuser.cases asserts the `su' half.
+expect  logname: no login name
 
 # NOT a C source checker. Its own screen says what it is, and it is the whole
 # reason this entry was wrong for as long as it was: nobody had run it.
@@ -147,7 +150,3 @@ run     /dd/CMDS/bmgtest2 gamma /dd/tmp/TA/BMG/f.txt
 expect  gamma
 run     /dd/CMDS/bmgtest alpha < /dd/tmp/TA/BMG/f.txt
 expect  alpha
-
-case    rendsk-says-what-it-is-missing
-run     /dd/CMDS/rendsk
-expect  rendsk: Requires two parameters

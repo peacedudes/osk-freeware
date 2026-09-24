@@ -124,3 +124,4 @@ NETWORK/prexd|Built as prexd, not rexd, its author's name: OS-9/Net has a rexd o
 NETWORK/prexdc|Built as prexdc, not rexdc, its author's name, for the reason given on prexd's card.
 GAMES/canfield|Two fixes to this collection's port: it opened its score file write-only, so the read that follows failed and no game was ever recorded; and it filed each player by the whole group.user word, which put a non-super player's record 2 MB into the file. It now opens it read-write and files by user number.
 GAMES/cfscores|Finds a player by user number, as canfield now files them; it used the whole group.user word.
+argproc_demo|Rebuilt 2026-09-24 with the author's own vsprintf (the os9 build option): the collection's first build borrowed one that copies twelve words and cannot print %f, so its usage line lost its name and its pi, and a second -help could crash it.

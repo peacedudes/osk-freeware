@@ -96,32 +96,7 @@ run     /dd/CMDS/UUCP/readnews -l < $W/q.txt
 expect  readnews: read Usenet news articles
 expect  Usage: readnews
 
-case    expire-explains-itself-when-given-an-illegal-option
-run     /dd/CMDS/UUCP/expire -?
-expect  expire: illegal option -- ?
-expect  news article expire utility
-expect  -e<days>   expire articles older than specified number of days
-expect  expires all articles older than 14 days
-
 # newslock wants TWO names, a temporary and the lock itself, and says so.
 case    newslock-wants-a-tempname-and-a-lockname
 run     /dd/CMDS/NEWS/newslock $W/one
 expect  Usage: /dd/CMDS/NEWS/newslock tempname lockname
-
-case    rnews-files-a-batched-article-under-its-newsgroup
-# rnews numbers articles from SYS/UUCP/active and writes the new high
-# water mark back, so the case keeps a copy of active and puts it back:
-# a second run would otherwise file a2, a3 ...
-run     /dd/CMDS/cp /dd/SYS/UUCP/active $W/active.save
-run     /dd/CMDS/rm -rf /dd/SPOOL/news/COMP $W/rn > /nil 2>/nil
-run     /dd/CMDS/mkdir -p $W/rn
-run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: rnews case\r\rhello there\r' > $W/rn/art.txt
-run     LEN=$(/dd/CMDS/cat $W/rn/art.txt | /dd/CMDS/wc -c)
-run     /dd/CMDS/printf '#! rnews %s\r' $LEN > $W/rn/batch.txt
-run     /dd/CMDS/cat $W/rn/art.txt >> $W/rn/batch.txt
-run     /dd/CMDS/UUCP/rnews $W/rn/batch.txt
-run     /dd/CMDS/ls /dd/SPOOL/news/COMP/OS/OS9
-run     /dd/CMDS/cat /dd/SPOOL/news/COMP/OS/OS9/a*
-run     /dd/CMDS/cp $W/active.save /dd/SYS/UUCP/active
-expect  Subject: rnews case
-expect  hello there

@@ -23,11 +23,24 @@ run     /dd/CMDS/argproc_demo -x99 -sHello readme
 expect  arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500
 expect  arg=readme, b=0, c=0, sGiven=1, s=Hello, x=99, pi=3.144500
 
+# THE USAGE MESSAGE IS ASKED FOR TWICE, because once did not catch what was
+# wrong with it.  Until 2026-09-24 the build linked unixlib's vsprintf,
+# which copies twelve words out of the va_list and does not do %f (its own
+# header says so) -- and this message has a %f.  The name was missing from
+# `Usage:', pi's default read 0.000000, and the program died with a bus
+# error inside that copy loop, before any output, whenever the process
+# before it had left the wrong things in memory: a second -help in one
+# session always, and as tester the first.  Built with `os9' defined it
+# uses the author's own OS-9 vsprintf in lose.c and prints all of it,
+# every time (measured 2026-09-24).
 case    argproc_demo-explains-that-a-switch-takes-no-space
 run     /dd/CMDS/argproc_demo -help
+run     /dd/CMDS/argproc_demo -help
+expect  Usage: /dd/CMDS/argproc_demo file ...
 expect  Demonstration program for argproc().  Note that no spaces are allowed
 expect  between a switch and its arguments (i.e. -x3 is okay, -x 3 is not allowed).
-expect      -piFLOAT Set double pi [default: 0.000000]
+expect      -piFLOAT Set double pi [default: 3.144500]
+absent  vector=
 
 # `oleo' IS NOT A CASE. It stops with `Illegal instruction: 0009 at
 # 000465d2' -- not a missing terminal and not a missing file, a genuinely

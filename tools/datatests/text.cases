@@ -232,14 +232,22 @@ case    ask-says-so-when-nothing-feeds-the-pipe
 run     /dd/CMDS/ask "nothing there"
 expect  No Wisecracks coming
 
-# THE SERVER NEEDS A MOMENT.  There is no `sleep' on this disk, so the two
-# `ls' lines below are the delay -- without them ask runs before wisecrack
-# has opened the pipe and the case fails on a race, not on the programs.
+# THE SERVER NEEDS A MOMENT, and how long is not fixed.  There is no `sleep'
+# on this disk.  Two `ls' lines were the delay until 2026-09-24, and in the
+# full suite ask still ran before wisecrack had made its pipe; measured that
+# day it took anywhere from 1 to 11 tries of ask, and `ls /pipe/txtpipe' is
+# no guide (it failed 20 times in a run where ask then succeeded).  So ask
+# is simply asked again, up to 30 times, and only its last answer counts.
+# `kill $!' ends the server: left running, it held the session open until
+# the harness's 300-second timeout, on every run of this family.
 case    wisecrack-and-ask-work-as-a-pair
 run     /dd/CMDS/GAMES/wisecrack &
-run     /dd/CMDS/ls /dd/CMDS > /nil
-run     /dd/CMDS/ls /dd/CMDS > /nil
-run     /dd/CMDS/ask "and now"
+run     for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30; do /dd/CMDS/ask "and now" > /dd/tmp/ask.out 2>&1; /dd/CMDS/grep "No Wisecracks coming" /dd/tmp/ask.out > /nil || break; done
+run     /dd/CMDS/cat /dd/tmp/ask.out
+run     /dd/CMDS/grep "[A-Z][A-Z]" /dd/tmp/ask.out > /nil && echo "ask was answered"
+run     kill $!
+# The slogans are all capitals; the refusal has no two capitals together.
+expect  ask was answered
 absent  No Wisecracks coming
 
 # `ksh' CAN BE THE FIRST SHELL, re-measured 2026-08-29.  DOC/README-RUNNING
