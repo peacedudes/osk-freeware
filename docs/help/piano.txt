@@ -1,2 +1,0 @@
-$ piano -?
-piano: syntax: piano <base note> <note duration>

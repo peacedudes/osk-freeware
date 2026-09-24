@@ -1,18 +1,21 @@
 name    mines
 prog    mines
-# Mines: two squares opened on the minefield.
+# Mines: one square marked on the minefield.  Each answer is a single key --
+# row, column, then Y to mark -- and marking, not opening, is what keeps this
+# repeatable: the field is laid from the clock, and opening H-H hit a mine
+# about one run in six, ending the game and leaving the rest of the keys to
+# the shell.
 rate    0.6
 wait    5
 keys    H
-key     \r
-wait    2
+wait    1
 keys    H
-key     \r
-wait    2
+wait    1
 keys    y
-key     \r
 wait    3
 snap    field
 key     q
 wait    3
 expect  ##A#B#C#D#E#F#G#H
+expect  Markers left: 39
+absent  Kabloom

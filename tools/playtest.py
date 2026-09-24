@@ -86,6 +86,15 @@ MIN_INK = 8
 # Long enough for hack to reach the dungeon on a slow run, short enough that
 # a script with a typo in its marker does not hang the sweep.
 UNTIL_TIMEOUT = 60
+# CONTROL-C DISCARDS WHAT IS STILL QUEUED FOR THE SCREEN.  SCF does that on
+# a real system and os9exec does it too (utilstuff.c, pd_int ->
+# baud_flush_device), so a program stopped mid-frame loses the tail of an
+# escape sequence and the next one can arrive without its ESC.  `card' failed
+# on exactly that, once in the eight runs measured.  The bytes after it
+# are what a person sees as well; they are not corruption, so the orphaned-
+# escape check stops at the first Control-C the script types.
+INTERRUPT = "\003"
+INTERRUPTED = object()                 # a `marks' entry that is not a snap
 
 
 def parse(path):
@@ -111,6 +120,12 @@ def parse(path):
             spec["setup"].append(rest)
         elif word == "wait":
             spec["acts"].append(("wait", float(rest)))
+        # `until' WAS DOCUMENTED AND HANDLED BY feed() FROM 2026-08-29 AND
+        # NEVER PARSED: the line fell through every branch here and was
+        # dropped, so hackquit, moria and tass each ran with one wait fewer
+        # than they were written with, and nothing said so.
+        elif word == "until":
+            spec["acts"].append(("until", rest))
         elif word == "key":
             named = {"\\r": "\r", "\\n": "\n", "\\e": "\033", "\\s": " "}
             if rest in named:
@@ -227,6 +242,11 @@ def feed(spec, master, with_keys, cap=None, marks=None,
                     except OSError:
                         pass
             elif with_keys:
+                if val == INTERRUPT and marks is not None and cap:
+                    try:
+                        marks.append((INTERRUPTED, os.path.getsize(cap)))
+                    except OSError:
+                        pass
                 out(val)
                 time.sleep(spec["rate"])
             else:
@@ -327,7 +347,11 @@ def playtest(path, image, outdir):
     # the guessed letters struck off. The screen worth judging, and the screen
     # worth publishing, is the one with the most on it.
     screens = [("final", ks)]
+    cut = len(keyed)
     for label, off in marks:
+        if label is INTERRUPTED:
+            cut = min(cut, off)
+            continue
         snap = ansiscreen.render(keyed[:off], rows, cols)
         open("%s.%s.txt" % (base, label), "w").write(snap.text() + "\n")
         screens.append((label, snap))
@@ -337,7 +361,7 @@ def playtest(path, image, outdir):
     # characters when it drew none at all.
     def own_ink(scr):
         return sum(1 for line in scr.text().split("\n")
-                   if "bash#" not in line
+                   if "bash#" not in line and "bash$ " not in line
                    for ch in line if ch != " ")
     best_label, best = max(screens, key=lambda p: own_ink(p[1]))
 
@@ -362,7 +386,7 @@ def playtest(path, image, outdir):
     # were really driving it; one means we were only getting out.
     responds = (ks.text() != cs.text() or best.ink() > cs.ink() + 4
                 if typed_keys >= 2 else True)
-    orphans = sum(len(s.orphans) for _, s in screens)
+    orphans = len(ansiscreen.render(keyed[:cut], rows, cols).orphans)
 
     # A KEYED RUN THAT DREW LESS THAN THE CONTROL IS A FAILURE, not a pass.
     # `snake' fooled the first version of this check: typing made it hang at

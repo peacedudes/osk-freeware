@@ -1,15 +1,18 @@
 name    crib
-prog    crib
-# Cribbage against the computer: the cut, and a hand dealt.
+prog    crib -r
+# Cribbage against the computer: the cut, and a hand dealt.  -r lets the
+# program cut for you: a tied cut asks for the cut again, and a script that
+# typed one answer to it stalled at the second prompt about one run in
+# sixteen with no hand dealt.  With -r the program retries by itself.
 rate    0.6
 wait    6
 key     n
 key     \r
 wait    3
 key     S
-key     \r
 wait    5
 snap    hand
 key     \003
 wait    2
 expect  +-----+
+expect  Discard a card

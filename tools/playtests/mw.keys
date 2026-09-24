@@ -15,5 +15,5 @@ wait    6
 snap    shot
 key     Q
 wait    5
-expect  1:su
-expect  2:su
+expect  1:tester
+expect  2:tester

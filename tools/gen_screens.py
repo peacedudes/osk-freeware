@@ -96,8 +96,6 @@ CAPTIONS = {
                        "by pnmfile at the end.",
                        "final"),
     "nobs":     ("nobs, a cribbage variant, dealing its cards.", "final"),
-    "piano":    ("piano plays notes through the terminal bell; with no "
-                 "arguments it prints what it wants.", "final"),
     "pwgen":    ("A random password generator; its usage line is what it "
                  "prints when given no length.", "final"),
     "rpoem":    ("A random poem generator -- one of four SNOBOL4 programs "

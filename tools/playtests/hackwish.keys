@@ -1,10 +1,16 @@
 name    hackwish
 prog    hackwish
-# hackwish reads hack's record files and reports what it finds.
+# hackwish plays hack over and over until a wizard starts with a wand of
+# wishing, then SAVES that game under the player's name.  How many games the
+# search takes is chance -- 1 in one run, more than 34 in another -- so wait
+# for the report, not for a fixed time.  And take away the save a previous
+# run left: with one present hackwish only says "game in progress" and stops.
 rate    0.6
 size    24 80
-wait    8
+setup   rm -f /dd/GAMES/HACK/PLAYGROUND/save/*$USER
+until   Found in game
 snap    report
 key     \003
 wait    2
+expect  Found in game
 expect  Be seeing you

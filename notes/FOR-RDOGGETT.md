@@ -39,6 +39,14 @@ bytes, recomputes the CRC); cases staged in Scraped/.../staged/uidmask.
 ELM's fastmail and newmail have the same masked call but cannot be shown
 failing here.  Recommend: yes, with 45.
 
+**48. Give mw's module owner 0.0 (header only)?**  mw looks for a `games'
+user, falls back to 90.90, and asks F$SUser for it; the kernel allows
+that only to the super-user or to the module's own owner, and mw's header
+says 30.95 -- left from the machine it was linked on.  So everyone but the
+super-user gets "Can't setuid, please check File/Moduleowner!", and the
+published card shows exactly that.  tools/patch_mw_owner.py sets the owner
+to 0.0 and re-seals parity and CRC; no code changes.  Recommend: yes.
+
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
