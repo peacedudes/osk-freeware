@@ -7,6 +7,17 @@ Every program on the one RBF image has a card taken by running it, and
 `notes/FOR-RDOGGETT.md' has what needs him: items 1 (push and pin
 os9exec) and 38 (harnesses as `tester').
 
+**2026-09-24, later -- committed and pushed (PRIVATE GitHub, working branch).**
+Everything the early-morning note lists is committed.  Since then: the full
+suite as tester went 978/993 -> 994/995 -> clean after fixes -- 15 cases
+reclassified (6 super-user programs moved to superuser.cases, the rest case
+edits), argproc_demo rebuilt with the author's own vsprintf (our first build
+crashed), discord's off-by-one (a bug as posted: 1 run in 4 crashed) fixed,
+the super-user family cleans up nn's database.  Play-tests as tester 142/148,
+six being diagnosed.  Parked for rdoggett: FOR-RDOGGETT 45 (elm uid patch),
+46 (bash fork-paths patch; the pipe hang the os9exec session traced).
+docs/try runs os9exec e2c7f7b; its disk.gz is refreshed at the very end.
+
 **2026-09-24, early morning -- where the release pass stands.**
 Pinned emulator is now os9exec `e2c7f7b' (clock() ticks, SS_Ready on a
 listening socket).  Everything below is in the working tree and goes in as
