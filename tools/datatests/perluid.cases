@@ -19,3 +19,15 @@ expect  o=no
 case    perl-stat-gives-user-then-group
 run     /dd/CMDS/perl -e '@s=stat("/dd/tmp/perluid/mine"); print "uid=$s[4] gid=$s[5]\n";'
 expect  uid=7 gid=1
+
+# ksh's test asks the same question, and answers it: this pdksh spells the
+# owner test `-U' (and the group test `-G'), not the later `-O', which it
+# calls an unknown operand.  Both compare with geteuid()/getegid() and hold
+# for a user outside group 0.
+case    ksh-test-U-and-G-own-the-file-it-just-made
+run     /dd/CMDS/ksh -c 'test -U /dd/tmp/perluid/mine && echo U=yes || echo U=no'
+run     /dd/CMDS/ksh -c 'test -G /dd/tmp/perluid/mine && echo G=yes || echo G=no'
+run     /dd/CMDS/ksh -c 'test -U /dd/SYS/motd && echo motd=yes || echo motd=no'
+expect  U=yes
+expect  G=yes
+expect  motd=no
