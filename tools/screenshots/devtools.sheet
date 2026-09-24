@@ -23,6 +23,16 @@ try     savage
 run     savage
 wait    15
 
+shot    whetstone
+cap     The Whetstone benchmark, the floating-point counterpart to the
+cap     Dhrystone builds: a fixed mix of arithmetic, trigonometry and
+cap     procedure calls, timed, with the rating in Whetstone instructions
+cap     per second.  On an emulator the figure is the host's, not a 68000's.
+try     whetstone
+run     clear
+run     whetstone
+wait    10
+
 shot    dhry
 size    28 80
 cap     Dhrystone 2.1, the classic integer benchmark, built with Microware's

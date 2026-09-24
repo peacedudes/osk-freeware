@@ -1,6 +1,6 @@
 # What is on this disk
 
-1073 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **754 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1074 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **755 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -15,7 +15,7 @@
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 139 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
-| [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
+| [Developer tools](#developer-tools) | 38 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
@@ -453,7 +453,7 @@
 
 *Version control, tags, cross-reference, formatters, a debugger and benchmarks.*
 
-<details><summary>37 programs</summary>
+<details><summary>38 programs</summary>
 
 **Assembly**
 
@@ -482,6 +482,7 @@
 | `savage` | &#9733; Savage's benchmark: a chain of functions that should cancel to an exact number, a thousand times; how far the printed value drifts measures the arithmetic's rounding |
 | `sieve` | &#9733; the sieve of Eratosthenes as a speed test: it runs the pass a hundred times over and prints `start' and then ` 100 sieves done'.  What it measures is the gap between those two lines, so run it under your own OS-9's `time' to get a figure.  `savage' and the twelve Dhrystone builds are the other benchmarks, and Dhrystone reports its own rate |
 | `suse` | a CPU benchmark in 190 bytes of assembler: the Sieve of Eratosthenes, a thousand times over, and then it exits.  It prints nothing and ignores its arguments -- time it |
+| `whetstone` | the Whetstone benchmark: floating-point work in a fixed mix, timed, and the rating printed in Whetstone instructions per second.  The Dhrystone builds in CMDS/DHRY measure integer work; this is the floating-point one |
 
 **Debugging**
 

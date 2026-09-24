@@ -623,6 +623,7 @@ creadoc|none|`load /dd/CMDS/os9lib' first; it takes no options and works on the 
 sieve|none|it takes no options: run it and it reports when the passes are done
 savage|none|it takes no options: run it and it reports the drift
 dhry|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhry'
+whetstone|none|it takes no options; run it and it prints the time and the rating
 dhryO2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryO2'
 dhryGcc|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc'
 dhryGcco2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcco2'

@@ -1,0 +1,12 @@
+# whetstone -- the Whetstone floating-point benchmark in C (Curnow and
+# Wichmann 1976), the OSK version from Microware's archive; built trap-free
+# 2026-09-23.  The figure depends on the machine, so only its shape is
+# asserted -- and that it ran long enough to be measured at all.
+family  whetstone
+
+case    whetstone-reports-a-rating
+run     /dd/CMDS/whetstone; echo "status $?"
+expect  Seconds =
+expect  Whetstones =
+expect  status 0
+absent  Whetstones =          inf
