@@ -1,0 +1,16 @@
+name    drawpoker
+prog    drawpoker
+# Nic Smith's five-card draw.  Leave the title, decline the rules, and
+# the table is dealt: your hand, the computer's face down, and the
+# Stay / Drop / Bet prompt.  F then y quits.
+wait    5
+key     \s
+wait    3
+key     n
+wait    5
+snap    table
+expect  Stay
+key     F
+wait    2
+key     y
+wait    3

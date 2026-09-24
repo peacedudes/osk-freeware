@@ -92,3 +92,4 @@ v7make|a module named `shell' to run each command -- SYS/login loads yours from 
 yahtzee|TERMCAP holding the terminal DESCRIPTION, not a filename: `. /dd/SYS/termcap.entry' -- /dd/.bashrc does it for you at the login shell|measured 2026-09-23: with TERMCAP as SYS/login sets it, `'xterm-256color': Unknown terminal type.'
 nnmaster|a module named `shell', and your own `qsort' to sort the GROUPS file when -I makes one -- SYS/login loads both from /h1|measured 2026-09-23: without qsort, -I repeats `shell: can't execute "qsort"' for ever
 bru|the super-user: anyone else is refused with status 214|SRC/bru/README.OSK
+drawpoker|less, in the execution directory or resident, to page the rules it offers first|SRC/poker/README.OSK

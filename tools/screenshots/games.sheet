@@ -519,6 +519,24 @@ wait    8
 send    e2e4\r
 wait    12
 
+shot    drawpoker
+size    24 80
+cap     Five-card draw against the computer.  Your hand is dealt face up at
+cap     the top, the computer's face down below; stay, drop or bet, then
+cap     name up to three cards to change.  F quits.
+try     drawpoker
+run     drawpoker
+wait    5
+send    \s
+wait    3
+keys    n
+wait    5
+snap
+keys    F
+wait    2
+keys    y
+wait    3
+
 shot    poker
 cap     Cold-hand poker: it asks what you want to bet, deals, and lets you
 cap     draw.  It wants the word `no', not `N', and says so in its own

@@ -721,6 +721,7 @@ pnmtosgi|Each netpbm author granted the right to use and distribute their code w
 pnmtosir|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 pnmtoxwd|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 poker|(c) Copyright 1986 Robert Heller. "All Rights Reserved." No distribution terms are stated in the source or in DOC/snobol/Readme.|SRC/effo_snobol/poker.c lines 7-8; DOC/snobol/Readme
+drawpoker|None stated in the posting, the patch or the sources; the program and its title screen credit Nic Smith.|SRC/poker/ORIG
 postnews|Copyright (C) 1990, 1993 Rick Adams and Bob Billson. GNU General Public License, version 2 or later. "You cannot sell UUCPbb. You are free to modify the code and give copies of this away."|SRC/uucpbb/postnews.c lines 2-9; DOC/uucpbb/uucpbb.doc lines 297-301; SOURCES.txt line 1854
 postprint|GNU Chess 4.0 utility. "Copyright (c) 1992 Free Software Foundation"; GNU GPL "version 2, or (at your option) any later version".|GAMES/gnuchess4.0.lzh member GNUCHESS4.0/SRC/postprint (identical); SRC/gnuchess/GNUCHESS4.0/SRC/postprint.c lines 4-10
 ppm3d|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT

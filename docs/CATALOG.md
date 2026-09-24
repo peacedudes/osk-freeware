@@ -1,6 +1,6 @@
 # What is on this disk
 
-1067 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **748 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1068 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **749 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 113 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 114 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 121 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1207,7 +1207,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>113 programs</summary>
+<details><summary>114 programs</summary>
 
 **Adventure & fiction**
 
@@ -1259,6 +1259,7 @@
 | `craps` | casino craps at a full table: each bet is a key, then the amount and Return -- p pass line, d dont pass, f the field, h a hardway, o takes odds; r rolls, `?' lists every key and q leaves.  High roller list in GAMES/CRAPS<br>**How:** Full-screen casino craps with a rack of $100. Each bet is a key, then the amount and Return: p is the pass line, d dont pass, c come, D dont come, b a place bet, f the field, h a hardway, o takes odds and l lays them; s, a, 2, 3, y and u are the one-roll proposition bets. r rolls the dice, `?' lists every key, ^L redraws and q leaves, writing the high roller list to GAMES/CRAPS/craps.list. $CRAPSNAME names you there if you set it, otherwise $USER does. |
 | `crib` | cribbage.  Needs TERM set, so run it from a login session -- bare it says `Unknown terminal type'<br>**How:** Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out. |
 | `cribbage` | &#9733; cribbage -- offers instructions before it deals.  Needs TERM, so run it from a login session<br>**How:** The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out. |
+| `drawpoker` | five-card draw poker against the computer, on a curses table: stay, drop or bet, then change up to three cards.  It offers its rules first (GAMES/LIB/poker_rules, paged with less); F quits.  Not the same game as `poker', which is cold-hand<br>**How:** Full-screen. Space leaves the title; y or n for the rules. s, d, b to Stay, Drop or Bet; r, d, c to Raise, Drop or Call; 1-5 sets the amount. To draw, type up to three card numbers and Enter. F then y quits; control-R repaints. |
 | `fish` | Go Fish against the computer: ask for a rank you already hold and take any the other player has, or `GO FISH' and draw; four of a rank makes a book, and the most books wins |
 | `fuddle` | A chess variant that shuffles -- "fuddles" -- the pieces into fresh places and then plays a game from there. It asks whether you want white, draws a shaded board with the pieces listed above it, and takes moves as two squares, e2e4. |
 | `gnuchess` | &#9733; GNU Chess, the build `gnuchess' runs: first on PATH, it reads its opening book at the compiled-in path /h0/usr/src/chess/gnuchess.book, which ships here, so it answers 1.e4 with a book move. Source `. termcap.entry' first, since it reads TERMCAP as the description itself. CMDS/GAMES/gnuchess, a second port under the same name, opens its book by bare name and draws the board reads TERMCAP as the description itself rather than as a filename -- and it draws the board, keeps both clocks and plays.  It opens its opening book by bare name, so it books when the book is the current directory; the CMDS build books from a fixed path and is what `gnuchess' runs<br>**How:** Full-screen chess. It reads TERMCAP as the terminal description itself rather than as a filename, so do `. /dd/SYS/termcap.entry' first; then it draws its time-control menu and plays. The build in CMDS/GAMES is the one that draws a board. |

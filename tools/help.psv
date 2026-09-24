@@ -680,6 +680,7 @@ gnuchessr|none|it takes -a, -h and -x xwndw; asked for help it prints the usage 
 mille|none|it takes a saved game to restore and no options
 nchess|none|it takes no options; `help' at its prompt lists the commands
 poker|none|it takes no options and asks whether you want the rules; answer yes or no in full
+drawpoker|none|it takes no options; space leaves the title, then it asks whether you want the rules
 queens|none|it reads the board size on standard input and takes no options
 bjack|none|it takes one argument, the starting stake, and no options
 jaw|none|it takes no arguments: compressed data on standard input, the original on standard output
