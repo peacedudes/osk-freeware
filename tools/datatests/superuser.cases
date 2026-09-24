@@ -148,3 +148,14 @@ case    logname-names-the-super-user
 run     /dd/CMDS/logname
 expect  su
 absent  no login name
+
+# LEAVE NOTHING OF THE SUPER-USER'S BEHIND.  The nn database built above is
+# 0.0's, and owner-only; a later family runs as tester and cannot remove it,
+# so mnews.cases' nnadmin case -- which needs the database ABSENT -- failed
+# on the suite's second run (2026-09-24).  This family made the files, so
+# this family takes them away.
+case    superuser-leaves-no-nn-database-behind
+run     /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER /h0/SPOOL/NN/DATA/*.? > /nil 2>/nil
+run     /dd/CMDS/ls /h0/SPOOL/NN; echo "listed"
+expect  listed
+absent  MASTER
