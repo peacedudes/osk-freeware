@@ -1,0 +1,11 @@
+name    wysecrack
+prog    wysecrack
+# A wisecrack a minute for a Wyse terminal's status line, each sent after
+# ESC F.  Nothing for the first minute; then the first quip.  This terminal
+# is not a Wyse, so the line lands in the text.
+size    24 80
+wait    70
+snap    first
+key     \003
+wait    3
+expect  Anybody out there?

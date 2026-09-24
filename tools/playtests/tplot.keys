@@ -1,0 +1,20 @@
+name    tplot
+prog    tplot
+# The plotter's dialogue: two intervals and the divisions.  The drawing
+# itself goes through the Atari ST's A-line calls, so the test stops at the
+# third question, where the card does.
+size    24 80
+wait    5
+snap    ask-x
+keys    0 10
+key     \r
+wait    3
+keys    0 5
+key     \r
+wait    3
+snap    ask-divisions
+key     \003
+wait    3
+expect  x interval    ?
+expect  y interval    ?
+expect  x, y divisions ?

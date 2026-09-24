@@ -72,3 +72,17 @@ run     /h1/CMDS/unlink cc1
 run     /dd/CMDS/GCC137/gcc137 -v $G -S -o $W/hello2.a $W/hello.c
 expect  GNU C version 1.37.1 (OS-9/68000)
 absent  GNU C version 1.39
+
+# The passes can be given a job by hand, as gcc3.cases does for the others:
+# the preprocessor expands a source, and cc1 reads the expansion and writes
+# assembly, naming the function and then where its time went.
+case    the-passes-run-by-hand
+run     /dd/CMDS/GCC137/gcc137_cccp -I/h1/DEFS $W/hello.c > $W/hello.i
+run     /dd/CMDS/wc -l $W/hello.i
+run     /dd/CMDS/GCC137/gcc137_cc1 $W/hello.i -o $W/hello.s
+run     /dd/CMDS/wc -c $W/hello.s
+expect  157 /dd/tmp/GCC137W/hello.i
+expect   main
+expect  time in parse:
+expect  time in dbranch:
+expect  247 /dd/tmp/GCC137W/hello.s

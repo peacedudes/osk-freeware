@@ -644,9 +644,9 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 10 programs have none
+### 3. Tests that can fail again — 6 programs have none
 
-**Ten, measured 2026-09-21** -- it was 45 when this heading was
+**Six, measured 2026-09-24** (ten on 2026-09-21) -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
 not trust any figure typed here: run
 `tools/worklist.py --programs --no-test`.
@@ -944,13 +944,18 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **8 runnable programs under no test** (2026-09-23, `tools/worklist.py
+1. **6 runnable programs under no test** (2026-09-24, `tools/worklist.py
    --programs --no-test`): `graphsave`, `showpic` (Atari GRAPH display),
-   `puzzle`, `scriptmaster` (G-Windows), `msntp` (network, waits), `snake`
+   `puzzle`, `scriptmaster` (G-Windows), `msntp` (wants Microware's
+   `netdb`), `snake`
    (orphaned escapes -- 2026-09-23 probes RULED OUT tgoto (its bytes are
    right), termlib's and curses.l's tputs, and an _UNBUF stdout: each keeps
    the ESC in place on a pty.  What snake has that they lack is its
-   getchar()-driven loop with only echo turned off; start there), `tplot` (A-line trap), and none else.  `wysecrack`
+   getchar()-driven loop with only echo turned off; start there), and
+   none else.  2026-09-24 took four off: the gcc 1.37 passes run by hand
+   (`gcc137.cases'), `timeout' ends the Microware shell that ran it
+   (`legacy.cases', with a control), and play-tests for `tplot''s
+   dialogue and `wysecrack''s first quip at the minute.  `wysecrack`
    came off the hardware list the same day: it is not a probe at all but
    a quip a minute for a Wyse status line (its INDEX entry was invented),
    and its card now shows two.  Harnesses stage every command SYS/login

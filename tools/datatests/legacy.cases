@@ -101,3 +101,18 @@ run     /dd/CMDS/X68K/x9eyes
 run     /dd/CMDS/X68K/setbgptn /dd/SYS/motd
 expect  PwCreateMap error
 expect  setbgptn: can't open `/win'
+
+# logon's idle timer prints no usage and takes no option.  What it does is
+# end the shell that started it: Microware's shell never reaches the command
+# after it.  The second line is the control -- the same shell, another
+# program in the same place, and it runs to the end.  (ksh survives it;
+# logon starts the reader's own shell, which is Microware's.)
+case    timeout-ends-the-shell-that-ran-it
+run     /h1/CMDS/shell "chx /h1/CMDS; echo before; /dd/CMDS/SYSADMIN/timeout; echo after"
+run     /h1/CMDS/shell "chx /h1/CMDS; echo started; /dd/CMDS/SYSADMIN/uid; echo finished"
+run     echo the harness shell is still here
+expect  before
+absent  after
+expect  started
+expect  finished
+expect  the harness shell is still here
