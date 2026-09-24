@@ -127,6 +127,23 @@ this SDK copy lacks (only the later SPF tree has a netdb.h). `slice` may be
 buildable now: gcc's libgpp carries GNU regex with `re_comp`/`re_exec` --
 untried.
 
+## Assessed 2026-09-23 night, not shipped (run on d992145)
+
+`vt100` (Marcotte, MM/1: K-Windows overlay codes, no termcap); `prinfo`
+(DESIGNA 1998: past the era, no terms, duplicates procs); `cpucache` (68k
+cache control: privilege violation, hardware-only); the X68000 PW/X set
+(`x9eyes`, `setbgptn`, `PwDialog`, `RGTool`: need `/win`); TOP's `logon`,
+`mmon`, `watch`, `timeout`, `errlog`/`erradm` (multi-user and modem) and
+`upatch` (patch pl12, duplicates `patch`); `rex` (needs OS-9/Net);
+`view` 4.5a (6309 CoCo viewer, source archive blank); `raypaint`
+(X11/GL); EFFO `channel` (for an S-Prolog not in the pool); `readstr`
+(changes nothing on the BASIC we can test); `osktag` (no grant,
+K-Windows); the Microware archive remainder's 171 G-Windows fonts, Dhrystone
+1.1/2.1 (the disk has 2.0), CommonTeX companions, gcc cross builds, Apache
+config and post-2000 tools; the gawk 2.11 texinfo zoo (bad CRC, part 3);
+the three "live sites" (two dead and never archived, the third a
+commercial SMB file manager).  Held for rdoggett: FOR-RDOGGETT 39-44.
+
 ## Images deliberately not shipped
 
 `jessica1.gif` and `school46.gif` came as test material with `mgif`. They look
