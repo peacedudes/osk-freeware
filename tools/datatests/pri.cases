@@ -1,0 +1,23 @@
+family  pri
+# pri queues files for printing: an Omegasoft Pascal program (source
+# SRC/effo_forum4/pri.p) that F$Chains to `/r0/cmds/copy -w=/r0/list
+# <files>'.  It was indexed until 2026-09-24 as a process-priority setter
+# that answered 221 to everything -- 221 was only /r0/cmds/copy not being
+# there.  Given a RAM disk holding the reader's own copy, the file lands in
+# /r0/list.  As tester copy cannot carry the file descriptor across and the
+# status is 164 (E$Permit); the file is there regardless.
+
+case    without-a-ram-disk-pri-cannot-find-copy
+run     cd /dd
+run     /dd/CMDS/pri SYS/motd; echo "status $?"
+expect  status 221
+
+case    with-copy-on-a-ram-disk-the-file-lands-in-r0-list
+run     mount -r=256k /r0
+run     /dd/CMDS/mkdir -p /r0/cmds /r0/list
+run     /dd/CMDS/cp /h1/CMDS/copy /r0/cmds/copy
+run     cd /dd
+run     /dd/CMDS/pri SYS/motd; echo "status $?"
+run     /dd/CMDS/cat /r0/list/motd
+expect  status 164
+expect  Welcome to os9exec

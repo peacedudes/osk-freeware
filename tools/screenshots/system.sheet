@@ -887,18 +887,23 @@ try     time suse
 run     time suse
 wait    8
 shot    pri
-cap     pri changes a process's priority: `pri <pid> <priority>'.  It
-cap     prints nothing whatever happens, so the exit status is all there
-cap     is to see -- and here that is 221 for every invocation tried,
-cap     including a live process and no arguments at all.  221 is
-cap     module-not-found, which is not an answer about a process; what it
-cap     is looking for has not been established, and there is no source
-cap     for it on the disk to read.
-try     pri 2 128; echo "status $?"
-run     pri 2 128; echo "status $?"
-wait    3
-run     pri; echo "status $?"
-wait    3
+cap     pri queues files for printing: it hands the names you give it to
+cap     `copy -w=/r0/list', run from /r0/cmds, so each lands in /r0/list
+cap     for a spooler to take.  It is an Omegasoft Pascal program; its
+cap     source is in SRC/effo_forum4.  It needs a RAM disk at /r0 holding
+cap     your own OS-9's `copy', which the card sets up first.  Run by
+cap     anyone but the super-user, copy cannot carry the file's owner and
+cap     dates across and pri ends with status 164, but the file is there.
+try     pri SYS/motd; ls -l /r0/list
+run     mount -r=256k /r0
+wait    2
+run     mkdir -p /r0/cmds /r0/list
+run     cp /h1/CMDS/copy /r0/cmds/copy
+run     builtin cd /dd
+run     clear
+run     pri SYS/motd; ls -l /r0/list
+wait    5
+
 shot    snd_sig
 cap     Sends a signal to one or more processes named by id.  With no
 cap     option it sends the wake signal and says nothing; `-(n)' sends

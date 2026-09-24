@@ -1,4 +1,3 @@
-$ pri 2 128; echo "status $?"
-status 221
-$ pri; echo "status $?"
-status 221
+pri SYS/motd; ls -l /r0/list
+total 512
+-rw-------   1 7        1              40 Sep 24 16:02 motd

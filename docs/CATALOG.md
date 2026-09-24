@@ -1656,7 +1656,7 @@
 | `mvolformat` | format a multi-volume set<br>`Syntax: mvolformat drive volname volcount [format options]` |
 | `phone` | connects two terminals over a communication path so you can type to somebody on another: `phone /t1' rings until answered; control-E leaves<br>`Syntax: phone <communication-path>` |
 | `preset` | loads the terminal's function keys: it writes a fixed set of definitions -- `dir', `umacs', `r68', `l68', `dsave -ieb128k' and so on -- and answers `Funktionstasten belegt!'. German. It takes no arguments and ignores any given |
-| `pri` | change a process's priority: `pri <pid> <priority>'.  It prints nothing whatever happens, and on this disk it answers 221 -- module not found -- for every invocation tried, a live process and no arguments alike.  What it is looking for has not been established; no source for it is here |
+| `pri` | queue files for printing: it hands the names you give it to `copy -w=/r0/list' run from /r0/cmds, so each file lands in /r0/list for a spooler.  It needs a RAM disk at /r0 with your own OS-9's copy in /r0/cmds; without one it ends with 221.  Omegasoft Pascal; source in SRC/effo_forum4 |
 | `ptob` | convert bit patterns back to characters -- the other half of `btop', and the round trip is exact.<br>`Syntax:   PtoB [<opts>] [<path1>] [<opts>] [<path2>] [<opts>]` |
 | `ptxminst` | install Ptxm -- the kernel extension above |
 | `rndir` | &#9733; converts directory names between upper and lower case -- its own Function line is "rename directory names in big/small characters". `-l' for small, `-q' to work silently<br>`Syntax: rndir [<opt>]` |

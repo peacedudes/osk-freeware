@@ -902,7 +902,7 @@ trunc|trunc -?|
 clear|clear -?|
 lgrep|lgrep -?|
 suse|none|it is a benchmark: it takes no arguments, prints nothing and exits when the sieve is done
-pri|none|`pri <pid> <priority>'; there is no help flag
+pri|none|`pri <file>...'; there is no help flag, and bare it chains to copy with nothing to copy
 snd_sig|snd_sig -?|
 setime2|setime2 -?|
 setyear|setyear -?|
