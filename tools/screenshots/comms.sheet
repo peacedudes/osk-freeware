@@ -1433,9 +1433,11 @@ cap     bulletin board packed a caller's messages into, to be read and
 cap     replied to without staying connected.  It reads its configuration
 cap     first: `atprc' or `.atprc' in your home directory, or in the
 cap     directory ATP names.  A working one for this disk ships in
-cap     DOC/ka9q, which is what is set here.
+cap     DOC/ka9q; a copy of it is what is set here, since ATP makes its
+cap     work directory beside the file.
 try     atp
-run     export ATP=/dd/DOC/ka9q
+run     rm -rf /dd/tmp/ATPK > /nil 2>/nil; mkdir -p /dd/tmp/ATPK; cp /dd/DOC/ka9q/atprc /dd/tmp/ATPK
+run     export ATP=/dd/tmp/ATPK
 wait    1
 run     clear
 wait    1

@@ -1,4 +1,4 @@
-as4 DOC/xasm/sample.a4 - l s
+as4 sample.a4 - l s
 0001                         * sample.a4 -- a 6804 program for as4.  The 6804 has a very s
 mall
 0002                         * instruction set: no CLR on the pseudo-registers, no CMP imm
