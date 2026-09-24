@@ -55,6 +55,7 @@ ar|Archives & compression|Create & extract
 arc|Archives & compression|Create & extract
 cat|Archives & compression|Create & extract
 lha|Archives & compression|Create & extract
+bru|Archives & compression|Create & extract
 lharc|Archives & compression|Create & extract
 marc|Archives & compression|Create & extract
 shar|Archives & compression|Create & extract

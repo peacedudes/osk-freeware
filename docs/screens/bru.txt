@@ -1,0 +1,15 @@
+bru -c -q -v -f tmp/ARC/keep.bru SRC/keep
+Using tmp/ARC/keep.bru as the target device-file
+SRC/keep
+SRC/keep/about.c
+SRC/keep/keep.c
+SRC/keep/keep.sh
+SRC/keep/kept.sh
+SRC/keep/unkeep.sh
+$ bru -t -q -vvv -f tmp/ARC/keep.bru
+d-ewrewr 0.0 <6/09/23 20:29 1k SRC/keep
+---wr-wr 0.0 <6/08/03 19:00 12k SRC/keep/about.c
+---wr-wr 0.0 <6/08/03 19:00 33k SRC/keep/keep.c
+---wr-wr 0.0 <6/08/03 19:00 5k SRC/keep/keep.sh
+---wr-wr 0.0 <6/08/03 19:00 2k SRC/keep/kept.sh
+---wr-wr 0.0 <6/08/03 19:00 3k SRC/keep/unkeep.sh

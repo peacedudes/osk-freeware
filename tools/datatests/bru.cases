@@ -1,0 +1,95 @@
+family bru
+setup /dd/CMDS/rm -rf /dd/tmp/brut /dd/tmp/brur /dd/tmp/brup /dd/tmp/brut.bru /dd/tmp/brut2.bru
+setup /dd/CMDS/mkdir -p /dd/tmp/brut/src/sub/deep /dd/tmp/brur /dd/tmp/brup/src/sub
+setup echo "alpha file" > /dd/tmp/brut/src/a.txt
+setup echo "beta, one level down" > /dd/tmp/brut/src/sub/b.txt
+setup echo "gamma, two levels down" > /dd/tmp/brut/src/sub/deep/c.txt
+setup /dd/CMDS/cp /dd/CMDS/cat /dd/tmp/brut/src/cat
+setup /dd/CMDS/chown 7 /dd/tmp/brut/src/sub/b.txt
+setup /dd/CMDS/chgrp 3 /dd/tmp/brut/src/sub/b.txt
+setup /dd/CMDS/chown 9 /dd/tmp/brut/src/sub
+setup /dd/CMDS/chgrp 5 /dd/tmp/brut/src/sub
+setup /h1/CMDS/attr /dd/tmp/brut/src/a.txt -npw -npr -ne -w -r
+setup /h1/CMDS/attr /dd/tmp/brut/src/cat -e -pe -pr -npw
+setup /h1/CMDS/attr /dd/tmp/brut/src/sub/deep -npw
+
+case backup
+run cd /dd/tmp/brut
+run /dd/CMDS/bru -c -q -vv -f /dd/tmp/brut.bru src
+run echo "status $?"
+run /dd/CMDS/dir -e /dd/tmp
+expect status 0
+expect src/sub/deep/c.txt
+
+case list
+run /dd/CMDS/bru -t -q -vvv -f /dd/tmp/brut.bru
+run echo "status $?"
+expect status 0
+expect src/cat
+expect src/sub/deep/c.txt
+
+case restore
+run cd /dd/tmp/brur
+run /dd/CMDS/bru -x -q -v -f /dd/tmp/brut.bru
+run echo "status $?"
+expect status 0
+expect src/sub/deep/c.txt
+
+case compare
+run /dd/CMDS/diff /dd/tmp/brut/src/a.txt /dd/tmp/brur/src/a.txt && echo "same a.txt"
+run /dd/CMDS/diff /dd/tmp/brut/src/cat /dd/tmp/brur/src/cat && echo "same cat"
+run /dd/CMDS/diff /dd/tmp/brut/src/sub/b.txt /dd/tmp/brur/src/sub/b.txt && echo "same b.txt"
+run /dd/CMDS/diff /dd/tmp/brut/src/sub/deep/c.txt /dd/tmp/brur/src/sub/deep/c.txt && echo "same c.txt"
+run /dd/CMDS/cat /dd/tmp/brur/src/sub/deep/c.txt
+expect same a.txt
+expect same cat
+expect same b.txt
+expect same c.txt
+expect gamma, two levels down
+
+case original
+run /dd/CMDS/dir -e /dd/tmp/brut/src
+run /dd/CMDS/dir -e /dd/tmp/brut/src/sub
+run /dd/CMDS/dir -e /dd/tmp/brut/src/sub/deep
+expect 5.9
+expect 3.7
+
+case owners
+run /dd/CMDS/dir -e /dd/tmp/brur/src
+run /dd/CMDS/dir -e /dd/tmp/brur/src/sub
+run /dd/CMDS/dir -e /dd/tmp/brur/src/sub/deep
+expect 5.9
+expect 3.7
+expect dsewrewr
+expect d-e-rewr
+expect --e-re-r
+expect ------wr
+expect 126/08/03 1900
+
+case pattern
+run cd /dd/tmp/brup
+run /dd/CMDS/bru -x -q -v -f /dd/tmp/brut.bru "src/sub/*"
+run echo "status $?"
+run /dd/CMDS/dir -e /dd/tmp/brup/src
+run /dd/CMDS/diff /dd/tmp/brut/src/sub/deep/c.txt /dd/tmp/brup/src/sub/deep/c.txt && echo "same pattern c.txt"
+expect status 0
+expect same pattern c.txt
+absent a.txt
+
+case again
+run cd /dd/tmp/brur
+run /dd/CMDS/bru -x -q -v -f /dd/tmp/brut.bru
+run echo "status $?"
+run /dd/CMDS/diff /dd/tmp/brut/src/cat /dd/tmp/brur/src/cat && echo "same cat again"
+expect status 0
+expect same cat again
+
+case append
+run cd /dd/tmp/brut
+run /dd/CMDS/bru -c -q -f /dd/tmp/brut2.bru src/sub/deep
+run /dd/CMDS/bru -c -q -f /dd/tmp/brut2.bru src/a.txt
+run /dd/CMDS/bru -t -q -f /dd/tmp/brut2.bru
+run echo "status $?"
+expect src/sub/deep/c.txt
+expect src/a.txt
+expect status 0

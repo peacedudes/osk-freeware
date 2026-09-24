@@ -449,6 +449,7 @@ gzip68k_csl|gzip68k_csl -h|
 gzip020_csl|gzip020_csl -h|
 gzipcpu32k_csl|gzipcpu32k_csl -h|
 lha|lha -?|
+bru|bru -?|
 lharc|lharc -?|
 lharcs|lharcs -?|
 xlharc|xlharc -?|

@@ -469,3 +469,20 @@ run     clear
 wait    1
 run     dump q.Z; jaw < q.Z
 wait    4
+
+shot    bru
+cap     bru backing up a directory, then listing the archive in long
+cap     form: each file's attributes, owner, date and size are kept, and
+cap     `bru -x' puts them back.  The year prints as `<6' -- it is
+cap     OS-9's 126, for 2026, squeezed into two digits.
+try     bru -c -q -v -f tmp/ARC/keep.bru SRC/keep
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/keep.bru
+wait    2
+run     builtin cd /dd
+wait    1
+run     clear
+wait    1
+run     bru -c -q -v -f tmp/ARC/keep.bru SRC/keep
+wait    5
+run     bru -t -q -vvv -f tmp/ARC/keep.bru
+wait    5

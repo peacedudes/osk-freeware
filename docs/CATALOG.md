@@ -1,6 +1,6 @@
 # What is on this disk
 
-1060 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **741 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1061 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **742 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -18,7 +18,7 @@
 | [Developer tools](#developer-tools) | 37 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
-| [Archives & compression](#archives--compression) | 33 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
+| [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
@@ -655,7 +655,7 @@
 
 *Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries.*
 
-<details><summary>33 programs</summary>
+<details><summary>34 programs</summary>
 
 **Alternates**
 
@@ -685,6 +685,7 @@
 | `ar` | Ar 1.2, an archive manager: gathers files into one .ar archive and compresses them as it goes -- -u adds, -t lists, -x extracts, -p prints a member<br>`Ar V1.2 - archive file manager` |
 | `ar2` | &#9733; Ar 2.00, a later edition of `ar' with delete and move as well, and each file's attributes recorded<br>`Ar V2.00 - archive file manager` |
 | `arc` | ARC 5.21, the archiver that came before zip: a adds, x extracts, v lists with the compression column, t tests, p prints a member<br>`ARC - archive utility, Version 5.21, created on 04/22/87 at 15:05:21` |
+| `bru` | backs up a directory tree to one archive file and restores it, keeping what OS-9 keeps about each file -- its owner, its attributes and its dates.  `bru -c -q -f save.bru mydir' backs up, -t lists, -x restores here, and a pattern after -x restores part.  For the super-user only.  Give -q when the archive is a file, or it first asks for a disk<br>**How:** `bru -c -q -f save.bru dir' backs up, `bru -t -q -vvv -f save.bru' lists, `bru -x -q -f save.bru' restores into the current directory. Run it as the super-user; -q stops it asking for a disk, and -f must come before the paths. |
 | `cat` | &#9733; concatenates files to standard output: -n numbers the lines, -v shows control characters, -s squeezes runs of blank lines<br>`Syntax: cat [<opts>] {[-] <path> [<opts>]}` |
 | `lha` | LHa 2.08 -- create/extract .lzh archives<br>`LHa Vrs. 2.08 for OSK - revised Dec. 2, 1994  M.Haaland` |
 | `lharc` | C-LHarc 1.00, the older sibling of lha: a adds to a .lzh archive, x extracts, l lists, t tests<br>`C-LHarc for OS-9/68k Version 1.00   (C) 1989-1990 Y.Tagawa, Kai Uwe Rommel` |

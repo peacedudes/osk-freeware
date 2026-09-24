@@ -1138,3 +1138,4 @@ rn|rn43|addng.c art.c artio.c artsrch.c backpage.c bits.c cheat.c final.c head.c
 Pnews|rn43|Pnews.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
 newsetup|rn43|newsetup.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
 norm.saver|rn43|norm.saver.c|CPP2 NOCOMPAT|/dd/LIB/blarslib.l /dd/LIB/termlib.l|-V=/dd/DEFS/os9unix -V=/dd/DEFS/blarsdefs
+bru|bru|bru_main.c bru_misc.c bru_file.c bru_backup.c bru_restore.c bru_list.c|||
