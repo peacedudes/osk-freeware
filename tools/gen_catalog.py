@@ -442,6 +442,50 @@ def load_requires(path):
     return out
 
 
+def load_changes(path):
+    """What this collection changed in a program, from tools/changes.psv.
+
+    rdoggett, 2026-09-24: "Anything we do alter or rename, we should scribble
+    notes on the card if we have that information still."  One line per
+    program, `name|note'.  A program ported here with ORIG/ and README.OSK
+    beside its source gets a pointer to that README without a line here.
+    """
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="ascii"):
+        line = line.rstrip("\n")
+        if not line or line.startswith("#"):
+            continue
+        name, _, note = line.partition("|")
+        out[name] = note
+    return out
+
+
+def load_excluded(path):
+    """Programs found and deliberately left out, from tools/excluded.psv.
+
+    `name|category it would have held|what it is|why it is not here|where it
+    came from'.  They are cards of their own in a "Not included" kind, off by
+    default, so a reader who wonders where something went can find out --
+    and go and look for it themselves.
+    """
+    out = []
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="ascii"):
+        line = line.rstrip("\n")
+        if not line or line.startswith("#"):
+            continue
+        f = line.split("|")
+        if len(f) != 5:
+            raise SystemExit("%s: want 5 fields: %s" % (path, line))
+        name, would, what, why, where = f
+        out.append({"name": name, "cat": EXCLUDED_KIND, "sub": would,
+                    "desc": what, "why": why, "origin": where, "out": True})
+    return out
+
+
 def load_howto(path):
     """Hand-written "how do I run this" notes, from tools/howto.psv.
 
@@ -465,7 +509,7 @@ def load_howto(path):
 # The program directories from_tree walks; also used to check that nothing on
 # the disk is invisible to the catalogue.
 PROGRAM_DIRS = ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/REBUILT",
-                "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
+                "CMDS/GCC139", "CMDS/GCC2", "CMDS/GCC137", "CMDS/GCC272", "CMDS/DRIVERS", "CMDS/X68K", "CMDS/SYSADMIN", "CMDS/DEMOS", "CMDS/DHRY", "CMDS/MM1",
                 "CMDS/UUCP", "CMDS/ADL", "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK",
                 "CMDS/NEWS", "CMDS/MNEWS", "CMDS/TEXCMDS", "CMDS/WN")
 
@@ -544,6 +588,8 @@ def gather(root, catfile):
                                     "terms.psv"))
     requires = load_requires(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                           "requires.psv"))
+    changes = load_changes(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        "changes.psv"))
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
@@ -556,6 +602,14 @@ def gather(root, catfile):
             p["terms"] = terms[p["name"]]
         if p["name"] in requires:
             p["requires"] = requires[p["name"]]
+        sub = (p.get("dir") or "").replace("CMDS/", "", 1)
+        note = changes.get("%s/%s" % (sub, p["name"])) or changes.get(p["name"])
+        if note:
+            p["changed"] = note
+        s = p.get("src") or p["name"]
+        if os.path.isdir(os.path.join(root, "SRC", s, "ORIG")) and \
+           os.path.isfile(os.path.join(root, "SRC", s, "README.OSK")):
+            p["changedsrc"] = "SRC/%s/README.OSK" % s
         if p["name"] in shadowed:
             p["shadows"] = shadowed[p["name"]]
         if p["name"] in cats:
@@ -571,7 +625,10 @@ def gather(root, catfile):
 
 # ---------------------------------------------------------------- writing
 
+EXCLUDED_KIND = "Not included"
+
 BLURB = {
+ EXCLUDED_KIND:"Programs that were found in the archives and left out on purpose, each with the reason and where it came from, so you can go and look for yourself.  None of them is on the disk.",
  "Shells":"Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged.",
  "Editors":"vi and emacs in several flavours, line and stream editors, and editors for binary and hex.",
  "Text tools":"Search, sort, compare, reformat, split and spell-check.",
@@ -599,11 +656,12 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
  "Compilers & build","Languages","Archives & compression","Encoding & conversion",
  "Communications","Graphics & images","Games","Screen toys","Amusements",
  "System & modules","Disk & DOS","Time & calendar","Maths & calculators",
- "Printing","Documentation","G-Windows","Needs hardware","Uncategorised"]
+ "Printing","Documentation","G-Windows","Needs hardware","Uncategorised",
+ EXCLUDED_KIND]
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src","shadows",
         "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
-        "lang","langnote")
+        "lang","langnote","changed","changedsrc","out","why")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.
@@ -687,6 +745,18 @@ def render_markdown(progs):
                 L.append("| `%s` | %s |" % (p["name"], cell))
             L.append("")
         L += ["</details>", ""]
+
+    out = load_excluded(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                     "excluded.psv"))
+    if out:
+        L += ["<details>", "<summary><b>%s</b> &middot; %d</summary>" % (EXCLUDED_KIND, len(out)), "",
+              BLURB[EXCLUDED_KIND], "",
+              "| | | |", "|---|---|---|"]
+        for x in sorted(out, key=lambda x: x["name"].lower()):
+            L.append("| `%s` | %s<br>**Why not:** %s | %s |" % (
+                x["name"], x["desc"].replace("|", "\\|"),
+                x["why"].replace("|", "\\|"), x["origin"].replace("|", "\\|")))
+        L += ["", "</details>", ""]
 
     L += ["---", "",
           "&#9733; marks a program that uses Microware's `cio`, which ships "
@@ -796,8 +866,15 @@ def render(progs, template, standalone=True):
     repository, so it needs the whole skeleton -- without a doctype the
     browser drops into quirks mode and the layout goes soft.
     """
+    out = load_excluded(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                     "excluded.psv"))
+    here = {p["name"] for p in progs}
+    clash = [x["name"] for x in out if x["name"] in here]
+    if clash:
+        raise SystemExit("tools/excluded.psv names programs that ARE on the "
+                         "disk: %s" % " ".join(clash))
     slim = [{k: v for k, v in p.items() if k in KEEP and v not in (None, "", False, [])}
-            for p in progs]
+            for p in progs + out]
     html = open(template, encoding="utf-8").read()
     # Escape '<' as \u003c. sed's own usage line is "sed [-n] <script> [<path>]",
     # and that literal <script> closes the element early -- the page dies at the

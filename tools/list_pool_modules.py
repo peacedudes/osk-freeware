@@ -93,7 +93,7 @@ def main():
     D = "/Users/rdoggett/Developer/os9/osk-freeware/disk"
     have = set()
     for sub in ("CMDS", "CMDS/GAMES", "CMDS/NETPBM", "CMDS/REBUILT",
-                "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS", "CMDS/DHRY"):
+                "CMDS/GCC139", "CMDS/GCC2", "CMDS/GCC137", "CMDS/GCC272", "CMDS/DRIVERS", "CMDS/X68K", "CMDS/SYSADMIN", "CMDS/DEMOS", "CMDS/DHRY"):
         p = os.path.join(D, sub)
         if os.path.isdir(p):
             have |= {n.lower() for n in os.listdir(p) if os.path.isfile(os.path.join(p, n))}

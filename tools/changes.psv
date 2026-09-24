@@ -1,0 +1,126 @@
+# changes.psv -- what this collection changed or renamed in a program, shown
+# on its card under Changed here.  name|note.  A key DIR/name (DIR under
+# CMDS) picks one of two files that share a name.  Ports with ORIG/ and
+# README.OSK get a pointer to that README automatically.
+argproc_demo|Rebuilt from its source with 64K of memory; the build shipped before stopped with a stack overflow whatever it was given.
+ascii|Built here from Roland McGrath's source. It took the name when an install error overwrote an earlier ascii binary whose origin was never recorded.
+atc|The `!' shell escape is left out; that key only redraws the screen.
+bash|One byte of its version string changed: bash wrote 13 bytes into a 12-byte buffer, which crashed it at start-up on a system with more than 16 MB of memory. BASH_VERSION now reads 1.12.12.
+bc|Its scanner now accepts CR as a line end as well as LF, so scripts written on this disk, piped input and its own maths library (bc -l) are no longer refused.
+bks|Named bks, the posting's archive name, because this disk's `bs' is Battleships. Its ESC shell escape does nothing here, since OS-9 reads ESC as end of file.
+blackjak|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+bmgtest|Opens a named file with OS-9's read mode: the Unix mode 0 grants no access here, so a search of a named file found nothing.
+bmgtest2|Opens a named file with OS-9's read mode: the Unix mode 0 grants no access here, so a search of a named file found nothing.
+boa|The binary is the porter's own, unchanged; its configuration file was changed to listen on port 8080, run as user 0, name a server and use this disk's directories.
+browse|The `?' help key pages through less instead of more, which this disk does not have.
+cfscores|The -a option and naming another player are gone, since OS-9 has no password database; it reports the player named by USER.
+chemtab|The log of who ran the program is not kept.
+cjpeg.070|Module name changed from cjpeg to cjpeg.070 to match its file, so loading it no longer answers for the cjpeg in CMDS.
+compress|The period binary was replaced by a rebuild of the same source with one fix: Microware's putchar read its argument twice on a pipe or terminal, so piped output was corrupt. Output to a file is byte-for-byte the same as before.
+compress_4.0|Module name changed from compress to compress_4.0 to match its file, so loading it no longer answers for the compress in CMDS. Otherwise identical to the archive's.
+corewar|Renamed from interp, its name in the posting.
+cpp|One declaration guarded: cpp.h declared sprintf() returning char *, which this compiler's stdio.h contradicts, and nothing uses the value.
+craps|The shell escape says it is unavailable, the dice-setting cheat is refused (it needs crypt(), which no library here has), and the score file is not locked.
+creadoc|One byte of the binary changed, so it reads each file name from column 54 of the directory listing instead of 53. At 53 it took a leading space into the name and every open failed.
+ctags.elvis|Elvis's ctags, renamed from ctags because the disk already has one; its module name was changed to match.
+cwasm|Renamed from assem, its name in the posting.
+cwdis|Renamed from disassem, its name in the posting.
+devprc|Rebuilt from its source, replacing the archive module, which had a bad CRC and a damaged data descriptor and would not load. The copy on the EFFO disk is damaged the same way.
+diff|This is GNU diff 1.4, built here from source. It took the name when an install error overwrote the GNU diff 1.1 binary that held it; an archive GNU diff 1.1 ships in REBUILT as diff_1.1.
+diff_1.1|Module name changed from diff to diff_1.1 to match its file, so loading it no longer answers for the diff in CMDS. Otherwise identical to the archive's.
+dir|One instruction patched in the binary: it asked to write a line of 128 bytes, which the processor read as minus 128, so it could not list a directory. It now writes at most 127 characters a line and lists directories.
+djpeg.070|Module name changed from djpeg to djpeg.070 to match its file, so loading it no longer answers for the djpeg in CMDS.
+drawpoker|Named drawpoker because this disk's `poker' is a different game. The rules are paged with less, message pauses sleep instead of counting, the deal is seeded from the clock and it exits with status 0.
+elvis_input|Elvis's input command. It was renamed input.elvis to avoid a clash, then elvis_input: elvis picks insert mode from the last letter of the name it is run by, and input.elvis ends in s, so it never opened in insert mode.
+ephem881|Module name changed from ephem to ephem881 to match its file, so loading it no longer answers for the ephem in CMDS.
+freeb|The volume name now prints without OS-9's high-bit terminator and the year in full, where the original printed the raw offset from 1900.
+fstopgm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+gnugo|Rebuilt from its source, replacing TOP's 1989 binary; no line of the C was changed.
+graph|Module name changed from graph to Graph, the name the seven programs that use it ask for. Real OS-9 matches module names exactly, so as shipped none of them could have found it.
+gzip020_csl|Module name changed from gzip to gzip020_csl to match its file, so loading it no longer answers for the gzip in CMDS. Otherwise identical to the archive's.
+gzip68k_csl|Module name changed from gzip to gzip68k_csl to match its file, so loading it no longer answers for the gzip in CMDS. Otherwise identical to the archive's.
+gzipcpu32k_csl|Module name changed from gzip to gzipcpu32k_csl to match its file, so loading it no longer answers for the gzip in CMDS. Otherwise identical to the archive's.
+hackwish|Renamed from wish (its module was B_wish), since the WiSH shell here is also wish. Rebuilt with fixes so it forks hack by its full path and reads hack's prompts without blocking; before, it hung after the first game.
+hang|The OS-9 port picked its word from only the first five lines of the dictionary, so every game was one of five words; rebuilt to count the file and choose from all of it.
+hanoimod|Allocates room for its whole int array; the posted program allocated that many bytes and wrote past the end of the block on every move.
+hipstopgm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+imgtoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+inews|Built with MNews's spool and command directories changed from the package's defaults, as its install notes ask, so it does not share UUCPbb's news spool.
+infocom.tcap|Module name changed from infocom to infocom.tcap to match its file, so loading it no longer answers for the infocom in CMDS.
+jumble2|Named jumble2, the posting's archive name, because this disk's `jumble' is a different program.
+kermit2|Module name changed from kermit to kermit2 to match its file, so loading it no longer answers for the kermit in CMDS.
+life|Built with 64K of memory instead of 16K; it recurses over the board and died of stack overflow after one generation.
+lnk.org|Module name changed from lnk to lnk.org to match its file, so loading it no longer answers for the lnk in CMDS.
+lotto|At end of input it now exits; the posted program asked "Do you believe?" for ever.
+ls|Built here from GNU fileutils 3.13 source, repaired for OS-9 so it shows real file modes, dates, owners and inode numbers.
+m4|This is the archive's GNU m4 0.5 binary, unchanged. It took the name because the build from source that held it scrambled its output.
+m4_0.5|Module name changed from m4 to m4_0.5 to match its file, so loading it no longer answers for the m4 in CMDS. Otherwise identical to the archive's.
+macunpack|Renamed from macunpac, the archive's file name, to match the module name inside it.
+make|Rebuilt with a utime() written for this collection: the original carried a copyright with no grant, and it wrote a zero over the file's link count on every touch.
+monop|Two features that depend on a Unix process are disabled: the shell escape and saving or restoring a game.
+moria|Rebuilt from TOP's source with a terminal-entry reader of its own, replacing TOP's binary, which could not find the terminal in this disk's termcap. The game code is unchanged.
+mz|A timer that wrapped when the room was drawn within one clock tick is fixed (the game froze for ever), and the author's usage log is left out.
+newsetup|Built with its news directories changed to this disk's C News layout, and the site name changed from the porter's own to osk.UUCP.
+newsrun|Built with its news-library directory names changed to this disk's C News layout; link() and rename() are versions written for this collection that copy the file, since RBF has no hard links.
+nn|Built with MNews's spool and command directories changed from the package's defaults, and one #endif added to term.c, which the distributed file never closed.
+nnadmin|Built with the directory it looks for nn's programs in changed from the package's default to where MNews lives on this disk.
+nnaux|Built with the directory it looks for nn's programs in changed from the package's default to where MNews lives on this disk.
+nncheck|Built with the directory it looks for nn's programs in changed from the package's default to where MNews lives on this disk.
+nnmaster|Built with the directories nn looks in changed from the package's defaults to where MNews lives on this disk.
+os9dsk|Rebuilt from its source rather than shipped as the author's binary, with coco_direct.h written for this collection in place of the release's header derived from Microware's direct.h.
+patch|Every open() and creat() given OS-9 access modes: the Unix mode 0 grants nothing here, so patch fell back to Plan B and stopped with "Error reading tmp file", leaving the file untouched.
+pbmtext|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+Pnews|Built with its news directories changed to this disk's C News layout, and the site name it signs articles with changed from the porter's own to osk.UUCP.
+pnmtosir|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+poker|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+ppmnorm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+ppmtoxpm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+queens|Rebuilt from its IOCCC source (baruch.c) under its own name; the build that shipped first called itself B_baruch.
+rdjpgcom.070|Module name changed from rdjpgcom to rdjpgcom.070 to match its file, so loading it no longer answers for the rdjpgcom in CMDS.
+relaynews|Built with its news-library directory names changed to this disk's C News layout, and with a link() written for this collection that copies the file, since RBF has no hard links and the original raw-sector link() corrupted the lock.
+rn|Built with its news directories changed to this disk's C News layout, and the site name it signs articles with changed from the porter's own to osk.UUCP.
+MNEWS/rnews|Built with MNews's own spool and command directories, and it mails through UUCPbb's rmail where the package named another directory.
+robots|Rebuilt from its source, which stopped it writing a stray control-K that scrolled the board, and it records scores under your USER name; the port's getlogin() answered "your name" for everyone.
+rot22|Named rot22, the archive's name, because this disk's `rot' is a different program. It also strips the falling-letter bit it printed as stray symbols on an 8-bit terminal.
+rpoem|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+rsconvert|Memory size in its header raised from about 11K to 32K; its parser overflowed the stack converting a rayshade 3 scene.
+rsdsk|Rebuilt from its source rather than shipped as the author's binary; nothing was changed.
+rstory|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+sbatch|Built with MNews's spool and command directories changed from the package's defaults, as its install notes ask, so it does not share UUCPbb's news spool.
+screen_nocio|Renamed from screen, and its module from screen, so it no longer answers for the screen in CMDS. One line fixed in scandir.c: a file counter was never set, and it died with a bus error on the first file it accepted.
+sed|This is the archive's GNU sed 1.06 binary, unchanged. It took the name because the build from source that held it answered every script with No more memory.
+sed_1.06|Module name changed from sed to sed_1.06 to match its file, so loading it no longer answers for the sed in CMDS. Otherwise identical to the archive's.
+NETPBM/sirtopnm|Rebuilt with one loop bound corrected: it skipped two bytes too few of the SIR header, so every colour plane came back shifted and a SIR file did not convert back to the picture it came from.
+slice|Default output names are <input>.001 rather than <input>:001, and -m writes one mailbox file per day, since RBF names cannot carry a colon.
+snake|Rebuilt with echo turned off while it plays: the port's raw() and cook() were empty, so each key you typed was echoed into the middle of its cursor codes and scattered them across the board.
+soelim|One token fixed in its usage message, which printed an empty name where the program's name belongs.
+stone|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+tet|Replaced by a rebuild from its source with the keyboard compiled in (the build first shipped took no keys), then fixed so it really pauses between moves, turns echo off and keeps a score file.
+top|Rebuilt from its source with its process-table walk bounded: it read past the end of its own table and died with a bus error just after printing its headings. The rebuild needs no cio.
+trek73|Saving and restoring a game are disabled: a save dumps the whole data segment, which OS-9 does not lay out that way.
+trlf|Written for this collection: newsrun calls a trlf that exists in no archive, so this one turns LF into CR, in place or as a filter, and nothing more.
+UnMacpack|Renamed from unmacpack, the archive's file name, to match the module name in its header.
+unshar|Two bugs in the posted interpreter are fixed -- a temporary file closed wrongly and a clobber test that refused every file -- and a few shell forms other shar programs write were added.
+unsit|Renamed from unsit_DJL, the archive's file name, to match the module name inside it.
+utree|The Group command and the corner clock are left out, since OS-9 has no group database and no alarm signal; commands run through utree's SHELL variable rather than system().
+uue|Three lines removed that defined fputc as putc: with them the translation table came out empty and uud refused every file.
+vi|PVIC 1.0a. It shipped here as vi_nocio and took the name vi, with its module renamed to match, when the EFFO vi that held the name left the disk.
+vi.elvis|Elvis's vi, renamed from vi because the disk already had a vi; its module name was changed to match.
+vi_1.0|Renamed from VI, and its module from vi, so it no longer answers for the vi in CMDS. It is PVIC 1.0, the edition before the 1.0a that ships as vi.
+vmod_trap|Module name changed from vmod_trap to VMod_trap, the name rxmod asks for. As found, rxmod could never have linked it on real OS-9.
+wam.sbprolog|Built here from the SB-Prolog sources with their own OS-9 makefiles, replacing the prebuilt binary the archive carried; both gave identical output on the same queries.
+wrjpgcom.070|Module name changed from wrjpgcom to wrjpgcom.070 to match its file, so loading it no longer answers for the wrjpgcom in CMDS.
+xargs|The command is forked directly instead of through system() and the "exec " prefix is gone, so a redirection or pipe written in the command is not interpreted.
+xpmtoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+xvminitoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+yahtzee2|The ! shell escape is removed.
+yidslots|Named yidslots, without the hyphen the posting's yid-slots has, since no program name on this disk carries one.
+zc|The `Y' key, which copied to a clipboard library that never existed, now rings the bell.
+zoo_2.1|Module name changed from zoo to zoo_2.1 to match its file, so loading it no longer answers for the zoo in CMDS. Otherwise identical to the archive's.
+bmg|Renamed from bm: here that name is K5JB's mailer, the program KA9Q's documentation calls bm.
+NETWORK/net|Now K5JB's k37, built here from its own source, in place of the k35c binary that shipped without one. The year in its Received: lines is written as two digits; as K5JB left it, it read 126 after 1999.
+NETWORK/bm|The year in its Date: header is written as two digits; as K5JB left it, it read 126 after 1999.
+NETWORK/prexd|Built as prexd, not rexd, its author's name: OS-9/Net has a rexd of its own, and this one starts its server by name.
+NETWORK/prexdc|Built as prexdc, not rexdc, its author's name, for the reason given on prexd's card.
+GAMES/canfield|Two fixes to this collection's port: it opened its score file write-only, so the read that follows failed and no game was ever recorded; and it filed each player by the whole group.user word, which put a non-super player's record 2 MB into the file. It now opens it read-write and files by user number.
+GAMES/cfscores|Finds a player by user number, as canfield now files them; it used the whole group.user word.

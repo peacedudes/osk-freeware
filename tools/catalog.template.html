@@ -75,6 +75,10 @@
   li.p{display:grid;grid-template-columns:auto minmax(88px,120px) 1fr;gap:9px;padding:5px 10px;
        align-items:baseline;cursor:pointer;border-radius:7px}
   li.p:hover{background:var(--hair)}
+  li.p.out .nm,li.p.out .ds{opacity:.55}
+  li.p.out .nm{text-decoration:line-through;text-decoration-thickness:1px}
+  .panel.out .pn{opacity:.7}
+  .whynot{border-left:3px solid var(--rule);padding:4px 0 4px 10px;margin:10px 0}
   li.p[aria-current="true"]{background:var(--soft)}
   .nm{font-family:var(--mono);font-size:13px;font-weight:600;overflow-wrap:anywhere}
   .nm .st{color:var(--accent)}
@@ -258,6 +262,7 @@
       <button class="chip" id="f-shot" aria-pressed="false">Sample output</button>
       <button class="chip" id="f-de" aria-pressed="false" title="Programs that speak German at the terminal">In German</button>
       </span>
+      <button class="chip" id="f-out" aria-pressed="false" title="Programs found in the archives and left out, with the reason and where they came from">Not included</button>
     </div>
   </header>
 
@@ -372,9 +377,12 @@ function tryFor(shot){
   return (shell==="os9" && shot.os9) || shot.try || null;
 }
 // What the reader has chosen: a kind OR a letter, a query, and a program.
-const st = {q:"", cat:null, letter:null, sel:null, nocio:false, src:false, doc:false, shot:false, de:false};
+const st = {q:"", cat:null, letter:null, sel:null, nocio:false, src:false, doc:false, shot:false, de:false, out:false};
 
 function ok(p){
+  // NOT-INCLUDED CARDS are off unless the chip is on -- except to a search,
+  // which is how a reader asks "where did X go?".
+  if(p.out) return st.out || !!st.q.trim();
   if(st.nocio && p.star) return false;
   if(st.src && !p.hassrc) return false;
   if(st.doc && !p.docs) return false;
@@ -419,7 +427,7 @@ function brief(d){
 }
 function row(p, where){
   const on = picked.has(p.name);
-  return `<li class="p${on?" picked":""}" tabindex="0" data-n="${esc(p.name)}"`+
+  return `<li class="p${on?" picked":""}${p.out?" out":""}" tabindex="0" data-n="${esc(p.name)}"`+
     `${st.sel===p.name?' aria-current="true"':''}>`+
     `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
     `aria-label="pick ${esc(p.name)}">${on?"&#10003;":"+"}</button>`+
@@ -449,9 +457,9 @@ function renderProgs(){
   const q = st.q.trim().toLowerCase();
   if(q){
     // SEARCHING IS NOT BROWSING: the answer is a ranked list, best first.
-    const rows = hits.filter(p=>matches(p,q)).sort((a,b)=>rank(b,q)-rank(a,q)||a.name.localeCompare(b.name));
+    const rows = hits.filter(p=>matches(p,q)).sort((a,b)=>(!!a.out-!!b.out)||rank(b,q)-rank(a,q)||a.name.localeCompare(b.name));
     col.innerHTML = `<h2>${rows.length} match${rows.length===1?"":"es"}</h2>`+
-      (rows.length ? `<ul class="progs">${rows.map(p=>row(p,p.cat)).join("")}</ul>`
+      (rows.length ? `<ul class="progs">${rows.map(p=>row(p,p.out?"not included":p.cat)).join("")}</ul>`
                    : `<p class="empty">Nothing matches that. Names, descriptions and kinds are searched.</p>`);
     return;
   }
@@ -476,7 +484,7 @@ function renderProgs(){
   // Nothing chosen yet: every kind, with what it holds, as the way in.
   const count = {};
   for(const p of hits) count[p.cat] = (count[p.cat]||0)+1;
-  col.innerHTML = `<h2>${hits.length} programs</h2><ul class="overview kinds">`+
+  col.innerHTML = `<h2>${hits.filter(p=>!p.out).length} programs</h2><ul class="overview kinds">`+
     ORDER.filter(c=>count[c]).map(c=>`<li data-cat="${esc(c)}" tabindex="0"><div class="ct">${esc(c)}`+
     `<span class="n">${count[c]}</span></div><p class="blurb">${esc(BLURB[c]||"")}</p></li>`).join("")+"</ul>";
 }
@@ -602,6 +610,18 @@ function renderPanel(){
     about();
     return;
   }
+  if(p.out){
+    col.innerHTML = `<div class="panel out">`+
+      `<button class="back" id="back">&larr; Back to the list</button>`+
+      `<h2 class="pn">${esc(p.name)}</h2>`+
+      `<p class="pd">${esc(p.desc)}</p>`+
+      `<div class="whynot"><span class="k">not on this disk</span> ${keys(esc(p.why))}</div>`+
+      `<div class="more"><span class="k">details and provenance</span><dl>`+
+      `<dt>Would be under</dt><dd>${esc(p.sub)}</dd>`+
+      `<dt>Came from</dt><dd>${esc(p.origin)}</dd></dl></div></div>`;
+    col.scrollTop = 0;
+    return;
+  }
   // Every requirement, including the ones this disk already supplies: a
   // reader taking a program to a system of their own needs to know about
   // cio as much as about the data files it opens (from DEPENDS) or runb.
@@ -626,10 +646,13 @@ function renderPanel(){
   add("Language",  esc(i.language));
   add("Came from", p.origin ? esc(p.origin)+(p.archive?` &mdash; ${esc(p.archive)}`:"") : "");
   add("Source",    p.src ? `<code>SRC/${esc(p.src)}</code>` : (p.hassrc?`<code>SRC/${esc(p.name)}</code>`:""));
+  add("Changed here", [p.changed?keys(esc(p.changed)):"",
+      p.changedsrc?`ported for this collection &mdash; every change is listed in <code>${esc(p.changedsrc)}</code>`:""]
+      .filter(Boolean).join(" "));
   add("Docs",      p.docs ? `<code>DOC/${esc(p.name)}/</code>` : "");
   add("Restrictions", esc(i.restrictions));
   add("Hardware",     esc(i.hardware));
-  const kin=DATA.filter(x=>x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
+  const kin=DATA.filter(x=>!x.out && x.sub===p.sub && x.name!==p.name).sort((a,b)=>a.name.localeCompare(b.name));
   if(kin.length) add("See also", kin.map(x=>
       `<a href="#p=${encodeURIComponent(x.name)}" class="kin" data-n="${esc(x.name)}"><code>${esc(x.name)}</code></a>`).join(", "));
 
@@ -771,7 +794,7 @@ document.getElementById("panel-col").addEventListener("click",e=>{
 document.getElementById("q").addEventListener("input",e=>{
   st.q=e.target.value; if(st.q){ st.cat=null; st.letter=null; }
   document.getElementById("app").dataset.stage="list"; toHash(); render(); });
-for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"],["f-de","de"]]){
+for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"],["f-de","de"],["f-out","out"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
 }

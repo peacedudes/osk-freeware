@@ -1,0 +1,148 @@
+# excluded.psv -- programs found in the archives and left out on purpose.
+# name|category it would be under|what it is|why it is not on the disk|where it came from
+# Rendered by tools/gen_catalog.py as the guide's `Not included' kind, off by
+# default.  Microware's own products and the Microware system utilities left
+# out under the authorship rule are deliberately NOT listed here.
+add_errmsg|Editors|Builds the message file used by the forum 13 vi.|A helper of the forum 13 vi, and left out with it on the same terms.|EFFO forum disk 13, SOFTWARE/C/VI
+adven2|Games|An adventure game written in Fortran.|It needs a Fortran compiler and linker that work end to end, and the RTF Fortran here only partly does.|comp.sources.games volume 11
+bawk|Text tools|An awk-like pattern language.|gawk and a2p on this disk do the job.|Microware OS-9 archive, 6809 C section
+bday|System & modules|Mails birthday greetings from a list kept by the administrator.|An administrator's tool that sends through sendmail from Unix system lists.|comp.sources.misc v06i099
+belief|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+biffa|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+btree|Developer tools|Softfocus BTREE, a B-tree file-handling demonstration and test.|The forum disk lists it as public domain, but its own btree.doc says it no longer is and is sold.|EFFO forum disk 2
+calendar (Minow)|Time & calendar|Martin Minow's calendar reminder program.|cal, calen and calender on this disk cover it.|comp.sources.unix volume 3
+cbmtopbm|Graphics & images|Converts a compact bitmap to PBM; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+cdungeon|Games|Dungeon, the DECUS mainframe adventure that preceded Zork, ported to C.|The game is Infocom's work, now another company's, and its notice prohibits commercial use; a question of rights this collection cannot settle.|comp.sources.games v12i068
+center|Text tools|Centres lines of text.|Its terms ask that the author be contacted for redistribution rights or inclusion in a package.|comp.sources.misc v27i070
+cent|Games|Centipede for terminals.|The posting carries a random-number file under a bare copyright with no grant.|comp.sources.games v01i071
+checksoa|Communications|Checks a domain's SOA records across its name servers.|It is example code from a published book with no grant to redistribute it. nslookup and nsquery from the same port ship.|Microware OS-9 archive, OSK_NETWORK_ISP/bind.4.8.3.lzh
+chop|Text tools|Cuts fields and columns out of lines.|cut, colrm and field on this disk do the job.|comp.sources.unix v25i001
+ci|Developer tools|RCS 4 check-in: records a new revision of a file.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+cmake|Compilers & build|Carl Kreider's crude make.|Its author describes it himself as crude and obsolete. make and gmake are on this disk.|Microware OS-9 archive, CMDS/carlutil.lzh
+colm|Text tools|Sets a list out in columns.|column on this disk does the job.|comp.sources.unix v16i087
+CommonTeX|Text tools|Pat Monardo's CommonTeX, TeX in C, as source.|It is not the source of the TeX on this disk, and a second TeX adds nothing.|Microware OS-9 archive, osk_ctexsrc.ar
+co|Developer tools|RCS 4 check-out: retrieves a revision of a file.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+dearc|Archives & compression|Extracts an MS-DOS .ARC archive.|It cannot read a crunched member, which nearly every real archive holds. arc on this disk reads them all.|Microware OS-9 archive, CMDS/carlutil.lzh
+dg|Amusements|An entry in the 1990 International Obfuscated C Code Contest.|It depends on the preprocessor expanding the name of a directive, which standard C does not do, and neither preprocessor here builds it.|EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST
+dialog|Shells|Draws dialog boxes for shell scripts.|It draws with curses line-drawing characters and colour, which no curses library here provides.|comp.sources.misc v41i109
+dinkum2|Games|Dinkum, an Australian text adventure.|Its author's rule allows no modified versions to be released, and an OS-9 build is one.|comp.sources.games v15i036
+diph|Games|The game of dining philosophers.|It is built on sockets, fork and select, which this C library does not have.|comp.sources.games v13i026
+dots2|Games|A visual dots-and-crosses game.|It is built on sockets, fork and select, which this C library does not have.|comp.sources.games v02i051
+dsw|System & modules|A utility from the OS-9 International magazine disk.|All rights reserved by its publisher and author, with the forum's personal-use-only condition.|OS-9 International code disk, via EFFO
+dumpinit|System & modules|Lists the settings of the init module.|It will not compile: six of the init module fields it prints do not exist in this SDK's header.|Microware OS-9 archive, file 2240
+dynacon|Encoding & conversion|Converts CoCo Dynacalc spreadsheet files.|It came with a 6809 makefile only and is Color Computer business.|comp.os.os9, June 1989
+errno|Developer tools|Explains an error number.|perr on this disk does the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+expreserve|Editors|Saves the buffer of the forum 13 vi when the editor dies.|A helper of the forum 13 vi, and left out with it on the same terms.|EFFO forum disk 13, SOFTWARE/C/VI
+exrecover|Editors|Restores a buffer that expreserve saved for the forum 13 vi.|A helper of the forum 13 vi, and left out with it on the same terms.|EFFO forum disk 13, SOFTWARE/C/VI
+e|Editors|A small fixed VT100 build of the SEDT screen editor.|Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy.|EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR
+ffix|Text tools|Expands tabs and turns other control characters into spaces.|detab, expand, pep and unp on this disk do the job; its in-place rewrite needs a module this disk does not have.|OS-9 Public Domain Utilities image, FFIX
+flicker|Screen toys|An ANSI terminal teaser that inserts and deletes lines for ever.|It runs until interrupted and does not restore the terminal afterwards.|comp.sources.games v05i060
+funky|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+gnuplot_x11|Graphics & images|The X11 output driver for gnuplot 3.2.|It draws only on an X11 display, and its archive holds no gnuplot binary for it to serve.|Microware OS-9 archive, GRAPHICS/gnuplot32x.tar.Z
+greed|Games|A field of digits: move to eat that many digits in a direction, until no move is left.|Its author asked that it not be redistributed.|Usenet posting, 1989; v_misc.ar on the hc disk
+halign|Text tools|Aligns columns of text.|column on this disk does the job.|comp.sources.unix v06i016
+hd|Files & directories|A hex dump.|dump, hdump and xd on this disk do the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+hearts|Games|A multiplayer card game of hearts.|It is built on sockets, fork and select, which this C library does not have.|comp.sources.games v02i082
+icapos9|Needs hardware|Support programs for the Imagewise frame grabber.|It needs the frame-grabber hardware.|comp.os.os9, May 1989
+isam|Developer tools|Softfocus ISAM, an indexed-sequential file demonstration.|The forum disk lists it as public domain, but its own documentation says it no longer is and is sold.|EFFO forum disk 2
+jive|Amusements|A text filter that rewrites English in a comic dialect.|Left out on content. valspeak, from the same posting, ships.|comp.sources.games v01i003
+jroff|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+kraut|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+kutil|Needs hardware|Reads and writes the kernel track of CoCo floppies and Burke and Burke hard drives.|It is for Color Computer disks and hardware.|Microware OS-9 archive, 6809 C section
+lfcr|Encoding & conversion|Converts line endings.|autolf on this disk does the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+linkup|Needs hardware|LinkUp, a K-Windows communications suite with ansishow, audioplay, gport and terminal.|The clients need a K-Windows display, and its installer writes over the root disk.|Microware OS-9 archive, KWIN_LinkUp_1_0.lzh
+link|Files & directories|Makes a hard link by writing a directory entry to the raw disk.|RBF has no hard links; a program that made one this way corrupted this disk. Its author warns to use it at your own risk.|comp.os.os9, January 1989
+ln|Files & directories|Makes a hard link by writing a directory entry to the raw disk.|RBF has no hard links; a program that made one this way corrupted this disk. Its author warns to use it at your own risk.|comp.os.os9, January 1989
+loglist|System & modules|A 1988 utility that lists the system's log file.|No source, no documentation and no terms anywhere.|EFFO public-domain disk 1
+lpunch|Encoding & conversion|Converts punched-card deck records.|There is nothing here to use them with.|Microware OS-9 archive, 6809 C section
+malawi|Games|A two-player board game.|It is written for X11 only.|comp.sources.games v17i074
+marquis|Screen toys|Scrolls a message along a terminal's status line from the background.|No terminal in the disk's termcap has a status line, and it will not start without one.|comp.sources.misc v07i089
+mb (banner)|Text tools|Prints large banners from an external font.|The author ships no font, so it would arrive unable to print anything.|comp.sources.unix v26i141, banners collection
+mb|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+molecule|Graphics & images|A simple two-dimensional particle system of animated atoms.|Its output is binary coordinates for a display program built on a frame-buffer library with no counterpart here.|comp.sources.misc v02i092
+morsecode|Encoding & conversion|Converts text to Morse code.|It is written in lex and Pascal, and morse on this disk does the job.|comp.sources.unix v17i081
+new_e|Editors|A build of the SEDT screen editor that reads TERM to choose its terminal setup.|Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy.|EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR
+newspeak|Amusements|A text filter from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+nist|Time & calendar|Sets the clock by dialling the NIST time service through a modem.|It needs a modem and the dial-up service.|Microware OS-9 archive, 6809 C section
+notes|Communications|The Notesfile conferencing system (UIUC's notes) in reccoware's 1988 OS-9 port: notes, mknf, nfpipe, nfstats and a dozen more.|A multi-user conferencing system that needs its own system users and spool set up, under a copyright notice with no grant and no source.|TOP release 2 (The OS-9 Project, Munich)
+ntp|Communications|NETTIME, a client for the network time protocol.|No terms anywhere in the archive, and it links a Microware networking library. msntp on this disk does the job.|Microware OS-9 archive, osk_ntp.tar.gz
+ocompress|Archives & compression|A port of compress.|compress and compr on this disk do the job.|Microware OS-9 archive
+omega|Games|Omega 0.71 beta, a large roguelike, in an OS-9 build.|Its licence does not allow distributing modified versions without the author's consent. An OS-9 build is a modified copy, and no source came with it.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+os9lader|Languages|The OS-9 loader for F68K, a Forth system.|The archive's OS-9 part is only this loader, and forth is already on this disk.|Microware OS-9 archive, LANGUAGES/f68k.tar.Z
+osktag|Communications|OSKTag, a taglines tool for mail and news.|No author, copyright or grant is named anywhere in it, and it is written for K-Windows.|Microware OS-9 archive, TELECOM/OSKTag_2_01.lzh
+oxm|Communications|A mail front end.|elm, mail and mailx on this disk do the same job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+pac|Maths & calculators|A full-screen calculator built as a front end to bc.|It does its arithmetic by forking bc and talking over a two-way pipe, which this C library cannot do. bc, dc and hp are on this disk.|comp.sources.misc v14i039
+pbmcatlr|Graphics & images|Joins PBM images left to right; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcat does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmcattb|Graphics & images|Joins PBM images top to bottom; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcat does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmcrop|Graphics & images|Crops the blank edges off a PBM image; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcrop does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmcut|Graphics & images|Cuts a rectangle out of a PBM image; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcut does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmenlarge|Graphics & images|Enlarges a PBM image; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmenlarge does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmfliplr|Graphics & images|Flips a PBM image left to right; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmflip does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmfliptb|Graphics & images|Flips a PBM image top to bottom; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmflip does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbminvert|Graphics & images|Inverts a PBM image; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnminvert does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmpaste|Graphics & images|Pastes one PBM image onto another; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmpaste does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmtocbm|Graphics & images|Converts PBM to a compact bitmap; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pbmtops|Graphics & images|Converts PBM to PostScript; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmtops does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+pc2os9|Encoding & conversion|Converts MS-DOS text files to OS-9's: line ends, tabs expanded, names lower-cased; public domain, 1992.|toos9 on this disk does the same job.|Microware OS-9 archive, OS9000 tree, pc2os9.ar
+peruse|Needs hardware|Peruse 2.0, a file browser.|It needs a CoCo driver, and its author allows personal use only.|Microware OS-9 archive, 6809 C section
+piped-cc|Compilers & build|Replaces the 6809 C compiler's first pass with pipes.|It is for the 6809 compiler only.|comp.os.os9, 1987
+pjr|Amusements|An entry in the 1990 International Obfuscated C Code Contest.|The preprocessor here aborts while reading it, as the entry's own hint warns compilers may.|EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST
+plasma|Screen toys|The Shifty Death Effect, an ASCII plasma drawn with VT100 cursor moves.|It runs until interrupted, for the same reason as flicker; its own usage text calls it a joke.|alt.sources, February 1993
+puz15|Games|Another build of the fifteen puzzle by the same author.|Its author allows unmodified copies only, and an OS-9 build is a modified copy.|v_misc.ar on the hc disk
+puzzle15|Games|The 15-puzzle: slide the tiles into the gap.|Its author allows unmodified copies only, and an OS-9 build is a modified copy.|EFFO forum disk 16
+PwDialog|Needs hardware|Dialog boxes for the X68000's PW/X window system.|It needs the PW/X window device on a Sharp X68000.|Microware OS-9 archive
+qr.cgi|Communications|A CGI query sample for the WN web server.|All rights reserved, and built against a library whose source and terms are not in the archive. The other WN CGI samples ship.|Microware OS-9 archive, TELECOM/wn2.zip
+qterm|Communications|Asks the terminal what it is and reports the answer.|The answer comes from whatever terminal the reader uses, not from anything on this disk, and SYS/login already sets TERM and TERMCAP.|comp.sources.unix v10i072
+rain (1994)|Screen toys|G. L. Sicherman's rain: drops fall and pool.|This disk already ships a rain screen toy that differs only in the drop pattern.|comp.sources.unix v28i090
+raypaint|Graphics & images|A graphics program, source only.|It is written for X11 and GL.|Microware OS-9 archive
+rcis|Communications|RCIS 2.3, a multi-user dial-up BBS for OS-9/68000 K-Windows.|Its licence grants the purchaser one copy only, and it is a demonstration version that needs a registration file.|Microware OS-9 archive, TELECOM/rn.tar.Z
+rcsdiff|Developer tools|RCS 4: compares revisions of a file.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+rcsident|Developer tools|RCS 4: finds the identification keywords in a file.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+rcsmerge|Developer tools|RCS 4: merges changes between revisions.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+rcs|Developer tools|RCS 4's administration command: sets locks, access lists and file attributes.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+rdate|Communications|Sets the clock from an RFC 868 time server.|Source only, and it needs the networking headers of Microware's ISP 1.x, which the SDK here lacks.|Microware OS-9 archive, network section
+read_mail|Editors|Mail helper that goes with the forum 13 vi.|A helper of the forum 13 vi, and left out with it on the same terms.|EFFO forum disk 13, SOFTWARE/C/VI
+revcat_db|Text tools|Prints a file backwards.|tac on this disk does the job.|comp.sources.misc v10i061
+revcat|Text tools|Prints a file's lines in reverse order.|tac on this disk does the job.|Usenet posting
+RGTool|Needs hardware|A program for the X68000's PW/X window system.|It needs the PW/X window device on a Sharp X68000.|Microware OS-9 archive
+rise_set|Time & calendar|Computes the rising and setting of the Sun and Moon.|It computes for one observer, fixed in the source, and needs ftime and atan2, which this C library lacks.|comp.sources.unix volume 5
+rlog|Developer tools|RCS 4: prints the log and history of an RCS file.|The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed.|Microware OS-9 archive, CMDS/rcs4.lha
+robots2|Games|A robots game with a hall of fame, different from the robots on this disk.|It stops when it reads its terminal description: a copy loop in the program runs past the end of the string.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+rock|Amusements|A spew grammar, madrock.sp, from the silly collection.|Left out on content.|alt.sources, December 1992, silly.tar
+rstory2|Amusements|Asks your name and favourite things and tells a story about you.|It starts four story programs that were never distributed and cannot be rebuilt.|EFFO forum disk 9, PROGRAMME/C/SNOBOL
+rz|Communications|ZMODEM receive, from Omen Technology.|A commercial program: the archive carries its licence order form, priced per user. k, xy and z on this disk are free X/Y/ZMODEM.|Microware OS-9 archive, APPS/rzsz_3_36_3_OSK.lzh
+scamper|Graphics & images|A cellular automata simulator.|It is written for X11 only.|comp.sources.misc v26i024
+sedt|Editors|SEDT 2.6, Anker Berg-Sonne's DEC-style keypad screen editor, in its VT100 build.|Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy.|EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR
+skewlife|Amusements|A batch Life computation on skewed squares.|It builds from a generated source file of over 700 KB and has no display of its own; this disk carries Life in several forms.|comp.sources.games v08i087
+SmallTeX|Text tools|A small text formatter that writes input for a Fancy Font printer back end.|The back end, pfont, is not in any archive, so its output has nothing to print it.|Microware OS-9 archive, 6809 C section
+smbfm|Communications|An SMB (Samba) client file manager: smbmount, samba and smbdrv.|Free to copy, but its terms forbid distributing any part of it with other software packages without the author's permission.|Microware OS-9 archive, NETWORK/smbfm14t.zip (and later versions)
+sokoban2|Games|The second version of sokoban.|The same author's sokoban, with the same screens, is on this disk.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+sortc|Text tools|A multi-key character sort.|sort on this disk does the job.|Microware OS-9 archive, 6809 C section
+spiro|Graphics & images|Generates pretty spirograph patterns.|It draws through the Unix plot(3X) library, which OS-9 does not have.|comp.sources.misc v02i046
+splitalf|Text tools|Splits a file into 26 files by the first letter of each line.|It stops on opening its second output file, even with its one real bug fixed.|EFFO forum disk 6, PROGRAMME/bix (bix.arc)
+stig|Amusements|Strangest Abuse of the Rules in the 1990 International Obfuscated C Code Contest.|Its C file is three bytes; the entry is a csh aliasing trick.|EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST
+sysmon|System & modules|A system monitor.|Its source is marked as the proprietary confidential property of a research institute. The author offers it to anyone, but the notice is the institute's.|Microware OS-9 archive, CMDS/SYSMON.lzh
+sz|Communications|ZMODEM send, from Omen Technology.|A commercial program: the archive carries its licence order form, priced per user. k, xy and z on this disk are free X/Y/ZMODEM.|Microware OS-9 archive, APPS/rzsz_3_36_3_OSK.lzh
+tbr|Shells|A working shell in 550 characters, Best Utility in the 1990 International Obfuscated C Code Contest.|It is built on fork, pipe, execvp and wait, which this C library does not have.|EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST
+tetrix|Games|A falling-blocks game.|It is the same source as tet on this disk, which is already a rebuilt copy of it.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+times|System & modules|Times a command.|time on this disk does the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+toon|Screen toys|Toon 1.0, a terminal animation.|Only one of its five posted parts survives with a body, so it cannot be built.|alt.sources, May 1994
+travesty|Amusements|Daniel J. Bernstein's travesty generator: rewrites its input as plausible nonsense by Markov chains.|Its grant to copy and distribute ran only until January 1, 1994. ape on this disk does the same job.|Usenet posting, 1989
+tshell|Shells|A command shell for OS-9/68000.|Its readme says it is not public domain and is free for private use, which does not cover a collection like this.|EFFO public-domain disk 4; also Microware OS-9 archive, SHELLS/tshell.zip
+udate|Time & calendar|The UNaXcess bulletin board's date display.|Its terms allow unmodified copies only, and an OS-9 build is a modified copy.|UNaXcess 1.0.2 BBS package
+ufo|Games|An object-shooting game.|Its game loop runs on millisecond alarms and ftime, which this C library lacks; a timing rewrite rather than a port.|comp.sources.games v15i004
+unTC|Archives & compression|Extracts TC archives made on the Color Computer.|No TC archive exists anywhere in the pool to use it on.|Microware OS-9 archive, 6809 C section
+upatch|Developer tools|Larry Wall's patch at patch level 12.|patch on this disk does the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+uwho|System & modules|The UNaXcess bulletin board's who-is-online.|Its author allows unmodified copies only, and an OS-9 build is a modified copy.|UNaXcess 1.0.2 BBS package
+vi (XENIX)|Editors|An ex/vi editor adapted for OS-9/68000 from the XENIX vi sources; a different program from the vi on this disk.|Its own first line says it originates from the XENIX sources, and nobody able to grant redistribution has done so. The vi on this disk is PVIC, which is public domain.|EFFO forum disk 13, SOFTWARE/C/VI
+view (4.5a)|Needs hardware|A picture viewer for the 6309 Color Computer.|It is for the CoCo's 6309, and its source archive is blank.|Microware OS-9 archive
+Vprint|Printing|A printer-formatting utility first written for OS-9/68000 in 1991.|The only copy found is a 1997 Linux rewrite, not the OS-9 program.|community archive, bvdp/vpt
+wanderer2|Games|Wanderer 2.2.|Wanderer is on this disk.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+watchdog|System & modules|A watchdog module for a real OS-9 system.|Written for a real OS-9 system; it could not be run and checked here, as the emulator used for testing loads no drivers.|OS-9 International code disk, via EFFO
+where|Files & directories|Finds a program along PATH.|which on this disk does the job.|TOP release 2 (The OS-9 Project, Munich), top.tar.Z
+xtail|Files & directories|A kind of tail -f for many files and directories at once.|It runs for ever by design, so it cannot be demonstrated to a finish.|comp.sources.misc v07i108
+xwdtopbm|Graphics & images|Converts an X window dump to PBM; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. xwdtopnm does the job here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+xxxtopbm|Graphics & images|Converts a further bitmap format to PBM; one of the early pbmexec tools.|It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here.|Microware OS-9 archive, GRAPHICS/pbmexec.lzh
+zmodem|Communications|A ZMODEM file transfer program.|A copyright with no grant to redistribute. k, xy and z on this disk are free X/Y/ZMODEM.|TOP release 2 (The OS-9 Project, Munich), USR/SRC/zmodem.t.Z
+
+kings|Games|Kings, a card-placing patience game for the MM/1 under K-Windows.|The only copy's binary fails its own module check, so OS-9 will not load it, and its source would need porting work to rebuild.|Microware OS-9 archive, file 2191

@@ -39,7 +39,7 @@ import os, re, sys
 # to the one there.  CMDS/archives stays out: it holds .lzh source
 # archives, not programs.
 SCAN_DIRS = ["CMDS", "CMDS/GAMES", "CMDS/NETPBM",
-             "CMDS/REBUILT", "CMDS/GCC139", "CMDS/GCC2", "CMDS/DEMOS",
+             "CMDS/REBUILT", "CMDS/GCC139", "CMDS/GCC2", "CMDS/GCC137", "CMDS/GCC272", "CMDS/DRIVERS", "CMDS/X68K", "CMDS/SYSADMIN", "CMDS/DEMOS",
              "CMDS/DHRY", "CMDS/MM1", "CMDS/UUCP", "CMDS/ADL",
              "CMDS/COMMS", "CMDS/ELM", "CMDS/NETWORK", "CMDS/NEWS",
              "CMDS/TEXCMDS", "CMDS/WN"]
