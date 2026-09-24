@@ -21,6 +21,16 @@ other elm); tester's home files for it are staged.  Recommend: yes.
 
 ## No action, just so you know
 
+**GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
+2026-09-24.  The working branch is pushed and is the default there; `main'
+is not, because a push to main starts CI, which needs os9exec's branch
+published first.  History was rewritten before the push: the utilities
+from your own archives and the oversized test transcripts are gone from
+every commit and every message.  A pre-rewrite mirror is at
+~/Developer/os9/Scraped/osk-freeware-git-backup-2026-09-24 -- delete it
+when you are satisfied.
+
+
 **Answered 2026-09-24:** 38 (harnesses run as tester -- done); 39 (both
 gccs ship with source); 40 (k37 net replaces k35c, built from its own
 source; K5JB's mailer is `bm', the Boyer-Moore grep is `bmg'); 41 (tass
