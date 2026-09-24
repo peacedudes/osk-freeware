@@ -21,9 +21,10 @@ wait    10
 quit    x
 
 shot    answer
-cap     Replies to messages in a folder one at a time, prompting `Message
-cap     to:' for a recipient it checks against the alias table.  Anything
-cap     else gets `Sorry, could not find ... in list!' and it asks again.
+cap     Takes telephone messages as mail, for whoever answers the phone:
+cap     it asks `Message to:' for a recipient it checks against the alias
+cap     table, then for the message, and mails it.  A name it does not know
+cap     gets `Sorry, could not find ... in list!' and it asks again.
 try     answer
 run     newalias
 wait    8

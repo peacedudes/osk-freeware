@@ -635,7 +635,7 @@
 | `adlcomp` | compile an ADL world<br>**How:** From ADL/DEMOS: `adlcomp tiny.adl -o tiny -i..'. -i names the directory holding standard.adl and is required for any world that includes it. |
 | `adldebug` | the ADL debugger: loads a compiled world with its symbol table and dumps its tables -- objects, nouns, verbs, routines, strings -- over a range of numbers. ? lists the commands, q leaves<br>**How:** `adldebug tiny' on a compiled world; ? lists its commands, `o 0-4' dumps the first objects, q leaves. |
 | `adlrun` | plays a compiled ADL world at a > prompt -- look, take, inventory, a direction; save and restore keep a game, quit leaves. AARD is ready to run in ADL/AARD: `adlrun aard'<br>**How:** `adlrun aard' in ADL/AARD plays the museum adventure at a > prompt; save and restore keep a game, quit leaves. |
-| `adltouch` | stamps a compiled ADL world with a number: `adltouch <world> <n>' writes n into the first four bytes of the file, where the compiler left a #! line. Prints nothing<br>**How:** `adltouch tiny 7' writes 7 into the first four bytes of the compiled world; dump the file to see it. It prints nothing. |
+| `adltouch` | re-dates an ADL save file: `adltouch <save> <n>' writes n over the first four bytes, the stamp that ties a saved game to the world it was saved from -- `touch an ADL save file', its source says.  It writes to any file it is given and prints nothing<br>**How:** `adltouch tiny 7' writes 7 into the first four bytes of the compiled world; dump the file to see it. It prints nothing. |
 
 **Fortran**
 
@@ -822,7 +822,7 @@
 
 | | |
 |---|---|
-| `answer` | &#9733; replies to the messages in a folder one at a time: it clears the screen and asks `Message to:' for a recipient, checked against the alias table |
+| `answer` | &#9733; takes telephone messages as mail -- `a phone message transcription system ... for secretaries', its source says: it clears the screen and asks `Message to:' for a recipient, checked against the alias table, then the message, and mails it; -p asks for a `While You Were Out' slip |
 | `arepdaemon` | &#9733; the daemon autoreply relies on.  It reads /dd/USR/LIB/ELM/autoreply.data; without it, `Error 216 attempting fstat' -- though it still touches autoreply.log on its way there |
 | `atp` | &#9733; ATP 1.40, an off-line reader for QWK mail packets -- the bundles a bulletin board packed a caller's messages into, so they can be read and replied to without staying connected. It reads `atprc' or `.atprc' from your home directory, or from the directory $ATP names; a working one for this disk is in DOC/ka9q, and DOC/ka9q/atp.doc documents every setting |
 | `autoreply` | &#9733; send an automatic reply while you are away.  It resolves your mailbox by the session's numeric owner rather than $USER, so under this identity it reaches for a mailbox named `su' and stops there; turning autoreplying off does not need the mailbox and answers for real |

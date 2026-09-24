@@ -65,10 +65,11 @@ quit    q\r
 
 shot    adltouch
 size    30 80
-cap     Stamps a compiled world with a number: it writes the number
-cap     given into the first four bytes of the file, where the compiler
-cap     had left a #! line.  The two dumps show the file before and
-cap     after.  It prints nothing itself.
+cap     Re-dates an ADL save file -- `touch an ADL save file', its source
+cap     says: it writes the number given over the file's first four bytes,
+cap     the stamp that ties a saved game to the world it came from.  It
+cap     writes to any file, so here it is shown on a compiled world; the
+cap     two dumps show the first bytes before and after.  It prints nothing.
 try     adltouch tiny 7
 run     builtin cd /dd/ADL/DEMOS
 wait    1

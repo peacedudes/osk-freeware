@@ -61,13 +61,14 @@ run     /dd/CMDS/wc -c $W/t.txt $W/ue.txt
 expect  963 /dd/tmp/L3/t.txt
 expect  963 /dd/tmp/L3/ue.txt
 
-# The ADL pair -- Ross Cunniff's adventure language. adltouch recompiles a
-# world and adldebug attaches to a compiled one.
+# The ADL pair -- Ross Cunniff's adventure language. adltouch re-dates a
+# save file (its source: `touch an ADL save file') by writing a number over
+# its first four bytes, and adldebug attaches to a compiled world.
 # THE WORLD HAS TO BE COMPILED FIRST. `adlcomp' writes /dd/tmp/tiny from
 # the source in /dd/ADL/DEMOS, and both of these read that. A case that
 # assumed a previous sheet had left it there passed only while that was
 # true.
-case    adltouch-recompiles-an-adl-world
+case    adlcomp-compiles-a-world-that-adltouch-can-stamp
 run     /dd/CMDS/ADL/adlcomp /dd/ADL/DEMOS/tiny.adl -o /dd/tmp/tiny -i/dd/ADL
 run     /dd/CMDS/ADL/adltouch /dd/tmp/tiny 1
 expect  ADL compiler - Version 3.2 - June 7, 1987
