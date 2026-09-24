@@ -42,6 +42,13 @@ no bitmaps to print them (TeX could typeset, nothing could print);
 Vprint, whose only copy is a 1997 Linux rewrite; `pc2os9', which
 `toos9' already covers.
 
+**44. TOP's Notesfile system (UIUC notes, OS-9 port by reccoware 1988)?**
+It works here once SYS/password gains `notes' and `play' users and the
+disk carries SPOOL/NOTES and SYS/.LOCKS/NOTES; the binaries say only
+"Copyrights (c) 1988 by reccoware systems puchheim", no grant, no source.
+Recommend: leave out -- a multi-user conferencing system needing new
+system users, on an ungranted copyright.
+
 ## No action, just so you know
 
 **3.** Nobody has tried this on real hardware, and the guides say so.
