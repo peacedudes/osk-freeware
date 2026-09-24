@@ -19,6 +19,17 @@ group.user word, so the two never match.  tools/patch_elm_uid.py makes it
 compare the whole word (6 bytes at 0x18738, CRC recomputed; it refuses any
 other elm); tester's home files for it are staged.  Recommend: yes.
 
+**46. Patch bash so a command it runs inherits paths 0-2 only (one byte)?**
+The disk's bash hands every child all its open paths -- its own script,
+its saved terminal copies, and a pipe a second time -- so the writer in
+`cat file | head -n 1' never sees its reader go and waits for ever (the
+os9exec session traced it; Microware's shell forks with three paths and
+ends cleanly).  tools/patch_bash_forkpaths.py changes `moveq #31,d2' to
+`moveq #2,d2' at $2B477 and re-seals the CRC; measured as tester, the
+blocked writer is gone and 119 of 120 cases pass either way.  The one
+thing it changes is a child reading a redirection of path 3 and up
+(`5>file'), which already broke bash's own script.  Recommend: yes.
+
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
