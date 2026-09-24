@@ -1,0 +1,1 @@
+RDIR=../RELSSDIR=.CFLAGS= -g -i -t=/r0 -x -bpLFLAGS= -g -bp -i -xspline: spline.c ../tek.h $(RDIR)/tek.l $(RDIR)/termio.l	cc $(RDIR)/spline.r -l=$(RDIR)/tek.l -l=$(RDIR)/termio.l $(CFLAGS) -F=splinemtst : mtst.c

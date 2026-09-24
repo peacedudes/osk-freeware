@@ -1,0 +1,1 @@
+# makefile for Australian readnews libraryRANLIB=ranlib# workaround for System V make bugSHELL = /bin/shlib.a: bsearch.o itoa.o memset.o strpbrk.o	ar rv $@ bsearch.o itoa.o memset.o strpbrk.o	$(RANLIB) $@clean:	rm -f *.o *.a

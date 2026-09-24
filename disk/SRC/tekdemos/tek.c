@@ -1,0 +1,1 @@
+main ()  {/*  tek --  clears tektronix screen */  printf("\033\014");  }

@@ -1,0 +1,1 @@
+char *itoa(i)int i;{	static char buf[30];	sprintf(buf, "%d", i);	return buf;}char *ltoa(l)long l;{	static char buf[30];	sprintf(buf, "%ld", l);	return buf;}

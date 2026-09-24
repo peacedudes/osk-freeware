@@ -166,3 +166,8 @@ disk/SRC/gcc-1.37.1-osk/math_68881.h
 # matched it against the build overlay's UNIX headers, which are community
 # work; Scraped/sdk-copyrighted has no signal.h to match.
 disk/SRC/infoxpress/BNU/ELM_2.4/OSK/DEFS/signal.h
+
+# Same FSF getopt.h as SRC/ed, from GNU makeinfo's own source (restored
+# 2026-09-24 from GNU/makeinfo_src.lzh). "Copyright (C) 1989 Free Software
+# Foundation", GPL; the overlap is with the GNU copy the overlay carries.
+disk/SRC/makeinfo_src/getopt.h

@@ -1,0 +1,1 @@
+void teklear();void tekline();void teklineto();void startek();

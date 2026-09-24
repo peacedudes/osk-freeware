@@ -1,0 +1,1 @@
+rxmod: rxmod.r rstsw.r l68 rxmod.r rstsw.r  -o=rxmod -l=/dd/lib/sys.l -grxmod.r: rxmod.a marker.m rparsopt.a ../rt_comm/setopt.a r68 rxmod.a -qo=rxmod.rrstsw.r: rstsw.a marker.m ../rt_comm/rt_comm.a ../rt_comm/pack.a \            ../rt_comm/unpack.a ../rt_comm/rdlin_tim.a r68 rstsw.a -qo=rstsw.r
