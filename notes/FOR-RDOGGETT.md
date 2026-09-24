@@ -2,7 +2,7 @@
 
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
-the same number; 45-50 each have a staged tool that says what it does.
+the same number; 45-51 each have a staged tool that says what it does.
 Updated 2026-09-24 (afternoon).
 
 ## Needs you
@@ -65,6 +65,14 @@ another program.  tools/patch_smail_uid.py loads the port's own whole-word
 field instead (6 bytes at 0x2ca0, CRC recomputed); on a scratch image
 tester's letter then says `From: tester@milkyway' and the super-user's is
 unchanged.  Recommend: yes.
+
+**51. Patch crontab so `-u' is the super-user's only (one immediate)?**
+crontab guards -u with `(getuid() & 0xff00) != 0', which keeps bits of
+the user number rather than the group, so any user numbered below 256
+may list, replace or remove anyone's crontab -- measured as tester.  This
+one is a hole, not a failure.  tools/patch_crontab_root.py changes the
+mask to $ffff0000 (6 bytes at 0x8d4, CRC recomputed); tester is then
+refused and the super-user is not.  Recommend: yes.
 
 ## No action, just so you know
 

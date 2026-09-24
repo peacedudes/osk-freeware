@@ -116,3 +116,14 @@ absent  after
 expect  started
 expect  finished
 expect  the harness shell is still here
+
+# KNOWN DEFECT, measured 2026-09-24: crontab's -u is meant for the super
+# user, and crontab.c tests `(getuid() & 0xff00) != 0' -- bits of the USER
+# number, not the group -- so tester (1.7) is let through and may list,
+# replace or remove anyone's crontab.  tools/patch_crontab_root.py
+# (FOR-RDOGGETT 51) tests the group instead; applying it turns this case
+# round to `must be privileged to use -u'.
+case    crontab-lets-a-user-below-256-act-for-another
+run     /dd/CMDS/SYSADMIN/crontab -u=su -l
+expect  no crontab for su
+absent  must be privileged
