@@ -12,7 +12,7 @@ splman|the spooler manager, and it RUNS -- it does not block on a device, which 
 splprt|the spooler's printer process, and it does NOT return -- measured 2026-09-20, `splprt &' leaves a process asleep in F$Sleep, the same polling daemon shape as its manager `splman'. There is no printer device here for it to print to (os9exec maps /p, /p1 and /lp* to a printer file manager, but the implementation is Windows-only: on macOS and linux an open answers E_MNF 221), and a daemon that says nothing by design gives a card nothing to show
 disktest|measures disk performance and does not come back here, so its syntax is what there is to show and the card says so. WHY, established 2026-09-19 with the os9exec session: it asks OS-9's own `free' for the sector count through a pipe and reads that pipe until the answer comes. It holds a write-capable path to the same pipe itself, so with no `free' to answer, the pipe never reaches EOF and it waits on itself at 0% CPU. Where `free' is to hand and the directory is on an RBF device it runs to the end -- and prints NEGATIVE rates, from its own int overflow on a 33 MB buffer. It is not destructive: the only file it writes is ./disktest.tmp, which it unlinks
 trap|an example trap handler that cannot be installed from user state; the refusal is the whole of what it does here, and the card says so
-puzzle|a G-Windows program: at a terminal one line of its tile frame is all it draws, and the card says so
+puzzle|a G-Windows program: at a terminal it prints nothing and returns 0 -- measured 2026-09-24 on four os9exec builds; the rule of its tile frame an older entry described does not appear -- and the card says why
 collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gcc_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
 gpp_collect|a g++ linker-helper pass; with nothing to link its usage is what there is to show
@@ -55,7 +55,6 @@ cpucache|switches a 68020-68040's on-chip caches, which the emulator has not got
 errlog|an error-logging daemon for a multi-user system; its usage is what can be shown here, and the card says so
 erradm|drives errlog's log; its usage is what can be shown here, and the card says so
 logon|logs a user in on a multi-user system with terminal lines; its usage is what can be shown here, and the card says it is untested
-timeout|logon's idle timer, which logon starts; it prints nothing by hand
 mmon|a timesharing monitor for a terminal or modem line; its usage is what can be shown here, and the card says it is untested
 rex|runs a command on another OS-9/Net node; without a network its usage and its refusal are what can be shown, and the card says so
 chp|a remote login over OS-9/Net; without a network there is nothing for it to reach, and the rex card says so

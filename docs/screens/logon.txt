@@ -14,3 +14,5 @@ Options:
    -l          Logging all logons in /<bootdev>/SYS/wtmp
    -r=<rate>   Repeatrate of login tries (0 forever)
    -v=<file>   Verify a entrytypes file <file>
+$ shell "echo before; timeout; echo after"
+before

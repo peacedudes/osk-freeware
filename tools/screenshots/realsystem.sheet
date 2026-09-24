@@ -80,10 +80,14 @@ shot    logon
 for     logon timeout
 cap     logon logs a user into a multi-user OS-9: password file, user,
 cap     environment and motd.  Its usage is its manual's summary; the
-cap     manual is DOC/SYSADMIN/logon.prf.  timeout is its idle timer.
+cap     manual is DOC/SYSADMIN/logon.prf.  timeout is its idle timer,
+cap     and started by hand it ends the shell that started it: Microware's
+cap     shell never reaches the `echo after'.
 try     logon -?
 run     clear
 run     logon -?
+wait    3
+run     shell "echo before; timeout; echo after"
 wait    3
 
 shot    mmon
