@@ -1,5 +1,5 @@
 $ lunisolar
-The moon is a waxing crescent (12% of full).
+The moon is waxing and gibbous (93% of full).
 $ lunisolar 2026 EST | head -n 14
 % Lunisolar calendar for 2026.
 % Constructed for EST, 5.00 hours west of Greenwich.

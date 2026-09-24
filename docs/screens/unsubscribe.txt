@@ -1,10 +1,7 @@
 cat .newsrc
-comp.os.os9: 1
-comp.sys.m68k: 1
-news.announce.newusers: 1
+control!
+junk!
 $ unsubscribe comp.sys.m68k
-Newsgroup comp.sys.m68k is now unsubscribed.
 $ cat .newsrc
-comp.os.os9: 1
-comp.sys.m68k! 1
-news.announce.newusers: 1
+control!
+junk!

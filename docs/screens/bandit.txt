@@ -7,7 +7,7 @@
                                              BELL     BELL     BELL   |  100
    +----------++----------++----------+     ORANGE   ORANGE   ORANGE  |   50
    |          ||          ||          |     LEMON    LEMON    LEMON   |   20
-   |   PLUM   ||  CHERRY  ||   PLUM   |      PLUM     PLUM     PLUM   |   10
+   |   PLUM   ||   BELL   ||  LEMON   |      PLUM     PLUM     PLUM   |   10
    |          ||          ||          |     CHERRY   CHERRY   CHERRY  |    5
    +----------++----------++----------+     CHERRY   CHERRY   *wild*  |    2
 

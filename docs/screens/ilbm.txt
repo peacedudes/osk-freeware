@@ -1,7 +1,7 @@
 ppmtoilbm tmp/base.ppm | ilbmtoppm | pnmfile
 ppmtoilbm: computing colormap...
 ppmtoilbm: 6 colors found
-ppmtoilbm: warning - byterun1 compression increases BODY size by 1%
+ppmtoilbm: BODY compression (byterun1): 8%
 ilbmtoppm: input is a 3-plane ILBM
 stdin:  PPM raw, 48 by 24  maxval 255
 $ pnmtosgi tmp/base.ppm > tmp/t.sgi

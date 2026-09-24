@@ -1,7 +1,7 @@
 cat j.uue
 
 begin 644 j.txt
-C5'=A<R!B<FEL;&EG+"!A;F0@=&AE('-L:71H>2!T;W9E<PT`?
+C5'=A<R!B<FEL;&EG+"!A;F0@=&AE('-L:71H>2!T;W9E<PT@_
 ``
 end
 size 35

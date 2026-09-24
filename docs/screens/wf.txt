@@ -3,23 +3,23 @@ wf -x 12 -y 12 -t Words
 
 
                           +-------------------------+
-                          | S A N C T U A R Y N N I |
-                          | S A N D B A G T R E A D |
-                          | S A N D P A P E R T A A |
-                          | S A N D P I L E S A N G |
-                          | S A N C T I F Y S A N K |
-                          | S A N D B L A S T T N A |
-                          | S A N D P I P E R R A E |
-                          | S A N D S T O N E E P E |
-                          | S A N C T I O N S A N S |
-                          | O S A N D W I C H T S D |
-                          | S A N C T I T Y A Y G Y |
-                          | S A N D A L S A N D Y P |
+                          | S A N S N S A N K A N S |
+                          | S A A A A A T R E A D A |
+                          | T A N S A N C T I O N N |
+                          | R A N D T C C A P T T D |
+                          | E S A E P T N T I R R W |
+                          | S A N D P I L E U E E I |
+                          | P N R E N F P A A A E C |
+                          | A D T L E Y I E A T R H |
+                          | S A N C T I T Y R Y S Y |
+                          | S L S A N D Y E S A N D |
+                          | A S A N D B A G S A N G |
+                          | S S A N D B L A S T R U |
                           +-------------------------+
 
 sanctify            sanction            sanctity            sanctuary
 sand                sandal              sandbag             sandblast
-sandpaper           sandpile            sandpiper           sandstone
-sandwich            sandy               sane                sang
-sank                sans                tread               treat
-treaty
+sandpile            sandpiper           sandwich            sandy
+sane                sang                sank                sans
+tread               treat               treaty              tree
+trespass

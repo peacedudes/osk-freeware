@@ -1,2 +1,15 @@
 cfscores
-tester has never played canfield.
+*----------------------*
+* Losses for tester    *
+*======================*
+|Costs           Total |
+| Hands             13 |
+| Inspections        0 |
+| Games              0 |
+| Runs               0 |
+| Information        0 |
+| Think time         1 |
+|Total Costs        14 |
+|Winnings            0 |
+|Net Worth         -14 |
+*----------------------*

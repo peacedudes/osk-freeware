@@ -2,22 +2,22 @@ Captain: my last name is Kirk: My sex is:    I'm expecting [1-9] enemy vessels
 
 
 Space, the final frontier.
-These are the voyages of the starship Kongo.
+These are the voyages of the starship Hood.
 Its five year mission: to explore strange new worlds,
 to seek out new life and new civilizations,
 to boldly go where no man has gone before!
 
                     S T A R    T R E K
 
-Kirk:  Captain's log, stardate 12609.20
-   We are orbiting Gamma 2 to make a routine check of automatic
-   communications and astrogation stations.
+Kirk:  Captain's log, stardate 12609.24
+   We are presently on course for Altair 6 to attend inauguration
+   cermonies on the planet.
 Sulu:  Sir, I'm picking up a vessel on an interception
-   course with the Kongo.
+   course with the Hood.
 Spock:  Sensors identify it as a Kzinti Strike Cruiser,
-   probably under the command of Captain Hunter.
+   probably under the command of Captain Fellus.
 Kirk:  Sound general quarters, Lieutenant!
 Uhura:  Aye, Sir!
-Computer: The Kzintis are attacking the Kongo with the Nova.
+Computer: The Kzintis are attacking the Hood with the Galaxy.
 
 Kirk: Code [1-32]

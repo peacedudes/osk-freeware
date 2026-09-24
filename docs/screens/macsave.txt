@@ -1,5 +1,5 @@
 macsave < j.txt.MAC
 $ ls -l
 total 1024
--rw-------   1 0        0             256 Sep  8 21:23 j.txt.MAC
--rw-------   1 0        0             256 Sep  8 21:23 j.txt.bin
+-rw-------   1 7        1             256 Sep 24 01:19 j.txt.MAC
+-rw-------   1 7        1             256 Sep 24 01:19 j.txt.bin

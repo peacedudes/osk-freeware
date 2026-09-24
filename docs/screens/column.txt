@@ -1,22 +1,23 @@
-ls CMDS/GAMES | column
-accordian       convert         hackwish        othello         tess
-advcom          corewar         hang            pacman          tet
-advent          crib            hexa            poker           tformat
-advint          cribbage        hotel           postprint       tt
-animal          cwasm           jotto           puz15           ularn
-apfel           cwdis           lander          puzzle          valspeak
-back            cyberwar        larn            rain            vtxtcn
-backgammon      dclock          life            reversi         wanderer
-bincheckr       fish            lissaj          robots          wgen
-bite            fuddle          lorenz3d        rpoem           wisecrack
-blackjak        g               mastrm          rstory          world
-bog             game            maze            saa             worm
-bs              gnuan           mille           scrabble        worms
-c4              gnuchess        mines           scriptmaster    wump
-cam             gnuchessc       mkdict          showpic         xmas
-canfield        gnugo           mkindex         sine            yahtzee2
-card            graph           monop           snake           zot
-cfscores        graphdemo       napoleon        sokoban
-checkgame       graphsave       nchess          stone
-chess           greed           newsgen         striche
-colortest       hack            nobs            teachgammon
+animal          crib            knight          puzzle          trek
+apfel           cribbage        lander          rain            trek73
+arithmetic      cwasm           larn            reversi         tt
+atc             cwdis           letters         robots          typefast
+back            cyberwar        life            rogue           ularn
+backgammon      dclock          lissaj          roll            valspeak
+bandit          drawpoker       lorenz3d        rpoem           vcraps
+bincheckr       fish            mastrm          rstory          vtxtcn
+bite            fuddle          maze            saa             wanderer
+bjack           g               mille           scrabble        wf
+bks             game            mines           scriptmaster    wgen
+blackjak        gnuan           mkdict          showpic         wisecrack
+bog             gnuchess        mkindex         sine            world
+bs              gnuchessc       monop           ski             worm
+bugs            gnugo           moria           snake           worms
+c4              graph           mw              sod             wump
+cam             graphdemo       mz              sokoban         xmas
+canfield        graphsave       napoleon        sol             yahtzee
+card            hack            nchess          solx            yahtzee2
+castle          hackwish        nethack3        stone           yidslots
+cfscores        hang            newsgen         striche         zot
+checkgame       hexa            nobs            teachgammon
+chess           hotel           othello         tess

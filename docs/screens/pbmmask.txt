@@ -1,9 +1,9 @@
 pbmmask noise.pbm | pbmtoascii -2x4
-\H#,:.1MHHM?dMb#MMMHbMMMH}&H,H:"
-#'!/_&MMMMMMMMMMMMMMMM#$<:|Hb?&|
-`.$\:&|MMMMMMMMMMMMMMb:ib:,=| :^
-.&:br-?MMMMMMMMMMMMMMMMM#?:?*J+<
-MM?M#MbMMMMMMMMMMMMMMMMMH#<-|.r:
-MMMMMMMMMMMMMPMMMMMMMMMMMMM'/:HD
-TMHMMMMMMMH*$^:MMMMMMMMMMMM#HM|#
-d$||M#RP9d?i~:DMMMMMMMMM[`&H#M~:
+HR"d\MMMMMMH?>?~:9D\?MHpi?6:d/,,
+:#'\~MMMMMMMMM:>MbMb/?-ddM?,|$,|
+$?]o#MMMMMMMMMMMMM|?:{MH6?:-? :,
+?:`HMMMMMMMMMMMMMM#H-:?dMbddH-./
+?:i/MMMMMMMMMMMM\?|*|'HMMMMMM-?b
+MbMMMMMMMMMMMPMMbH~-\`::*MMMMdMH
+HMMMMMMPHMM#Mb&$`|:HM|>D??T$*MH\
+\R"#H"7:JH.v-i?6:`HM?"H}~|&:\/"'

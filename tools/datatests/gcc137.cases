@@ -1,0 +1,74 @@
+family  gcc137
+# GNU C 1.37.1 for OS-9/68000, the CERN distribution of February 1991:
+# compile, link and RUN.  gcc137 compiles C to assembly and then hands it to
+# the reader's own r68 and l68, linking against the reader's cstart.r and
+# clibn.l -- so this family needs a real OS-9 system on /h1 with CMDS, LIB
+# and DEFS, which is where SYS/login expects one.
+#
+# -B names where the passes are, and the prefix includes the start of the
+# FILE name: the driver examines <prefix>cccp and <prefix>cc1 and forks
+# that pathlist.  The passes are called gcc137_cccp and gcc137_cc1, files
+# and modules both, so they can never answer for GCC139's.  The other way
+# round needs care: BEFORE it looks at -B the driver asks the module
+# directory for `cccp' and `cc1', and GCC139's passes register exactly those
+# names and are sticky.  The last case shows the remedy, `unlink'.
+
+load    /h1/CMDS/r68
+load    /h1/CMDS/l68
+load    /h1/CMDS/o68
+setup   W=/dd/tmp/GCC137W
+setup   G="-B/dd/CMDS/GCC137/gcc137_ -I/h1/DEFS -L/dd/GCCLIB -L/h1/LIB"
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   cd $W
+setup   echo '#include <stdio.h>' > $W/hello.c
+setup   echo 'main() { puts("hello, world"); return 0; }' >> $W/hello.c
+setup   echo '#include <stdio.h>' > $W/small.c
+setup   echo 'int fib(n) int n; { return n < 2 ? n : fib(n - 1) + fib(n - 2); }' >> $W/small.c
+setup   echo 'int bylen(a, b) char **a, **b;' >> $W/small.c
+setup   echo '{ int d = strlen(*a) - strlen(*b); return d ? d : strcmp(*a, *b); }' >> $W/small.c
+setup   echo 'int main() {' >> $W/small.c
+setup   echo '  static char *w[] = { "sieve", "of", "Eratosthenes", "gcc", "on", "OS-9" };' >> $W/small.c
+setup   echo '  char sieve[100], line[80]; int i, j, n = 0; double h = 0.0;' >> $W/small.c
+setup   echo '  for (i = 2; i < 100; i++) sieve[i] = 1;' >> $W/small.c
+setup   echo '  for (i = 2; i < 100; i++) if (sieve[i]) { n++; for (j = i + i; j < 100; j += i) sieve[j] = 0; }' >> $W/small.c
+setup   echo '  sprintf(line, "primes below 100: %d", n); puts(line);' >> $W/small.c
+setup   echo '  sprintf(line, "fib(20) = %d", fib(20)); puts(line);' >> $W/small.c
+setup   echo '  for (i = 1; i <= 10; i++) h += 1.0 / i;' >> $W/small.c
+setup   echo '  sprintf(line, "H(10) = %.6f", h); puts(line);' >> $W/small.c
+setup   echo '  qsort(w, 6, sizeof w[0], bylen);' >> $W/small.c
+setup   echo '  line[0] = 0; for (i = 0; i < 6; i++) { strcat(line, w[i]); if (i < 5) strcat(line, " "); }' >> $W/small.c
+setup   echo '  puts(line); return 0; }' >> $W/small.c
+
+case    gcc137-compiles-links-and-runs-hello-world
+run     /dd/CMDS/rm -f $W/hello
+run     /dd/CMDS/GCC137/gcc137 $G -o $W/hello $W/hello.c
+run     $W/hello
+expect  hello, world
+
+# -v prints each command as it runs it, and each pass names its version.
+case    every-pass-is-1.37.1
+run     /dd/CMDS/GCC137/gcc137 -v $G -S -o $W/hello.a $W/hello.c
+expect  gcc version 1.37.1
+expect  GNU CPP version 1.37.1
+expect  GNU C version 1.37.1 (OS-9/68000)
+expect  /dd/CMDS/GCC137/gcc137_cc1
+
+case    a-small-program-optimised-through-o68
+run     /dd/CMDS/rm -f $W/small
+run     /dd/CMDS/GCC137/gcc137 $G -O -o68 -o $W/small $W/small.c
+run     $W/small
+expect  primes below 100: 25
+expect  fib(20) = 6765
+expect  H(10) = 2.928968
+expect  of on gcc OS-9 sieve Eratosthenes
+
+# GCC139's gcc_cc1 registers the module name cc1 and is sticky: once run it
+# stays resident, and gcc137 -- which asks for a resident `cc1' before it
+# looks where -B points -- would compile with 1.39.  `unlink cc1' first.
+case    after-gcc139-unlink-cc1-and-1.37.1-is-back
+run     /dd/CMDS/GCC139/gcc_cc1 -version < /nil > /nil 2>/nil
+run     /h1/CMDS/unlink cc1
+run     /dd/CMDS/GCC137/gcc137 -v $G -S -o $W/hello2.a $W/hello.c
+expect  GNU C version 1.37.1 (OS-9/68000)
+absent  GNU C version 1.39

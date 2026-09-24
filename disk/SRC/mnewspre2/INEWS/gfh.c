@@ -1,0 +1,1 @@
+/* *     Extra sourcefile for this function, because it should be *     easiely changeable (should be moved to os9lib.l) */# ifdef                NEED_GETFULLHOSTNAMEchar *getfullhostname (buf, len)char *buf;int len;{       return (info_str ("fullhost", buf, len - 1));}# endif                /* NEED_GETFULLHOSTNAME */

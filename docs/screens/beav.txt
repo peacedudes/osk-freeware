@@ -20,4 +20,4 @@
         130: 6D 65 20 60 6D 61 74 68  60 2C 20 60 6D 61 74 68  me `math`, `math
         140: 38 38 31 60 2C 20 60 63  73 6C 60 20 6F 72 20 60  881`, `csl` or `
 BEAV##I#README-CIO###File:#README-CIO###[RW]####CURSOR=00000000,#1###HEX#8###0
-Read 31EA bytes, Hit Ctl-G to quit.
+Read 319F bytes, Hit Ctl-G to quit.

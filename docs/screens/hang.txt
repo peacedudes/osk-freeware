@@ -9,7 +9,7 @@ Unused Letters:
 
                                         |                         |
                                         |                         |
-irre___i__e                             |                         |
+_ta_i__                                 |                         |
                                         |                         |
                                         |                         |
                                         |                         |
@@ -18,5 +18,5 @@ irre___i__e                             |                         |
                                         |                         |
                                         |                         |
                                         ---------------------------
-There are 11 letters in the word
-Sorry
+There are 7 letters in the word
+HIT

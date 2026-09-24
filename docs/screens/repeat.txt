@@ -1,8 +1,8 @@
 $ repeat 2 today
-Today is Tuesday, the eighth day of September, two thousand and
-twenty-six. In eight seconds, the time will be twenty minutes before
-eleven PM, Daylight Savings Time. The moon is waning crescent.
+Today is Thursday, the twenty-fourth day of September, two thousand and
+twenty-six. The time is eleven minutes and sixteen seconds after one AM,
+Daylight Savings Time. The moon is waxing gibbous.
 
-Today is Tuesday, the eighth day of September, two thousand and
-twenty-six. In eight seconds, the time will be twenty minutes before
-eleven PM, Daylight Savings Time. The moon is waning crescent.
+Today is Thursday, the twenty-fourth day of September, two thousand and
+twenty-six. The time is eleven minutes and sixteen seconds after one AM,
+Daylight Savings Time. The moon is waxing gibbous.

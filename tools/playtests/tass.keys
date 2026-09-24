@@ -1,0 +1,37 @@
+name    tass
+prog    /dd/CMDS/tass
+# tass reads news on an MNews "pre 2" system.  This disk's MNews is the
+# earlier 1990 prerelease, whose active file tass cannot read, so the test
+# makes a two-article pre-2 spool in /dd/tmp, names it in the SysInfo table
+# (MNEWS.DIR, MNEWS.LIB -- pre-2's own keys) and drives tass from the group
+# list into the group and on to the article the cursor opens on (the
+# newest, article 2).  The article body is
+# assembled by printf from two words so that the text `expect' looks for
+# is never typed: only tass drawing the article can put it on the screen.
+setup   set +H
+setup   W=/dd/tmp/TASSK
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W/lib $W/spool/comp/os/os9
+setup   /dd/CMDS/printf 'MNEWS.DIR,s=%s/spool\rMNEWS.LIB,s=%s/lib\r' $W $W > $W/sysinfo
+setup   /dd/CMDS/setup $W/sysinfo
+setup   /dd/CMDS/printf 'comp.os.os9 00000002 00000001 nu\r' > $W/lib/Active
+setup   /dd/CMDS/printf 'Path: osk\rFrom: a@osk (A Writer)\rNewsgroups: comp.os.os9\rSubject: first article\rMessage-ID: <1@osk>\rDate: 1 Jan 93 10:00:00 GMT\rLines: 1\r\rfirst body\r' > $W/spool/comp/os/os9/1
+setup   /dd/CMDS/printf 'Path: osk\rFrom: b@osk (B Writer)\rNewsgroups: comp.os.os9\rSubject: second article\rMessage-ID: <2@osk>\rDate: 2 Jan 93 10:00:00 GMT\rLines: 1\r\r%s-%s\r' greetings reader > $W/spool/comp/os/os9/2
+setup   /dd/CMDS/rm -f $HOME/.newsrc > /nil 2>/nil
+setup   clear
+until   Group Selection
+snap    groups
+key     \r
+until   A Writer
+snap    index
+key     \r
+until   greetings-
+snap    article
+key     q
+wait    2
+key     q
+wait    2
+key     q
+wait    3
+expect  greetings-reader
+absent  No Articles

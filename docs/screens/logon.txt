@@ -1,0 +1,16 @@
+logon -?
+Syntax: logon [<opts>] [<user>] [<password>]
+Function: Log into a multiuser enviroment
+Options:
+   -b=<baud>   Baud information (id supported by entrytypes)
+   -e=<entry>  Scan for entries in entrytypes
+   -m          No motd is displayed
+   -m=<file>   <file> is used as motd
+   -i          display status of mailbox
+   -p=<path>   the timeout is placed in the directory specified by <path>
+   -s          Don't sleep if loginname is not known
+   -t          Don't use a timeout when waiting for input
+   -c          Logging as superuser is only at /term allowed
+   -l          Logging all logons in /<bootdev>/SYS/wtmp
+   -r=<rate>   Repeatrate of login tries (0 forever)
+   -v=<file>   Verify a entrytypes file <file>

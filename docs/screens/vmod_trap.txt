@@ -1,4 +1,3 @@
-modinfo vmod_trap | head -n 14
 ---------------------------------- vmod_trap  - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - -
 Module name           = VMod_trap

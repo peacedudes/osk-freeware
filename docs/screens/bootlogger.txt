@@ -1,4 +1,2 @@
-bootlogger; echo "status $?"
 status 0
-$ cat SYS/bootlog
-***** LAST BOOT AT: 12:51:06  19-Sep-19126 *****
+$ ***** LAST BOOT AT: 01:15:44  24-Sep-19126 *****

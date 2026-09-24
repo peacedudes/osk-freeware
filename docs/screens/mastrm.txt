@@ -5,11 +5,11 @@ Do you want coaching, y/n [default is n] -> n
 Choosing a code for you to guess.
 
 Please enter guess #1 -> red green blue yellow
-www
+bw
 
 guess, refresh, hint, or quit [default is guess] ->
 
 Please enter guess #2 -> white black red green
-ww
+www
 
 guess, refresh, hint, or quit [default is guess] ->

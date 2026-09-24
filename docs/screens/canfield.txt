@@ -1,17 +1,17 @@
                               =-> CANFIELD <-=
  Base     foundation
  Rank     =---=  =---=  =---=  =---=      *----------------------------------*
- 10       |10d|  |   |  |   |  |   |      |         MOVES                    |
+  9       | 9c|  |   |  |   |  |   |      |         MOVES                    |
           =---=  =---=  =---=  =---=      |s# = stock to tableau             |
                                           |sf = stock to foundation          |
  stock     tableau                        |t# = talon to tableau             |
  =---=     -1-    -2-    -3-    -4-       |tf = talon to foundation          |
- | 4h|      8c     Qh     3s     4c       |## = tableau to tableau           |
+ | Kc|      Ks     7c     5c     Qd       |## = tableau to tableau           |
  =---=                                    |#f = tableau to foundation        |
                                           |ht = hand to talon                |
  talon                                    |c = toggle card counting          |
  =---=                                    |b = present betting information   |
- | Jh|                                    |q = quit to end the game          |
+ | 4d|                                    |q = quit to end the game          |
  =---=                                    |==================================|
                                           |                                  |
                                           |Move:                             |

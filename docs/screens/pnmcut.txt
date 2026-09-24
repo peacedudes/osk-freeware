@@ -3,6 +3,6 @@ $ pnmfile tmp/NEAB/r.pgm tmp/NEAB/c.pgm
 tmp/NEAB/r.pgm: PGM raw, 48 by 24  maxval 255
 tmp/NEAB/c.pgm: PGM raw, 24 by 12  maxval 255
 $ pgmtopbm tmp/NEAB/c.pgm | pbmtoascii -2x4
-6R&$S4|))|:i
-H&&S&$|\\?\/
-M&&S$&|SS>\/
+R6F&S$???):/
+H11\$&J|||:/
+H&$&\\%??i?/

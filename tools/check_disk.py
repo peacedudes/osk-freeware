@@ -603,10 +603,9 @@ def check_hand_files_name_real_programs(root):
 
     All three are hand-maintained or generated-then-kept, and a program removed
     from the disk leaves its lines behind.  On 2026-08-30 `howto.psv' still
-    carried six: `lac', `main', `pow', `scope' and `sin' were deliberately
-    dropped from the collection on 2026-08-22 and their entries were not, four
-    of them still claiming "`q' quits -- tested"; `MakeTeXPK' had never been on
-    the disk at all.  Nothing pointed at them, because these files are read by
+    carried six such lines, five for programs dropped from the collection
+    and four of them still claiming "`q' quits -- tested"; `MakeTeXPK' had
+    never been on the disk at all.  Nothing pointed at them, because these files are read by
     NAME -- an entry nobody looks up is an entry nobody notices.
 
     `shadowed-names.txt' joined on 2026-09-18.  It is what puts the warning on

@@ -1,0 +1,1 @@
+/* * $Log:       mit.c_v $ * Revision 1.1  90/08/31  15:34:54  cs * Initial revision *  */# ifndef       LINTstatic char rcsid[] = "$Id: mit.c_v 1.1 90/08/31 15:34:54 cs Exp $";# endif                LINT# include      "inews.h"voidmail_it (rec)char *rec;{       mail_to (rec, NULL, "This is a moderated group", NULL, newstmp, NULL);}

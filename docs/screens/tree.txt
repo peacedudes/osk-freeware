@@ -8,6 +8,7 @@ CMDS --------+- ADL
              |- GCC139
              |- GCC2
              |- MM1
+             |- MNEWS
              |- NETPBM
              |- NETWORK
              |- NEWS

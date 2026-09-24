@@ -4,10 +4,9 @@ Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  6F6E 650D 7477 6F0D                     one.two.
 $ todos le.txt
-del: not found
-Error #000:216 (E_PNNF) Path Name Not Found
-%1       5 Error  216           rename todos.${$}$.3 le.txt
-Src: 'le.txt', Dest: 'todos.$$$.3'   Rename 'todos.$$$.3' -> 'le.txt'
+rename: can't open "todos.5$.4" Error #000:216 (E_PNNF) Path Name Not Found
+%1       6 Error  216           /h1/CMDS/rename todos.${$}$.4 le.txt
+Src: 'le.txt', Dest: 'todos.$$$.4'   Rename 'todos.$$$.4' -> 'le.txt'
 $ mv todos.* dos.txt
 $ dump dos.txt
 

@@ -36,3 +36,8 @@ rnews     Two news systems, two receivers: UUCP/rnews is UUCPbb's and files
           MNews's inews.  A remote site runs `rnews' by name, so a system
           runs whichever of the two it has chosen; PATH and `load' decide.
           Both keep the name because that is the name UUCP asks for.
+tty       CMDS/tty is the command that reports the terminal's name;
+          DRIVERS/tty is PtyMan's client-side descriptor, and its name is
+          the device name /tty that pty clients open, so it cannot change.
+          Different module types, and nobody loads both: a system using
+          PtyMan puts tty in its bootfile and has no need of the command.

@@ -1,0 +1,1 @@
+$ echo "Version: $Id: xc_v 1.1 90/08/31 13:59:38 ud Exp $"$ echo "Copyright (C) 1989, 1990 by Ulrich Dessauer, Germering, Germany."$ echo "Making rnews..."$ chd RNEWS;make$ echo "Making sbatch..."$ chd SBATCH;make$ echo "Making inews..."$ chd INEWS;make$ echo "Making MISC..."$ chd MISC;make encode decode

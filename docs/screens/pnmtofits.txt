@@ -1,3 +1,3 @@
 pnmtofits tmp/NPMB/g.pgm > tmp/NPMB/o.fits
 $ ls -l tmp/NPMB/o.fits
--rw-rw-rw-   1 0        0            5760 Sep  9 01:14 tmp/NPMB/o.fits
+-rw-rw-rw-   1 7        1            5760 Sep 24 02:34 tmp/NPMB/o.fits

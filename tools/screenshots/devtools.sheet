@@ -270,14 +270,14 @@ cap     Builds a tag table: by default `tags' in the form vi reads -- a
 cap     name, its file and a search for its line -- or with -e the TAGS
 cap     file emacs reads.  RBF names ignore case, so the two share a name
 cap     here and differ only in what is inside.
-try     etags about.c
+try     etags keep.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS
-run     cp /dd/SRC/keep/about.c /dd/tmp/DEV/about.c
+run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/keep.c
 run     builtin cd /dd/tmp/DEV
 wait    2
 run     clear
 wait    1
-run     etags about.c
+run     etags keep.c
 wait    8
 run     head -4 tags
 wait    4

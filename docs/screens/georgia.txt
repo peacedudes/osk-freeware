@@ -2,37 +2,38 @@ $ georgia | head -n 37
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 January
-   1          Clear      Clear  Chilly ( 30)      None     Light         New Years (s)
-   2          Clear      Clear    Fair ( 55)      None      Calm
-   3          Clear      Clear    Fair ( 45)      None      Calm
-   4          Clear      Clear    Fair ( 50)      None     Light
-   5       Overcast     Cloudy    Fair ( 60)      None      Calm
-   6       Overcast     Cloudy    Fair ( 40)      None      Calm         Twelfth Night
-   7  Precipitation  Light Fog  Chilly ( 35)     Heavy     Light         Rain -  2 hours,
-   8  Precipitation  Heavy Fog    Warm ( 65)    Shower      Calm         Storm - 100 minutes,
-   9  Precipitation       Mist    Fair ( 50)    Shower  Blustery         Rain - 90 minutes,
-  10  Precipitation     Cloudy    Fair ( 50)    Shower  Blustery         Rain - 80 minutes,
-  11  Precipitation       Mist    Fair ( 50)    Steady      Calm         Rain - 24 hours,
-  12  Precipitation     Cloudy    Fair ( 50)    Steady  Blustery         Rain - 24 hours,
-  13  Precipitation       Mist    Fair ( 50)  Sprinkle  Blustery         Rain - 10 minutes,
-  14  Precipitation       Mist    Fair ( 50)  Sprinkle  Blustery         Rain - 25 minutes,
-  15  Precipitation       Mist    Fair ( 60)  Sprinkle     Brisk         Rain - 20 minutes,
-  16          Clear      Clear    Fair ( 50)      None      Calm
-  17          Clear      Clear    Fair ( 50)      None      Calm
-  18          Clear      Clear    Fair ( 50)      None      Calm
-  19          Clear      Clear    Fair ( 50)      None      Calm
-  20          Clear      Clear    Fair ( 55)      None      Calm
-  21          Clear      Clear    Fair ( 55)      None     Light
-  22          Clear      Clear    Fair ( 60)      None      Calm
-  23          Clear      Clear    Fair ( 50)      None      Calm
-  24          Clear      Clear    Fair ( 50)      None      Calm
-  25          Clear      Clear    Fair ( 50)      None      Calm
-  26          Clear      Clear  Chilly ( 30)      None      Calm
+   1          Clear      Clear    Fair ( 50)      None      Calm         New Years (s)
+   2          Clear      Clear    Fair ( 50)      None      Calm
+   3          Clear      Clear    Fair ( 55)      None      Calm
+   4  Precipitation  Light Fog    Fair ( 55)    Steady      Calm         Rain - 24 hours,
+   5  Precipitation     Cloudy    Fair ( 50)    Shower     Light         Rain - 50 minutes,
+   6  Precipitation     Cloudy    Fair ( 50)  Sprinkle      Calm         Rain - 20 minutes, Twelfth
+Night
+   7          Clear      Clear    Fair ( 50)      None      Calm
+   8          Clear      Clear  Chilly ( 35)      None     Light
+   9          Clear      Clear    Fair ( 50)      None      Calm
+  10          Clear      Clear    Warm ( 70)      None      Calm
+  11          Clear      Clear    Fair ( 50)      None      Calm
+  12          Clear      Clear    Fair ( 50)      None      Calm
+  13          Clear      Clear    Fair ( 50)      None      Calm
+  14          Clear      Clear    Fair ( 50)      None      Calm
+  15          Clear      Clear    Fair ( 50)      None     Light
+  16          Clear      Clear    Fair ( 40)      None      Calm
+  17          Clear      Clear    Fair ( 45)      None      Calm
+  18          Clear      Clear    Fair ( 45)      None      Calm
+  19          Clear      Clear    Fair ( 55)      None      Calm
+  20          Clear      Clear    Fair ( 50)      None      Calm
+  21          Clear      Clear    Fair ( 50)      None      Calm
+  22          Clear      Clear    Fair ( 50)      None      Calm
+  23          Clear      Clear    Fair ( 40)      None      Calm
+  24  Precipitation     Cloudy    Fair ( 50)  Sprinkle      Calm         Rain - 25 minutes,
+  25          Clear      Clear    Fair ( 60)      None      Calm
+  26          Clear      Clear    Fair ( 40)      None      Calm
   27          Clear      Clear    Fair ( 55)      None      Calm
-  28          Clear      Clear    Fair ( 40)      None      Calm
-  29          Clear      Clear    Fair ( 50)      None      Calm
-  30  Precipitation       Mist    Warm ( 65)    Steady     Light         Rain - 24 hours,
-  31  Precipitation     Cloudy    Fair ( 55)    Steady      Calm         Rain - 24 hours,
-High Temp =  65, Low Temp =  30, Average Temp =  50
+  28          Clear      Clear    Fair ( 50)      None      Calm
+  29  Precipitation       Mist    Fair ( 50)    Shower     Brisk         Rain - 50 minutes,
+  30  Precipitation       Mist    Fair ( 50)    Shower  Blustery         Rain - 80 minutes,
+  31  Precipitation       Mist    Fair ( 40)    Steady  Blustery         Rain - 24 hours,
+High Temp =  70, Low Temp =  35, Average Temp =  49
 
 February

@@ -2,17 +2,17 @@
         Files: 00 fCons /term
  Last syscall: F$TLink (0x0021)
     Registers: Dn=00000005 00000000 00000080 00000006
-                  DDDDDDD4 00000262 00002BC0 00000020
-               An=000C8994 000B489A 000C8940 000A5C80
-                  AAAAAAA4 000B4854 000B9F40 000B4854
-               PC=000C8994 SR=0004
- Executing: -->000c8994: 4e73 48e7 7ffc 3e11 3d47 RTE.L
-               000c8996: 48e7 7ffc 3e11 3d47 8018 MVMLE.L #$7ffc,-(A7)
-       Memory: Static    -     000B1F40 - 000B4B00   11200 bytes
-               Allocated - 000 000B1F40 - 000B4B00   11200 bytes
-                           001 00098840 - 00099040    2048 bytes
-                           002 000C9D80 - 000CD2A0   13600 bytes
+                  DDDDDDD4 00000270 00002BD0 00000020
+               An=000D3954 000D329C 000D3900 000C4640
+                  AAAAAAA4 000D3256 000D8940 000D3256
+               PC=000D3954 SR=0004
+ Executing: -->000d3954: 4e73 48e7 7ffc 3e11 3d47 RTE.L
+               000d3956: 48e7 7ffc 3e11 3d47 8018 MVMLE.L #$7ffc,-(A7)
+       Memory: Static    -     000D0940 - 000D3510   11216 bytes
+               Allocated - 000 000D0940 - 000D3510   11216 bytes
+                           001 000D6BC0 - 000E73D0   67600 bytes
+                           002 000E7400 - 000EA920   13600 bytes
  Trap handler: 05 #36 Graph, edition 4
                15 #46 math, edition 13
-# # Exception: pid=3 vector=$08 err=#000:108 ... process will be killed (x to co
+# # Exception: pid=4 vector=$08 err=#000:108 ... process will be killed (x to co
 ntinue)

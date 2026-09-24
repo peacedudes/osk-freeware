@@ -1,4 +1,7 @@
 find SYS "-n=cal*" -o
 SYS/TEX/MFINPUTS/CM/calu.mf
+Cannot open 'sequence.mail'
+Cannot open 'sequence.news'
+Cannot open 'sequence.spool'
 SYS/cal.holidays
 SYS/cal.init

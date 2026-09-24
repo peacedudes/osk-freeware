@@ -1,14 +1,14 @@
 # The filters, each one on real text off this disk.
 
-shot    bm
-cap     bm, a Boyer-Moore grep, and fgrep beside it -- both older and
+shot    bmg
+cap     bmg, a Boyer-Moore grep, and fgrep beside it -- both older and
 cap     faster than the GNU one, and both still here.
-try     bm cribbage DOC/INDEX
+try     bmg cribbage DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     bm cribbage DOC/INDEX
+run     bmg cribbage DOC/INDEX
 wait    4
 run     fgrep cribbage DOC/INDEX
 wait    4

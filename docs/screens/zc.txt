@@ -1,6 +1,3 @@
-zc 60115
 De Kalb, IL.
-$ zc 02139
-Cambridge, MA.
-$ zc 99999
-Zip Code not found!
+$ Cambridge, MA.
+$ Zip Code not found!

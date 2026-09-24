@@ -15,7 +15,7 @@ X11R6shl bec5c92246c472a8
 a2p 9b7a2608806a2774
 about 253c97e879e0105e
 accordian ca56c357b4bc2d6e
-adduser aeb299e88a914c4d
+adduser 9aeb02c49ae2a437
 adlcomp 32d3f23a90138ca5
 adldebug 6c89a7e55ab1a303
 adlrun 7fd372fd0da391ae
@@ -86,7 +86,8 @@ bks 013748ba54c04db7
 blackjack cb5b1723a6717229
 blackjak af801185feddb977
 blastem 392393562d589092
-bm 81e5bace8971e799
+bm a18ce2ea7f6fe36d
+bmg dce7228b5a9b90f2
 bmgtest a9ba53080379b0fa
 bmgtest2 93e463ea407c684d
 bmp 095921447e784b82
@@ -95,7 +96,7 @@ bog 6a559c9a353d94f5
 bootgen 59e9073a84820da3
 bootlogger 83fdf259d873030f
 browse d6333f7a41d2fe63
-bru 59eb02a6bf50759c
+bru 8569242e36f26037
 brushtopbm 0e1f564c1ef05e09
 bs 6c4fed518a8c42bd
 bsplt68 25375a0b5287ca5e
@@ -112,7 +113,7 @@ calcdate feb1d691c5e46ad5
 calen 47ebd7471ad0a89b
 calender 30e2052f8d39bf1b
 cam e05ecc930a3c0842
-canfield 758e3b8e31759f53
+canfield 0156c1fc96cf0385
 card ea78bd6d7ca324bb
 casefix 5cf7aca805fd289d
 castle 184bb0c180b610e5
@@ -125,7 +126,7 @@ cccp2 44d93e789bd80878
 ccheck 4bd3bb5853fc2dae
 cdecl fbf232df2738d1df
 cdiff bf59ca4980c1cbf1
-cfscores 8a94d8420e22a611
+cfscores b445893f8f3368fd
 charcnt 6f3d8f7999fc7036
 chardef e715b4eac47ee844
 chbase 19a911b330380a09
@@ -140,7 +141,7 @@ chess 24ca8addeb091c9c
 chgrp afb641af9a3d88cb
 chksum 95ff9e1a6c600201
 choose af28169a3d9f98fb
-chown 342b73b89e3c5a35
+chown 71bbf6730fd291c9
 cjpeg d3d0a901439eb926
 cjpeg.070 a5da2379ec4194ef
 ckermit 350e3d3b03d28a11
@@ -169,6 +170,7 @@ cp 4eb4c5585888d0e5
 cpp afd52d785ef95a2b
 cpr 76278f625fcbe97d
 cpu 098e41d6e2631e71
+cpucache 5c2f034a282003d6
 creadoc dde4ad02df47b5c3
 crib 4db82a065a15e79a
 cribbage 236f40fb817c182c
@@ -222,6 +224,7 @@ disable 392a7269b17d81d7
 discord f46ea2df7741e7a1
 disdvi e1ada0a46a4b8270
 disktest cef9b1c52f746013
+disp 24bc570416795e5a
 divide 5d42d00640eb98f9
 djpeg 5e51c7ea5fb33922
 djpeg.070 056535a96995b78a
@@ -255,7 +258,6 @@ ed 431d3e6ebaa40aa8
 ediff a77ad36bb656fd6e
 edir 6705d84c45d3a791
 editor cc22a9da6564489a
-elm 202e330b419a3743
 elvis f33d9af83b3e1f10
 elvis_input 7935cdac3b24cab6
 elvrec e3a4ae2e4a7041dc
@@ -269,8 +271,9 @@ eo c2ce1d12ad5038df
 ephem 59fd505985416455
 ephem881 b2ff1bbc463abc95
 epson 0b6f36e0dbd7e50d
+errlog a515fe04fb214e0b
 eset 68aa2a767b9038f3
-etags 86da4eb751c1a175
+etags 433b8672c34966aa
 eunlink 7473e7b60c9e207e
 every 1a87d90bcd248316
 exist c54bb20bc7c4df89
@@ -289,7 +292,6 @@ field 23e15abb15f652dd
 file c9d8fdc888312ccd
 fileserv 3d96433c1e49a3b0
 fillup dd094c0bcbd90d64
-filter e674aeb4127a47e4
 find bc48b346d17192b8
 finger 5226d6a06de64203
 fish 97279909ded02a23
@@ -316,7 +318,9 @@ g3 f4a93c537b76b141
 game f4d65a3409a93a21
 gawk 2ee7df15052f71f7
 gcc 23bc2d0e1a6d915d
+gcc137 1a3ff14694290cb2
 gcc2 0899064ec563bf43
+gcc272 fd3d6dc2157a807a
 gcc_cc1 800ca8c71d2133b5
 gcc_cc1plus 7ce53c78eb5ed304
 gcc_cc2 ec5c779535af9a9f
@@ -397,7 +401,7 @@ ilbm 2a57f92f5f4ad67a
 imgtoppm e385dad9fd237200
 indent b8de68b935d4c012
 inetd de3c4ab4195bc57d
-inews c0e79169794c64b3
+inews 329f53bd11a85104
 infocom b49b2bc0582349eb
 infocom.tcap 2b652fc03ad80016
 inform ff0e65b367a4a783
@@ -434,6 +438,7 @@ less d6f842a2c01ad42a
 lessecho 54e47f4bb0aa4054
 lesskey d392f6e111e10d1c
 letters cbacb6d31db1c8c2
+lfcrman c38a98ab6be0cf58
 lgrep 5c6cbb622c438212
 lha 52340e9187ace34b
 lharc 5ac6c1ea77ae2c9a
@@ -445,14 +450,15 @@ lispm ae2065e7d6fe27aa
 lispmtopgm 4b27b981a050464f
 lissaj d7853d340da26d5f
 listalias 505f544d04c0d606
-lmail fdbfa17739eaa823
+lmail 08bb61c454bd4d16
 lmargin a0c2af582f40bb6e
 lnk da062d775b18a37e
 lnk.org aff6775ea04e5841
-loadmem 94377858c871b6c1
+loadmem ebf1c1df9226e5b9
 loan 974d2f18d2e5f11e
 logisim cb402d526bf0a098
 logname 8f17510b2cfc5411
+logon a66a3ad9d8f891ea
 look 22644a3ef76ff2e5
 lorenz3d 7adc33fafa9ee955
 lotto 87c55fa86b078a9e
@@ -490,6 +496,7 @@ maze 9de8ac4cb12ee6fd
 mcvert 10bcffb77425cb41
 md5 f7ca13d738767f9a
 me 98d867e530f821ec
+mesg 4f3bb4a6c167351b
 messages a6d10c4c797232b7
 mexist ce07f4f61b5f4f22
 mg 74a97d55d730463a
@@ -501,6 +508,8 @@ minnesota f7ab891b958c9da7
 mkdict 429d03cfca6f7aec
 mkdir ed4d64f149e31208
 mkindex 56e25e6b32f8fb0c
+mmenu 2fee54cb313691f1
+mmon 1f68b8a0719a29ae
 modbuster cb744ce6cbe812b3
 modinfo 35b55f276b3cbaeb
 modules b8fce7e45a55afef
@@ -552,11 +561,11 @@ newsgen f1b7a2263cd50784
 newshist ceedd2cb3f480714
 newslock d732fc08b602f5dc
 newsrun 098ba84e93bc20df
-nn 1967c9f3c6ba4443
-nnadmin a461ffa79daf34fd
+nn 10757b7f3dbb2c26
+nnadmin 743d9402313619c6
 nnaux 636a2850490b67f0
-nncheck 87473252ad12aea3
-nnmaster 479321e09e8aa678
+nncheck 4f00264233609ad2
+nnmaster a92c008ddbe349dd
 nobs 054e8a73fee05633
 noreader e04559edcefa0d2c
 nptx e0dee169c2a5d381
@@ -696,6 +705,7 @@ psc 0bdca397b0d3f04e
 psidtopgm f1c1848f751ebeab
 psychic 77d3cca369ceebc6
 ptob 80677589d0e5bd78
+ptyman 129653327459f068
 pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
 qp 159fb95fa4e549d8
@@ -721,6 +731,7 @@ repunsel 3ae476f3868f0533
 resize d198db39123e3928
 rev 46f510f2d0eb4591
 reversi 18d51fb296f8b092
+rex 6f0d02348733c9e1
 rm 7ed8216dd14e7330
 rmail 245cc5bb1daa0815
 rn 85eb406433256e38
@@ -744,7 +755,7 @@ runc cfd55f670e3d1059
 rxmod 7653c9295e274a56
 saa 0c5f06c37b890764
 savage 478adc0a252dfa33
-savemem 773f224fc922d92f
+savemem 9b53b866829c3161
 sbatch 9f3f2a83e46a5874
 sbreak 0d4d861694242fa2
 sc b31b921dc9ee7460
@@ -761,8 +772,8 @@ sddemo c472fc5dc89bc5e1
 sed 86aff8401aaf7f06
 sed_1.06 b45e5f3769a58252
 sepwords 2946a889b8fd59d2
-setime2 51ad4508112afdfc
-setimex c0f3cf92c42028ee
+setime2 3bcb21f784ae3fd7
+setimex dbb5d9bddff4eab5
 setterm 845175284bbbb72a
 setup 460f6fba49b11f15
 setup-image 98fc8faa8576a97d
@@ -776,7 +787,7 @@ showpic 706e687b246a0ffa
 shuffle df56b0a91782f830
 sieve 066145397b3012fe
 sifi 4faa716b2597847b
-signal dbbf720d268c4eb2
+signal 160b39a66cfa9621
 sine 0cece66040b0292a
 sir 8c2bcd16bc9d8649
 ski eee1e80c93d85717
@@ -829,6 +840,7 @@ tac 6dece2f23a527633
 tail 6ea68bae59eb265a
 tangle 7d4969b60893eedf
 tar f899633bf18895d6
+tass 940b61ab74477dcf
 taxlaw 17e3e54f1c43dc72
 tcmp 762791b8abc9e457
 teachgammon 9f9cf6fe5e075e8f
@@ -877,6 +889,7 @@ txmod fd4dae283e0996bc
 typefast f4e991db469b5d22
 ub68020demo dd6614e0b6b7d065
 ub68kdemo a23d32c97b7c0679
+uid 259d0e60245dda01
 ul 89f5dba125d83b55
 ularn d1f0b86a94761e8a
 uld 5ba781c0c11e10df
@@ -910,7 +923,7 @@ uuencode ef2f6199e6f7181d
 uuexpand af2741af1d85b8ce
 uulog 46d8d52b9f2368e3
 uuname f8a2245577d87d36
-uupoll 16b72e7930e12e9f
+uupoll a9da5fff43cffc0a
 uustat 6b344e24fe936fa5
 uux 600ce072555b3c4a
 uuxqt 7d5ec6a8ac150b00
@@ -918,6 +931,7 @@ v7make 2a9b2e869566b585
 valspeak 7d51b124e270473b
 vc 184340ae7a592513
 vcraps 4a4e9c21b6113efa
+vcron 1a4c5ac4bd6b553d
 version 4cf80677f3f5a15c
 vftovp 01cee193d3f83aa4
 vi 815e0cedeedc2fec
@@ -932,6 +946,7 @@ vis 201a8ad95c705f06
 vlen 6bf567ff7defc20f
 vmod_trap b5512a9cd4f40241
 vptovf acd9fb8d80a0a040
+vt100 8f8c34227e7ad952
 vttest cbbbe58fdd132cdf
 vtxtcn 611d227126d2ebf4
 wam.sbprolog e91dbcc1bdd9bb87
@@ -962,6 +977,7 @@ wrjpgcom.070 431c1c4199d91118
 wump 670d79d07f33b5c7
 wysecrack ee56fc918d336050
 wysetime f4698b8097414beb
+x9eyes 8939594fc0c1382c
 xargs 7c5ffd5e9d0881c4
 xbm db7087d7e8969392
 xbmtopbm 699141463bda5b4d

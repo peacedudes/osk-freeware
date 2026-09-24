@@ -1,4 +1,4 @@
 ls -l tmp/ARC/readme
--rw-rw-rw-   1 0        0            6838 Aug  3 19:00 tmp/ARC/readme
+-rw-rw-rw-   1 7        1            7231 Sep 23 23:39 tmp/ARC/readme
 $ shar tmp/ARC/readme
 No read access for file: tmp/ARC/readme

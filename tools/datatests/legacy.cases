@@ -1,0 +1,103 @@
+# legacy -- programs for a real OS-9 system that this emulator cannot
+# exercise, 2026-09-24.
+#
+# Every one of these needs something the test image has not got: a device
+# driver or file manager loaded into a real kernel, an OS-9/Net network, a
+# modem line and a multi-user login, an MM/1 or X68000 display, or a 68020+
+# cache.  WE CANNOT TEST WHAT THEY ARE FOR.  What these cases pin down is what
+# each one says when it is started here -- its usage, or the device it asks
+# for and cannot open -- so a later change cannot turn "it names what it
+# needs" into "it says nothing at all".
+#
+# The drivers, descriptors and file managers are modules to load into a
+# kernel, not programs to run; bash answers `cannot execute binary file'
+# for them, which it does not say for a missing file.
+
+family  legacy
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   export HOME=/dd
+# chp runs `rex' by name; resident is the arrangement that finds it anywhere.
+load    /dd/CMDS/NETWORK/rex
+
+case    drivers-are-modules-and-name-themselves
+# modinfo reads the module header; these are the names a descriptor binds
+# its driver and file manager by, and the names SYS/init or a bootlist uses.
+run     cd /dd; for m in ptyman ptydrv pty tty lfcrman h0t thlpct disp di cctrap; do /dd/CMDS/modinfo CMDS/DRIVERS/$m | /dd/CMDS/head -n 2; done
+run     /dd/CMDS/DRIVERS/ptyman
+expect  Module name           = PtyMan
+expect  Module name           = PtyDrv
+expect  Module name           = pty
+expect  Module name           = tty
+expect  Module name           = lfcrman
+expect  Module name           = h0t
+expect  Module name           = thlpct
+expect  Module name           = disp
+expect  Module name           = di
+expect  Module name           = cctrap
+expect  DRIVERS/ptyman: cannot execute binary file
+
+case    cpucache-prints-its-usage
+run     /dd/CMDS/DRIVERS/cpucache -?
+expect  Syntax: cpucache [on|off]
+expect  display/switch 68020/68030/68040 on-chip caches
+
+case    logon-prints-its-usage
+run     /dd/CMDS/SYSADMIN/logon -?
+expect  Function: Log into a multiuser enviroment
+expect  -v=<file>   Verify a entrytypes file
+
+case    mmon-prints-its-usage
+run     /dd/CMDS/SYSADMIN/mmon -?
+expect  Starts a special timesharing-monitor, best for Hayes-Modems
+
+case    watch-is-for-the-super-user
+# As the super-user it prints its usage ("watches the device for an
+# incoming call"); the harness runs as tester, and this is its answer.
+run     /dd/CMDS/SYSADMIN/watch -?
+expect  Only the superuser (0.0) may start watch!
+
+case    errlog-and-erradm-print-their-usage
+run     /dd/CMDS/SYSADMIN/errlog -?
+run     /dd/CMDS/SYSADMIN/erradm -?
+expect  collects error messages in one file
+expect  Change the status of the error logging demon
+
+case    crontab-answers-for-the-user
+run     /dd/CMDS/SYSADMIN/crontab -?
+run     /dd/CMDS/SYSADMIN/crontab -l
+expect  (list user's crontab)
+expect  no crontab for
+
+case    vcron-refuses-a-user-outside-group-cron
+# Only members of the group `Cron' in SYS/group may start the daemon, and
+# this disk defines no such group.
+run     /dd/CMDS/SYSADMIN/vcron
+expect  YOU are NOT allowed to start Vcron
+
+case    rex-prints-its-usage-and-wants-os9-net
+run     /dd/CMDS/NETWORK/rex -?
+run     /dd/CMDS/NETWORK/chp /n0/far
+expect  Function: remote execute a command
+expect  rex: Can't open /n0
+
+case    remdate-wants-os9-net
+run     /dd/CMDS/NETWORK/remdate
+expect  remdate: Can't open /n0
+
+case    prexd-prints-its-usage
+run     /dd/CMDS/NETWORK/prexd -?
+run     /dd/CMDS/NETWORK/prexdc
+expect  Function: remote execute daemon
+expect  prexdc: Internal error. Too much arguments
+
+case    vt100-wants-a-serial-port
+run     /dd/CMDS/MM1/vt100 /t2 < /nil
+expect  Error: Cannot open device.
+
+case    x9eyes-and-setbgptn-want-the-pw-x-window
+run     /dd/CMDS/X68K/x9eyes
+run     /dd/CMDS/X68K/setbgptn /dd/SYS/motd
+expect  PwCreateMap error
+expect  setbgptn: can't open `/win'

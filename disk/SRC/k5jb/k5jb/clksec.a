@@ -1,0 +1,1 @@
+#asmclksec: moveq   #3,d0        os9     F$Time        move.l  #0,d0        move.w  d3,d0        rts#endasm

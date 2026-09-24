@@ -3,5 +3,5 @@ Oops! File was already less than 350,000 bytes!
 That's ok. Now you have two copies of the same
 file.
 $ ls -l tmp/ENC/fc.txt tmp/ENC/fc.txt_1
--rw-rw-rw-   1 0        0             242 Sep  8 21:25 tmp/ENC/fc.txt
--rw-------   1 0        0             242 Sep  8 21:25 tmp/ENC/fc.txt_1
+-rw-rw-rw-   1 7        1             242 Sep 24 01:21 tmp/ENC/fc.txt
+-rw-------   1 7        1             242 Sep 24 01:22 tmp/ENC/fc.txt_1

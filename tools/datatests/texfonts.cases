@@ -1,0 +1,53 @@
+# texfonts -- bitmaps for the 20 TFMs of the 1992 OSK TeX set that had none
+
+family  texfonts
+
+setup   export TERM=vt100
+setup   W=/dd/tmp/TXF
+setup   /dd/CMDS/rm -f $W/* > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   echo '\\font\\xxa=cmb10 \\xxa A0\\char1 \\font\\xxb=cmbxsl10 \\xxb A0\\char1 \\font\\xxc=cmff10 \\xxc A0\\char1 \\font\\xxd=cmfi10 \\xxd A0\\char1' > $W/fonts.tex
+setup   echo '\\font\\xxe=cmfib8 \\xxe A0\\char1 \\font\\xxf=cminch \\xxf A0\\char1 \\font\\xxg=cmitt10 \\xxg A0\\char1 \\font\\xxh=cmman \\xxh A0\\char1' >> $W/fonts.tex
+setup   echo '\\font\\xxi=cmss8 \\xxi A0\\char1 \\font\\xxj=cmss9 \\xxj A0\\char1 \\font\\xxk=cmssdc10 \\xxk A0\\char1 \\font\\xxl=cmssi8 \\xxl A0\\char1' >> $W/fonts.tex
+setup   echo '\\font\\xxm=cmssi9 \\xxm A0\\char1 \\font\\xxn=cmtcsc10 \\xxn A0\\char1 \\font\\xxo=cmtex8 \\xxo A0\\char1 \\font\\xxp=cmvtt8 \\xxp A0\\char1' >> $W/fonts.tex
+setup   echo '\\font\\xxq=cmvtt10 \\xxq A0\\char1 \\font\\xxr=circle10 \\xxr A0\\char1 \\font\\xxs=circlew10 \\xxs A0\\char1 \\font\\xxt=gray \\xxt A0\\char1' >> $W/fonts.tex
+setup   echo '\\bye' >> $W/fonts.tex
+setup   /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/virtex '&plain' fonts.tex < /nil" > /nil 2>/nil
+
+case    tex-reads-every-metric
+run     /dd/CMDS/ls $W
+run     /dd/CMDS/cat $W/fonts.log
+expect  fonts.dvi
+expect  Output written on fonts.dvi (1 page
+absent  not loadable
+
+case    dvilj2-finds-every-300dpi-bitmap
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvilj2 fonts.dvi"
+expect  [Hewlett-Packard LaserJet II laser printer]
+expect  [1 pages]
+expect  [OK]
+absent  [cmb10 [300 dpi]] could not be opened
+absent  [cmbxsl10 [300 dpi]] could not be opened
+absent  [cmff10 [300 dpi]] could not be opened
+absent  [cmfi10 [300 dpi]] could not be opened
+absent  [cmfib8 [300 dpi]] could not be opened
+absent  [cminch [300 dpi]] could not be opened
+absent  [cmitt10 [300 dpi]] could not be opened
+absent  [cmman [300 dpi]] could not be opened
+absent  [cmss8 [300 dpi]] could not be opened
+absent  [cmss9 [300 dpi]] could not be opened
+absent  [cmssdc10 [300 dpi]] could not be opened
+absent  [cmssi8 [300 dpi]] could not be opened
+absent  [cmssi9 [300 dpi]] could not be opened
+absent  [cmtcsc10 [300 dpi]] could not be opened
+absent  [cmtex8 [300 dpi]] could not be opened
+absent  [cmvtt8 [300 dpi]] could not be opened
+absent  [cmvtt10 [300 dpi]] could not be opened
+absent  [circle10 [300 dpi]] could not be opened
+absent  [circlew10 [300 dpi]] could not be opened
+absent  [gray [300 dpi]] could not be opened
+
+case    dvips-sets-them-without-making-any
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/TEXCMDS/dvips -M fonts.dvi"
+expect  -> fonts.ps
+absent  not found

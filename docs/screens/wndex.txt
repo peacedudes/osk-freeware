@@ -1,4 +1,2 @@
-wndex
 Wrote cache file ./index.cache
-$ ls -l index.cache
--rw-r--r--   1 0        0              74 Sep 19 07:39 index.cache
+$ -rw-r--r--   1 7        1              74 Sep 24 01:29 index.cache

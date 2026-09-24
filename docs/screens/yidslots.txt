@@ -1,12 +1,12 @@
 .........................................................................
-.Solly                 ..Feir                  ..gold                   .
-.Murray                ..Roth                  ..feld                   .
--Barry                 --Guilden               --man                    -
-.Heshy                 ..Eisen                 ..baum                   .
-.Nathaniel             ..Silver                ..bloom                  .
+.Marty                 ..Feir                  ..feld                   .
+.Bernie                ..Roth                  ..man                    .
+-Myron                 --Guilden               --baum                   -
+.Sylvia                ..Eisen                 ..bloom                  .
+.Morty                 ..Silver                ..berg                   .
 .........................................................................
 
 Place your bet (0 ends the game)                              You have:
   5                                                            95
-Barry Guildenman - does not pay                               Amt. of bet:
+Myron Guildenbaum - does not pay                              Amt. of bet:
 Place your bet (0 ends the game)                               0

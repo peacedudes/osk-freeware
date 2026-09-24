@@ -1,12 +1,12 @@
 nnaux post article 1 send
 $ cat junk/1
-Path: osk!su
-From: su@osk.UUCP
+Path: osk!tester
+From: tester@osk.UUCP
 Newsgroups: junk
 Subject: posted by nnaux
-Message-ID: <1@osk.UUCP>
-Date: 23 Sep 126 15:42:52 GMT
+Message-ID: <13@osk.UUCP>
+Date: 24 Sep 126 06:09:16 GMT
 Lines: 1
-Posted: Wed Sep 23, 2026 10:42:52  (Wed)
+Posted: Thu Sep 24, 2026 01:09:16  (Thu)
 
 nn hands nnaux the article to post.

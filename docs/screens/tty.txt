@@ -1,9 +1,6 @@
-$ tty
 term
-$ vecho "no newline here -- "
-no newline here --
-$ lmargin -?
-usage: epson [<opts>]
+$ no newline here --
+$ usage: epson [<opts>]
         l<int>  size of left margin in characters, 5
 
 (C) oettle + reichler Datentechnik GmbH, Paul Farquhar 1990

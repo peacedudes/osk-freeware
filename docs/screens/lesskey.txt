@@ -4,4 +4,4 @@ z forw-screen
 Z back-screen
 $ lesskey -o lesskeys keys
 $ ls -l lesskeys
--rw-------   1 0        0              20 Sep  8 04:47 lesskeys
+-rw-------   1 7        1              20 Sep 24 02:33 lesskeys

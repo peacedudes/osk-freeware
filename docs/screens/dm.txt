@@ -2,23 +2,23 @@
 +----------------------------------------------+-------------------------------+
 | 32==PARENT==23                               |       2File Information       |
 | 2.ELM23                                      |                               |
-| .bashrc23                                    |           Filename            |
-| .newsrc23                                    |              ..               |
-| 2ADL23                                       |          Attributes           |
-| 2CMDS23                                      |           d-ewrewr            |
-| 2DEFS23                                      |      2Length:2 992 bytes      |
-| 2DEMO23                                      |        Creation date          |
-| 2DOC23                                       |           00/00/00            |
-| 2DOS23                                       |        Last modified2         |
-| 2ETC23                                       |        126/09/22 04:16        |
-| 2GAMES23                                     |                               |
-| 2GNUCHESS4.023                               +-------------------------------+
+| .article23                                   |           Filename            |
+| .bashrc23                                    |              ..               |
+| .newsrc23                                    |          Attributes           |
+| 2.nn23                                       |           d-ewrewr            |
+| .pnewsexpert23                               |      2Length:2 1440 bytes     |
+| .rnlast23                                    |        Creation date          |
+| .rnsoft23                                    |           00/00/00            |
+| 2ADL23                                       |        Last modified2         |
+| 2CMDS23                                      |        126/09/24 02:54        |
+| 2DEFS23                                      |                               |
+| 2DEMO23                                      +-------------------------------+
+| 2DOC23                                       |                               |
+| 2DOS23                                       |       Current disk info       |
+| 2ETC23                                       |                               |
+| 2GAMES23                                     |      Can't get size of /dd    |
+| 2GNUCHESS4.023                               |                               |
 | 2GNULIB23                                    |                               |
-| 2LIB23                                       |       Current disk info       |
-| 2LOG23                                       |                               |
-| 2MAIL23                                      |      Can't get size of /dd    |
-| 2SBPROLOG23                                  |                               |
-| SOURCES.txt23                                |                               |
-| 2SPL23                                       |                               |
+| 2LIB23                                       |                               |
 +-  -------------------------------------------+-------------------------------+
 2Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell2

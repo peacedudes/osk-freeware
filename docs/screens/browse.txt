@@ -1,7 +1,7 @@
 : 4 files
 Attr   Lnk User     Group       Size      Modify Time File name
-d-ewrewr 1 su       0            ---  18 Sep 126 18:35 ./
-d-ewrewr 1 su       0            ---  18 Sep 126 18:30 ../
+d-ewrewr 1 su       0            ---  24 Sep 126  2:43 ./
+d-ewrewr 1 su       0            ---  24 Sep 126  2:40 ../
 ---wr-wr 1 su       0           2650   3 Aug 126 19:00 unshar.doc
 ---wr-wr 1 su       0          11416   3 Aug 126 19:00 which6.shar
 ~

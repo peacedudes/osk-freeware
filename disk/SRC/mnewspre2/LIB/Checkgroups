@@ -1,0 +1,1 @@
+## $Log$##      This file limits a checkgroupsmessage to#      a subset of newsgroups, so if a checkgroup#      for a subnetwork is posted only the newsgroups#      of this network are checked#      Format:#      distribution newsgroupsworld          !de.alt.*,de.*local          local*

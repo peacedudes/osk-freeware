@@ -9,7 +9,7 @@ cat DOC/samples/cat.txt | head -n 4
  :year 1984 )
 <mp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
 tmp/cat2.libr already exists!
--rw-------   1 0        0           17677 Sep 18 20:45 tmp/cat2.libr
+-rw-------   1 7        1           17677 Sep 24 02:55 tmp/cat2.libr
 $ Libr2Ascii -infile tmp/cat2.libr | head -n 6
 4
 2

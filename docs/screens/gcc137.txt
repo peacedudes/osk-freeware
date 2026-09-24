@@ -1,0 +1,19 @@
+printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ ./gcc137 -B$PWD/gcc137_ -S hello.c
+$ ls hello.*; cat hello.a
+hello.a  hello.c
+        psect   hello_gc,0,0,0,0,0
+        align
+main:
+        move.l d0,-(sp)
+        move.l #76+0,d0
+        bsr __stack_check
+        move.l (sp)+,d0
+        link a5,#0
+        moveq.l #0,d0
+        bra L1.
+L1.
+        unlk a5
+        rts
+        ends
+$ rm -f hello.c hello.a hello.s

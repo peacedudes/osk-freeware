@@ -4,6 +4,6 @@ gcc version 1.42
 $ ./gcc -v -c hello.c
 gcc version 1.42
  cccp -v -undef -D__GNUC__ -DOSK -D__OSK__ -D__mc68000__ -Dmc68000 hello.c cc.00
-0004.cpp
+0005.cpp
 ./gcc: Can't fork 'cccp': module not found (hello.c)
-./gcc: cc.000004.cpp: file not found (hello.c)
+./gcc: cc.000005.cpp: file not found (hello.c)

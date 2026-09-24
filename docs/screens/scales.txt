@@ -7,17 +7,17 @@ Done!
 $ cat scales.lst | head -n 16
 Random Order of 195 Possible Scales or Chords
 
-___   1 Gb7
-        Spelling:       Gb Bb Db Fb
-___   2 A-9
-        Spelling:       A B C E G
-___   3 E-9
-        Spelling:       E F# G B D
-___   4 GbM9
-        Spelling:       Gb Ab Bb Db F
-___   5 C#-9 (maj 7)
+___   1 EM9
+        Spelling:       E F# G# B D#
+___   2 G6
+        Spelling:       G B D E
+___   3 B-6
+        Spelling:       B D F# G#
+___   4 Eb7
+        Spelling:       Eb G Bb Db
+___   5 F Major (Ionian)        (1  flat :  Bb)
+        Spelling:       F G A Bb C D E
+___   6 C#-6
+        Spelling:       C# E G# A#
+___   7 C#-9 (maj 7)
         Spelling:       C# D# E G# B#
-___   6 C-9
-        Spelling:       C D Eb G Bb
-___   7 Eb-6
-        Spelling:       Eb Gb Bb C

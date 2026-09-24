@@ -1,0 +1,4 @@
+$ rex -?
+Syntax: rex </net/remote station> <command>
+Function: remote execute a command
+Options: none

@@ -1,19 +1,23 @@
-                                      +---------------------------------------+
-                                      |  Score:   0     YOU                   |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      |                                       |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      | *.....:.....:.....:.....:.....:.....  |
-                                      |  Score:   0      ME                   |
-                                      +---------------------------------------+
-
-                                       Do you need instructions for cribbage? N
-                                       Long (to 121) or Short (to 61)?
-                                       Cut to see whose crib it is -- low card
-                                        wins? S
-                                       You cut the JACK of HEARTS
-                                       I cut the JACK of DIAMONDS
-                                       We tied and have to try again...
-                                      *Cut to see whose crib it is -- low card
-                                        wins?
++-----+                               +---------------------------------------+
+|2C   |                               |  Score:   0     YOU                   |
+|+-----+                              | *.....:.....:.....:.....:.....:.....  |
+||5H   |                              | *.....:.....:.....:.....:.....:.....  |
++|+-----+                             |                                       |
+ ||5D   |                             | *.....:.....:.....:.....:.....:.....  |
+ +|+-----+                            | *.....:.....:.....:.....:.....:.....  |
+  ||6H   |                            |  Score:   0      ME                   |
+  +|+-----+                           +---------------------------------------+
+   ||TS   |
+   +|+-----+                           Do you need instructions for cribbage? N
+    ||QD   |                           Long (to 121) or Short (to 61)?
+    +|     |                           Cut to see whose crib it is -- low card
+     |   QD|                            wins? S
+     +-----+                           You cut the FIVE of DIAMONDS
+                                       I cut the TEN of DIAMONDS
+                                      *Discard a card -->
+ CRIB
++-----+
+|     |
+|     |
+|     |
++-----+

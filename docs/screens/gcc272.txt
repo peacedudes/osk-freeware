@@ -1,0 +1,19 @@
+export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
+$ ./gcc272 -S hello.c
+$ cat hello.a
+        psect hello_gc,0,0,0,0,0
+        align
+main:
+        move.l d0,-(a7)
+        moveq.l #-80,d0 :2
+        bsr _stkcheck
+        move.l (a7)+,d0 :2
+        link.w a5,#0
+        bsr =__main *b3
+        moveq.l #0,d0
+        bra L1.
+L1.
+        unlk a5
+        rts
+        ends
+$ rm -f hello.c hello.a

@@ -1,5 +1,2 @@
 ssl DOC/INDEX
-
-File descriptor sector DOC/INDEX: 0
- Seg#     start    lenght
--------------------------
+Sie sind doch nicht der Superuser - ooooder ?

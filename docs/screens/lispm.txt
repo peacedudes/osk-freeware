@@ -6,7 +6,7 @@ ppmtomap: 6 colors found
 P6
 6 1
 255
-...0Nh.+6.va.Y=.+
+ZTsvA2$/i8MQo
 $ pbmtopk < /nil
 pbmtopk: This is PBMtoPK, version 2.4
 usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi [-s designsize] [-p num param...]

@@ -1,6 +1,6 @@
 command if def TERM whoami endif
-su
+tester
 $ command if loaded nosuch whoami else today endif
-Today is Tuesday, the twenty-second day of September, two thousand and
-twenty-six. The time is exactly seven minutes before one AM, Daylight
-Savings Time. The moon is in its first quarter.
+Today is Thursday, the twenty-fourth day of September, two thousand and
+twenty-six. The time is twenty-four minutes and thirty-six seconds after
+two AM, Daylight Savings Time. The moon is waxing gibbous.

@@ -1,0 +1,8 @@
+$ mwb -?
+Syntax: mwb {<opts>}
+Function: Edit and create own Manualentries
+Options:
+     -m<=>ManEntry  Edit the entry <ManEntry>.
+     -ns            No small, the manuals are written for large papersizes.
+     -s             Small, the manuals are written for OS9-Manual like
+                    pagesizes.

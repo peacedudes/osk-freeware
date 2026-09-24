@@ -1,8 +1,8 @@
 ls -l
 total 512
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 one
+-rw-rw-rw-   1 7        1              40 Sep 24 02:40 one
 $ mv -v one two
 one -> two
 $ ls -l
 total 512
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 two
+-rw-rw-rw-   1 7        1              40 Sep 24 02:40 two

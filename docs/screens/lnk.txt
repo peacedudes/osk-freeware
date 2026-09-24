@@ -1,5 +1,7 @@
 lnk fact
 l68 -l=/h0/LIB/sys.l /h0/LIB/rtfstart.r -o=/h0/CMDS/fact fact.r
+l68: error - can't create output file
+ STOP: linking aborted
 $ fact
    n         n!
            1           1

@@ -4,6 +4,6 @@ creating sample1.zip
 creating sample2.zip
 $ ls -l
 total 15872
--rw-rw-rw-   1 0        0            7413 Aug  3 19:00 sample.zip
--rw-------   1 0        0            2103 Sep  8 15:31 sample1.zip
--rw-------   1 0        0            5332 Sep  8 15:31 sample2.zip
+-rw-rw-rw-   1 7        1            7413 Sep 23 23:38 sample.zip
+-rw-------   1 7        1            2103 Sep 23 23:38 sample1.zip
+-rw-------   1 7        1            5332 Sep 23 23:38 sample2.zip

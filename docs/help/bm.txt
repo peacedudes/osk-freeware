@@ -1,12 +1,3 @@
 $ bm -?
-bm: search for a given string or strings in a file or files
-synopsis: bm [option]* [string(s)] [file]*
-options:
--c print only a count of matching lines
--e Take next argument as the pattern
--f PFile read patterns from a file PFile
--h Do not print file names
--l print a list of files containing the pattern(s)
--n print the character offset of the pattern(s)
--s silent mode. Return only success (0) or failure (1)
--x print only lines which match entirely
+Usage: (read) bm [-u user] [-f file]
+    or (send) bm [-r rcfile] [-s subject] [-q] addr .. addr

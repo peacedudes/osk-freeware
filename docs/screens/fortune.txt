@@ -1,5 +1,5 @@
 $ fortune
-The shortest distance between two points is under construction.
-                -- Noelie Altito
+"The way to make a small fortune in the commodities market is to start
+with a large fortune."
 $ fortune
-Today is the tomorrow you worried about yesterday
+Optimization hinders evolution.

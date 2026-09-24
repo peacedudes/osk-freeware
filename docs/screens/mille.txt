@@ -5,12 +5,12 @@
                                         |  Each Coup Fourre     0     0      300
 --HAND--            --DECK--            |                    ----   ----   -----
 P                     89                |        Hand Total     0     0
-1 100               --DISCARD--         |                   -----  -----
-2 75                                    |     Overall Total     0     0
-3 Go                                    |              Games    0     0
-4 Speed Limit       >>:Move:            |
-5 75                                    | p: pick            q: quit
-6 Go                                    | u: use #           o: order hand
+1 50                --DISCARD--         |                   -----  -----
+2 Go                                    |     Overall Total     0     0
+3 Out of Gas                            |              Games    0     0
+4 Accident          >>:Move:            |
+5 Spare Tire                            | p: pick            q: quit
+6 Accident                              | u: use #           o: order hand
 --BATTLE--          --BATTLE--          | d: discard #       s: save
                                         | w: toggle window   r: reprint
 --SPEED--           --SPEED--           |

@@ -2,7 +2,7 @@
 # Run ONE command line inside a login session and show exactly what came back.
 #
 #   tools/run_in_session.sh '/dd/CMDS/suse /dd/CMDS/cat'
-#   tools/run_in_session.sh -q '/dd/CMDS/sysid'      # -q: drop the login noise
+#   tools/run_in_session.sh -q '/dd/CMDS/tty'        # -q: drop the login noise
 #
 # The sweep scripts answer "did this program work" for 949 programs at a time.
 # This answers "what exactly does THIS one do", which is the question every

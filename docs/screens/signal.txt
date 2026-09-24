@@ -1,6 +1,6 @@
 cron &
-<3>
-$ signal 3 0; echo "status $?"
+<4>
+$ signal 4 0; echo "status $?"
 status 0
-$ signal 3 0; echo "status $?"
+$ signal 4 0; echo "status $?"
 status 228

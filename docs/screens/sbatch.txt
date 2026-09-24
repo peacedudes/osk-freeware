@@ -1,7 +1,7 @@
 sbatch nbr
 Spooling news for nbr
-Spooling /h0/SPOOL/MNEWS/junk/1
-Sending 260 bytes
+Spooling /h0/SPOOL/MNEWS/comp/os/os9/2
+Sending 269 bytes
 uux: Unknown Host 'nbr'
 'uux -r - '%s!rnews'' returns 216 (errno = 216)
 Error = 1

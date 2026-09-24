@@ -1,19 +1,5 @@
 printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
 $ rnews batch.txt
+Must be root
 $ ls -laR SPOOL/news/COMP
-total 1536
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
-drwxrwxrwx   1 0        0             128 Sep 12 06:31 ..
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 OS
-
-SPOOL/news/COMP/OS:
-total 1536
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 ..
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 OS9
-
-SPOOL/news/COMP/OS/OS9:
-total 1536
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 .
-drwxrwxrwx   1 0        0              96 Sep 12 06:31 ..
--rw-------   1 0        0              59 Sep 12 06:31 a1
+ls: SPOOL/news/COMP: error 216

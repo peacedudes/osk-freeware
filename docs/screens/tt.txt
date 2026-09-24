@@ -1,21 +1,21 @@
 ||                    ||  TETRIS#FOR#TERMINALS
 ||                    ||
 ||                    ||  Written by Mike Taylor
-||        ()(         ||  Email: mirk@uk.ac.warwick.cs
-||                    ||  Started: Sun Sep 20 21:57:28 2026
+||            ()      ||  Email: mirk@uk.ac.warwick.cs
+||        ()()()      ||  Started: Thu Sep 24 01:29:03 2026
 ||                    ||
 ||                    ||  Game level: 0
 ||                    ||
-||                    ||  Score:  11
+||                    ||  Score:  16
 ||                    ||  Pieces: 4
 ||                    ||  Levels: 0
 ||                    ||
 ||                    ||    Use keys:
 ||                    ||    =========
-||                    ||    Move left:  ','
-||        {}          ||    Move right: '/'
-||        {}{}{}      ||    Rotate:     '.'
-||        {}{}{}##    ||    Drop:       ' '
-||        [][]{}####  ||    Pause:      's'
-||        [][]  ##    ||    Quit:       'q'
+||          [][]      ||    Move left:  ','
+||          [][]%%%%  ||    Move right: '/'
+||            %%%%    ||    Rotate:     '.'
+||          [][]      ||    Drop:       ' '
+||      {}  [][]      ||    Pause:      's'
+||      {}{}{}        ||    Quit:       'q'
 ++====================++    Refresh:    '^L'

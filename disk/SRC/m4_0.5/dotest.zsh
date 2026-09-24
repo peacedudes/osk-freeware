@@ -1,0 +1,1 @@
+@flclearflread examples *flselect -f=1 *flresetLOOP:  i = flget(1)  if i = "" THEN END  write ">>> Input ''i' :"  list "examples/''i'"  write ">>> Output :"  run m4 "examples/''i'"  write ">>> Fin. (''i')"  goto LOOP

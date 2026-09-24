@@ -1,6 +1,6 @@
 # What is on this disk
 
-1075 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **755 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1118 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **779 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -16,23 +16,23 @@
 | [Text tools](#text-tools) | 139 | Search, sort, compare, reformat, split and spell-check. |
 | [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 38 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
-| [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
+| [Compilers & build](#compilers--build) | 49 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
-| [Communications](#communications) | 115 | Kermit in several builds, terminal sessions, and networking. |
+| [Communications](#communications) | 123 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 116 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 121 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 145 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 19 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
-| [Documentation](#documentation) | 7 | Pagers, readers and the help system. |
+| [Documentation](#documentation) | 8 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
-| [Needs hardware](#needs-hardware) | 12 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
+| [Needs hardware](#needs-hardware) | 14 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
 
 ## Shells
 
@@ -239,7 +239,7 @@
 | | |
 |---|---|
 | `agrep` | grep that forgives spelling: `agrep -2 homogenos file' finds `homogeneous', allowing up to two letters wrong, missing or extra.  -i ignores case, -w matches whole words, -c counts, -f takes many patterns from a file, and -d splits the text into records (`-d "^From "' for a mailbox)<br>**How:** Like grep, but a number option allows mistakes: `agrep -1 recieve file' finds `receive', one substitution, insertion or deletion away. -i ignores case, -w wants whole words, -c counts matching records, -l names the files, -v inverts, -f patfile searches for every pattern in patfile, and -d sets the record delimiter, so `agrep -d "^From " word mailbox' prints whole messages. Bare, it prints its option summary. |
-| `bm` | &#9733; a fast grep by the Boyer-Moore algorithm: searches files for one or more fixed strings, with counts, file lists and character offsets on request<br>`bm: search for a given string or strings in a file or files` |
+| `bmg` | &#9733; a fast grep by the Boyer-Moore algorithm: searches files for one or more fixed strings, with counts, file lists and character offsets on request<br>`bm: search for a given string or strings in a file or files` |
 | `bmgtest` | Boyer-Moore-Gosper substring search: `bmgtest <pattern> <file>' prints the lines that match, and it reads standard input if you name no file.  -i ignores case, -n numbers the lines<br>**How:** bmgtest [-i] [-n] <pattern> [file ...]. A demonstration of Boyer-Moore-Gosper searching. |
 | `bmgtest2` | Boyer-Moore-Gosper substring search, a second driver over the same routines in SRC/strsch; the same arguments as `bmgtest'<br>`usage: bmgtest [-i] [-n] pattern [file ...]` |
 | `fgrep` | &#9733; searches files for fixed strings rather than patterns, with context lines, counts, line numbers and file lists on request<br>`Syntax   : fgrep [-[[AB] ]<num>] [-[CVchilnsvwx]] [-[ef]] <expr> [<files...>]` |
@@ -539,7 +539,7 @@
 
 *C compilers and their passes, assemblers, linkers, make and parser generators.*
 
-<details><summary>41 programs</summary>
+<details><summary>49 programs</summary>
 
 **Alternates**
 
@@ -578,7 +578,15 @@
 | `collect` | collect2: builds the table of global constructors and destructors a C++ program needs before linking<br>`Syntax   : collect [<opts>] {<file>} [<opts>]` |
 | `compiler` | a full-screen menu in front of the C compiler -- CC-SHELL 1.0, 1988. It lists the directory a page at a time, a letter picks the file to compile and the same letter in lower case asks for arguments first; `.' changes directory and `!' leaves the menu. Control-C is what gets you out of the program<br>**How:** Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do. |
 | `gcc` | &#9733; the GCC driver -- GCC139's and GCC2's share this name. They are not the same version, and neither is 2.x: GCC139/gcc answers `gcc version 1.39' and GCC2/gcc answers `gcc version 1.42', read out of `gcc -v'<br>`GNU C Compiler (Version 1.42)` |
+| `gcc137` | &#9733; the GCC 1.37.1 driver: `gcc version 1.37.1' |
+| `gcc137_cc1` | &#9733; its C compiler pass: `GNU C version 1.37.1 (OS-9/68000)' |
+| `gcc137_cccp` | &#9733; its preprocessor |
 | `gcc2` | &#9733; the GCC 2.x driver, and the only one that is: `gcc version 2.5.6'<br>`GNU C Compiler (Version 2.5.6)` |
+| `gcc272` | the driver: `gcc2 version 2.7.2' |
+| `gcc272_cc2` | the C compiler pass: `GNU C version 2.7.2' |
+| `gcc272_cc2plus` | the C++ compiler pass: `GNU C++ version 2.7.2' |
+| `gcc272_cccp2` | the preprocessor, for C and C++ |
+| `gcc272_collect` | &#9733; builds the table of global constructors and destructors a C++ program needs; gcc272 runs it for every link |
 | `gcc_cc1` | GCC 1.39 C compiler pass |
 | `gcc_cc1plus` | GCC 1.39 C++ compiler pass |
 | `gcc_cc2` | GCC 2.x compiler pass, under the name gcc2 forks |
@@ -791,7 +799,7 @@
 
 *Kermit in several builds, terminal sessions, and networking.*
 
-<details><summary>115 programs</summary>
+<details><summary>123 programs</summary>
 
 **File transfer**
 
@@ -876,6 +884,7 @@
 | `rnews` | &#9733; unpacks a batch of articles received from another site and hands each to inews -- by bare name, so `load' inews first, or it repeats `Can't execute 'inews'' for ever.  A compressed (`cunbatch') batch goes through a module named `uncompress' under SPOOL/news. A batch is articles behind a `#! rnews <length>' line, which is what says where one ends and the next begins; -n names the group to assume and -x turns on debugging<br>**How:** Two programs, one name (DOC/README-NEWS). MNews's (CMDS/MNEWS): run `setup', then `load /dd/CMDS/MNEWS/inews' first -- it forks inews by bare name and without it repeats `Can't execute 'inews'' for ever; a `#! cunbatch' batch needs a module named `uncompress'. UUCPbb's (CMDS/UUCP): `rnews <batch>' files each article under SPOOL/news. |
 | `sbatch` | collects the articles waiting for a neighbouring site into batches to send it: `sbatch <system>', -c to compress.  It forks uux by bare name, so `load' UUCP's uux first<br>**How:** Batches the articles waiting for a neighbour: `sbatch <system>'. Sys in USR/LIB/NEWS names the neighbours; this disk's names none. It forks `uux' by bare name, so `load /dd/CMDS/UUCP/uux' first or it stops with `Can't fork 'uux ...' (errno = 221)'. |
 | `subscribe` | &#9733; add a newsgroup to your subscription list -- for one already in /dd/.newsrc but turned off, `Newsgroup X is now subscribed.' and `X! 1' becomes `X: 1' in the file. A group not in .newsrc at all is silently left alone, which both this and unsubscribe do<br>**How:** It works, and so does `unsubscribe' -- give it a group that IS in /dd/.newsrc. A group that is not there is silently left alone. |
+| `tass` | a full-screen threaded newsreader for a system running MNews "pre 2" (the January 1993 release): a list of your groups, then each group's articles by thread; Return reads, q goes back, h is help, and `tass -u' only brings the index files up to date.  It finds the news through SysInfo's MNEWS.LIB and MNEWS.DIR.  It does NOT read the spool of this disk's MNews in CMDS/MNEWS, the earlier 1990 prerelease -- nn reads that one |
 | `trlf` | turns LF into CR, for newsrun: `trlf <file>' converts the file in place, `trlf -s' standard input to standard output.  A file already in OS-9's form is unchanged.  Written for this disk<br>`Syntax:   trlf -s  \|  trlf <file> ...` |
 | `unsubscribe` | &#9733; drops a newsgroup from your subscription list: `!' replaces `:' in /dd/.newsrc. For a group that is already off it prints `Newsgroup 684700s already unsubscribed.', because the string in the binary is `Newsgroup % is already unsubscribed.' with no conversion letter after the `%'<br>`unsubscribe: unsubscribe from Usenet newsgroup(s)` |
 
@@ -883,14 +892,20 @@
 
 | | |
 |---|---|
+| `bm` | the mailer that goes with net: write a letter and it is queued for net's SMTP to send; run bare it reads your mail.  It reads NETHOME and NETSPOOL as net does.  DOC/bm/bm.doc is its manual<br>`Usage: (read) bm [-u user] [-f file]` |
 | `boa` | &#9733; Boa 0.92, a small web server that listens on a port of its own: `boa &' serves c/unid/boa/osk/HTML on port 8080 and runs what is under /cgi-bin/ as CGI (WN's examples here); `boa -c <dir>' takes another root with its own CONF and logs.  Each request is logged in logs/access_log |
+| `chp` | a remote login over OS-9/Net; the same as rex <node> login |
 | `finger` | &#9733; show what the system knows about a user: the home directory, the shell, and the .plan it would print; given user@host it asks that machine instead<br>**How:** `finger tester' reads the password file this disk ships and prints the account's home directory, its shell, and the .project and .plan it would show if they existed -- no network needed for a local name. `finger user@host' is the form that asks another machine. |
 | `infoxpress` | a client for the InfoXpress information service, reached over a serial line |
 | `msntp` | sets the system clock from a network time server, by SNTP: name the server and it asks one.  With no server named it listens for broadcasts instead and waits for one, which its own manual (DOC/msntp/msntp.1) describes and recommends against -- polling a server is the reliable way.  Either way it needs a network to reach, and it loads Microware's `netdb' module to look an address up, even a dotted number -- your own networking supplies it<br>**How:** Sets the clock from a network time server. |
-| `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/ka9q. |
+| `net` | KA9Q net -- TCP/IP over SLIP or AX.25: telnet, ftp, smtp. Set NETHOME (startup.net, hosts.net and the rest) and NETSPOOL (mail and its queues); Chapter 2 of DOC/net says how, and `exit' leaves it<br>**How:** KA9Q net, Phil Karn's TCP/IP over SLIP or AX.25 -- the stack amateur radio ran on. Needs NETHOME, NETSPOOL and TMPDIR set and a real interface; see DOC/net, Chapter 2. |
 | `nslookup` | BIND 4.8.3's name server lookup: `nslookup <host>' asks the server for a name's addresses, and run bare it takes queries at its own prompt.  It reads the server's address from resolv.conf at the root of /h0 (an example is in DOC/bind) and wants Microware's ISP networking under it<br>**How:** Looks a host name up in the domain name system: `nslookup <host>', or bare for its own prompt. It reads the server from resolv.conf at the root of /h0 -- DOC/bind/resolv.conf is an example to copy there -- and needs Microware's ISP networking. Here it reads that file, names the server it found, and stops at the socket. |
 | `nsquery` | BIND 4.8.3's small resolver test: `nsquery <host> [server]' prints a host's names and addresses.  Same resolv.conf, same networking as nslookup<br>**How:** `nsquery <host> [server]' prints the host's names and addresses. Same resolv.conf and networking as nslookup; bare, it prints its usage line. |
 | `osknet` | OSKNET -- TCP/IP for OS-9, Telnet, FTP, Ping and SMTP<br>**How:** Charles Hedrick's TCP/IP for OS-9 -- Telnet, FTP, Ping and SMTP. It needs a network interface. Its own documentation is nine files in DOC/osknet: start with howto.doc and useguide.doc. |
+| `prexd` | the rex daemon: start it with & in the startup file of every node that takes rex requests.  Built as prexd, not rexd, so it cannot be mistaken for OS-9/Net's own<br>`Syntax: rexd` |
+| `prexdc` | the server prexd starts for each request |
+| `remdate` | sets the date and time from another OS-9/Net node's |
+| `rex` | runs a command on another OS-9/Net node as you: rex /n0/<node> <command>.  Needs prexd on that node<br>`Syntax: rex </net/remote station> <command>` |
 | `ttcp` | measures TCP or UDP throughput between two machines: start `ttcp -r -s' on one, then `ttcp -t -s <host>' on the other, and it sends a megabyte and times it.  Built against Microware's ISP networking, so it wants that stack and its /socket device under it; DOC/ttcp has the manual<br>**How:** Measures network throughput: `ttcp -r -s' on one machine, then `ttcp -t -s <address>' on the other, and it times a megabyte going across. Both on one machine works too: `ttcp -r -s & ttcp -t -s 127.0.0.1'. It needs Microware's ISP networking (the /socket device) under it; give the other machine as a dotted address, as there is no host table here. |
 
 **Terminal & session**
@@ -925,6 +940,7 @@
 | `tterm` | &#9733; a terminal emulator, VT100-ish: -l=<port> links it to a serial port, MODEM by default. `tsu' sets its directories up first and `xyt' does file transfer from inside it<br>`Tterm Version 2.30` |
 | `txmod` | sends OS-9 modules out over a serial line to `rxmod' at the other end, which links them into the module directory there: -x sends everything in the execution directory and -l names the device to send on [no military use -- EFFO-INFO]<br>`4ETXMod - Err:  -? !` |
 | `uld` | &#9733; receives a file with XMODEM -- FHL's, 1986.  In its own words it uploads TO the file, from the other end: `uld <file>' starts it and control-X aborts; `dld' is the other half, sending one out<br>`uld version 1.4   (c) 1986 FHL` |
+| `vt100` | a VT-100/VT-52 terminal program for the MM/1 under K-Windows: vt100 /t2.  Alt-/ is its menu (hang up, shell, options); no file transfer of its own -- shell out to kermit.  Untested: there is no MM/1 here |
 | `xy` | XMODEM/YMODEM transfer.  `xy -?' prints the shared usage: send by naming files, receive by naming none; -A forces ASCII, -B binary, and -X/-Y/-K/-G/-C pick the protocol.  `z -?' lists the family's options too<br>`General Usage:` |
 | `xydown` | XModem/YModem download, public domain.  It senses which the sender is using -- XModem, YModem or YModem-Batch -- and follows, and it converts line endings on the way in. Written for use inside Eddie Kuns' KBCom terminal program and stands alone.  Full source in SRC/xydown, notes in DOC/xydown<br>`XYDOWN ver. 1.1` |
 | `xyt` | &#9733; XModem, YModem and YModem-batch transfer for tterm<br>`xyt - version 1.02` |
@@ -1464,7 +1480,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>121 programs</summary>
+<details><summary>145 programs</summary>
 
 **Devices & disks**
 
@@ -1480,6 +1496,20 @@
 | `rsdsk` | reads a CoCo RS-DOS disk image, the Disk Extended BASIC side of the same .DSK files: -dir lists it, -get copies a file out.  Between them and os9dsk, either kind of Color Computer disk can be read here<br>`Usage: rsdsk -dir filename.dsk` |
 | `shdev` | &#9733; lists the system's device table: what is mounted and the driver behind each |
 | `ssl` | &#9733; show a file's segment list, sector by sector -- ssl <file> |
+
+**Drivers & file managers**
+
+| | |
+|---|---|
+| `cctrap` | cpucache's trap handler |
+| `di` | its descriptor, port $FEC30000 |
+| `disp` | an SCF driver written in C, the example from OS-9 International 1/93, "Writing a device driver in C": it puts the low four bits of each character on a display port.  An example to adapt |
+| `h0t` | an example lfcrman descriptor: /h0t is /h0, translated |
+| `lfcrman` | a file manager that shows another device with its line endings translated between LF and CR, for sharing text with a Unix machine over NFS.  From OS-9 International 2/93 |
+| `pty` | the descriptor for PtyMan's server side, /pty |
+| `ptydrv` | PtyMan's placeholder driver; its descriptors name it |
+| `ptyman` | PtyMan 1.3, a pseudo-terminal file manager: one program opens /pty/<name> and gets the terminal end, another opens /tty/<name> and gets a line-editing, echoing terminal connected to it.  Any number of pairs, by name.  This is what a window or session multiplexer, or a network login server, is built on -- osknet's telnet server asks for /pty.  Its descriptors are pty (the server side, /pty) and tty (the client side, /tty -- a module, not the command of that name).  DOC/ptyman/ptyman.doc |
+| `thlpct` | another: /thlpct is /thlpc, translated |
 
 **Finding things**
 
@@ -1559,14 +1589,17 @@
 | | |
 |---|---|
 | `cron` | run commands at specified times (daemon) |
+| `crontab` | &#9733; lists, installs, edits and removes a user's crontab<br>`usage:  /dd/CMDS/SYSADMIN/crontab [-u<=>user] ...` |
 | `every` | &#9733; runs a program over and over, waiting the given number of seconds between runs: `every 2 oskversion' prints the version every two seconds until you stop it. The program's own options follow its name<br>`Syntax: every <time> <progname> [<progopts>]` |
 | `repeat` | repeat an OS-9 command N times -- `repeat 2 date' runs date twice.  It hands the command to $SHELL, which SYS/login sets to ksh, and ksh runs it.  date writes no trailing newline, so the repeats abut on one line.<br>`repeat ver 1.2` |
+| `vcron` | &#9733; the cron daemon: runs each user's crontab.  Only members of group Cron may start it; start it from startup with & |
 
 **System state**
 
 | | |
 |---|---|
 | `clock` | a full-screen clock, the digits drawn with `banner'.  For each one it runs banner into a named pipe through system() and reads the pipe back, and this C library's system() forks a module called `shell' -- your own OS-9 has one; load it first.  With none resident nothing writes the pipe and it stops on the open.  Source in SRC/misc/clock.c |
+| `cpucache` | &#9733; shows and switches the 68020/68030/68040 on-chip caches. Its driver is not here, so of what it does only `cpucache -q on\|off' works without one of your own<br>`Syntax: cpucache [on\|off]` |
 | `getinfo` | shows TOP Munich's SysInfo table: `getinfo' lists its locks, `getinfo -a' every entry, and -u releases a lock a program left behind.  setup builds the table<br>**How:** Shows the SysInfo table: bare it lists the locks, -a lists everything, -u <name> releases a lock. |
 | `oskversion` | &#9733; reports the system: OS-9 level, version, revision and edition, and the CPU twice over -- what the init module claims and what the system globals say the processor really is, which are not always the same machine<br>`Syntax:   OSKversion` |
 | `perr` | &#9733; print an OS-9 error message<br>`Syntax: perr [<error_codes>]` |
@@ -1578,7 +1611,17 @@
 | | |
 |---|---|
 | `adduser` | &#9733; add a user to the system, for uucp logins<br>`ADDUSER: add a user to or remove a user from the system` |
+| `logon` | &#9733; logs a user in: checks the password file, sets the user, the environment and the motd; -l keeps SYS/wtmp<br>`Syntax: logon [<opts>] [<user>] [<password>]` |
+| `mesg` | &#9733; sets your flags in SYS/utmp: a capital letter turns one on, a small one off.  M takes messages, V lets other users see you<br>`Syntax: mesg [-]flags` |
+| `mmenu` | &#9733; a menu to give users instead of a shell, as on a BBS: menus, help and jumps read from files in its menu directory, with a log of what each user ran<br>`Syntax: mmenu <opts>` |
+| `mmon` | a timesharing monitor for a terminal or Hayes-modem line: answers, sets the speed and runs logon, as configured in SYS/mmon.config<br>`Syntax: mmon [<opts>] [<line>] [<opts>]` |
+| `msg` | &#9733; sends a line to a user who is logged in; mmenu runs it for you.  It prints no usage |
+| `newgrp` | &#9733; changes your group, as SYS/group allows, asking for the group's password if it has one<br>`Syntax: newgrp [<gid>]` |
 | `passwd` | changes your own password in /dd/SYS/password. It matches on the user name, and the name must be spelt exactly as the password file has it, capitals included. Source in SRC/passwd<br>`Syntax: passwd` |
+| `speak` | &#9733; a chat between two logged-in users on a split screen; Ctrl-C or Ctrl-E leaves<br>`Syntax: speak <user>` |
+| `timeout` | &#9733; logon's idle timer (logon -p says where to find it).  It prints no usage |
+| `uid` | &#9733; prints your user and group ids, or another user's from SYS/password: `uid tester'.  Its refusal is in German<br>`uid {<user-name>}` |
+| `watch` | &#9733; watches a modem line for RING and starts a command on an incoming call.  Super-user only |
 
 **Utilities**
 
@@ -1597,6 +1640,8 @@
 | `demo` | egetopt option-parsing demonstration |
 | `devprc` | shows which device each process holds a path to: -a walks every process and lists its open paths and the device behind each<br>`devprc: display device(s) belonging to process(es), V.1.01` |
 | `dload` | &#9733; load a data file into a data module: `dload <filename>'. Nothing to do with serial downloads -- `sbreak' and `break' are the serial-line examples here<br>`Syntax: dload <filename>` |
+| `erradm` | starts, stops, flushes and prints errlog's log<br>`Syntax: erradm <opts>` |
+| `errlog` | a daemon that collects error messages into one file, SYS/errorlog on /h0<br>`Syntax: errlog [<opts>]` |
 | `fastcc` | &#9733; a second front end for Microware's cc, with its own options: -p pipes the preprocessor's output straight into the compiler instead of through a temporary file, -r compiles to relocatable files in a directory you name, -a stops at assembler, -bp shows each command before it runs. `-?' lists them all<br>`fastcc: <opts> <files> <opts>` |
 | `fixyear` | repairs file dates, not the clock: given a file or a directory it corrects any modification year earlier than 1970, which is what a machine whose clock was wrong when the file was written leaves behind. -l logs what it changed and -q carries on past an error<br>`Usage: fixyear [-opt] <file\|dir> <dir\|file> [-opt]` |
 | `fontgen` | generate a font for the Gepard display<br>**How:** Generates a character font for the Gepard display -- it prints the assembler source of an 80-column font on stdout. |
@@ -1806,7 +1851,7 @@
 
 *Pagers, readers and the help system.*
 
-<details><summary>7 programs</summary>
+<details><summary>8 programs</summary>
 
 | | |
 |---|---|
@@ -1817,6 +1862,7 @@
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 | `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  Every page is indexed in DOC/MANPAGES.  A shell script, so you can read it |
 | `more` | the plain pager: a screenful at a time, SPACE for the next. `less' is the fuller one; this is the one every Unix had |
+| `mwb` | &#9733; writes and edits manual entries in the proff format TOP's manuals use, kept under USR/DOC/.MAN on /h0<br>`Syntax: mwb {<opts>}` |
 
 </details>
 
@@ -1841,7 +1887,7 @@
 
 *Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware.*
 
-<details><summary>12 programs</summary>
+<details><summary>14 programs</summary>
 
 **Display**
 
@@ -1851,10 +1897,12 @@
 | `g` | &#9733; an Atari Graph demonstration, paired with striche. It calls the `graph' trap library, so load that first; it then aborts on a supervisor-only instruction, having been written to run in supervisor state |
 | `graphdemo` | a demonstration of the Atari Graph display; it calls the `graph' trap library |
 | `graphsave` | save an Atari GRAPH screen.  Aborts with the `graph' trap library resident, like `showpic': it wants the display |
+| `setbgptn` | &#9733; sets the window system's background pattern from a file |
 | `showpic` | show a picture on the Atari GRAPH display.  With the `graph' trap library resident it is entered and aborts: it wants the display, not just the library. |
 | `sine` | a sine plot on the Atari Graph display; it calls the `graph' trap library |
 | `striche` | &#9733; line drawing for the Atari Graph display; it calls the `graph' trap library, so load that first |
 | `umusek` | UMusEK -- a music editor.  It needs a hardware graphics screen: point it at one and it opens.  Without a graphics screen it stops with `***DS_ScAdd Error 208.' and `Fran: Can't get screen addr, 'bye!'. |
+| `x9eyes` | &#9733; xeyes for the personal window, resizable |
 
 **Printers**
 
@@ -1864,6 +1912,158 @@
 | `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
 | `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
 | `splstat` | &#9733; OS-9 print spooler: queue status.  It reads the spooler's queue.  The other spooler on this disk speaks up when it is not running: `lpq: no spooler installed', `lpshut: no spooler active', `prjob: Spooler not installed'. |
+
+</details>
+
+<details>
+<summary><b>Not included</b> &middot; 142</summary>
+
+Programs that were found in the archives and left out on purpose, each with the reason and where it came from, so you can go and look for yourself.  None of them is on the disk.
+
+| | | |
+|---|---|---|
+| `add_errmsg` | Builds the message file used by the forum 13 vi.<br>**Why not:** A helper of the forum 13 vi, and left out with it on the same terms. | EFFO forum disk 13, SOFTWARE/C/VI |
+| `adven2` | An adventure game written in Fortran.<br>**Why not:** It needs a Fortran compiler and linker that work end to end, and the RTF Fortran here only partly does. | comp.sources.games volume 11 |
+| `bawk` | An awk-like pattern language.<br>**Why not:** gawk and a2p on this disk do the job. | Microware OS-9 archive, 6809 C section |
+| `bday` | Mails birthday greetings from a list kept by the administrator.<br>**Why not:** An administrator's tool that sends through sendmail from Unix system lists. | comp.sources.misc v06i099 |
+| `belief` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `biffa` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `btree` | Softfocus BTREE, a B-tree file-handling demonstration and test.<br>**Why not:** The forum disk lists it as public domain, but its own btree.doc says it no longer is and is sold. | EFFO forum disk 2 |
+| `calendar (Minow)` | Martin Minow's calendar reminder program.<br>**Why not:** cal, calen and calender on this disk cover it. | comp.sources.unix volume 3 |
+| `cbmtopbm` | Converts a compact bitmap to PBM; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `cdungeon` | Dungeon, the DECUS mainframe adventure that preceded Zork, ported to C.<br>**Why not:** The game is Infocom's work, now another company's, and its notice prohibits commercial use; a question of rights this collection cannot settle. | comp.sources.games v12i068 |
+| `cent` | Centipede for terminals.<br>**Why not:** The posting carries a random-number file under a bare copyright with no grant. | comp.sources.games v01i071 |
+| `center` | Centres lines of text.<br>**Why not:** Its terms ask that the author be contacted for redistribution rights or inclusion in a package. | comp.sources.misc v27i070 |
+| `checksoa` | Checks a domain's SOA records across its name servers.<br>**Why not:** It is example code from a published book with no grant to redistribute it. nslookup and nsquery from the same port ship. | Microware OS-9 archive, OSK_NETWORK_ISP/bind.4.8.3.lzh |
+| `chop` | Cuts fields and columns out of lines.<br>**Why not:** cut, colrm and field on this disk do the job. | comp.sources.unix v25i001 |
+| `ci` | RCS 4 check-in: records a new revision of a file.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `cmake` | Carl Kreider's crude make.<br>**Why not:** Its author describes it himself as crude and obsolete. make and gmake are on this disk. | Microware OS-9 archive, CMDS/carlutil.lzh |
+| `co` | RCS 4 check-out: retrieves a revision of a file.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `colm` | Sets a list out in columns.<br>**Why not:** column on this disk does the job. | comp.sources.unix v16i087 |
+| `CommonTeX` | Pat Monardo's CommonTeX, TeX in C, as source.<br>**Why not:** It is not the source of the TeX on this disk, and a second TeX adds nothing. | Microware OS-9 archive, osk_ctexsrc.ar |
+| `dearc` | Extracts an MS-DOS .ARC archive.<br>**Why not:** It cannot read a crunched member, which nearly every real archive holds. arc on this disk reads them all. | Microware OS-9 archive, CMDS/carlutil.lzh |
+| `dg` | An entry in the 1990 International Obfuscated C Code Contest.<br>**Why not:** It depends on the preprocessor expanding the name of a directive, which standard C does not do, and neither preprocessor here builds it. | EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST |
+| `dialog` | Draws dialog boxes for shell scripts.<br>**Why not:** It draws with curses line-drawing characters and colour, which no curses library here provides. | comp.sources.misc v41i109 |
+| `dinkum2` | Dinkum, an Australian text adventure.<br>**Why not:** Its author's rule allows no modified versions to be released, and an OS-9 build is one. | comp.sources.games v15i036 |
+| `diph` | The game of dining philosophers.<br>**Why not:** It is built on sockets, fork and select, which this C library does not have. | comp.sources.games v13i026 |
+| `dots2` | A visual dots-and-crosses game.<br>**Why not:** It is built on sockets, fork and select, which this C library does not have. | comp.sources.games v02i051 |
+| `dsw` | A utility from the OS-9 International magazine disk.<br>**Why not:** All rights reserved by its publisher and author, with the forum's personal-use-only condition. | OS-9 International code disk, via EFFO |
+| `dumpinit` | Lists the settings of the init module.<br>**Why not:** It will not compile: six of the init module fields it prints do not exist in this SDK's header. | Microware OS-9 archive, file 2240 |
+| `dynacon` | Converts CoCo Dynacalc spreadsheet files.<br>**Why not:** It came with a 6809 makefile only and is Color Computer business. | comp.os.os9, June 1989 |
+| `e` | A small fixed VT100 build of the SEDT screen editor.<br>**Why not:** Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy. | EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR |
+| `errno` | Explains an error number.<br>**Why not:** perr on this disk does the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `expreserve` | Saves the buffer of the forum 13 vi when the editor dies.<br>**Why not:** A helper of the forum 13 vi, and left out with it on the same terms. | EFFO forum disk 13, SOFTWARE/C/VI |
+| `exrecover` | Restores a buffer that expreserve saved for the forum 13 vi.<br>**Why not:** A helper of the forum 13 vi, and left out with it on the same terms. | EFFO forum disk 13, SOFTWARE/C/VI |
+| `ffix` | Expands tabs and turns other control characters into spaces.<br>**Why not:** detab, expand, pep and unp on this disk do the job; its in-place rewrite needs a module this disk does not have. | OS-9 Public Domain Utilities image, FFIX |
+| `flicker` | An ANSI terminal teaser that inserts and deletes lines for ever.<br>**Why not:** It runs until interrupted and does not restore the terminal afterwards. | comp.sources.games v05i060 |
+| `funky` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `gnuplot_x11` | The X11 output driver for gnuplot 3.2.<br>**Why not:** It draws only on an X11 display, and its archive holds no gnuplot binary for it to serve. | Microware OS-9 archive, GRAPHICS/gnuplot32x.tar.Z |
+| `greed` | A field of digits: move to eat that many digits in a direction, until no move is left.<br>**Why not:** Its author asked that it not be redistributed. | Usenet posting, 1989; v_misc.ar on the hc disk |
+| `halign` | Aligns columns of text.<br>**Why not:** column on this disk does the job. | comp.sources.unix v06i016 |
+| `hd` | A hex dump.<br>**Why not:** dump, hdump and xd on this disk do the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `hearts` | A multiplayer card game of hearts.<br>**Why not:** It is built on sockets, fork and select, which this C library does not have. | comp.sources.games v02i082 |
+| `icapos9` | Support programs for the Imagewise frame grabber.<br>**Why not:** It needs the frame-grabber hardware. | comp.os.os9, May 1989 |
+| `isam` | Softfocus ISAM, an indexed-sequential file demonstration.<br>**Why not:** The forum disk lists it as public domain, but its own documentation says it no longer is and is sold. | EFFO forum disk 2 |
+| `jive` | A text filter that rewrites English in a comic dialect.<br>**Why not:** Left out on content. valspeak, from the same posting, ships. | comp.sources.games v01i003 |
+| `jroff` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `kings` | Kings, a card-placing patience game for the MM/1 under K-Windows.<br>**Why not:** The only copy's binary fails its own module check, so OS-9 will not load it, and its source would need porting work to rebuild. | Microware OS-9 archive, file 2191 |
+| `kraut` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `kutil` | Reads and writes the kernel track of CoCo floppies and Burke and Burke hard drives.<br>**Why not:** It is for Color Computer disks and hardware. | Microware OS-9 archive, 6809 C section |
+| `lfcr` | Converts line endings.<br>**Why not:** autolf on this disk does the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `link` | Makes a hard link by writing a directory entry to the raw disk.<br>**Why not:** RBF has no hard links; a program that made one this way corrupted this disk. Its author warns to use it at your own risk. | comp.os.os9, January 1989 |
+| `linkup` | LinkUp, a K-Windows communications suite with ansishow, audioplay, gport and terminal.<br>**Why not:** The clients need a K-Windows display, and its installer writes over the root disk. | Microware OS-9 archive, KWIN_LinkUp_1_0.lzh |
+| `ln` | Makes a hard link by writing a directory entry to the raw disk.<br>**Why not:** RBF has no hard links; a program that made one this way corrupted this disk. Its author warns to use it at your own risk. | comp.os.os9, January 1989 |
+| `loglist` | A 1988 utility that lists the system's log file.<br>**Why not:** No source, no documentation and no terms anywhere. | EFFO public-domain disk 1 |
+| `lpunch` | Converts punched-card deck records.<br>**Why not:** There is nothing here to use them with. | Microware OS-9 archive, 6809 C section |
+| `malawi` | A two-player board game.<br>**Why not:** It is written for X11 only. | comp.sources.games v17i074 |
+| `marquis` | Scrolls a message along a terminal's status line from the background.<br>**Why not:** No terminal in the disk's termcap has a status line, and it will not start without one. | comp.sources.misc v07i089 |
+| `mb` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `mb (banner)` | Prints large banners from an external font.<br>**Why not:** The author ships no font, so it would arrive unable to print anything. | comp.sources.unix v26i141, banners collection |
+| `molecule` | A simple two-dimensional particle system of animated atoms.<br>**Why not:** Its output is binary coordinates for a display program built on a frame-buffer library with no counterpart here. | comp.sources.misc v02i092 |
+| `morsecode` | Converts text to Morse code.<br>**Why not:** It is written in lex and Pascal, and morse on this disk does the job. | comp.sources.unix v17i081 |
+| `new_e` | A build of the SEDT screen editor that reads TERM to choose its terminal setup.<br>**Why not:** Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy. | EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR |
+| `newspeak` | A text filter from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `nist` | Sets the clock by dialling the NIST time service through a modem.<br>**Why not:** It needs a modem and the dial-up service. | Microware OS-9 archive, 6809 C section |
+| `notes` | The Notesfile conferencing system (UIUC's notes) in reccoware's 1988 OS-9 port: notes, mknf, nfpipe, nfstats and a dozen more.<br>**Why not:** A multi-user conferencing system that needs its own system users and spool set up, under a copyright notice with no grant and no source. | TOP release 2 (The OS-9 Project, Munich) |
+| `ntp` | NETTIME, a client for the network time protocol.<br>**Why not:** No terms anywhere in the archive, and it links a Microware networking library. msntp on this disk does the job. | Microware OS-9 archive, osk_ntp.tar.gz |
+| `ocompress` | A port of compress.<br>**Why not:** compress and compr on this disk do the job. | Microware OS-9 archive |
+| `omega` | Omega 0.71 beta, a large roguelike, in an OS-9 build.<br>**Why not:** Its licence does not allow distributing modified versions without the author's consent. An OS-9 build is a modified copy, and no source came with it. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `os9lader` | The OS-9 loader for F68K, a Forth system.<br>**Why not:** The archive's OS-9 part is only this loader, and forth is already on this disk. | Microware OS-9 archive, LANGUAGES/f68k.tar.Z |
+| `osktag` | OSKTag, a taglines tool for mail and news.<br>**Why not:** No author, copyright or grant is named anywhere in it, and it is written for K-Windows. | Microware OS-9 archive, TELECOM/OSKTag_2_01.lzh |
+| `oxm` | A mail front end.<br>**Why not:** elm, mail and mailx on this disk do the same job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `pac` | A full-screen calculator built as a front end to bc.<br>**Why not:** It does its arithmetic by forking bc and talking over a two-way pipe, which this C library cannot do. bc, dc and hp are on this disk. | comp.sources.misc v14i039 |
+| `pbmcatlr` | Joins PBM images left to right; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcat does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmcattb` | Joins PBM images top to bottom; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcat does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmcrop` | Crops the blank edges off a PBM image; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcrop does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmcut` | Cuts a rectangle out of a PBM image; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmcut does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmenlarge` | Enlarges a PBM image; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmenlarge does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmfliplr` | Flips a PBM image left to right; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmflip does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmfliptb` | Flips a PBM image top to bottom; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmflip does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbminvert` | Inverts a PBM image; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnminvert does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmpaste` | Pastes one PBM image onto another; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmpaste does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmtocbm` | Converts PBM to a compact bitmap; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pbmtops` | Converts PBM to PostScript; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. pnmtops does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `pc2os9` | Converts MS-DOS text files to OS-9's: line ends, tabs expanded, names lower-cased; public domain, 1992.<br>**Why not:** toos9 on this disk does the same job. | Microware OS-9 archive, OS9000 tree, pc2os9.ar |
+| `peruse` | Peruse 2.0, a file browser.<br>**Why not:** It needs a CoCo driver, and its author allows personal use only. | Microware OS-9 archive, 6809 C section |
+| `piped-cc` | Replaces the 6809 C compiler's first pass with pipes.<br>**Why not:** It is for the 6809 compiler only. | comp.os.os9, 1987 |
+| `pjr` | An entry in the 1990 International Obfuscated C Code Contest.<br>**Why not:** The preprocessor here aborts while reading it, as the entry's own hint warns compilers may. | EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST |
+| `plasma` | The Shifty Death Effect, an ASCII plasma drawn with VT100 cursor moves.<br>**Why not:** It runs until interrupted, for the same reason as flicker; its own usage text calls it a joke. | alt.sources, February 1993 |
+| `puz15` | Another build of the fifteen puzzle by the same author.<br>**Why not:** Its author allows unmodified copies only, and an OS-9 build is a modified copy. | v_misc.ar on the hc disk |
+| `puzzle15` | The 15-puzzle: slide the tiles into the gap.<br>**Why not:** Its author allows unmodified copies only, and an OS-9 build is a modified copy. | EFFO forum disk 16 |
+| `PwDialog` | Dialog boxes for the X68000's PW/X window system.<br>**Why not:** It needs the PW/X window device on a Sharp X68000. | Microware OS-9 archive |
+| `qr.cgi` | A CGI query sample for the WN web server.<br>**Why not:** All rights reserved, and built against a library whose source and terms are not in the archive. The other WN CGI samples ship. | Microware OS-9 archive, TELECOM/wn2.zip |
+| `qterm` | Asks the terminal what it is and reports the answer.<br>**Why not:** The answer comes from whatever terminal the reader uses, not from anything on this disk, and SYS/login already sets TERM and TERMCAP. | comp.sources.unix v10i072 |
+| `rain (1994)` | G. L. Sicherman's rain: drops fall and pool.<br>**Why not:** This disk already ships a rain screen toy that differs only in the drop pattern. | comp.sources.unix v28i090 |
+| `raypaint` | A graphics program, source only.<br>**Why not:** It is written for X11 and GL. | Microware OS-9 archive |
+| `rcis` | RCIS 2.3, a multi-user dial-up BBS for OS-9/68000 K-Windows.<br>**Why not:** Its licence grants the purchaser one copy only, and it is a demonstration version that needs a registration file. | Microware OS-9 archive, TELECOM/rn.tar.Z |
+| `rcs` | RCS 4's administration command: sets locks, access lists and file attributes.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `rcsdiff` | RCS 4: compares revisions of a file.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `rcsident` | RCS 4: finds the identification keywords in a file.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `rcsmerge` | RCS 4: merges changes between revisions.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `rdate` | Sets the clock from an RFC 868 time server.<br>**Why not:** Source only, and it needs the networking headers of Microware's ISP 1.x, which the SDK here lacks. | Microware OS-9 archive, network section |
+| `read_mail` | Mail helper that goes with the forum 13 vi.<br>**Why not:** A helper of the forum 13 vi, and left out with it on the same terms. | EFFO forum disk 13, SOFTWARE/C/VI |
+| `revcat` | Prints a file's lines in reverse order.<br>**Why not:** tac on this disk does the job. | Usenet posting |
+| `revcat_db` | Prints a file backwards.<br>**Why not:** tac on this disk does the job. | comp.sources.misc v10i061 |
+| `RGTool` | A program for the X68000's PW/X window system.<br>**Why not:** It needs the PW/X window device on a Sharp X68000. | Microware OS-9 archive |
+| `rise_set` | Computes the rising and setting of the Sun and Moon.<br>**Why not:** It computes for one observer, fixed in the source, and needs ftime and atan2, which this C library lacks. | comp.sources.unix volume 5 |
+| `rlog` | RCS 4: prints the log and history of an RCS file.<br>**Why not:** The distribution's own READ_ME is a non-disclosure form forbidding distribution in any form without the author's written permission. RCS 5 and later are GNU-licensed. | Microware OS-9 archive, CMDS/rcs4.lha |
+| `robots2` | A robots game with a hall of fame, different from the robots on this disk.<br>**Why not:** It stops when it reads its terminal description: a copy loop in the program runs past the end of the string. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `rock` | A spew grammar, madrock.sp, from the silly collection.<br>**Why not:** Left out on content. | alt.sources, December 1992, silly.tar |
+| `rstory2` | Asks your name and favourite things and tells a story about you.<br>**Why not:** It starts four story programs that were never distributed and cannot be rebuilt. | EFFO forum disk 9, PROGRAMME/C/SNOBOL |
+| `rz` | ZMODEM receive, from Omen Technology.<br>**Why not:** A commercial program: the archive carries its licence order form, priced per user. k, xy and z on this disk are free X/Y/ZMODEM. | Microware OS-9 archive, APPS/rzsz_3_36_3_OSK.lzh |
+| `scamper` | A cellular automata simulator.<br>**Why not:** It is written for X11 only. | comp.sources.misc v26i024 |
+| `sedt` | SEDT 2.6, Anker Berg-Sonne's DEC-style keypad screen editor, in its VT100 build.<br>**Why not:** Its terms make it available to customers and for internal use on condition that no modifications are made, and an OS-9 build is a modified copy. | EFFO forum disk 11, SOFTWARE/C/SEDT_EDITOR |
+| `skewlife` | A batch Life computation on skewed squares.<br>**Why not:** It builds from a generated source file of over 700 KB and has no display of its own; this disk carries Life in several forms. | comp.sources.games v08i087 |
+| `SmallTeX` | A small text formatter that writes input for a Fancy Font printer back end.<br>**Why not:** The back end, pfont, is not in any archive, so its output has nothing to print it. | Microware OS-9 archive, 6809 C section |
+| `smbfm` | An SMB (Samba) client file manager: smbmount, samba and smbdrv.<br>**Why not:** Free to copy, but its terms forbid distributing any part of it with other software packages without the author's permission. | Microware OS-9 archive, NETWORK/smbfm14t.zip (and later versions) |
+| `sokoban2` | The second version of sokoban.<br>**Why not:** The same author's sokoban, with the same screens, is on this disk. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `sortc` | A multi-key character sort.<br>**Why not:** sort on this disk does the job. | Microware OS-9 archive, 6809 C section |
+| `spiro` | Generates pretty spirograph patterns.<br>**Why not:** It draws through the Unix plot(3X) library, which OS-9 does not have. | comp.sources.misc v02i046 |
+| `splitalf` | Splits a file into 26 files by the first letter of each line.<br>**Why not:** It stops on opening its second output file, even with its one real bug fixed. | EFFO forum disk 6, PROGRAMME/bix (bix.arc) |
+| `stig` | Strangest Abuse of the Rules in the 1990 International Obfuscated C Code Contest.<br>**Why not:** Its C file is three bytes; the entry is a csh aliasing trick. | EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST |
+| `sysmon` | A system monitor.<br>**Why not:** Its source is marked as the proprietary confidential property of a research institute. The author offers it to anyone, but the notice is the institute's. | Microware OS-9 archive, CMDS/SYSMON.lzh |
+| `sz` | ZMODEM send, from Omen Technology.<br>**Why not:** A commercial program: the archive carries its licence order form, priced per user. k, xy and z on this disk are free X/Y/ZMODEM. | Microware OS-9 archive, APPS/rzsz_3_36_3_OSK.lzh |
+| `tbr` | A working shell in 550 characters, Best Utility in the 1990 International Obfuscated C Code Contest.<br>**Why not:** It is built on fork, pipe, execvp and wait, which this C library does not have. | EFFO forum disk 16, SOFTWARE/C/7TH_C_CONTEST |
+| `tetrix` | A falling-blocks game.<br>**Why not:** It is the same source as tet on this disk, which is already a rebuilt copy of it. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `times` | Times a command.<br>**Why not:** time on this disk does the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `toon` | Toon 1.0, a terminal animation.<br>**Why not:** Only one of its five posted parts survives with a body, so it cannot be built. | alt.sources, May 1994 |
+| `travesty` | Daniel J. Bernstein's travesty generator: rewrites its input as plausible nonsense by Markov chains.<br>**Why not:** Its grant to copy and distribute ran only until January 1, 1994. ape on this disk does the same job. | Usenet posting, 1989 |
+| `tshell` | A command shell for OS-9/68000.<br>**Why not:** Its readme says it is not public domain and is free for private use, which does not cover a collection like this. | EFFO public-domain disk 4; also Microware OS-9 archive, SHELLS/tshell.zip |
+| `udate` | The UNaXcess bulletin board's date display.<br>**Why not:** Its terms allow unmodified copies only, and an OS-9 build is a modified copy. | UNaXcess 1.0.2 BBS package |
+| `ufo` | An object-shooting game.<br>**Why not:** Its game loop runs on millisecond alarms and ftime, which this C library lacks; a timing rewrite rather than a port. | comp.sources.games v15i004 |
+| `unTC` | Extracts TC archives made on the Color Computer.<br>**Why not:** No TC archive exists anywhere in the pool to use it on. | Microware OS-9 archive, 6809 C section |
+| `upatch` | Larry Wall's patch at patch level 12.<br>**Why not:** patch on this disk does the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `uwho` | The UNaXcess bulletin board's who-is-online.<br>**Why not:** Its author allows unmodified copies only, and an OS-9 build is a modified copy. | UNaXcess 1.0.2 BBS package |
+| `vi (XENIX)` | An ex/vi editor adapted for OS-9/68000 from the XENIX vi sources; a different program from the vi on this disk.<br>**Why not:** Its own first line says it originates from the XENIX sources, and nobody able to grant redistribution has done so. The vi on this disk is PVIC, which is public domain. | EFFO forum disk 13, SOFTWARE/C/VI |
+| `view (4.5a)` | A picture viewer for the 6309 Color Computer.<br>**Why not:** It is for the CoCo's 6309, and its source archive is blank. | Microware OS-9 archive |
+| `Vprint` | A printer-formatting utility first written for OS-9/68000 in 1991.<br>**Why not:** The only copy found is a 1997 Linux rewrite, not the OS-9 program. | community archive, bvdp/vpt |
+| `wanderer2` | Wanderer 2.2.<br>**Why not:** Wanderer is on this disk. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `watchdog` | A watchdog module for a real OS-9 system.<br>**Why not:** Written for a real OS-9 system; it could not be run and checked here, as the emulator used for testing loads no drivers. | OS-9 International code disk, via EFFO |
+| `where` | Finds a program along PATH.<br>**Why not:** which on this disk does the job. | TOP release 2 (The OS-9 Project, Munich), top.tar.Z |
+| `xtail` | A kind of tail -f for many files and directories at once.<br>**Why not:** It runs for ever by design, so it cannot be demonstrated to a finish. | comp.sources.misc v07i108 |
+| `xwdtopbm` | Converts an X window dump to PBM; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly. xwdtopnm does the job here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `xxxtopbm` | Converts a further bitmap format to PBM; one of the early pbmexec tools.<br>**Why not:** It rejects PBM files, plain and raw, that netpbm on this disk reads and writes correctly, so it works with nothing here. | Microware OS-9 archive, GRAPHICS/pbmexec.lzh |
+| `zmodem` | A ZMODEM file transfer program.<br>**Why not:** A copyright with no grant to redistribute. k, xy and z on this disk are free X/Y/ZMODEM. | TOP release 2 (The OS-9 Project, Munich), USR/SRC/zmodem.t.Z |
 
 </details>
 

@@ -1,9 +1,9 @@
 export PORT=/term; run "ls SYS"
-ATERM           birthdays       ephem.db        motd            startup
-HELP            bootlog         errmsg          mtools.conf     startup.mk
-PEP             browse.hlp      gnuplot.gih     password        termcap
-README-bootlog  cal.holidays    holidays        profile         termcap.entry
-TERM            cal.init        ksh             profile.ksh     umacs.hlp
-TEX             dm.hlp          less.hlp        rgb.txt         vi_errmsg
-UTREE           emacs.hlp       login           rgb.txt.txt     vi_usage
-UUCP            ephem.cfg       magic           setterm         zipcodes.txt
+ATERM           birthdays       ephem.db        magic           setterm
+HELP            bootlog         errmsg          motd            startup
+PEP             browse.hlp      gnuplot.gih     mtools.conf     startup.mk
+README-bootlog  cal.holidays    holidays        password        sysinfo
+TERM            cal.init        ksh             profile         termcap
+TEX             dm.hlp          less.hlp        profile.ksh     termcap.entry
+UTREE           emacs.hlp       login           rgb.txt         umacs.hlp
+UUCP            ephem.cfg       m.arc           rgb.txt.txt     zipcodes.txt

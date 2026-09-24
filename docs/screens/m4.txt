@@ -8,4 +8,4 @@ syscmd(whoami)
 $ m4 tmp/m.m4
 
 hi reader -- welcome
-su
+tester

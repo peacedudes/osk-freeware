@@ -1,0 +1,9 @@
+cpucache -?
+Syntax: cpucache [on|off]
+Function: display/switch 68020/68030/68040 on-chip caches
+Options:
+    -b    both caches (default)
+    -d    data cache
+    -i    instruction cache
+    -q    switch caches silently
+    -t    also show 68040 TT registers

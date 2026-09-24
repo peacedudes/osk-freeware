@@ -4,7 +4,7 @@ Mkeep   keep.c  /^main(argc, argv)$/
 copy_file       keep.c  /^static int copy_file(from, to, executable)$/
 crc_of  keep.c  /^static unsigned long crc_of(path, sizep)$/
 depends_for     keep.c  /^static void depends_for(prog, dirout, paths, npath/
-drop_one        keep.c  /^static void drop_one(prog)$/
+dev_prefix      keep.c  /^static int dev_prefix(want)$/
+dir_is_empty    keep.c  /^static int dir_is_empty(path)$/
+dirs_for        keep.c  /^static void dirs_for(prog, dirs, ndirs)$/
 exists  keep.c  /^static int exists(path)$/
-find_collection keep.c  /^static int find_collection()$/
-is_dir  keep.c  /^static int is_dir(path)$/

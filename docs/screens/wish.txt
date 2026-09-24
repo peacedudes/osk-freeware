@@ -1,24 +1,24 @@
 HeaderLine
 
 ================================================================================
-Current Directory: /dd                                             Entries: 037
+Current Directory: /dd                                             Entries: 046
 
-Dirs:   ..            .ELM          ADL           CMDS          DEFS
-        DEMO          DOC           DOS           ETC           GAMES
-        GNUCHESS4.0   GNULIB        LIB           LOG           MAIL
-        SBPROLOG      SPL           SPOOL         SRC           SYS
-        USR           VH            c             local         tmp
+Dirs:   ..               .ELM             .nn              ADL
+        CMDS             DEFS             DEMO             DOC
+        DOS              ETC              GAMES            GNUCHESS4.0
+        GNULIB           LIB              LOG              MAIL
+        News             SBPROLOG         SPL              SPOOL
+        SRC              SYS              UAC              USR
+        VH               c                local            tmp
 
-Files:  .bashrc       .newsrc       9             SOURCES.txt   lex.yy.c
-        m.out         rdoc.err      readme        startup       todos.$$$.3
-        toos9.$$$.3
-
-
-
-
+Files:  .article         .bashrc          .newsrc          .pnewsexpert
+        .rnlast          .rnsoft          SOURCES.txt      a1.arc
+        a2.arc           alarm.r          art.txt          atan2.r
+        batch.txt        rdoc.err         readme           startup
+        xytransfer.log
 
 
 
 ================================================================================
-Siz:     1184 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 18-09-126 20:44
+Siz:     1504 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 24-09-126 01:17
  #echo#  #mark#  unmark  ######  ######  ######  ######  ######  ######  #exit#

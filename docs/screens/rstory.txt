@@ -4,35 +4,34 @@ $ rstory | tformat
 
 
 
-                     Generated on Tue Sep  8 04:46:06 2026
+                     Generated on Wed Sep 23 23:26:25 2026
 
 
 
 
 
 
-      Once upon a time there was a retired seamstress who went  to  market  and
-bought  a  dog.  On the way home they came upon a fallen tree which the dog was
-afraid to cross. The retired seamstress said "dog, dog, jump  over  the  fallen
-tree  or  I  won't  get  home  tonight."   But  the dog would not.  The retired
-seamstress went down the path and she  met  a  scissor.   She  said,  "scissor,
-scissor,  snip dog,   dog won't jump over the fallen tree and I shan't get home
-tonight."  But the scissor would not.  The retired seamstress went down the path
-and she met a girl.  She said, "girl, girl, break scissor, scissor  won't  snip
-the  dog,   dog won't jump over the fallen tree and I shan't get home tonight."
-But the girl would not.  The retired seamstress went down the path and she met a
-bee.  She said, "bee, bee, sting girl,  girl won't break the scissor,   scissor
-won't snip the dog,   dog won't jump over the fallen tree and I shan't get home
-tonight."  But the bee would not. The retired seamstress went down the path and
-she  met  a  hunter.  She said, "hunter, hunter, swat bee,  bee won't sting the
-girl,  girl won't break the scissor, scissor won't snip the  dog,    dog  won't
-jump over the fallen tree and I shan't get home tonight."  But the hunter would
-not.   The  retired  seamstress went on the road to the red house and she met a
-fire.  She said, "fire, fire, burn hunter,  hunter won't swat the bee, bee won't
-sting the girl,  girl won't break the scissor, scissor won't snip the dog,   dog
-won't jump over the fallen tree and I shan't get home tonight."  The fire  knew
-the  retired  seamstress and, in fact, had been saved by her from a wild tiger.
-So the  fire began to burn the hunter; the  hunter began to swat the  bee;  the
-bee began to sting the girl; the  girl began to break the scissor; the  scissor
-began  to  snip  the  dog;  the  dog began to jump over the fallen tree and the
-retired seamstress got home that night.
+      Once upon a time there was a kind old aunt who went to market and bought a
+dog. On the way home they came upon a fallen tree which the dog was  afraid  to
+cross.  The  kind old aunt said "dog, dog, jump over the fallen tree or I won't
+get home tonight."  But the dog would not.  The kind old aunt went over a  hill
+and she met a water.  She said, "water, water, drown dog,   dog won't jump over
+the  fallen tree and I shan't get home tonight."  But the water would not.  The
+kind old aunt went over a hill and she met a farmer.  She said, "farmer, farmer,
+drink water,  water won't drown the dog,   dog won't jump over the fallen  tree
+and  I  shan't get home tonight."  But the farmer would not.  The kind old aunt
+went toward the white house and she met a sword. She said, "sword, sword, slice
+farmer,  farmer won't drink the water,  water won't drown the dog,   dog  won't
+jump  over  the fallen tree and I shan't get home tonight." But the sword would
+not.  The kind old aunt went over a hill and she met a man.   She  said,  "man,
+man, break sword,  sword won't slice the farmer,  farmer won't drink the water,
+water  won't  drown the dog,   dog won't jump over the fallen tree and I shan't
+get home tonight." But the man would not.  The kind old aunt went down the path
+and she met a knife.  She said, "knife, knife, snip man,  man won't  break  the
+sword,   sword  won't  slice  the farmer,  farmer won't drink the water,  water
+won't drown the dog,   dog won't jump over the fallen tree and I shan't get home
+tonight."  The knife knew the kind old aunt and, in fact, had been saved by her
+from a wild tiger.  So the  knife began to snip the man; the  man began to break
+the sword; the  sword began to slice the farmer; the  farmer began to drink the
+water; the  water began to drown the dog; the   dog  began  to  jump  over  the
+fallen tree and the kind old aunt got home that night.

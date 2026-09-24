@@ -1,23 +1,23 @@
 +-----+                               +---------------------------------------+
-|AD   |                               |  Score:   0     YOU                   |
+|2S   |                               |  Score:   0     YOU                   |
 |+-----+                              | *.....:.....:.....:.....:.....:.....  |
-||3D   |                              | *.....:.....:.....:.....:.....:.....  |
+||2C   |                              | *.....:.....:.....:.....:.....:.....  |
 +|+-----+                             |                                       |
- ||5D   |                             | *.....:.....:.....:.....:.....:.....  |
+ ||6S   |                             | *.....:.....:.....:.....:.....:.....  |
  +|+-----+                            | *.....:.....:.....:.....:.....:.....  |
-  ||6C   |                            |  Score:   0      ME                   |
+  ||7C   |                            |  Score:   0      ME                   |
   +|+-----+                           +---------------------------------------+
-   ||7D   |
+   ||8H   |
    +|+-----+                           Do you need instructions for cribbage? N
-    ||7C   |                           Long (to 121) or Short (to 61)?
+    ||KS   |                           Long (to 121) or Short (to 61)?
     +|     |                           Cut to see whose crib it is -- low card
-     |   7C|                            wins? S
-     +-----+                           You cut the ACE of SPADES
-                                       I cut the KING of HEARTS
+     |   KS|                            wins? S
+     +-----+                           You cut the QUEEN of HEARTS
+                                       I cut the SIX of DIAMONDS
                                       *Discard a card -->
- CRIB
-+-----+
-|     |
-|     |
-|     |
-+-----+
+                           CRIB
+                          +-----+
+                          |     |
+                          |     |
+                          |     |
+                          +-----+

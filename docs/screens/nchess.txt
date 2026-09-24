@@ -1,7 +1,6 @@
  - - - - - - - -
  - - - - - - - -
  - - - - - - - -
- - - - - - - - -
  p p p p p p p p
  r n b q k b n r
 
@@ -14,11 +13,12 @@ Move# 1    Target= 1    Clock: 0
  3.      0    0     691    g8f6  b1c3  b8c6
  4&    -10    0    1739    g8f6  b1c3  b8c6  d2d4
  4.    -10    0    3407    g8f6  b1c3  b8c6  d2d4
- 5&    -19    1    8175    g8f6  e4e5  f6e4  d2d3  e4c5
- 5.    -19    2   14056    g8f6  e4e5  f6e4  d2d3  e4c5
-Nodes= 14056  Eval= 4534  Hash= 0  Rate= 7028  CPU= 0:2.0
+ 5&    -19    0    8175    g8f6  e4e5  f6e4  d2d3  e4c5
+ 5&     -3    0   17693    d7d5  e4d5  d8d5  b1c3  d5e5  g1e2  c8g4
+ 5.     -3    1   29080    d7d5  e4d5  d8d5  b1c3  d5e5  g1e2  c8g4
+Nodes= 29080  Eval= 13063  Hash= 0  Rate= 29080  CPU= 0:1.0
 
-My move is: g8f6
+My move is: d7d5
 
 
 Your move is?

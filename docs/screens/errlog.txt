@@ -1,0 +1,15 @@
+errlog -?
+Syntax: errlog [<opts>]
+Function: collects error messages in one file
+Options:
+     -b=<size>    buffer size
+$ erradm -?
+Syntax: erradm <opts>
+Function: Change the status of the error logging demon
+Options:
+     -r       Remove logfile
+     -s       Start errorlogging
+     -h       Stop errorlogging
+     -f       Force to flush the demon's buffer
+     -e       Stops the demon
+     -p       Prints the errorlist

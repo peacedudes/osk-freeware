@@ -1,17 +1,17 @@
 ppmtomitsu: found 6 colors - using the lookuptable-method
 ppmtomitsu: rotating image for output
-      0      4   2666
+      0      3   2666
 $ ppmtoicr tmp/q.ppm | wc
 ppmtoicr: computing colormap...
 ppmtoicr: 6 colors found
 ppmtoicr: creating window tmp/q.ppm ...
 ppmtoicr: downloading colormap for tmp/q.ppm ...
 ppmtoicr: sending picture data ...
-      0   1064   7646
+      0   1263   7649
 $ ppmtouil tmp/q.ppm | wc
 ppmtouil: computing colormap...
 ppmtouil: 6 colors found
-     67    117   3416
+     67    117   3449
 $ pbmmake -g 40 20 | pbmto4425 | wc
      23      8    182
 $ pbmmake -g 40 20 | pbmtox10bm | head -n 6

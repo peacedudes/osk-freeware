@@ -20,8 +20,6 @@ place:
   README-CIO     offered `sedt' as the trap-free editor to use instead of
                  *ed and *emacs, and listed CMDS/sedt among the programs
                  carrying the putc macro.
-  README-BUSERR  called `firq', `souper' and `sysmem' "three programs on
-                 this disk" and offered `sysid' as the one that runs.
   DOC/INDEX      ended `ape' with "`travesty' and `newsgen' are the others
                  of its kind here".
 
@@ -70,7 +68,7 @@ out print prog psect quiet quit read receive save scale screens set shade
 signed silly squares stars the thuh time trade tuh watch zee charattr equalprg
 fprintf fwrite getc putc noreader epsonlo mfput polaroid spoolqueue coords
 face damage chesstool dsave deldir e2e4 uuunexpand terminate tester syscmd
-mortgage banners channel remote rfd readstr timeio timid wabbits which6 xshar
+mortgage banners channel remote readstr wabbits which6 xshar
 jpeg wermit cccp
 create insert start exit rindex filter_pid
 inetdb kwin kzc lcsys libgcc1_c libgcc2_gc osktag sect0boot sector0 warranty
@@ -84,7 +82,7 @@ tex_readme cpp
 # being written about as though it were present again will not be caught, so
 # take one OUT when the sentences naming it go.
 GONE = set("""
-dearc firq fpu040 kermit_cio new_e ren rstory2 sedt souper sysmem travesty
+dearc fpu040 kermit_cio new_e rstory2 sedt travesty
 vi_cio vi_nocio
 """.split())
 

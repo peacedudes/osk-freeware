@@ -1,17 +1,6 @@
 cuts -e tmp/TEXTA/fox.txt | head -n 4
-# No more memory: 1676055616-byte request refused, 32730560 bytes free in a 3355
-4432-byte arena
-.0000.I.A.1260918.BIN."fox.txt"...............................................C
-# No more memory: 11567104-byte request refused, 921024 bytes free in a 33554432
--byte arena
-# No more memory: 13012992-byte request refused, 921024 bytes free in a 33554432
--byte arena
-# No more memory: 10 allocation failures so far, still failing (latest 23134208
-bytes)
-# No more memory: 100 allocation failures so far, still failing (latest 52051840
- bytes)
-# No more memory: 1000 allocation failures so far, still failing (latest 3759302
-4 bytes)
-.0001.D!0|@|@3838!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#?
+.0000.I.A.1260924.BIN."fox.txt"...............................................@
+# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
+.0001.D!0#@+@+8!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#A
 .0002.D!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#H
 .0003.D!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#I

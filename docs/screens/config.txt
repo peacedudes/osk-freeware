@@ -4,12 +4,12 @@ $ config | head -20
 /* Maximum int = 2147483647 (= 2**31-1) */
 /* Maximum long = 2147483647 (= 2**31-1) */
 /* Alignments for char=1 short=2 int=2 long=2 */
+# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
 /* Char pointers = 32 bits */
 /* Int pointers = 32 bits */
 
 /* Properties of float: */
 /* Base = 2 */
-# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
 /* Significant base digits = 24 (= at least 7 decimal digits) */
 /* Smallest x such that 1.0-base**x != 1.0 = -24 */
 /* Small x such that 1.0-x != 1.0 = 5.96046e-08 */

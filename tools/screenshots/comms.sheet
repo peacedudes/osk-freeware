@@ -18,7 +18,7 @@ cap     this account: one message.  `d' deletes, `r' replies, `q' quits.
 try     elm
 run     elm
 wait    10
-quit    q\r
+quit    x
 
 shot    answer
 cap     Replies to messages in a folder one at a time, prompting `Message
@@ -202,18 +202,24 @@ wait    6
 shot    lmail
 cap     Local mail delivery: it reads a message on standard input and adds
 cap     it to the named user's mail folder, where Elm, messages and readmsg
-cap     find it.  Here a short note goes to the os9 account.
-try     lmail os9 < tmp/note
+cap     find it.  Here a short note goes to your own account, tester, and
+cap     arrives at the end of its folder.  A folder lmail makes is readable
+cap     by its owner and the super-user only, so mail for someone else is
+cap     theirs to read, not yours.
+try     lmail tester < tmp/note
 run     builtin cd /dd
 wait    1
-run     rm -f SPOOL/MAIL/os9; echo 'Subject: hello' > tmp/note; echo '' >> tmp/note; echo 'A note for the os9 account.' >> tmp/note
+run     cat SPOOL/MAIL/tester > tmp/lmail.save; echo 'Subject: hello' > tmp/note; echo '' >> tmp/note; echo 'A note for the tester account.' >> tmp/note
 wait    2
 run     clear
 wait    1
-run     lmail os9 < tmp/note
+run     lmail tester < tmp/note
 wait    6
-run     cat SPOOL/MAIL/os9
+run     tail -l=5 SPOOL/MAIL/tester
 wait    3
+snap
+run     cat tmp/lmail.save > SPOOL/MAIL/tester
+wait    2
 
 shot    mail
 size    24 80
@@ -388,6 +394,7 @@ run     smail -?
 wait    8
 
 shot    uupoll
+super
 cap     Polls a UUCP site for waiting work.  It works in silence -- the
 cap     only sign is the poll file it leaves in the site's spool
 cap     directory.
@@ -700,6 +707,7 @@ run     getinfo -a
 wait    4
 
 shot    inews
+super
 fresh
 cap     MNews's article store.  -c=newgroup makes a group; -h posts the
 cap     article on standard input, filling in the header lines it lacks.
@@ -725,6 +733,7 @@ run     inews -h -v < article
 wait    5
 
 shot    nnmaster
+super
 size    24 80
 fresh
 cap     Builds nn's database of the articles MNews has stored: -I sets it
@@ -783,6 +792,7 @@ run     cat junk/1
 wait    2
 
 shot    nn
+super
 size    24 80
 fresh
 cap     The nn newsreader on the group MNews filed the article in: a menu
@@ -818,6 +828,7 @@ snap
 quit    Q
 
 shot    nnadmin
+super
 fresh
 cap     nn's database administrator.  Given its commands as an argument
 cap     it runs without a menu: C prints the configuration -- where nn's
@@ -906,7 +917,36 @@ wait    8
 snap
 run     cp sys.save /h0/USR/LIB/NEWS/Sys
 
+shot    tass
+size    24 80
+cap     tass, the threaded newsreader, on an MNews "pre 2" spool made for
+cap     the card: two articles in comp.os.os9, named to tass through
+cap     SysInfo's MNEWS.DIR and MNEWS.LIB.  Return enters a group and reads
+cap     an article; q goes back.  It does not read the spool of the MNews
+cap     on this disk, the earlier 1990 prerelease.
+try     tass
+run     set +H
+run     W=/dd/tmp/TASSC; rm -rf $W > /nil 2>/nil; mkdir -p $W/lib $W/spool/comp/os/os9
+run     printf 'MNEWS.DIR,s=%s/spool\rMNEWS.LIB,s=%s/lib\r' $W $W > $W/sysinfo; setup $W/sysinfo
+run     printf 'comp.os.os9 00000002 00000001 nu\r' > $W/lib/Active
+run     printf 'Path: osk\rFrom: a@osk (A Writer)\rNewsgroups: comp.os.os9\rSubject: first article\rMessage-ID: <1@osk>\rDate: 1 Jan 93 10:00:00 GMT\rLines: 1\r\rfirst body\r' > $W/spool/comp/os/os9/1
+run     printf 'Path: osk\rFrom: b@osk (B Writer)\rNewsgroups: comp.os.os9\rSubject: second article\rMessage-ID: <2@osk>\rDate: 2 Jan 93 10:00:00 GMT\rLines: 1\r\rgreetings, reader\r' > $W/spool/comp/os/os9/2
+run     rm -f $HOME/.newsrc > /nil 2>/nil
+wait    2
+run     clear
+wait    1
+run     tass
+wait    5
+send    \r
+wait    3
+snap
+send    q
+wait    2
+send    q
+wait    2
+
 shot    nncheck
+super
 fresh
 cap     Says whether there is news you have not read.  nn has to have been
 cap     run once to set up your own files first; after that nncheck counts
@@ -1363,12 +1403,33 @@ wait    1
 run     finger tester
 wait    8
 
+shot    bm
+size    30 80
+cap     bm, the mailer that goes with net, writing a letter: it adds the
+cap     headers and queues it -- the letter, and beside it the envelope
+cap     net's SMTP reads (host, sender, recipient) -- for net to send.  Its
+cap     setup is a .bmrc in NETHOME and the spool in NETSPOOL.
+try     echo "hello from bm" | bm -s "a test" someone@far.ampr
+run     rm -rf /dd/tmp/BMK > /nil 2>/nil; mkdir -p /dd/tmp/BMK/home /dd/tmp/BMK/spool/mail /dd/tmp/BMK/spool/mqueue /dd/tmp/BMK/spool/rqueue
+run     echo "host test.ampr" > /dd/tmp/BMK/home/.bmrc; echo "user tester" >> /dd/tmp/BMK/home/.bmrc; echo "fullname Test_User" >> /dd/tmp/BMK/home/.bmrc
+run     export NETHOME=/dd/tmp/BMK/home NETSPOOL=/dd/tmp/BMK/spool
+run     builtin cd /dd/tmp/BMK/spool
+wait    2
+run     clear
+wait    1
+run     echo "hello from bm" | bm -s "a test" someone@far.ampr
+wait    3
+run     cat mqueue/1.txt
+wait    2
+run     cat mqueue/1.wrk
+wait    2
+
 shot    net
 size    30 80
 cap     The KA9Q net -- TCP/IP over SLIP or AX.25, with telnet,
 cap     ftp and smtp.  It starts, then lists the files it needs you to
 cap     write for your own station: startup.net, the host and user tables,
-cap     the mail directories.  Its setup guide is in DOC/ka9q.
+cap     the mail directories.  Its setup guide is Chapter 2 of DOC/net.
 try     net
 run     net
 wait    8

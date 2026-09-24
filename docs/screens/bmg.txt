@@ -1,0 +1,12 @@
+bmg cribbage DOC/INDEX
+  cpu             cribbage        crypto          cuts
+/h0/games/hack/playground, cribbage wants /h0/games/crib/criblog).
+  crib           cribbage.  Needs TERM set, so run it from a login session --
+ *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
+  nobs           cribbage against the computer, a third one: it deals six
+$ fgrep cribbage DOC/INDEX
+  cpu             cribbage        crypto          cuts
+/h0/games/hack/playground, cribbage wants /h0/games/crib/criblog).
+  crib           cribbage.  Needs TERM set, so run it from a login session --
+ *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
+  nobs           cribbage against the computer, a third one: it deals six

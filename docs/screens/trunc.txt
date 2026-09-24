@@ -1,6 +1,6 @@
 ls -l f
--rw-rw-rw-   1 0        0              16 Sep  8 22:41 f
+-rw-rw-rw-   1 0        0              16 Sep 24 01:12 f
 $ trunc f 8
 $ ls -l f; cat f; echo
--rw-rw-rw-   1 0        0               8 Sep  8 22:41 f
+-rw-rw-rw-   1 0        0               8 Sep 24 01:12 f
 01234567

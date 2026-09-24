@@ -28,4 +28,4 @@ adlcomp tiny.adl -o tiny -g 30 -r 86 -v 48 -n 21 -m 130 -p 0 -s 5 -i ..
 Writing 10548 bytes
 adlcomp complete. 0 errors, 2 warnings.
 $ ls -l tiny
--rw-------   1 0        0           10548 Sep  8 04:52 tiny
+-rw-------   1 7        1           10548 Sep 24 02:18 tiny

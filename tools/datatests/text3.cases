@@ -23,12 +23,12 @@ run     /dd/CMDS/ascii > $W/asc.txt
 run     /dd/CMDS/wc -c $W/asc.txt
 expect  4290 /dd/tmp/TXT3/asc.txt
 
-# bm is Boyer-Moore, a faster grep. Its exit status is the answer when
+# bmg (bm until 2026-09-24) is Boyer-Moore, a faster grep. Its exit status is the answer when
 # there is no match, which is what a script would use it for.
-case    bm-finds-every-line-and-says-so-in-its-status-when-it-cannot
-run     /dd/CMDS/bm apple $W/a.txt
+case    bmg-finds-every-line-and-says-so-in-its-status-when-it-cannot
+run     /dd/CMDS/bmg apple $W/a.txt
 run     echo "found $?"
-run     /dd/CMDS/bm zebra $W/a.txt
+run     /dd/CMDS/bmg zebra $W/a.txt
 run     echo "missing $?"
 expect  found 0
 expect  missing 1

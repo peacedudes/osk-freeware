@@ -94,3 +94,38 @@ nnmaster|a module named `shell', and your own `qsort' to sort the GROUPS file wh
 bru|the super-user: anyone else is refused with status 214|SRC/bru/README.OSK
 drawpoker|less, in the execution directory or resident, to page the rules it offers first|SRC/poker/README.OSK
 boa|a TCP/IP stack with its /socket device -- Microware ISP or SPF on a real system; os9exec from e2c7f7b on|SRC/boa/README.OSK; SOURCES.txt
+chown|the super-user: only 0.0 may give a file to another owner|OS-9's RBF rule; its card is shot as su (2026-09-23)
+adduser|the super-user, to write SYS/password|its card is shot as su (2026-09-23)
+setime|the super-user, to set the system clock|its card is shot as su (2026-09-23)
+setime2|the super-user, to set the system clock|its card is shot as su (2026-09-23)
+setimex|the super-user, to set the system clock|its card is shot as su (2026-09-23)
+inews|the super-user (the owner of the inews module) for control messages such as newgroup|SRC/mnews/INEWS/pargs.c: admin = module owner; tools/datatests/superuser.cases
+nnmaster|the super-user to initialise nn's database, and then `attr -pr /h0/SPOOL/NN/GROUPS' so other users' nn can read it|DOC/README-NEWS; tools/datatests/superuser.cases
+uupoll|the super-user to see its queue: it runs as uucp and makes each site's spool directory private|SRC/uucp_blars/uupoll.c; tools/datatests/superuser.cases
+tass|MNews "pre 2" on your system: SysInfo MNEWS.LIB and MNEWS.DIR naming its library and spool; it does not read this disk's 1990 MNews|SRC/tass/README.OSK
+gcc137|your own OS-9's r68 and l68, cstart.r, clibn.l, math.l, sys.l and headers; after GCC139 has run, `unlink cc1 cccp'|SOURCES.txt, GNU C 1.37.1
+gcc272|your own OS-9's r68, l68 and del, cstart.r, clibn.l, math.l and sys.l; GCC2_OPTS naming its passes|SOURCES.txt, GNU C 2.7.2; DOC/gcc272/readme.osk
+ptyman|a real OS-9 kernel to load it into, with ptydrv, pty and tty; os9exec loads no file managers|SRC/ptyman/README.OSK
+lfcrman|a real OS-9 kernel to load it into, and a descriptor naming the device it translates; os9exec loads no file managers|SRC/lfcrman/README.OSK
+disp|a real OS-9 kernel and the display port its descriptor di names|SRC/disp/README.OSK
+cpucache|a 68020, 68030 or 68040, cctrap, and a cache-control driver of your own for more than -q|SRC/cpucache/README.OSK
+vt100|an MM/1 with K-Windows and a serial port|SRC/vt100/README.OSK
+x9eyes|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
+setbgptn|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
+logon|a password file, users and terminal lines; DOC/SYSADMIN/logon.prf|DOC/SYSADMIN
+mmon|a terminal or Hayes-modem line and SYS/mmon.config; DOC/SYSADMIN/mmon.prf|DOC/SYSADMIN
+watch|the super-user, and a modem line|DOC/SYSADMIN/watch.prf
+vcron|membership of group Cron in SYS/group, and crontabs under SPOOL/VCRON on /h0|SRC/vcron/README.OSK
+rex|OS-9/Net, with prexd running on the node named|SRC/rex/README.OSK
+chp|OS-9/Net, with prexd running on the node named, and rex|SRC/rex/README.OSK
+remdate|OS-9/Net|SRC/rex/README.OSK
+prexd|OS-9/Net; it starts prexdc for each request|SRC/rex/README.OSK
+mesg|users logged in through logon, which keeps SYS/utmp; DOC/SYSADMIN/mesg.prf|DOC/SYSADMIN
+msg|a user logged in through logon (SYS/utmp) whose mmenu takes the message; DOC/SYSADMIN/msg.prf|DOC/SYSADMIN
+speak|another user logged in through logon (SYS/utmp), on a terminal in termcap|DOC/SYSADMIN/speak.prf
+mmenu|menu files in the directory named by sysinfo's mmenu.datadir or MENUDATA, a login recorded by logon in SYS/utmp, and a /dd/TMP for -z|DOC/SYSADMIN/mmenu.prf
+newgrp|a SYS/group file, which this disk does not carry|DOC/SYSADMIN/newgrp.prf
+uid|SYS/password; SYS/group for group names; a login in SYS/utmp to answer with no argument|DOC/SYSADMIN/uid.prf
+mwb|a manual directory, USR/DOC/.MAN on /h0|mwb -?; the binary
+loadmem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester
+savemem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester

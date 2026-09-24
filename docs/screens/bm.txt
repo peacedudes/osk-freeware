@@ -1,12 +1,13 @@
-bm cribbage DOC/INDEX
-  cp              cpu             cribbage        crypto
-/h0/games/hack/playground, cribbage wants /h0/games/crib/criblog).
-  crib           cribbage.  Needs TERM set, so run it from a login session --
- *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
-  nobs           cribbage (Colonel's program)
-$ fgrep cribbage DOC/INDEX
-  cp              cpu             cribbage        crypto
-/h0/games/hack/playground, cribbage wants /h0/games/crib/criblog).
-  crib           cribbage.  Needs TERM set, so run it from a login session --
- *cribbage       cribbage -- offers instructions before it deals.  Needs TERM,
-  nobs           cribbage (Colonel's program)
+echo "hello from bm" | bm -s "a test" someone@far.ampr
+$ cat mqueue/1.txt
+Date: Thu, 24 Sep 26 03:15:15 GMT
+Message-Id: <1@test.ampr>
+From: tester@test.ampr (Test_User)
+To: someone@far.ampr
+Subject: a test
+
+hello from bm
+$ cat mqueue/1.wrk
+far.ampr
+tester@test.ampr
+someone@far.ampr

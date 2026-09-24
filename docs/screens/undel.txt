@@ -24,4 +24,4 @@ Work done. IF FILE was a DIRECTORY File, USE the ATTR Utiliy
 
 $ ls -l tmp/FILESA/ud
 total 512
--rw-rw-rw-   1 0        0              40 Sep  8 15:58 notes.txt
+-rw-rw-rw-   1 7        1              40 Sep 24 02:52 notes.txt

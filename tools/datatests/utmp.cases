@@ -1,0 +1,73 @@
+family  utmp
+# TOP's multi-user tools in CMDS/SYSADMIN: mesg, mmenu, msg, mwb, newgrp,
+# speak and uid, from TOP release 2 (Munich, 1989-90).  What they are FOR --
+# users logged in on several terminals, recorded by logon in SYS/utmp --
+# cannot happen here, so these assert only what a single user sees: each
+# program's usage, and the refusal it gives when there is nobody to talk to
+# or nothing configured.  Run as tester, like every family.
+#
+# NOTHING HERE PASSES A FLAG TO mesg.  `mesg -M' left a 0-byte /dd/SYS/utmp
+# behind when it was probed, and the image is not reset between runs.
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   D=/dd/CMDS/SYSADMIN
+
+case    mesg-prints-its-usage
+run     $D/mesg -?
+expect  Syntax: mesg [-]flags
+expect  Function: Changes flags for current user in utmp
+
+case    uid-prints-its-usage
+run     $D/uid -?
+expect  Print uid and gid of user <user-name>
+
+# uid with a name reads SYS/password; there is no SYS/group on this disk,
+# so the group name is UNKNOWN.  tester is 1.7 in SYS/password.
+case    uid-looks-up-a-user-in-the-password-file
+run     $D/uid tester
+expect  User tester  GID:(UNKNOWN) 1  UID:7.
+
+case    uid-does-not-know-a-user-who-is-not-there
+run     $D/uid nosuchuser
+expect  User nosuchuser unbekannt!
+
+case    newgrp-prints-its-usage
+run     $D/newgrp -?
+expect  Syntax: newgrp [<gid>]
+expect  or      newgrp [<group-name>]
+
+case    newgrp-refuses-a-group-it-cannot-find
+run     $D/newgrp nosuchgroup < /nil
+expect  newgrp: Unknow group nosuchgroup
+
+case    speak-prints-its-usage
+run     $D/speak -?
+expect  Function: starts a chat between you and <user>
+
+case    speak-cannot-call-a-user-who-is-not-logged-in
+run     $D/speak tester < /nil
+expect  speak: Unable to call tester.
+
+# msg is mmenu's helper and prints no usage at all; with nobody logged in
+# it gives up silently.  Its exit status is what shows it ran.
+case    msg-gives-up-when-nobody-is-logged-in
+run     $D/msg tester hello < /nil
+run     echo msg-status=$?
+expect  msg-status=209
+
+case    mmenu-prints-its-usage-and-wants-a-start-menu
+run     $D/mmenu < /nil
+expect  Function: Shows a menu using the termcap-file
+expect  No startmenu given!
+
+case    mmenu-wants-a-port-before-it-draws-a-menu
+run     $D/mmenu -f=main < /nil
+expect  mmenu: No port defined
+
+case    mwb-prints-its-usage
+run     $D/mwb -?
+expect  Function: Edit and create own Manualentries
+
+case    mwb-names-the-manual-directory-it-needs
+run     $D/mwb < /nil
+expect  mwb: Can't change to '/h0/USR/DOC/.MAN'!

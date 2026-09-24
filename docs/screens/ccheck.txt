@@ -1,13 +1,13 @@
 ccheck SRC/keep/keep.c
-SRC/keep/keep.c: Mismatched indent on closing ) lines 145, 147; indents 9, 16.
-SRC/keep/keep.c: Mismatched indent on closing ) lines 224, 225; indents 6, 13.
-SRC/keep/keep.c: Mismatched indent on closing ) lines 270, 271; indents 9, 13.
-SRC/keep/keep.c: Indent jumps backwards line 272.
-SRC/keep/keep.c: Indent jumps backwards line 273.
-SRC/keep/keep.c: Mismatched indent on closing } lines 271, 274; indents 13, 9.
-SRC/keep/keep.c: Mismatched indent on closing ) lines 312, 313; indents 9, 13.
-SRC/keep/keep.c: Mismatched indent on closing } lines 331, 336; indents 6, 8.
-SRC/keep/keep.c: Mismatched indent on closing ) lines 394, 395; indents 6, 10.
+SRC/keep/keep.c: Mismatched indent on closing ) lines 150, 152; indents 9, 16.
+SRC/keep/keep.c: Mismatched indent on closing ) lines 162, 164; indents 3, 10.
+SRC/keep/keep.c: Mismatched indent on closing ) lines 184, 185; indents 6, 10.
+SRC/keep/keep.c: Indent jumps backwards line 186.
+SRC/keep/keep.c: Mismatched indent on closing } lines 185, 188; indents 10, 6.
+SRC/keep/keep.c: Mismatched indent on closing ) lines 206, 207; indents 6, 10.
+SRC/keep/keep.c: Indent jumps backwards line 210.
+SRC/keep/keep.c: Mismatched indent on closing } lines 207, 212; indents 10, 6.
+SRC/keep/keep.c: Mismatched indent on closing ) lines 229, 230; indents 6, 10.
 Further warning messages being suppressed.
 
 SRC/keep/keep.c:  OK

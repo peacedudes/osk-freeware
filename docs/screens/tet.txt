@@ -1,9 +1,9 @@
               .----------.                .----------.
-              |          |                |  .68...  |
+              |          |                |  .66...  |
               |          |                `----------'
               |          |
-              |    WWW   |         .---------------------------.
-              |     W    |         |                           |
+              |    GG    |         .---------------------------.
+              |     GG   |         |                           |
               |          |         |      ..   Menu   ..       |
               |          |         |                           |
               |          |         |   h     .... high scores  |
@@ -14,9 +14,9 @@
               |          |         | s or j  .... move left    |
               |          |         | d or k  .... rotate piece |
               |          |         | f or l  .... move right   |
-              |    WWW   |         |  spc    .... fall piece   |
-              |     W    |         |  esc    .... pause        |
+              |    BBB   |         |  spc    .... fall piece   |
+              |      B   |         |  esc    .... pause        |
               |    VVVV  |         |                           |
-              |    RRR   |         | LATEST: allow concurrent  |
-              |    R     |         |    high score setting     |
+              |    WWW   |         | LATEST: allow concurrent  |
+              |     W    |         |    high score setting     |
               `----------'         `---------------------------'

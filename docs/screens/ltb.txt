@@ -5,9 +5,9 @@ head -n 3 < proffsym.new
 $ ltb proffsym.new lextab
 $ ls -l
 total 14336
--rw-------   1 0        0             856 Sep 22 21:10 lextab.d
--rw-------   1 0        0            9281 Sep 22 21:10 lextab.h
--rw-rw-rw-   1 0        0            3452 Aug  3 19:00 proffsym.new
+-rw-------   1 7        1             856 Sep 24 02:04 lextab.d
+-rw-------   1 7        1            9281 Sep 24 02:04 lextab.h
+-rw-rw-rw-   1 7        1            3452 Sep 24 02:03 proffsym.new
 $ head -n 4 < lextab.h
 #ifndef STRUC_DEFINED
 

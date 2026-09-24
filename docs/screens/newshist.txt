@@ -1,5 +1,3 @@
 dbz history
-dbz: (file `history', line 1) store failed on `<one@site.uucp> 9999999999 1
-...'
 $ newshist "<one@site.uucp>"
 newshist: no history entry for <one@site.uucp> nor <<one@site.uucp>>

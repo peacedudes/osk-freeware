@@ -1,0 +1,1 @@
+## $Log$##      You can archive articles during expire#      instead of deleting them#      Format:#      newsgroup destination-directory prefixcomp.sources.unix      /h0/SPOOL/ARCHIVE/SOURCE        csucomp.sources.misc      /h0/SPOOL/ARCHIVE/SOURCE        csmde.comp.os.os9         /h0/SPOOL/ARCHIVE/OSKcomp.text*             /h0/SPOOL/ARCHIVE/TEXT

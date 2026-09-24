@@ -1,0 +1,1 @@
+dnl "m4.texinfo": 606: Origin herefoodnl =>foodefine(`foo', `expansion text')dnl =>foodnl =>expansion textundefine(`foo')dnl =>foodnl =>foo

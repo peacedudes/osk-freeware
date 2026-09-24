@@ -1,6 +1,6 @@
-etags about.c
+etags keep.c
 $ head -4 tags
-Mabout  about.c /^main(argc, argv)$/
-entry_for       about.c /^static int entry_for(line, prog, indent)$/
-exists  about.c /^static int exists(path)$/
-find_collection about.c /^static int find_collection()$/
+Mkeep   keep.c  /^main(argc, argv)$/
+copy_file       keep.c  /^static int copy_file(from, to, executable)$/
+crc_of  keep.c  /^static unsigned long crc_of(path, sizep)$/
+depends_for     keep.c  /^static void depends_for(prog, dirout, paths, npath/

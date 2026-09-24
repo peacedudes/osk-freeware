@@ -1,0 +1,1 @@
+#include "config.h"/* The following symbols should be autoconfigured:	HAVE_FCNTL_H	HAVE_STDLIB_H	HAVE_SYS_TIME_H	HAVE_UNISTD_H	STDC_HEADERS	TIME_WITH_SYS_TIME   In the mean time, we'll get by with approximations based   on existing GCC configuration symbols.  */#if __GNUC__ >= 1#define HAVE_STDLIB_H#endif

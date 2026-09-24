@@ -1,11 +1,11 @@
 ls -l
 total 9728
--rw-rw-rw-   1 0        0            9526 Sep 19 06:32 OS9Boot
+-rw-rw-rw-   1 7        1            9526 Sep 24 01:09 OS9Boot
 $ bsplt68 OS9Boot
 cat
 clear
 $ ls -l
 total 19968
--rw-rw-rw-   1 0        0            9526 Sep 19 06:32 OS9Boot
--rw-------   1 0        0            5322 Sep 19 06:32 cat
--rw-------   1 0        0            4204 Sep 19 06:32 clear
+-rw-rw-rw-   1 7        1            9526 Sep 24 01:09 OS9Boot
+-rw-------   1 7        1            5322 Sep 24 01:09 cat
+-rw-------   1 7        1            4204 Sep 24 01:09 clear

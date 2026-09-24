@@ -117,7 +117,9 @@ lpq|eff_lp|lpq.c os9geteuid.c ../effo_unaxcess/os9getpw.c|||
 lprm|eff_lp|lprm.c|||
 lpshut|eff_lp|lpshut.c|||
 ls|ls|argmatch.c error.c filemode.c getopt.c idcache.c ls.c obstack.c os9stubs.c savedir.c xmalloc.c xstrtol.c|GCC HAVE_CONFIG_H|/dd/LIB/os9lib.l|-V=/dd/DEFS/os9lib
-m4|eff_m4b|main.c eval.c expr.c look.c misc.c serv.c||/dd/LIB/egetopt.r|
+# m4 was built from eff_m4b here until 2026-09-24 -- Yigit's PD m4, a different
+# program from the GNU m4 0.50 that ships; the GNU source is SRC/m4_0.5.
+m4|m4_0.5|m4.c input.c output.c symtab.c builtin.c macro.c eval.c oskvprintf.c obstack.c|CPP2 isp=ibsp|/dd/LIB/os9lib.l|
 make|eff_make|make.c parse.c stat.c tstring.c utime_osk.c|OS9||
 makelex|sonnet|makelex.c|||
 maze|v_misc|maze.c|||
@@ -169,7 +171,9 @@ scales|hc_loose|scales.c|||
 scrabble|scrabble|scrabble.c util.c board.c dict.c move.c player.c savegame.c tty.c user.c|KNR MEM=64k|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/strings.r|
 screen_nocio|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
 sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
-sed|eff_sed|alloca.c glob.c regex.c sed.c|||
+# sed was built from eff_sed (GNU sed 1.02) until 2026-09-24; the shipped
+# binary is 1.06, whose own source is SRC/sed_1.06.
+sed|sed_1.06|sed.c regex.c glob.c|CPP2|/dd/LIB/os9lib.l /dd/LIB/blarslib.l|
 sepwords|bix|sepwords.c|||
 setfont|effo_wolk|setfont.c|||
 shire|weather|weather.c|MIDDLE_EARTH MID_ATLANTIC|/dd/LIB/rand.r /dd/LIB/math.l|
@@ -1151,3 +1155,12 @@ uue|uutools|uue.c|OS9||
 uud|uutools|uud.c|OS9||
 mz|mz|mz.c mzio.c sgtty.c||/dd/LIB/termlib.l|
 whetstone|whetstone|whetstone.c|||
+8bit.l|mnewspre2/8BIT|inp.c conv.c c8type.c|NOCOMPAT||-V=/dd/DEFS/os9lib
+tass|tass|curses.c art.c group.c mail.c main.c misc.c page.c prompt.c screen.c select.c time.c sigs.c|REGEXP APPEND_SIG MNEWS INCSTR LOCK_INDEX RAND_SIG MEM=20k|/dd/LIB/8bit.l /dd/LIB/termlib.l /dd/LIB/os9lib.l|-V=../mnews/NN_OSK
+net|k5jb/k5jb|main.c arp.c arpcmd.c arpdump.c ax25.c ax25cmd.c ax25dump.c ax25subr.c ax25user.c ax_mbx.c cmdparse.c mdkiss.c files.c fingcli.c fingserv.c ftp.c ftpcli.c ftpserv.c icmp.c icmpcmd.c icmpdump.c icmpmsg.c iface.c ip.c ipcmd.c ipdump.c iproute.c kiss.c lapb.c lapbtime.c lcsum.c mbuf.c misc.c motd.c mulport.c netuser.c nrcmd.c nrs.c nr3.c nrsubr.c nr4.c nr4subr.c nr4user.c nr4timer.c pathname.c session.c slip.c smisc.c smtpcli.c smtpserv.c sys5unix.c tcpcmd.c tcpdump.c tcpin.c tcpout.c tcpsubr.c tcptimer.c tcpuser.c telnet.c telserv.c telunix.c timer.c tnserv.c trace.c ttydriv.c udp.c udpcmd.c udpdump.c version.c wildmat.c osk_io.c |HAVE_FPUTC _OSK UNIX MSPTICK=10 remote=rremote||
+bm|k5jb/bm|main.c send.c osk.c bmutil.c version.c header.c files.c getopt.c wildmat.c|_OSK UNIX||
+rex|rex|rex.c||/dd/LIB/net.l /dd/LIB/os9lib.l|
+chp|rex|chp.c|||
+remdate|rex|remdate.c||/dd/LIB/net.l /dd/LIB/os9lib.l|
+prexd|rex|rexd.c|REXDC="prexdc"||
+prexdc|rex|rexdc.c||/dd/LIB/net.l /dd/LIB/os9lib.l|

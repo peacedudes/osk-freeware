@@ -15,5 +15,5 @@ Jumbling a word...
  Time: 3 min. 21 sec.
 0 words left. 'q' to quit.
 
- Word #1: "sfhnii".
+ Word #1: "feidt".
 --->  Guess:

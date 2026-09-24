@@ -1,0 +1,43 @@
+mmon -?
+Syntax: mmon [<opts>] [<line>] [<opts>]
+Function: Starts a special timesharing-monitor, best for Hayes-Modems
+Options:
+    -m        On this line is a Hayesmodem (or compatible)
+    -m=<init> Same as -m, but here the modem will be initialized by the
+              string <init> instaed of the build-in one.
+    -nm       This is a direct line (default)
+    -r=<rst>  String to reset a modem.
+    -b=<spd>  Works on speed <spd> on modem command mode
+    -nb       Select default speed of command mode (1200 bps)
+    -e=<ent>  Sets the entry in the entrytypes for logon to <ent>
+    -ne       Selects no entry (default)
+    -c        Executes before logon /dd/SYS/.mmonstart (if exists) and after
+              logon has returned /dd/SYS/.mmonend will be executed
+    -nc       Don't use these files
+    -l
+    -l=<file> no motd or motd = <file>, same as -m by logon
+    -nl       Uses the standard motd defined in logon (default)
+    -p=<path> Path and name of logonprogram
+    -np       Use defaultvalue (default)
+    -f        Fixed Baudrate, no change by loging in
+    -f=<baud> Fixed Baudrate set to <baud>
+    -nf       no fixed Baudrate (default)
+    -o=<opts> These <opts> are given to logon as they are
+    -no       Don't pass any options to logon (default)
+    -d        No detach/atach operation takes place
+    -nd       atach/detach takes place (default)
+              (only used when connected to a Modemline)
+    -x        force locking even if the port is locked
+    -nx       abort when device is locked (default)
+    -s<=lmt[,wait]>  the complete logon seassions are limited to <lmt>
+                     (def. 1) if wait is specified mmon dies after <wait>
+                     minutes without a login
+    -ns       disable limitation
+    -k        examine the linkcount (default)
+    -nk       don't examine the linkcount
+    -g<=min>  when mmon is killed wait until lock is released and start again
+    -ng       die when to be killed (default)
+    -t        terminal hangup is handled by the driver
+    -nt       pending processes will be killed by mmon (default)
+$ watch -?
+watch: Only the superuser (0.0) may start watch!

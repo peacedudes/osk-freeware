@@ -1,11 +1,11 @@
 ls -lR tmp/FILESA/rmd
 total 1024
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 a
-drwxrwxrwx   1 0        0              96 Sep 12 00:58 sub
+-rw-rw-rw-   1 7        1              40 Sep 24 02:43 a
+drwxrwxrwx   1 7        1              96 Sep 24 02:43 sub
 
 tmp/FILESA/rmd/sub:
 total 512
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 b
+-rw-rw-rw-   1 7        1              40 Sep 24 02:43 b
 $ rm -rv tmp/FILESA/rmd
   tmp/FILESA/rmd
   tmp/FILESA/rmd/sub

@@ -1,5 +1,5 @@
 msdir a: | grep MOTD
-MOTD     TXT        40 09-08-2026   9:30p
+MOTD     TXT        40 09-24-2026   2:30a
 $ msdel a:MOTD.TXT
 Removing MOTD.TXT
 $ msdir a: | grep -c MOTD

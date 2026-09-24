@@ -1,4 +1,4 @@
 $ splstat -?
-Splstat: device out of range
+Splstat: must be system manager
 $ lpq
 lpq: no spooler installed

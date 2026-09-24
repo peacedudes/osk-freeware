@@ -1,8 +1,8 @@
 pgmtopbm tmp/NEAB/r.pgm | pbmtoascii -2x4
-MMM6HFkFF1S|[((||/>:.:-:.
-MMR6HFkR&S/Z||||\\:::::..-
-MM9RMS&S&$\$]||i:|\:.:::.
+MMMRHHSFk&?S|||||>/:::.. .
+MMHRM&9$$FL&?SSS:|:<::.--.
+MMHRH9H&%k$SS??://:\\'::.
 $ pnmflip -lr tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
-   .-.:<::>|||||\$&$9SHH9MMM
-  - : :>::\\|\\\(}&&$&H&HHMM
-  `.-:-:\?|:SSS?}S$SkHH&M9MM
+   .- :\\:|i||||%&%FFFHH9MMM
+  `.`.-:>;:<\||$ZZ&$H&&6HHMM
+  '.:::::S:>\||$//?R$RHHR6MM

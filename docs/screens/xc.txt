@@ -5,5 +5,5 @@ $ wc -l SYS/motd
 more notes
 $ xc tmp/SHL/cmds.txt
  whoami
-su
+tester
       1 SYS/motd

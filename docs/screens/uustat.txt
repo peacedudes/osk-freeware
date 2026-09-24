@@ -1,2 +1,1 @@
-uustat
 uustat: warning: uucp is possibly active

@@ -1,15 +1,18 @@
-$ argproc_demo readme
-arg=readme, b=0, c=0, sGiven=0, s=this is a test, x=32, pi=3.144500
-$ argproc_demo -x99 -sHello readme
-arg=readme, b=0, c=0, sGiven=1, s=Hello, x=99, pi=3.144500
-$ argproc_demo -help
-argproc_demo: Usage:  file ...
-Demonstration program for argproc().  Note that no spaces are allowed
-between a switch and its arguments (i.e. -x3 is okay, -x 3 is not allowed).
-Options:
-    -help    Print this message
-    -b       Set b_bool TRUE
-    -c       Set c_bool TRUE
-    -sSTRING Set string s  [default: ]
-    -xINT    Set integer x [default: 0]
-    -piFLOAT Set double pi [default: 0.000000]
+Process   Pid: 4, argproc_demo, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
+ Last syscall: START (0xffff)
+    Registers: Dn=0000002C 000C22BD 00000002 00000006
+                  0000000B 00000282 00012D10 00000008
+               An=000C29BE 000E54C0 000E58C4 000E58B2
+                  000E58AE 000E547A 000DAC00 000E547A
+               PC=000C29BE SR=0000
+ Executing: -->000c29be: 2390 0800 5284 700c b084 MOVE.L (A0),(A1, D0.L*1, $00)
+== $000e54ec
+               000c29c2: 5284 700c b084 6ec0 2f2f ADD.L #$00000001,D4
+       Memory: Static    -     000D2C00 - 000E5910   77072 bytes
+               Allocated - 000 000D2C00 - 000E5910   77072 bytes
+# # Exception: pid=4 vector=$02 err=#000:102 ... process will be killed (x to co
+ntinue)

@@ -1,0 +1,5 @@
+$ errlog -?
+Syntax: errlog [<opts>]
+Function: collects error messages in one file
+Options:
+     -b=<size>    buffer size

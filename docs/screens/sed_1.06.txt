@@ -1,4 +1,3 @@
-sed_1.06 "s/the/THE/g" DOC/samples/jabber.txt
 Twas brillig, and THE slithy toves
      Did gyre and gimble in THE wabe:
 All mimsy were THE borogoves,

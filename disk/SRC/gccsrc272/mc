@@ -1,0 +1,1 @@
+** test if result ok*-tcmp stage1/cc2 stage2/cc2 -b2000cmp stage1/cc2plus stage2/cc2plus -b2000cmp stage1/cc2obj stage2/cc2obj -b2000cmp stage1/gcc2 stage2/gcc2 -b2000cmp stage1/cccp2 stage2/cccp2 -b2000

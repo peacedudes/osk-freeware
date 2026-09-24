@@ -1,0 +1,1 @@
+gcc2 -v -gg -mlong-calls -mremote -ucc -ob -L.../gclib/2.5.8 -O -mremote -mlong-calls -mgss -m68020  -I. -Icp -I../gclib/defs  -Iconfig -IOSK -c OSK/insn_output.c -o stage1_g/insn_output.r

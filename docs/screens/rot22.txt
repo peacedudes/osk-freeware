@@ -1,23 +1,23 @@
-README-CIO -- the starred programs, and the five modules that serve them
-=======================================================================
+README-CIO -- the starred programs, and the five modules that serve
 
-Some of the names in DOC/INDEX carry a star.  A star means the program needs
-one of Microware's runtime trap modules: `cio` for nearly all of them, and
-for some `math`, `math881`, `csl` or `csl020`.
 
-THEY RUN HERE.                                     in CMDS, included with
-Microware's pe r                                 ,exchange.  You need do
-nothing, supply                                 k tar tells you what a
-program depend                               d s s
-              s A llff                        i e
-This file exp  mi  ifnge  n         t          h  o do in the two cases
-where you mi lao n   nt-amadU     x to        t  t
-            ght n  i a,wtheOfR u   no    o     e
-Why so many pr iwsn oatdihfdsil    kstrhngi   h
-------------- ogramt ne dfi rteE atan.,ean   T t
-             ----a-sh--e---ttettSmcrasgtmed ..a
-`cc -qixm` -- the-C--ib-aryeinarcaearnd trnt.handler rather than linked into
-every binary -- wa lth rnor- lnalyrtoeb  lap or OS-9, and it is why a starred
-program is often asfraetionmafwtaessizeeifd ftrap-free one.  Much of this
-collection was rebuiltctrap-oreeh(h-qm`uosoait would run with nothing loaded
-at all; most of the programsfunder`CMDS)need no module whatever.  The rest
+==        = ==       ===   = =    =
+Som==o====e=na=======DOC====EX====r==a===a            ===         ==
+one==ffM crowamessinunti/INDrapcardy= sst` =      =r==ean         g
+foreoomeh`m thre'`mrth 8me,t`cslmooruec:l0c ====         =   =     a
+THEYsR    EaE.  Allafi8e `odules`are ` s        =  n   ly =   == th  =ne
+Microw Nt'sRpe` issionv- mSOURCES.tx      i0o`Afst     M  t =eop  edam n   s
+nothina    ppl r othing 1 nd fetch  tor co   .iso ainaC DS=tl cf=d   , ae d
+progr giesu n y n , no , a t it la not e  r `dth ke  c ng  l n lr ee w=  e
+     am, epe dsmon    t -ha       cks.h ng.ssT er  xr ael , i o unatm  in
+This fild expla ns whatwthe star means,ianddw h ert  h i e . Yuu    dat  d
+where yo emightiwant a different arrangement   t , ad t n s y   w ca  dth
+        u                                   . a s o  o   l h ot  h  s  o
+Why so many programs need it                 h   t        t e  wo    es
+----------------------------
+
+`cc -qixm` -- the C library in a shared trap handler rather than linked into
+every binary -- was the normal way to build for OS-9, and it is why a starred
+program is often a fraction of the size of a trap-free one.  Much of this
+collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
+at all; most of the programs under CMDS need no module whatever.  The rest

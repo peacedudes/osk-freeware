@@ -3,8 +3,8 @@
 
 This is rdoggett's own 1989 usenet collection -- things grabbed off the net,
 built, and filed. His description, 2026-08-19: junk and stuff, some of it not
-worth sharing, archived mainly to shrink it. Names like `misc.ar`, `toys.ar`,
-`my.opt.ar` and `de.ar` are grab-bags, and scratch files got swept in.
+worth sharing, archived mainly to shrink it. Names like `misc.ar`, `toys.ar`
+and `de.ar` are grab-bags, and scratch files got swept in.
 
 **It once contained proprietary Microware source.** He believes those were
 removed; belief is not a check, so every member is screened before anything

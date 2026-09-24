@@ -10,7 +10,7 @@
 # against this table.  tools/help-backlog.txt lists what is not here yet.
 cpp|cpp -?|it has no help flag: any option it does not know makes it print the list, and then it reads the empty standard input and writes the OSK line markers the entry describes
 roff|roff -?|
-bm|bm -?|
+bmg|bmg -?|
 cdiff|cdiff -?|
 cookie|cookie -?|
 cursive|cursive -?|
@@ -136,6 +136,7 @@ decode|none|a filter from standard input to standard output; no options
 encode|none|a filter from standard input to standard output; no options
 inews|inews -?|
 nn|none|its help is inside it: `?' at any prompt, `:help' and `:man'
+tass|none|its keys are on its screens: h is help at every one, q goes back
 nnadmin|none|it takes commands at its own prompt, or as arguments; DOC/nn/nnadmin.1m lists them
 nnaux|none|nn runs it to post and reply; run alone it answers `Missing options'
 nncheck|none|it takes -Q, -r, -t and -f; DOC/nn/nncheck.1 describes them
@@ -180,6 +181,7 @@ xkermit|xkermit -?|
 ckermit|ckermit -h|
 finger|finger -?|
 net|none|it takes the name of a startup file and no options; `help' at its `net>' prompt lists its commands
+bm|bm -?|
 osknet|none|it takes its commands at its own prompt; DOC/osknet has the guide
 msntp|none|it takes the address of a time server and no help flag
 ttcp|ttcp|
@@ -593,6 +595,14 @@ bison|bison -?|
 flex|flex -?|
 gcc|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gcc -?|
 gcc2|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gcc2 -?|
+gcc137|none|it has no help flag; DOC/gcc137 is its manual
+gcc137_cccp|none|the driver runs it; it has no help flag
+gcc137_cc1|none|the driver runs it; it has no help flag
+gcc272|none|it has no help flag; DOC/gcc272/readme.osk is its guide
+gcc272_cccp2|none|the driver runs it; it has no help flag
+gcc272_cc2|none|the driver runs it; it has no help flag
+gcc272_cc2plus|none|the driver runs it; it has no help flag
+gcc272_collect|none|the driver runs it for every link; it has no help flag
 gpp|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; gpp -?|
 cccp2|load /dd/CMDS/cio; chx /dd/CMDS/GCC2; cccp2 -?|
 cc2|none|the driver runs it; -version prints its version, and it has no help flag
@@ -1087,3 +1097,36 @@ time|none|it takes the command to run, with that command's own options after it
 compface|none|it takes `[infile [outfile]]' and prints a usage line only when handed more than two of them; with none it reads standard input
 uncompface|none|the same shape as compface: `[infile [outfile]]', no help flag, standard input when no file is named
 strcmp|strcmp -?|
+ptyman|none|a file manager, not a program; DOC/ptyman/ptyman.doc is its manual
+ptydrv|none|PtyMan's driver, not a program
+pty|none|a device descriptor, not a program
+lfcrman|none|a file manager, not a program
+h0t|none|a device descriptor, not a program
+thlpct|none|a device descriptor, not a program
+disp|none|a device driver, not a program
+di|none|a device descriptor, not a program
+cctrap|none|a trap handler, not a program
+cpucache|cpucache -?|
+vt100|none|it takes the terminal device to open and nothing else; Alt-/ is its menu
+x9eyes|none|it takes no options; it opens the personal window at once
+setbgptn|none|it takes a pattern file; the personal window is set from it
+logon|logon -?|
+mmon|mmon -?|
+watch|none|it answers -? only for the super-user; DOC/SYSADMIN/watch.prf is its manual
+timeout|none|it prints nothing; logon runs it
+errlog|errlog -?|
+erradm|erradm -?|
+vcron|none|it takes no options, and runs only for members of group Cron
+crontab|crontab -?|
+rex|rex -?|
+chp|none|it takes the node to log in to: chp /n0/<node>
+remdate|none|it takes the node to read the time from
+prexd|prexd -?|
+prexdc|none|prexd starts it; it is not run by hand
+mesg|mesg -?|
+mmenu|mmenu -?|
+mwb|mwb -?|
+newgrp|newgrp -?|
+speak|speak -?|
+uid|uid -?|
+msg|none|it prints no usage, only a blank line; mmenu runs it, and DOC/SYSADMIN/msg.prf is its manual

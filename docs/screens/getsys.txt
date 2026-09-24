@@ -1,21 +1,23 @@
-$ getsys 2>/nil | head -n 20
-System global variables (OS-9/680x0 V2.3):
-------------------------------------------
+# F$SetSys: unimplemented 08AC (size=80000004)
 
 set to modsync code after coldstart ......... $4afc
+# F$SetSys: unimplemented 08EC (size=80000004)
+# F$SetSys: unimplemented 08F0 (size=80000004)
+# F$SetSys: unimplemented 08F4 (size=80000001)
+# F$SetSys: unimplemented 08F8 (size=80000004)
 prevent sysproc from sleeping if 1 .......... $0
-initialization module ptr ('init') .......... $47dc0
+initialization module ptr ('init') .......... $47e80
 address of system tick routine .............. $0
 number of ticks per second .................. 100
 year ........................................ 2026
 month ....................................... 9
-day ......................................... 20
+day ......................................... 24
 compatability flags ......................... $0
 0 = no FPU, 1 = 68881, 2 = 68882 ............ 1
-julian day number ........................... 2461303
-system time seconds left until midnight ..... 7285
+julian day number ........................... 2461307
+system time seconds left until midnight ..... 83016
 IRQ flag .................................... $0
 number of unknown IRQs ...................... 0
 module directory (start ptr) ................ $1080
 module directory (start end) ................ $5080
-Process Descriptor Block Table ptr .......... $5980
+Process Descriptor Block Table ptr .......... $5a40

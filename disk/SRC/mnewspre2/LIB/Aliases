@@ -1,0 +1,1 @@
+## $Log$##      A file to alias newgroup#      Warning: Only acts on incoming messages,#      doesn't makes a revers aliasing on outgoing#      messages#      Format:#      newsgroup newsgroup{,newsgroup}

@@ -11,4 +11,4 @@ Default Configuration:
 $ dmake -f DOC/make/demo.mk greeting
 cp /dd/SYS/motd /dd/tmp/greeting
 $ ls -l tmp/greeting
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 tmp/greeting
+-rw-rw-rw-   1 7        1              40 Sep 24 01:56 tmp/greeting

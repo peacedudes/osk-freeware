@@ -1,4 +1,4 @@
 $ whoami
-su
+tester
 $ echo "USER is $USER"
 USER is tester

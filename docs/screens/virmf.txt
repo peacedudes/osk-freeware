@@ -6,11 +6,10 @@ Font metrics written on logo10.tfm.
 Output written on logo10.120gf (7 characters, 608 bytes).
 Transcript written on logo10.log.
 $ ls -l
-total 6656
--rw-------   1 0        0             632 Sep  9 00:19 back.120gf
--rw-rw-rw-   1 0        0            2546 Sep  9 00:28 gt.out
--rw-------   1 0        0             608 Sep  9 00:44 logo10.120gf
--rw-------   1 0        0             306 Sep  9 00:44 logo10.log
--rw-------   1 0        0             256 Sep  9 00:44 logo10.tfm
--rw-rw-rw-   1 0        0              63 Sep  9 00:27 pt.out
--rw-rw-rw-   1 0        0              40 Sep  9 00:44 run.mf
+total 6144
+-rw-------   1 7        1             632 Sep 24 01:50 back.120gf
+-rw-------   1 7        1             608 Sep 24 02:15 logo10.120gf
+-rw-------   1 7        1             307 Sep 24 02:15 logo10.log
+-rw-------   1 7        1             256 Sep 24 02:15 logo10.tfm
+-rw-rw-rw-   1 7        1            2249 Sep 24 01:58 pt.out
+-rw-rw-rw-   1 7        1              40 Sep 24 02:15 run.mf

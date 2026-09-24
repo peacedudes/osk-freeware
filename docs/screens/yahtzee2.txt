@@ -1,24 +1,24 @@
 .-------.  .-------.  .-------.  .-------.  .-------.
-|       |  | O     |  |       |  | O   O |  |       |  Y a h t z e e   2 . 1
-|   O   |  |       |  |   O   |  | O   O |  |   O   |
-|       |  |     O |  |       |  | O   O |  |       |    uunet!sco!staceyc
+| O   O |  | O   O |  | O     |  |       |  | O   O |  Y a h t z e e   2 . 1
+| O   O |  | O   O |  |   O   |  |   O   |  | O   O |
+| O   O |  | O   O |  |     O |  |       |  | O   O |    uunet!sco!staceyc
 `-------'  `-------'  `-------'  `-------'  `-------'
                   simul-1   simul-2
-           one          2         1
-           two          2         6
-         three          9         9
+           one          1         2
+           two          4         6
+         three          9         6
           four         12  |-----------------------|
-          five          5  |Continue (y) or (n):   |
+          five         15  |Continue (y) or (n):   |
            six         18  |-----------------------|
-   3 of a kind         26        25
-   4 of a kind         28         0
+   3 of a kind         22        27
+   4 of a kind          0        18
     full house         25        25
 small straight         30        30
 large straight         40        40
-       yahtzee          0         0
-        chance         18        27
+       yahtzee         50         0
+        chance         18        21
 
-  63 sub total         48        67
-      63 bonus                   35
+  63 sub total         59        59
+      63 bonus
  yahtzee bonus
-         total        215       249
+         total        244       220

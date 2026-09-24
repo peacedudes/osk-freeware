@@ -2,7 +2,7 @@ printf "int main()\r{\r  return 0;\r}\r" > hello.c
 $ ./gpp -v -c hello.c
 gpp version 1.40.3 (based on GCC 1.40)
  /DD/CMDS/gpp_cccp -+ -v -undef -D__GNUC__ -D__GNUG__ -DOSK -D__OSK__ -D__mc6800
-0__ -Dmc68000 hello.c cc.000004.cpp
+0__ -Dmc68000 hello.c cc.000005.cpp
 GNU CPP version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support)
 #include "..." search starts here:
 #include <...> search starts here:
@@ -10,10 +10,10 @@ GNU CPP version 2.5.6 (68k, Motorola/OSK syntax, srcdbg support)
  /DD/DEFS/GCC2
  /DD/DEFS
 End of search list.
- /DD/CMDS/gpp_cc1plus cc.000004.cpp -quiet -dumpbase hello.c -version -o cc.0000
-04.a
+ /DD/CMDS/gpp_cc1plus cc.000005.cpp -quiet -dumpbase hello.c -version -o cc.0000
+05.a
 GNU C++ version 1.40.3 (based on GCC 1.40) (68k, Motorola syntax) compiled by GN
 U C version 1.40.
 default target switches: -mregparm -mstack-check
- r68 -v -q cc.000004.a -o=hello.r
+ r68 -v -q cc.000005.a -o=hello.r
 gpp: Can't fork 'r68'.

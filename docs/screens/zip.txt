@@ -1,12 +1,12 @@
 zip test.zip motd
 adding motd (deflated 44%)
-zip warning: new zip file left as: _Z000003
+zip warning: new zip file left as: _Z000004
 zip error: file not found
 zip error: Could not create output file (was replacing the original zip file)
 $ mv _Z* test.zip
 $ unzip -l test.zip
  Length    Date    Time    Name ("^" ==> case
  ------    ----    ----    ----   conversion)
-    963  08-03-26  19:00   motd
+    963  09-23-26  23:36   motd
  ------                    -------
     963                    1

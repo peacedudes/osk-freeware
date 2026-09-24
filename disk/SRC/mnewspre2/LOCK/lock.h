@@ -1,0 +1,1 @@
+# ifndef       _LOCK_H# define       _LOCK_Hextern int     _got_alarm;extern int     do_lock ();extern void    do_unlock ();# endif                /* _LOCK_H */

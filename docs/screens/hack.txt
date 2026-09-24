@@ -1,12 +1,4 @@
-The kobold misses.
-
-
-                                                       -------
-                                                       +.....|
-                                                       |.....|
-                                                       |.@d..|
-                                                       +..K..|
-                                                       --+----
+Unknown command '^M'
 
 
 
@@ -15,10 +7,18 @@ The kobold misses.
 
 
 
+                                                                     -------
+                                                                     |.....|
+                                                                     |.....|
+                                                                     +..<.d|
+                                                                     |...@.|
+                                                                     -------
 
 
 
 
 
 
-Level 1    Hp   9(15)   Ac 9    Str 16      Exp  1
+
+
+Level 1    Hp  10(15)   Ac 9    Str 16      Exp  1

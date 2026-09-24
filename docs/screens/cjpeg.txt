@@ -1,4 +1,4 @@
 cjpeg -quality 50 tmp/GFXA/j.ppm > tmp/GFXA/j.jpg
 $ ls -l tmp/GFXA/j.ppm tmp/GFXA/j.jpg
--rw-rw-rw-   1 0        0             744 Sep  8 19:11 tmp/GFXA/j.jpg
--rw-rw-rw-   1 0        0            3469 Sep  8 19:10 tmp/GFXA/j.ppm
+-rw-rw-rw-   1 7        1             852 Sep 24 01:41 tmp/GFXA/j.jpg
+-rw-rw-rw-   1 7        1            3469 Sep 24 01:41 tmp/GFXA/j.ppm

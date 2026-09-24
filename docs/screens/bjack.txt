@@ -1,5 +1,5 @@
 bjack 500
 Shuffle...
 Total $500.  Wager?100
-Dealer: A?      Player: 8K
+Dealer: A?      Player: 84
 Insurance?

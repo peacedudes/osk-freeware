@@ -1,3 +1,3 @@
 whetstone
-Seconds =  0.68
-Whetstones =  1470588.235
+Seconds =  0.73
+Whetstones =  1369863.014

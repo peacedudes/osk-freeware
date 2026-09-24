@@ -471,6 +471,7 @@ run     dump q.Z; jaw < q.Z
 wait    4
 
 shot    bru
+super
 cap     bru backing up a directory, then listing the archive in long
 cap     form: each file's attributes, owner, date and size are kept, and
 cap     `bru -x' puts them back.  The year prints as `<6' -- it is

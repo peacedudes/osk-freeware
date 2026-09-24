@@ -158,6 +158,7 @@ run     qt
 wait    5
 
 shot    setimex
+super
 cap     Checks the system clock against a hardware time source and
 cap     corrects it if it drifted.  Run bare, it reports the time it
 cap     found -- and that is all it can do under os9exec, where the call

@@ -1,10 +1,10 @@
 fstat tmp/FILESA/own.txt
 
 Filename:     tmp/FILESA/own.txt
-Owner:        0.0
+Owner:        1.7
 Attributes:   ---wr-wr
-Created:      09/07/2026
-Modified:     08/03/2026 07:00 pm
+Created:      09/24/2026
+Modified:     09/24/2026 02:50 am
 File Length:  40 $(28)
 $ owner tester tmp/FILESA/own.txt
 User 001.007 : tester
@@ -14,6 +14,6 @@ $ fstat tmp/FILESA/own.txt
 Filename:     tmp/FILESA/own.txt
 Owner:        1.7
 Attributes:   ---wr-wr
-Created:      09/07/2026
-Modified:     09/08/2026 03:42 pm
+Created:      09/24/2026
+Modified:     09/24/2026 02:50 am
 File Length:  40 $(28)

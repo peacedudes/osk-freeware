@@ -8,10 +8,10 @@ Do you want the report directed to a file or to the screen?
          *** Amortization Schedule ***
 
 Principal:  120000.00
-Future value:  273053.84
+Future value:  273053.94
 Term of loan in years:  30.0
 Interest Rate:  6.500
-Total Interest Charge:  153053.84
+Total Interest Charge:  153053.94
 Payment:  758.48
 
 MONTH   PRINCIPAL       INTEREST        BALANCE
@@ -28,7 +28,7 @@ MONTH   PRINCIPAL       INTEREST        BALANCE
 9        113.27          645.21          119002.23
 10       113.89          644.60          118888.34
 11       114.50          643.98          118773.83
-12       115.13          643.36          118658.70
+12       115.12          643.36          118658.70
 13       115.75          642.73          118542.95
 14       116.38          642.11          118426.58
 15       117.01          641.48          118309.57

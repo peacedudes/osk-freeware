@@ -1,0 +1,1 @@
+define(`concat', `ifelse($2, , `$1', `$1,concat(shift($@))')')define(`fsent', `$1:$2   $3 nfs concat$4   0 0')fsent(freja, /home/gevn, /home/gevn, (rw, soft, bg, grpid))fsent(freja, /home/freja, /home/freja, (rw, soft, bg, grpid))fsent(rimfaxe, /home/rimfaxe, /home/rimfaxe, (rw, soft, bg, grpid))

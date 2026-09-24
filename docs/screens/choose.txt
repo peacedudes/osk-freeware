@@ -1,4 +1,4 @@
 choose -3 tmp/TXT/week.txt
-Monday
-Wednesday
+Tuesday
+Friday
 Saturday

@@ -1,0 +1,1 @@
+# $Log$### $Id$#G=     -gCC=    ccCFLAGS=        -qt=/dd/TMP -V=.. $GOBJS=  lock.rLIBDIR=        /dd/LIB$(LIBDIR)/lock.l:      $(OBJS)       merge $(OBJS) >-$@

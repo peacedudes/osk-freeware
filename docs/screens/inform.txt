@@ -1,4 +1,4 @@
 inform hellow
 OSK Inform 1.0 (v796/au)
 $ ls -l hellow.z3
--rw-------   1 0        0            1536 Sep 23 21:36 hellow.z3
+-rw-------   1 7        1            1536 Sep 24 00:54 hellow.z3

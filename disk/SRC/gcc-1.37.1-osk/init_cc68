@@ -1,0 +1,1 @@
+#! /bin/csh##  Prepare for compilation by cc68 compiler of Microware's Unibridge.setenv CDEF /usr/local/os9/defs_2.3setenv CLIB /usr/local/os9/lib_2.3setenv PATH $PATH\:/usr/local/os9/bin_2.3

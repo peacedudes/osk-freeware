@@ -6,7 +6,7 @@ $ msdir
  Volume Serial Number is 35D7-0A00
  Directory for A:/DOCS
 
-.            <DIR>     09-08-2026   9:32p
-..           <DIR>     09-08-2026   9:32p
+.            <DIR>     09-24-2026   2:31a
+..           <DIR>     09-24-2026   2:31a
         2 file(s)                 0 bytes
-                          1 457 152 bytes free
+                          1 456 640 bytes free

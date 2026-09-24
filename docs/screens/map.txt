@@ -1,12 +1,12 @@
 map -e DOC/INDEX
-                Blockmap of DOC/INDEX 22:25:36
+                Blockmap of DOC/INDEX 00:58:47
 Owner:   0.0
 Attr:  ---wr-wr
 Time last modified:  126/08/03 1900
-Date created:        126/09/08
+Date created:        126/09/23
 Links: 1
-Size:  00024E14
+Size:  0003D435
 
 Segment List:
   Sector  Blocks
-031931    024F
+037A41    03D7

@@ -1,6 +1,4 @@
-$ uuname
 pirsqrd
 phoenix
 seabass
-$ uuname -l
-milkyway
+$ milkyway

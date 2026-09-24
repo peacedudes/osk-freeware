@@ -220,6 +220,48 @@ wait    6
 run     ./gcc -v -c hello.c
 wait    10
 
+shot    gcc137
+for     gcc137 gcc137_cccp gcc137_cc1
+cap     `gcc137', GNU C 1.37.1 as CERN distributed it in 1991, run from
+cap     its own directory.  -B names its passes (gcc137_cccp, gcc137_cc1)
+cap     by the path of their prefix -- $PWD, as the shell keeps it, is that
+cap     directory; asked to stop at assembly (`-S') it writes 68k assembly
+cap     for your own r68 to assemble.
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc137 -B$PWD/gcc137_ -S hello.c; cat hello.a
+run     builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137
+wait    2
+run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+wait    2
+run     ./gcc137 -B$PWD/gcc137_ -S hello.c
+wait    8
+run     ls hello.*; cat hello.a
+wait    2
+run     rm -f hello.c hello.a hello.s
+wait    1
+
+shot    gcc272
+for     gcc272 gcc272_cccp2 gcc272_cc2 gcc272_cc2plus gcc272_collect
+cap     `gcc272', GNU C and C++ 2.7.2, the newest gcc here, run from its own
+cap     directory.  It forks its passes by name, so GCC2_OPTS points it at
+cap     each one with -F, by the path $PWD gives; asked to stop at assembly
+cap     (`-S') it writes 68k assembly for your own r68.
+try     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"; ./gcc272 -S hello.c
+run     builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272
+wait    2
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     clear
+wait    1
+run     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
+wait    1
+run     ./gcc272 -S hello.c
+wait    8
+run     cat hello.a
+wait    2
+run     rm -f hello.c hello.a
+wait    1
+
 shot    gcc2
 cap     `gcc2', the GCC 2.5.6 C driver, run from its own directory since
 cap     it is off the command path.  Asked to stop at assembly (`-S') it

@@ -473,6 +473,7 @@ wait    6
 snap
 
 shot    chown
+super
 size    26 80
 cap     An OS-9 owner is a pair, group.user.  chown sets the user half:
 cap     fstat before and after shows 0.0 becoming 0.5.  It takes a number

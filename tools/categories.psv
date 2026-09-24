@@ -591,7 +591,7 @@ unstr|Text tools|Fortune & sayings
 pagefraz|Text tools|KWIC index
 pagekwic|Text tools|KWIC index
 pageline|Text tools|KWIC index
-bm|Text tools|Search & match
+bmg|Text tools|Search & match
 bmgtest|Text tools|Search & match
 bmgtest2|Text tools|Search & match
 fgrep|Text tools|Search & match
@@ -660,6 +660,14 @@ cccp2|Compilers & build|C toolchain
 collect|Compilers & build|C toolchain
 gcc|Compilers & build|C toolchain
 gcc2|Compilers & build|C toolchain
+gcc137|Compilers & build|C toolchain
+gcc137_cccp|Compilers & build|C toolchain
+gcc137_cc1|Compilers & build|C toolchain
+gcc272|Compilers & build|C toolchain
+gcc272_cccp2|Compilers & build|C toolchain
+gcc272_cc2|Compilers & build|C toolchain
+gcc272_cc2plus|Compilers & build|C toolchain
+gcc272_collect|Compilers & build|C toolchain
 gcc_cc1|Compilers & build|C toolchain
 gcc_cc1plus|Compilers & build|C toolchain
 gcc_cccp|Compilers & build|C toolchain
@@ -901,6 +909,7 @@ decode|Communications|News
 encode|Communications|News
 inews|Communications|News
 nn|Communications|News
+tass|Communications|News
 nnadmin|Communications|News
 nnaux|Communications|News
 nncheck|Communications|News
@@ -913,6 +922,7 @@ finger|Communications|TCP/IP
 infoxpress|Communications|TCP/IP
 msntp|Communications|TCP/IP
 net|Communications|TCP/IP
+bm|Communications|TCP/IP
 osknet|Communications|TCP/IP
 ttcp|Communications|TCP/IP
 boa|Communications|TCP/IP
@@ -1135,3 +1145,36 @@ more|Documentation|Help & pagers
 v7make|Compilers & build|Make & generators
 yahtzee|Games|Board & card
 time|System & modules|Processes & memory
+ptyman|System & modules|Drivers & file managers
+ptydrv|System & modules|Drivers & file managers
+pty|System & modules|Drivers & file managers
+lfcrman|System & modules|Drivers & file managers
+h0t|System & modules|Drivers & file managers
+thlpct|System & modules|Drivers & file managers
+disp|System & modules|Drivers & file managers
+di|System & modules|Drivers & file managers
+cctrap|System & modules|Drivers & file managers
+cpucache|System & modules|System state
+vt100|Communications|Terminal & transfer
+x9eyes|Needs hardware|Display
+setbgptn|Needs hardware|Display
+logon|System & modules|Users and login
+mmon|System & modules|Users and login
+watch|System & modules|Users and login
+timeout|System & modules|Users and login
+errlog|System & modules|Utilities
+erradm|System & modules|Utilities
+vcron|System & modules|Scheduling
+crontab|System & modules|Scheduling
+rex|Communications|TCP/IP
+chp|Communications|TCP/IP
+remdate|Communications|TCP/IP
+prexd|Communications|TCP/IP
+prexdc|Communications|TCP/IP
+mesg|System & modules|Users and login
+msg|System & modules|Users and login
+speak|System & modules|Users and login
+mmenu|System & modules|Users and login
+newgrp|System & modules|Users and login
+uid|System & modules|Users and login
+mwb|Documentation|Help & pagers

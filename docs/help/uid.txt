@@ -1,0 +1,4 @@
+$ uid -?
+uid {<user-name>}
+Print uid and gid of user <user-name>
+If no argument is given, the uid/gid of YOU are printed

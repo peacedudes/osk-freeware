@@ -1,0 +1,174 @@
+# Programs for a real OS-9 system that this emulator cannot exercise:
+# drivers and file managers, the MM/1 and X68000, multi-user and modem
+# lines, OS-9/Net.  Each card shows what can be shown here -- a module's
+# header, a usage line, the refusal -- and says plainly it is untested.
+
+shot    ptyman
+for     ptyman ptydrv pty
+cap     PtyMan is a file manager: pairs of pseudo-terminals, /pty/<name>
+cap     for the program that plays the terminal and /tty/<name> for the
+cap     one that thinks it has one.  We cannot test it -- the emulator
+cap     loads no file managers -- so each module's header is what there is
+cap     to show: the file manager, its driver, and its two descriptors.
+try     modinfo ptyman ptydrv pty tty
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo ptyman ptydrv pty tty
+wait    4
+
+shot    lfcrman
+for     lfcrman h0t thlpct
+cap     A file manager that shows another device with LF and CR swapped,
+cap     for text shared with Unix over NFS; h0t and thlpct are its example
+cap     descriptors.  Untested here: the emulator loads no file managers.
+try     modinfo lfcrman h0t thlpct
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo lfcrman h0t thlpct
+wait    4
+
+shot    disp
+for     disp di
+cap     The C device driver from OS-9 International 1/93, with its
+cap     descriptor di: a worked example of writing a driver in C, four
+cap     bits to a display port.  Untested: it wants the port.
+try     modinfo disp di
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo disp di
+wait    4
+
+shot    cpucache
+for     cpucache cctrap
+cap     cpucache shows and switches a 68020, 68030 or 68040's on-chip
+cap     caches, through its trap handler cctrap.  Its usage is all that
+cap     can be shown: the emulator has no caches to switch, and the
+cap     package's own driver is not here.
+try     cpucache -?
+run     clear
+run     cpucache -?
+wait    3
+
+shot    vt100
+cap     A terminal program for the MM/1: VT-100 and VT-52 emulation in a
+cap     K-Windows window.  Here it has no serial port to open, and says so.
+try     vt100 /t2
+run     clear
+run     vt100 /t2 < /nil
+wait    3
+
+shot    x9eyes
+for     x9eyes setbgptn
+cap     Two programs for the Sharp X68000's personal window: x9eyes, eyes
+cap     that follow the pointer, and setbgptn, the window system's
+cap     background pattern.  Without the X68000's /win each stops before
+cap     drawing anything, and says why.
+try     x9eyes
+run     clear
+run     x9eyes
+wait    3
+run     setbgptn SYS/motd
+wait    3
+
+shot    logon
+for     logon timeout
+cap     logon logs a user into a multi-user OS-9: password file, user,
+cap     environment and motd.  Its usage is its manual's summary; the
+cap     manual is DOC/SYSADMIN/logon.prf.  timeout is its idle timer.
+try     logon -?
+run     clear
+run     logon -?
+wait    3
+
+shot    mmon
+for     mmon watch
+size    48 80
+cap     mmon, a timesharing monitor for a terminal or modem line: it
+cap     answers, sets the speed and runs logon.  watch waits for a modem to
+cap     ring and starts a command -- for the super-user, and it tells
+cap     anyone else so.
+try     mmon -?
+run     clear
+run     mmon -?
+wait    3
+run     watch -?
+wait    3
+
+shot    errlog
+for     errlog erradm
+cap     errlog gathers error messages from other programs into one log;
+cap     erradm starts, stops, flushes and prints it.
+try     erradm -?
+run     clear
+run     errlog -?
+wait    2
+run     erradm -?
+wait    3
+
+shot    vcron
+for     vcron crontab
+cap     Vixie's cron.  vcron runs only for members of the group Cron,
+cap     which this disk has not got, so it says so; crontab lists,
+cap     installs, edits and removes a user's own table.
+try     crontab -l
+run     clear
+run     vcron
+wait    3
+run     crontab -l
+wait    3
+
+shot    rex
+for     rex chp remdate prexd prexdc
+cap     rex runs a command on another OS-9/Net node; chp logs in to one;
+cap     remdate takes its clock from one; prexd and prexdc are the daemon
+cap     and server on the node that answers.  Without a network each asks
+cap     for /n0 and stops.
+try     rex -?
+run     clear
+run     rex -?
+wait    3
+run     remdate
+wait    3
+
+shot    uid
+for     uid newgrp
+cap     uid prints a user's ids from the password file -- here the tester
+cap     account this disk carries; the group shows as UNKNOWN because there
+cap     is no SYS/group.  newgrp changes your group, as SYS/group allows.
+try     uid tester
+run     clear
+run     uid tester
+wait    2
+run     newgrp -?
+wait    3
+
+shot    mesg
+for     mesg msg speak
+cap     Messages between users logged in at once, whom logon records in
+cap     SYS/utmp: mesg sets whether you take them, msg sends a line, speak
+cap     opens a split-screen chat.  Here nobody else is logged in, so
+cap     their usage and speak's refusal are what can be shown.
+try     speak tester
+run     clear
+run     mesg -?
+wait    2
+run     speak tester
+wait    3
+
+shot    mmenu
+for     mmenu mwb
+cap     mmenu gives users a menu instead of a shell, as on a BBS, read from
+cap     menu files; mwb writes manual entries in TOP's proff format.  With
+cap     no menus or manual directory here, their usage is what shows.
+try     mmenu
+run     clear
+run     mmenu
+wait    3
+run     mwb -?
+wait    3

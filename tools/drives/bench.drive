@@ -40,12 +40,6 @@ run     /dd/CMDS/float
 drive   savage
 run     /dd/CMDS/savage
 
-drive   timid
-why     "Syntax: timit" -- its own name in the usage line is not its filename
-run     /dd/CMDS/timid -?
-run     echo "--- timing something real:"
-run     /dd/CMDS/timid /dd/CMDS/wc -c /dd/SYS/termcap
-
 drive   paranoia
 why     the classic floating-point torture test.  It is long; the first
 why     screenful is what the card would show.

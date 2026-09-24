@@ -11,7 +11,7 @@ Options selected:
   Resolution = 300.00000000 pixels per inch
 numerator/denominator=25400000/473628672
 magnification=1000;       0.00006334 pixels per DVI unit
-' TeX output 2026.09.18:2113'
+' TeX output 2026.09.24:0159'
 Postamble starts at byte 564.
 maxv=43725786, maxh=30785863, maxstackdepth=3, totalpages=1
 Font 33: cmsl10---loaded at size 655360 DVI units

@@ -1,0 +1,1 @@
+ nam CCTrap Trap code definitions** This psect contains the offsets for the trap* handler's dispatch table.  Each entry here MUST* match the order of the dispatch table entries.* psect ccdefs_a,0,0,0,0,0CC$Trap: equ 4		* user trap vector number for CTTrapCC$cacr: do.b 1CC$ttr:  do.b 1 ends

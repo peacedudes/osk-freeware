@@ -2,6 +2,24 @@
 # itself.  Some of these meet os9exec's limits rather than their
 # own -- where they do, the screen says so.
 
+shot    signal
+cap     Sends an OS-9 signal to a process by id -- the id, the signal
+cap     code, and seconds to wait first if you want a delay.  Code 0 ends
+cap     the process.  Here `cron' is started in the background and bash
+cap     prints the id it got, in angle brackets -- use the id you see
+cap     rather than the 4 shown here.  Sent twice: the second answers 228,
+cap     an illegal process id, which is how you know the first one landed.
+try     signal 4 0
+run     set +H
+wait    2
+run     clear
+wait    1
+run     cron &
+wait    4
+run     signal 4 0; echo "status $?"
+wait    4
+run     signal 4 0; echo "status $?"
+wait    4
 shot    unc
 cap     unc disassembles a 68000 OS-9 module back to assembler: the module
 cap     header as equates, then the code, tracing which bytes are
@@ -675,24 +693,6 @@ run     bsplt68 OS9Boot
 wait    6
 run     ls -l
 wait    4
-shot    signal
-cap     Sends an OS-9 signal to a process by id -- the id, the signal
-cap     code, and seconds to wait first if you want a delay.  Code 0 ends
-cap     the process.  Here `cron' is started in the background and bash
-cap     prints the id it got, in angle brackets -- use the id you see
-cap     rather than the 3 shown here.  Sent twice: the second answers 228,
-cap     an illegal process id, which is how you know the first one landed.
-try     signal 3 0
-run     set +H
-wait    2
-run     clear
-wait    1
-run     cron &
-wait    4
-run     signal 3 0; echo "status $?"
-wait    4
-run     signal 3 0; echo "status $?"
-wait    4
 shot    mexist
 cap     mexist tests whether a module is in memory and sets its exit
 cap     status -- zero when the module is there, one when it is not.
@@ -759,6 +759,7 @@ wait    4
 run     signal 3 0; echo "status $?"
 wait    4
 shot    setime
+super
 cap     setime prompts for the date and time as one string, two digits
 cap     each: year, month, day, hour, minute, second, in that order, so
 cap     the format is what this card has to give you.  Nothing here can
@@ -770,6 +771,7 @@ try     setime -?
 run     setime -?
 wait    5
 shot    adduser
+super
 size    30 80
 cap     adduser adds a login to the system, or removes one with -r.  With no
 cap     name given it prints its usage: the options and the command forms it
@@ -919,6 +921,7 @@ wait    3
 run     snd_sig -2 3; echo "status $?"
 wait    4
 shot    setime2
+super
 cap     setime2 sets the system date and time from the fields
 cap     `yyy mm dd hh mm ss' at its prompt -- yyy counts years from 1900,
 cap     so 126 is 2026 -- and prints the date.  os9exec does not move the

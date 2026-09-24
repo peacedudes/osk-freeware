@@ -1,0 +1,1 @@
+ex make gcc2 RDIR=stage1 "CC=gcc2 -fomit-frame-pointer -ucc -ob -L.../gclib/2.7.2" LIBS= "CLIBS=-l=.../gclib/2.7.2/gclib000.l" TCSW=-m68000 srcdir=/h0/C/GCC_2.7.2

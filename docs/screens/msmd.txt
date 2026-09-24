@@ -5,6 +5,6 @@ $ msdir a:
  Directory for A:/
 
 readme   txt       139 08-02-2026   2:22a readme.txt
-DOCS         <DIR>     09-13-2026  11:33a
+DOCS         <DIR>     09-24-2026   2:31a
         2 file(s)               139 bytes
                           1 456 640 bytes free

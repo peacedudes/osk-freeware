@@ -1,8 +1,8 @@
 pgmenhance -9 tmp/NEAB/en.pgm > tmp/NEAB/enh.pgm
 $ pgmtopbm tmp/NEAB/enh.pgm | pbmtoascii -2x4
-MMRMFR&ZF$$???|::::-..
-MM9HH&Z&$$|\\<>\:/::.
-MMH&M1&&Z$$\\\|>;-::.`
-MM9M1&&&\\%%%>/\::::.-
-MMRH&kk}[\\||\?:::.:.-
-MMHH&&$F1%Z////://:-.-
+MMM9H&&S$&{||!::/.:: .
+MMHH9&&&S$$???:>;'\-.-
+MMRMH&$$1S1||:>:::.:.'.
+MMHH&H$Z$$$??:/>\:-:.
+MHMHFk6$&/$SS/|<:/.-:-
+MMM&Fkk&$$\????::/:: .

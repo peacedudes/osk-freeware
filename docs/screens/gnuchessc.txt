@@ -1,5 +1,5 @@
 $ gnuchessc
 Chess
 e2e4
-1. ... e2e41. ... d7d6
-My move is: d7d6
+1. ... e2e41. ... g8f6
+My move is: g8f6

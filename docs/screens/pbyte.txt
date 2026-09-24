@@ -1,12 +1,8 @@
-cat DOC/samples/jabber.txt > tmp/pb.txt
-$ cat tmp/pb.txt
-Twas brillig, and the slithy toves
+$ Twas brillig, and the slithy toves
      Did gyre and gimble in the wabe:
 All mimsy were the borogoves,
      And the mome raths outgrabe.
-$ pbyte tmp/pb.txt 0 41 42 43
-$ cat tmp/pb.txt
-ABCs brillig, and the slithy toves
+$ ABCs brillig, and the slithy toves
      Did gyre and gimble in the wabe:
 All mimsy were the borogoves,
      And the mome raths outgrabe.

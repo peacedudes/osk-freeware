@@ -1,10 +1,10 @@
 Welcome to Cold-hand Poker
 
 
-Would you like to know the rules? We'll start you off with 32 chips
+Would you like to know the rules? We'll start you off with 111 chips
 
 Bet limit (% of pot)?
 What's the ante? With a 10 chip ante the pot has 20 chips
-You are dealt 4S 7S 8H JH 6S
+You are dealt 4S 3D JC 8D 5H
 
 Would you like to bet (B) or check (-)?

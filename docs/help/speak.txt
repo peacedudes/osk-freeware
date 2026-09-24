@@ -1,0 +1,5 @@
+$ speak -?
+Syntax: speak <user>
+Function: starts a chat between you and <user>
+Options:
+     none.

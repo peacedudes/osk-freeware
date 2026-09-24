@@ -13,8 +13,8 @@ You'll have to do this yourself:
 Exiting, with status 0
 $ ls -l
 total 22016
--rw-------   1 0        0             443 Sep 11 09:10 Makefile
--rw-------   1 0        0            2384 Sep 11 09:10 which.1
--rw-------   1 0        0            5970 Sep 11 09:10 which6.c
--rw-------   1 0        0             873 Sep 11 09:10 which6.sha.hdr
--rw-rw-rw-   1 0        0           11416 Aug  3 19:00 which6.shar
+-rw-------   1 7        1             443 Sep 23 23:39 Makefile
+-rw-------   1 7        1            2384 Sep 23 23:39 which.1
+-rw-------   1 7        1            5970 Sep 23 23:39 which6.c
+-rw-------   1 7        1             873 Sep 23 23:39 which6.sha.hdr
+-rw-rw-rw-   1 7        1           11416 Sep 23 23:39 which6.shar

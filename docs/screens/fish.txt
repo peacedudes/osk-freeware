@@ -1,15 +1,13 @@
 $ fish
 Would you like instructions (y or n)? n
-I get to start.
-I ask you for: 2.
-You say "GO FISH!"
+You get to start.
 
-Your hand is: 3 5 5 6 7 7 Q
+Your hand is: A 2 3 4 8 Q Q
 You ask me for: 3
 I say "GO FISH!"
-You drew 9.
-I ask you for: 4.
+You drew 10.
+I ask you for: 5.
 You say "GO FISH!"
 
-Your hand is: 3 5 5 6 7 7 9 Q
+Your hand is: A 2 3 4 8 10 Q Q
 You ask me for:

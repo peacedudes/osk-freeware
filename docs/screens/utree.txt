@@ -1,24 +1,24 @@
-/dd/DOC: 304 dir(s) 1560 file(s)
+/dd/DOC: 561 dir(s) 2131 file(s)
 TREE: Help Backup Chdir Find Grep Info List Mkdir Out Rmdir Stat Tag Untag Quit
 + +------- DOC                                                                 -
-+ |        |------- advent                                                     -
++ |        |------- X11R6shl                                                   -
+  |        |------- about                                                      -
+  |        |------- adl                                                        -
+  |        |------- advent                                                     -
   |        |------- advint                                                     -
+  |        |------- ag                                                         -
+  |        |------- agrep                                                      -
+  |        |------- almanac                                                    -
   |        |------- alps                                                       -
+  |        |------- anagram                                                    -
   |        |------- animal                                                     -
+  |        |------- ape                                                        -
+  |        |------- aprocs                                                     -
   |        |------- ar                                                         -
   |        |------- ar2                                                        -
   |        |------- arc                                                        -
-  |        |------- argproc_demo                                               -
-  |        |------- aterm                                                      -
-  |        |------- autolf                                                     -
-  |        |------- auxlib                                                     -
-  |        |------- bash                                                       -
-  |        |------- bc                                                         -
-  |        |------- bcd                                                        -
-  |        |------- beav                                                       -
-  |        |------- bincheckr                                                  -
-  |        |------- binhex                                                     -
-./*: 358 file(s) 297 dir(s)
+  |        |------- areacode                                                   -
+./*: 617 file(s) 554 dir(s)
  *CATEGORIES         *DEPENDS            *EFFO-INFO          *INDEX
  *MANPAGES           *NEEDCIO-INDEX      *ORIGINS            *README
  *README-ARCHIVERS   *README-BUSERR      *README-CIO         *README-DOCS

@@ -1,9 +1,9 @@
 $ wisecrack &
-<3>
+<4>
 $ ask
-VIEL SPASS MIT OSK
++ WERDE  MITGLIED +
 
 $ ask
-COMPUTER-VEREIN E.V
+VIEL SPASS MIT OSK
 
 $ signal 3 0

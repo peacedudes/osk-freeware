@@ -1,2 +1,2 @@
 gzip68k_csl -v tmp/ARC/g3
-tmp/ARC/g3:              64.9% -- replaced with tmp/ARC/g3.gz
+tmp/ARC/g3:              65.0% -- replaced with tmp/ARC/g3.gz

@@ -1,0 +1,117 @@
+family  k5jb
+# K5JB's k37 build of KA9Q NET, and Bdale Garbee's mailer `bm' from the same
+# kit, both built from SRC/k5jb.  Neither needs a network to show that it
+# works: net reads its configuration and answers at its NET> prompt, and bm
+# writes a letter into the queue net's SMTP client sends from.
+#
+# NET READS ITS WHOLE STANDARD INPUT BEFORE IT SERVICES THE NETWORK, and at
+# end of file it loops on "Unknown command" for ever.  Every command file
+# here ends in `exit please' -- plain `exit' is refused once startup.net has
+# run ("Usage: exit please").  Bare, with nothing set up, it stops by itself.
+#
+# NETHOME is where it looks for startup.net, hosts.net and the rest, and
+# where bm finds .bmrc.  NETSPOOL holds mail, mqueue and rqueue; without it
+# both programs want /usr/spool, which OS-9 cannot have -- a leading /name
+# is a device.
+setup   W=/dd/tmp/K5JB
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W/home $W/spool/mail $W/spool/mqueue $W/spool/rqueue
+setup   echo "hostname test.ampr" > $W/home/startup.net
+setup   echo "ip addr 44.0.0.1" >> $W/home/startup.net
+setup   echo "start smtp" >> $W/home/startup.net
+setup   echo "44.0.0.1 test.ampr" > $W/home/hosts.net
+setup   echo "host test.ampr" > $W/home/.bmrc
+setup   echo "user tester" >> $W/home/.bmrc
+setup   echo "fullname Test_User" >> $W/home/.bmrc
+
+# With nothing set up it names each file it looks for and points at the
+# manual.  The names follow HOME when NETHOME is unset.
+case    net-k37-names-its-version-and-the-files-it-wants
+run     echo "exit please" > $W/bare.in
+run     export HOME=$W/nothing
+run     /dd/CMDS/NETWORK/net < $W/bare.in
+expect  Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q
+expect  NET/ROM Support (C) 1989 by Dan Frank, W9NK
+expect  This version is K5JB.k37 with options:
+expect  Warning: File /dd/tmp/K5JB/nothing/startup.net not found
+expect  Error: Directory /usr/spool/mail not found
+expect  Sorry, Chapter 2 will help you set up correctly.
+
+# Set up, it runs startup.net: the host name and address it was given, and
+# the SMTP server listening, are what its own commands report back.
+case    net-k37-runs-startup-net-and-answers-at-its-prompt
+run     export NETHOME=$W/home
+run     export NETSPOOL=$W/spool
+run     echo "hostname" > $W/cmds.in
+run     echo "ip addr" >> $W/cmds.in
+run     echo "tcp status" >> $W/cmds.in
+run     echo "exit please" >> $W/cmds.in
+run     /dd/CMDS/NETWORK/net < $W/cmds.in
+expect  This version is K5JB.k37 with options:
+expect  NET> hostname
+expect  test.ampr
+expect  44.0.0.1
+expect  test.ampr:smtp          0.0.0.0:0               Listen   (S)
+absent  startup.net not found
+absent  Unknown command
+
+# bm composes a letter from standard input and queues it for net: the
+# letter, headers first, in mqueue/<n>.txt, and the envelope net's SMTP
+# client reads -- destination host, sender, recipient -- in <n>.wrk.
+case    bm-queues-a-letter-with-its-headers-under-NETSPOOL
+run     export NETHOME=$W/home
+run     export NETSPOOL=$W/spool
+run     /dd/CMDS/rm -f $W/spool/mqueue/*
+run     echo "hello from bm" > $W/body
+run     /dd/CMDS/NETWORK/bm -s "a test" someone@far.ampr < $W/body
+run     /dd/CMDS/cat $W/spool/mqueue/1.txt
+run     /dd/CMDS/cat $W/spool/mqueue/1.wrk
+expect  Message-Id: <1@test.ampr>
+# The year is two digits (this collection's fix; it read 126 as K5JB left it).
+absent   126 
+expect  From: tester@test.ampr (Test_User)
+expect  To: someone@far.ampr
+expect  Subject: a test
+expect  hello from bm
+expect  far.ampr
+expect  someone@far.ampr
+
+# -q is "queue this file as it is": the input is already a whole message,
+# headers and all, so bm adds none.  Its queued copy is the input exactly.
+case    bm-q-queues-a-prepared-message-unchanged
+run     export NETHOME=$W/home
+run     export NETSPOOL=$W/spool
+run     /dd/CMDS/rm -f $W/spool/mqueue/*
+run     echo "From: tester@test.ampr" > $W/whole
+run     echo "Subject: already written" >> $W/whole
+run     echo "" >> $W/whole
+run     echo "prepared elsewhere" >> $W/whole
+run     /dd/CMDS/NETWORK/bm -q someone@far.ampr < $W/whole
+run     /dd/CMDS/diff $W/whole $W/spool/mqueue/1.txt && echo SAME-BYTES
+run     /dd/CMDS/cat $W/spool/mqueue/1.txt
+expect  SAME-BYTES
+expect  prepared elsewhere
+absent  Message-Id
+
+# Reading: the mailbox is NETSPOOL/mail/<user>.txt, and `h' lists it.
+case    bm-reads-a-mailbox
+run     export NETHOME=$W/home
+run     export NETSPOOL=$W/spool
+run     echo "From someone@far.ampr Thu Sep 24 02:20:08 1995" > $W/spool/mail/tester.txt
+run     echo "From: someone@far.ampr" >> $W/spool/mail/tester.txt
+run     echo "Subject: greetings" >> $W/spool/mail/tester.txt
+run     echo "" >> $W/spool/mail/tester.txt
+run     echo "the body of the letter" >> $W/spool/mail/tester.txt
+run     echo "h" > $W/r.in
+run     echo "1" >> $W/r.in
+run     echo "q" >> $W/r.in
+run     /dd/CMDS/NETWORK/bm < $W/r.in
+expect  Mailbox /dd/tmp/K5JB/spool/mail/tester.txt - 1 messages 1 new
+expect  someone@far.ampr
+expect  greetings
+expect  the body of the letter
+
+case    bm-prints-its-usage
+run     /dd/CMDS/NETWORK/bm -? < /nil
+expect  Usage: (read) bm [-u user] [-f file]
+expect  or (send) bm [-r rcfile] [-s subject] [-q] addr .. addr

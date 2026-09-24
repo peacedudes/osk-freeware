@@ -1378,6 +1378,7 @@ snap
 
 
 shot    loadmem
+super
 cap     Copies a file into memory at an address you give: destination,
 cap     upper limit, path, the addresses in hex.  Super user only, and it
 cap     says nothing at all when it works -- so its counterpart `savemem'
@@ -1400,6 +1401,7 @@ wait    4
 
 
 shot    savemem
+super
 cap     Writes a block of memory out to a file: from address, to address,
 cap     path, in hex and the range inclusive -- 8000 to 8027 is 40 bytes.
 cap     Its counterpart `loadmem' put the text there first, so there is

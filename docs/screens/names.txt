@@ -1,2 +1,14 @@
 names CMDS/os9lib
-.! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+.! +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++. !+=!Adressen Verwaltung"!.$!MTM\!Version 1.0o!+ "+""Filesystem : \"Eintr.ge :
+ o"+ #.!#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++. $+o$+ %+o%+ &+o&+ '+o'+ (+o(+ )+o)+ *+o*+ ++o++ ,+o,+"$Anrede:"%Nachnam
+e:"&Vorname:"'Stra#e:"(PLZ:>(Stadt:")Telefon:"+Bemerkung:",Bemerkung: -.!-++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++. .+o.+
+/+o/+ 0+o0+ 1+o1+ 2+o2+ 3+o3+ 4+o4+"/Wahl:,/F-Finde (general),0L-Lese exakt,1--E
+intrag .ndern,2A-Neuer Eintrag,3B-Anfang der DateiH/E-Ende der DateiH0N-N.chster
+ EintragH1V-Voriger EintragH2D-L/schen des EintragsH3Q-Programm Ende 5.!5+++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++. 6+o6+ 7
+.!7+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++.!n"6Here we go!"6Erzeuge neues Filesystem ... /"/dd/sys/testernames"6Filesyste
+m ist ge/ffnet und bereit.g"   0"6Geben Sie einen Buchstaben ein :

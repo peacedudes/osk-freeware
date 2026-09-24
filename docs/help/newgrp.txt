@@ -1,0 +1,6 @@
+$ newgrp -?
+Syntax: newgrp [<gid>]
+or      newgrp [<group-name>]
+Finction: changes the group-id to the specified gid
+Options:
+     none.

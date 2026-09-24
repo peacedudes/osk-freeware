@@ -1,0 +1,1 @@
+dnl "m4.texinfo": 673: Origin heredefine(`foo', `Expansion one.')dnl =>foodnl =>Expansion one.pushdef(`foo', `Expansion two.')dnl =>foodnl =>Expansion two.popdef(`foo')dnl =>foodnl =>Expansion one.popdef(`foo')dnl =>foodnl =>foo

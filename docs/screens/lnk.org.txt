@@ -1,4 +1,6 @@
 lnk.org fact
+l68: error - can't create output file
+ STOP: linking aborted
 $ fact
    n         n!
            1           1

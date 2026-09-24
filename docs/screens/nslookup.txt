@@ -1,4 +1,4 @@
 nslookup ftp.funet.fi
-read failed: file not found
-*** Can't find server name for address 127.0.0.1: Unspecified error
+connect failed: error 26
+*** Can't find server name for address 127.0.0.1: No response from server
 *** Default servers are not available

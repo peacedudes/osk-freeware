@@ -39,10 +39,6 @@ run     /dd/CMDS/wc -c /dd/tmp/merged
 run     /dd/CMDS/demerge /dd/tmp/merged
 run     /dd/CMDS/modinfo /dd/tmp/merged
 
-drive   deton
-why     an alarm timing out an I/O read -- 2 seconds, with no input coming
-run     /dd/CMDS/deton 2
-
 drive   dpark
 why     restores an RBF head to track 00; /dd is an image, so what does it say?
 run     /dd/CMDS/dpark /dd
@@ -80,12 +76,6 @@ drive   suse
 why     "show a program's usage line" -- recorded as printing nothing for anything
 run     /dd/CMDS/suse /dd/CMDS/cat
 run     /dd/CMDS/suse cat
-
-drive   sysmax
-run     /dd/CMDS/sysmax
-
-drive   sysmin
-run     /dd/CMDS/sysmin
 
 drive   trunc
 why     truncate a file to a length -- measure the length afterwards

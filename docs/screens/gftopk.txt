@@ -1,4 +1,4 @@
 gftopk logo10.120gf logo10.120pk
 $ ls -l logo10.120gf logo10.120pk
--rw-------   1 0        0             608 Sep  9 00:17 logo10.120gf
--rw-------   1 0        0             364 Sep  9 00:17 logo10.120pk
+-rw-------   1 7        1             608 Sep 24 01:48 logo10.120gf
+-rw-------   1 7        1             364 Sep 24 01:48 logo10.120pk

@@ -4,5 +4,5 @@ New newsgroup: alt.folklore.urban--Subscribe? [yn]
 New newsgroup: alt.magic--Subscribe? [yn] n
 New newsgroup: comp.lang.c--Subscribe? [yn]
 New newsgroup: comp.os.linux--Subscribe? [yn] n
+New newsgroup: comp.os.os9--Subscribe? [yn]
 New newsgroup: comp.sys.m6809--Subscribe? [yn]
-New newsgroup: junk--Subscribe? [yn]

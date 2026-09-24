@@ -4,4 +4,4 @@ $ ar -t tmp/k2.ar
                                                     file   stored
   file name                   ver    file date      size    size
 ----------------------------- --- --------------   -----   -----
-SRC/keep/keep.c                0  126/08/03 19:00   20473   12674
+SRC/keep/keep.c                0  126/08/03 19:00   32902   19931

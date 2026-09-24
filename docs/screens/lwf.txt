@@ -1,8 +1,8 @@
 lwf tmp/PRT/j.txt | head -n 14
 %!PS-Adobe-2.0
 %%Creator: lwf on evtech
-%%CreationDate: Tue Sep  8 22:42:37 2026
-%%For: su
+%%CreationDate: Thu Sep 24 01:44:58 2026
+%%For: tester
 %%DocumentFonts: Courier
 %%Pages: (atend)
 %%EndComments

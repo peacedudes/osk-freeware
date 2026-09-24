@@ -1,13 +1,13 @@
 sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
-106 the
-62 and
-56 a
-53 is
-36 of
-34 it
-25 --
-22 to
-21 in
-20 this
-19 that
+109 the
+64 and
+58 a
+52 is
+37 of
+33 it
+27 --
+23 to
+20 that
+19 in
+17 on
 17 program

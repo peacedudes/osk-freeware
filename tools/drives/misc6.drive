@@ -12,10 +12,8 @@ setup   /dd/CMDS/rm -f $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
 
-drive   sysid-and-tty-and-whoami
-why     three one-line reporters.
-run     /dd/CMDS/sysid
-run     echo "--- tty:"
+drive   tty-and-whoami
+why     two one-line reporters.
 run     /dd/CMDS/tty
 run     echo "--- whoami:"
 run     /dd/CMDS/whoami

@@ -6,19 +6,19 @@ Hello tester, welcome to NetHack!
 
 
 
-
-
-                                      ----------
-                                      +@d......|
-                                      |........|
-                                      +........|
-                                      |........|
-                                      |....!...|
-                                      |........+
-                                      ----------
+                                                   ------------
+                                                   +..........|
+                                                   |..........+
+                                                   +..........|
+                                                   |..........|
+                                                   +.f@.......|
+                                                   ------------
 
 
 
 
-Tester the Stripling        St:18/03 Dx:9 Co:18 In:7 Wi:7 Ch:10  Chaotic
-Dlvl:1  G:0  HP:16(16) Pw:1(1) AC:6  Xp:1/0
+
+
+
+Tester the Footpad     St:12 Dx:18 Co:13 In:9 Wi:7 Ch:13  Chaotic
+Dlvl:1  G:0  HP:12(12) Pw:1(1) AC:7  Xp:1/0

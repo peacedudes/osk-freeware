@@ -1,16 +1,17 @@
 fstat tmp/FILESA/grp.txt
 
 Filename:     tmp/FILESA/grp.txt
-Owner:        0.0
+Owner:        1.7
 Attributes:   ---wr-wr
-Created:      09/07/2026
-Modified:     08/03/2026 07:00 pm
+Created:      09/24/2026
+Modified:     09/24/2026 02:50 am
 File Length:  40 $(28)
 $ chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
+Can't chgrp tmp/FILESA/grp.txt
 
 Filename:     tmp/FILESA/grp.txt
-Owner:        3.0
+Owner:        1.7
 Attributes:   ---wr-wr
-Created:      09/07/2026
-Modified:     09/08/2026 03:43 pm
+Created:      09/24/2026
+Modified:     09/24/2026 02:51 am
 File Length:  40 $(28)

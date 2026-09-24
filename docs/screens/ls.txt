@@ -1,17 +1,17 @@
 ls -al SYS | head -n 18
-total 956928
-drwxrwxrwx   1 0        0            1376 Sep 23 12:09 .
-drwxrwxrwx   1 0        0            1024 Sep 23 12:11 ..
-drw-rw-rw-   1 0        0             128 Sep 23 12:10 .LOCKS
+total 958464
+drwxrwxrwx   1 0        0            1408 Sep 24 02:46 .
+drwxrwxrwx   1 0        0            1440 Sep 24 00:11 ..
+drw-rw-rw-   1 0        0             128 Sep 23 23:12 .LOCKS
 -rw-rw-rw-   1 0        0             213 Aug  3 19:00 .login
-drwxrwxrwx   1 0        0             160 Sep 23 12:10 ATERM
-drwxrwxrwx   1 0        0             832 Sep 23 12:10 HELP
-drwxrwxrwx   1 0        0             288 Sep 23 12:10 PEP
+drwxrwxrwx   1 0        0             160 Sep 23 23:12 ATERM
+drwxrwxrwx   1 0        0             832 Sep 23 23:12 HELP
+drwxrwxrwx   1 0        0             288 Sep 23 23:12 PEP
 -rw-rw-rw-   1 0        0             414 Aug  3 19:00 README-bootlog
-drwxrwxrwx   1 0        0             288 Sep 23 12:10 TERM
-drwxrwxrwx   1 0        0             416 Sep 23 12:10 TEX
-drwxrwxrwx   1 0        0             192 Sep 23 12:10 UTREE
-drwxrwxrwx   1 0        0             320 Sep 23 12:10 UUCP
+drwxrwxrwx   1 0        0             288 Sep 23 23:12 TERM
+drwxrwxrwx   1 0        0             416 Sep 23 23:12 TEX
+drwxrwxrwx   1 0        0             192 Sep 23 23:12 UTREE
+drwxrwxrwx   1 0        0             416 Sep 23 23:12 UUCP
 -rw-rw-rw-   1 0        0             343 Aug  3 19:00 birthdays
 -rw-rw-rw-   1 0        0               0 Aug  3 19:00 bootlog
 -rw-rw-rw-   1 0        0            1814 Aug  3 19:00 browse.hlp

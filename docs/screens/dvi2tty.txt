@@ -15,4 +15,4 @@ something else; on the Atari ST, for example, the key marked "Alternate" is the*
  * meta key.)
 If your keyboard doesn't have a meta key, don't panic.  You can also use the es*
  *cape key
-as a meta
+as a meta prefix; first type the escape, and t

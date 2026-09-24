@@ -1,0 +1,2 @@
+vt100 /t2 < /nil
+Error: Cannot open device.

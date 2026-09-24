@@ -1,0 +1,1 @@
+dnl "m4.texinfo": 637: Origin heredefine(`zap', defn(`undefine'))dnl =>zap(`undefine')dnl =>undefine(`zap')dnl =>undefine(zap)

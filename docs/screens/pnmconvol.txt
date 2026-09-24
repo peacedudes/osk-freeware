@@ -1,9 +1,9 @@
 pnmconvol tmp/NEAB/k.pgm tmp/NEAB/n.pgm > tmp/NEAB/cv.pgm
 pnmconvol: WARNING - this convolution matrix is biased
 $ pgmtopbm tmp/NEAB/cv.pgm | pbmtoascii -2x4
-?' "```._' :`:"``''? -`:
-|.    ..   '..- / /. ./?
-|:-/\ .:_:-.`` :?,| '`-,
-|.' \. .`:- ' ' ':>. _`\
-?\''. ..\:. -'`.':.' - i
-L._.v:?.:::,?.:::.:::i?/
+/:'` .':.'":)''"":' /".:
+/ ,-'`    .`-:\..: .,. .
+i.. .:`.`'..\.::.   . :;
+:-   `  .\./: '.:- '|.-|
+|\ -`- .:\` .  :,:-\.: i
+<|.-_.:v:,:`.?:_:v::'??i

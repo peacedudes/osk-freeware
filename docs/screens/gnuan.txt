@@ -31,7 +31,7 @@ Bad move.    Board position is:
  r n b q k - - r
 
 
-Process   Pid: 3, gnuan, edition 7
+Process   Pid: 4, gnuan, edition 7
     Exit code: E_PRCABT(228) Process Aborted
   Directories: Current   - /dd
                Execution - /dd/CMDS
@@ -39,17 +39,17 @@ Process   Pid: 3, gnuan, edition 7
  Last syscall: I$WritLn (0x008c)
     Registers: Dn=7FF00000 00000000 00000000 00000000
                   00000000 FFFFFF9D 00000204 0000001C
-               An=000DA9AA 0016C358 000D3A5E 0016C9CC
-                  0016C9C8 0016C312 000E41C0 0016C312
-               PC=000DA9AA SR=0003
- Executing: -->000da9aa: 4e75 4a82 6b14 4a80 6a02 RTS.L
-               000da9ac: 4a82 6b14 4a80 6a02 6024 TST.L D2
-       Memory: Static    -     000DC1C0 - 0016CA20  591968 bytes
-               Allocated - 000 000DC1C0 - 0016CA20  591968 bytes
-                           001 0009E240 - 0009F240    4096 bytes
-                           002 000A4500 - 000A5500    4096 bytes
-                           003 0016CA40 - 00180320   80096 bytes
-                           004 00180340 - 00193C20   80096 bytes
-                           005 000AA280 - 000AB280    4096 bytes
-# # Exception: pid=3 vector=$07 err=#000:107 ... process will be killed (x to co
+               An=001096AA 0019B058 0010275E 0019B6CC
+                  0019B6C8 0019B012 00112EC0 0019B012
+               PC=001096AA SR=0003
+ Executing: -->001096aa: 4e75 4a82 6b14 4a80 6a02 RTS.L
+               001096ac: 4a82 6b14 4a80 6a02 6024 TST.L D2
+       Memory: Static    -     0010AEC0 - 0019B720  591968 bytes
+               Allocated - 000 0010AEC0 - 0019B720  591968 bytes
+                           001 000C13C0 - 000C23C0    4096 bytes
+                           002 000C23C0 - 000C33C0    4096 bytes
+                           003 000C43C0 - 000D7CA0   80096 bytes
+                           004 0019B740 - 001AF020   80096 bytes
+                           005 000D8CC0 - 000D9CC0    4096 bytes
+# # Exception: pid=4 vector=$07 err=#000:107 ... process will be killed (x to co
 ntinue)

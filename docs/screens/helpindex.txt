@@ -2,5 +2,5 @@ helpindex dinfo.hlp
 Writing index for "dinfo.hlp" to "dinfo.ndx" ..done (4 pages).
 $ ls -l
 total 4096
--rw-rw-rw-   1 0        0            3569 Aug  3 19:00 dinfo.hlp
--rw-------   1 0        0              24 Sep  8 04:46 dinfo.ndx
+-rw-rw-rw-   1 7        1            3569 Sep 24 02:32 dinfo.hlp
+-rw-------   1 7        1              24 Sep 24 02:32 dinfo.ndx

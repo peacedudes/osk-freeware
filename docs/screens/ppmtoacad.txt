@@ -2,4 +2,4 @@ ppmtoacad tmp/NPMB/q.ppm > tmp/NPMB/o.sld
 ppmtoacad: computing colourmap...
 ppmtoacad: 6 colours found
 $ ls -l tmp/NPMB/o.sld
--rw-rw-rw-   1 0        0             991 Sep  9 01:16 tmp/NPMB/o.sld
+-rw-rw-rw-   1 7        1             991 Sep 24 02:35 tmp/NPMB/o.sld

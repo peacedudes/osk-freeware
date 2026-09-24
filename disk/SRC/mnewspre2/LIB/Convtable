@@ -1,0 +1,1 @@
+## $Log$##      This file is used by sbatch when a conversion from#      international 8 bit character to 7 bit ASCII is#      required#      Format#      character replace-sequence$c4    Ae$d6    Oe$dc    Ue$e4    ae$f6    oe$fc    ue$df    ss$a7    Par.$a0    \ $a9    (C)$a3    Pound$ae    (R)$b0    Grad$b5    u

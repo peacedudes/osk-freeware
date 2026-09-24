@@ -1549,6 +1549,8 @@ cap     earn back for every card you get to a foundation.  Cards move in
 cap     alternating colours on the tableau and by suit on the foundations;
 cap     `ht' deals from the stock, and you name a move by its cards.
 try     canfield
+run     cat /dd/GAMES/cfscores > /dd/tmp/canfield.save
+run     clear
 run     canfield
 wait    3
 send    n\r
@@ -1556,8 +1558,9 @@ wait    3
 snap
 send    q\r
 wait    1
-send    y\r
+send    n\r
 wait    2
+run     cat /dd/tmp/canfield.save > /dd/GAMES/cfscores
 
 shot    monop
 size    24 80
@@ -1682,13 +1685,26 @@ size    24 80
 cap     canfield is a casino game and this is the bank behind it: what the
 cap     hands, the inspections, the games and the thinking time have cost,
 cap     what came back, and what you are worth after the lot.  It reads the
-cap     file canfield writes, so before a first game it says so plainly
-cap     rather than printing a table of noughts.
+cap     record canfield keeps for each user, so one hand is dealt and given
+cap     up here first; before a first game it says so plainly instead.
 try     cfscores
+run     cat /dd/GAMES/cfscores > /dd/tmp/cfscores.save
+wait    2
+run     canfield
+wait    3
+send    n\r
+wait    3
+send    q\r
+wait    2
+send    n\r
+wait    3
 run     clear
 wait    1
 run     cfscores
 wait    3
+snap
+run     cat /dd/tmp/cfscores.save > /dd/GAMES/cfscores
+wait    2
 
 shot    reversi
 size    24 80

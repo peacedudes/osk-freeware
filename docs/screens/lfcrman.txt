@@ -1,0 +1,22 @@
+Option table size                = 1
+Device type                      = 1 RBF
+
+----------------------------------- lfcrman  - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - -
+Module name           = lfcrman
+System revision       = 1
+Module size           = 4768
+Owner Id              = 0.0
+Offset to module name = 00001294H
+Access permission     = e-re-re-r
+Type/Language          = 0d01H  File Manager           68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 1
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 1d63H
+
+
+Offset to execution entry point  = 0000003cH
+Offset to exception entry point  = 00000000H

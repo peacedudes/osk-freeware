@@ -1,0 +1,38 @@
+family  tass
+# tass (CMDS/tass) is a newsreader for MNews "pre 2" -- Ulrich Dessauer's
+# news system as released in January 1993.  This disk's MNews (CMDS/MNEWS)
+# is the earlier 1990 prerelease, which writes a different active file,
+# so these cases build a small pre-2 news system of their own in /dd/tmp:
+# pre-2's active file (`group last first flags', as INEWS/wact.c writes
+# it), a spool of numbered articles under comp/os/os9, and a SysInfo table
+# naming them with pre-2's own keys MNEWS.DIR and MNEWS.LIB.  Subjects and
+# bodies are assembled by printf from separate words, so the text an
+# `expect' looks for is only ever produced by tass reading the spool.
+setup   W=/dd/tmp/TASSC
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W/lib $W/spool/comp/os/os9
+setup   /dd/CMDS/printf 'MNEWS.DIR,s=%s/spool\rMNEWS.LIB,s=%s/lib\r' $W $W > $W/sysinfo
+setup   /dd/CMDS/setup $W/sysinfo
+setup   /dd/CMDS/printf 'comp.os.os9 00000002 00000001 nu\r' > $W/lib/Active
+setup   /dd/CMDS/printf 'Path: osk\rFrom: a@osk (A Writer)\rNewsgroups: comp.os.os9\rSubject: %s-%s\rMessage-ID: <1@osk>\rDate: 1 Jan 93 10:00:00 GMT\rLines: 1\r\rfirst body\r' spool subject > $W/spool/comp/os/os9/1
+setup   /dd/CMDS/printf 'Path: osk\rFrom: b@osk (B Writer)\rNewsgroups: comp.os.os9\rSubject: second article\rMessage-ID: <2@osk>\rDate: 2 Jan 93 10:00:00 GMT\rLines: 1\r\rsecond body\r' > $W/spool/comp/os/os9/2
+
+# -u indexes every subscribed group and stops: it reads each article's
+# headers and writes the group's index beside the articles.
+case    tass-indexes-a-pre-2-spool
+run     /dd/CMDS/tass -u comp.os.os9 2>&1
+run     /dd/CMDS/cat $W/spool/comp/os/os9/.tindex
+expect  Collected 2 articles
+expect  spool-subject
+expect  A Writer
+expect  B Writer
+absent  not found in active file
+
+# The limit, stated as a test: the 1990 prerelease's active file is
+# `group:low high flag', and tass takes everything before the first space
+# as the group name, so a prerelease group is never found.
+case    tass-does-not-read-the-prerelease-active-file
+run     /dd/CMDS/printf 'junk:00000 00001 n\r' > $W/lib/Active
+run     /dd/CMDS/tass -u junk 2>&1
+run     /dd/CMDS/printf 'comp.os.os9 00000002 00000001 nu\r' > $W/lib/Active
+expect  group junk not found in active file

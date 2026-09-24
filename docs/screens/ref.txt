@@ -1,5 +1,5 @@
 ref crc_of
-keep.c, line 83:
+keep.c, line 88:
 /* ---------------------------------------------------------------- CRC ---
  * The OS-9 module CRC: polynomial $800063, complemented.  Used here on
  * ordinary data files too, so the receipt can tell "the file I wrote" from

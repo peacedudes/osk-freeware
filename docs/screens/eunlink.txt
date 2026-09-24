@@ -1,6 +1,6 @@
 lpsched /nil & edir; eunlink spoolqueue; edir
-<3>
-   Event Directory at 21:44:23
+<4>
+   Event Directory at  2:42:25
 
 spoolqueue
-   Event Directory at 21:44:23
+   Event Directory at  2:42:25

@@ -1,7 +1,7 @@
 ls -l tmp/ENC/d.txt
--rw-rw-rw-   1 0        0              35 Sep  8 21:19 tmp/ENC/d.txt
+-rw-rw-rw-   1 7        1              35 Sep 24 01:14 tmp/ENC/d.txt
 $ des tmp/ENC/d.txt
 Type password for tmp/ENC/d.txt: freeware
 Verify password for tmp/ENC/d.txt: freeware
 $ ls -l tmp/ENC/d.txt.n
--rw-------   1 0        0              40 Sep  8 21:19 tmp/ENC/d.txt.n
+-rw-------   1 7        1              40 Sep 24 01:15 tmp/ENC/d.txt.n

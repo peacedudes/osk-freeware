@@ -1,0 +1,1 @@
+ nam net ttl OS-9/68000 NET device descriptor module use defsfile* changes to default values use netdesc.a LFCRDevCon: dc.b "/h0",0 ends

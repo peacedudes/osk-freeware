@@ -22,5 +22,6 @@ d.
 Current TeX page counters: [0]
 [1{1}]  [OK]
 $ ls -l story.dvi_*
--rw-------   1 0        0             496 Sep 23 11:49 story.dvi_err
--rw-------   1 0        0           49464 Sep 23 11:49 story.dvi_tos
+-rw-------   1 7        1           12689 Sep 24 02:13 story.dvi_alw
+-rw-------   1 7        1             496 Sep 24 02:13 story.dvi_err
+-rw-------   1 7        1           49464 Sep 24 02:13 story.dvi_tos

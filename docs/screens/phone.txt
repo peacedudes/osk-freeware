@@ -1,6 +1,6 @@
                              OS9/68K#PHONE#FACILITY
 #EXIT#
-Sorry your Partner is not on his Terminal or too busy to have a chat with you!
+Can't open other Terminal
 -------------------------------------------------------------------------------
                                  /term::TESTER
 

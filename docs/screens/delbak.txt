@@ -1,19 +1,19 @@
 ls -lR tmp/FILESA/bk
 total 1536
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 notes.txt
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 notes.txt_bak
-drwxrwxrwx   1 0        0              96 Sep  8 15:36 sub
+-rw-rw-rw-   1 7        1              40 Sep 24 02:44 notes.txt
+-rw-rw-rw-   1 7        1              40 Sep 24 02:44 notes.txt_bak
+drwxrwxrwx   1 7        1              96 Sep 24 02:44 sub
 
 tmp/FILESA/bk/sub:
 total 512
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 old.c_bak
+-rw-rw-rw-   1 7        1              40 Sep 24 02:44 old.c_bak
 $ delbak tmp/FILESA/bk
  tmp/FILESA/bk/sub/old.c_bak deleted
  tmp/FILESA/bk/notes.txt_bak deleted
 $ ls -lR tmp/FILESA/bk
 total 1024
--rw-rw-rw-   1 0        0              40 Aug  3 19:00 notes.txt
-drwxrwxrwx   1 0        0              96 Sep  8 15:36 sub
+-rw-rw-rw-   1 7        1              40 Sep 24 02:44 notes.txt
+drwxrwxrwx   1 7        1              96 Sep 24 02:44 sub
 
 tmp/FILESA/bk/sub:
 total 0

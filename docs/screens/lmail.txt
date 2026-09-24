@@ -1,6 +1,6 @@
-lmail os9 < tmp/note
-$ cat SPOOL/MAIL/os9
+lmail tester < tmp/note
+$ tail -l=5 SPOOL/MAIL/tester
 Subject: hello
 Status: N
 
-A note for the os9 account.
+A note for the tester account.

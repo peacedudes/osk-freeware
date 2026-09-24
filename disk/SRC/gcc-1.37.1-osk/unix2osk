@@ -1,0 +1,1 @@
+#! /bin/csh##  Replace hyphen by underscore in file names - JDB, July 1990.foreach i ($*)  mv $i `echo $i | tr '-' '_'`end

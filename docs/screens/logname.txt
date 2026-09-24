@@ -1,4 +1,5 @@
 $ logname
-su
+logname: no login name
 $ echo "logged in as $(logname), user $USER"
-logged in as su, user tester
+logname: no login name
+logged in as , user tester

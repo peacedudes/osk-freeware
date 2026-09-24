@@ -6,4 +6,5 @@ dviimp story.dvi
 [1 pages]
 [1{1}]  [OK]
 $ ls -l story.dvi_*
--rw-------   1 0        0            4872 Sep  9 00:34 story.dvi_imp
+-rw-------   1 7        1           12689 Sep 24 02:04 story.dvi_alw
+-rw-------   1 7        1            4872 Sep 24 02:05 story.dvi_imp

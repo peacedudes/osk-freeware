@@ -1,0 +1,8 @@
+$ crontab -?
+usage:  /dd/CMDS/SYSADMIN/crontab [-u<=>user] ...
+ ... -l	 (list user's crontab)
+ ... -d	 (delete user's crontab)
+ ... -e	 (edit user's crontab)
+ ... -r<=>file  (replace user's crontab)
+ ... -a<=>file  (append file to user's crontab)
+ ... -p	 (which users have the permission to install a crontab)

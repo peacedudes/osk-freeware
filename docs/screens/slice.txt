@@ -2,11 +2,11 @@ slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
 slice: 14 lines rejected to /nil
 $ ls -l
 total 24064
--rw-rw-rw-   1 0        0           11332 Aug  3 19:00 README-SHELLS
--rw-------   1 0        0            8746 Sep 23 21:51 part1
--rw-------   1 0        0             541 Sep 23 21:51 part2
--rw-------   1 0        0             599 Sep 23 21:51 part3
--rw-------   1 0        0             780 Sep 23 21:51 part4
+-rw-rw-rw-   1 7        1           11332 Sep 24 02:08 README-SHELLS
+-rw-------   1 7        1            8746 Sep 24 02:08 part1
+-rw-------   1 7        1             541 Sep 24 02:08 part2
+-rw-------   1 7        1             599 Sep 24 02:08 part3
+-rw-------   1 7        1             780 Sep 24 02:08 part4
 $ cat part2
 CHOOSING
 --------

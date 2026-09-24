@@ -1,0 +1,1 @@
+TARGET  = cpucacheDEBUG   =CFILES  = $(TARGET).cOFILES  = $(TARGET).rCFLAGS  = -ixt=/r0 -v=../DEFS $(DEBUG) -o=2LFLAGS  = -ixe=10LIBS    = -l=/dd/LIB/os9ext.l -l=../LIB/cctraplib.lOBJS    = ../CMDS/OBJSRDIR    = ../RELS$(OBJS)/$(TARGET): $(RDIR)/$(OFILES)	cc $(LFLAGS) $(RDIR)/$(OFILES) $(LIBS) $(DEBUG) -fd=$@$(OFILES): $(CFILES)

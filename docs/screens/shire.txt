@@ -2,37 +2,37 @@ $ shire | head -n 37
                                                                   Snow
 Year   1    Weather        Sky   Temperature    Precip      Wind  Depth  Notes
 Afteryule
-   1          Clear      Clear  Chilly ( 35)      None      Calm  22.2"
-   2          Clear      Clear    Cold ( 20)      None      Calm  22.2"
-   3          Clear      Clear  Chilly ( 25)      None      Calm  22.2"
-   4          Clear      Clear  Chilly ( 25)      None      Calm  22.2"
-   5          Clear      Clear  Chilly ( 25)      None      Calm  22.2"
-   6       Overcast     Cloudy    Cold ( 15)      None     Light  22.2"
-   7       Overcast       Mist    Cold ( 20)      None      Calm  22.2"
-   8       Overcast       Mist  Chilly ( 30)      None     Light  22.2"
-   9          Clear      Clear    Cold ( 15)      None      Calm  22.2"
-  10          Clear      Clear    Cold ( 20)      None      Calm  22.2"
-  11  Precipitation       Mist    Cold ( 20)    Steady      Calm  30.2"  Snow - 24 hours,
-  12  Precipitation     Cloudy    Cold ( 20)    Steady      Calm  34.2"  Snow - 24 hours,
-  13  Precipitation     Cloudy  Chilly ( 35)    Steady     Light  21.2"  Rain - 24 hours,
-  14  Precipitation       Mist    Cold (  0)  Sprinkle      Calm  21.3"  Snow - 20 minutes,
-  15          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  16          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  17          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  18          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  19          Clear      Clear    Cold ( 10)      None      Calm  21.3"
-  20          Clear      Clear    Cold ( 10)      None      Calm  21.3"
-  21          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  22          Clear      Clear    Cold ( 15)      None      Calm  21.3"
-  23          Clear      Clear    Cold ( 20)      None      Calm  21.3"
-  24  Precipitation       Mist    Cold ( 20)  Sprinkle  Blustery  21.4"  Snow -  5 minutes,
-  25  Precipitation       Mist  Chilly ( 25)  Sprinkle     Brisk  21.5"  Snow - 10 minutes,
-  26  Precipitation       Mist    Cold ( 20)    Shower  Blustery  21.5"  Snow - 40 minutes,
-  27  Precipitation       Mist    Cold ( 20)  Sprinkle     Light  21.6"  Snow - 15 minutes,
-  28          Clear      Clear    Cold ( 20)      None      Calm  21.6"
-  29  Precipitation       Mist    Cold ( 20)    Shower  Blustery  21.6"  Snow - 50 minutes,
-  30  Precipitation     Cloudy    Cold ( 20)    Steady     Brisk  29.6"  Snow - 24 hours,
-High Temp =  35, Low Temp =   0, Average Temp =  20
+   1          Clear      Clear  Chilly ( 30)      None      Calm   0.2"
+   2          Clear      Clear    Cold ( 20)      None      Calm   0.2"
+   3          Clear      Clear  Chilly ( 25)      None      Calm   0.2"
+   4  Precipitation  Light Fog  Chilly ( 30)  Sprinkle     Light   0.3"  Snow -  5 minutes,
+   5  Precipitation     Cloudy  Chilly ( 25)  Sprinkle  Blustery   0.4"  Snow - 25 minutes,
+   6  Precipitation  Light Fog    Cold ( 20)  Sprinkle  Blustery   0.5"  Snow - 30 minutes,
+   7  Precipitation       Mist    Cold ( 10)  Sprinkle      Calm   0.6"  Snow - 20 minutes,
+   8  Precipitation     Cloudy    Cold ( 20)    Shower     Light   0.6"  Snow - 70 minutes,
+   9          Clear      Clear    Cold ( 15)      None      Calm   0.6"
+  10          Clear      Clear  Chilly ( 25)      None      Calm   0.6"
+  11  Precipitation       Mist    Cold ( 20)  Sprinkle     Light   0.7"  Snow - 25 minutes,
+  12  Precipitation     Cloudy  Chilly ( 25)    Shower      Calm   0.7"  Snow - 80 minutes,
+  13  Precipitation  Heavy Fog  Chilly ( 30)    Shower  Blustery   0.7"  Snow - 80 minutes,
+  14          Clear      Clear    Cold (  5)      None  Blustery   0.7"
+  15  Precipitation       Mist    Cold ( 10)    Shower  Blustery   1.7"  Snow - 110 minutes,
+  16  Precipitation       Mist    Cold ( 20)  Sprinkle      Calm   1.8"  Snow -  5 minutes,
+  17          Clear      Clear    Cold ( 20)      None      Calm   1.8"
+  18          Clear      Clear    Cold ( 20)      None      Calm   1.8"
+  19          Clear      Clear  Chilly ( 25)      None      Calm   1.8"
+  20          Clear      Clear    Cold ( 15)      None      Calm   1.8"
+  21          Clear      Clear    Cold ( 10)      None      Calm   1.8"
+  22          Clear      Clear    Cold ( 20)      None      Calm   1.8"
+  23          Clear      Clear    Cold ( 20)      None      Calm   1.8"
+  24          Clear      Clear    Cold ( 15)      None      Calm   1.8"
+  25          Clear      Clear    Cold ( 20)      None      Calm   1.8"
+  26  Precipitation     Cloudy    Cold ( 15)  Sprinkle  Blustery   1.9"  Snow - 15 minutes,
+  27  Precipitation       Mist    Cold ( 15)  Sprinkle  Blustery   2.0"  Snow - 10 minutes,
+  28  Precipitation     Cloudy    Cold ( 20)     Heavy  Blustery  14.0"  Blizzard -  4 hours,
+  29  Precipitation     Cloudy    Cold ( 20)  Sprinkle      Calm  14.1"  Snow - 15 minutes,
+  30  Precipitation  Light Fog    Cold (  5)  Sprinkle      Calm  14.2"  Snow - 15 minutes,
+High Temp =  30, Low Temp =   5, Average Temp =  19
 
 Solmath
-   1  Precipitation       Mist  Chilly ( 30)    Shower      Calm  29.6"  Snow - 40 minutes,
+   1  Precipitation  Light Fog  Chilly ( 35)    Shower     Light  12.2"  Rain - 100 minutes,

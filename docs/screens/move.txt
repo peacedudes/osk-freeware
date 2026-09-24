@@ -1,13 +1,13 @@
 dir from to
 
-Directory of "from" 16:02:45  09/08/126
+Directory of "from" 03:02:13  09/24/126
 
 note
 
 Total of 1 files.
 
 
-Directory of "to" 16:02:45  09/08/126
+Directory of "to" 03:02:13  09/24/126
 
 
 Total of 0 files.
@@ -15,13 +15,13 @@ Total of 0 files.
 Grand Total of 1 files in 2 directories.
 $ move from/note to/note; dir from to
 
-Directory of "from" 16:02:52  09/08/126
+Directory of "from" 03:02:20  09/24/126
 
 
 Total of 0 files.
 
 
-Directory of "to" 16:02:52  09/08/126
+Directory of "to" 03:02:20  09/24/126
 
 note
 

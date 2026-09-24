@@ -1,0 +1,23 @@
+mmenu
+Syntax: mmenu <opts>
+Function: Shows a menu using the termcap-file
+Options:
+   -f<=>startmenu   selects the first displayed menu
+   -k               selects shortmenus
+   -l<=>logoffcmd   if the user hangs up this cmd is executed
+   -c<=>mark        displays matk instead of * as available Menuentry
+   -m<=>lr          sets the [l]eft and [r]ight mark for :flag
+   -p<=>prompt      defines the prompt
+   -s<=>logoncmd    forks this as the first program
+   -a               ask for the terminaltype
+   -r               Using :flag the save selction is closed (restricted)
+   -z=<logfile>     Loging of every direct executed program
+No startmenu given!
+$ mwb -?
+Syntax: mwb {<opts>}
+Function: Edit and create own Manualentries
+Options:
+     -m<=>ManEntry  Edit the entry <ManEntry>.
+     -ns            No small, the manuals are written for large papersizes.
+     -s             Small, the manuals are written for OS9-Manual like
+                    pagesizes.

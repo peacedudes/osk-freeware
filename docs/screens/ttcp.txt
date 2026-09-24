@@ -1,5 +1,5 @@
 ttcp -r -s & ttcp -t -s 127.0.0.1
-<3>
+<4>
 ttcp-r: nbuf=1024, buflen=1024, port=2000
 ttcp-t: nbuf=1024, buflen=1024, port=2000
 ttcp-r: socket

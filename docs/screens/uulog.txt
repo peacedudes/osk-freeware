@@ -1,6 +1,5 @@
-rmail tester; uulog
 rmail: dolocal: can't change to mailbox: /dd/SPOOL/MAIL/tester/tester...error #2
 14
 
-rmail milkyway (Sep 21-00:53:14) ERROR--dolocal: can't change to mailbox: /dd/SP
+rmail milkyway (Sep 24-01:28:22) ERROR--dolocal: can't change to mailbox: /dd/SP
 OOL/MAIL/tester/tester...error #214
