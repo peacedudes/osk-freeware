@@ -45,11 +45,11 @@ one was wrong: on a 68020 machine it is the build that fits.
 | | |
 |---|---|
 | the 15 `pbmexec` programs | **Not because netpbm replaced them.** They cannot read PBM as it exists on this disk: `pbminvert` rejects a hand-written, textbook plain P1 that netpbm's own `pnmfile` reads correctly — *"Junk in file where an integer should be!"* — and does the same with raw P4. Fourteen of the names are free and would have been genuine additions (`cbmtopbm`, `pbmtops`, `pbmcrop`, `pbmtrnspos`…); they simply do not work with anything here. |
-| `umusek` | Stops with *"Can't get screen addr"*. |
+| `umusek` — **reversed** | Ships: it opens on a machine with a graphics screen and says why it stops without one. |
 | `gnuplot_x11` | An X11 driver, and that archive holds no `gnuplot` binary to drive. |
 | `f68k` / `os9lader` | F68K is a **Forth** system despite the name; its OS-9 part is only a loader, and `forth` is already here. |
-| `regex`, `strcmp`, `testpad`, `makecrc` | Library and test fragments, not programs. |
-| `tplot` | Drives an Atari ST plotter, and unlike mgif it has no mode that does anything without one. |
+| `regex`, `testpad`, `makecrc` | Library and test fragments, not programs. (`strcmp` was listed here; Gregorie's `strcmp` from sh 7.5 is a real program and ships.) |
+| `tplot` — **reversed** | Ships: it asks its three questions on any terminal, and draws with A-line calls on an Atari ST. |
 
 **Reversed 2026-08-15: `dedit`.** It was excluded as *"will not load at all --
 error 205, `E_BMID`, a bad module ID"*. That error is real and reproduces
@@ -90,8 +90,8 @@ dead. No such grant exists for `cio` or `csl`.
 | | |
 |---|---|
 | `cmake` | Carl Kreider's own one-line description: *"crude make, obsolete."* `make` and `gmake` are here. |
-| `dearc` | `arc` covers it. Weak, and worth revisiting. |
-| `uac_view` | A viewer for one person's system data files, shipped with 79 files of that data. |
+| `dearc` | `arc` covers it. Re-run 2026-09-23 on os9exec d992145: still *"File not packed with correct number of bits"* on a crunched member, so it stays out on function as well as merit. |
+| `uac_view` — **reversed** | rdoggett, 2026-09-23 (FOR-RDOGGETT 37): ship it. `CMDS/UAC_view`. |
 | `dhry` — **reversed** | Excluded once as "a benchmark that measures the host under emulation". That was wrong: on real hardware it measures your machine, and with a figure from real hardware it is useful under emulation too. All twelve builds now ship in `CMDS/DHRY`. |
 | Vendor demos — **reversed** | Excluded once as "commercial demo versions". UniBasic's manual contains an explicit *grant*. All three now ship in `CMDS/DEMOS`. |
 
@@ -101,8 +101,20 @@ dead. No such grant exists for `cio` or `csl`.
 |---|---|
 | **Inform 3** | The manual, the three demos' source and the compiler source all ship. The compiler does not build: `cpp` aborts (`E_PRCABT`, wild pointer) part way through the 160 KB source, with `-qm` and without, with `-K=2`, and with 256 MB of arena. |
 | **`man`** | Not the program it looks like. It expects `/dd/USR/MAN` full of **proff-format** files, not troff man pages, and falls back to OS-9 `help`. `nroff -man` already reads the 172 pages in `DOC/netpbm`. |
-| `elvis` | Long-standing: full docs and source on the disk, no binary. See `ROADMAP-freeware.md`. |
-| `spline` | Built for a Tektronix-graphics machine; only its test driver `mtst` ships. |
+| `elvis` — **built** | Ships, built here from its source. |
+| `spline` — **shipped** | `CMDS/spline` ships beside `mtst`; its output is Tektronix graphics. |
+
+## Re-verified 2026-09-23 (os9exec d992145), all standing
+
+Run again, fresh image each: `splitalf` (fails on its second output file),
+`dearc`, `pbminvert` and the pbmexec set (*"Junk in file"* on netpbm's own PBM),
+`robots2` (E_PRCABT), `gnuchess` 4.0's main build (no longer bus-errors, but
+takes no keys -- its three sibling builds ship), the IOCCC `dg` and `pjr`
+(DECUS cpp rejects their `#d` abbreviations), PtyMan/PtyDrv and the OS-9
+International `disp`/`lfcrman`/`watchdog` (os9exec has no guest file manager
+or driver support -- confirmed with its session). The silly collection's
+`newspeak`, `rock`/`madrock.sp`, `belief`, `funky`, `jroff` and `biffa` stay
+out on content (named real people mocked, slurs); six others shipped.
 
 ## Images deliberately not shipped
 
