@@ -17,9 +17,9 @@ re_comp over os9lib), uue/uud.  Re-run and still standing: splitalf,
 dearc, pbmexec, robots2, gnuchess 4.0 main, dg/pjr, PtyMan and the
 OS-9 International drivers; the library-gap set re-read (NOT-INCLUDED.md
 "Re-verified").  WAITING ON os9exec (reported to its session with repros):
-boa, which needs SS_Ready to answer on a listening socket -- scratch
-cand_web/ship holds a finished integration; and whetstone, which needs
-clock() to count (scratch whet/).  Questions parked as FOR-RDOGGETT 39-42.
+boa, which needs SS_Ready to answer on a listening socket, and whetstone,
+which needs clock() to count.  Both are staged, ready to integrate, under
+~/Developer/os9/Scraped/acquisitions-2026-09-23/staged/.  Questions parked as FOR-RDOGGETT 39-42.
 The tester WIP is in `git stash' (tester-wip) with the sheet patch at
 scratch excl/tester-wip.patch -- it goes in with the final full re-shoot.
 
