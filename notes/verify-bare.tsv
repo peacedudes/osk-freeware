@@ -57,13 +57,11 @@ strings	CMDS	OK	Usage: strings [-anpl=n] [file [file]]      searches named binar
 ref	CMDS	OK	usage: ref [-t] [-c class] [-f file] tag    -t        output tag info, instead of the function heade
 ssl	CMDS	SILENT	
 remove	CMDS	OK	Syntax   : remove [<opt>] [<modules>] [<opt>] [<modules>] [<opt>] Function : remove modules from mem
-sysmax	CMDS	OK	F$SetSys: unimplemented 08A8 (size=80000002) system maximum age is 0 
 msattrib	CMDS	OK	Mtools version 3.6, dated 14 Apr 97 Usage: msattrib [-p] [-a|+a] [-h|+h] [-r|+r] [-s|+s] msdosfile [
 shuffle	CMDS	OK	Unknown terminal type ''. 
 ephem	CMDS	OK	Must have addressable cursor 
 gs403	CMDS	OK	Can't find initialization file gs_init.ps. 
 loan	CMDS	OK	Enter principal amount:  
-deton	CMDS	OK	You have 3 seconds to terminate self-destruct... 
 splitalf	CMDS	OK	splitalf: can't open output file(s) 
 tty	CMDS	OK	term 
 ape	CMDS	SILENT	
@@ -185,7 +183,6 @@ uudecode	CMDS	SILENT
 xengine	CMDS	OK	**** csl traphandler mismatch **** 
 fmt	CMDS	SILENT	
 sox	CMDS	OK	sox: Usage: [ -V -S ] [ fopts ] ifile [ fopts ] ofile [ effect [ effopts ] ] fopts: -r rate -v volum
-timid	CMDS	OK	Started 4:55:20 Ended   4:55:20 elapsed ticks: 3,  seconds: 0.03 
 Libr2Ascii	CMDS	OK	Missing parameter: infile Syntax: Libr2Ascii [opts] Convert a Librarian Card Catalog file to a plain
 loadmem	CMDS	OK	Syntax   : LOADMEM <destinati address> <upper limit address> <path> Function : loads file into memor
 psc	CMDS	SILENT	
@@ -221,7 +218,6 @@ modbuster	CMDS	OK	Syntax: Modbuster [<opts>] <path> [<opts>] Function: Seperate 
 logname	CMDS	OK	su 
 chgrp	CMDS	OK	chgrp: Usage:  chgrp [-z] {numerical-gid | username} [file [... file]] 
 printenv	CMDS	SILENT	
-sysid	CMDS	SILENT	
 fc	CMDS	SILENT	
 umusek	CMDS	OK	 ) ***DS_ScAdd Error 208. Fran: Can't get screen addr, 'bye! 
 wish	CMDS	OK	Wishing for: 3 potions of gain level Game 1 what happened to "hack" 
@@ -502,7 +498,6 @@ fixyear	CMDS	OK	Usage: fixyear [-opt] <file|dir> <dir|file> [-opt]        Fix mo
 mstoolstest	CMDS	OK	drive A: 	#fn=1 mode=0 	file="/dd/DOS/a.img" fat_bits=0  
 runc	CMDS	OK	**** csl traphandler mismatch **** 
 t	CMDS	SILENT	
-sysmin	CMDS	OK	F$SetSys: unimplemented 08A6 (size=80000002) system minimun priority is 0 
 tab	CMDS	SILENT	
 gen	CMDS	OK	Syntax: gen [<opt>] <pathname> [<opts>] Function: generate a program frame Note: there must be exact
 shire	CMDS	OK	                                                                  Snow Year   1    Weather        Sk

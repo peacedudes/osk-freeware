@@ -940,7 +940,7 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 - **Twelve `DOC/INDEX` entries described a different program** and are fixed:
   `checkfile` (a cheque-book program), `paranoia` (a text adventure),
   `remove` (modules, not files), `preset` (terminal function keys), `eo`,
-  `dotilde`, `vecho`, `lfmaker`, `timid`, `udate`, `wysetime`, `gpp`.
+  `dotilde`, `vecho`, `lfmaker`, `udate`, `wysetime`, `gpp`.
 
 ### What is left, in the order it is worth doing
 

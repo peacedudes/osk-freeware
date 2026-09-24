@@ -44,7 +44,6 @@ psc	CMDS	FILTER	the quick brown fox rightstring A0 = "the"
 wc.cio	CMDS/REBUILT	FILTER	the quick brown fox jumped over 3 lazy dogs 
 m4_0.5	CMDS/REBUILT	FILTER	the quick brown fox the quick brown fox 
 printenv	CMDS	QUIET	
-sysid	CMDS	QUIET	
 fc	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 
 gcc_cc1	CMDS/GCC139	FILTER	the quick brown fox 	psect	stdin_gc,0,0,0,0,0 
 gcc_cc1plus	CMDS/GCC139	FILTER	the quick brown fox 	psect	stdin_gc,0,0,0,0,0 

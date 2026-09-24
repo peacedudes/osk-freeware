@@ -90,7 +90,7 @@ spooler programs.
 **rdoggett's name is out of every binary** — four removed, one rebuilt, eleven
 blanked with `tools/blank_author.py`. `check_disk.py`'s threshold is now ZERO,
 not fifteen. Four files still credit him and should: `SRC/misc/qt.c`,
-`SRC/zot/zot.c`, `SRC/hc_utils/me.c`, `DOC/zot/zot.1` — that is authorship of
+`SRC/zot/zot.c`, `DOC/zot/zot.1` — that is authorship of
 his own 1988–89 work, not an SDK stamp.
 
 ## Things you will otherwise rediscover the hard way

@@ -111,7 +111,6 @@ demerge	CMDS	OK bare
 demo	CMDS	OK given arguments
 des	CMDS	OK bare
 detab	CMDS	OK as a filter
-deton	CMDS	OK bare
 devprc	CMDS	NEEDS WORK
 dfiles	CMDS	OK given arguments
 diff	CMDS	OK bare
@@ -426,9 +425,6 @@ submit	CMDS	OK bare
 sum	CMDS	OK as a filter
 suse	CMDS	NEEDS WORK
 suspend	CMDS	OK bare
-sysid	CMDS	NEEDS WORK
-sysmax	CMDS	OK bare
-sysmin	CMDS	OK bare
 sysmon	CMDS	OK bare
 t	CMDS	NEEDS WORK
 t_trtest	CMDS	OK bare
@@ -441,7 +437,6 @@ tcmp	CMDS	OK bare
 testibc	CMDS	OK bare
 textb	CMDS	OK bare
 time	CMDS	OK bare
-timid	CMDS	OK bare
 today	CMDS	OK bare
 todos	CMDS	OK bare
 toos9	CMDS	OK bare

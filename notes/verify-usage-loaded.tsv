@@ -48,7 +48,6 @@ splprt	CMDS	MUTE
 splstat	CMDS	USAGE	Splstat: device out of range 
 ssl	CMDS	USAGE	File descriptor sector -?: 0  Seg#     start    lenght 
 suse	CMDS	MUTE	
-sysid	CMDS	MUTE	
 t	CMDS	MUTE	
 tex	CMDS/TEXCMDS	MUTE	
 texidx	CMDS/TEXCMDS	USAGE	texi: invalid command switch ? 

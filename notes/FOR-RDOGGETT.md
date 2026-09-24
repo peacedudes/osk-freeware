@@ -2,54 +2,36 @@
 
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail lives in `notes/START-HERE-NEXT-SESSION.md` under the same number.
-Updated 2026-09-23 (night).
+Updated 2026-09-24 (early morning).
 
 ## Needs you
 
-**1. Push os9exec, then pin `d992145`.**
-Nothing is pushed, so CI has never run.  `d992145' is the tip the os9exec
-session gated and named safe (2026-09-23); the whole suite passes on a
-fresh image built with it, 912 of 912, twice.  docs/try is built from it.
+**1. Push os9exec, then pin `e2c7f7b'.**
+It was `d992145'; `e2c7f7b' (2026-09-24) adds the two fixes boa and
+whetstone need -- SS_Ready on a listening socket, and clock() counting a
+process's own ticks -- and the os9exec session gated it.  The full suite
+on it, as tester, is the last step before this collection's commit.
 
-**38. Run the harnesses as `tester', not `su'?**
-Every card, case and probe runs as super-user, which RBF lets past
-permission checks.  Recommend: switch at the final verification pass
-(one full re-shoot and suite run), not piecemeal.  Measured: every case
-family as `tester' passes 169 of 173; the four are the super-user's by
-design (inews admin, uupoll's private spool) or combine's output having no
-permissions at all, now said on its card.  Running as tester has since
-found one real multi-user fault su hid: nn's GROUPS file is owner-only
-after `nnmaster -I' (README-NEWS now says `attr -pr' it).
-
-**39. Two more gccs with full source -- ship either?**
-gcc 1.37.1 (CERN, 1991, binaries + source) and gcc 2.7.2 (1995-97, 21 MB
-source + binaries) sit in the pool; the disk has gcc 1.39 and 2.5.6
-binaries with no source.  Recommend: neither -- size and era, and gcc
-needs cio either way.
-
-**40. K5JB k37 source for `net`?**  The shipped `net' is K5JB k35c with
-no source; k37 (two revisions later, GPL-ish per-file grants) builds
-clean and runs the same.  Recommend: ship k37's tree in SRC labelled
-"nearest available source", keep the k35c binary; K5JB's own `bm' mailer
-stays out (its name is taken by the Boyer-Moore grep).
-
-**41. tass -- a second MNews?**  tass builds and draws, but reads the
-1993 MNews "pre-2" spool format, not the 1990 one that ships with nn;
-shipping it working means a second news system.  Recommend: leave out.
-
-**42. Small ones, recommend no to all three:** 22 TeX font metrics with
-no bitmaps to print them (TeX could typeset, nothing could print);
-Vprint, whose only copy is a 1997 Linux rewrite; `pc2os9', which
-`toos9' already covers.
-
-**44. TOP's Notesfile system (UIUC notes, OS-9 port by reccoware 1988)?**
-It works here once SYS/password gains `notes' and `play' users and the
-disk carries SPOOL/NOTES and SYS/.LOCKS/NOTES; the binaries say only
-"Copyrights (c) 1988 by reccoware systems puchheim", no grant, no source.
-Recommend: leave out -- a multi-user conferencing system needing new
-system users, on an ungranted copyright.
+**45. Patch elm's user check (one instruction)?**  As any user but the
+super-user, elm answers "You have no password entry!": it compares the
+password file's user number with getuid(), which on OS-9 is the whole
+group.user word, so the two never match.  tools/patch_elm_uid.py makes it
+compare the whole word (6 bytes at 0x18738, CRC recomputed; it refuses any
+other elm); tester's home files for it are staged.  Recommend: yes.
 
 ## No action, just so you know
+
+**Answered 2026-09-24:** 38 (harnesses run as tester -- done); 39 (both
+gccs ship with source); 40 (k37 net replaces k35c, built from its own
+source; K5JB's mailer is `bm', the Boyer-Moore grep is `bmg'); 41 (tass
+ships, for a pre-2 MNews system; MNews pre-2 ships whole in SRC); 42
+(the fonts were made with the disk's own METAFONT and ship; Vprint and
+pc2os9 stay out); 44 (Notesfiles stays out).  Also: cards for the
+programs left out; notes on every card we changed; programs useful on a
+real system but untestable here now ship, marked untested; the utilities
+from your own archives are gone from disk, docs, tools and notes, and
+will be gone from history before the private GitHub push.
+
 
 **3.** Nobody has tried this on real hardware, and the guides say so.
 

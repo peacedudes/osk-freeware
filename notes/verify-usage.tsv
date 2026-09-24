@@ -36,7 +36,6 @@ texidx	CMDS/TEXCMDS	USAGE-OK	texi: invalid command switch ?
 latex	CMDS/TEXCMDS	NO-USAGE	
 delbak	CMDS	USAGE-OK	Usage: delbak [-options] [directory] [-options]      -n      = no recursion      -l      = list only
 pri	CMDS	NO-USAGE	
-sysid	CMDS	NO-USAGE	
 infoxpress	CMDS/NETWORK	NO-USAGE	
 ppmforge	CMDS/NETPBM	USAGE-OK	usage:  ppmforge        [-width|-xsize <x>] [-height|-ysize <y>] [-mesh <n>]       [-clouds] [-dimen
 pgmcrater	CMDS/NETPBM	USAGE-OK	usage:  pgmcrater [-number <n>] [-width|-xsize <w>]                   [-height|-ysize <h>] [-gamma <

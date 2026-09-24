@@ -7,6 +7,34 @@ Every program on the one RBF image has a card taken by running it, and
 `notes/FOR-RDOGGETT.md' has what needs him: items 1 (push and pin
 os9exec) and 38 (harnesses as `tester').
 
+**2026-09-24, early morning -- where the release pass stands.**
+Pinned emulator is now os9exec `e2c7f7b' (clock() ticks, SS_Ready on a
+listening socket).  Everything below is in the working tree and goes in as
+grouped commits once the gate is green:
+  * Harnesses run as `tester'; a family or stanza that must be super-user
+    says `user su' / `super'.  Full re-shoot of every card done as tester.
+  * Every card starts with `/h1/CMDS/tmode normal pag=<rows>': a program
+    that changes the terminal (arithmetic turns alf off) no longer spoils
+    the next card.  rdoggett's idea; `normal' restores every option.
+  * gen_screens treats `bash$' as a prompt as well as `bash#'.
+  * Shipped: bm (K5JB mailer) with net rebuilt as k37 from its own source
+    (year-2000 date fixed); Boyer-Moore grep renamed bmg; both gccs (1.37.1
+    CERN, 2.7.2) with source; tass for MNews pre-2 (MNews pre-2 whole in
+    SRC); 20 TeX fonts made by the disk's own METAFONT; sed 1.06 and m4 0.5
+    source found (staged/gnusrc, NOT YET INSTALLED); real-system programs
+    marked untested -- PtyMan, lfcrman, disp, cpucache (CMDS/DRIVERS), vt100
+    (MM1), x9eyes/setbgptn (X68K), TOP's logon/mmon/watch/timeout/errlog/
+    erradm/vcron/crontab and mesg/msg/speak/mmenu/newgrp/uid/mwb
+    (CMDS/SYSADMIN), rex/chp/remdate/prexd/prexdc (NETWORK).
+  * The guide: a "Not included" kind (tools/excluded.psv), off by default,
+    found by search; a "Changed here" line on cards (tools/changes.psv plus
+    an automatic pointer to a port's README.OSK).
+  * The utilities from rdoggett's own archives are gone from disk/, docs/,
+    tools/ and notes/; history is to be rewritten (filter-branch, list in
+    scratch purge-final.txt) before the first push to a PRIVATE GitHub
+    repo.  Push the working branch, not main: main triggers CI, which needs
+    os9exec's branch published first.
+
 **Night of 2026-09-23 -- the last candidates and every exclusion.**
 rdoggett asked for both before he releases os9exec.  Shipped: bru (BRU/OS-9
 backup, keeps owners/attributes/dates), ken, biff, discord, sifi, ogrify,
@@ -1037,10 +1065,7 @@ handler's own vector is a program whose handler did not go where it asked.
 backticks that the disk does not have.  The worst it found was in
 `SYS/login' -- the greeting every reader gets before their first prompt
 said "cat and less read; vi_nocio edits", and vi_nocio left with the
-twenty-six that went on terms.  It also found
-`DOC/README-BUSERR' calling firq, souper and sysmem "three programs on
-this disk" and offering `sysid' as the counter-example that runs -- all
-four left with the Microware-authored utilities -- and `DOC/README-CIO'
+twenty-six that went on terms.  It also found `DOC/README-CIO'
 recommending `sedt' as the trap-free editor to use instead of `*ed' and
 `*emacs', and listing CMDS/sedt among the putc-macro programs under a
 heading saying twenty-THREE where the sentence four lines above, the one
@@ -1962,8 +1987,7 @@ If the second works and the first does not, it is this.
 **What changed on the disk today, so nothing is re-derived:**
 
   * **Twenty-nine programs came off on his rulings**, each recorded in
-    SOURCES.txt: six utilities written at Microware (time, timid, deton,
-    sysid, sysmax, sysmin); greed; travesty; puzzle15, puz15, udate, uwho;
+    SOURCES.txt: greed; travesty; puzzle15, puz15, udate, uwho;
     the EFFO `vi'; sysmon; RCS's seven; SEDT's `e', `new_e' and `sedt';
     btree and isam; `break', which is Microware's own utility disassembled;
     and fibo, float, touchtype, vi_cio and compress_rebuilt as duplicates or
@@ -3934,7 +3958,7 @@ background you do not need first.**
   constant" is literally one character. CRC and parity verify on both.
 - **README-RUNNING** rewritten to the settled /dd + /h0 + /h1 arrangement.
 - os9exec fixes that landed and were measured here: MOVE from SR (biory
-  draws its chart), F$Mem (per the manual), F$SysID (sysid reports).
+  draws its chart), F$Mem (per the manual), F$SysID.
 
 ## Where it stands (2026-09-05)
 

@@ -71,15 +71,7 @@ code path of the shared library, not in the disk. Full K&R source in
 `SRC/effo_snobol`; `DOC/snobol` has the author's readme and the pattern files.
 Five programs for one fix.
 
-**`firq`, `souper`, `sysmem`.** All three fault on the same instruction in the
-same shared startup path, `MOVEA.L (A0,$4C),A4` with `A0 = $AAAAAAA4` —
-os9exec's uninitialised fill — and they fault **before their first system
-call**, in a login session too. `sysid`, `sysmax` and `sysmin` are from the
-same suite and run, so it is one code path. Whether OS-9/68000 is specified to
-hand a program a pointer in A0 at entry could not be settled from the
-references available here; that question decides whether this is an os9exec gap
-(three sound programs) or three programs reading a register they had no right
-to. Do not resolve it by running them.
+
 
 **Two programs want floating-point hardware, and this is the case for `fpu`.**
 `os9lib` stops with `NON-IMPLEMENTED FLOATING POINT INSTRUCTION`. `config`
@@ -128,10 +120,9 @@ The remaining 28 want individual attention:
     cron        cyberwar  dir        elvprsv    for         inetdc
     infoxpress  lfmaker   lnk        lnk.org    makecrc     pri
     ptxminst    puzzle    read_mail  rtf        scriptmaster
-    splman      splprt    suse       sysid      t
+    splman      splprt    suse       t
 
-`sysid` is the odd one: it printed a blank line bare and nothing in a session,
-while `sysmax` and `sysmin` from the same suite both print their value.
+
 
 ## Corrections this pass made to the catalogue
 

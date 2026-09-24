@@ -153,7 +153,6 @@ SOURCES.txt	1627-1628	larn: copyrighted 1986 by Noah Morgan; posted to Usenet	no
 SOURCES.txt	1763	which: License: posted to Usenet and freely redistributed since	posted to comp.sources.misc and freely redistributed since (Source line already names v17i012)	confirmed	same entry, line 1758
 SOURCES.txt	3053	xargs: License: posted to Usenet ...	posted to mod.sources and freely redistributed since (Source line already names v3i106)	confirmed	same entry
 SOURCES.txt	3464	bandit: 'released to the public domain via usenet on February 15th, 1989' (a quotation -- leave it)	add to the Source line: posted to comp.sources.games v06i025, March 1989 -- Pete Granger	confirmed	UR csg <3720@tekred.CNA.TEK.COM> 'v06i025:  bandit - slot machine (one-armed bandit) simulator', 15 Mar 89, Submitted-by Pete Granger
-SOURCES.txt	2826	tc.ar: 'from a Usenet archive' -- tc is a colleague's work per its own lines, not a posting	not a posting; suggest 'from the same personal archive' rather than 'a Usenet archive'	not found	SOURCES.txt 2826-2828
 tools/terms.psv	153	ccheck: 'since Steve Draper distributed cchk.c over Usenet' (quoted -- leave the quote)	may add: posted to net.sources, December 1982	confirmed	UR net.sources <183@sdcsla.UUCP> 'cchk:  a new program to help weed out C syntax errors', From ...!sdcsla!draper, 24 Dec 1982
 tools/terms.psv	810	rot: 'posted to Usenet (volume 15, issue 30)'	posted to comp.sources.unix (volume 15, issue 30), June 1988	confirmed	ORIGINS row rot
 tools/terms.psv	993	which: Posted to Usenet ...	Posted to comp.sources.misc ...	confirmed	v17i012

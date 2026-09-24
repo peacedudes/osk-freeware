@@ -76,7 +76,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | bush | CMDS | SRC/misc |
 | calen | CMDS | SRC/hc_loose |
 | calen | CMDS/REBUILT | SRC/hc_loose |
-| calendar | CMDS | SRC/hc_utils |
 | calender | CMDS | SRC/calender |
 | casefix | CMDS | SRC/hc_loose |
 | cdiff | CMDS | SRC/v_misc |
@@ -97,7 +96,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | cvtbase | CMDS | SRC/misc |
 | dam | CMDS | SRC/effo_wolk |
 | des | CMDS | SRC/des |
-| deton | CMDS | SRC/hc_utils |
 | dfiles | CMDS | SRC/dfiles |
 | diff | CMDS | SRC/diff |
 | diff | CMDS/REBUILT | SRC/diff |
@@ -115,7 +113,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | fibo | CMDS | SRC/eff_bench |
 | fillup | CMDS | SRC/fillup |
 | find | CMDS/REBUILT | SRC/eff_effind |
-| firq | CMDS | SRC/hc_utils |
 | fkeys | CMDS | SRC/eff_fkeys |
 | flink | CMDS | SRC/eff_flink |
 | float | CMDS | SRC/eff_bench |
@@ -141,7 +138,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | japan | CMDS | SRC/weather |
 | joke | CMDS/GAMES | SRC/toys |
 | kermit | CMDS/REBUILT | SRC/kermit |
-| lac | CMDS | SRC/tc |
 | lander | CMDS/GAMES | SRC/lander |
 | life | CMDS/GAMES | SRC/life |
 | loan | CMDS | SRC/misc |
@@ -151,16 +147,13 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | lpshut | CMDS | SRC/eff_lp |
 | ls | CMDS | SRC/ls |
 | m4 | CMDS | SRC/eff_m4b |
-| main | CMDS | SRC/tc |
 | make | CMDS | SRC/eff_make |
 | makelex | CMDS | SRC/sonnet |
 | maze | CMDS/GAMES | SRC/v_misc |
 | minnesota | CMDS | SRC/weather |
-| minute | CMDS | SRC/hc_utils |
 | mkdict | CMDS/GAMES | SRC/bog |
 | mkindex | CMDS/GAMES | SRC/bog |
 | mtst | CMDS | SRC/eff_spline |
-| my.opt | CMDS | SRC/my.opt |
 | name | CMDS | SRC/hc_loose |
 | nasa | CMDS | SRC/eff_orbit |
 | nchess | CMDS/GAMES | SRC/gnu |
@@ -172,10 +165,8 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | pacman | CMDS/GAMES | SRC/toys |
 | paste | CMDS | SRC/cutpaste |
 | patch | CMDS | SRC/patch |
-| paths | CMDS | SRC/hc_utils |
 | pdraw | CMDS | SRC/effo_pdraw |
 | pep | CMDS | SRC/pep |
-| pow | CMDS | SRC/pow |
 | printf | CMDS | SRC/misc |
 | prjob | CMDS | SRC/eff_lp |
 | puz15 | CMDS/GAMES | SRC/v_misc |
@@ -187,7 +178,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | rdoc | CMDS | SRC/eff_rdoc |
 | reagan | CMDS | SRC/reagan |
 | remove | CMDS | SRC/eff_remove |
-| ren | CMDS | SRC/hc_utils |
 | rendsk | CMDS | SRC/eff_rendsk |
 | rndname | CMDS | SRC/rndname |
 | roff | CMDS | SRC/eff_roff |
@@ -196,7 +186,6 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | run | CMDS | SRC/divutils |
 | savage | CMDS | SRC/eff_bench |
 | scales | CMDS | SRC/hc_loose |
-| scope | CMDS | SRC/tc |
 | screen | CMDS/REBUILT | SRC/screen |
 | sdb | CMDS | SRC/effo_sdb |
 | sed | CMDS | SRC/eff_sed |
@@ -205,29 +194,21 @@ linker to pair with it (it is the OS-9 system distribution: 178 utilities,
 | shire | CMDS | SRC/weather |
 | shuffle | CMDS | SRC/shuffle |
 | sieve | CMDS | SRC/eff_bench |
-| sin | CMDS | SRC/tc |
 | snake | CMDS/GAMES | SRC/snake |
 | snap | CMDS | SRC/snap |
 | sokoban | CMDS/GAMES | SRC/sokoban |
 | sonnet | CMDS | SRC/sonnet |
 | soundex | CMDS | SRC/soundex |
-| souper | CMDS | SRC/hc_utils |
 | space | CMDS | SRC/eff_space |
 | speech | CMDS | SRC/speech |
 | spiff | CMDS | SRC/spiff |
 | ssl | CMDS | SRC/effo_wolk |
 | strfile | CMDS | SRC/fortune |
 | strings | CMDS | SRC/v_misc |
-| sysid | CMDS | SRC/hc_utils |
-| sysmax | CMDS | SRC/hc_utils |
-| sysmem | CMDS | SRC/hc_utils |
-| sysmin | CMDS | SRC/hc_utils |
 | tar | CMDS/REBUILT | SRC/eff_tar |
 | tess | CMDS/GAMES | SRC/tess |
 | tet | CMDS/GAMES | SRC/tet |
 | time | CMDS | SRC/hc_utils |
-| timeio | CMDS | SRC/hc_utils |
-| timid | CMDS | SRC/hc_utils |
 | today | CMDS | SRC/today |
 | top | CMDS | SRC/eff_top |
 | touchtype | CMDS | SRC/touchtype |
@@ -390,17 +371,14 @@ answers rather than errors:
 | input | CMDS |
 | ispell | CMDS |
 | japan | CMDS |
-| lac | CMDS |
 | liborder | CMDS |
 | logisim | CMDS |
 | lp | CMDS |
 | lpq | CMDS |
 | ls | CMDS |
 | m4 | CMDS |
-| main | CMDS |
 | make | CMDS |
 | minnesota | CMDS |
-| my.opt | CMDS |
 | nroff | CMDS |
 | orbit | CMDS |
 | oskversion | CMDS |
@@ -408,7 +386,6 @@ answers rather than errors:
 | patch | CMDS |
 | pdraw | CMDS |
 | pep | CMDS |
-| pow | CMDS |
 | puzzle15 | CMDS |
 | _…81 more_ | |
 
@@ -537,7 +514,6 @@ Four files still name him, and should:
 
     SRC/misc/qt.c        "Robert Doggett, converted to OSK and major rewrite"
     SRC/zot/zot.c        "Heavily mucked with for OSK by Robert Doggett, 1988"
-    SRC/hc_utils/me.c
     DOC/zot/zot.1
 
 Those are **authorship credits for his own 1988-89 work**, not an SDK stamp.

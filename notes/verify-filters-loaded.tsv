@@ -236,7 +236,6 @@ sputoppm	CMDS/NETPBM	FILTER	P6 320 200
 ssl	CMDS	QUIET	
 sum	CMDS	FILTER	04388     1 
 suse	CMDS	QUIET	
-sysid	CMDS	QUIET	
 t	CMDS	QUIET	
 tab	CMDS	FILTER	the         quick     brown                    fox jumped      o
 tabs	CMDS	FILTER	the quick brown fox jumped over 3 lazy dogs 

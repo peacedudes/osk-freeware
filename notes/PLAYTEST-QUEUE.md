@@ -165,8 +165,8 @@ Genuinely still wrong:
   a configuration issue, not a broken binary. Two of my earlier attempts were
   worthless for a reason worth remembering -- bash's `cd` only tracks the path
   as a string, so "run it from the playground" never actually happened.
-- **pow** wants a controller at `/x1`, and **initvdu** wants particular VDU
-  hardware. Neither is a defect; both are noted as needing the machine.
+- **initvdu** wants particular VDU hardware; not a defect, noted as needing
+  the machine.
 
 ## An os9exec bug, found by running ADL (2026-08-16)
 

@@ -158,7 +158,6 @@ demerge	CMDS	OK	Syntax:   demerge <path> Function: demerges a file of merged mod
 demo	CMDS	SILENT	
 des	CMDS	OK	Usage: des file ... 
 detab	CMDS	SILENT	
-deton	CMDS	OK	You have 3 seconds to terminate self-destruct... 
 devprc	CMDS	CRASH	# # Exception: pid=3 vector=$02 err=#000:102 — process will be killed (x to continue) Process   Pi
 dfiles	CMDS	SILENT	
 dhry	CMDS/DHRY	OK	Dhrystone Benchmark, Version 2.0 (Language: C) Program compiled with 'register' attribute Please giv
@@ -794,9 +793,6 @@ suicide2	CMDS/GAMES	OK	[H[2J[1;1H[K [K [K
 sum	CMDS	SILENT	
 suse	CMDS	SILENT	
 suspend	CMDS	OK	[2J[1;HSUSPEND V1.1 (C.) 1989 by F.R.Schmitt  Syntax  : suspend  [<processname>]  [<opt>] Function
-sysid	CMDS	SILENT	
-sysmax	CMDS	OK	F$SetSys: unimplemented 08A8 (size=80000002) system maximum age is 0 
-sysmin	CMDS	OK	F$SetSys: unimplemented 08A6 (size=80000002) system minimun priority is 0 
 sysmon	CMDS	OK	[2J[1;H[23;1H[K[7;7m SYSMON-ERROR: [0;0m OS9/68k V4.0 is too old for SYSMON V6.1 
 t	CMDS	SILENT	
 t_trtest	CMDS	OK	line (or .):   
@@ -818,7 +814,6 @@ tformat	CMDS/GAMES	SILENT
 tftopl	CMDS/TEXCMDS	OK	Usage: tftopl [-verbose] <tfm file> [<property list file>]. 
 tgatoppm	CMDS/NETPBM	SILENT	
 time	CMDS	OK	/dd/CMDS/time can't fork ''.   
-timid	CMDS	OK	Started 1:53:23 Ended   1:53:23 elapsed ticks: 3,  seconds: 0.03 
 today	CMDS	OK	Today is Friday, the twenty-eighth day of August, two thousand and twenty-six. In three seconds, the
 todos	CMDS	OK	TODOS    Version UTIL 2.80 by DESIGNA VLT 03.08.98 todos <File(Wildcard)> Converts TEXT-File from OS
 toos9	CMDS	OK	TOOS9    Version UTIL 2.80 by DESIGNA VLT 03.08.98 toos9 <File(Wildcard)> Converts TEXT-File from DO
