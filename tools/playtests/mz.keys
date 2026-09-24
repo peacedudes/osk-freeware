@@ -1,0 +1,28 @@
+name    mz
+prog    mz
+# No instructions, skill level 1, steer the p right and down with the
+# number keys, then ^C -- the game's only way out -- which must reach the
+# shell with the final score line.
+rate    0.4
+size    24 80
+wait    4
+snap    title
+key     n
+key     \r
+wait    3
+snap    skill
+key     1
+key     \r
+wait    4
+snap    board
+keys    666
+wait    2
+keys    222
+wait    2
+keys    666
+wait    3
+snap    moved
+key     \003
+wait    4
+expect  bash#
+expect  1,       1

@@ -1,0 +1,27 @@
+# mz -- John Smith's maze game whose monsters always take the shortest
+# path to you (comp.sources.games v09i087, 1990).  No instructions, skill
+# level 1, then ^C, the game's only way out: the room is drawn whole with
+# the player and its monster on it, and the game leaves on the ^C with its
+# final score line.
+#
+# The ^C must reach the pipe AFTER the skill level has been read: the
+# prompts are read through stdio, which would take a ^C already waiting
+# in the pipe into its own buffer, where the game's keyboard poll never
+# sees it.  Listing CMDS is only there to take time.
+
+family  mz
+
+setup   /dd/CMDS/rm -f /dd/tmp/mzcase.out > /nil 2>/nil
+
+case    mz-draws-room-one-and-quits-on-ctrl-c
+run     export TERM=vt100 TERMCAP=/dd/SYS/termcap
+run     { /dd/CMDS/printf 'n\n1\n'; /dd/CMDS/ls -R /dd/CMDS > /nil; /dd/CMDS/printf '\003'; } | /dd/CMDS/GAMES/mz > /dd/tmp/mzcase.out
+run     /dd/CMDS/cat /dd/tmp/mzcase.out
+expect  Maze v3.1
+expect  Enter skill level
+expect  Room 1, level 1
+expect  Pellets eaten 0
+expect  Lives left 2
+expect  *---------------------------------------*--------------------------------------*
+expect        1,       1 
+absent  Lives left 1

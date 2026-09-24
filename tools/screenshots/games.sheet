@@ -177,6 +177,27 @@ snap
 send    q
 wait    2
 
+shot    mz
+size    24 80
+cap     mz at skill 3: the p is you, each c a monster taking the shortest
+cap     way to you, and the dots are the pellets you eat for points.  The
+cap     number pad moves; control-C is the only way out.
+try     mz
+run     clear
+run     mz
+wait    4
+send    n\r
+wait    3
+send    3\r
+wait    4
+keys    666
+wait    2
+keys    222
+wait    3
+snap
+send    \003
+wait    3
+
 shot    pacman
 size    26 80
 cap     Pac-Man in an ASCII maze: you are `OS9', chased by four ghosts

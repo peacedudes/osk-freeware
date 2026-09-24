@@ -1149,3 +1149,4 @@ drawpoker|poker|poker.c p_scr.c p_deal.c p_hand.c p_strat.c p_decide.c input.c||
 slice|slice|slice.c recomp.c||/dd/LIB/os9lib.l|
 uue|uutools|uue.c|OS9||
 uud|uutools|uud.c|OS9||
+mz|mz|mz.c mzio.c sgtty.c||/dd/LIB/termlib.l|

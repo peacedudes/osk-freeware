@@ -120,7 +120,7 @@ is no help until you already know the name you want.
 | **Encoding & conversion** | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 114 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| **Games** | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| **Games** | 116 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 39 | Generators, simulators and diversions that are not quite games. |
 | **System & modules** | 121 | OS-9 module and process tools, devices, system state and scheduling. |

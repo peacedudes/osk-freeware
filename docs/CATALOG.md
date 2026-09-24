@@ -1,6 +1,6 @@
 # What is on this disk
 
-1072 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **753 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1073 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **754 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 116 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 121 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1210,7 +1210,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>115 programs</summary>
+<details><summary>116 programs</summary>
 
 **Adventure & fiction**
 
@@ -1234,6 +1234,7 @@
 | `lander` | lunar lander -- space starts a game, a digit sets the power, x or k is vertical thrust, z/j and c/l the side retros.  Its score file is GAMES/lander.hs, looked for under /h0, so mount the disk there as well<br>**How:** Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits. |
 | `letters` | Letter Invaders, a typing game: words fall down the screen and typing one clears it before it lands; `-l5' starts at level 5, `-h' shows the high scores, kept in GAMES/LETTERS<br>**How:** Full-screen typing game. Words fall from the top of the screen, and typing a word's letters clears it; a word that reaches the bottom costs one of your lives. Every 15 words the level rises and the words fall faster. The bottom line shows the score, level, words, lives and words per minute. `letters -l5' starts at level 5, -b rings the bell for a mistake, and `letters -h' shows the top ten scores, kept in GAMES/LETTERS. The words come from GAMES/words. |
 | `mw` | &#9733; Mazewar for up to eight players, each at a terminal of the same system, in one maze seen from above: `w' walks, `a' and `d' turn, `s' shoots, `m' drops a mine, `n' builds a wall and `Q' quits.  You score only by killing another player, and `mw -l=5' starts a computer player to hunt.  Its maze is USR/GAMES/LIB/MAZEWAR, found with this disk as /h0<br>**How:** Full-screen maze game for up to eight players on one system. `w' walks, `a'/`d' turn, `s' shoots, `m' mines, `n' walls, `Q' quits; `mw -l=5 >/nil &' first starts a computer player to play against. Needs cio; its maze is USR/GAMES/LIB/MAZEWAR. |
+| `mz` | a maze of pellets and monsters on the full screen: eat the pellets while one to six monsters, one per skill level, take the shortest path to you.  Number pad to move (7 8 9 / 4 6 / 1 2 3); control-C is the only way out<br>**How:** Full-screen. `n' then RETURN skips the instructions; a skill level 1-6 and RETURN starts. Number pad moves: 7 8 9 / 4 6 / 1 2 3. Control-C is the only way out. |
 | `pacman` | Pac-Man in an ASCII maze.  It reads its board, help and score files from GAMES/pacman, asks your name and whether you want instructions, and then forks OS-9's own `tmode' to set the terminal `nopause noecho' before it draws -- tmode comes with your system, and with it to hand the maze lays out: you are OS9, chased by four ghosts labelled CPM, MPM, RAM and ROM, and the keypad moves you (8 up, 2 down, 4 left, 6 right).  It positions with the ADM-3A sequence, ESC = row+32 col+32, so the board wants a terminal that reads that.  Without tmode it puts out one row of `+' and ends<br>**How:** Answer the name and instructions prompts, then play with the keypad: 8 up, 2 down, 4 left, 6 right, q quits. It draws with TeleVideo cursor codes (ESC = row col), so the maze paints only on a terminal that understands them; its board, help and score files are in GAMES/pacman. |
 | `perp` | gather every diamond on the screen, pushing boulders and opening locks with keys: hjkl move, q restarts the level, S and L save and load, ^C quits; map in GAMES/PERP<br>**How:** Full-screen. Collect every diamond on the level: h j k l move, pushing boulders -- o can be crushed, O cannot -- and walking onto a key opens its lock. q gives up the level and starts it again, S saves the game to $HOME/cod.save and L loads it, ^L redraws, ^C quits. `perp 2' starts at the second level. The map and sprites are in GAMES/PERP. |
 | `robots` | &#9733; robots: outrun them until they crash into each other. You are the `I', the robots are the `#' and a wreck is an `@'. Use -m, manual mode, one robot step per move of yours; without it the game is effectively unplayable. The keys are the numeric keypad 1-9 with 5 to stand still, `t' to teleport and `s' for a last stand<br>**How:** Play with `robots -m' -- manual mode, where the robots take one step per move you make. Keys are the numeric keypad 1-9 (5 stands still), `s' for last stand, `t' to teleport. Needs Microware's math module and a real TERM. |

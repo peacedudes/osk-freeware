@@ -1,0 +1,1 @@
+OBJS = mz.o mzio.o TAGS=	ctags -twmCFILES = mz.c mzio.c LIB = /lib/crt0.omzc : $(OBJS)	ld -X -o mzc $(OBJS) $(LIB) -ltermcap -lcclean:	rm -rf $(OBJS) Makefile.* *..c \	__ctdt.* tags:	$(CFILES) 	$(TAGS) $(CFILES)mz.o: mz.c mzio.o: mzio.c 
