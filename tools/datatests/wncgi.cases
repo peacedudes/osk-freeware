@@ -1,0 +1,52 @@
+family  wncgi
+# WN's other two CGI examples -- web.cases covers sample.cgi.  The page
+# counter is a server-side include: index.html names `!counter' in its
+# Includes= line, wn runs it on every request, and it adds one to
+# counter.data in the directory wn gives it as WN_DIR_PATH.  The case sets
+# the count to 41 first and puts the shipped file back afterwards, since the
+# image is not reset between runs.  SHELL must be set: wn forks CGIs through
+# system(), see web.cases.
+setup   R=/dd/c/unid/wn_1.14.3/osk/EXAMPLES
+setup   W=/dd/tmp/WNCGI
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   SHELL=/dd/CMDS/ksh
+
+case    wn-page-counter-counts-each-request
+run     /dd/CMDS/cp $R/counter.data $W/counter.keep
+run     echo "41" > $R/counter.data
+run     echo "GET /EXAMPLES/index.html HTTP/1.0" > $W/c.cr
+run     echo "" >> $W/c.cr
+run     /dd/CMDS/autolf -c -C -L < $W/c.cr > $W/c.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/c.crlf > $W/c1.out
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/c.crlf > $W/c2.out
+run     /dd/CMDS/grep "counter is" $W/c1.out
+run     /dd/CMDS/grep "^4[0-9]" $W/c1.out $W/c2.out
+run     /dd/CMDS/cp $W/counter.keep $R/counter.data
+expect  <h1>This page's counter is <b>
+expect  /dd/tmp/WNCGI/c1.out:42
+expect  /dd/tmp/WNCGI/c2.out:43
+
+case    wn-doform-cgi-reads-a-get-query-and-a-post-body
+run     echo "GET /EXAMPLES/doform.cgi?toppings=anchovies HTTP/1.0" > $W/g.cr
+run     echo "" >> $W/g.cr
+run     /dd/CMDS/autolf -c -C -L < $W/g.cr > $W/g.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/g.crlf
+run     echo "POST /EXAMPLES/doform.cgi HTTP/1.0" > $W/p.cr
+run     echo "Content-length: 16" >> $W/p.cr
+run     echo "" >> $W/p.cr
+run     echo "address=1+Main+S" >> $W/p.cr
+run     /dd/CMDS/autolf -c -C -L < $W/p.cr > $W/p.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/p.crlf
+expect  QUERY_STRING = toppings=anchovies<br>
+expect  REQUEST_METHOD = GET<br>
+expect  REQUEST_METHOD = POST<br>
+expect  Reading (16): address=1+Main+S<br>
+
+# The form posted to qr.cgi, which is not shipped; it posts to doform.cgi now.
+case    wn-form-page-posts-to-a-cgi-that-is-here
+run     echo "GET /EXAMPLES/form.html HTTP/1.0" > $W/f.cr
+run     echo "" >> $W/f.cr
+run     /dd/CMDS/autolf -c -C -L < $W/f.cr > $W/f.crlf
+run     /dd/CMDS/WN/wn -L /nil -l /nil < $W/f.crlf
+expect  <form method="post" action="doform.cgi">
+absent  qr.cgi
