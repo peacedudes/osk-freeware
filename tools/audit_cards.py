@@ -151,7 +151,7 @@ def main(argv):
 
     sheets = sheet_commands()
     rows, stale = [], []
-    # TWO CARDS ARE FLAGGED CORRECTLY BY THE RULE AND WRONGLY BY THE POINT.
+    # CARDS FLAGGED CORRECTLY BY THE RULE AND WRONGLY BY THE POINT.
     # `perr' turns an OS-9 error number into its message, so error text IS
     # its output and a screen full of `Error #000:216' is exactly right.
     # Listing them here rather than weakening the rule: a rule that stopped
@@ -160,23 +160,12 @@ def main(argv):
                 "ships either -- the caption says so, and refusing a file "
                 "it cannot read is the behaviour you want")
     fine = {"perr": "perr PRINTS error messages -- error text is its output",
-            "perr-print": "the same program, printing a wider range",
-            "csl-mismatch": "the card's SUBJECT is the csl edition skew -- "
-                            "four programs that stop before they start, and "
-                            "the message is the whole finding",
-            "perr-alps": "perr again, beside alps and epson -- the five "
-                         "`Error #000:00n' lines ARE perr's output, exactly "
-                         "as on the perr card",
-            "silent": "the card's SUBJECT is programs that say nothing and "
-                      "why. `cannot execute binary file' for a BASIC09 "
-                      "subroutine and for a trap library is the finding: "
-                      "running a non-program proves nothing",
             "disktest": "measures disk performance and CANNOT here: bare "
                         "it prints nothing and `disktest /dd' ends the "
                         "emulator session outright, both measured "
                         "2026-09-01 in tools/drives/flagged1.drive. Its "
                         "option list has one option and it is -?",
-            # THE NO-READER CONVERTERS.  Sixteen netpbm readers decode
+            # THE NO-READER CONVERTERS.  Some netpbm readers decode
             # formats no file on this disk is in -- confocal microscopes,
             # ray tracers, AutoCAD slides, Photo CD, Amiga brushes, Gould
             # scanners -- and netpbm here ships no WRITER for any of them,
@@ -185,15 +174,8 @@ def main(argv):
             # one of these cards SAYS SO in its caption.  The screen is an
             # error line; the card is correct.  Flagged by the rule,
             # wrongly by the point -- same as `perr' above.
-            "brushtopbm": NOREADER, "gouldtoppm": NOREADER,
-            "hipstopgm": NOREADER, "hpcdtoppm": NOREADER,
-            "mtvtoppm": NOREADER, "spottopgm": NOREADER,
-            "ximtoppm": NOREADER, "xvminitoppm": NOREADER,
-            "edir": "the event directory IS empty, and that is the finding: "
-                    "nothing on this disk CREATES an event -- OS-9's own "
-                    "`event' utility is Microware's and is not here -- so "
-                    "`eset' can only link to one that already exists, which "
-                    "is what its `can't link to' says",
+            "ximtoppm": NOREADER, "gouldtoppm": NOREADER,
+            "hpcdtoppm": NOREADER, "spottopgm": NOREADER,
             # FOUR MORE WHOSE FAILURE IS THE POINT OF THE CARD (2026-09-13).
             # Each caption states the finding, and each was read before being
             # listed here -- the same standard `perr' and the no-reader set
@@ -205,16 +187,6 @@ def main(argv):
                          "156; this one answers `Premature end of input "
                          "file'.  The failure IS the comparison the card "
                          "exists to draw",
-            "pbmtobbnbg": "a WRITER, not a no-reader: given a PBM this "
-                          "disk's own `pbmmake' produces, it reports `bad "
-                          "magic number' while pbmtog3, pbmtogem and "
-                          "pbmtoicon read the SAME FILE in the same sheet.  "
-                          "The card carries its own control and documents a "
-                          "defect in the program",
-            "newslock": "the finding is that it leaves no trace -- no file "
-                        "at either name, nothing printed.  The `ls' showing "
-                        "error 216 for both lock names is the EVIDENCE for "
-                        "that, captured on purpose, not a broken invocation",
             "remove": "a BEFORE-AND-AFTER, and the rule reads only half of "
                       "it.  The stanza loads readmsg, shows it answering by "
                       "name with its usage line, runs `remove readmsg', then "
@@ -230,31 +202,10 @@ def main(argv):
                      "usage line is the only card it can ever safely have, "
                      "and the caption says why.  See CLAUDE.md, which forbids "
                      "running it in a test at all",
-            "lgrep": "its card ALREADY runs a real search -- `lgrep ksh "
-                     "SYS/password SYS/login SYS/motd', with the reader's "
-                     "own OS-9 grep loaded, and it names SYS/login.  Scored "
-                     "THIN-HELP for the usage line above the search, not "
-                     "for want of trying one",
-            "run": "its card ALREADY does the real thing -- `export "
-                   "PORT=/term; run \"whoami\"' -- and nothing comes back, "
-                   "because run rebinds stdio to the terminal PORT names and "
-                   "here the console IS that terminal.  The caption says "
-                   "exactly that.  Nothing else is available to show",
-            # THE PRINT SPOOLER IS NOT INSTALLED ON THIS DISK, and its four
-            # tools can only say so.  Each was read 2026-09-13: two of them
-            # already RUN for real on their cards and report the true state,
-            # one runs a removal, and one hangs if pushed.  `submit' is
-            # deliberately NOT here -- a .sub file could be written for it.
-            "lpq": "its card already runs `lpq' for real and gets `lpq: no "
-                   "spooler installed', which is the program working and "
-                   "reporting the true state of this disk",
-            "lprm": "its card already runs `lprm 1' for real; with no spooler "
-                    "managing a queue there is nothing to link to and it says "
-                    "so rather than pretending to remove a job",
-            "lpsched": "starts the spooler for a printer device, and given "
-                       "one -- there is no printer here -- it WAITS to open "
-                       "it rather than answering, so the option list is all "
-                       "that can safely be shown",
+            # READ 2026-09-24, when the harnesses began running as tester and
+            # this table was checked entry by entry: 25 came out because their
+            # cards now show work -- the spooler, the event pair, snd_sig and
+            # savemem among them.  These four stay, each for its reason.
             "puzzle": "draws through G-Windows and at a terminal prints "
                       "NOTHING and returns 0 -- measured 2026-09-24 as "
                       "tester and as the super-user, with and without the "
@@ -273,28 +224,6 @@ def main(argv):
             "splman":"opens a printer on a serial device before anything "
                       "else and WAITS for one; with none here there is "
                       "nothing to show, and the caption says so",
-            "lpshut": "its card already runs `lpshut' for real and gets "
-                      "`lpshut: no spooler active', which is the true state",
-            # TRIED TWICE 2026-09-13 and it cannot be carded.  snd_sig wakes a
-            # process by pid, so it needs a live one -- and THIS BASH SETS $!
-            # TO 0.  It announces the background job on screen as `<3>' and
-            # publishes nothing a stanza can read, so no line can learn the
-            # pid to pass on.  A successful wake prints nothing either way.
-            "snd_sig": "wakes a process by pid; this shell announces a "
-                       "backgrounded job as `<3>' but sets $! to 0, so no "
-                       "stanza can learn a pid to signal -- and a wake "
-                       "produces no visible output in any case.  Measured "
-                       "twice, 2026-09-13",
-            # TESTED 2026-09-13 rather than assumed, and the test is why it is
-            # here: the harness DOES run as the super user, so savemem's two
-            # stated requirements are met -- and `savemem 0 100 mem.out'
-            # creates mem.out at ZERO BYTES.  A card showing an empty output
-            # file is worse than the syntax line, so the syntax line stays.
-            # `loadmem' is the same program backwards and writes INTO memory;
-            # it has not been tried and should not be, for a card.
-            "savemem": "saves a block of memory to a file, and run for real "
-                       "as the super user it writes an EMPTY file -- measured "
-                       "2026-09-13; its syntax is the honest card",
             # FOUR MORE READ 2026-09-13, each already doing the real thing on
             # its card and stopped by something this disk does not have.
             "trap": "an EXAMPLE trap handler.  Installing one needs system "
@@ -302,29 +231,10 @@ def main(argv):
                     "so the shell's own `trap' does not answer in its place "
                     "-- and gets `Can't install trap handler', which is the "
                     "finding",
-            "bsplt68": "takes an OS9Boot file apart into the modules inside "
-                       "it, and there is no boot file here to take apart -- "
-                       "os9exec is the kernel and this disk is a root disk, "
-                       "not a boot disk",
             "filter": "sorts incoming mail into folders by rule as a pipe "
                       "stage; its card already pipes it a real message and it "
                       "reaches for a scratch file on /r0, the RAM disk this "
                       "disk has no device for",
-            "lmargin": "sets an Epson printer's left margin; its card already "
-                       "runs it, and asking it to do anything but list its "
-                       "options leaves it waiting on a printer that is not "
-                       "here.  The usage line saying `epson' is inherited "
-                       "from the shared source, and the caption says so",
-            # THE EVENT PAIR, and they follow `edir' above rather than setting
-            # a precedent: NOTHING ON THIS DISK CREATES AN EVENT, because
-            # OS-9's own `event' utility is Microware's and is not here.  Both
-            # cards already RUN for real against a name that cannot exist.
-            "eset": "sets an existing event's value, and this disk has no way "
-                    "to create one -- see `edir'.  Its card already runs "
-                    "`eset testevent 1' and gets the refusal that proves it",
-            "eunlink": "the other end of the same pair; its card already runs "
-                       "it and gets `E_EVNF Event (name) not found', which is "
-                       "the whole finding",
             # TWO MORE PIECES OF ABSENT HARDWARE.  Both read 2026-09-13.
             "dpark": "restores a physical RBF drive's head to track 00 -- "
                      "something you did before moving a drive, and there is "
@@ -341,10 +251,6 @@ def main(argv):
             "setfont": "loads a downloadable terminal font from a path, and "
                        "no such font ships; the terminal here has no "
                        "downloadable font to load either",
-            "chardef": "defines a character set on a VT220 from a definition "
-                       "file; neither the file nor a VT220 is here",
-            "fkeys": "programs a VT220's user-defined keys from a definition "
-                     "file; neither the file nor a VT220 is here",
             # collect2 is a LINKER PASS, not a user-facing program: g++ runs
             # it between compiling and linking to build the global
             # constructor table.  `collect' and `gpp_collect' are the same
@@ -363,15 +269,6 @@ def main(argv):
                         "it can say here, and the caption says so.  Looked "
                         "at 2026-09-13 when the first-line fix surfaced it: "
                         "there is no other output to show",
-            # MEASURED 2026-09-14: rcsdiff and rcsmerge fetch revisions by running
-            # co from /dd/cmds/rcs through system() with a `>-' redirection.  On this
-            # disk CMDS/rcs is the rcs PROGRAM, so that directory cannot exist, and
-            # ksh cannot parse >-.  Under Microware's shell with co in CMDS/RCS,
-            # rcsdiff printed a correct diff.  requires.psv names both needs.
-            "rcsmerge": "needs a base revision named with -r, then runs co from "
-                        "a directory RCS inside CMDS through Microware's shell; "
-                        "without a base revision it says so, which is what the "
-                        "card shows",
             }
     # `texfonts-bitmap' was excepted here until 2026-09-01, on the grounds
     # that there was no .pk, .gf or .vf for its eight tools to read.  There
