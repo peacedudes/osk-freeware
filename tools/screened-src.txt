@@ -159,3 +159,10 @@ disk/SRC/gcc-1.37.1-osk/osksrc/stat.h
 disk/SRC/gcc-1.37.1-osk/osksrc/varargs.h
 disk/SRC/gcc-1.37.1-osk/va_osk.h
 disk/SRC/gcc-1.37.1-osk/math_68881.h
+
+# ELM 2.4's OSK/DEFS/signal.h (2026-09-24): a UNIX-style signal.h the ELM
+# port wrote for itself -- "UNIX signal.h", SIG_CATCH/SIG_HOLD, job-control
+# numbers -- which includes Microware's own only under _UCC.  The screen
+# matched it against the build overlay's UNIX headers, which are community
+# work; Scraped/sdk-copyrighted has no signal.h to match.
+disk/SRC/infoxpress/BNU/ELM_2.4/OSK/DEFS/signal.h
