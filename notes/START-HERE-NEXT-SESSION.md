@@ -43,9 +43,9 @@ call; do not apply them.
    hold for tester (perluid.cases); lpsched's `user&&0xffff` is recorded
    in DOC/STATUS (untestable here); frm's "no mail" is FOR-RDOGGETT 49.
    `browse` printing the year as 126 is period behaviour and stays.
-   **The ELM 2.4 source is in InfoXpress_FrontEnd.lzh** (the pool), which
-   the disk's notes said did not exist -- read it before guessing at any
-   ELM program.
+   **The ELM 2.4 source is on the disk at SRC/infoxpress/BNU/ELM_2.4** --
+   a tree in SRC is named by ARCHIVE; `frm's panel reason said there was
+   none.  Read it before guessing at any ELM program.
 2. **`snake`'s stray cursor moves.**  PLAN section 3 lists what was ruled
    out; the source's own comment (disk/SRC/snake/move.c, above `cook()`)
    has the byte stream.  If it is the emulator's, write a repro for the

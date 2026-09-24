@@ -52,9 +52,8 @@ to 0.0 and re-seals parity and CRC; no code changes.  Recommend: yes.
 each)?**  frm says "You have no mail." over a folder that elm, messages
 and readmsg all read one letter from: it counts a message at the blank
 line after its header, tested against LINE_FEED, which the port's own
-defs.h makes a real LF under OSK -- an OS-9 blank line is a CR.  The ELM
-2.4 source travels with these binaries in InfoXpress_FrontEnd.lzh, which
-is how this was found; tools/patch_elm_linefeed.py changes `cmpi.b #$0A'
+defs.h makes a real LF under OSK -- an OS-9 blank line is a CR (the ELM
+source is on the disk, SRC/infoxpress); tools/patch_elm_linefeed.py changes `cmpi.b #$0A'
 to `#$0D' in both, and on a scratch image frm then lists the welcome
 letter.  Recommend: yes.
 

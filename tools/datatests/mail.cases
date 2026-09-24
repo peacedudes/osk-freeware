@@ -53,8 +53,8 @@ expect  From: The OS-9 Freeware Collection
 # Run as the super-user it names tester ("tester has no mail"); run as
 # tester it says "You have no mail."  Either way it counts none.
 #
-# THE CAUSE, found 2026-09-24 in the ELM 2.4 source that travels with these
-# binaries (InfoXpress_FrontEnd.lzh): frm counts a message at the blank line
+# THE CAUSE, found 2026-09-24 in the ELM 2.4 source on this disk
+# (SRC/infoxpress/BNU/ELM_2.4, UTILS/from.c): frm counts a message at the blank line
 # that ends its header, tested as `buffer[0] == LINE_FEED', and the port's
 # defs.h makes LINE_FEED a real LF under OSK.  An OS-9 folder's blank line
 # is a CR, so the header never ends.  The second case is the proof: the

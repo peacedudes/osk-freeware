@@ -6,9 +6,9 @@
 
 Both count a message when a line of the folder begins with LINE_FEED --
 `if (buffer[0] == LINE_FEED)', UTILS/from.c and UTILS/newmail.c of the
-ELM 2.4 tree in InfoXpress_FrontEnd.lzh, which is where these binaries
-came from.  The port's HDRS/defs.h defines LINE_FEED as '\\012' under OSK,
-a real line feed, but an OS-9 folder's blank line is a carriage return.
+ELM 2.4 tree these binaries were built from, SRC/infoxpress/BNU/ELM_2.4.
+The port's HDRS/defs.h defines LINE_FEED as '\\012' under OSK, a real
+line feed, but an OS-9 folder's blank line is a carriage return.
 So the header never ends and nothing is counted: frm answers "You have no
 mail." over a folder that elm and messages both read one message from.
 Measured 2026-09-24 as tester and as the super-user; a folder whose header
