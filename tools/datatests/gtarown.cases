@@ -1,0 +1,38 @@
+family  gtarown
+# GNU tar keeps a file's owner as numbers (uid, gid) and as names (uname,
+# gname), and this port read back only the names.  OS-9 has no group file,
+# so gname is always empty: `tvf' printed a group of 0 for every file, and
+# an extract by the super-user gave every file the group getgid() returned
+# -- 31 here -- so a file owned by 1.7 came back as 31.7.  Fixed 2026-09-24
+# in list.c's decode_header: the numbers come from the header, and a name
+# this system knows still wins.
+#
+# Runs as the super-user BY DESIGN: it makes one file as tester (1.7) and
+# one as su (0.0), archives and lists them as tester, and then extracts as
+# the super-user, the only user an extract restores owners for.
+user    su
+setup   /dd/CMDS/rm -rf /dd/tmp/gtarown > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/gtarown/in /dd/tmp/gtarown/out
+setup   /h1/CMDS/attr -w -pw /dd/tmp/gtarown /dd/tmp/gtarown/in
+setup   echo root > /dd/tmp/gtarown/in/root
+setup   /h1/CMDS/attr -pr /dd/tmp/gtarown/in/root
+setup   /dd/CMDS/su -s /dd/CMDS/bash tester -c "echo tester > /dd/tmp/gtarown/in/mine"
+
+case    the-two-files-are-owned-1.7-and-0.0
+run     /h1/CMDS/dir -e /dd/tmp/gtarown/in
+expect    1.7 
+expect    0.0 
+
+case    gtar-lists-the-owner-and-group-of-a-tester-file
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/ksh -c 'cd /dd/tmp/gtarown/in; /dd/CMDS/REBUILT/gtar cf ../a.tar mine root'"
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/REBUILT/gtar tvf /dd/tmp/gtarown/a.tar"
+expect  tester/1 
+expect  su/0 
+
+case    an-extract-by-the-super-user-restores-both-owners
+run     /dd/CMDS/ksh -c "cd /dd/tmp/gtarown/out; /dd/CMDS/REBUILT/gtar xf ../a.tar"
+run     /h1/CMDS/dir -e /dd/tmp/gtarown/out | /dd/CMDS/grep mine
+run     /h1/CMDS/dir -e /dd/tmp/gtarown/out | /dd/CMDS/grep root
+expect    1.7 
+expect    0.0 
+absent  31.
