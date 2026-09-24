@@ -27,6 +27,9 @@ Script format (one directive per line, # comments ignored):
     name    tet                     what to call this test
     prog    /dd/CMDS/GAMES/tet      what to run
     setup   export FOO=bar          extra shell line before the program
+    user    su                      play as this user rather than tester --
+                                    only for a program that needs the super
+                                    user by design, and say why beside it
     wait    4                       seconds
     until   Dungeon level             WAIT FOR THIS TEXT to appear, up to 60
                                     seconds, instead of guessing at a number.
@@ -100,7 +103,8 @@ INTERRUPTED = object()                 # a `marks' entry that is not a snap
 def parse(path):
     spec = {"name": os.path.basename(path).replace(".keys", ""),
             "prog": None, "setup": [], "acts": [], "expect": [], "absent": [],
-            "allow": [], "minbytes": 0, "rate": 0.6, "size": (24, 80)}
+            "allow": [], "minbytes": 0, "rate": 0.6, "size": (24, 80),
+            "user": None}
     for raw in open(path):
         line = raw.split("#", 1)[0].strip()
         if not line:
@@ -118,6 +122,8 @@ def parse(path):
             spec["size"] = (int(rows), int(cols))
         elif word == "setup":
             spec["setup"].append(rest)
+        elif word == "user":
+            spec["user"] = rest
         elif word == "wait":
             spec["acts"].append(("wait", float(rest)))
         # `until' WAS DOCUMENTED AND HANDLED BY feed() FROM 2026-08-29 AND
@@ -169,7 +175,7 @@ def feed(spec, master, with_keys, cap=None, marks=None,
         # every permission check, so a play-test as su can pass a game whose
         # score file a reader could not write.  HARNESS_USER=su plays the
         # old way.
-        user = os.environ.get("HARNESS_USER", "tester")
+        user = spec["user"] or os.environ.get("HARNESS_USER", "tester")
         if user != "su":
             out("/dd/CMDS/su -s /dd/CMDS/bash %s\r" % user)
             time.sleep(2.0)

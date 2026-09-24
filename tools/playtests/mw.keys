@@ -4,7 +4,10 @@ prog    mw
 # score strip, the keyboard player turns and shoots, then quits.
 rate    0.8
 size    24 80
-setup   export USER=tester
+# The super-user until FOR-RDOGGETT 48 is decided: mw's module header names
+# owner 30.95, so F$SUser refuses everyone else ("Can't setuid, please
+# check File/Moduleowner!").  Its card says so.
+user    su
 setup   mw -l=5 >/nil &
 wait    14
 snap    start
@@ -15,5 +18,6 @@ wait    6
 snap    shot
 key     Q
 wait    5
-expect  1:tester
-expect  2:tester
+expect  1:su
+expect  2:su
+absent  Can't setuid
