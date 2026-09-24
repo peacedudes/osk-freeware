@@ -134,4 +134,27 @@ def stage_reader_load(h1):
         os.chmod(dst, 0o755)
         if name == "load":
             staged = src
+    # AND THE READER'S C LIBRARIES AND HEADERS (2026-09-24), for the two gccs
+    # added that day: each compiles to assembly and hands it to the reader's
+    # own r68 and l68, which link cstart.r and clibn.l from /h1/LIB and read
+    # headers from /h1/DEFS.  Without them seven of their nine cases fail.
+    # Replaced wholesale each run, for the reason given above.
+    for sub, pick in (("LIB", ("cstart.r", "clibn.l", "math.l", "sys.l")),
+                      ("DEFS", None)):
+        src_dir = os.path.join(sdk, sub) if sdk else ""
+        dst_dir = os.path.join(h1, sub)
+        if os.path.isdir(dst_dir):
+            shutil.rmtree(dst_dir)
+        if not os.path.isdir(src_dir):
+            continue
+        os.makedirs(dst_dir)
+        for f in sorted(os.listdir(src_dir)):
+            s = os.path.join(src_dir, f)
+            if not os.path.isfile(s):
+                continue
+            if pick is None and not f.endswith(".h"):
+                continue
+            if pick is not None and f not in pick:
+                continue
+            shutil.copyfile(s, os.path.join(dst_dir, f))
     return staged

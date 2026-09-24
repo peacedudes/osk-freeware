@@ -71,7 +71,7 @@ Sheet format (blank lines and `#' comments ignored):
                                    plain line of text; the strip keeps the
                                    dance.  Sampled evenly to fit the window,
                                    the typed commands always kept
-    for     sysid getsys           which CATALOGUE programs this screen shows,
+    for     getsys today           which CATALOGUE programs this screen shows,
                                    when the shot's own name is not the only
                                    one -- the gallery hangs it on each
     run     /dd/CMDS/today         the command line typed at the shell
@@ -146,7 +146,8 @@ LOGIN = ("export TERM=xterm-256color",
          "export PATH=$PATH:/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS",
          "export PATH=$PATH:/dd/CMDS/NETWORK:/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN",
          "export PATH=$PATH:/dd/CMDS/ADL:/dd/CMDS/REBUILT",
-         "export PATH=$PATH:/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
+         "export PATH=$PATH:/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139",
+         "export PATH=$PATH:/dd/CMDS/SYSADMIN:/dd/CMDS/DRIVERS:/dd/CMDS/MM1:/dd/CMDS/X68K:.",
          # The reader's own OS-9, as SYS/login appends it: `load' and the
          # rest of Microware's commands come from there, not from this disk.
          "export PATH=$PATH:/h1/CMDS:/h1/CMDS/GAMES",
@@ -186,7 +187,7 @@ def parse(path):
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
                    "try": None, "os9": None, "fold": False, "burst": False,
-                   "frames": False, "fresh": False,
+                   "frames": False, "fresh": False, "super": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -231,6 +232,12 @@ def parse(path):
             # It is also the honest fix for a background player like `mw's,
             # which `$!' being 0 in this bash makes unkillable from a stanza.
             cur["fresh"] = True
+        elif word == "super":
+            # SHOOT THIS STANZA AS THE SUPER-USER.  Every card runs as
+            # `tester' since 2026-09-23, as a reader would; a stanza whose
+            # program is the administrator's -- an MNews control message,
+            # nnmaster -I -- says so here and gets a session of its own.
+            cur["super"] = True
         elif word == "burst":
             # Capture this stanza unthrottled (see capture_burst).  For a
             # program that paints its whole screen in one burst and never
@@ -268,7 +275,7 @@ class Session:
     # than none.
     SIZE_QUERY = b"\x1b[999;999H\x1b[6n"
 
-    def __init__(self, image, rows=24, cols=80):
+    def __init__(self, image, rows=24, cols=80, user=None):
         self.buf = bytearray()
         self.size_answer = ("\x1b[%d;%dR" % (rows, cols)).encode("latin-1")
         self.size_asked = 0
@@ -295,6 +302,14 @@ class Session:
         # typed before the emulator has taken the line, so an early command
         # is simply lost.
         time.sleep(3.5)
+        # AS `tester', NOT THE SUPER-USER, unless the stanza said `super'.
+        # os9exec's first process is 0.0, and RBF lets 0.0 past every
+        # permission check -- so as su a card can show a program working
+        # that a reader could not run.  HARNESS_USER=su shoots the old way.
+        user = user or os.environ.get("HARNESS_USER", "tester")
+        if user != "su":
+            self.write("/dd/CMDS/su -s /dd/CMDS/bash %s\r" % user)
+            time.sleep(2.0)
         for line in LOGIN:
             self.write(line + "\r")
             time.sleep(0.35)
@@ -461,6 +476,18 @@ def _drive(sess, shot):
     # $ROOT', and it is a no-op for a stanza that never moved the directory.
     sess.write("builtin cd /dd\r")
     time.sleep(0.6)
+    # AND EVERY STANZA STARTS WITH THE TERMINAL AT ITS DEFAULTS.  A program
+    # can change the path options -- arithmetic turns automatic line feed
+    # off -- and the change outlives it, so the next card's lines all land on
+    # top of each other.  The reader's own tmode, from /h1, puts every option
+    # back in one word: `normal' is "return to default values" (measured
+    # 2026-09-24: nolf, noecho, pause, eof=04 and pag=40 all restored).  Then
+    # the page length is set to this card's own window.  Unconditional, no
+    # checking first -- rdoggett's suggestion, and cheaper than detecting.
+    # alf_off() stays as the backstop for a session with no /h1.
+    if os.environ.get("OS9SDK"):
+        sess.write("/h1/CMDS/tmode normal pag=%d\r" % shot["size"][0])
+        time.sleep(0.6)
     sess.write("clear\r")
     time.sleep(1.2)
     shot["_start"] = sess.mark()
@@ -582,6 +609,8 @@ def stanza_hash(shot):
              str(shot["size"])]
     if shot.get("frames"):
         parts.append("frames")            # only when set: older hashes hold
+    if shot.get("super"):
+        parts.append("super")             # who ran it changes what it shows
     # `fresh' is deliberately NOT here: it changes what the NEXT stanza
     # starts from, never this stanza's own screen, and the rule above is
     # that only what alters the capture belongs in the fingerprint.
@@ -590,7 +619,8 @@ def stanza_hash(shot):
 
 def ink(scr):
     """The program's own ink -- the shell's prompt and echo are not it."""
-    return sum(1 for line in scr.text().split("\n") if "bash#" not in line
+    return sum(1 for line in scr.text().split("\n")
+               if "bash#" not in line and "bash$ " not in line
                for ch in line if ch != " ")
 
 
@@ -615,7 +645,7 @@ def worth(scr):
     """
     seen, total = set(), 0
     for line in scr.text().split("\n"):
-        if "bash#" in line or not line.strip() or line in seen:
+        if "bash#" in line or "bash$ " in line or not line.strip() or line in seen:
             continue
         if any(line.lstrip().startswith(m) for m in ABORT_DUMP):
             continue                       # the emulator talking, not the program
@@ -694,7 +724,8 @@ def capture_burst(image, shot):
            "setenv PATH /dd/CMDS:/dd/CMDS/GAMES:/dd/CMDS/NETPBM:/dd/CMDS/UUCP:"
            "/dd/CMDS/TEXCMDS:/dd/CMDS/ELM:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
            "/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN:/dd/CMDS/ADL:/dd/CMDS/REBUILT:"
-           "/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:/h1/CMDS",
+           "/dd/CMDS/DEMOS:/dd/CMDS/DHRY:/dd/CMDS/GCC139:/dd/CMDS/SYSADMIN:"
+           "/dd/CMDS/DRIVERS:/dd/CMDS/MM1:/dd/CMDS/X68K:/h1/CMDS",
            "chx /dd/CMDS", "chd /dd")
     lines = ["-nx"] + list(env) + cmds + stdin
     scratch = tempfile.mkdtemp(prefix="burst.")
@@ -784,9 +815,12 @@ def run_sheet(path, image, only=None):
         done += 1
 
     # Everything else: one paced pty session per window size.
-    for size in sorted({s["size"] for s in shots if not s.get("burst")}):
-        group = [s for s in shots if s["size"] == size and not s.get("burst")]
-        sess = Session(image, size[0], size[1])
+    for size, sup in sorted({(s["size"], bool(s.get("super")))
+                             for s in shots if not s.get("burst")}):
+        group = [s for s in shots if s["size"] == size
+                 and bool(s.get("super")) == sup and not s.get("burst")]
+        who = "su" if sup else None
+        sess = Session(image, size[0], size[1], who)
         try:
             for shot in group:
                 shot.pop("_end", None)
@@ -838,7 +872,7 @@ def run_sheet(path, image, only=None):
                         print("      (session replaced -- %s left it unusable)"
                               % shot["name"], flush=True)
                     sess.close()
-                    sess = Session(image, size[0], size[1])
+                    sess = Session(image, size[0], size[1], who)
         finally:
             sess.close()
     return done

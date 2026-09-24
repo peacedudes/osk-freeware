@@ -17,10 +17,11 @@ case    biff-speaks-b1ff
 run     echo "Please mend the computer program, thanks, you are cool" | /dd/CMDS/biff
 expect  PLEEZ MEND THE C-64 WAREZ!1!!, THANX, U R C00L!!!
 
+# The chain it walks is random, so only the shape is asserted: a paragraph,
+# and no word that was not in its input.
 case    discord-rechains-its-input
 run     echo "alpha beta gamma. alpha beta gamma." | /dd/CMDS/discord
 expect  .PP
-expect  amma.
 absent  delta
 
 case    discord-reads-a-document

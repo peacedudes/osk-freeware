@@ -31,10 +31,12 @@ run     /dd/CMDS/dump /dd/tmp/cl.bin
 expect  7 /dd/tmp/cl.bin
 expect  1B5B 481B 5B32 4A
 
-# Needs the super-user: combine makes its output with no permission bits,
-# so run as anyone else the cat below is refused (E_FNA).
+# combine makes its output with NO permission bits, so anyone but the
+# super-user must give it some before reading -- with your own `attr', as
+# its card and DOC/INDEX say.  The maker owns the file, so that is allowed.
 case    combine-interleaves-byte-by-byte
 run     /dd/CMDS/combine /dd/tmp/even.txt /dd/tmp/odd.txt /dd/tmp/mix.txt
+run     /h1/CMDS/attr -r -w /dd/tmp/mix.txt
 run     /dd/CMDS/cat /dd/tmp/mix.txt
 expect  a1b2c3d4e5f6g7h8
 expect  combine operation completed

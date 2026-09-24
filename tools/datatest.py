@@ -117,7 +117,7 @@ class Case:
 
 def parse(path):
     fam = {"family": os.path.basename(path).replace(".cases", ""),
-           "setup": [], "load": [], "cases": []}
+           "setup": [], "load": [], "cases": [], "user": None}
     cur = None
     for lineno, raw in enumerate(open(path), 1):
         # A `#' STARTS A COMMENT ONLY AT THE START OF A LINE. Stripping it
@@ -133,6 +133,11 @@ def parse(path):
         rest = rest.strip()
         if word == "family":
             fam["family"] = rest
+        elif word == "user":
+            # `user su' -- a family whose cases need the super-user BY DESIGN
+            # (an admin-only control message, a private spool, an attr only
+            # the owner may set).  Everything else runs as tester.
+            fam["user"] = rest
         elif word in ("setup", "load"):
             fam[word].append(rest)
         elif word == "case":
@@ -238,13 +243,14 @@ def run_family(path, image, workdir):
     for _attempt in range(len(fam["cases"]) + 1):
         open(sh, "w", newline="").write(script_for(fam, todo))
         run_sh = "/h1/%s.sh" % fam["family"]
-        # HARNESS_USER=tester runs the family as that user instead of the
-        # super-user every harness has always used -- RBF lets 0.0 past
-        # permission checks, so a file a reader cannot write passes as 0.0.
-        # Opt-in (2026-09-23) while the question of switching every harness
-        # is rdoggett's; the disk's GNU su hands the script to bash.
-        user = os.environ.get("HARNESS_USER")
-        if user:
+        # RUN AS `tester', NOT AS THE SUPER-USER.  RBF lets 0.0 past every
+        # permission check, so as su a file a reader cannot read or write
+        # still passes -- nn's owner-only GROUPS file hid that way until
+        # 2026-09-23.  rdoggett chose tester the same day.  The disk's GNU su
+        # hands the script to bash.  A family marked `user su' keeps the
+        # super-user; HARNESS_USER=su runs everything the old way.
+        user = fam["user"] or os.environ.get("HARNESS_USER", "tester")
+        if user and user != "su":
             wrap = sh[:-3] + ".as.sh"
             open(wrap, "w", newline="").write(
                 "/dd/CMDS/su -s /dd/CMDS/bash %s %s\r" % (user, run_sh))

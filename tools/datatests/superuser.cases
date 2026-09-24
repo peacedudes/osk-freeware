@@ -1,0 +1,75 @@
+family  superuser
+user    su
+# The cases that need the SUPER-USER by design, gathered here because every
+# other family runs as `tester' (2026-09-23).  Each says why.  The MNews
+# setup is mnews.cases's, repeated so these can run on their own.
+
+setup   export PATH=/dd/CMDS/MNEWS:$PATH
+setup   export HOME=/dd USER=tester
+setup   W=/dd/tmp/MNT
+setup   /dd/CMDS/rm -rf $W /h0/SPOOL/MNEWS/comp /h0/SPOOL/MNEWS/control /h0/SPOOL/MNEWS/junk > /nil 2>/nil
+setup   /dd/CMDS/rm -f /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
+setup   /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER /h0/SPOOL/NN/DATA/*.? > /nil 2>/nil
+setup   /dd/CMDS/printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+setup   /dd/CMDS/mkdir -p $W
+setup   /dd/CMDS/setup
+
+# Needs the super-user: inews obeys a control message only when the caller
+# is the owner of the inews module, 0.0 here, and says so otherwise.
+case    inews-makes-a-group-and-files-an-article-in-it
+run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: case\r\rbody text\r' > $W/art
+run     inews -c=newgroup:comp.os.os9 < /nil
+run     inews -h < $W/art
+run     /dd/CMDS/cat /h0/SPOOL/MNEWS/comp/os/os9/1
+expect  Newsgroups: comp.os.os9
+expect  Subject: case
+expect  body text
+
+# The GROUPS file nnmaster -I makes is its owner's alone (`------wr'), so
+# another user's nncheck cannot read it until the super-user gives it
+# public read.  Needs the super-user, for the attr.
+case    another-users-nn-reads-groups-only-after-attr-pr
+load    /h1/CMDS/shell
+load    /h1/CMDS/qsort
+load    /h1/CMDS/touch
+run     /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER
+run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
+run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok > /nil
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/mkdir -p /dd/tmp/MNT/tu/.nn; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil > /nil; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
+run     /h1/CMDS/attr -pr /h0/SPOOL/NN/GROUPS
+run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
+expect  Cannot open file /h0/SPOOL/NN/GROUPS
+expect  ----r-wr  /h0/SPOOL/NN/GROUPS
+expect  No News (is good news)
+
+# uupoll's whole job is to leave a POLL file in the queue for a site, and
+# it does it in silence -- which is why it read as broken. The grade letter
+# goes into the name: no -g is `A', `-gZ' is `Z'.
+# Needs the super-user to LIST the result: uupoll becomes uucp and makes the
+# site directory owner-only, so another user's ls is refused.
+case    uupoll-queues-a-poll-file-and-the-grade-is-in-its-name
+run     /dd/CMDS/UUCP/uupoll nowhere
+run     /dd/CMDS/UUCP/uupoll -gZ nowhere
+run     /dd/CMDS/ls /dd/SPOOL/uucp/nowhere
+expect  C.nowhereAPOLL
+expect  C.nowhereZPOLL
+
+# Initialising nn's database is the administrator's job.
+# nnmaster -I builds nn's database, forking the reader's own shell and, for
+# a new GROUPS file, the reader's own qsort; nncheck then reads it.  A first
+# nncheck makes the user's .nn files (with the reader's touch) and prints
+# nn's welcome; the second answers the question it is for.
+case    nnmaster-builds-the-database-nncheck-reads
+load    /h1/CMDS/shell
+load    /h1/CMDS/qsort
+load    /h1/CMDS/touch
+run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
+run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok
+run     /dd/CMDS/ls /h0/SPOOL/NN
+run     /dd/CMDS/mkdir -p $W/.nn
+run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil > /nil
+run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil
+expect  Initializing master data base...
+expect  MASTER
+expect  No News (is good news)
+absent  can't execute

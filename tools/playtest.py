@@ -70,6 +70,7 @@ sys.path.insert(0, os.path.join(REPO, "tools"))
 import ansiscreen                                        # noqa: E402
 # One writer at a time: all three harnesses write to the image itself.
 import imagelock                                         # noqa: E402
+from os9env import emulator_env                          # noqa: E402
 
 OS9EXEC = os.environ.get("OS9EXEC",
                          os.path.join(REPO, "..", "os9exec", "os9exec"))
@@ -149,6 +150,14 @@ def feed(spec, master, with_keys, cap=None, marks=None,
         # early is simply lost -- `export TERM=vt100' vanished that way and
         # hack then stopped with "Unknown terminal type: dumb."
         time.sleep(3.5)
+        # AS `tester', NOT THE SUPER-USER (2026-09-23): RBF lets 0.0 past
+        # every permission check, so a play-test as su can pass a game whose
+        # score file a reader could not write.  HARNESS_USER=su plays the
+        # old way.
+        user = os.environ.get("HARNESS_USER", "tester")
+        if user != "su":
+            out("/dd/CMDS/su -s /dd/CMDS/bash %s\r" % user)
+            time.sleep(2.0)
         # THE ENVIRONMENT A PERSON ACTUALLY ARRIVES WITH. Running bash bare is
         # not how anyone meets this disk -- SYS/login sets these first, and a
         # program that wants one of them fails in a way that looks like a bug
@@ -168,7 +177,8 @@ def feed(spec, master, with_keys, cap=None, marks=None,
                      "export PATH=$PATH:/dd/CMDS/COMMS:/dd/CMDS/NETWORK:"
                      "/dd/CMDS/NEWS:/dd/CMDS/MNEWS:/dd/CMDS/WN:/dd/CMDS/ADL",
                      "export PATH=$PATH:/dd/CMDS/REBUILT:/dd/CMDS/DEMOS:"
-                     "/dd/CMDS/DHRY:/dd/CMDS/GCC139:.",
+                     "/dd/CMDS/DHRY:/dd/CMDS/GCC139:/dd/CMDS/SYSADMIN:"
+                     "/dd/CMDS/DRIVERS:/dd/CMDS/MM1:/dd/CMDS/X68K:.",
                      "export HELPDIR=/dd/SYS/HELP",
                      # CLEAR THE SETUP OFF THE SCREEN. Those eight export
                      # lines are ~150 characters of ink, and `ink' is how this
@@ -245,7 +255,8 @@ def run(spec, image, with_keys, cap, marks=None, until_times=None):
     # play-test mounted THAT as /h0, beside whatever emulator has it open, and
     # programs reading /h0 paths saw the wrong disk (found 2026-09-14 with
     # nethack3).  datatest.py and screenshots.py have always passed both.
-    env = dict(os.environ, OS9DISK=image, OS9H0=image)
+    # emulator_env, not dict(os.environ): see tools/os9env.py.
+    env = emulator_env(OS9DISK=image, OS9H0=image)
     master, slave = pty.openpty()
     rows, cols = spec["size"]
     fcntl.ioctl(slave, termios.TIOCSWINSZ,

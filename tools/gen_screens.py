@@ -190,11 +190,14 @@ HEAD_BANNER = re.compile(r"^(head|tail): \S+$")
 # so a five-command screen came out as one command and one listing with an
 # unexplained gap in the middle. A screen is a session: show the commands,
 # just not the prompt they were typed at.
-PROMPT = re.compile(r"^bash#\s?")
+# `bash#' for the super-user and `bash$' for anyone else: every harness has
+# run as `tester' since 2026-09-24, and a `bash$' left in place hid every
+# typed command from the page and from audit_panels.
+PROMPT = re.compile(r"^bash[#$]\s?")
 # A program that ends its output without a newline leaves the next prompt
 # sitting on the same line -- `August 28, 2100 04:45:27bash# date -t'. That is
 # one line on the terminal and two things to a reader, so it gets split.
-RUNON = re.compile(r"(?<=.)bash#(?:\s|$)")
+RUNON = re.compile(r"(?<=.)bash[#$](?:\s|$)")
 # os9exec's own file-table dump, printed when it reports a crash. The lines
 # that NAME the crash are kept -- a program that died should be seen dying --
 # but the open-path list belongs to the emulator, not to the program.

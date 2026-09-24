@@ -60,18 +60,6 @@ run     /dd/CMDS/wc -c $M
 expect  can't change to mailbox: /dd/SPOOL/MAIL/tester/tester
 expect  804 /dd/SPOOL/MAIL/tester
 
-# uupoll's whole job is to leave a POLL file in the queue for a site, and
-# it does it in silence -- which is why it read as broken. The grade letter
-# goes into the name: no -g is `A', `-gZ' is `Z'.
-# Needs the super-user to LIST the result: uupoll becomes uucp and makes the
-# site directory owner-only, so another user's ls is refused.
-case    uupoll-queues-a-poll-file-and-the-grade-is-in-its-name
-run     /dd/CMDS/UUCP/uupoll nowhere
-run     /dd/CMDS/UUCP/uupoll -gZ nowhere
-run     /dd/CMDS/ls /dd/SPOOL/uucp/nowhere
-expect  C.nowhereAPOLL
-expect  C.nowhereZPOLL
-
 # makedb builds smail's path-alias dbm from the palias that ships. A dbm is
 # a .dir/.pag pair and the .dir of a small table is legitimately empty, so
 # the .pag is what proves work was done.

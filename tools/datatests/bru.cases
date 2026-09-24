@@ -1,4 +1,6 @@
 family bru
+# BRU is for the super-user only (anyone else gets status 214).
+user su
 setup /dd/CMDS/rm -rf /dd/tmp/brut /dd/tmp/brur /dd/tmp/brup /dd/tmp/brut.bru /dd/tmp/brut2.bru
 setup /dd/CMDS/mkdir -p /dd/tmp/brut/src/sub/deep /dd/tmp/brur /dd/tmp/brup/src/sub
 setup echo "alpha file" > /dd/tmp/brut/src/a.txt

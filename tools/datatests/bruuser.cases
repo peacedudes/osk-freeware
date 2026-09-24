@@ -1,0 +1,7 @@
+# bru refuses anyone but the super-user: status 214 (E_FNA) and no message.
+# The rest of bru's cases run as su in bru.cases; this one runs as tester.
+family  bruuser
+
+case    bru-refuses-a-user-who-is-not-the-super-user
+run     /dd/CMDS/bru -t -q -f /dd/SYS/motd; echo "status $?"
+expect  status 214

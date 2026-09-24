@@ -21,17 +21,6 @@ run     /dd/CMDS/getinfo -a
 expect  NEWS.DIR              String      /h0/SPOOL/MNEWS
 expect  lck.inews             Lock        not locked
 
-# Needs the super-user: inews obeys a control message only when the caller
-# is the owner of the inews module, 0.0 here, and says so otherwise.
-case    inews-makes-a-group-and-files-an-article-in-it
-run     /dd/CMDS/printf 'Newsgroups: comp.os.os9\rSubject: case\r\rbody text\r' > $W/art
-run     inews -c=newgroup:comp.os.os9 < /nil
-run     inews -h < $W/art
-run     /dd/CMDS/cat /h0/SPOOL/MNEWS/comp/os/os9/1
-expect  Newsgroups: comp.os.os9
-expect  Subject: case
-expect  body text
-
 # rnews forks inews by bare name, which is looked up in the execution
 # directory -- /dd/CMDS -- so inews has to be resident first.
 case    rnews-hands-a-batch-to-inews
@@ -71,25 +60,6 @@ run     /dd/CMDS/cp $W/sys.save /h0/USR/LIB/NEWS/Sys
 expect  Spooling news for nbr
 expect  uux: Unknown Host 'nbr'
 
-# nnmaster -I builds nn's database, forking the reader's own shell and, for
-# a new GROUPS file, the reader's own qsort; nncheck then reads it.  A first
-# nncheck makes the user's .nn files (with the reader's touch) and prints
-# nn's welcome; the second answers the question it is for.
-case    nnmaster-builds-the-database-nncheck-reads
-load    /h1/CMDS/shell
-load    /h1/CMDS/qsort
-load    /h1/CMDS/touch
-run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
-run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok
-run     /dd/CMDS/ls /h0/SPOOL/NN
-run     /dd/CMDS/mkdir -p $W/.nn
-run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil > /nil
-run     HOME=$W /dd/CMDS/MNEWS/nncheck < /nil
-expect  Initializing master data base...
-expect  MASTER
-expect  No News (is good news)
-absent  can't execute
-
 # cvt_help turns nn's help markup (`;:A') into the control codes nn prints
 # and back: the source's help.welcome converts to exactly what ships in
 # USR/LIB/NN, and converting that returns the markup.
@@ -114,20 +84,3 @@ run     /dd/CMDS/ls $W
 expect  Subject: via nnaux
 expect  posted by nnaux
 absent  nnaux.art
-
-# The GROUPS file nnmaster -I makes is its owner's alone (`------wr'), so
-# another user's nncheck cannot read it until the super-user gives it
-# public read.  Needs the super-user, for the attr.
-case    another-users-nn-reads-groups-only-after-attr-pr
-load    /h1/CMDS/shell
-load    /h1/CMDS/qsort
-load    /h1/CMDS/touch
-run     /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER
-run     /dd/CMDS/printf 'OK\ry\r' > $W/ok
-run     /dd/CMDS/MNEWS/nnmaster -I < $W/ok > /nil
-run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/mkdir -p /dd/tmp/MNT/tu/.nn; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil > /nil; HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
-run     /h1/CMDS/attr -pr /h0/SPOOL/NN/GROUPS
-run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "HOME=/dd/tmp/MNT/tu /dd/CMDS/MNEWS/nncheck < /nil"
-expect  Cannot open file /h0/SPOOL/NN/GROUPS
-expect  ----r-wr  /h0/SPOOL/NN/GROUPS
-expect  No News (is good news)
