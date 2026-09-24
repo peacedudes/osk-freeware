@@ -23,6 +23,15 @@ It lists, per archive: the members whose basename appears nowhere under
 `disk/'.  Expect noise -- object files, makefiles for other machines, the
 author's own build leftovers -- and read it as a prompt, not a defect list.
 DOC and example directories are what to look at first.
+
+IT IS BLIND TO A SOURCE TREE THAT IS SHORT OF ITS ARCHIVE, twice over.
+On 2026-09-24 ELM's whole LIB/ -- 48 files a build needs -- turned out to
+be absent from SRC/infoxpress, and C News's rna/lib/ from SRC/cnews.  This
+tool saw neither: both archives are over PACKAGE members, so it skipped
+them without --all, and it matches a BASENAME ANYWHERE under disk/, so a
+missing memset.c hides behind a memset.c in another tree.  To ask "is this
+tree complete", compare the tree with its own archive directory, name by
+name.
 """
 import os
 import re
