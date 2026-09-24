@@ -520,6 +520,8 @@ btoa|btoa -?|
 atob|atob -?|
 uuencode|uuencode -?|
 uudecode|uudecode -?|
+uue|uue -?|
+uud|uud -?|
 uuexpand|uuexpand -?|
 checksum|checksum -?|
 chksum|chksum -h|

@@ -189,6 +189,8 @@ translit|Encoding & conversion|Text encodings
 toos9|Encoding & conversion|Text encodings
 uudecode|Encoding & conversion|Text encodings
 uuencode|Encoding & conversion|Text encodings
+uud|Encoding & conversion|Text encodings
+uue|Encoding & conversion|Text encodings
 uuexpand|Encoding & conversion|Text encodings
 
 # ---- Files & directories ----

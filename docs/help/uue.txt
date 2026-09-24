@@ -1,0 +1,7 @@
+$ uue -?
+Syntax: uue <[opts]> <file>
+Function: enhanced uuencode utility
+Options:
+    -l[=]lines    maximum lines for each output file
+    -n[=]name     encoded header name
+                  (defaults to file if not specified)

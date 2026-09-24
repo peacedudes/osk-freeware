@@ -1,6 +1,6 @@
 # What is on this disk
 
-1070 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **751 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1072 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **753 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -19,7 +19,7 @@
 | [Compilers & build](#compilers--build) | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
@@ -728,7 +728,7 @@
 
 *Between text encodings, line endings, Macintosh formats, ciphers and hashes.*
 
-<details><summary>32 programs</summary>
+<details><summary>34 programs</summary>
 
 **Audio**
 
@@ -778,7 +778,9 @@
 | `toos9` | &#9733; turns DOS line endings into OS-9 ones -- CR LF back to CR -- and appends one 0xFF byte at the end. Like todos it leaves the converted text in toos9.$$$.<n> in the data directory, because it cannot rename that over the original; rename it yourself. `autolf -C' does the job as a filter<br>**How:** The same the other way round: the OS-9 version is left in `toos9.$$$.<n>' for you to rename, and it appends one 0xFF byte at the end. `autolf -C' does the job as a filter. |
 | `translit` | transliterates text between alphabets by a table: KOI8, KOI7, ALT and GOSTCII Russian, Library of Congress and phonetic romanization, LaTeX; `translit -t koi8-lc.rus -i in -o out'<br>**How:** Converts text from one alphabet or coding to another by a table: `translit -t koi8-lc.rus -i in -o out'. Eighteen tables for Russian are in LIB/translit -- KOI8, KOI7, ALT and GOSTCII codings, Library of Congress, GOST and Pokrovsky transliteration, phonetic spelling and LaTeX -- and a table named without -t is taken the same way. Without -i and -o it is a filter. It will not write over an existing -o file. TRANSP names another table directory and TRANSF the default table. The manual is DOC/translit/translit.txt.A and .B. The post's examples are in SRC/translit/ORIG: example.ko8.UU and example.alt.UU are uuencoded, with DOS line ends that `autolf -C' turns into OS-9 ones. |
 | `uncompface` | turns an `X-Face:' line back into the 144 hex words `compface' made it from, so the picture can be looked at again |
+| `uud` | decodes what uue or uuencode wrote, and when a file came in pieces -- .uaa, .uab ... -- finds them and joins them by itself: `uud file.uaa'.  -t= names the directory to write in<br>`uud: Unknown option <-?>` |
 | `uudecode` | &#9733; undoes uuencode: writes the file named on the begin line back into the current directory<br>`ERROR: can't find -?` |
+| `uue` | uuencodes a file into file.uue, or with -l=<lines> into pieces no longer than that, file.uaa, file.uab ..., for mail that limits a message's size: `uue -l=500 archive'. DOC/uutools/uu.doc is the manual<br>`Syntax: uue <[opts]> <file>` |
 | `uuencode` | &#9733; uuencode. Give it one argument -- the input file -- and redirect: `uuencode myfile > myfile.uu'. Its own usage line prints `uuencode >outfile [infile] name', which fails with two arguments.<br>**How:** One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it. |
 | `uuexpand` | expands a file into a run of `0' and `1' characters, one per bit -- despite the shared prefix, unrelated to uuencode -- so it survives a copy between machines with different byte or character sizes; `uuexpand -u' (or `uuunexpand') reverses it<br>**How:** Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines. |
 

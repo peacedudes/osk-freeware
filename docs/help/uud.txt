@@ -1,0 +1,2 @@
+$ uud -?
+uud: Unknown option <-?>

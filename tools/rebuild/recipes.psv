@@ -1147,3 +1147,5 @@ ogrify|ogrify|ogrify.c||/dd/LIB/rand.r|
 taxlaw|taxlaw|taxmain.c taxlaw.c index.c wrap.c rnd.c||/dd/LIB/rand.r|
 drawpoker|poker|poker.c p_scr.c p_deal.c p_hand.c p_strat.c p_decide.c input.c||/dd/LIB/curses.l /dd/LIB/termlib.l|
 slice|slice|slice.c recomp.c||/dd/LIB/os9lib.l|
+uue|uutools|uue.c|OS9||
+uud|uutools|uud.c|OS9||

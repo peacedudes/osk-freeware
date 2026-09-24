@@ -1,0 +1,35 @@
+family  uutools
+# uue and uud, the enhanced uuencode/uudecode from UUCPbb's uutools: uue
+# can split its output into pieces of at most N lines (.uaa, .uab ...) and
+# uud puts the pieces back together by itself.
+setup   W=/dd/tmp/uutw
+
+case    uue-encodes-a-file-beside-itself
+run     /dd/CMDS/rm -rf $W
+run     /dd/CMDS/mkdir -p $W
+run     /dd/CMDS/cp /dd/SYS/motd $W/motd
+run     /dd/CMDS/uue $W/motd
+run     /dd/CMDS/cat $W/motd.uue
+expect  begin 644 motd
+expect  @ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+case    uud-round-trips-what-uue-wrote
+run     /dd/CMDS/rm -rf $W
+run     /dd/CMDS/mkdir -p $W/out
+run     /dd/CMDS/cp /dd/SYS/motd $W/motd
+run     /dd/CMDS/uue $W/motd
+run     /dd/CMDS/uud -t=$W/out $W/motd.uue
+run     /dd/CMDS/tcmp /dd/SYS/motd $W/out/motd
+expect  are identical
+
+case    uue-splits-and-uud-rejoins
+run     /dd/CMDS/rm -rf $W
+run     /dd/CMDS/mkdir -p $W/out
+run     /dd/CMDS/cp /dd/CMDS/tcmp $W/big
+run     /dd/CMDS/uue -l=40 $W/big
+run     /dd/CMDS/ls $W
+expect  big.uaa
+expect  big.uab
+run     /dd/CMDS/uud -t=$W/out $W/big.uaa
+run     /dd/CMDS/tcmp /dd/CMDS/tcmp $W/out/big
+expect  are identical

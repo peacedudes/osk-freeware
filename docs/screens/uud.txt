@@ -1,0 +1,4 @@
+uud -t=out big.uaa
+$ tcmp big out/big
+[Tcmp v2.3]
+Files big and out/big are identical

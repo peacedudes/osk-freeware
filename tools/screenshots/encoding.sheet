@@ -32,6 +32,39 @@ wait    3
 run     atob < tmp/ENC/j.btoa
 wait    5
 
+shot    uue
+cap     uue cutting a program into uuencoded pieces of at most 40 lines,
+cap     the way a file too big for one message went out by mail: big.uaa,
+cap     big.uab and on.  Each piece names the next with an include line.
+try     uue -l=40 big
+run     rm -rf /dd/tmp/UUK > /nil 2>/nil; mkdir -p /dd/tmp/UUK; cp /dd/CMDS/tcmp /dd/tmp/UUK/big
+wait    2
+run     builtin cd /dd/tmp/UUK
+wait    1
+run     clear
+wait    1
+run     uue -l=40 big
+wait    4
+run     ls -l
+wait    2
+run     grep include big.uaa
+wait    2
+
+shot    uud
+cap     uud given the first piece: it finds big.uab, big.uac and the rest
+cap     by itself and writes the file back whole -- tcmp finds it the same
+cap     as the original.
+try     uud -t=out big.uaa
+run     rm -rf /dd/tmp/UUD > /nil 2>/nil; mkdir -p /dd/tmp/UUD/out; cp /dd/CMDS/tcmp /dd/tmp/UUD/big
+run     builtin cd /dd/tmp/UUD; uue -l=40 big
+wait    3
+run     clear
+wait    1
+run     uud -t=out big.uaa
+wait    4
+run     tcmp big out/big
+wait    2
+
 shot    uuencode
 cap     Wraps a file as printable text, the way binaries crossed mail and
 cap     news before attachments: a begin line with the file's mode and

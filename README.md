@@ -117,7 +117,7 @@ is no help until you already know the name you want.
 | **Compilers & build** | 41 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 16 | Interpreters and language systems beyond C. |
 | **Archives & compression** | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
-| **Encoding & conversion** | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
+| **Encoding & conversion** | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | **Communications** | 114 | Kermit in several builds, terminal sessions, and networking. |
 | **Graphics & images** | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | **Games** | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |

@@ -1,0 +1,1 @@
+# OS-9/6809 Makefile for UUE/UUDCC        = ccCFLAGS    = -dOS9 -dm6809ODIR      = /r0all: $(ODIR)/uue_6809 $(ODIR)/uud_6809     @echo All Done$(ODIR)/uue_6809: uue.c     $(CC) $(CFLAGS) uue.c -f=$(ODIR)/uue_6809 -n=uue$(ODIR)/uud_6809: uud.c     $(CC) $(CFLAGS) uud.c -f=$(ODIR)/uud_6809 -n=uud

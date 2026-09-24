@@ -1,0 +1,10 @@
+uue -l=40 big
+$ ls -l
+total 15872
+-r-xr-xr-x   1 0        0            5804 Aug  3 19:00 big
+-rw-------   1 0        0            2307 Sep 23 22:01 big.uaa
+-rw-------   1 0        0            2310 Sep 23 22:01 big.uab
+-rw-------   1 0        0            2310 Sep 23 22:01 big.uac
+-rw-------   1 0        0            1608 Sep 23 22:01 big.uad
+$ grep include big.uaa
+include big.uab

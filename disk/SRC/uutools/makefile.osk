@@ -1,0 +1,1 @@
+# OS-9/68K Ultra C Makefile for UUE/UUDCC        = ccCFLAGS    = -dOS9 -bcODIR      = /r0all: $(ODIR)/uue_68k $(ODIR)/uud_68k     echo All Done$(ODIR)/uue_68k: uue.c     $(CC) $(CFLAGS) uue.c -fd=$(ODIR)/uue_68k -oln=uue$(ODIR)/uud_68k: uud.c     $(CC) $(CFLAGS) uud.c -fd=$(ODIR)/uud_68k -oln=uud
