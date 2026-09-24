@@ -62,11 +62,6 @@ prexdc|the server prexd starts for each request; not run by hand
 vt100|a terminal program for the MM/1; with no serial port here its refusal is what can be shown, and the card says it is untested
 x9eyes|draws in the Sharp X68000's personal window; without the X68000 it stops at the window it cannot open, and the card says so
 setbgptn|sets the Sharp X68000 personal window's background; without the X68000 it can only say it cannot open /win
-gcc137_cccp|a pass of GNU C 1.37.1 that the driver runs, not a command; the gcc137 card shows the driver running it
-gcc137_cc1|a pass of GNU C 1.37.1 that the driver runs, not a command; the gcc137 card shows the driver running it and the assembly it wrote
-gcc272_cccp2|a pass of GNU C 2.7.2 that the driver runs, not a command; the gcc272 card shows the driver running it
-gcc272_cc2|a pass of GNU C 2.7.2 that the driver runs, not a command; the gcc272 card shows the driver running it and the assembly it wrote
-gcc272_cc2plus|the C++ pass of GNU C 2.7.2, which the driver runs for a .cc file; not a command
 gcc272_collect|the pass GNU C 2.7.2 runs at every link to gather C++ constructors; not a command
 mesg|sets your flags in SYS/utmp, which logon writes on a multi-user system; with nobody logged in its usage is what can be shown, and the card says so
 msg|sends a line to a logged-in user and prints nothing of its own; mmenu runs it, and the mesg card says so

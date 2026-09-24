@@ -221,7 +221,7 @@ run     ./gcc -v -c hello.c
 wait    10
 
 shot    gcc137
-for     gcc137 gcc137_cccp gcc137_cc1
+for     gcc137
 cap     `gcc137', GNU C 1.37.1 as CERN distributed it in 1991, run from
 cap     its own directory.  -B names its passes (gcc137_cccp, gcc137_cc1)
 cap     by the path of their prefix -- $PWD, as the shell keeps it, is that
@@ -242,7 +242,7 @@ run     rm -f hello.c hello.a hello.s
 wait    1
 
 shot    gcc272
-for     gcc272 gcc272_cccp2 gcc272_cc2 gcc272_cc2plus gcc272_collect
+for     gcc272 gcc272_collect
 cap     `gcc272', GNU C and C++ 2.7.2, the newest gcc here, run from its own
 cap     directory.  It forks its passes by name, so GCC2_OPTS points it at
 cap     each one with -F, by the path $PWD gives; asked to stop at assembly
@@ -260,6 +260,85 @@ wait    8
 run     cat hello.a
 wait    2
 run     rm -f hello.c hello.a
+wait    1
+
+shot    gcc137_cccp
+cap     GNU C 1.37.1's preprocessor, one of the passes gcc137 runs, given
+cap     a small C file by hand, in its own directory: the macro is
+cap     expanded, and the `# 1 "..."' line marks where the source began.
+try     ./gcc137_cccp hello.c
+run     builtin cd /dd/CMDS/GCC137
+wait    1
+run     printf "#define ANSWER 42\rint main()\r{\r  return ANSWER;\r}\r" > hello.c
+run     clear
+wait    1
+run     ./gcc137_cccp hello.c
+wait    6
+snap
+run     rm -f hello.c
+wait    1
+
+shot    gcc137_cc1
+cap     GNU C 1.37.1's compiler proper, given preprocessed C by hand: it
+cap     writes 68k assembly for your own r68 -- a stack check, then the
+cap     function itself.
+try     ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
+run     builtin cd /dd/CMDS/GCC137
+wait    1
+run     printf "int main()\r{\r  return 42;\r}\r" > hello.i
+run     clear
+wait    1
+run     ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
+wait    8
+snap
+run     rm -f hello.i hello.a
+wait    1
+
+shot    gcc272_cccp2
+cap     GNU C 2.7.2's preprocessor, one of the passes gcc272 runs, given a
+cap     small C file by hand, in its own directory: the macro is expanded
+cap     and the `# 1' line marks where the source began.
+try     ./gcc272_cccp2 hello.c hello.i; cat hello.i
+run     builtin cd /dd/CMDS/GCC272
+wait    1
+run     printf "#define ANSWER 42\rint main()\r{\r  return ANSWER;\r}\r" > hello.c
+run     clear
+wait    1
+run     ./gcc272_cccp2 hello.c hello.i; cat hello.i
+wait    6
+snap
+run     rm -f hello.c hello.i
+wait    1
+
+shot    gcc272_cc2
+cap     GNU C 2.7.2's compiler proper, given preprocessed C by hand: it
+cap     writes 68k assembly for your own r68.
+try     ./gcc272_cc2 hello.i -o hello.a -quiet; cat hello.a
+run     builtin cd /dd/CMDS/GCC272
+wait    1
+run     printf "int main()\r{\r  return 42;\r}\r" > hello.i
+run     clear
+wait    1
+run     ./gcc272_cc2 hello.i -o hello.a -quiet; cat hello.a
+wait    10
+snap
+run     rm -f hello.i hello.a
+wait    1
+
+shot    gcc272_cc2plus
+cap     GNU C 2.7.2's C++ compiler proper, given a small class by hand: it
+cap     writes 68k assembly for your own r68, the member function under its
+cap     C++ mangled name, f__1G.
+try     ./gcc272_cc2plus hello.ii -o hello.a -quiet; cat hello.a
+run     builtin cd /dd/CMDS/GCC272
+wait    1
+run     printf "class G { public: int f() { return 42; } };\rint main() { G g; return g.f(); }\r" > hello.ii
+run     clear
+wait    1
+run     ./gcc272_cc2plus hello.ii -o hello.a -quiet; cat hello.a
+wait    12
+snap
+run     rm -f hello.ii hello.a
 wait    1
 
 shot    gcc2

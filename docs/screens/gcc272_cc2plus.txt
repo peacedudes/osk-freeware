@@ -1,0 +1,23 @@
+        bra L3.
+        moveq.l #0,d0
+        bra L3.
+L3.
+        unlk a5
+        rts
+        align
+f__1G
+        move.l d0,-(a7)
+        moveq.l #-80,d0 :2
+        bsr _stkcheck
+        move.l (a7)+,d0 :2
+        link.w a5,#0
+        move.l d0,d1 *m6c
+        moveq.l #42,d0
+        bra L1.
+        bra L2.
+        bra L1.
+L2.
+L1.
+        unlk a5
+        rts
+        ends

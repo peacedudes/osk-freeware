@@ -1,0 +1,15 @@
+./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
+        psect   hello_gc,0,0,0,0,0
+        align
+main:
+        move.l d0,-(sp)
+        move.l #76+0,d0
+        bsr __stack_check
+        move.l (sp)+,d0
+        link a5,#0
+        moveq.l #42,d0
+        bra L1.
+L1.
+        unlk a5
+        rts
+        ends

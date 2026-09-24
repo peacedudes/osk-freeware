@@ -319,8 +319,13 @@ game f4d65a3409a93a21
 gawk 2ee7df15052f71f7
 gcc 23bc2d0e1a6d915d
 gcc137 1a3ff14694290cb2
+gcc137_cc1 dcaf5d6f24ee1ea1
+gcc137_cccp 898873e0ca667c0d
 gcc2 0899064ec563bf43
 gcc272 fd3d6dc2157a807a
+gcc272_cc2 af37a9abffca9c89
+gcc272_cc2plus dbcd1e14ac54776e
+gcc272_cccp2 b95f9c6d6fe56f46
 gcc_cc1 800ca8c71d2133b5
 gcc_cc1plus 7ce53c78eb5ed304
 gcc_cc2 ec5c779535af9a9f
