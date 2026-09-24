@@ -103,6 +103,24 @@ wait    4
 send    inventory\r
 wait    6
 
+shot    inform
+cap     inform compiling hellow.inf, the source of one of the three demos
+cap     in GAMES/INFORM, into hellow.z3, a story file that infocom plays.
+cap     Name the source without its .inf.  The file it writes is byte for
+cap     byte the hellow.z3 that ships.
+try     inform hellow
+run     rm -rf /dd/tmp/INFK > /nil 2>/nil; mkdir -p /dd/tmp/INFK
+run     cp /dd/SRC/inform/hellow.inf /dd/SRC/inform/parser.h /dd/SRC/inform/verblib.h /dd/SRC/inform/grammar.h /dd/tmp/INFK
+wait    2
+run     builtin cd /dd/tmp/INFK
+wait    1
+run     clear
+wait    1
+run     inform hellow
+wait    15
+run     ls -l hellow.z3
+wait    2
+
 shot    infocom
 cap     The same Z-machine interpreter without the termcap display code.  It
 cap     plays the story, but it writes the cursor codes for its status line

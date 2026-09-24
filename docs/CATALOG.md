@@ -1,6 +1,6 @@
 # What is on this disk
 
-1068 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **749 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1069 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **750 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -22,7 +22,7 @@
 | [Encoding & conversion](#encoding--conversion) | 32 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 114 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 195 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 114 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 115 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 121 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -1207,7 +1207,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>114 programs</summary>
+<details><summary>115 programs</summary>
 
 **Adventure & fiction**
 
@@ -1218,6 +1218,7 @@
 | `advint` | the ADVSYS adventure interpreter: plays a world advcom compiled, opened by bare name in the data directory -- `advint osample' starts you in the livingroom. GAMES/ADVSYS/README has the details<br>**How:** Plays an ADVSYS world. Build one first (see advcom), then run it where the .dat is: `load /dd/CMDS/GAMES/advint', then `sh -c "chd /dd/tmp/adv; advint osample"' -- you start in the livingroom, `n' goes to the hallway, `e' to a storage room with a key. |
 | `infocom` | an interpreter for Infocom's Z-machine, a third and unrelated adventure system: plays the .z3 files in GAMES/INFORM (dejavu, hellow, shell -- Inform demonstrations, not the Infocom games). It writes its status-line cursor codes as literal text; infocom.tcap is the build for a terminal<br>**How:** A Z-machine. Plays the .z3 files in /dd/GAMES/INFORM -- the Inform demos dejavu, hellow and shell. |
 | `infocom.tcap` | Infocom interpreter, TERMCAP build -- and it is the one to use at a terminal.  It puts a proper status line at the top of the screen (`Y2 Rock Room     Score: 0/1') where plain `infocom' writes the cursor codes for that line as literal text down the left margin<br>**How:** The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell. |
+| `inform` | Inform 1.0 (release 3, 1993), the compiler from the Inform language to Z-machine story files that infocom plays: `inform hellow' reads hellow.inf and writes hellow.z3.  It made the three demos in GAMES/INFORM, whose source is in SRC/inform with the library headers they include; DOC/inform has the manual<br>`OSK Inform 1.0 (v796/au)` |
 | `napoleon` | a text adventure set in an English country house, where the Napoleons have left rather more behind them than furniture. The prompt is `(napoleon)' and it reads whole sentences, not just verb-noun: compass directions move you, `look' redraws the room, `inventory' lists what you carry, `get', `drop', `examine' and `read' handle things, `score' rates you, and `save' and `load' keep a game.  `quit' offers to restart. The scroll on the desk where you begin carries the licence. |
 | `paranoia` | &#9733; the PARANOIA text adventure.  `Welcome to Paranoia!  As Philo-R-DMD you will die at times during the adventure... you will be given a new clone' -- six clones, one mission, RETURN to go on.  `float' and `savage' are the floating-point benchmarks of that name.<br>**How:** The PARANOIA text adventure. RETURN to go on, a letter to choose, `p' for your statistics, six clones. `float' and `savage' are the floating-point benchmarks on this disk. |
 

@@ -657,6 +657,7 @@ advint|advint -?|
 advent|none|it takes no options; it asks its own questions
 infocom.tcap|none|it takes the story file and nothing else
 infocom|none|it takes the story file and nothing else
+inform|inform|
 paranoia|none|it takes no options; RETURN goes on and a letter chooses
 lander|none|it takes no options; its keys are on the card
 letters|none|it answers only on a terminal, so its usage cannot be captured here; its options are -q or -b (quiet, or the bell on a mistake), -l# to start at level #, and -h for the high scores

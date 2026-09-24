@@ -1,0 +1,37 @@
+$ inform
+OSK Inform 1.0 (v796/au)
+Release 3 (November 16th 1993)
+(allocating memory for arrays)
+
+This program is a compiler to version-3 Infocom format story files.
+It is copyright (C) Graham Nelson, 1993.
+
+Its syntax is "inform [-list] <file1> [<file2>]"
+
+<file1> is the name of the Inform source file; Inform translates this into
+   "<file1>.inf"
+(unless <file1> contains a '.' or '/', in which case it is left alone).
+<file2> may optionally be given as the name of the story file to make.
+If it isn't given, Inform writes to
+   "<file1>.z3"
+but if it is, then Inform takes <file2> as the full filename.
+
+-list is an optional list of switch letters following the initial hyphen:
+  a   list assembly-level instructions compiled
+  b   give statistics after both passes
+  c   more concise error messages
+  d   contract double spaces after full stops in text
+  e   economy mode (slower): make use of declared abbreviations
+  f   frequencies mode: show how useful abbreviations are
+  h   print this information
+  i   ignore default switches set within the file
+  l   list all assembly lines
+  m   say how much memory has been allocated
+  o   print offset addresses
+  p   give percentage breakdown of story file
+  s   give statistics
+  t   trace Z-code assembly
+  w   disable warning messages
+  x   print # for every 100 lines compiled (in both passes)
+
+For example: "inform -dex curses /r0/curses".
