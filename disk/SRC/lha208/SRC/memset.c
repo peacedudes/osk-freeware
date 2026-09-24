@@ -1,0 +1,1 @@
+/* Public Domain memset(3) */char *memset (s, c, n)char *s;int c, n;{    char *p = s;    while(n--) *p++ = (char)c;    return s;}

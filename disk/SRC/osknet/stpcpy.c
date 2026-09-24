@@ -1,0 +1,1 @@
+char *stpcpy (dest, src)char *dest, *src;{	strcpy (dest, src);	return (dest+strlen(src));}

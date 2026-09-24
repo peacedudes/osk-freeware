@@ -1,0 +1,1 @@
+# Makefile for Blastem, a X/YModem transfer program for OSKOBJS= transfer.r modem.r crc32.r## re-define default compiler and compilation flagsCC      = gccCFLAGS  = -T/r0.c.r:   $(CC) $(CFLAGS) -c $<blastem: $(OBJS)    $(CC) $(CFLAGS) $(OBJS) -o $@transfer.r:crc32.r:modem.r:

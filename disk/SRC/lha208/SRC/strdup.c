@@ -1,0 +1,1 @@
+/* * strdup.c */#ifdef NOSTRDUP#ifdef sony_news#include <sys/param.h>#define _SIZE_T#endif#if defined(__STDC__) || defined(NEWSOS)#include <stdlib.h>#endif#ifndef NULL#define NULL (char *)0#endifchar *strdup ( buf )char *buf;{    char *p;    if ((p = (char *)malloc(strlen(buf) + 1)) == NULL) return NULL;    strcpy( p, buf );    return p;}#endif

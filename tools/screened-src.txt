@@ -171,3 +171,43 @@ disk/SRC/infoxpress/BNU/ELM_2.4/OSK/DEFS/signal.h
 # 2026-09-24 from GNU/makeinfo_src.lzh). "Copyright (C) 1989 Free Software
 # Foundation", GPL; the overlap is with the GNU copy the overlay carries.
 disk/SRC/makeinfo_src/getopt.h
+
+# Added 2026-09-24 with the source trees for programs that shipped without
+# any. Each was read; none is Microware's.
+#
+# md5's porter's own string.h: a five-line wrapper that includes
+# /dd/defs/strings.h and declares five functions. It matches the build
+# overlay's os9unix/strings.h, which is this collection's, not the SDK's.
+disk/SRC/md5/string.h
+#
+# GNU oleo 1.6 and GNU grep 2.0 headers under the FSF's GPL notice. What
+# they share with the overlay's getopt.h is that notice, word for word.
+# init.h is oleo's own initialisation header, not an OS-9 init module.
+disk/SRC/oleo1.6/OLEO1.6/byte_compile.h
+disk/SRC/oleo1.6/OLEO1.6/forminfo.h
+disk/SRC/oleo1.6/OLEO1.6/proto.h
+disk/SRC/oleo1.6/OLEO1.6/parse.h
+disk/SRC/oleo1.6/OLEO1.6/getopt.h
+disk/SRC/oleo1.6/OLEO1.6/list.h
+disk/SRC/oleo1.6/OLEO1.6/xmalloc.c
+disk/SRC/oleo1.6/OLEO1.6/io_curses.h
+disk/SRC/oleo1.6/OLEO1.6/decompile.h
+disk/SRC/oleo1.6/OLEO1.6/oleofile.h
+disk/SRC/oleo1.6/OLEO1.6/init.h
+disk/SRC/oleo1.6/OLEO1.6/stub.h
+disk/SRC/gnugrep_2.0/getopt.h
+#
+# Robert A. Larson's varargs.h for OS-9/68k C 2.0, 1986, as mg 2a ships it;
+# the overlay carries a copy of the same file.
+disk/SRC/mg2a/mg/sys/osk/varargs.h
+#
+# The osknet porters' own headers: five typedefs, and a "UNIX stat.h"
+# describing OS-9's file descriptor -- an interface, like eff_make/stat.h.
+disk/SRC/osknet/types.h
+disk/SRC/osknet/os9stat.h
+#
+# Carsten Emde's getsys (EFFO forum disk 23): it prints the system global
+# variables, so it names them. getsys.h is his table of their offsets,
+# the published System Globals layout; no Microware notice anywhere.
+disk/SRC/forum23/GETSYS/getsys.h
+disk/SRC/forum23/GETSYS/getsys.c

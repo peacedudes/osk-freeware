@@ -1,0 +1,1 @@
+#define ASY_MAX		16		/* arbitrary number of async devices */extern unsigned nasy;#define	SLIP_MODE	0#define	AX25_MODE	1#define	NRS_MODE	2#define SLFP_MODE	3		/* MIT version of slip from */#define	PPP_MODE	4

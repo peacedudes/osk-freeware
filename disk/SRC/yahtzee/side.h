@@ -1,0 +1,1 @@
+#define top 7char side[sidey][sidex] = {	"  1 one",	"  2 two",	"  3 three",	"  4 four",	"  5 five",	"  6 six",	"  7 3 of a kind",	"  8 4 of a kind",	"  9 full house",	" 10 small straight",	" 11 large straight",	" 12 yahtzee",	" 13 chance",	"sub-total 1-6",	"bonus for 63",	"sub-total 7-13",	"total"};extern WINDOW *screen;

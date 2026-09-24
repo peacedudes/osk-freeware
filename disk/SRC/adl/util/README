@@ -1,0 +1,1 @@
+This directory contains utility libraries for the ADL adventure system.They are as follows:	mytime.c	-	time(OS) for MS-DOS	virtcode.c	-	Virtual code routines	vstring.c	-	Virtual string routinesTo make the object files, simply type "make" in this directory.

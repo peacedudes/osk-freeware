@@ -1,0 +1,1 @@
+core dump on linefeed (copye). (copye should check for reduce operators (but	that might not be the core dump bug)).should malloc larger table when needed.exec sometimes fails mysteriously for complicated pipes.

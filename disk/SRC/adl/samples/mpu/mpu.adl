@@ -1,0 +1,1 @@
+INCLUDE "standard.adl";INCLUDE "constant.adl";INCLUDE "locnames.adl";INCLUDE "verbs.adl";INCLUDE "objects.adl";INCLUDE "routines.adl";INCLUDE "locales.adl";INCLUDE "transit.adl";NOUN me(road1);me(HOLDS) = CAPAC;me(WEIGH) = CAPAC;me(NOTAKE) = TRUE;START =    ($sdem LOOK)    (StdInit me)    ($prompt PROMPT)    ($setv n s e w ne nw se sw u d);

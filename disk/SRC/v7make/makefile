@@ -1,0 +1,1 @@
+# Makefile for make!CFLAGS= -i -qt=/ddCC= ccOBJS   =       check.r input.r macro.r main.r \               make.r reader.r rules.rV7make:             $(OBJS)      cc $(CFLAGS) $(OBJS)  -G -fd=V7make -l=/h0/lib/unixlib.l$(OBJS):       h.hclean:      del *.r

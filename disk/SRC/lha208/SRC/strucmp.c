@@ -1,0 +1,1 @@
+/* * strucmp.c * modified: Oct 29 1991 by Masaru Oki */static int toupper(n)register int n;{    if(n >= 'a' && n <= 'z') return n & (~('a'-'A'));    return n;}int strucmp(s, t)register char *s, *t;{    while (toupper(*s++) == toupper(*t++))        if ( !*s || !*t ) break;    if ( !*s && !*t ) return 0;    return 1;}

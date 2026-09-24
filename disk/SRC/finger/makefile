@@ -1,0 +1,1 @@
+finger: finger.c	cc -i -o -t=/r0 finger.c -l=/dd/lib/os9lib.l -FD=/dd/usr/cmds/finger
