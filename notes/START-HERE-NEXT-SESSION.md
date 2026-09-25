@@ -40,7 +40,8 @@ session's narrative goes into the history file, not here.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
-1 (push os9exec and name its release commit).  Nothing else is open.
+1 (push os9exec and name its release commit) and 52 (patch the 1991
+collect2 binaries, or leave them with the note their cards now carry).
 
 ## Work, in order -- take the top one not done, never ask which
 
