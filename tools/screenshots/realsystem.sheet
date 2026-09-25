@@ -93,13 +93,19 @@ wait    3
 shot    mmon
 for     mmon watch
 size    48 80
-cap     mmon, a timesharing monitor for a terminal or modem line: it
-cap     answers, sets the speed and runs logon.  watch waits for a modem to
-cap     ring and starts a command -- for the super-user, and it tells
-cap     anyone else so.
-try     mmon -?
+cap     mmon is TOP's timesharing monitor, the job Microware's tsmon does,
+cap     configured per line: on a direct line it starts logon at once, on a
+cap     modem line it initialises the modem and starts logon when a call
+cap     connects, setting the speed from the modem's CONNECT message.  Each
+cap     line gets a block in SYS/mmon.config, as in the sample shown, and
+cap     two lock entries in SYS/sysinfo.  Its module is readable by the
+cap     super-user only, who starts it.  Started on a terminal line here it
+cap     stays silent; that has not been worked out.  watch waits for a
+cap     modem to ring and starts a command -- also the super-user's.
+try     tail -l=26 DOC/SYSADMIN/mmon.config.sample
+run     builtin cd /dd
 run     clear
-run     mmon -?
+run     tail -l=26 DOC/SYSADMIN/mmon.config.sample
 wait    3
 run     watch -?
 wait    3
