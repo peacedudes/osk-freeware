@@ -1,6 +1,6 @@
 # What is on this disk
 
-1118 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **779 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1118 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **780 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
 
 `DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
 
@@ -1840,7 +1840,7 @@
 | | |
 |---|---|
 | `lp` | &#9733; submits a file to the lp print spooler: -n=xx makes copies, -d=ptr picks the printer, -m mails you when it is done<br>`Syntax: lp [<opts>] {<path>}` |
-| `lpq` | &#9733; shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'.<br>`Syntax: lpq [-p=dev] [user]` |
+| `lpq` | shows the spooler queue. It looks for a data module called `spoolqueue' in memory; with a spooler running it reports the queue, and without one answers `no spooler installed'. Same for `prjob' and `lp'.<br>`Syntax: lpq [-p=dev] [user]` |
 | `lprm` | &#9733; removes a job from the printer spooler's queue by number; `-' removes every one, and -d=<dev> picks the queue of another printer<br>`Syntax: lprm [-d=dev] [-] job..` |
 | `lpshut` | &#9733; shut down the printer scheduler<br>`Syntax: lpshut` |
 | `prjob` | &#9733; prints a queued job from the lp spooler; with no spooler installed it says so |

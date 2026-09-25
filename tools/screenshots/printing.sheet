@@ -117,10 +117,9 @@ wait    5
 
 shot    lpq
 fresh
-cap     The spooler's queue: the default printer and how many files wait
-cap     -- two listings, behind a printer that is a pipe nobody reads.
-cap     Its table below lists none of them for that printer, though it
-cap     counts them; why is not established.
+cap     The spooler's queue: the default printer, how many files wait,
+cap     and a line for each -- here two listings, behind a printer that is
+cap     a pipe nobody reads, so they stay in the queue.
 try     lpq
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rThe collection speaks for itself.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing

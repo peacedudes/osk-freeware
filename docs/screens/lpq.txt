@@ -4,4 +4,5 @@ other Printers:
 2 Spoolfiles
   Id         User      St  #   Printer   Size   File
 ------ --------------- -- ---- -------- ------  ----
-No Spooljobs for printer
+     1  tester          *    1 /pipe/prt  37675  tmp/PRT/listing
+     2  tester               1 /pipe/prt  37675  tmp/PRT/listing

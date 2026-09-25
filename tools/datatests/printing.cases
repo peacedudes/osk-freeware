@@ -92,12 +92,26 @@ expect  Aladdin Ghostscript 3.33
 # only way to see that the process is still there.
 case    lpsched-creates-the-spooler-queue-and-stays-resident
 run     /dd/CMDS/edir -e
-run     /dd/CMDS/lpsched /nil &
+run     /dd/CMDS/lpsched /pipe/prt &
 run     /dd/CMDS/edir -e
 run     iprocs
 expect  Event Directory
 expect  spoolqueue
 expect  lpsched
+
+# lpq lists a job it has counted.  Until 2026-09-25 it said `No Spooljobs'
+# under a table that counted one: its printer test handed strcmp() one
+# character of the name where the name belonged (SRC/eff_lp/README.OSK).
+# The printer is a pipe nobody reads, so the job stays in the queue.
+case    lpq-lists-the-job-lp-queued
+run     /dd/CMDS/mkdir -p /dd/tmp/LPQ > /nil 2>/nil
+run     echo "hello" > /dd/tmp/LPQ/job.txt
+run     /h1/CMDS/sleep 2
+run     /dd/CMDS/lp /dd/tmp/LPQ/job.txt
+run     /dd/CMDS/lpq
+expect  1 Spoolfiles
+expect  /pipe/prt      6  /dd/tmp/LPQ/job.txt
+absent  No Spooljobs
 
 # splman is the OTHER spooler's manager.  It was written up as blocking on
 # a printer device; it does not -- it is a polling daemon with an empty
