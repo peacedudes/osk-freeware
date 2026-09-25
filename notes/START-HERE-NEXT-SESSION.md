@@ -48,8 +48,11 @@ session's narrative goes into the history file, not here.
    rebuild docs/try, run the suite twice and the play-tests as tester, and
    drive pagers and pipelines on a real terminal (tools/playtests/lesspipe).
 2. **Defects still open** (each needs a measurement first): nn's `st_gid'
-   from os9lib's stat is never filled; ELM `fastmail' masks getuid() as
-   filter did (not yet shown failing).  mw's `-1[%dX' is mw sending
+   from os9lib's stat is never filled.  (ELM `fastmail' is CLEARED,
+   2026-09-25: it names the sender with getlogin, not getuid; it needs
+   `list' resident, now in SYS/login's list, and a smail whose mailers are
+   in /dd/ETC/CMDS -- without them smail retries a minute at a time for
+   ten minutes, by design.)  mw's `-1[%dX' is mw sending
    termcap's `ec' without a count -- its bug; the termcap is right.
    `browse' printing the year as 126 is period behaviour and stays.
    mmon starts on a pty-backed /t1 as the super-user and stays silent
