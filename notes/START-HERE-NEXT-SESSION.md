@@ -48,8 +48,10 @@ collect2 binaries, or leave them with the note their cards now carry).
 1. **os9exec's release commit**: when the os9exec session names it, pin it,
    rebuild docs/try, run the suite twice and the play-tests as tester, and
    drive pagers and pipelines on a real terminal (tools/playtests/lesspipe).
-2. **Defects still open** (each needs a measurement first): nn's `st_gid'
-   from os9lib's stat is never filled.  (ELM `fastmail' is CLEARED,
+2. **Defects still open** (each needs a measurement first): none known.
+   nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
+   so nn would not save twice to its own file for tester; global.c now
+   reads the owner from the descriptor (README.OSK).  (ELM `fastmail' is CLEARED,
    2026-09-25: it names the sender with getlogin, not getuid; it needs
    `list' resident, now in SYS/login's list, and a smail whose mailers are
    in /dd/ETC/CMDS -- without them smail retries a minute at a time for
