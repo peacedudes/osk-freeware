@@ -1411,12 +1411,11 @@
 "setup": [
 "rm -rf /dd/tmp/FORA > /nil 2>/nil",
 "mkdir -p /dd/tmp/FORA",
-"cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA",
+"cp /dd/SRC/rtf/fact.f /dd/tmp/FORA",
 "cp /h1/LIB/sys.l /dd/LIB",
 "rm -f /dd/CMDS/fact",
 "load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
-"builtin cd /dd/tmp/FORA",
-"r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r"
+"builtin cd /dd/tmp/FORA"
 ]
 },
 "forth": {
@@ -2090,12 +2089,11 @@
 "setup": [
 "rm -rf /dd/tmp/LNKA > /nil 2>/nil",
 "mkdir -p /dd/tmp/LNKA",
-"cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA",
+"cp /dd/SRC/rtf/fact.f /dd/tmp/LNKA",
 "cp /h1/LIB/sys.l /dd/LIB",
 "rm -f /dd/CMDS/fact",
 "load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
 "builtin cd /dd/tmp/LNKA",
-"r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r",
 ".../CMDS/for fact > /nil"
 ]
 },

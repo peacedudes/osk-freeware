@@ -752,14 +752,12 @@ cap     the super-user's job.  At the bash prompt `for' is also the loop
 cap     keyword, so it is reached by path.
 try     .../CMDS/for fact; lnk fact; fact
 os9     for fact; lnk fact; fact
-run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
+run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA; cp /dd/SRC/rtf/fact.f /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
 run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
 run     builtin cd /dd/tmp/FORA
 wait    1
-run     r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r
-wait    5
 run     clear
 wait    1
 run     .../CMDS/for fact
@@ -775,20 +773,18 @@ cap     The RTF Fortran link driver: `lnk fact' links fact.r with the
 cap     Fortran start-up code and Microware's `sys.l' into a program, and
 cap     prints the `l68' command it runs.  It looks for both in LIB on /h0
 cap     and writes the program to CMDS there, as its authors' systems were
-cap     laid out -- the super-user's to write: here sys.l was copied into
-cap     LIB from /h1, rtfstart.r
-cap     assembled from SRC/rtf/rtfstart.a, fact compiled with `for', and
-cap     the fact that ships removed, all first -- so the fact that runs is
-cap     the one lnk just made.
+cap     laid out -- the super-user's to write.  The start-up code,
+cap     rtfstart.r, ships in LIB from the RTF archive; sys.l is your own
+cap     OS-9's, copied into LIB from /h1.  fact was compiled with `for' and
+cap     the fact that ships removed first, so the fact that runs is the one
+cap     lnk just made.
 try     lnk fact
-run     rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
+run     rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA; cp /dd/SRC/rtf/fact.f /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
 run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
 run     builtin cd /dd/tmp/LNKA
 wait    1
-run     r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r
-wait    5
 run     .../CMDS/for fact > /nil
 wait    15
 run     clear
