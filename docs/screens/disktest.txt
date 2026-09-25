@@ -1,5 +1,6 @@
-$ disktest -?
-Syntax   : disktest [<opt>]
-Function : measure diskperformance
-Options  : -?  show this text
-  V1.0, written by Stephan Paschedag
+disktest
+buffersize : 32603392 bytes
+read: -22013363 Bytes/sec
+write: -1034628096 Bytes/sec
+maximum seek: faster than the speed of light
+average seek: 0 ms

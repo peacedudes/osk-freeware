@@ -123,12 +123,20 @@ run     echo 500000 | dhryshamu2 | tail -l=6
 wait    30
 
 shot    disktest
-cap     Times how long reads and writes really take through the disk system.
-cap     Run for real it takes over the drive and needs the system's own
-cap     privileges, so what it can show here is its syntax.
-try     disktest -?
-run     disktest -?
-wait    8
+cap     Times reads and writes through the disk system, in the current
+cap     directory, with a buffer as big as it can get.  It asks your own
+cap     OS-9's `free' for the sector count, so that must be resident.  The
+cap     negative rates are the program's own: its arithmetic overflows on a
+cap     buffer this size.  The only file it writes is disktest.tmp, which
+cap     it removes.
+try     disktest
+run     load /h1/CMDS/free
+run     rm -rf /dd/tmp/DKT; mkdir -p /dd/tmp/DKT; builtin cd /dd/tmp/DKT
+wait    2
+run     clear
+wait    1
+run     disktest
+wait    15
 
 shot    cb
 cap     The C beautifier: it indents C that has none, reading standard input

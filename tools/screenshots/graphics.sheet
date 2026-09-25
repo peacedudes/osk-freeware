@@ -940,10 +940,8 @@ run     clear
 wait    1
 run     ppmtoyuv tmp/base.ppm | yuvtoppm 48 24 | pnmfile
 wait    10
-run     ppmtorgb3 tmp/base.ppm
-wait    8
-run     ls -l tmp/base.red tmp/base.grn tmp/base.blu
-wait    8
+run     ppmtorgb3 tmp/base.ppm; ls -l tmp/base.red tmp/base.grn tmp/base.blu
+wait    12
 run     rgb3toppm tmp/base.red tmp/base.grn tmp/base.blu | pnmfile
 wait    10
 run     ppmtoyuvsplit < /nil

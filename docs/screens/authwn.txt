@@ -1,0 +1,4 @@
+echo "Basic tester:secret" | authwn pw; echo "status $?"
+status 0
+$ echo "Basic tester:guess" | authwn pw; echo "status $?"
+status 1

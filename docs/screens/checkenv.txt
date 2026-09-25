@@ -1,12 +1,4 @@
-$ checkenv TERM , vt100; echo "status $?"
-
-Syntax: checkenv <eparam> , <evalue>
-Function: check environment variable value
-  errors if <evalue> not = SETENV value
+$ checkenv TERM xterm-256color; echo "status $?"
 status 0
-$ checkenv TERM , ansi; echo "status $?"
-
-Syntax: checkenv <eparam> , <evalue>
-Function: check environment variable value
-  errors if <evalue> not = SETENV value
-status 0
+$ checkenv TERM vt100; echo "status $?"
+status 1

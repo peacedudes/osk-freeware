@@ -1,2 +1,10 @@
-$ xyt
-Unable to determine MODEM port
+xyt -x
+Unable to open log file!
+xyt - version 1.02
+   XModem/YModem/YBatch transfer utility
+   Copyright 1995 by Stephen Carville
+   P.O. Box 822, Glendora, CA 91740  USA
+   (818) 914-2511
+
+Remote Mode Ready to Receive...
+CCCCC

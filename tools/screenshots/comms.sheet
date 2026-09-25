@@ -1368,12 +1368,18 @@ run     xydown
 wait    5
 
 shot    xyt
-cap     An X/Y/YModem-Batch transfer for the `tterm' emulator.  It uses
-cap     the MODEM port unless -t names another, and with neither set it
-cap     says so.
-try     xyt
-run     xyt
-wait    5
+cap     An X/Y/YModem-Batch transfer for the `tterm' emulator, here in
+cap     remote mode (-x), where it talks on its standard input: ready to
+cap     receive, it sends the `C' that asks the far end for a CRC transfer,
+cap     and a sender on the line would answer with the first block.  Run
+cap     locally it uses the MODEM port, or the one -t names.  It logs to
+cap     SYS/XYTRANSFER, which `tsu' makes; without it it says so and goes on.
+try     xyt -x
+run     clear
+wait    1
+run     xyt -x
+wait    8
+snap
 
 # --- Kermit ---------------------------------------------------------------
 
@@ -1755,12 +1761,23 @@ run     inetdc < /nil
 wait    5
 
 shot    authwn
-cap     WN's authenticator for a password-protected directory.  inetd and
-cap     wn invoke it per request; run alone with nothing to authenticate
-cap     it has nothing to say.
-try     authwn
-run     authwn < /nil
-wait    5
+cap     WN's authenticator for a password-protected directory: wn runs it
+cap     per request, naming the password file and handing it the
+cap     request's `Basic user:password' line on standard input.  It
+cap     answers only in its exit status -- 0 lets the request in, 1 turns
+cap     it away.  The file holds `user:password' lines.
+try     echo "Basic tester:secret" | authwn pw; echo "status $?"
+os9     echo Basic tester:secret ! authwn pw
+run     rm -rf /dd/tmp/AWN; mkdir -p /dd/tmp/AWN
+run     builtin cd /dd/tmp/AWN
+run     echo "tester:secret" > pw
+wait    2
+run     clear
+wait    1
+run     echo "Basic tester:secret" | authwn pw; echo "status $?"
+wait    4
+run     echo "Basic tester:guess" | authwn pw; echo "status $?"
+wait    4
 
 # --- Preserved here, catalogued under System & modules --------------------
 

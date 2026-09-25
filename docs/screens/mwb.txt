@@ -1,0 +1,18 @@
++-----------------------+
+| Create#new#Manual     |
+| Edit existing Manual  |   +---------------+
+| Clear Workbench       |   | Manualname    |
+| Automatic Turnaround  |   | Synopsis      |   +-------------------------+
+| Write Manual          |   | Description   |   | Edit anything           |
+| Create Proff Source   |   | Caveats       |   | Shell                   |
+| Write Index           |   | Return Value  |   | <cmd> -? ! SYNOPSIS     |
+| Preview Manual        |   | Bugs          |   | <cmd> -? ! DESCRIPTION  |
+| Format Manual         |   | Files         |   | strings <cmd>           |
+| Print Manual          |   | Sysinfo       |   | Edit extrafilenames     |
+| View formated manual  |   | Enviroment    |   | Delete extrafilenames   |
+| Mail to collector     |   | Examples      |   | Edit Indexfile          |
+| Create book           |   | See also      |   +-------------------------+
+| View book             |   +---------------+
+| Print book            |
+| Exit session          |
++-----------------------+

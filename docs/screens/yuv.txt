@@ -1,10 +1,9 @@
 ppmtoyuv tmp/base.ppm | yuvtoppm 48 24 | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255
-$ ppmtorgb3 tmp/base.ppm
-$ ls -l tmp/base.red tmp/base.grn tmp/base.blu
--rw-------   1 7        1            1165 Sep 24 01:28 tmp/base.blu
--rw-------   1 7        1            1165 Sep 24 01:28 tmp/base.grn
--rw-------   1 7        1            1165 Sep 24 01:28 tmp/base.red
+$ ppmtorgb3 tmp/base.ppm; ls -l tmp/base.red tmp/base.grn tmp/base.blu
+-rw-------   1 7        1            1165 Sep 25 06:57 tmp/base.blu
+-rw-------   1 7        1            1165 Sep 25 06:57 tmp/base.grn
+-rw-------   1 7        1            1165 Sep 25 06:57 tmp/base.red
 $ rgb3toppm tmp/base.red tmp/base.grn tmp/base.blu | pnmfile
 stdin:  PPM raw, 48 by 24  maxval 255
 $ ppmtoyuvsplit < /nil

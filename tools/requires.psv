@@ -123,10 +123,10 @@ prexd|OS-9/Net; it starts prexdc for each request|SRC/rex/README.OSK
 mesg|users logged in through logon, which keeps SYS/utmp; DOC/SYSADMIN/mesg.prf|DOC/SYSADMIN
 msg|a user logged in through logon (SYS/utmp) whose mmenu takes the message; DOC/SYSADMIN/msg.prf|DOC/SYSADMIN
 speak|another user logged in through logon (SYS/utmp), on a terminal in termcap|DOC/SYSADMIN/speak.prf
-mmenu|menu files in the directory named by sysinfo's mmenu.datadir or MENUDATA, a login recorded by logon in SYS/utmp, and a /dd/TMP for -z|DOC/SYSADMIN/mmenu.prf
+mmenu|menu files in the directory named by sysinfo's mmenu.datadir or MENUDATA, PORT naming the terminal (logon sets it), and a /dd/TMP for -z|DOC/SYSADMIN/mmenu.prf; measured 2026-09-25: `No port defined' without PORT
 newgrp|a SYS/group file, which this disk does not carry|DOC/SYSADMIN/newgrp.prf
 uid|SYS/password; SYS/group for group names; a login in SYS/utmp to answer with no argument|DOC/SYSADMIN/uid.prf
-mwb|a manual directory, USR/DOC/.MAN on /h0|mwb -?; the binary
+mwb|a manual directory, USR/DOC/.MAN on /h0, holding its workspace directory SOURCE|the binary; measured 2026-09-25: `Can't change to workspace 'SOURCE'' until it exists
 loadmem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester
 savemem|the super-user: anyone else gets its syntax|measured 2026-09-24 as tester
 ssl|the super-user: it reads the file descriptor sector off the raw disk, and refuses anyone else|SRC/effo_wolk/ssl.c: "Sie sind doch nicht der Superuser - ooooder ?"; tools/datatests/superuser.cases
@@ -137,3 +137,9 @@ rendsk|the super-user|SRC/eff_rendsk/rendsk.c: "allowed for superuser only!"; to
 bootlogger|the super-user|measured 2026-09-24 as tester: "BOOTLOGGER can be run only by the SYSTEM !"; tools/datatests/superuser.cases
 rndir|your own OS-9's dir, rename and del, loaded: `load /h1/CMDS/dir' above all|measured 2026-09-24: with this disk's dir answering it renames nothing; tools/datatests/rndir.cases
 checkalias|elm resident: `load /dd/CMDS/ELM/elm' -- it starts elm by name|measured 2026-09-24: without it, nothing printed and exit status 221; tools/datatests/mail2.cases
+disktest|your own OS-9's free, resident -- SYS/login loads it from /h1|measured 2026-09-25: it forks `free' by bare name and waits on the pipe for ever without it, and runs to the end with it
+mvolformat|your own OS-9's format, loaded: `load /h1/CMDS/format'|measured 2026-09-25: `mvolformat: cannot fork format' without it; with it, two passes over a RAM disk
+logon|a module named `shell' -- your own OS-9's, which SYS/login loads from /h1 -- or whatever program SYS/password names|measured 2026-09-25: `logon tester' returns 221 in silence without it and gives tester a shell with it
+collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25
+gcc_collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25
+gpp_collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25

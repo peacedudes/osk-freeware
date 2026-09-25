@@ -1,7 +1,75 @@
-Syntax: mvolformat drive volname volcount [format options]
-Function: format multiple floppies with sequential volume #s
-Parameters:
-        drive           Drive name (i.e. /d0)
-        volname         Base volume name. 'Volnn' gets appended (nn = vol num)
-        volcount                Volume count. 1-99
-        format options  Any options legal for format, except -r and -v
+mvolformat /r0 Data 2
+format /r0 "-v=Data Vol 1" -r
+Hit RETURN when drive ready:
+
+                Disk Formatter
+OS-9/68k Emu UAE   macOS arm64 - 68040
+------------  Format Data  ------------
+
+Fixed values:
+    Physical floppy size: 5 1/4"
+             Sector size: 256
+  Physical Disk capacity: 1024 sectors
+                         (262144 bytes)
+   Logical Disk capacity: 0 sectors
+                         (0 bytes)
+           Sector offset: 0
+            Track offset: 0
+              LSN offset: $000000
+ Minimum sect allocation: 32
+
+Variables:
+        Recording format: FM
+    Track density in TPI: 96
+Sector interleave offset: 1
+
+Formatting device:  /r0
+verifying media, building media bitmap...
+000 020 040 060 080 0a0 0c0 0e0 100 120 140 160 180 1a0 1c0 1e0
+200 220 240 260 280 2a0 2c0 2e0 300 320 340 360 380 3a0 3c0 3e0
+
+    quantity good $00000400        1024  (    262144 bytes)
+     quantity bad $00000000           0  (         0 bytes)
+quantity unusable $00000000           0  (         0 bytes)
+ sectors verified $00000400        1024  (    262144 bytes)
+writing root directory structure
+format /r0 "-v=Data Vol 2" -r
+Hit RETURN when drive ready:
+
+                Disk Formatter
+OS-9/68k Emu UAE   macOS arm64 - 68040
+------------  Format Data  ------------
+
+Fixed values:
+    Physical floppy size: 5 1/4"
+             Sector size: 256
+  Physical Disk capacity: 1024 sectors
+                         (262144 bytes)
+   Logical Disk capacity: 0 sectors
+                         (0 bytes)
+           Sector offset: 0
+            Track offset: 0
+              LSN offset: $000000
+ Minimum sect allocation: 32
+
+Variables:
+        Recording format: FM
+    Track density in TPI: 96
+Sector interleave offset: 1
+
+Formatting device:  /r0
+verifying media, building media bitmap...
+000 020 040 060 080 0a0 0c0 0e0 100 120 140 160 180 1a0 1c0 1e0
+200 220 240 260 280 2a0 2c0 2e0 300 320 340 360 380 3a0 3c0 3e0
+
+    quantity good $00000400        1024  (    262144 bytes)
+     quantity bad $00000000           0  (         0 bytes)
+quantity unusable $00000000           0  (         0 bytes)
+ sectors verified $00000400        1024  (    262144 bytes)
+writing root directory structure
+$ free /r0
+"Data Vol 2" created on: Sep 25, 2026
+Capacity: 1024 sectors (256-byte sectors, 1-sector clusters)
+989 free sectors, largest block 989 sectors
+253184 of 262144 bytes (247.25 of 256.00 Kb) free on media (96%)
+253184 bytes (247.25 Kb) in largest free block

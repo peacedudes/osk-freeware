@@ -436,16 +436,29 @@ wait    8
 shot    collect
 fresh
 cap     collect2, which builds the table of global constructors and
-cap     destructors a C++ program needs before linking.  It lives in the
-cap     GCC2 directory with the other passes, off the command path, so it
-cap     is run from there with `./'.  It takes no `-?', so with no
-cap     arguments it prints its own usage.
-try     ./collect
+cap     destructors a C++ program needs before linking.  Given the object
+cap     `gpp -c' made of a file with one global object, `hello', whose
+cap     class has a constructor, it writes the assembly for that table
+cap     into the file -o names: one constructor, _GLOBAL_$I$main, and no
+cap     destructors.  It lives in the GCC2 directory, off the command
+cap     path, and is run from there with `./'.  gpp assembles with your
+cap     own OS-9's r68, resident.
+try     ./collect -o ctors.a greet.r; cat ctors.a
+run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
-wait    1
+run     rm -f greet.cc greet.r
+run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     ./gpp -c greet.cc -o greet.r > /nil 2>/nil
+wait    12
 run     clear
-run     ./collect
+wait    1
+run     ./collect -o ctors.a greet.r
 wait    8
+run     cat ctors.a
+wait    3
+snap
+run     rm -f greet.cc greet.r ctors.a
+wait    1
 
 shot    gcc_cc1
 cap     The GCC 1.39 C compiler pass.  It reports its version; the driver
@@ -476,12 +489,25 @@ run     cat tmp/hello.i
 wait    5
 
 shot    gcc_collect
+fresh
 cap     collect2 again -- the same global-constructor collector as the
-cap     GCC2 directory's, reached here under the GCC 1.39 name.  With no
-cap     arguments it prints its usage.
-try     gcc_collect
-run     gcc_collect
+cap     GCC2 directory's, reached here under the GCC 1.39 name.  Given an
+cap     object with one global object whose class has a constructor, it
+cap     writes the table naming that constructor, _GLOBAL_$I$main, into
+cap     the file -o names.  The object is made by `gpp -c', which
+cap     assembles with your own OS-9's r68, resident.
+try     gcc_collect -o ctors.a greet.r; cat ctors.a
+run     load /h1/CMDS/r68
+run     rm -rf /dd/tmp/CLGC; mkdir -p /dd/tmp/CLGC; builtin cd /dd/tmp/CLGC
+run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
+wait    12
+run     clear
+wait    1
+run     gcc_collect -o ctors.a greet.r
 wait    8
+run     cat ctors.a
+wait    3
 
 shot    gcc_cc2
 cap     The GCC 2.x C compiler pass installed on the command path under
@@ -515,11 +541,25 @@ run     gpp_cccp -version
 wait    8
 
 shot    gpp_collect
+fresh
 cap     collect2 under the name the `gpp' driver forks it by -- the same
-cap     collector as the others.  With no arguments it prints its usage.
-try     gpp_collect
-run     gpp_collect
+cap     collector as the others.  Given an object with one global object
+cap     whose class has a constructor, it writes the table naming that
+cap     constructor, _GLOBAL_$I$main, into the file -o names.  The object
+cap     is made by `gpp -c', which assembles with your own OS-9's r68,
+cap     resident.
+try     gpp_collect -o ctors.a greet.r; cat ctors.a
+run     load /h1/CMDS/r68
+run     rm -rf /dd/tmp/CLGP; mkdir -p /dd/tmp/CLGP; builtin cd /dd/tmp/CLGP
+run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
+wait    12
+run     clear
+wait    1
+run     gpp_collect -o ctors.a greet.r
 wait    8
+run     cat ctors.a
+wait    3
 
 shot    gmake
 cap     GNU make, running a rule from a shipped makefile: it copies one

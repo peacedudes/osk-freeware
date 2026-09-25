@@ -1,2 +1,24 @@
-vt100 /t2 < /nil
-Error: Cannot open device.
+____          ____   ___________          ___        _________      _________
+\   \        /   /  |           |        /   |      /   ___   \    /   ___   \
+ \   \      /   /   |___     ___|       /_   |     |   /   \   |  |   /   \   |
+  \   \    /   /        |   |             |  |     |  |     |  |  |  |     |  |
+   \   \  /   /         |   |    _____    |  |     |  |     |  |  |  |     |  |
+    \   \/   /          |   |   |_____|   |  |     |  |     |  |  |  |     |  |
+     \      /           |   |           __|  |__   |  |     |  |  |  |     |  |
+      \    /            |   |          |        |  |   \___/   |  |   \___/   |
+       \__/             |___|          |________|   \_________/    \_________/
+
+==========================  Text Screen Version 1.0  ==========================
+                                      by:
+                                Brian Marcotte
+
+US Mail   : 69 Kearney Ave.                 |  If you know of any way to make
+            Auburn, NY 13021                |  this program better, please
+CompuServe: 72507,3535                      |  send me mail. If you make a
+Delphi    : BRIMARCOTTE                     |  modification, please send a copy
+GEnie     : B.MARCOTTE                      |  of the source.
+BITNET    : V090J78Y@UBVMSA                 |
+INTERNET  : V090J78Y@UBVMSA.CC.BUFFALO.EDU  |
+
+=============================  Press Any Key:    ==============================N
+7

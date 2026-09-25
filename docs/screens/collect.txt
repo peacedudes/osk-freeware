@@ -1,6 +1,12 @@
-./collect
-Syntax   : collect [<opts>] {<file>} [<opts>]
-Function : generate global con-/de-structor table for g++
-Options  : -o <outfile> write output to <outfile>
-           -l=<file>    process library
-  Written 1991 by Stephan Paschedag
+./collect -o ctors.a greet.r
+$ cat ctors.a
+        psect collect_gc,0,0,0,0,0
+        vsect
+__CTOR_LIST__:
+        dc.l 1
+        dc.l _GLOBAL_$I$main
+__DTOR_LIST__:
+        dc.l 0
+        dc.l 0
+        ends
+        ends

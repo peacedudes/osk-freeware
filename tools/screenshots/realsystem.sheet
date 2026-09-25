@@ -57,11 +57,14 @@ wait    3
 
 shot    vt100
 cap     A terminal program for the MM/1: VT-100 and VT-52 emulation in a
-cap     K-Windows window.  Here it has no serial port to open, and says so.
-try     vt100 /t2
+cap     K-Windows window, talking on the serial line it is given.  Given
+cap     the console as that line it opens it and shows its title screen,
+cap     then waits for a key; past that it wants the MM/1's K-Windows.
+try     vt100 /term
 run     clear
-run     vt100 /t2 < /nil
-wait    3
+run     vt100 /term
+wait    5
+snap
 
 shot    x9eyes
 for     x9eyes setbgptn
@@ -78,15 +81,23 @@ wait    3
 
 shot    logon
 for     logon timeout
-cap     logon logs a user into a multi-user OS-9: password file, user,
-cap     environment and motd.  Its usage is its manual's summary; the
-cap     manual is DOC/SYSADMIN/logon.prf.  timeout is its idle timer,
-cap     and started by hand it ends the shell that started it: Microware's
-cap     shell never reaches the `echo after'.
-try     logon -?
+cap     logon logs a user into a multi-user OS-9: it checks the name
+cap     against SYS/password, sets the user's ids, directories and
+cap     environment, and chains to the program that line names -- here
+cap     your own OS-9's shell, which must be resident, in tester's home
+cap     directory.  Its manual is DOC/SYSADMIN/logon.prf.  timeout is its
+cap     idle timer, and started by hand it ends the shell that started it:
+cap     Microware's shell never reaches the `echo after'.
+try     logon tester
+run     load /h1/CMDS/shell
+wait    1
 run     clear
-run     logon -?
+run     logon tester
+wait    5
+send    dir\r
 wait    3
+send    \033
+wait    2
 run     shell "echo before; timeout; echo after"
 wait    3
 
@@ -172,13 +183,35 @@ run     speak tester
 wait    3
 
 shot    mmenu
-for     mmenu mwb
-cap     mmenu gives users a menu instead of a shell, as on a BBS, read from
-cap     menu files; mwb writes manual entries in TOP's proff format.  With
-cap     no menus or manual directory here, their usage is what shows.
-try     mmenu
+cap     mmenu gives a user a menu instead of a shell, as on a BBS.  Each
+cap     menu is a file: a title, a line of explanation, then one entry a
+cap     line, `Name,command' -- `#menu' opens another, `:help' shows the
+cap     menu's .hlp file, `:logoff' leaves.  MENUDATA names the directory,
+cap     and PORT the terminal, which logon sets; here both are set by hand
+cap     and the menu is one of three entries.  `l' leaves it.
+try     mmenu -f=main
+run     rm -rf /dd/tmp/MMC; mkdir -p /dd/tmp/MMC; builtin cd /dd/tmp/MMC
+run     echo "Main Menu" > main; echo "Pick one; l leaves" >> main
+run     echo "Date,date" >> main; echo "Help,:help" >> main; echo "Logoff,:logoff" >> main
+run     echo "The only help there is." > main.hlp
+run     export MENUDATA=/dd/tmp/MMC PORT=/term
+wait    2
 run     clear
-run     mmenu
-wait    3
-run     mwb -?
-wait    3
+wait    1
+run     mmenu -f=main
+wait    6
+snap
+quit    l\r
+
+shot    mwb
+cap     mwb, the manual workbench: it creates and edits manual entries a
+cap     section at a time, writes them out in proff format, and previews,
+cap     formats, prints and indexes them.  It keeps them under USR/DOC/.MAN
+cap     on /h0, in a workspace directory SOURCE, which it needs to find.
+try     mwb
+run     mkdir -p /h0/USR/DOC/.MAN/SOURCE
+wait    2
+run     clear
+run     mwb
+wait    6
+snap

@@ -102,15 +102,16 @@ try     getenv -p TERM
 
 shot    checkenv
 cap     Compares an environment variable with a value, for a script to
-cap     branch on: `checkenv <name> , <value>', spaces round the comma.
-cap     It is meant to return an error when they differ; here it returns
-cap     0 either way, and prints its syntax line every time.
-run     checkenv TERM , vt100; echo "status $?"
+cap     branch on, and answers only in its exit status: 0 when they match,
+cap     1 when they differ.  Named alone, it answers 0 when the variable
+cap     is NOT set.  The comma in its own syntax line is not typed -- given
+cap     one, it prints that line and returns 0.
+run     checkenv TERM xterm-256color; echo "status $?"
 wait    4
-run     checkenv TERM , ansi; echo "status $?"
+run     checkenv TERM vt100; echo "status $?"
 wait    4
-try     checkenv TERM , vt100; echo "status $?"
-os9     checkenv TERM , vt100
+try     checkenv TERM xterm-256color; echo "status $?"
+os9     checkenv TERM xterm-256color
 
 shot    exist
 cap     Tests whether a file exists and answers in its exit status, 0 for

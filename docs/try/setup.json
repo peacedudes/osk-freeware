@@ -294,6 +294,13 @@
 "export ATP=/dd/tmp/ATPK"
 ]
 },
+"authwn": {
+"setup": [
+"rm -rf /dd/tmp/AWN; mkdir -p /dd/tmp/AWN",
+"builtin cd /dd/tmp/AWN",
+"echo \"tester:secret\" > pw"
+]
+},
 "autolf": {
 "setup": [
 "mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
@@ -751,7 +758,11 @@
 },
 "collect": {
 "setup": [
-"builtin cd /dd/CMDS/GCC2"
+"load /h1/CMDS/r68",
+"builtin cd /dd/CMDS/GCC2",
+"rm -f greet.cc greet.r",
+"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"./gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
 "colrm": {
@@ -1038,6 +1049,14 @@
 "disdvi": {
 "setup": [
 "builtin cd /dd/DOC/mg"
+]
+},
+"disktest": {
+"setup": [
+"load /h1/CMDS/free",
+"rm -rf /dd/tmp/DKT",
+"mkdir -p /dd/tmp/DKT",
+"builtin cd /dd/tmp/DKT"
 ]
 },
 "disp": {
@@ -1527,6 +1546,16 @@
 "builtin cd /dd"
 ]
 },
+"gcc_collect": {
+"setup": [
+"load /h1/CMDS/r68",
+"rm -rf /dd/tmp/CLGC",
+"mkdir -p /dd/tmp/CLGC",
+"builtin cd /dd/tmp/CLGC",
+"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
+]
+},
 "gdd": {
 "setup": [
 "mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
@@ -1651,6 +1680,16 @@
 "gpp": {
 "setup": [
 "builtin cd /dd/CMDS/GCC2"
+]
+},
+"gpp_collect": {
+"setup": [
+"load /h1/CMDS/r68",
+"rm -rf /dd/tmp/CLGP",
+"mkdir -p /dd/tmp/CLGP",
+"builtin cd /dd/tmp/CLGP",
+"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
 "graph": {
@@ -2130,6 +2169,14 @@
 "builtin cd /dd"
 ]
 },
+"logon": {
+"keys": [
+"dir"
+],
+"setup": [
+"load /h1/CMDS/shell"
+]
+},
 "look": {
 "setup": [
 "builtin cd /dd"
@@ -2360,6 +2407,17 @@
 "builtin cd /dd/GAMES/BOG"
 ]
 },
+"mmenu": {
+"setup": [
+"rm -rf /dd/tmp/MMC",
+"mkdir -p /dd/tmp/MMC",
+"builtin cd /dd/tmp/MMC",
+"echo \"Main Menu\" > main; echo \"Pick one; l leaves\" >> main",
+"echo \"Date,date\" >> main; echo \"Help,:help\" >> main; echo \"Logoff,:logoff\" >> main",
+"echo \"The only help there is.\" > main.hlp",
+"export MENUDATA=/dd/tmp/MMC PORT=/term"
+]
+},
 "mmon": {
 "setup": [
 "builtin cd /dd"
@@ -2556,10 +2614,22 @@
 "load /dd/CMDS/mv"
 ]
 },
+"mvolformat": {
+"setup": [
+"mount -r=256k /r0 > /nil 2>/nil",
+"load /h1/CMDS/format",
+"load /h1/CMDS/free"
+]
+},
 "mw": {
 "setup": [
 "export TERM=vt100 USER=tester",
 "mw -l=5 >/nil &"
+]
+},
+"mwb": {
+"setup": [
+"mkdir -p /h0/USR/DOC/.MAN/SOURCE"
 ]
 },
 "names": {

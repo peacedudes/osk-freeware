@@ -1054,11 +1054,26 @@ wait    14
 run     tail -l=16 vl.out
 wait    4
 shot    mvolformat
-cap     mvolformat formats a set of floppies with sequential volume
-cap     numbers.  With no drive here, its syntax and options are what
-cap     there is to show.
-try     mvolformat
-run     mvolformat
+size    80 80
+cap     mvolformat formats a set of disks with numbered volume names: here
+cap     two passes over a RAM disk, named "Data Vol 1" and "Data Vol 2".
+cap     Before each it waits for RETURN, the moment to change the floppy,
+cap     then runs your own OS-9's `format', which must be resident.  `free'
+cap     afterwards reads the name the last one wrote.
+try     mvolformat /r0 Data 2
+run     mount -r=256k /r0 > /nil 2>/nil
+run     load /h1/CMDS/format
+run     load /h1/CMDS/free
+wait    2
+run     clear
+wait    1
+run     mvolformat /r0 Data 2
+wait    4
+send    \r
+wait    8
+send    \r
+wait    8
+run     free /r0
 wait    3
 shot    rndir
 size    24 80

@@ -56,6 +56,7 @@ ateri 1dfe3010a8427fcd
 aterm b592f62627fbfff1
 atob 739e7317bfb0523b
 atp c547eebfd5a2ed07
+authwn 61b1b1d3e9f00ac4
 autolf 29221f80f2bd5051
 autoreply 5e836efbe081dd75
 back 928bab49d55f396d
@@ -131,7 +132,7 @@ charcnt 6f3d8f7999fc7036
 chardef e715b4eac47ee844
 chbase 19a911b330380a09
 checkalias 1965ae32b541202b
-checkenv af7526fb1be42dde
+checkenv 43cdfa81abd885ef
 checkfile 554ccfe7a3a0b684
 checkgame 61724e39a71a366a
 checksum ca1161603ac9d882
@@ -149,7 +150,7 @@ clear a45512bf7a197623
 clock cd545a63f99cd365
 cls 73477bc60bd42a76
 col 6c2dbd2160aea05c
-collect f300802e1e634ae9
+collect 3b6c97eca2141a90
 colortest 5c2330766a9f14e5
 colrm f2bccdfd04b918a9
 column f707f3f864db525f
@@ -223,7 +224,7 @@ dirname 234180d3f267aa9f
 disable 392a7269b17d81d7
 discord f46ea2df7741e7a1
 disdvi e1ada0a46a4b8270
-disktest cef9b1c52f746013
+disktest 643c6a24237a6b57
 disp 24bc570416795e5a
 divide 5d42d00640eb98f9
 djpeg 5e51c7ea5fb33922
@@ -334,7 +335,7 @@ gcc_cc1plus 7ce53c78eb5ed304
 gcc_cc2 ec5c779535af9a9f
 gcc_cccp 50ca3214f582866b
 gcc_cccp2 64d25794425dfb5a
-gcc_collect 201121905d4c9006
+gcc_collect aca61c7d7cb463ea
 gcl 98547f63e11b0c43
 gdd 7b681346f9472bfb
 gen 6b30d496d2f747a1
@@ -363,7 +364,7 @@ gouldtoppm f79f00e34f915be2
 gpp 0a500b343c7b0b65
 gpp_cc1plus 870c0d0d360be757
 gpp_cccp c3243bd84008c813
-gpp_collect 72241bec17e95aa4
+gpp_collect 0d7332bd950890cb
 graph db8cce2aef3f69f7
 graphdemo e54d0a7bf36b46b3
 graphsave d0d49807572e471e
@@ -466,7 +467,7 @@ loadmem ebf1c1df9226e5b9
 loan 974d2f18d2e5f11e
 logisim cb402d526bf0a098
 logname 8f17510b2cfc5411
-logon 19c307b4795cb0bb
+logon 5b1ccc9d69ef0e08
 look 22644a3ef76ff2e5
 lorenz3d 7adc33fafa9ee955
 lotto 87c55fa86b078a9e
@@ -516,7 +517,7 @@ minnesota f7ab891b958c9da7
 mkdict 429d03cfca6f7aec
 mkdir ed4d64f149e31208
 mkindex 56e25e6b32f8fb0c
-mmenu 2fee54cb313691f1
+mmenu 4e8e7749965d76c0
 mmon c10fc6020351aa8c
 modbuster cb744ce6cbe812b3
 modinfo 35b55f276b3cbaeb
@@ -552,8 +553,9 @@ mtools de0f95bdf3eeac81
 mtst 85c98c0c717f9312
 mtvtoppm 16d9685db3acde87
 mv 6954b7253efc7c50
-mvolformat 6a48f614886d1373
+mvolformat d106dd4be3ecfd9f
 mw 9c2da4af272b0eb6
+mwb 8348366d4d8d6863
 mz 740a46ba38e3edad
 name fdfd42ee83c7c2ea
 names 0bd377e8e88094b2
@@ -954,7 +956,7 @@ vis 201a8ad95c705f06
 vlen 6bf567ff7defc20f
 vmod_trap b5512a9cd4f40241
 vptovf acd9fb8d80a0a040
-vt100 8f8c34227e7ad952
+vt100 cd479cabc45937c9
 vttest cbbbe58fdd132cdf
 vtxtcn 611d227126d2ebf4
 wam.sbprolog e91dbcc1bdd9bb87
@@ -1003,7 +1005,7 @@ xpm 7b2a1d3ed8191ac5
 xrf 6675d40aa3886ab0
 xvminitoppm d316ceb35257ebe4
 xydown 02a8d3c30f67c056
-xyt d635823690053449
+xyt dab49a4fdaeee307
 yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
 yahtzee 0e910a0150b862d5
@@ -1011,7 +1013,7 @@ yahtzee2 306ae00f69e44fe8
 yes 11260d4297218e4d
 yidslots 0f4f51c2d7080adb
 ynad 4e45aa6ac750eb7c
-yuv a14145a7c5bf9bcd
+yuv 123c18c3e5ef850b
 yuvsplittoppm 537120403af77c9c
 z d27a4eb090546333
 zc 3e0d6f53fedfbc18
