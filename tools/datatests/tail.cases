@@ -88,10 +88,12 @@ run     /dd/CMDS/logname
 run     /dd/CMDS/eset
 expect  Usage:  chown [-z] {numerical-uid | username} [file [... file]]
 expect  Function: set event to a new value
-# logname names only the super-user: 0.0 is `su', and for tester (1.7), uucp
-# and anon it says `no login name' where whoami answers `tester' (measured
-# 2026-09-24).  superuser.cases asserts the `su' half.
-expect  logname: no login name
+# logname names whoever runs it: tester here (uidmask.cases asserts it, and
+# superuser.cases the `su' half).  Until its one-instruction patch on
+# 2026-09-24 it named only the super-user and told everyone else `no login
+# name'.
+expect  tester
+absent  no login name
 
 # NOT a C source checker. Its own screen says what it is, and it is the whole
 # reason this entry was wrong for as long as it was: nobody had run it.

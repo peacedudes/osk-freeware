@@ -142,12 +142,18 @@ run     /dd/CMDS/bootlogger -? > /dd/tmp/pt2 2>&1
 run     /dd/CMDS/wc -c /dd/tmp/pt2
 expect  0 /dd/tmp/pt2
 
-# logname names the super-user; for any other user it says `no login name'
-# (tail.cases asserts that half).
+# logname names the super-user too, as it names tester (tail.cases,
+# uidmask.cases).
 case    logname-names-the-super-user
 run     /dd/CMDS/logname
 expect  su
 absent  no login name
+
+# crontab's -u is the super-user's (legacy.cases shows tester refused).
+case    crontab-lets-the-super-user-act-for-another
+run     /dd/CMDS/SYSADMIN/crontab -u=tester -l
+expect  no crontab for tester
+absent  must be privileged
 
 # LEAVE NOTHING OF THE SUPER-USER'S BEHIND.  The nn database built above is
 # 0.0's, and owner-only; a later family runs as tester and cannot remove it,

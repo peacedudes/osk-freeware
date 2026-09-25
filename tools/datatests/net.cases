@@ -199,10 +199,9 @@ absent  cannot spawn process
 
 # smail ROUTES through a path file pathalias made, and -d shows the route,
 # the uux command and the letter without sending anything.  It signs the
-# letter `nobody' for any user but the super-user: pwparse() keeps the user
-# number alone and getuid() is the whole group.user word.  That half is a
-# KNOWN DEFECT pinned here; tools/patch_smail_uid.py (FOR-RDOGGETT 50) is
-# the one-instruction fix, and applying it turns `nobody' into `tester'.
+# letter with the sender's name.  Until 2026-09-24 that was `nobody' for any
+# user but the super-user -- pwparse() kept the user number alone against
+# getuid()'s whole group.user word -- and tools/patch_smail_uid.py fixed it.
 case    smail-routes-through-a-pathalias-path-file
 run     /dd/CMDS/rm -rf /dd/tmp/SMR > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/SMR
@@ -214,4 +213,5 @@ run     /dd/CMDS/UUCP/smail -h milkyway -p paths -d ralph@pirsqrd < letter
 expect  route:  'pirsqrd' (pirsqrd) = 'phoenix!seabass!pirsqrd!%s'
 expect  'phoenix!rmail' '(seabass!pirsqrd!ralph)'
 expect  To: ralph@pirsqrd
-expect  From: nobody@milkyway
+expect  From: tester@milkyway
+absent  nobody

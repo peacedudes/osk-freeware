@@ -1,0 +1,1 @@
+MAIL -- tester's folders directory==================================Elm keeps saved mail folders here: `s' in elm saves a message to a folder,and `=name' names one in this directory.  The incoming mailbox is not here;it is /dd/SPOOL/MAIL/tester, where lmail delivers.

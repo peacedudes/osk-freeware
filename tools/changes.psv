@@ -5,7 +5,7 @@
 argproc_demo|Rebuilt from its source with 64K of memory; the build shipped before stopped with a stack overflow whatever it was given.
 ascii|Built here from Roland McGrath's source. It took the name when an install error overwrote an earlier ascii binary whose origin was never recorded.
 atc|The `!' shell escape is left out; that key only redraws the screen.
-bash|One byte of its version string changed: bash wrote 13 bytes into a 12-byte buffer, which crashed it at start-up on a system with more than 16 MB of memory. BASH_VERSION now reads 1.12.12.
+bash|One byte of its version string changed: bash wrote 13 bytes into a 12-byte buffer, which crashed it at start-up on a system with more than 16 MB of memory. BASH_VERSION now reads 1.12.12. And one byte so a command it runs is handed paths 0 to 2 only, as Microware's shell hands them: bash passed every path it had open, so in `cat file | head -n 1' the writer held the pipe twice and waited for ever.
 bc|Its scanner now accepts CR as a line end as well as LF, so scripts written on this disk, piped input and its own maths library (bc -l) are no longer refused.
 bks|Named bks, the posting's archive name, because this disk's `bs' is Battleships. Its ESC shell escape does nothing here, since OS-9 reads ESC as end of file.
 blackjak|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
@@ -128,3 +128,11 @@ argproc_demo|Rebuilt 2026-09-24 with the author's own vsprintf (the os9 build op
 discord|A bug in the program as posted, fixed here: both calls to chase() passed a word number counted from zero where chase() counts from one, so a draw of 0 returned an uninitialised pointer and crashed it -- one run in four on a four-word input.
 perl|Two ownership fixes to this collection's port: -o, -O and the owner checks compared a 16-bit user number with getuid()'s whole group.user word, so they failed for everyone but the super-user; and the stat it linked had a file's group and user bytes swapped.
 REBUILT/gtar|Two ownership fixes to this collection's port: a listing or extract took a file's group only from the group name, which OS-9 never has, so tvf showed group 0 and the super-user restored 1.7 as 31.7; and a rebuild's stat left the owner at 0, so the owner is now read from the file descriptor.
+elm|One instruction changed so that it finds its user in the password file: it compared the file's user number with getuid(), which on OS-9 is the whole group.user word, so everyone but the super-user was told `You have no password entry!'.
+filter|One instruction changed: it masked getuid() to the user number before a lookup that compares the whole group.user word, so for anyone outside group 0 it exited silently.
+logname|One instruction changed: it masked getuid() to the user number before a lookup that compares the whole group.user word, so it named only the super-user and told everyone else `no login name'.
+frm|One byte changed: a header ended at a line starting with a line feed, where an OS-9 folder's blank line is a carriage return, so it counted no mail in a folder that had some.
+newmail|One byte changed, the same as frm's: it looked for a line feed to end each header, where an OS-9 folder's blank line is a carriage return.
+smail|One instruction changed so that a letter is signed with its sender's name: it compared the user number alone with getuid()'s whole group.user word, and signed everyone but the super-user `nobody'.
+crontab|One constant changed: -u, which acts on another user's crontab, tested the high byte of the user number rather than the group, so any user numbered below 256 could use it. It now requires group 0.
+mw|The module's owner in its header is 0.0 instead of 30.95, left from the machine it was linked on; the kernel lets a program take on another user only if the program's owner allows it, so everyone but the super-user got `Can't setuid'. No code changed.

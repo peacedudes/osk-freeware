@@ -1,0 +1,16 @@
+family  uidmask
+# Two archive binaries clear the group half of getuid() -- `& 0xffff' --
+# and then ask a getpwuid() that compares the WHOLE group.user word, so
+# only a group-0 user was ever found.  Run as tester (1.7).  Both were
+# patched on 2026-09-24 (tools/patch_uid_mask.py); before that logname said
+# `no login name' and filter exited silently.
+setup   export HOME=/dd
+
+case    logname-names-tester
+run     /dd/CMDS/logname
+expect  tester
+absent  no login name
+
+case    filter-finds-testers-password-entry
+run     /dd/CMDS/ELM/filter -r
+expect  /dd/USR/TESTER/.elm/filter_rules

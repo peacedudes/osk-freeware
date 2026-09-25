@@ -2,12 +2,12 @@ family  mail
 # Elm and the UUCP mail helpers, against the folder that ships at
 # /dd/SPOOL/MAIL/tester.
 #
-# Two of these assert a DEFECT rather than a success, and they are the most
-# useful cases in the file: `frm' and `subscribe' do not do what their
-# DOC/INDEX lines said, and the entries now say what they do instead. A case
-# that pins a known defect is what stops the entry being "corrected" back to
-# the hopeful version by the next person who reads the manual instead of
-# running the program.
+# One of these asserts a DEFECT rather than a success: `subscribe' does not
+# do what its DOC/INDEX line once said, and the entry now says what it does.
+# A case that pins a known defect is what stops the entry being "corrected"
+# back to the hopeful version by the next person who reads the manual
+# instead of running the program.  (`frm' was the other until its patch on
+# 2026-09-24; its cases now assert it working.)
 #
 # The alias files this needs -- /dd/.ELM/aliases.text and
 # /dd/USR/LIB/ELM/aliases.text -- ship with the collection as of 2026-08-31.
@@ -46,35 +46,25 @@ case    readmsg-finds-a-message-by-pattern
 run     /dd/CMDS/ELM/readmsg -f $M Welcome
 expect  From: The OS-9 Freeware Collection
 
-# KNOWN DEFECT, measured 2026-08-31. frm opens the folder -- it names the
-# user rather than reporting that it could not -- and then counts no
-# messages in it, where `messages' counts one and `readmsg' prints it. It
-# says the same for -s new, -s old and a folder named on the command line.
-# Run as the super-user it names tester ("tester has no mail"); run as
-# tester it says "You have no mail."  Either way it counts none.
-#
-# THE CAUSE, found 2026-09-24 in the ELM 2.4 source on this disk
-# (SRC/infoxpress/BNU/ELM_2.4, UTILS/from.c): frm counts a message at the blank line
-# that ends its header, tested as `buffer[0] == LINE_FEED', and the port's
-# defs.h makes LINE_FEED a real LF under OSK.  An OS-9 folder's blank line
-# is a CR, so the header never ends.  The second case is the proof: the
-# same letter with a lone LF byte ending its header is listed at once.
-# tools/patch_elm_linefeed.py is the one-byte fix, FOR-RDOGGETT 49; when it
-# is applied these two cases turn round.
-case    frm-sees-no-messages-in-a-folder-that-has-one
+# frm lists who each letter in the folder is from, and the welcome letter
+# is in the folder.  Until 2026-09-24 it counted none: it ended a header at
+# a line beginning with LINE_FEED, which the port's own defs.h made a real
+# LF under OSK, where an OS-9 folder's blank line is a CR.
+# tools/patch_elm_linefeed.py changed that one compare, in frm and newmail.
+case    frm-lists-the-letter-in-the-folder
 run     /dd/CMDS/ELM/frm
-expect  no mail
-absent  Welcome
+expect  Welcome -- this is a real mail folder
+absent  no mail
 
-case    frm-lists-a-letter-whose-header-ends-in-a-line-feed
-run     /dd/CMDS/rm -f /dd/tmp/frmlf
-run     echo "From os9-freeware Sat Aug 16 00:00:00 1986" > /dd/tmp/frmlf
-run     echo "From: The OS-9 Freeware Collection <os9-freeware>" >> /dd/tmp/frmlf
-run     echo "Subject: a header that ends in a line feed" >> /dd/tmp/frmlf
-run     /dd/CMDS/printf '\012\r' >> /dd/tmp/frmlf
-run     echo "body" >> /dd/tmp/frmlf
-run     /dd/CMDS/ELM/frm /dd/tmp/frmlf
-expect  a header that ends in a line feed
+case    frm-lists-a-letter-written-here
+run     /dd/CMDS/rm -f /dd/tmp/frmcr
+run     echo "From os9-freeware Sat Aug 16 00:00:00 1986" > /dd/tmp/frmcr
+run     echo "From: The OS-9 Freeware Collection <os9-freeware>" >> /dd/tmp/frmcr
+run     echo "Subject: a header that ends in a blank line" >> /dd/tmp/frmcr
+run     echo "" >> /dd/tmp/frmcr
+run     echo "body" >> /dd/tmp/frmcr
+run     /dd/CMDS/ELM/frm /dd/tmp/frmcr
+expect  a header that ends in a blank line
 
 # lcasep lowers a line up to its first tab and copies the rest as it is:
 # the host name of a pathalias line, not its path.
