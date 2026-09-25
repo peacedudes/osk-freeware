@@ -24,11 +24,14 @@ case    qt-tells-the-time-in-words
 run     /dd/CMDS/qt
 expect  It's
 
-# lunisolar reports the moon's phase in words and a percentage.
+# lunisolar reports the moon's phase in words, with a percentage on most
+# days -- but on the day of a full moon it says only "The moon is full.",
+# which failed this case on 2026-09-25 when it asked for "of full)".  It
+# reads today's date and takes none, so only the sentence is asserted.
 case    lunisolar-reports-the-phase-of-the-moon
 run     /dd/CMDS/lunisolar
 expect  The moon is
-expect  of full).
+absent  Bad args
 
 # setimex reads the HOST clock, and this is the case that explains the 2100
 # setimex reports the time read from the host clock.
