@@ -2094,7 +2094,7 @@
 "rm -f /dd/CMDS/fact",
 "load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
 "builtin cd /dd/tmp/LNKA",
-".../CMDS/for fact > /nil"
+"command for fact > /nil"
 ]
 },
 "lnk.org": {
@@ -2107,7 +2107,7 @@
 "load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
 "builtin cd /dd/tmp/LNKB",
 "r68 -q rtfstart.a -o=/dd/LIB/fstart.r",
-".../CMDS/for fact > /nil"
+"command for fact > /nil"
 ]
 },
 "loadmem": {

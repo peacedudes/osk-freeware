@@ -748,9 +748,9 @@ cap     printing each command as it runs it through `shell'.  Then `lnk
 cap     fact' links it into a program and `fact' runs it: 1! to 12!.  The
 cap     shell, r68, l68 and del are your own OS-9's, loaded from /h1 with
 cap     the Fortran run-time, os9lib; lnk installs into CMDS, so this is
-cap     the super-user's job.  At the bash prompt `for' is also the loop
-cap     keyword, so it is reached by path.
-try     .../CMDS/for fact; lnk fact; fact
+cap     the super-user's job.  At bash `for' is also the loop keyword,
+cap     so there it is `command for'; at the OS-9 shell just `for'.
+try     command for fact; lnk fact; fact
 os9     for fact; lnk fact; fact
 run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA; cp /dd/SRC/rtf/fact.f /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
@@ -760,7 +760,7 @@ run     builtin cd /dd/tmp/FORA
 wait    1
 run     clear
 wait    1
-run     .../CMDS/for fact
+run     command for fact
 wait    15
 run     lnk fact
 wait    10
@@ -785,7 +785,7 @@ run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/d
 wait    5
 run     builtin cd /dd/tmp/LNKA
 wait    1
-run     .../CMDS/for fact > /nil
+run     command for fact > /nil
 wait    15
 run     clear
 wait    1
@@ -795,6 +795,7 @@ run     fact
 wait    6
 
 shot    lnk.org
+super
 cap     The original build of `lnk', the RTF Fortran link driver.  It does
 cap     the same job and names the start-up code `fstart.r' where lnk says
 cap     `rtfstart.r' -- the same SRC/rtf/rtfstart.a, assembled under the
@@ -809,7 +810,7 @@ run     builtin cd /dd/tmp/LNKB
 wait    1
 run     r68 -q rtfstart.a -o=/dd/LIB/fstart.r
 wait    5
-run     .../CMDS/for fact > /nil
+run     command for fact > /nil
 wait    15
 run     clear
 wait    1
