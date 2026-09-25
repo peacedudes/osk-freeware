@@ -165,14 +165,29 @@
       Module.os9keys.push(KEYMAP[c] ?? c);
     }
   }
+  // &shell=os9: the reader chose Microware's shell on the catalogue, so the
+  // command is spelt for it and should run IN it, leaving them there after.
+  // The shell is the reader's own, made resident from /h1 by SYS/login, so
+  // this needs /h1.  The page enters `exec shell' itself -- text it chose, not
+  // text from the link, so entering it is safe -- which replaces bash and
+  // keeps the login's environment; then, at the shell's prompt, the link's
+  // command is typed as always, for the reader to enter.
+  const wantShell = params.get('shell') === 'os9';
+  let inShell = false;
   function typeRun() {
     if (typedRun) return;
-    typedRun = true;
-    if (params.get('needs') === 'h1' && !Module.os9h1.name()) {
+    if ((wantShell || params.get('needs') === 'h1') && !Module.os9h1.name()) {
+      typedRun = true;
       Module.os9status('"' + runCmd + '" needs your own OS-9 system attached as /h1. ' +
                        'Use "Open disk as /h1…" and it will run.');
       return;
     }
+    if (wantShell && !inShell) {
+      inShell = true;
+      typeText('exec shell\n');   // then wait for the shell's prompt to go quiet
+      return;
+    }
+    typedRun = true;
     typeText(runCmd);
     runWaiting = true;
     // FORGET IT ONCE TYPED.  Reloading -- or attaching a disk as /h1, which

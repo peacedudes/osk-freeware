@@ -359,20 +359,17 @@ function runItHTML(shot){
   if(shot.tc==="no")
     return `<p class="runit none">Not in a browser: ${esc(shot.tw)}.</p>`;
   // RUN WHAT THE READER IS BEING SHOWN, IN THE SHELL THEY CHOSE.  With the
-  // OS-9 shell chosen, EVERY demo is handed to `shell' -- the reader's own,
-  // from /h1 -- in that shell's spelling: the card's os9 line where it has
-  // one, and otherwise its try line, which reads the same at both shells
-  // (an os9 line exists only where the spelling differs).  Until 2026-09-24
-  // only cards with an os9 line went to `shell' and the rest ran in bash
-  // whatever the reader had chosen.  The page boots bash, so the bash
-  // spelling needs nothing extra.
-  // Quoted, because the line goes to bash first: an OS-9 line with a `;' in
-  // it (`setenv SHELL CMDS/sh; dm SYS') would otherwise be split by bash and
-  // only half of it would reach the shell that understands it.
+  // OS-9 shell chosen, the page is asked (&shell=os9) to hand the session to
+  // `shell' -- the reader's own, resident from /h1 -- and the command is then
+  // typed at the shell's prompt in that shell's spelling: the card's os9
+  // line where it has one, otherwise its try line, which reads the same at
+  // both (an os9 line exists only where the spelling differs).  The reader
+  // stays in the shell afterwards.  Until 2026-09-24 the command went to
+  // bash, first wrapped as `shell "..."' and before that not at all.
   const os9 = shell==="os9";
-  const cmd = os9 ? 'shell "'+(shot.os9 || shot.try).replace(/"/g, '\\"')+'"' : shot.try;
-  const h1 = shot.tc==="h1" || !!os9;
-  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"");
+  const cmd = os9 ? (shot.os9 || shot.try) : shot.try;
+  const h1 = shot.tc==="h1" || os9;
+  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"");
   return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Try it in your browser</a> &mdash; the command is typed for you; press Enter to run it`+
     (h1?` &mdash; needs your own OS-9 attached as /h1`:"")+`</p>`;
 }
