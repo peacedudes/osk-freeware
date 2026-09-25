@@ -661,7 +661,7 @@ Everything you need is derivable without running them: size, whether it needs
 provenance (`DOC/ORIGINS`). Run the programs only where the table cannot
 answer the question.
 
-### 3. Tests that can fail again — 6 programs have none
+### 3. Tests that can fail again — 5 programs have none
 
 **Six, measured 2026-09-24** (ten on 2026-09-21) -- it was 45 when this heading was
 written, 209 as recently as 2026-09-01, and 936-minus-277 before that. Do
@@ -964,24 +964,14 @@ Nothing. The four questions on `notes/FOR-RDOGGETT.md` were answered on
 
 ### What is left, in the order it is worth doing
 
-1. **6 runnable programs under no test** (2026-09-24, `tools/worklist.py
+1. **5 runnable programs under no test** (2026-09-25, `tools/worklist.py
    --programs --no-test`): `graphsave`, `showpic` (Atari GRAPH display),
    `puzzle`, `scriptmaster` (G-Windows), `msntp` (wants Microware's
-   `netdb`), `snake`
-   (orphaned escapes -- 2026-09-23 probes RULED OUT tgoto (its bytes are
-   right), termlib's and curses.l's tputs, and an _UNBUF stdout: each keeps
-   the ESC in place on a pty.  What snake has that they lack is its
-   getchar()-driven loop with only echo turned off; start there), and
-   none else.  2026-09-24, measured: NOT tcapbuf[128] overflowing (a
-   1024-byte build is as bad); the recipe build reproduces it as the
-   archive binary does; the raw bytes show ONE ESC held back until the
-   next ESC arrives -- `S\n[3;62H\e\e[C' where `S\e[3;62H\e[C' was
-   written -- which points at the output path, not the program.  Two
-   routes to a repro failed: with stdout sent to a file snake exits at
-   once, and a minimal echo-off cursor-move-then-getchar() probe never
-   gets a key at all (its getchar() waits for a whole line, where snake's
-   returns per key -- that difference is itself unexplained).  Next: find
-   what makes snake's reads per-key, then hand os9exec a repro.
+   `netdb`), and none else.  `snake` came off on 2026-09-24: its stray
+   cursor moves were its own -- main() set stdout _UNBUF, and the C
+   library's one-byte buffer then held back the ESC of each move after
+   every fflush() (the os9exec session traced it from a syscall log).
+   Rebuilt without that line; SRC/snake/README.OSK, and a play-test.
 
    2026-09-24 took four off: the gcc 1.37 passes run by hand
    (`gcc137.cases'), `timeout' ends the Microware shell that ran it
