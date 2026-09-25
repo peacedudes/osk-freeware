@@ -12,6 +12,10 @@ setup   /dd/CMDS/rm -f /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
 setup   /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER /h0/SPOOL/NN/DATA/*.? > /nil 2>/nil
 setup   /dd/CMDS/printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
 setup   /dd/CMDS/mkdir -p $W
+setup   /dd/CMDS/grep -v 't1,l' /dd/SYS/sysinfo > $W/sysinfo.clean
+setup   /dd/CMDS/cp $W/sysinfo.clean /dd/SYS/sysinfo
+setup   echo 't1,l' >> /dd/SYS/sysinfo
+setup   echo 'mmon.t1,l' >> /dd/SYS/sysinfo
 setup   /dd/CMDS/setup
 
 # Needs the super-user: inews obeys a control message only when the caller
@@ -161,12 +165,38 @@ case    mmon-prints-its-usage
 run     /dd/CMDS/SYSADMIN/mmon -?
 expect  Starts a special timesharing-monitor, best for Hayes-Modems
 
+# mmon RUNS, given what DOC/SYSADMIN/mmon.prf asks for: two SysInfo locks
+# per line and a block in SYS/mmon.config.  Without the locks it exits in
+# silence -- which is how its card came to say it "stays silent".  logon is
+# off its execution directory, so the block names it with logon_path.
+# The locks are added in the family's setup, before its one `setup': a
+# second `setup' in the same session answers "can't create sysinfo", even
+# with the first module unlinked.  The last case below puts the file back.
+# Driven through a pty on 2026-09-25 it offered login: on /t1, logged tester
+# in, and offered login: again after ESC; here, where nothing can type on
+# /t1, what is asserted is that it took both locks and stayed.  mmon and
+# the SysInfo module end with the session.
+# Not `kill $!': this bash's $! is not the child, and killing by it made
+# bash abort itself ("got errno 221 while waiting for 1").
+case    mmon-takes-its-locks-and-stays-on-the-line
+run     /dd/CMDS/printf '/t1\r\tlogon_path = /dd/CMDS/SYSADMIN/logon\r' > /dd/SYS/mmon.config
+run     iterm t1 pty > /nil
+run     /dd/CMDS/SYSADMIN/mmon /t1 &
+run     /h1/CMDS/sleep 5
+run     iprocs
+run     /dd/CMDS/getinfo -a
+run     /dd/CMDS/rm -f /dd/SYS/mmon.config
+expect  F$Sleep      mmon
+expect  t1                    Lock        locked by process
+expect  mmon.t1               Lock        locked by process
+
 # LEAVE NOTHING OF THE SUPER-USER'S BEHIND.  The nn database built above is
 # 0.0's, and owner-only; a later family runs as tester and cannot remove it,
 # so mnews.cases' nnadmin case -- which needs the database ABSENT -- failed
 # on the suite's second run (2026-09-24).  This family made the files, so
 # this family takes them away.
 case    superuser-leaves-no-nn-database-behind
+run     /dd/CMDS/cp $W/sysinfo.clean /dd/SYS/sysinfo
 run     /dd/CMDS/rm -f /h0/SPOOL/NN/GROUPS /h0/SPOOL/NN/MASTER /h0/SPOOL/NN/DATA/*.? > /nil 2>/nil
 run     /dd/CMDS/ls /h0/SPOOL/NN; echo "listed"
 expect  listed

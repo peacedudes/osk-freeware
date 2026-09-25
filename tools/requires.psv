@@ -113,7 +113,7 @@ vt100|an MM/1 with K-Windows and a serial port|SRC/vt100/README.OSK
 x9eyes|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
 setbgptn|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
 logon|a password file, users and terminal lines; DOC/SYSADMIN/logon.prf|DOC/SYSADMIN
-mmon|a terminal or Hayes-modem line and SYS/mmon.config; DOC/SYSADMIN/mmon.prf|DOC/SYSADMIN
+mmon|the super-user; two SysInfo locks per line, `t1,l' and `mmon.t1,l' for /t1, entered with `setup'; a block per line in SYS/mmon.config, with `logon_path = /dd/CMDS/SYSADMIN/logon' or logon loaded; a module named `shell' for the user's login|DOC/SYSADMIN/mmon.prf; measured 2026-09-25 on /t1 from os9exec's iterm: without the locks it exits in silence, without logon found it retries the fork in silence
 watch|the super-user, and a modem line|DOC/SYSADMIN/watch.prf
 vcron|membership of group Cron in SYS/group, and crontabs under SPOOL/VCRON on /h0|SRC/vcron/README.OSK
 rex|OS-9/Net, with prexd running on the node named|SRC/rex/README.OSK

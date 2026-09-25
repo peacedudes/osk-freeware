@@ -110,10 +110,12 @@ cap     configured per line: on a direct line it starts logon at once, on a
 cap     modem line it initialises the modem and starts logon when a call
 cap     connects, setting the speed from the modem's CONNECT message.  Each
 cap     line gets a block in SYS/mmon.config, as in the sample shown, and
-cap     two lock entries in SYS/sysinfo.  Its module is readable by the
-cap     super-user only, who starts it.  Started on a terminal line here it
-cap     stays silent; that has not been worked out.  watch waits for a
-cap     modem to ring and starts a command -- also the super-user's.
+cap     two lock entries in SYS/sysinfo -- `t1,l' and `mmon.t1,l' for
+cap     /t1, then `setup' -- and without them it exits in silence.  logon
+cap     lives in CMDS/SYSADMIN, so name it with `logon_path' in the line's
+cap     block or `load' it.  Started by the super-user as `mmon /t1 &' it
+cap     offers `login:' on /t1, and again after each logout.  watch waits
+cap     for a modem to ring and starts a command -- also the super-user's.
 try     tail -l=26 DOC/SYSADMIN/mmon.config.sample
 run     builtin cd /dd
 run     clear

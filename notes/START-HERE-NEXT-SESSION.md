@@ -55,8 +55,9 @@ session's narrative goes into the history file, not here.
    ten minutes, by design.)  mw's `-1[%dX' is mw sending
    termcap's `ec' without a count -- its bug; the termcap is right.
    `browse' printing the year as 126 is period behaviour and stays.
-   mmon starts on a pty-backed /t1 as the super-user and stays silent
-   (tsmon answers on the same line); not traced -- its card says so.
+   mmon is CLEARED (2026-09-25): it wanted its two SysInfo locks and
+   logon's path in SYS/mmon.config, and then offers login: on /t1;
+   superuser.cases asserts it.
 3. **`tools/panel-exceptions.psv`**: re-test the reasons.  The shapes that
    keep recurring: the disk ships what the reason says is missing; nobody
    started the provider; the card filtered the content away; the program
