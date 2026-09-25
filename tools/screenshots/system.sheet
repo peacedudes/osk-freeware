@@ -668,8 +668,8 @@ run     fontgen < /nil | head -n 10
 wait    12
 shot    dpark
 cap     dpark restores an RBF disk's head to track 00 -- what you did before
-cap     moving a drive.  With no disk head to park here it answers with its
-cap     command format.
+cap     moving a drive.  It works in silence: `dpark /dd' returns 0 and says
+cap     nothing, so its command format is what is shown.
 try     dpark -?
 run     dpark -?
 wait    5

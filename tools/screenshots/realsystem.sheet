@@ -47,9 +47,10 @@ wait    4
 shot    cpucache
 for     cpucache cctrap
 cap     cpucache shows and switches a 68020, 68030 or 68040's on-chip
-cap     caches, through its trap handler cctrap.  Its usage is all that
-cap     can be shown: the emulator has no caches to switch, and the
-cap     package's own driver is not here.
+cap     caches, through its trap handler cctrap, which ships in
+cap     CMDS/DRIVERS.  The emulator has no caches to switch -- with cctrap
+cap     loaded it stops at a privilege violation -- so its usage is what
+cap     is shown here.
 try     cpucache -?
 run     clear
 run     cpucache -?
