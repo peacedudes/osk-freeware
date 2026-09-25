@@ -84,28 +84,34 @@ run     checkalias os9 nosuchalias
 wait    6
 
 shot    disable
-cap     Turns a serial port's terminal monitor off.  It wants the port's
-cap     device driver module resident in memory to find it by name; none
-cap     is loaded here, so it gets no further than looking.
-try     disable /t1
+cap     Turns MTSMon, the monitor that answers logins on a serial port,
+cap     off on that port.  It finds the port's descriptor in memory, so
+cap     the disk's tty descriptor is loaded first; with it found, it
+cap     asks MTSMon and answers that MTSMon isn't running -- MTSMon is
+cap     your own OS-9's, and none is started here.
+try     disable /tty
+run     /h1/CMDS/load /dd/CMDS/DRIVERS/tty
 run     disable -?
 wait    5
 run     clear
 wait    1
-run     disable /t1
+run     disable /tty
 wait    5
 
 shot    enable
 cap     The other half of `disable', with an extra option to hold its
-cap     prompt until a signal comes in.  Asked for by full path -- bash
-cap     has its own builtin of the same name, which answers first.  Same
-cap     story as disable: it wants the /t1 module resident and none is.
-try     enable /t1
-run     /dd/CMDS/UUCP/enable -?
+cap     prompt until a signal comes in.  Run as `./enable' from its own
+cap     directory -- bash has a builtin of the same name, which answers
+cap     first.  Same story as disable: the tty descriptor loaded, it
+cap     finds the port and says MTSMon isn't running.
+try     ./enable /tty
+run     /h1/CMDS/load /dd/CMDS/DRIVERS/tty
+run     builtin cd /dd/CMDS/UUCP
+run     ./enable -?
 wait    5
 run     clear
 wait    1
-run     /dd/CMDS/UUCP/enable /t1
+run     ./enable /tty
 wait    5
 
 shot    dotilde

@@ -1036,11 +1036,6 @@
 "builtin cd /dd"
 ]
 },
-"disable": {
-"setup": [
-"disable -?"
-]
-},
 "discord": {
 "setup": [
 "builtin cd /dd/DOC"
@@ -1254,7 +1249,9 @@
 },
 "enable": {
 "setup": [
-"/dd/CMDS/UUCP/enable -?"
+"/h1/CMDS/load /dd/CMDS/DRIVERS/tty",
+"builtin cd /dd/CMDS/UUCP",
+"./enable -?"
 ]
 },
 "eo": {

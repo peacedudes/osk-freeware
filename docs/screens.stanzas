@@ -221,7 +221,6 @@ digclk fbfa25c19b06608e
 dinfo 0051d35cb9088d43
 dir db672f433ae4e3eb
 dirname 234180d3f267aa9f
-disable 392a7269b17d81d7
 discord f46ea2df7741e7a1
 disdvi e1ada0a46a4b8270
 disktest 643c6a24237a6b57
@@ -265,7 +264,7 @@ elvis_input 7935cdac3b24cab6
 elvrec e3a4ae2e4a7041dc
 em ffb237c4c74742fe
 emacs 514b4e95ff91f5c5
-enable f3b946f52217bade
+enable 9c80832bcbcd82dc
 encode fa2dcc45f1f032d0
 england d6027b06875145fc
 env b204bde44766916f

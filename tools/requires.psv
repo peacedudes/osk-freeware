@@ -143,3 +143,5 @@ logon|a module named `shell' -- your own OS-9's, which SYS/login loads from /h1 
 collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25
 gcc_collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25
 gpp_collect|an object from `gpp -c', which assembles with your own OS-9's r68 -- SYS/login loads it from /h1|measured 2026-09-25
+disable|the port's descriptor module resident -- the card loads this disk's tty with your own OS-9's load; and MTSMon, your own OS-9's, running on that port|SRC/bnu_uucp/turnport.c finds the descriptor with modlink and then signals MTSMon; measured 2026-09-25
+enable|the port's descriptor module resident -- the card loads this disk's tty with your own OS-9's load; and MTSMon, your own OS-9's, running on that port|SRC/bnu_uucp/turnport.c, the same source as disable; measured 2026-09-25

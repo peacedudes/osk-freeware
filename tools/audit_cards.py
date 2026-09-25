@@ -160,11 +160,6 @@ def main(argv):
                 "ships either -- the caption says so, and refusing a file "
                 "it cannot read is the behaviour you want")
     fine = {"perr": "perr PRINTS error messages -- error text is its output",
-            "disktest": "measures disk performance and CANNOT here: bare "
-                        "it prints nothing and `disktest /dd' ends the "
-                        "emulator session outright, both measured "
-                        "2026-09-01 in tools/drives/flagged1.drive. Its "
-                        "option list has one option and it is -?",
             # THE NO-READER CONVERTERS.  Some netpbm readers decode
             # formats no file on this disk is in -- confocal microscopes,
             # ray tracers, AutoCAD slides, Photo CD, Amiga brushes, Gould
@@ -225,8 +220,6 @@ def main(argv):
             # Each capture was read that day.  These show the one thing each
             # can show here: a device, a display, a network or a second user
             # this disk does not have, and the caption names it.
-            "authwn": "WN's per-request authenticator; inetd and wn run it, "
-                      "and alone it has nothing to authenticate",
             "inetdc": "what inetd forks per connection; no message strings, "
                       "and alone nothing to serve",
             "elvprsv": "elvis runs it when it dies with a file open; by hand "
@@ -239,12 +232,6 @@ def main(argv):
                       "system here (`/win', PwCreateMap)",
             "blastem": "XMODEM over a modem path, /t0 by default; there is "
                        "no serial device here",
-            "xyt": "tterm's batch transfer; it names the MODEM port it "
-                   "needs, and none is set",
-            "vt100": "the MM/1 terminal program; no serial port to open",
-            "disable": "turns a port's monitor off and wants the port's "
-                       "descriptor resident; no /t1 is",
-            "enable": "the other half of `disable', and the same need",
             "msntp": "SNTP needs a network time server and Microware's "
                      "`netdb' to look one up; neither is here",
             "nslookup": "asks a name server, and none answers here",
@@ -284,18 +271,6 @@ def main(argv):
             "setfont": "loads a downloadable terminal font from a path, and "
                        "no such font ships; the terminal here has no "
                        "downloadable font to load either",
-            # collect2 is a LINKER PASS, not a user-facing program: g++ runs
-            # it between compiling and linking to build the global
-            # constructor table.  `collect' and `gpp_collect' are the same
-            # binary (md5 74b3bbf3686d) in two directories; `gcc_collect' is
-            # GCC139's build of it.  With no arguments it prints its usage by
-            # design -- it takes no -? -- and there is no demonstration of it
-            # that is not a C++ link.
-            "collect": "collect2, a g++ linker pass; with no arguments it "
-                       "prints its usage by design and its real use is inside "
-                       "a C++ link",
-            "gcc_collect": "the same linker pass, GCC139's build of it",
-            "gpp_collect": "the same linker pass, byte-identical to `collect'",
             "transfer": "copies files off a GDOS disk, and the GDOS device "
                         "DGDOS0 is not present on this disk or in os9exec -- "
                         "so `Can't load device descriptor' is the only thing "
