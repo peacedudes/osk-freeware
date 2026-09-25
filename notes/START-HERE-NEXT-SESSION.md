@@ -6,69 +6,62 @@ One page.  The plan is `notes/PLAN.md`; what needs rdoggett is
 to a page: a finding goes in the file it belongs to, and a finished
 session's narrative goes into the history file, not here.
 
-## Where it stands, 2026-09-24 (evening)
+## Where it stands, 2026-09-25 (early morning)
 
 - **Every program on the image has a card taken by running it**, and
   `tools/check_disk.py disk` is the gate -- read its list, not a count.
-- **Harnesses run as `tester`**, not the super-user.  A family that needs
-  the super-user says `user su`; a stanza says `super`.
-- **Emulator pinned at os9exec `e2c7f7b`** (scratch copy for harness runs:
-  `$OS9EXEC`).  docs/try runs the same build.
-- **Final verification on a fresh image, as tester**: suite pass 1
-  1002/1003, pass 2 1004/1004.  The one miss was `wisecrack`/`ask` giving
-  up after 30 tries; now 200 (text.cases says why).  Play-tests: see the
-  commit that updated this line.
+- **Harnesses run as `tester`**, not the super-user.  A data-test family
+  that needs the super-user says `user su`; a card stanza says `super`; a
+  play-test says `user su`.  Play-tests mount no /h1.
+- **Emulator: os9exec `289d55e`** (fix/scf-pd-eor) is the checkpoint last
+  verified -- suite 1015/1015 twice (after mmon's case moved), play-tests
+  151/151, as tester on a fresh image.  docs/try runs it.  The os9exec
+  release commit is still to come (CPU/FPU review, console restructure):
+  when it is named, pin it, rebuild docs/try from it (tools/wasm-web.sh in
+  a `git archive' export; keep our page's own edits), and re-run.
+  `lesspipe' needs 2a95c75 or later; mmon's cases need 289d55e or later.
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
-  the working branch `release-pass-2026-08-21` only; never `main` or a tag
-  (either starts CI, which needs os9exec's branch published).  Never make
-  it public.
-- `tools/audit_cards.py`: 0 cards flagged (honestly -- it read tester's
-  `bash$' as work until 2026-09-24).  `tools/worklist.py --programs
-  --no-test`: 6 programs, all display-bound or needing Microware's
-  `netdb` -- see PLAN section 3.
-- **Source: 883 of 1123 programs (78%)**, up from 850 in one afternoon.
-  Three audits on 2026-09-24: trees short of their archives (ELM's LIB,
-  ten others -- restored), programs with `--' whose source sat in their
-  own archive (35 added, 35 more ORIGINS rows pointed at trees already
-  here), and getuid()'s group.user word (FOR-RDOGGETT 45-51).  PLAN 1c
-  has what was left and why.
-- **Reading source corrected four INDEX entries**: pri queues files for
-  printing (not a priority setter), answer takes phone messages, adltouch
-  re-dates save files, rndir works given the reader's own dir.  An INDEX
+  the working branch `release-pass-2026-08-21` only; never `main` or a tag.
+  Never make it public.
+- `tools/audit_cards.py`: 0 flagged.  Untested programs: 5, all needing a
+  display or Microware's `netdb`.  Source: 883 of 1123 (78%).
+- **2026-09-24, all agreed with rdoggett and done:** seven archive
+  binaries patched (FOR-RDOGGETT 45-51; SOURCES "PATCHED"), snake rebuilt
+  without stdout unbuffering, RTF's start-up objects in LIB.
+- **The browser page** (docs/try) now: runs a card's hidden setup from
+  docs/try/setup.json before typing its command (the link names only the
+  card); with the OS-9 shell chosen and /h1 attached it `exec shell's and
+  types there; names the keys the card typed next.  Cards mark typed text
+  in amber; German programs are tinted in the index.
+- **Found by reading the program's own source, all corrected:** pri,
+  answer, adltouch, rndir, frm, smail, more (it reads its Enter from
+  stdin, so it cannot page a pipe), and 16 more INDEX entries.  An INDEX
   line with no source behind it is a guess until checked.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
-1 (push os9exec, pin `e2c7f7b`), 45-51 (seven one-instruction or header
-patches to shipped binaries -- elm, bash, logname + ELM filter, mw, frm +
-newmail, smail, crontab -- each with a staged tool under `tools/patch_*.py`).  Binary patches are his
-call; do not apply them.
+1 (push os9exec and name its release commit).  Nothing else is open.
 
 ## Work, in order -- take the top one not done, never ask which
 
-1. **Defects found and not yet fixed** (each needs a measurement first):
-   nn's `st_gid` from os9lib's stat is never filled; ELM `fastmail` and
-   `newmail` mask getuid() the way filter does (FOR-RDOGGETT 47 covers
-   filter); the `mw` screen's `-1[%dX` glitch.  Settled 2026-09-24: ksh's
-   `test -O` is not a defect -- this pdksh spells it `-U`, and `-U`/`-G`
-   hold for tester (perluid.cases); lpsched's `user&&0xffff` is recorded
-   in DOC/STATUS (untestable here); frm's "no mail" is FOR-RDOGGETT 49.
-   `browse` printing the year as 126 is period behaviour and stays.
-   mw's `-1[%dX' is mw sending termcap's `ec=\E[%dX' without a count --
-   the program's bug; the termcap entry is right.
-   **The ELM 2.4 source is on the disk at SRC/infoxpress/BNU/ELM_2.4** --
-   a tree in SRC is named by ARCHIVE; `frm's panel reason said there was
-   none.  Read it before guessing at any ELM program.
-2. **`snake`'s stray cursor moves.**  PLAN section 3 lists what was ruled
-   out; the source's own comment (disk/SRC/snake/move.c, above `cook()`)
-   has the byte stream.  If it is the emulator's, write a repro for the
-   os9exec session -- never edit os9exec.
-3. **`tools/panel-exceptions.psv`** (80 lines): re-test the reasons.  The
-   three shapes that keep recurring: the disk ships what the reason says
-   is missing; nobody started the provider; the card filtered the content
-   away.  `mailx` came off on 2026-09-24 by giving it a MAIL directory.
-4. **Pages not run on a real terminal.**  If a page disagrees with the
-   program, the program wins.
+1. **os9exec's release commit**: when the os9exec session names it, pin it,
+   rebuild docs/try, run the suite twice and the play-tests as tester, and
+   drive pagers and pipelines on a real terminal (tools/playtests/lesspipe).
+2. **Defects still open** (each needs a measurement first): nn's `st_gid'
+   from os9lib's stat is never filled; ELM `fastmail' masks getuid() as
+   filter did (not yet shown failing).  mw's `-1[%dX' is mw sending
+   termcap's `ec' without a count -- its bug; the termcap is right.
+   `browse' printing the year as 126 is period behaviour and stays.
+   mmon starts on a pty-backed /t1 as the super-user and stays silent
+   (tsmon answers on the same line); not traced -- its card says so.
+3. **`tools/panel-exceptions.psv`**: re-test the reasons.  The shapes that
+   keep recurring: the disk ships what the reason says is missing; nobody
+   started the provider; the card filtered the content away; the program
+   was given the wrong invocation.
+4. **A card's command needs the card's setup** -- docs/try/setup.json
+   carries it for the browser.  A card whose hidden setup does something a
+   reader could not repeat (staging from /h1, removing a shipped file) is
+   worth a second look.
 5. **Housekeeping** (PLAN section 5): notes stay small.
 
 ## The routine

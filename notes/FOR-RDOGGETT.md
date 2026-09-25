@@ -3,15 +3,14 @@
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
 the same number.
-Updated 2026-09-24 (evening).
+Updated 2026-09-25 (early morning).
 
 ## Needs you
 
-**1. Push os9exec, then pin `e2c7f7b'.**
-It was `d992145'; `e2c7f7b' (2026-09-24) adds the two fixes boa and
-whetstone need -- SS_Ready on a listening socket, and clock() counting a
-process's own ticks -- and the os9exec session gated it.  This collection's
-full suite passes on it as tester (2026-09-24).  Nothing else waits on it.
+**1. Push os9exec and name its release commit.**  This collection is
+verified on 289d55e (suite 1015/1015 twice, play-tests 151/151, as
+tester); the browser page runs it.  When the release commit is named I pin
+it, rebuild the page from it and run everything once more.
 
 ## No action, just so you know
 
