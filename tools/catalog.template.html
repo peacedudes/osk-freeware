@@ -369,7 +369,10 @@ function runItHTML(shot){
   const os9 = shell==="os9";
   const cmd = os9 ? (shot.os9 || shot.try) : shot.try;
   const h1 = shot.tc==="h1" || os9;
-  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"");
+  // &card names the stanza, so the page can do first what the card did out
+  // of sight (docs/try/setup.json): the directory it ran in, what it loaded.
+  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"")+
+              (shot.n?"&card="+encodeURIComponent(shot.n):"");
   return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Try it in your browser</a> &mdash; the command is typed for you; press Enter to run it`+
     (h1?` &mdash; needs your own OS-9 attached as /h1`:"")+`</p>`;
 }

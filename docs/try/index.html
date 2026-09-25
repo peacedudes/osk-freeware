@@ -174,6 +174,18 @@
   // command is typed as always, for the reader to enter.
   const wantShell = params.get('shell') === 'os9';
   let inShell = false;
+  // &card=<stanza>: do first what that card did out of sight -- a cd, a
+  // load, a file staged -- so its command starts where the card's did.  The
+  // lines come from setup.json, which the catalogue build writes from the
+  // card sheets; the link only NAMES a card, so it cannot make this page
+  // enter text of its own.  One line per quiet spell, like a person typing.
+  const cardName = params.get('card');
+  let setupLines = null;
+  const setupReady = (cardName && /^[\w.+-]+$/.test(cardName))
+    ? fetch('setup.json').then(r => r.ok ? r.json() : {}).then(j => {
+        setupLines = Array.isArray(j[cardName]) ? j[cardName].slice() : [];
+      }).catch(() => { setupLines = []; })
+    : Promise.resolve().then(() => { setupLines = []; });
   function typeRun() {
     if (typedRun) return;
     if ((wantShell || params.get('needs') === 'h1') && !Module.os9h1.name()) {
@@ -181,6 +193,14 @@
       Module.os9status('"' + runCmd + '" needs your own OS-9 system attached as /h1. ' +
                        'Use "Open disk as /h1…" and it will run.');
       return;
+    }
+    if (setupLines === null) {            // setup.json not here yet
+      setupReady.then(typeRun);
+      return;
+    }
+    if (setupLines.length) {
+      typeText(setupLines.shift().replace(/[\x00-\x1f\x7f]/g, '') + '\n');
+      return;                             // the next step waits for quiet
     }
     if (wantShell && !inShell) {
       inShell = true;

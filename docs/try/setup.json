@@ -1,0 +1,2827 @@
+{
+"Ascii2Libr": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr /dd/tmp/cat2.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat2.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"EditLibr": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"Libr2Ascii": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"Librarian": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"Pnews": [
+"set +H",
+"rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
+"rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
+"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
+"printf '' > /h0/USR/LIB/CNEWS/history",
+"builtin cd /h0/USR/LIB/CNEWS",
+"dbz history",
+"mkdir -p /dd/tmp/CNC",
+"builtin cd /dd/tmp/CNC",
+"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"rm -f /dd/.pnewsexpert > /nil 2>/nil"
+],
+"PrintCards": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"PrintLabels": [
+"mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil",
+"Ascii2Libr -outfile /dd/tmp/cat.libr < /dd/DOC/samples/cat.txt",
+"builtin cd /dd"
+],
+"UAC_view": [
+"cd UAC"
+],
+"X11R6shl": [
+"builtin cd /dd"
+],
+"a2p": [
+"rm -rf /dd/tmp/A2PC > /nil 2>/nil; mkdir -p /dd/tmp/A2PC",
+"builtin cd /dd/tmp/A2PC",
+"cp /dd/SYS/password password; echo '{ w += NF } END { print NR, w }' > count.awk"
+],
+"adlcomp": [
+"builtin cd /dd/ADL/DEMOS",
+"rm -f tiny"
+],
+"adldebug": [
+"builtin cd /dd/ADL/DEMOS",
+"rm -f tiny; adlcomp tiny.adl -o tiny -i.. > /nil"
+],
+"adlrun": [
+"builtin cd /dd/ADL/AARD"
+],
+"adltouch": [
+"builtin cd /dd/ADL/DEMOS",
+"rm -f tiny; adlcomp tiny.adl -o tiny -i.. > /nil"
+],
+"advcom": [
+"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil",
+"cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv",
+"cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi",
+"load /dd/CMDS/GAMES/advcom"
+],
+"advint": [
+"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil",
+"cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv",
+"cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi",
+"load /dd/CMDS/GAMES/advcom",
+"sh -c \"chd /dd/tmp/GAMESA; advcom osample\" > /nil",
+"load /dd/CMDS/GAMES/advint"
+],
+"afm2tfm": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/n019003l.tfm; cp /dd/LIB/gs403/n019003l.afm /dd/tmp/TEX/n019003l.afm",
+"builtin cd /dd/tmp/TEX"
+],
+"agrep": [
+"builtin cd /dd"
+],
+"alps": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out",
+"builtin cd /dd"
+],
+"animal": [
+"builtin cd /dd/DOC/animal"
+],
+"answer": [
+"newalias"
+],
+"ape": [
+"builtin cd /dd"
+],
+"apfel": [
+"load /dd/CMDS/GAMES/graph"
+],
+"ar": [
+"rm -f tmp/k2.ar"
+],
+"ar2": [
+"rm -f tmp/k3.ar"
+],
+"arc": [
+"builtin cd /dd/SYS"
+],
+"arepdaemon": [
+"rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log",
+"builtin cd /dd"
+],
+"as0": [
+"rm -rf /dd/tmp/XASM > /nil 2>/nil; mkdir -p /dd/tmp/XASM; cp /dd/DOC/xasm/sample.a0 /dd/tmp/XASM",
+"builtin cd /dd/tmp/XASM"
+],
+"as09": [
+"mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19",
+"echo \"        org  \\0441000\" > /dd/tmp/CMPA/t.a",
+"echo \"        lda  #\\04442\" >> /dd/tmp/CMPA/t.a",
+"echo \"        sta  \\0442000\" >> /dd/tmp/CMPA/t.a",
+"echo \"        rts\" >> /dd/tmp/CMPA/t.a",
+"echo \"        end\" >> /dd/tmp/CMPA/t.a",
+"builtin cd /dd/tmp/CMPA"
+],
+"as1": [
+"rm -rf /dd/tmp/XASM > /nil 2>/nil; mkdir -p /dd/tmp/XASM; cp /dd/DOC/xasm/sample.a1 /dd/tmp/XASM",
+"builtin cd /dd/tmp/XASM"
+],
+"as11": [
+"rm -rf /dd/tmp/XASM > /nil 2>/nil; mkdir -p /dd/tmp/XASM; cp /dd/DOC/xasm/sample.a11 /dd/tmp/XASM",
+"builtin cd /dd/tmp/XASM"
+],
+"as4": [
+"rm -rf /dd/tmp/XASM > /nil 2>/nil; mkdir -p /dd/tmp/XASM; cp /dd/DOC/xasm/sample.a4 /dd/tmp/XASM",
+"builtin cd /dd/tmp/XASM"
+],
+"as5": [
+"rm -rf /dd/tmp/XASM > /nil 2>/nil; mkdir -p /dd/tmp/XASM; cp /dd/DOC/xasm/sample.a5 /dd/tmp/XASM",
+"builtin cd /dd/tmp/XASM"
+],
+"asciitopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"pbmtext \"npbm\" | pbmtoascii > /dd/tmp/NPIB/art.txt",
+"builtin cd /dd"
+],
+"atc": [
+"export TERM=vt100 USER=tester"
+],
+"ateri": [
+"builtin cd /dd"
+],
+"atob": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt; btoa < /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.btoa",
+"builtin cd /dd"
+],
+"atp": [
+"rm -rf /dd/tmp/ATPK > /nil 2>/nil; mkdir -p /dd/tmp/ATPK; cp /dd/DOC/ka9q/atprc /dd/tmp/ATPK",
+"export ATP=/dd/tmp/ATPK"
+],
+"autolf": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
+"builtin cd /dd"
+],
+"autoreply": [
+"autoreply -?"
+],
+"back": [
+"export TERM=vt100"
+],
+"backgammon": [
+"export TERM=vt100"
+],
+"bandit": [
+". /dd/SYS/termcap.entry"
+],
+"basename": [
+"builtin cd /dd"
+],
+"bcd": [
+"builtin cd /dd"
+],
+"bcheck": [
+"builtin cd /dd"
+],
+"bdecode": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"not a batch\\r\" > /dd/tmp/EC/msg.txt",
+"builtin cd /dd/tmp/EC"
+],
+"beav": [
+"builtin cd /dd/DOC"
+],
+"bibtex": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/small.dvi /dd/tmp/TEX/small.aux; cp /dd/SYS/TEX/SAMPLES/small.tex /dd/tmp/TEX/small.tex; builtin cd /dd/tmp/TEX; latex small.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"bincheckr": [
+"builtin cd /dd/GAMES"
+],
+"binhex": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC",
+"macbin j.txt"
+],
+"bio": [
+"load /h1/CMDS/runb"
+],
+"bioradtopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"biory": [
+"load /dd/CMDS/os9lib",
+"rm -rf /dd/tmp/BIOA; mkdir -p /dd/tmp/BIOA",
+"builtin cd /dd/tmp/BIOA"
+],
+"bison": [
+"builtin cd /dd"
+],
+"blackjack": [
+"load /h1/CMDS/runb"
+],
+"blastem": [
+"builtin cd /dd/SYS"
+],
+"bm": [
+"rm -rf /dd/tmp/BMK > /nil 2>/nil; mkdir -p /dd/tmp/BMK/home /dd/tmp/BMK/spool/mail /dd/tmp/BMK/spool/mqueue /dd/tmp/BMK/spool/rqueue",
+"echo \"host test.ampr\" > /dd/tmp/BMK/home/.bmrc; echo \"user tester\" >> /dd/tmp/BMK/home/.bmrc; echo \"fullname Test_User\" >> /dd/tmp/BMK/home/.bmrc",
+"export NETHOME=/dd/tmp/BMK/home NETSPOOL=/dd/tmp/BMK/spool",
+"builtin cd /dd/tmp/BMK/spool"
+],
+"bmg": [
+"builtin cd /dd"
+],
+"bmgtest": [
+"builtin cd /dd"
+],
+"bmgtest2": [
+"builtin cd /dd"
+],
+"bmp": [
+"builtin cd /dd"
+],
+"boa": [
+"rm -rf /dd/tmp/BOAK > /nil 2>/nil; mkdir -p /dd/tmp/BOAK/CONF /dd/tmp/BOAK/logs",
+"cp /dd/c/unid/boa/osk/CONF/boa.conf /dd/c/unid/boa/osk/CONF/mime.types /dd/tmp/BOAK/CONF",
+"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/BOAK/r.cr; echo \"\" >> /dd/tmp/BOAK/r.cr",
+"autolf -c -C -L < /dd/tmp/BOAK/r.cr > /dd/tmp/BOAK/get.req",
+"builtin cd /dd/tmp/BOAK"
+],
+"bootgen": [
+"mount -r=256k /r0 > /nil 2>/nil",
+"builtin cd /dd/CMDS"
+],
+"bootlogger": [
+"rm -f /dd/SYS/bootlog > /nil 2>/nil",
+"builtin cd /dd"
+],
+"browse": [
+"builtin cd /dd"
+],
+"bru": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/keep.bru",
+"builtin cd /dd"
+],
+"brushtopbm": [
+"builtin cd /dd"
+],
+"bsplt68": [
+"rm -rf /dd/tmp/BSPL > /nil 2>/nil; mkdir -p /dd/tmp/BSPL",
+"builtin cd /dd/tmp/BSPL",
+"cat /dd/CMDS/cat /dd/CMDS/clear > OS9Boot"
+],
+"btoa": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd"
+],
+"btop": [
+"builtin cd /dd",
+"cat SYS/motd | head -c 12 > tmp/b1"
+],
+"buildhash": [
+"rm -rf /dd/tmp/ISPB > /nil 2>/nil; mkdir -p /dd/tmp/ISPB",
+"cp /dd/SRC/ispell/dict.191 /dd/tmp/ISPB/dict.191",
+"builtin cd /dd/tmp/ISPB"
+],
+"byteflip": [
+"rm -rf /dd/tmp/BFL > /nil 2>/nil; mkdir -p /dd/tmp/BFL; printf \"ABCDEFGH\\r\" > /dd/tmp/BFL/in.txt",
+"builtin cd /dd/tmp/BFL"
+],
+"c7decode": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"not encoded\\r\" > /dd/tmp/EC/msg.txt",
+"builtin cd /dd/tmp/EC"
+],
+"caesar": [
+"builtin cd /dd"
+],
+"canfield": [
+"cat /dd/GAMES/cfscores > /dd/tmp/canfield.save"
+],
+"cat": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; printf \"one\\r\" > /dd/tmp/ARC/one; printf \"two\\r\" > /dd/tmp/ARC/two",
+"builtin cd /dd"
+],
+"cb": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; echo 'int main(){int i;for(i=0;i<3;i++){if(i)printf(\"%d \",i);else puts(\"zero\");}return 0;}' > /dd/tmp/DEV/ugly.c",
+"builtin cd /dd"
+],
+"cc1plus": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"cc2": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"cc2plus": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"cccp2": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"ccheck": [
+"builtin cd /dd"
+],
+"cdecl": [
+"builtin cd /dd"
+],
+"cdiff": [
+"builtin cd /dd"
+],
+"cfscores": [
+"cat /dd/GAMES/cfscores > /dd/tmp/cfscores.save",
+"canfield"
+],
+"charcnt": [
+"builtin cd /dd/SYS"
+],
+"chardef": [
+"builtin cd /dd"
+],
+"checkalias": [
+"newalias -g",
+"load /dd/CMDS/ELM/elm"
+],
+"checkfile": [
+"rm -rf /dd/tmp/MTHB > /nil 2>/nil; mkdir -p /dd/tmp/MTHB",
+"builtin cd /dd/tmp/MTHB"
+],
+"checkgame": [
+"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; rm -f /dd/tmp/GAMESA/chess.lst",
+". /dd/SYS/termcap.entry",
+"load /dd/CMDS/GAMES/gnuchess",
+"builtin cd /dd/tmp/GAMESA",
+"gnuchess > /nil 2>/nil"
+],
+"checksum": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd"
+],
+"chgrp": [
+"mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/grp.txt",
+"builtin cd /dd"
+],
+"chksum": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd"
+],
+"choose": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"Monday\\rTuesday\\rWednesday\\rThursday\\rFriday\\rSaturday\\rSunday\\r\" > /dd/tmp/TXT/week.txt",
+"builtin cd /dd"
+],
+"chown": [
+"mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/usr.txt",
+"builtin cd /dd"
+],
+"cjpeg": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a",
+"builtin cd /dd"
+],
+"cjpeg.070": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a",
+"builtin cd /dd"
+],
+"clear": [
+"builtin cd /dd",
+"dir CMDS"
+],
+"clock": [
+"load /h1/CMDS/shell"
+],
+"col": [
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"b\\b_o\\b_l\\b_d type\" > /dd/tmp/B3C/over.txt",
+"builtin cd /dd"
+],
+"collect": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"colrm": [
+"rm -rf /dd/tmp/B3M; mkdir -p /dd/tmp/B3M; echo \"001 apple\" > /dd/tmp/B3M/list.txt; echo \"002 banana\" >> /dd/tmp/B3M/list.txt; echo \"003 cherry\" >> /dd/tmp/B3M/list.txt",
+"builtin cd /dd"
+],
+"column": [
+"builtin cd /dd"
+],
+"combine": [
+"rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil",
+"printf 'AAAAAAAA' > /dd/tmp/UTILA/cmb/even",
+"printf 'BBBBBBBB' > /dd/tmp/UTILA/cmb/odd",
+"builtin cd /dd"
+],
+"comm": [
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo apple > /dd/tmp/B3C/a; echo banana >> /dd/tmp/B3C/a; echo cherry >> /dd/tmp/B3C/a; echo banana > /dd/tmp/B3C/b; echo cherry >> /dd/tmp/B3C/b; echo damson >> /dd/tmp/B3C/b",
+"builtin cd /dd"
+],
+"compface": [
+"rm -f /dd/tmp/CFACE > /nil 2>/nil; mkdir -p /dd/tmp/CFACE > /nil 2>/nil",
+"builtin cd /dd"
+],
+"compr": [
+"rm -f /dd/tmp/ARC/idx3*; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/DOC/INDEX /dd/tmp/ARC/idx3",
+"builtin cd /dd"
+],
+"compress": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/idx4*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx4",
+"builtin cd /dd"
+],
+"compress_4.0": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/idx5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/idx5",
+"builtin cd /dd"
+],
+"cookhash": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"A closed mouth gathers no feet.\\r%%%%\\rThe second mouse gets the cheese.\\r%%%%\\r\" > /dd/tmp/TXT/say",
+"builtin cd /dd"
+],
+"corewar": [
+"builtin cd /dd/GAMES/COREWARS"
+],
+"cp": [
+"rm -rf /dd/tmp/FILESA/cpw > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/cpw > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/cpw/motd",
+"builtin cd /dd/tmp/FILESA/cpw"
+],
+"cpp": [
+"builtin cd /dd/tmp",
+"rm -rf /dd/tmp/cppdemo > /nil 2>/nil; mkdir -p /dd/tmp/cppdemo > /nil 2>/nil",
+"builtin cd /dd/tmp/cppdemo",
+"echo \"#define GREET(who) \\\"hello, \\\" who\" > t.c",
+"echo \"#define N 3\" >> t.c",
+"echo \"#if N > 2\" >> t.c",
+"echo \"int big = N;\" >> t.c",
+"echo \"#else\" >> t.c",
+"echo \"int small = N;\" >> t.c",
+"echo \"#endif\" >> t.c",
+"echo \"char *s = GREET(\\\"world\\\");\" >> t.c"
+],
+"cpr": [
+"builtin cd /dd"
+],
+"creadoc": [
+"rm -rf /dd/tmp/CRD; mkdir -p /dd/tmp/CRD; cp /dd/SRC/rtf/biory.f /dd/tmp/CRD/biory.f",
+"load /dd/CMDS/os9lib; load /h1/CMDS/shell; load /h1/CMDS/dir; load /h1/CMDS/del",
+"builtin cd /dd/tmp/CRD"
+],
+"cron": [
+"set +H",
+"builtin cd /dd"
+],
+"ctags": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/tags",
+"cp /dd/SRC/keep/keep.c /dd/tmp/DEV/keep.c",
+"builtin cd /dd/tmp/DEV"
+],
+"ctags.elvis": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/tags",
+"cp /dd/SRC/pvic/SRCE/cmdline.c /dd/tmp/EDIT/cmdline.c",
+"builtin cd /dd/tmp/EDIT"
+],
+"cut": [
+"builtin cd /dd/SYS"
+],
+"cuts": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
+"builtin cd /dd"
+],
+"cwasm": [
+"builtin cd /dd/GAMES/COREWARS"
+],
+"cwdis": [
+"builtin cd /dd/GAMES/COREWARS"
+],
+"cxref": [
+"builtin cd /dd"
+],
+"dback": [
+"load /h1/CMDS/copy",
+"rm -rf /dd/tmp/DBK > /nil 2>/nil; mkdir -p /dd/tmp/DBK/db /dd/tmp/DBK/dbk; cp /dd/SYS/motd /dd/tmp/DBK/db/one; cp /dd/SYS/magic /dd/tmp/DBK/db/two",
+"builtin cd /dd/tmp/DBK"
+],
+"dbz": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"<one@site.uucp> 999999999 1\\r\" > /dd/tmp/EC/history",
+"builtin cd /dd/tmp/EC"
+],
+"dds": [
+"mkdir -p /dd/tmp > /nil 2>/nil; printf '10 PRINT \"HELLO OS-9\"\\r20 FOR I = 1 TO 3\\r30 PRINT I\\r40 NEXT I\\r50 END\\rLIST\\rRUN\\rBYE\\r' > /dd/tmp/dds.in",
+"builtin cd /dd"
+],
+"delbak": [
+"rm -rf /dd/tmp/FILESA/bk > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/bk/sub > /nil 2>/nil",
+"cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt; cp /dd/SYS/motd /dd/tmp/FILESA/bk/notes.txt_bak; cp /dd/SYS/motd /dd/tmp/FILESA/bk/sub/old.c_bak",
+"builtin cd /dd"
+],
+"demerge": [
+"rm -rf /dd/tmp/UTILA/dm > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/dm > /nil 2>/nil",
+"cat /dd/CMDS/today /dd/CMDS/tty > /dd/tmp/UTILA/dm/both",
+"builtin cd /dd/tmp/UTILA/dm"
+],
+"des": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/d.txt.n; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/d.txt",
+"builtin cd /dd"
+],
+"detab": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt",
+"builtin cd /dd"
+],
+"dfiles": [
+"builtin cd /dd"
+],
+"diff": [
+"builtin cd /dd"
+],
+"diff3": [
+"rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C",
+"printf \"one\\rtwo\\rthree\\r\" > /dd/tmp/D3C/older; printf \"one\\rTWO\\rthree\\r\" > /dd/tmp/D3C/mine; printf \"one\\rtwo\\rTHREE\\r\" > /dd/tmp/D3C/theirs",
+"builtin cd /dd/tmp/D3C"
+],
+"diff_1.1": [
+"mkdir -p /dd/tmp/BLGX > /nil 2>/nil",
+"printf 'apple\\rpear\\rplum\\r' > /dd/tmp/BLGX/d1",
+"printf 'apple\\rpeach\\rplum\\r' > /dd/tmp/BLGX/d2",
+"builtin cd /dd"
+],
+"dir": [
+"builtin cd /dd/SYS"
+],
+"dirname": [
+"builtin cd /dd"
+],
+"disable": [
+"disable -?"
+],
+"discord": [
+"builtin cd /dd/DOC"
+],
+"disdvi": [
+"builtin cd /dd/DOC/mg"
+],
+"disp": [
+"builtin cd /dd/CMDS/DRIVERS"
+],
+"divide": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/piece.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/dv.txt",
+"builtin cd /dd"
+],
+"djpeg": [
+"builtin cd /dd"
+],
+"djpeg.070": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
+"builtin cd /dd"
+],
+"dld": [
+"builtin cd /dd/SYS"
+],
+"dload": [
+"builtin cd /dd/SYS"
+],
+"dm": [
+"builtin cd /dd"
+],
+"dmake": [
+"builtin cd /dd"
+],
+"dmode": [
+"load /h1/CMDS/BOOTOBJS/r0"
+],
+"dotilde": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"hello\\r~x\\rmore text\\r\" > /dd/tmp/EC/msg.txt",
+"builtin cd /dd/tmp/EC"
+],
+"drivers": [
+"builtin cd /dd"
+],
+"du": [
+"builtin cd /dd"
+],
+"dump": [
+"builtin cd /dd"
+],
+"dvi2tty": [
+"builtin cd /dd/DOC/mg"
+],
+"dvialw": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_alw; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvidjp": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvieps": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dviimp": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvijep": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvijet": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvilj2": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvimac": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvioki": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvips": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvitos": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil",
+"builtin cd /dd/tmp/TEX"
+],
+"dvitype": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil"
+],
+"ed": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"mount -r=256k /r0",
+"builtin cd /dd"
+],
+"ediff": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"apple\\rbanana\\rcherry\\rdate\\r\" > /dd/tmp/TXT/a; printf \"apple\\rblueberry\\rcherry\\rdate\\relder\\r\" > /dd/tmp/TXT/b",
+"builtin cd /dd"
+],
+"elvis": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"elvis_input": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/new.txt",
+"builtin cd /dd"
+],
+"em": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"emacs": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"enable": [
+"/dd/CMDS/UUCP/enable -?"
+],
+"eo": [
+"mkdir -p /dd/tmp/TEXTA; echo /dd/SYS/motd > /dd/tmp/TEXTA/list.txt; echo /dd/SYS/holidays >> /dd/tmp/TEXTA/list.txt; echo /dd/SYS/birthdays >> /dd/tmp/TEXTA/list.txt",
+"builtin cd /dd/tmp/TEXTA"
+],
+"ephem": [
+"builtin cd /dd/SYS"
+],
+"ephem881": [
+"builtin cd /dd/SYS"
+],
+"epson": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil",
+"builtin cd /dd"
+],
+"etags": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS",
+"cp /dd/SRC/keep/keep.c /dd/tmp/DEV/keep.c",
+"builtin cd /dd/tmp/DEV"
+],
+"exist": [
+"builtin cd /dd"
+],
+"expand": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt",
+"builtin cd /dd"
+],
+"fact": [
+"rm -rf /dd/tmp/FACT > /nil 2>/nil; mkdir -p /dd/tmp/FACT",
+"cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /h1/LIB/sys.l /dd/tmp/FACT; rm -f /dd/CMDS/fact",
+"load /dd/CMDS/os9lib /h1/CMDS/r68 /h1/CMDS/l68",
+"builtin cd /dd/tmp/FACT"
+],
+"factor": [
+"builtin cd /dd"
+],
+"fastmail": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"hello from fastmail\\r\" > /dd/tmp/EC/msg.txt",
+"builtin cd /dd/tmp/EC"
+],
+"fc": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/fc.*; cat /dd/SYS/holidays | head -n 12 > /dd/tmp/ENC/fc.txt",
+"builtin cd /dd"
+],
+"fcomp": [
+"builtin cd /dd"
+],
+"ff": [
+"load /h1/CMDS/shell /h1/CMDS/grep",
+"builtin cd /dd/SYS"
+],
+"fgrep": [
+"builtin cd /dd/SYS"
+],
+"field": [
+"rm -rf /dd/tmp/fld > /nil 2>/nil; mkdir -p /dd/tmp/fld; echo \"the quick brown fox\" > /dd/tmp/fld/fox; echo \"jumps over the lazy dog\" >> /dd/tmp/fld/fox; cp /dd/SYS/password /dd/tmp/fld/pw",
+"builtin cd /dd/tmp/fld"
+],
+"file": [
+"mkdir -p /dd/tmp/TEXTA; tar cf /dd/tmp/TEXTA/f.tar /dd/SYS/motd",
+"builtin cd /dd"
+],
+"fileserv": [
+"builtin cd /dd",
+"rm -f /dd/LOG/FileServ > /nil 2>/nil",
+"rm -rf /dd/tmp/FSMAIL",
+"mkdir -p /dd/tmp/FSMAIL/tester",
+"export MAIL=/dd/tmp/FSMAIL",
+"echo \"From tester Mon Sep 21 00:00:00 2026\" > /dd/tmp/fsreq",
+"echo \"Subject: request\" >> /dd/tmp/fsreq",
+"echo \"\" >> /dd/tmp/fsreq",
+"echo \"reply tester\" >> /dd/tmp/fsreq",
+"echo \"help\" >> /dd/tmp/fsreq",
+"echo \"quit\" >> /dd/tmp/fsreq",
+"load /dd/CMDS/UUCP/rmail"
+],
+"fillup": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/pad.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/pad.txt",
+"builtin cd /dd"
+],
+"filter": [
+"mount -r=256k /r0",
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"From tester\\rSubject: test\\r\\rbody\\r\" > /dd/tmp/EC/msg.txt",
+"builtin cd /dd/tmp/EC"
+],
+"find": [
+"builtin cd /dd"
+],
+"fits": [
+"builtin cd /dd"
+],
+"fixtext": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
+"printf \"line one\\nline two\\n\" > /dd/tmp/EC/ft.in",
+"builtin cd /dd/tmp/EC"
+],
+"fkeys": [
+"builtin cd /dd"
+],
+"flex": [
+"builtin cd /dd"
+],
+"fmt": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"Twas brillig,\\rand the slithy\\rtoves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\\r\" > /dd/tmp/TXT/rag.txt",
+"builtin cd /dd"
+],
+"fold": [
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo \"The quick brown fox jumps over the lazy dog, and then over the lazy dog again.\" > /dd/tmp/B3C/fox.txt",
+"builtin cd /dd"
+],
+"for": [
+"rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB",
+"load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
+"builtin cd /dd/tmp/FORA"
+],
+"forth": [
+"builtin cd /dd/lib/tile/TST"
+],
+"freeb": [
+"builtin cd /dd"
+],
+"fstat": [
+"builtin cd /dd"
+],
+"fstopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm",
+"builtin cd /dd"
+],
+"funzip": [
+"builtin cd /dd"
+],
+"g": [
+"load /dd/CMDS/GAMES/graph"
+],
+"g3": [
+"builtin cd /dd"
+],
+"game": [
+"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo \"e2e4      0      0      0     8\" > /dd/tmp/GAMESA/g.lst",
+"builtin cd /dd/tmp/GAMESA"
+],
+"gawk": [
+"builtin cd /dd/SYS"
+],
+"gcc": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"gcc137": [
+"builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137"
+],
+"gcc137_cc1": [
+"builtin cd /dd/CMDS/GCC137",
+"printf \"int main()\\r{\\r  return 42;\\r}\\r\" > hello.i"
+],
+"gcc137_cccp": [
+"builtin cd /dd/CMDS/GCC137",
+"printf \"#define ANSWER 42\\rint main()\\r{\\r  return ANSWER;\\r}\\r\" > hello.c"
+],
+"gcc2": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"gcc272": [
+"builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272",
+"printf \"int main()\\r{\\r  return 0;\\r}\\r\" > hello.c"
+],
+"gcc272_cc2": [
+"builtin cd /dd/CMDS/GCC272",
+"printf \"int main()\\r{\\r  return 42;\\r}\\r\" > hello.i"
+],
+"gcc272_cc2plus": [
+"builtin cd /dd/CMDS/GCC272",
+"printf \"class G { public: int f() { return 42; } };\\rint main() { G g; return g.f(); }\\r\" > hello.ii"
+],
+"gcc272_cccp2": [
+"builtin cd /dd/CMDS/GCC272",
+"printf \"#define ANSWER 42\\rint main()\\r{\\r  return ANSWER;\\r}\\r\" > hello.c"
+],
+"gcc_cccp": [
+"builtin cd /dd"
+],
+"gdd": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
+"builtin cd /dd"
+],
+"gen": [
+"rm -f /dd/tmp/SYSB/demo.c > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"gep": [
+"mkdir -p /dd/tmp/TEXTA; echo Easter > /dd/tmp/TEXTA/pats; echo Valentine >> /dd/tmp/TEXTA/pats",
+"builtin cd /dd"
+],
+"getinfo": [
+"setup"
+],
+"gftopk": [
+"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF",
+"builtin cd /dd/tmp/MF"
+],
+"gftype": [
+"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF"
+],
+"ggrep": [
+"builtin cd /dd/SYS"
+],
+"gif": [
+"builtin cd /dd"
+],
+"gif2": [
+"builtin cd /dd"
+],
+"giftopnm": [
+"builtin cd /dd"
+],
+"gmake": [
+"builtin cd /dd"
+],
+"gnuan": [
+"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; printf 'e2e4 e7e5\\rg1f3 b8c6\\rf1b5 a7a6\\r' > /dd/tmp/GAMESA/moves",
+"builtin cd /dd"
+],
+"gnuchess": [
+". /dd/SYS/termcap.entry"
+],
+"gnuchessn": [
+". /dd/SYS/termcap.entry"
+],
+"gnuplot": [
+"builtin cd /dd"
+],
+"gouldtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"gpp": [
+"builtin cd /dd/CMDS/GCC2"
+],
+"graph": [
+"builtin cd /dd/CMDS/GAMES"
+],
+"graphdemo": [
+"load /dd/CMDS/GAMES/graph"
+],
+"graphsave": [
+"load /dd/CMDS/GAMES/graph"
+],
+"grep": [
+"builtin cd /dd"
+],
+"gs33": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"/Helvetica-Bold findfont 40 scalefont setfont\\r8 14 moveto (OS-9/68000) show\\rshowpage\\r\" > /dd/tmp/PRT/old.ps",
+"builtin cd /dd"
+],
+"gs403": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; export GS_LIB=/dd/LIB/gs403",
+"builtin cd /dd"
+],
+"gtar": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/keep2.tar",
+"builtin cd /dd"
+],
+"gulls": [
+"builtin cd /dd"
+],
+"gulls-invert": [
+"builtin cd /dd"
+],
+"gzip": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1",
+"builtin cd /dd"
+],
+"gzip020_csl": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g5*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g5",
+"builtin cd /dd"
+],
+"gzip68k_csl": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3",
+"builtin cd /dd"
+],
+"gzipcpu32k_csl": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g7*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g7",
+"builtin cd /dd"
+],
+"hc": [
+"builtin cd /dd/SYS"
+],
+"hdump": [
+"builtin cd /dd/SYS"
+],
+"head": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt",
+"builtin cd /dd"
+],
+"help": [
+"enable -n help"
+],
+"helpindex": [
+"rm -rf /dd/tmp/DOCB > /nil 2>/nil; mkdir -p /dd/tmp/DOCB; cp /dd/SYS/HELP/dinfo.hlp /dd/tmp/DOCB/dinfo.hlp",
+"builtin cd /dd/tmp/DOCB"
+],
+"hexbin": [
+"rm -rf /dd/tmp/ENC/hb > /nil 2>/nil; mkdir -p /dd/tmp/ENC/hb; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC; macbin j.txt; mcvert -U j.txt.MAC",
+"cp /dd/tmp/ENC/j.txt01.hqx /dd/tmp/ENC/hb/j.txt01.hqx",
+"builtin cd /dd/tmp/ENC/hb"
+],
+"hexed": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil",
+"printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"hexedit": [
+". /dd/SYS/termcap.entry",
+"builtin cd /dd"
+],
+"hinterhalt": [
+"testibc"
+],
+"hipstopgm": [
+"rm -rf /dd/tmp/HIPB > /nil 2>/nil; mkdir -p /dd/tmp/HIPB",
+"builtin cd /dd/tmp/HIPB",
+"printf \"osk\\rstrip\\r1\\rtoday\\r2\\r8\\r8\\r0\\r0\\r.\\r\" > x.hips; printf \"0123456789abcdef\" >> x.hips"
+],
+"hist": [
+"load /h1/CMDS/shell /h1/CMDS/tmode",
+"mount -r=256k /r0"
+],
+"howfrag": [
+"builtin cd /dd/CMDS"
+],
+"hp": [
+"builtin cd /dd"
+],
+"hpcdtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"icon": [
+"builtin cd /dd"
+],
+"if": [
+"load /h1/CMDS/shell"
+],
+"ifdef": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"#ifdef OSK\\rint on_os9 = 1;\\r#else\\rint on_os9 = 0;\\r#endif\\rint always = 2;\\r\" > /dd/tmp/DEV/ifd.c",
+"builtin cd /dd"
+],
+"ilbm": [
+"builtin cd /dd"
+],
+"imgtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"indent": [
+"builtin cd /dd"
+],
+"inews": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article"
+],
+"infocom": [
+"builtin cd /dd/GAMES/INFORM"
+],
+"infocom.tcap": [
+"builtin cd /dd/GAMES/INFORM"
+],
+"inform": [
+"rm -rf /dd/tmp/INFK > /nil 2>/nil; mkdir -p /dd/tmp/INFK",
+"cp /dd/SRC/inform/hellow.inf /dd/SRC/inform/parser.h /dd/SRC/inform/verblib.h /dd/SRC/inform/grammar.h /dd/tmp/INFK",
+"builtin cd /dd/tmp/INFK"
+],
+"input": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"the first line\\rthe second line\\rand the third\\r\" > /dd/tmp/EC/lines.txt",
+"builtin cd /dd/tmp/EC"
+],
+"ispell": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"Twas brilig and the slithy tovs did gyre and gimble in the wabe.\\r\" > /dd/tmp/TXT/spell.txt",
+"builtin cd /dd"
+],
+"jaw": [
+"/dd/CMDS/rm -rf /dd/tmp/jawcard > /nil 2>/nil",
+"/dd/CMDS/mkdir -p /dd/tmp/jawcard",
+"builtin cd /dd/tmp/jawcard",
+"echo \"Quartz glyph jocks vend, fix, BMW.\" > q",
+"compress < q > q.Z"
+],
+"join": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"apple red\\rfig purple\\rpear green\\r\" > /dd/tmp/TXT/j1; printf \"apple 3\\rfig 12\\rpear 7\\r\" > /dd/tmp/TXT/j2",
+"builtin cd /dd"
+],
+"keep": [
+"export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; mkdir -p /dd/tmp/SYSB > /nil 2>/nil"
+],
+"kept": [
+"mkdir -p /dd/tmp/SYSB > /nil 2>/nil; export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil"
+],
+"ksh": [
+"mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf \"print hello from a ksh script\\rfor f in a b c; do print item \\$f; done\\r\" > /dd/tmp/SHL/script.ksh",
+"builtin cd /dd"
+],
+"l": [
+"mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/long.txt > /nil 2>/nil",
+"echo \"Home Librarian is a computerised library card catalogue for OS-9, written by Robert Heller of Deepwoods Software and released in 1992.\" > /dd/tmp/FILESA/long.txt",
+"builtin cd /dd"
+],
+"latex": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/small.dvi /dd/tmp/TEX/small.aux; cp /dd/SYS/TEX/SAMPLES/small.tex /dd/tmp/TEX/small.tex",
+"builtin cd /dd/tmp/TEX"
+],
+"lcasep": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"John Q Public\\r\" > /dd/tmp/EC/name.txt",
+"builtin cd /dd/tmp/EC"
+],
+"less": [
+"builtin cd /dd"
+],
+"lessecho": [
+"builtin cd /dd/SYS"
+],
+"lesskey": [
+"rm -rf /dd/tmp/DOCK > /nil 2>/nil; mkdir -p /dd/tmp/DOCK",
+"builtin cd /dd/tmp/DOCK",
+"echo \"#command\" > keys; echo \"z forw-screen\" >> keys; echo \"Z back-screen\" >> keys"
+],
+"lfcrman": [
+"builtin cd /dd/CMDS/DRIVERS"
+],
+"lgrep": [
+"load /h1/CMDS/grep",
+"builtin cd /dd"
+],
+"lha": [
+"rm -f /dd/tmp/ARC/k.lzh; mkdir -p /dd/tmp/ARC > /nil 2>/nil",
+"builtin cd /dd"
+],
+"lharc": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/l.lzh",
+"builtin cd /dd"
+],
+"lharcs": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/ls.lzh",
+"builtin cd /dd"
+],
+"liborder": [
+"builtin cd /dd/SRC/eff_make"
+],
+"libsplit": [
+"builtin cd /dd"
+],
+"life": [
+"builtin cd /dd/GAMES/LIFE"
+],
+"lispm": [
+"builtin cd /dd"
+],
+"lispmtopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"pgmramp -lr 48 24 | pnmdepth 15 > /dd/tmp/NPIB/g15.pgm",
+"builtin cd /dd"
+],
+"listalias": [
+"newalias",
+"newalias -g",
+"load /dd/CMDS/sort"
+],
+"lmail": [
+"builtin cd /dd",
+"cat SPOOL/MAIL/tester > tmp/lmail.save; echo 'Subject: hello' > tmp/note; echo '' >> tmp/note; echo 'A note for the tester account.' >> tmp/note"
+],
+"lnk": [
+"rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact",
+"load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
+"builtin cd /dd/tmp/LNKA",
+"r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r",
+".../CMDS/for fact > /nil"
+],
+"lnk.org": [
+"rm -rf /dd/tmp/LNKB > /nil 2>/nil; mkdir -p /dd/tmp/LNKB /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKB; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact",
+"load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del",
+"builtin cd /dd/tmp/LNKB",
+"r68 -q rtfstart.a -o=/dd/LIB/fstart.r",
+".../CMDS/for fact > /nil"
+],
+"loadmem": [
+"rm -rf /dd/tmp/MEML > /nil 2>/nil; mkdir -p /dd/tmp/MEML",
+"builtin cd /dd/tmp/MEML",
+"cp /dd/SYS/motd m.txt"
+],
+"logisim": [
+"export PORT=/term",
+"builtin cd /dd"
+],
+"look": [
+"builtin cd /dd"
+],
+"lp": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rThe collection speaks for itself.\\r\" > /dd/tmp/PRT/letter.txt",
+"ls -l /dd/CMDS > /dd/tmp/PRT/listing",
+"builtin cd /dd",
+"lpsched /pipe/prt &"
+],
+"lpq": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rThe collection speaks for itself.\\r\" > /dd/tmp/PRT/letter.txt",
+"ls -l /dd/CMDS > /dd/tmp/PRT/listing",
+"builtin cd /dd",
+"lpsched /pipe/prt &",
+"lp tmp/PRT/listing; lp tmp/PRT/listing"
+],
+"lprm": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rThe collection speaks for itself.\\r\" > /dd/tmp/PRT/letter.txt",
+"ls -l /dd/CMDS > /dd/tmp/PRT/listing",
+"builtin cd /dd",
+"lpsched /pipe/prt &",
+"lp tmp/PRT/listing; lp tmp/PRT/listing"
+],
+"lpshut": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rThe collection speaks for itself.\\r\" > /dd/tmp/PRT/letter.txt",
+"ls -l /dd/CMDS > /dd/tmp/PRT/listing",
+"builtin cd /dd",
+"lpsched /pipe/prt &"
+],
+"ls": [
+"builtin cd /dd"
+],
+"ltb": [
+"rm -rf /dd/tmp/LTB > /nil 2>/nil; mkdir -p /dd/tmp/LTB",
+"cp /dd/SRC/proff/proffsym.new /dd/tmp/LTB",
+"builtin cd /dd/tmp/LTB"
+],
+"lua": [
+"builtin cd /dd/DOC/lua/examples"
+],
+"luac": [
+"rm -rf /dd/tmp/LNGB > /nil 2>/nil; mkdir -p /dd/tmp/LNGB; cp /dd/DOC/lua/examples/hello.lua /dd/tmp/LNGB/hello.lua",
+"builtin cd /dd/tmp/LNGB"
+],
+"lwf": [
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/PRT/j.txt",
+"builtin cd /dd"
+],
+"m4": [
+"load /h1/CMDS/shell",
+"builtin cd /dd"
+],
+"m4_0.5": [
+"mkdir -p /dd/tmp/BLGX > /nil 2>/nil",
+"printf 'define(greet,hello $1)greet(world)\\r' > /dd/tmp/BLGX/mm.m4",
+"builtin cd /dd"
+],
+"macbin": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC"
+],
+"macsave": [
+"rm -rf /dd/tmp/ENC/ms > /nil 2>/nil; mkdir -p /dd/tmp/ENC/ms; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC; macbin j.txt",
+"cp /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/ms/j.txt.MAC",
+"builtin cd /dd/tmp/ENC/ms"
+],
+"macstream": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/ms.stream; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/ms.txt",
+"builtin cd /dd/tmp/ENC"
+],
+"mail": [
+"mount -r=256k /r0",
+"mkdir -p /dd/MAIL > /nil 2>/nil",
+"rm -f /dd/MAIL/tester > /nil 2>/nil",
+"ksh -c \"echo Hello from the collection. | mail tester\""
+],
+"mailx": [
+"rm -rf /dd/tmp/MAILX",
+"mkdir -p /dd/tmp/MAILX/tester",
+"export MAIL=/dd/tmp/MAILX",
+"echo 'Subject: hello' > /dd/tmp/MAILX/letter",
+"echo '' >> /dd/tmp/MAILX/letter",
+"echo 'a line of mail' >> /dd/tmp/MAILX/letter",
+"rmail tester < /dd/tmp/MAILX/letter"
+],
+"make": [
+"builtin cd /dd"
+],
+"makecrc": [
+"rm -rf /dd/tmp/UTILA/mc > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/mc > /nil 2>/nil",
+"builtin cd /dd/tmp/UTILA/mc"
+],
+"makedb": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
+"cat /dd/USR/LIB/SMAIL/palias > /dd/tmp/EC/palias.src",
+"builtin cd /dd/tmp/EC"
+],
+"makelex": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"Allah:TF:SO:0\\rBMW:TDF:SU:0\\rBabylon:HIF:SO:n\\r\" > /dd/tmp/TXT/wl",
+"builtin cd /dd"
+],
+"map": [
+"builtin cd /dd"
+],
+"marc": [
+"rm -f a1.arc a2.arc; arc a a1.arc /dd/SYS/motd; arc a a2.arc /dd/SYS/termcap"
+],
+"mcvert": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC",
+"macbin j.txt"
+],
+"md5": [
+"builtin cd /dd"
+],
+"me": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"messages": [
+"builtin cd /dd"
+],
+"mg": [
+"builtin cd /dd"
+],
+"mgif": [
+"builtin cd /dd/DEMO"
+],
+"mimecode": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/m.txt",
+"builtin cd /dd"
+],
+"mkdict": [
+"builtin cd /dd/GAMES/BOG"
+],
+"mkdir": [
+"mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -rf /dd/tmp/FILESA/mk > /nil 2>/nil",
+"builtin cd /dd"
+],
+"mkindex": [
+"builtin cd /dd/GAMES/BOG"
+],
+"mmon": [
+"builtin cd /dd"
+],
+"modbuster": [
+"rm -rf /dd/tmp/MODC > /nil 2>/nil; mkdir -p /dd/tmp/MODC",
+"cat /dd/CMDS/cat /dd/CMDS/getenv > /dd/tmp/MODC/twomods; builtin cd /dd/tmp/MODC"
+],
+"modinfo": [
+"builtin cd /dd"
+],
+"modules": [
+"builtin cd /dd"
+],
+"modules2": [
+"builtin cd /dd"
+],
+"more": [
+"tmode pag=24",
+"builtin cd /dd"
+],
+"moria": [
+"export TERM=vt100 USER=tester"
+],
+"morse": [
+"builtin cd /dd"
+],
+"move": [
+"rm -rf /dd/tmp/FILESA/mvd > /nil 2>/nil",
+"mkdir -p /dd/tmp/FILESA/mvd/from /dd/tmp/FILESA/mvd/to > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvd/from/note",
+"builtin cd /dd/tmp/FILESA/mvd"
+],
+"msattrib": [
+"mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
+],
+"mscd": [
+"mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msmd a:/DOCS > /nil"
+],
+"mscheck": [
+"mscd a:/ > /nil; msdeltree a:/MOVED > /nil 2>/nil; msdeltree a:/DOCS > /nil 2>/nil; msdel a:NEW.TXT a:RAW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
+],
+"mscopy": [
+"builtin cd /dd/SYS"
+],
+"msdel": [
+"mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
+],
+"msdeltree": [
+"mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msmd a:/DOCS > /nil; mscopy /dd/SYS/motd a:/DOCS/README.TXT > /nil"
+],
+"msdir": [
+"mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
+],
+"mshell": [
+"load /h1/CMDS/shell",
+"builtin cd /dd"
+],
+"mslabel": [
+"mscd a:/ > /nil"
+],
+"msmd": [
+"mscd a:/ > /nil; msdeltree a:/DOCS > /nil 2>/nil; msdel a:MOTD.TXT > /nil 2>/nil"
+],
+"msmove": [
+"mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil; msdeltree a:/MOVED > /nil 2>/nil; msmd a:/MOVED > /nil"
+],
+"msrd": [
+"mscd a:/ > /nil; msdeltree a:/EMPTY > /nil 2>/nil; msmd a:/EMPTY > /nil"
+],
+"msread": [
+"rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB",
+"builtin cd /dd/tmp/DOSB",
+"mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil; mswrite /dd/SYS/motd a:RAW.TXT > /nil"
+],
+"msren": [
+"mscd a:/ > /nil; msdel a:OLD.TXT a:NEW.TXT a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:OLD.TXT > /nil"
+],
+"mstype": [
+"mscd a:/ > /nil; msdel a:MOTD.TXT > /nil 2>/nil; mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
+],
+"mswrite": [
+"rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB; cp /dd/SYS/motd /dd/tmp/DOSB/motd",
+"builtin cd /dd/tmp/DOSB",
+"mscd a:/ > /nil; msdel a:RAW.TXT > /nil 2>/nil"
+],
+"mtvtoppm": [
+"rm -rf /dd/tmp/MTVB > /nil 2>/nil; mkdir -p /dd/tmp/MTVB",
+"builtin cd /dd/tmp/MTVB",
+"printf \"4 2\\r\" > x.mtv; printf \"0123456789abcdefghijklmn\" >> x.mtv"
+],
+"mv": [
+"rm -rf /dd/tmp/FILESA/mvw > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/mvw > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/mvw/one",
+"builtin cd /dd/tmp/FILESA/mvw",
+"load /dd/CMDS/mv"
+],
+"mw": [
+"export TERM=vt100 USER=tester",
+"mw -l=5 >/nil &"
+],
+"names": [
+"builtin cd /dd"
+],
+"nasa": [
+"mkdir -p /dd/tmp/CAL > /nil 2>/nil; printf \"ISS (ZARYA)\\r1 25544U 98067A   26246.50000000  .00016717  00000-0  10270-3 0  9005\\r2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537\\r\" > /dd/tmp/CAL/nasa.dat",
+"builtin cd /dd/tmp/CAL"
+],
+"nethack3": [
+"export TERM=vt100"
+],
+"newmail": [
+"newmail -?",
+"load /dd/CMDS/UUCP/uuname"
+],
+"newsetup": [
+"set +H",
+"rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
+"rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
+"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
+"printf '' > /h0/USR/LIB/CNEWS/history",
+"builtin cd /h0/USR/LIB/CNEWS",
+"dbz history",
+"mkdir -p /dd/tmp/CNC",
+"builtin cd /dd/tmp/CNC",
+"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"builtin cd /dd",
+"rm -f .newsrc .oldnewsrc > /nil 2>/nil"
+],
+"newshist": [
+"mkdir -p /dd/lib/news > /nil 2>/nil; printf \"<one@site.uucp> 9999999999 1\\r\" > /dd/lib/news/history",
+"builtin cd /dd/lib/news"
+],
+"newslock": [
+"mkdir -p /dd/tmp/MAILA > /nil 2>/nil",
+"builtin cd /dd",
+"echo $$ > tmp/MAILA/tmplock"
+],
+"newsrun": [
+"set +H",
+"rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /h0/SPOOL/CNEWS/in.coming/bad > /nil 2>/nil",
+"rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/SPOOL/CNEWS/in.coming/1 /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
+"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
+"printf '' > /h0/USR/LIB/CNEWS/history",
+"builtin cd /h0/USR/LIB/CNEWS",
+"dbz history",
+"builtin cd /h0/SPOOL/CNEWS",
+"printf 'Path: far!someone\\012From: someone@far\\012Newsgroups: junk\\012Subject: from a Unix site\\012Message-ID: <7@far>\\012Date: 23 Sep 1990 10:00:00 GMT\\012\\012filed by newsrun\\012' > in.coming/1",
+"load /h1/CMDS/shell",
+"load /dd/CMDS/NEWS/trlf"
+],
+"nn": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"load /h1/CMDS/shell",
+"inews -c=newgroup:comp.os.os9 < /nil",
+"inews -h < article",
+"printf 'OK\\ry\\r' > ok",
+"nnmaster -I < ok > /nil",
+"nnmaster < /nil"
+],
+"nnadmin": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"load /h1/CMDS/shell",
+"inews -c=newgroup:comp.os.os9 < /nil",
+"inews -h < article",
+"printf 'OK\\ry\\r' > ok",
+"nnmaster -I < ok > /nil",
+"nnmaster < /nil"
+],
+"nnaux": [
+"setup",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -f /h0/SPOOL/MNEWS/article /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"builtin cd /h0/SPOOL/MNEWS",
+"printf 'Newsgroups: junk\\rSubject: posted by nnaux\\r\\rnn hands nnaux the article to post.\\r' > article",
+"load /h1/CMDS/shell",
+"load /dd/CMDS/MNEWS/inews"
+],
+"nncheck": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"load /h1/CMDS/shell",
+"inews -c=newgroup:comp.os.os9 < /nil",
+"inews -h < article",
+"printf 'OK\\ry\\r' > ok",
+"nnmaster -I < ok > /nil",
+"nnmaster < /nil",
+"nn comp.os.os9"
+],
+"nnmaster": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"load /h1/CMDS/shell",
+"inews -c=newgroup:comp.os.os9 < /nil",
+"inews -h < article",
+"printf 'OK\\ry\\r' > ok"
+],
+"noreader": [
+"builtin cd /dd"
+],
+"nptx": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"jqpublic\\tJohn Q Public\\r\" > /dd/tmp/EC/name.txt",
+"builtin cd /dd/tmp/EC"
+],
+"nroff": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \".ce\\rJABBERWOCKY\\r.sp\\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\\r.sp\\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\\r\" > /dd/tmp/TXT/jab.r",
+"builtin cd /dd"
+],
+"nslookup": [
+"cat /dd/DOC/bind/resolv.conf > /h0/resolv.conf"
+],
+"nsort": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"pear\\rapple\\rpear\\rfig\\rfig\\rfig\\rapple\\r\" > /dd/tmp/TXT/dups",
+"builtin cd /dd"
+],
+"number": [
+"builtin cd /dd"
+],
+"ogrify": [
+"builtin cd /dd/DOC/ogrify"
+],
+"orbit": [
+"builtin cd /dd/DOC/orbit"
+],
+"os9dsk": [
+"builtin cd /dd/DOC/os9dsk"
+],
+"owner": [
+"mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/own.txt",
+"builtin cd /dd"
+],
+"p2c": [
+"mkdir -p /dd/tmp/P2C > /nil 2>/nil",
+"echo \"program hello; begin writeln('hi') end.\" > /dd/tmp/P2C/h.pas",
+"builtin cd /dd/tmp/P2C"
+],
+"pagefraz": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"The Art of Computer Programming\\rStructured Programming\\rThe C Programming Language\\rThe Mythical Man-Month\\r\" > /dd/tmp/TXT/titles",
+"builtin cd /dd"
+],
+"pagekwic": [
+"builtin cd /dd"
+],
+"pageline": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"The Art of Computer Programming\\rStructured Programming\\rThe C Programming Language\\rThe Mythical Man-Month\\r\" > /dd/tmp/TXT/titles",
+"builtin cd /dd"
+],
+"passwd": [
+"builtin cd /dd"
+],
+"paste": [
+"mkdir -p /dd/tmp/TEXTA; echo one > /dd/tmp/TEXTA/a.txt; echo two >> /dd/tmp/TEXTA/a.txt; echo three >> /dd/tmp/TEXTA/a.txt",
+"echo eins > /dd/tmp/TEXTA/b.txt; echo zwei >> /dd/tmp/TEXTA/b.txt; echo drei >> /dd/tmp/TEXTA/b.txt",
+"builtin cd /dd"
+],
+"patch": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"one\\rtwo\\rthree\\r\" > /dd/tmp/DEV/p1; printf \"one\\rTWO\\rthree\\r\" > /dd/tmp/DEV/p2; diff /dd/tmp/DEV/p1 /dd/tmp/DEV/p2 > /dd/tmp/DEV/p.diff",
+"builtin cd /dd"
+],
+"pathalias": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
+"printf \"milkyway phoenix(20)\\rphoenix seabass(30)\\rseabass pirsqrd(10)\\r\" > /dd/tmp/EC/map",
+"builtin cd /dd/tmp/EC"
+],
+"pbmclean": [
+"rm -rf tmp/PBMA",
+"mkdir -p tmp/PBMA",
+"builtin cd tmp/PBMA",
+"pgmnoise 64 32 | pgmtopbm -threshold > noise.pbm"
+],
+"pbmmake": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil"
+],
+"pbmmask": [
+"rm -rf tmp/PBMB",
+"mkdir -p tmp/PBMB",
+"builtin cd tmp/PBMB",
+"pgmnoise 64 32 | pgmtopbm -threshold > noise.pbm"
+],
+"pbmreduce": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NEAB/ck.pbm",
+"builtin cd /dd"
+],
+"pbmtobbnbg": [
+"rm -rf /dd/tmp/BBNB > /nil 2>/nil; mkdir -p /dd/tmp/BBNB",
+"pbmmake -g 16 8 > /dd/tmp/BBNB/b.pbm",
+"builtin cd /dd/tmp/BBNB"
+],
+"pbmtog3": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtogem": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtoicon": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtomacp": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtopgm": [
+"rm -rf tmp/PBMC",
+"mkdir -p tmp/PBMC",
+"builtin cd tmp/PBMC",
+"pgmnoise 64 32 | pgmtopbm -threshold > noise.pbm"
+],
+"pbmtopi3": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtoptx": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbmtoxbm": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+],
+"pbyte": [
+"builtin cd /dd"
+],
+"pcx": [
+"builtin cd /dd"
+],
+"pdraw": [
+"rm -rf /dd/tmp/PDA > /nil 2>/nil; mkdir -p /dd/tmp/PDA",
+"cat /dd/DOC/pdraw/options > /dd/tmp/PDA/options; cat /dd/DOC/pdraw/curves.plot > /dd/tmp/PDA/curves.plot",
+"builtin cd /dd/tmp/PDA"
+],
+"pep": [
+"mkdir -p /dd/tmp/TEXTA; echo -e \"bell\\aand\\bbackspace here\" > /dd/tmp/TEXTA/ctl.txt",
+"builtin cd /dd"
+],
+"perl": [
+"builtin cd /dd/DOC/perl"
+],
+"pgmbentley": [
+"builtin cd /dd"
+],
+"pgmedge": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmpat -gingham3 40 20 | ppmtopgm > /dd/tmp/NEAB/gg.pgm",
+"builtin cd /dd/tmp/NEAB"
+],
+"pgmenhance": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NEAB/en.pgm",
+"builtin cd /dd"
+],
+"pgmhist": [
+"builtin cd /dd"
+],
+"pgmkernel": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil"
+],
+"pgmnoise": [
+"builtin cd /dd"
+],
+"pgmnorm": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm",
+"builtin cd /dd/tmp/NEAB"
+],
+"pgmoil": [
+"builtin cd /dd"
+],
+"pgmtexture": [
+"builtin cd /dd"
+],
+"pgmtofs": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+],
+"pgmtolispm": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+],
+"pgmtoppm": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+],
+"pktogf": [
+"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.* /dd/tmp/MF/back.120gf; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil",
+"builtin cd /dd/tmp/MF"
+],
+"pktype": [
+"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil"
+],
+"plotters": [
+"builtin cd /dd"
+],
+"pltotf": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/TEX/cmr10.pl",
+"builtin cd /dd"
+],
+"pnmarith": [
+"builtin cd /dd"
+],
+"pnmcat": [
+"builtin cd /dd"
+],
+"pnmconvol": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmnoise 48 24 > /dd/tmp/NEAB/n.pgm",
+"pgmkernel 3 > /dd/tmp/NEAB/k.pgm",
+"builtin cd /dd"
+],
+"pnmcrop": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 40 20 > /dd/tmp/NEAB/r.pgm",
+"pnmpad -black -l8 -r8 -t4 -b4 /dd/tmp/NEAB/r.pgm > /dd/tmp/NEAB/p.pgm",
+"builtin cd /dd"
+],
+"pnmcut": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmdepth": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmenlarge": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pbmmake -g 16 8 > /dd/tmp/NEAB/b.pbm",
+"builtin cd /dd"
+],
+"pnmfile": [
+"builtin cd /dd"
+],
+"pnmfile-gulls": [
+"builtin cd /dd"
+],
+"pnmfile-set": [
+"builtin cd /dd"
+],
+"pnmfilters": [
+"builtin cd /dd"
+],
+"pnmflip": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 56 12 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmgamma": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmhisteq": [
+"mkdir -p /dd/tmp > /nil 2>/nil",
+"builtin cd /dd"
+],
+"pnmhistmap": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm",
+"builtin cd /dd"
+],
+"pnminvert": [
+"builtin cd /dd"
+],
+"pnmnoraw": [
+"rm -rf tmp/PBMD",
+"mkdir -p tmp/PBMD",
+"builtin cd tmp/PBMD",
+"pgmnoise 40 16 | pgmtopbm -threshold > noise.pbm"
+],
+"pnmpad": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 24 12 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmpaste": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm",
+"pgmramp -tb 16 10 > /dd/tmp/NEAB/pt.pgm",
+"builtin cd /dd"
+],
+"pnmrotate": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmscale": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 32 16 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmshear": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 40 24 > /dd/tmp/NEAB/r.pgm",
+"builtin cd /dd"
+],
+"pnmsmooth": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"pnmtile": [
+"builtin cd /dd"
+],
+"pnmtoddif": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+],
+"pnmtofits": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+],
+"pnmtops": [
+"builtin cd /dd"
+],
+"pnmtosgi": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
+"builtin cd /dd"
+],
+"ppm3d": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm",
+"ppmshift 6 /dd/tmp/NEAB/t.ppm > /dd/tmp/NEAB/s.ppm",
+"builtin cd /dd"
+],
+"ppmbrighten": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmmake rgb:80/40/20 40 20 > /dd/tmp/NEAB/br.ppm",
+"builtin cd /dd"
+],
+"ppmchange": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/rd.ppm",
+"builtin cd /dd"
+],
+"ppmdim": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/wh.ppm",
+"builtin cd /dd"
+],
+"ppmdither": [
+"builtin cd /dd"
+],
+"ppmforge": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"ppmforge-clouds": [
+"builtin cd /dd"
+],
+"ppmhist": [
+"builtin cd /dd"
+],
+"ppmmake": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"ppmmix": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmmake rgb:ff/00/00 40 20 > /dd/tmp/NEAB/a.ppm",
+"ppmmake rgb:00/00/ff 40 20 > /dd/tmp/NEAB/b.ppm",
+"builtin cd /dd"
+],
+"ppmnorm": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/nw.ppm",
+"ppmdim 0.4 /dd/tmp/NEAB/nw.ppm > /dd/tmp/NEAB/nd.ppm",
+"builtin cd /dd"
+],
+"ppmntsc": [
+"builtin cd /dd"
+],
+"ppmrelief": [
+"builtin cd /dd"
+],
+"ppmshift": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"ppmpat -tartan 64 32 > /dd/tmp/NEAB/t.ppm",
+"builtin cd /dd"
+],
+"ppmspread": [
+"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NEAB/sr.pgm",
+"builtin cd /dd"
+],
+"ppmtoacad": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
+"ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm",
+"builtin cd /dd"
+],
+"ppmtomitsu": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
+"ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm",
+"builtin cd /dd"
+],
+"ppmtosixel": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
+"ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm",
+"builtin cd /dd"
+],
+"ppmtoyuvsplit": [
+"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
+"builtin cd /dd"
+],
+"ppt": [
+"builtin cd /dd"
+],
+"pri": [
+"mount -r=256k /r0",
+"mkdir -p /r0/cmds /r0/list",
+"cp /h1/CMDS/copy /r0/cmds/copy",
+"builtin cd /dd"
+],
+"primes": [
+"builtin cd /dd"
+],
+"printers": [
+"builtin cd /dd"
+],
+"printmail": [
+"load /dd/CMDS/ELM/readmsg"
+],
+"proff": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \".ce\\rJABBERWOCKY\\r.sp\\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\\r.sp\\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\\r\" > /dd/tmp/TXT/jab.r",
+"builtin cd /dd"
+],
+"psc": [
+"mkdir -p /dd/tmp/TEXTA; echo \"1 2 3\" > /dd/tmp/TEXTA/table.txt; echo \"4 5 6\" >> /dd/tmp/TEXTA/table.txt; echo \"7 8 9\" >> /dd/tmp/TEXTA/table.txt",
+"builtin cd /dd"
+],
+"psidtopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"builtin cd /dd"
+],
+"ptob": [
+"mkdir -p /dd/tmp/UTILA/pb > /nil 2>/nil",
+"printf 'Hello' > /dd/tmp/UTILA/pb/t",
+"btop /dd/tmp/UTILA/pb/t > /dd/tmp/UTILA/pb/bits",
+"builtin cd /dd/tmp/UTILA/pb"
+],
+"ptyman": [
+"builtin cd /dd/CMDS/DRIVERS"
+],
+"pwparse": [
+"builtin cd /dd/SYS"
+],
+"qsort9": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"pear\\rapple\\rpear\\rfig\\rfig\\rfig\\rapple\\r\" > /dd/tmp/TXT/dups",
+"builtin cd /dd"
+],
+"rawtopgm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm",
+"builtin cd /dd"
+],
+"rawtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm",
+"builtin cd /dd"
+],
+"rayshade": [
+"load /h1/CMDS/shell",
+"load /dd/CMDS/GCC139/gcc_cccp",
+"builtin cd /dd"
+],
+"rdjpgcom": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom -comment \"OS-9 freeware disk\" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc.jpg",
+"builtin cd /dd"
+],
+"rdjpgcom.070": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom.070 -comment \"IJG 0.70 build\" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc7.jpg",
+"builtin cd /dd"
+],
+"rdoc": [
+"builtin cd /dd"
+],
+"ref": [
+"rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref",
+"cp /dd/SRC/keep/keep.c /dd/tmp/DEV/ref/keep.c",
+"builtin cd /dd/tmp/DEV/ref",
+"ctags keep.c 2>/nil"
+],
+"relaynews": [
+"set +H",
+"rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
+"rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
+"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
+"printf '' > /h0/USR/LIB/CNEWS/history",
+"builtin cd /h0/USR/LIB/CNEWS",
+"dbz history",
+"mkdir -p /dd/tmp/CNC",
+"builtin cd /dd/tmp/CNC",
+"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post"
+],
+"remove": [
+"builtin cd /dd",
+"load /dd/CMDS/ELM/readmsg"
+],
+"rendsk": [
+"rendsk /dd OSK-FREEWARE"
+],
+"rev": [
+"rm -rf /dd/tmp/B3R; mkdir -p /dd/tmp/B3R; echo \"stressed\" > /dd/tmp/B3R/w.txt; echo \"drawer\" >> /dd/tmp/B3R/w.txt; echo \"regal\" >> /dd/tmp/B3R/w.txt",
+"builtin cd /dd"
+],
+"rm": [
+"rm -rf /dd/tmp/FILESA/rmd > /nil 2>/nil",
+"mkdir -p /dd/tmp/FILESA/rmd/sub > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/a; cp /dd/SYS/motd /dd/tmp/FILESA/rmd/sub/b",
+"builtin cd /dd"
+],
+"rmail": [
+"rm -rf /dd/tmp/RMAIL",
+"mkdir -p /dd/tmp/RMAIL/tester",
+"export MAIL=/dd/tmp/RMAIL",
+"builtin cd /dd/tmp/RMAIL",
+"echo 'Subject: hello' > letter",
+"echo '' >> letter",
+"echo 'a line of mail' >> letter"
+],
+"rn": [
+"set +H",
+"rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
+"rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
+"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
+"printf '' > /h0/USR/LIB/CNEWS/history",
+"builtin cd /h0/USR/LIB/CNEWS",
+"dbz history",
+"mkdir -p /dd/tmp/CNC",
+"builtin cd /dd/tmp/CNC",
+"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"mount -r=256k /r0 > /nil 2>/nil",
+"mkdir -p /dd/News > /nil 2>/nil",
+"Pnews -h post -s > /nil",
+"relaynews -r -n < /h0/SPOOL/CNEWS/in.coming/0local1",
+"printf 'junk:\\r' > /dd/.newsrc"
+],
+"rndir": [
+"load /h1/CMDS/dir",
+"load /h1/CMDS/del",
+"load /h1/CMDS/rename",
+"load /h1/CMDS/shell",
+"rm -rf /dd/tmp/RNDIRC; mkdir -p /dd/tmp/RNDIRC/Notes /dd/tmp/RNDIRC/Papers",
+"builtin cd /dd/tmp/RNDIRC"
+],
+"rnews": [
+"rm -rf /dd/SPOOL/news/COMP /dd/art.txt /dd/batch.txt",
+"printf \"Newsgroups: comp.os.os9\\rSubject: test article\\r\\rhello there\\r\" > /dd/art.txt",
+"LEN=$(cat /dd/art.txt | wc -c)",
+"builtin cd /dd"
+],
+"roff": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \".ce\\rJABBERWOCKY\\r.sp\\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\\r.sp\\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\\r\" > /dd/tmp/TXT/jab.r",
+"builtin cd /dd"
+],
+"rot": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/r.txt; echo \"jumps over the\" >> /dd/tmp/TEXTA/r.txt; echo \"lazy dog\" >> /dd/tmp/TEXTA/r.txt",
+"builtin cd /dd"
+],
+"rot22": [
+"builtin cd /dd"
+],
+"rsconvert": [
+"builtin cd /dd",
+"echo 'screen 32 24' > tmp/old.ray; echo 'light 1 directional 0 0 1' >> tmp/old.ray"
+],
+"rsdsk": [
+"builtin cd /dd/DOC/rsdsk"
+],
+"rtf": [
+"rm -f /dd/tmp/CMPA/div.f /dd/tmp/CMPA/div.a; mkdir -p /dd/tmp/CMPA > /nil 2>/nil",
+"cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f",
+"load /dd/CMDS/os9lib",
+"builtin cd /dd/tmp/CMPA"
+],
+"run": [
+"load /h1/CMDS/shell",
+"builtin cd /dd"
+],
+"runc": [
+"rm -rf /dd/tmp/LNGC > /nil 2>/nil; mkdir -p /dd/tmp/LNGC",
+"builtin cd /dd/tmp/LNGC",
+"echo 'print(\"hello, \"..argv[1])' > greet.lua; echo 'print(argv.n..\" arguments\")' >> greet.lua"
+],
+"rxmod": [
+"load /dd/CMDS/COMMS/vmod_trap"
+],
+"savemem": [
+"rm -rf /dd/tmp/MEMS > /nil 2>/nil; mkdir -p /dd/tmp/MEMS",
+"builtin cd /dd/tmp/MEMS",
+"cp /dd/SYS/motd m.txt",
+"loadmem 8000 80FF m.txt"
+],
+"sbatch": [
+"setup",
+"rm -rf /dd/tmp/MNC > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
+"rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
+"rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
+"rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
+"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"mkdir -p /dd/tmp/MNC",
+"builtin cd /dd/tmp/MNC",
+"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"rm -f /h0/SPOOL/BATCH/nbr > /nil 2>/nil",
+"cp /h0/USR/LIB/NEWS/Sys sys.save",
+"echo 'nbr:.*:*' >> /h0/USR/LIB/NEWS/Sys",
+"load /dd/CMDS/UUCP/uux",
+"inews -h < article"
+],
+"sc": [
+"export TERM=vt100"
+],
+"scales": [
+"rm -rf /dd/tmp/SCLA > /nil 2>/nil; mkdir -p /dd/tmp/SCLA > /nil 2>/nil",
+"builtin cd /dd/tmp/SCLA"
+],
+"scpp": [
+"/dd/CMDS/rm -rf /dd/tmp/scppcard > /nil 2>/nil",
+"/dd/CMDS/mkdir -p /dd/tmp/scppcard",
+"builtin cd /dd/tmp/scppcard",
+"echo \"#define WIDTH 80\" > s.c",
+"echo \"#define DEPTH 24\" >> s.c",
+"echo \"int w = WIDTH, d = DEPTH;\" >> s.c"
+],
+"screen_nocio": [
+"load /h1/CMDS/shell",
+"rm -rf /dd/tmp/UTILA/home > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/home/.SCREENS > /nil 2>/nil",
+"printf 'today\\r' > /dd/tmp/UTILA/home/.SCREENS/hi",
+"export HOME=/dd/tmp/UTILA/home"
+],
+"sdb": [
+"rm -rf /dd/tmp/SDBC > /nil 2>/nil; mkdir -p /dd/tmp/SDBC",
+"builtin cd /dd/tmp/SDBC"
+],
+"sed": [
+"builtin cd /dd"
+],
+"sed_1.06": [
+"builtin cd /dd"
+],
+"sepwords": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
+"builtin cd /dd"
+],
+"setup": [
+"builtin cd /dd"
+],
+"setup-image": [
+"builtin cd /dd"
+],
+"sgrep": [
+"/dd/CMDS/rm -rf /dd/tmp/sgcard > /nil 2>/nil",
+"/dd/CMDS/mkdir -p /dd/tmp/sgcard",
+"builtin cd /dd/tmp/sgcard",
+"echo \"\\[:n+,@r\" > arr",
+"echo \"[?1][\" >> arr",
+"echo \"x = A[I,J,K] + B[N,M]\" > src"
+],
+"shar": [
+"rm -f /dd/tmp/ARC/readme; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/readme /dd/tmp/ARC/readme",
+"builtin cd /dd"
+],
+"showpic": [
+"load /dd/CMDS/GAMES/graph"
+],
+"signal": [
+"set +H"
+],
+"sine": [
+"load /dd/CMDS/GAMES/graph"
+],
+"sir": [
+"builtin cd /dd"
+],
+"sldtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm",
+"ppmquant 16 /dd/tmp/NPIB/c.ppm > /dd/tmp/NPIB/q.ppm",
+"builtin cd /dd"
+],
+"slice": [
+"rm -rf /dd/tmp/SLK > /nil 2>/nil; mkdir -p /dd/tmp/SLK",
+"cp /dd/DOC/README-SHELLS /dd/tmp/SLK",
+"builtin cd /dd/tmp/SLK"
+],
+"smail": [
+"rm -rf /dd/tmp/SMAIL; mkdir -p /dd/tmp/SMAIL",
+"builtin cd /dd/tmp/SMAIL",
+"printf \"milkyway phoenix(20)\\rphoenix seabass(30)\\rseabass pirsqrd(10)\\r\" > map",
+"pathalias -l milkyway map | sort > paths",
+"echo \"Subject: hello\" > letter"
+],
+"snd_sig": [
+"set +H"
+],
+"soelim": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \".TH NOTE 1\\r.so tmp/TXT/part.r\\rThe last line of main.r.\\r\" > /dd/tmp/TXT/main.r",
+"printf \"This line lives in part.r.\\r\" > /dd/tmp/TXT/part.r",
+"builtin cd /dd"
+],
+"sort": [
+"builtin cd /dd"
+],
+"sox": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/oz.au",
+"builtin cd /dd"
+],
+"space": [
+"builtin cd /dd"
+],
+"spctoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"sphere": [
+"builtin cd /dd"
+],
+"spiff": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"apple\\rbanana\\rcherry\\rdate\\r\" > /dd/tmp/TXT/a; printf \"apple\\rblueberry\\rcherry\\rdate\\relder\\r\" > /dd/tmp/TXT/b",
+"builtin cd /dd"
+],
+"spline": [
+"builtin cd /dd"
+],
+"split": [
+"mkdir -p /dd/tmp/TEXTA/SP; rm -f /dd/tmp/TEXTA/SP/*",
+"builtin cd /dd"
+],
+"ssl": [
+"builtin cd /dd"
+],
+"stevie": [
+"rm -rf /dd/tmp/STV > /nil 2>/nil; mkdir -p /dd/tmp/STV; cp /dd/DOC/samples/jabber.txt /dd/tmp/STV/poem",
+"builtin cd /dd/tmp/STV"
+],
+"strcmp": [
+"builtin cd /dd"
+],
+"strfile": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf \"A closed mouth gathers no feet.\\r%%%%\\rThe second mouse gets the cheese.\\r%%%%\\rNever test for an error you do not know how to handle.\\r%%%%\\r\" > /dd/tmp/TXT/say",
+"builtin cd /dd"
+],
+"striche": [
+"load /dd/CMDS/GAMES/graph"
+],
+"strings": [
+"builtin cd /dd"
+],
+"su": [
+"load /h1/CMDS/shell"
+],
+"subber": [
+"load /h1/CMDS/shell",
+"rm -rf /dd/tmp/SUBB > /nil 2>/nil; mkdir -p /dd/tmp/SUBB; printf ',fox,cat\\r,here,there\\r' > /dd/tmp/SUBB/words; printf 'here is a fox\\rthe fox went here\\r' > /dd/tmp/SUBB/in",
+"builtin cd /dd/tmp/SUBB"
+],
+"submit": [
+"rm -rf /dd/tmp/SUBA > /nil 2>/nil; mkdir -p /dd/tmp/SUBA",
+"load /h1/CMDS/shell",
+"cat /dd/DOC/samples/jabber.txt > /dd/tmp/SUBA/poem",
+"echo \"wc poem\" > /dd/tmp/SUBA/demo.sub",
+"echo \"md5 poem\" >> /dd/tmp/SUBA/demo.sub",
+"echo \"head -n 2 poem\" >> /dd/tmp/SUBA/demo.sub",
+"builtin cd /dd/tmp/SUBA"
+],
+"subscribe": [
+"unsubscribe news.announce.newusers",
+"builtin cd /dd"
+],
+"sum": [
+"builtin cd /dd"
+],
+"tab": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\r start ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
+"builtin cd /dd"
+],
+"tabs": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt",
+"builtin cd /dd"
+],
+"tac": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt",
+"builtin cd /dd"
+],
+"tail": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt",
+"builtin cd /dd"
+],
+"tangle": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/sample.p; cp /dd/DOC/tex/sample.web /dd/tmp/TEX/sample.web; cp /dd/DOC/tex/none.ch /dd/tmp/TEX/none.ch",
+"builtin cd /dd/tmp/TEX"
+],
+"tar": [
+"rm -f /dd/tmp/ARC/keep.tar; mkdir -p /dd/tmp/ARC > /nil 2>/nil",
+"builtin cd /dd"
+],
+"tass": [
+"set +H",
+"W=/dd/tmp/TASSC; rm -rf $W > /nil 2>/nil; mkdir -p $W/lib $W/spool/comp/os/os9",
+"printf 'MNEWS.DIR,s=%s/spool\\rMNEWS.LIB,s=%s/lib\\r' $W $W > $W/sysinfo; setup $W/sysinfo",
+"printf 'comp.os.os9 00000002 00000001 nu\\r' > $W/lib/Active",
+"printf 'Path: osk\\rFrom: a@osk (A Writer)\\rNewsgroups: comp.os.os9\\rSubject: first article\\rMessage-ID: <1@osk>\\rDate: 1 Jan 93 10:00:00 GMT\\rLines: 1\\r\\rfirst body\\r' > $W/spool/comp/os/os9/1",
+"printf 'Path: osk\\rFrom: b@osk (B Writer)\\rNewsgroups: comp.os.os9\\rSubject: second article\\rMessage-ID: <2@osk>\\rDate: 2 Jan 93 10:00:00 GMT\\rLines: 1\\r\\rgreetings, reader\\r' > $W/spool/comp/os/os9/2",
+"rm -f $HOME/.newsrc > /nil 2>/nil"
+],
+"tcmp": [
+"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/c1.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/c1.txt; echo \"and lands in the river\" >> /dd/tmp/TEXTA/c1.txt",
+"echo \"the quick brown fox\" > /dd/tmp/TEXTA/c2.txt; echo \"leaps over the lazy dog\" >> /dd/tmp/TEXTA/c2.txt; echo \"and lands in the river\" >> /dd/tmp/TEXTA/c2.txt",
+"builtin cd /dd"
+],
+"teachgammon": [
+"export TERM=vt100"
+],
+"tex": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex",
+"builtin cd /dd/tmp/TEX"
+],
+"texidx": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; printf '\\\\indexentry{banana}{3}\\r\\\\indexentry{apple}{1}\\r\\\\indexentry{cherry}{2}\\r' > /dd/tmp/TEX/sample.idx",
+"builtin cd /dd/tmp/TEX"
+],
+"tformat": [
+"builtin cd /dd"
+],
+"tftopl": [
+"builtin cd /dd/SYS/TEX/FONTS/TFM"
+],
+"tga": [
+"builtin cd /dd"
+],
+"tgatoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm",
+"builtin cd /dd"
+],
+"tiffish": [
+"builtin cd /dd"
+],
+"time": [
+"builtin cd /dd"
+],
+"todos": [
+"rm -rf /dd/tmp/TDOS > /nil 2>/nil; mkdir -p /dd/tmp/TDOS; printf \"one\\rtwo\\r\" > /dd/tmp/TDOS/le.txt",
+"builtin cd /dd/tmp/TDOS"
+],
+"toos9": [
+"rm -rf /dd/tmp/TOS9 > /nil 2>/nil; mkdir -p /dd/tmp/TOS9; printf \"one\\rtwo\\r\" > /dd/tmp/TOS9/le.txt",
+"builtin cd /dd/tmp/TOS9",
+"autolf -c -C -L < le.txt > dos.txt"
+],
+"tput": [
+"builtin cd /dd"
+],
+"translit": [
+"rm -rf /dd/tmp/TLC > /nil 2>/nil; mkdir -p /dd/tmp/TLC",
+"builtin cd /dd/tmp/TLC",
+"uudecode /dd/SRC/translit/ORIG/example.ko8.UU; autolf -C < example.ko8 > ex.ko8"
+],
+"trap": [
+"builtin cd /dd"
+],
+"tree": [
+"builtin cd /dd"
+],
+"trek": [
+"export TERM=vt100"
+],
+"trlf": [
+"rm -rf /dd/tmp/TRL > /nil 2>/nil",
+"mkdir -p /dd/tmp/TRL",
+"builtin cd /dd/tmp/TRL",
+"printf 'from a\\012Unix site\\012' > unix"
+],
+"trunc": [
+"mkdir -p /dd/tmp/UTILA/tr > /nil 2>/nil",
+"printf '0123456789ABCDEF' > /dd/tmp/UTILA/tr/f",
+"builtin cd /dd/tmp/UTILA/tr"
+],
+"tsort": [
+"builtin cd /dd"
+],
+"typefast": [
+". /dd/SYS/termcap.entry"
+],
+"ul": [
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"b\\b_o\\b_l\\b_d type\" > /dd/tmp/B3C/over.txt",
+"builtin cd /dd"
+],
+"uld": [
+"rm -f /dd/tmp/got.txt",
+"builtin cd /dd/tmp"
+],
+"umacs": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"unc": [
+"builtin cd /dd/CMDS"
+],
+"uncompface": [
+"rm -f /dd/tmp/CFACE > /nil 2>/nil; mkdir -p /dd/tmp/CFACE > /nil 2>/nil",
+"compface /dd/DOC/compface/face.hex > /dd/tmp/CFACE/y",
+"builtin cd /dd"
+],
+"undel": [
+"rm -rf /dd/tmp/FILESA/ud > /nil 2>/nil; mkdir -p /dd/tmp/FILESA/ud > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/ud/notes.txt",
+"rm /dd/tmp/FILESA/ud/notes.txt",
+"builtin cd /dd"
+],
+"undump": [
+"rm -rf /dd/tmp/UND > /nil 2>/nil; mkdir -p /dd/tmp/UND",
+"cp /dd/SYS/motd /dd/tmp/UND/motd",
+"builtin cd /dd/tmp/UND"
+],
+"unexpand": [
+"mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt",
+"expand /dd/tmp/TEXTA/tab.txt > /dd/tmp/TEXTA/sp.txt",
+"builtin cd /dd"
+],
+"unifdef": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"#ifdef OSK\\rint on_os9 = 1;\\r#else\\rint on_os9 = 0;\\r#endif\\rint always = 2;\\r\" > /dd/tmp/DEV/ifd.c",
+"builtin cd /dd"
+],
+"unip": [
+"builtin cd /dd"
+],
+"uniq": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"pear\\rapple\\rpear\\rfig\\rfig\\rfig\\rapple\\r\" > /dd/tmp/TXT/dups",
+"builtin cd /dd"
+],
+"unkeep": [
+"mkdir -p /dd/tmp/SYSB > /nil 2>/nil; export KEEP_TO=/dd/tmp/SYSB/kp; rm -rf /dd/tmp/SYSB/kp > /nil 2>/nil; keep greg > /nil"
+],
+"unp": [
+"mkdir -p /dd/tmp/TEXTA; echo -e \"bell\\aand\\bbackspace here\" > /dd/tmp/TEXTA/ctl.txt",
+"builtin cd /dd"
+],
+"unpacklib": [
+"builtin cd /dd"
+],
+"unpacklib.os9": [
+"rm -rf /dd/tmp/UTILA/ul > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/ul > /nil 2>/nil",
+"cp /dd/LIB/alib.l /dd/tmp/UTILA/ul/alib.l",
+"builtin cd /dd/tmp/UTILA/ul"
+],
+"unshar": [
+"rm -rf /dd/tmp/UNSHAR; mkdir -p /dd/tmp/UNSHAR; cp /dd/DOC/unshar/which6.shar /dd/tmp/UNSHAR/which6.shar",
+"builtin cd /dd/tmp/UNSHAR"
+],
+"unstr": [
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat /dd/tmp/TXT/say.out; printf \"A closed mouth gathers no feet.\\r%%%%\\rThe second mouse gets the cheese.\\r%%%%\\r\" > /dd/tmp/TXT/say; strfile /dd/tmp/TXT/say > /nil",
+"builtin cd /dd"
+],
+"unsubscribe": [
+"subscribe comp.sys.m68k",
+"builtin cd /dd"
+],
+"unzip": [
+"rm -rf /dd/tmp/UNZ > /nil 2>/nil; mkdir -p /dd/tmp/UNZ > /nil 2>/nil",
+"cp /dd/DOC/zip/sample.zip /dd/tmp/UNZ/sample.zip",
+"builtin cd /dd/tmp/UNZ"
+],
+"upperdir": [
+"mkdir -p /dd/tmp/TEXTA; rm -r /dd/tmp/TEXTA/UD",
+"mkdir -p /dd/tmp/TEXTA/UD/subdir; cp /dd/SYS/motd /dd/tmp/TEXTA/UD/MixedCase.TXT",
+"builtin cd /dd"
+],
+"utree": [
+"builtin cd /dd"
+],
+"uud": [
+"rm -rf /dd/tmp/UUD > /nil 2>/nil; mkdir -p /dd/tmp/UUD/out; cp /dd/CMDS/tcmp /dd/tmp/UUD/big",
+"builtin cd /dd/tmp/UUD; uue -l=40 big"
+],
+"uudecode": [
+"rm -rf /dd/tmp/ENC/dec > /nil 2>/nil; mkdir -p /dd/tmp/ENC/dec; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd/tmp/ENC; uuencode j.txt > dec/j.uue",
+"builtin cd /dd/tmp/ENC/dec"
+],
+"uue": [
+"rm -rf /dd/tmp/UUK > /nil 2>/nil; mkdir -p /dd/tmp/UUK; cp /dd/CMDS/tcmp /dd/tmp/UUK/big",
+"builtin cd /dd/tmp/UUK"
+],
+"uuencode": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd"
+],
+"uuexpand": [
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
+"builtin cd /dd"
+],
+"uulog": [
+"rm -f /dd/LOG/uulog"
+],
+"uupoll": [
+"ls -l /dd/SPOOL/uucp/seabass",
+"builtin cd /dd"
+],
+"uustat": [
+"uustat -?"
+],
+"uux": [
+"uux -?"
+],
+"uuxqt": [
+"load /h1/CMDS/procs"
+],
+"v7make": [
+"load /h1/CMDS/shell",
+"rm -rf /dd/tmp/VMK > /nil 2>/nil; mkdir -p /dd/tmp/VMK",
+"cp /dd/DOC/samples/jabber.txt /dd/tmp/VMK/poem; printf \"count: poem\\r\\twc poem\\r\" > /dd/tmp/VMK/makefile",
+"builtin cd /dd/tmp/VMK"
+],
+"valspeak": [
+"mkdir -p /dd/tmp/TEXTA; echo \"I think this operating system is really good.\" > /dd/tmp/TEXTA/val.txt",
+"echo \"The manual is excellent and the games are enjoyable.\" >> /dd/tmp/TEXTA/val.txt",
+"builtin cd /dd"
+],
+"version": [
+"builtin cd /dd"
+],
+"vftovp": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; vptovf /dd/DOC/tex/sample.vpl /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm > /nil; export VFFONTS=/dd/tmp/TEX; export TEXFONTS=/dd/tmp/TEX:/dd/SYS/TEX/FONTS/TFM",
+"builtin cd /dd"
+],
+"vi": [
+"set +H",
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil",
+"printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\\rBeware the Jabberwock, my son!\\r     The jaws that bite, the claws that catch!\\rBeware the Jubjub bird, and shun\\r     The frumious Bandersnatch!\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd/tmp/EDIT"
+],
+"vi.elvis": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"vi_1.0": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"view": [
+"mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"builtin cd /dd"
+],
+"virmf": [
+"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf",
+"builtin cd /dd/tmp/MF"
+],
+"virtex": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\\\end\\r' >> /dd/tmp/TEX/story.tex",
+"builtin cd /dd/tmp/TEX"
+],
+"vlen": [
+"rm -rf /dd/tmp/UTILA/vl > /nil 2>/nil",
+"mkdir -p /dd/tmp/UTILA/vl > /nil 2>/nil",
+"builtin cd /dd/tmp/UTILA/vl"
+],
+"vmod_trap": [
+"builtin cd /dd/CMDS/COMMS"
+],
+"vptovf": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/s.vf /dd/tmp/TEX/s.tfm",
+"builtin cd /dd"
+],
+"vtxtcn": [
+"rm -rf /dd/tmp/VTXT > /nil 2>/nil; mkdir -p /dd/tmp/VTXT; cp /dd/SRC/world/vtext.dat /dd/tmp/VTXT/vtext.dat",
+"builtin cd /dd/tmp/VTXT"
+],
+"wam.sbprolog": [
+"export SIMPATH=/dd/SBPROLOG/MODLIB",
+"builtin cd /dd"
+],
+"wc": [
+"builtin cd /dd"
+],
+"weave": [
+"mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/sample.tex; cp /dd/DOC/tex/sample.web /dd/tmp/TEX/sample.web; cp /dd/DOC/tex/none.ch /dd/tmp/TEX/none.ch",
+"builtin cd /dd/tmp/TEX"
+],
+"wf": [
+"builtin cd /dd/DOC/wf"
+],
+"what": [
+"builtin cd /dd"
+],
+"wn": [
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
+"builtin cd /h0/c/unid/wn_1.14.3/osk",
+"wndex 2>/nil",
+"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/EC/rq",
+"echo \"\" >> /dd/tmp/EC/rq",
+"autolf -c -C -L < /dd/tmp/EC/rq > /dd/tmp/EC/rq.crlf",
+"builtin cd /dd/tmp/EC"
+],
+"wndex": [
+"builtin cd /dd/c/unid/wn_1.14.3/osk",
+"rm -f index.cache > /nil 2>/nil"
+],
+"wns": [
+"builtin cd /dd"
+],
+"workstations": [
+"builtin cd /dd"
+],
+"writeonly": [
+"builtin cd /dd"
+],
+"wrjpgcom": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
+"builtin cd /dd"
+],
+"wrjpgcom.070": [
+"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
+"builtin cd /dd"
+],
+"wysetime": [
+"load /h1/CMDS/runb",
+"rm -f /dd/tmp/wysetime.out",
+"runb wysetime > /dd/tmp/wysetime.out",
+"builtin cd /dd"
+],
+"xargs": [
+"rm -rf /dd/tmp/XARG > /nil 2>/nil; mkdir -p /dd/tmp/XARG",
+"printf \"alpha\\rbeta\\r\" > /dd/tmp/XARG/one; printf \"gamma\\r\" > /dd/tmp/XARG/two",
+"builtin cd /dd/tmp/XARG"
+],
+"xbm": [
+"builtin cd /dd"
+],
+"xbmtopbm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"pbmmake -g 48 24 > /dd/tmp/NPIB/b.pbm",
+"builtin cd /dd"
+],
+"xc": [
+"load /h1/CMDS/shell",
+"mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf \"notes to myself\\r%% whoami\\r$ wc -l SYS/motd\\rmore notes\\r\" > /dd/tmp/SHL/cmds.txt",
+"builtin cd /dd"
+],
+"xcrypt": [
+"rm -rf /dd/tmp/XCA > /nil 2>/nil; mkdir -p /dd/tmp/XCA",
+"cat /dd/SYS/motd > /dd/tmp/XCA/a.txt",
+"builtin cd /dd/tmp/XCA"
+],
+"xd": [
+"builtin cd /dd/SYS"
+],
+"xfmt": [
+"builtin cd /dd"
+],
+"ximtoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"xlate": [
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\r start ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
+"builtin cd /dd"
+],
+"xpm": [
+"builtin cd /dd"
+],
+"xrf": [
+"rm -rf /dd/tmp/DEV/xrf > /nil 2>/nil; mkdir -p /dd/tmp/DEV/xrf; cp /dd/DOC/xrf/c.xrf /dd/tmp/DEV/xrf/C.XRF; printf \"int count = 0;\\rmain()\\r{\\r  int i;\\r  for (i = 0; i < count; i++)\\r    total(i);\\r}\\r\" > /dd/tmp/DEV/xrf/small.c",
+"builtin cd /dd/tmp/DEV/xrf"
+],
+"xvminitoppm": [
+"rm -rf /dd/tmp/XVB > /nil 2>/nil; mkdir -p /dd/tmp/XVB",
+"builtin cd /dd/tmp/XVB",
+"printf \"P7 332\\r#END_OF_COMMENTS\\r8 2 255\\r\" > x.xv; printf \"0123456789abcdef\" >> x.xv"
+],
+"yacc": [
+"rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c; mkdir -p /dd/tmp/CMPA > /nil 2>/nil",
+"printf \"%%token NUM\\r%%%%\\rexpr : expr NUM | NUM ;\\r\" > /dd/tmp/CMPA/g.y",
+"builtin cd /dd/tmp/CMPA"
+],
+"yahtzee": [
+". /dd/SYS/termcap.entry"
+],
+"yes": [
+"builtin cd /dd"
+],
+"yuv": [
+"builtin cd /dd"
+],
+"yuvsplittoppm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm",
+"builtin cd /dd"
+],
+"zeisstopnm": [
+"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
+"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
+"builtin cd /dd"
+],
+"zip": [
+"rm -rf /dd/tmp/ZIPT > /nil 2>/nil; mkdir -p /dd/tmp/ZIPT; cp /dd/SYS/termcap /dd/tmp/ZIPT/motd",
+"builtin cd /dd/tmp/ZIPT"
+],
+"zipinfo": [
+"builtin cd /dd"
+],
+"zipnote": [
+"builtin cd /dd"
+],
+"zipsplit": [
+"rm -rf /dd/tmp/ZSP > /nil 2>/nil; mkdir -p /dd/tmp/ZSP > /nil 2>/nil",
+"cp /dd/DOC/zip/sample.zip /dd/tmp/ZSP/sample.zip",
+"builtin cd /dd/tmp/ZSP"
+],
+"zoo": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/k.zoo",
+"builtin cd /dd"
+],
+"zoo_2.1": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/z2.zoo",
+"builtin cd /dd"
+]
+}
