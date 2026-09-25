@@ -1,0 +1,20 @@
+  Mailbox is '/dd/SPOOL/MAIL/tester' with 1 message [ELM 2.4 (OS-9 2.0) PL21]
+
+
+##N##1###Aug#16#The#OS-9#Freeware##(22)###Welcome#--#this#is#a#real#mail#folde
+
+
+
+
+
+
+
+
+
+
+
+   You can use any of the following commands by pressing the first character;
+ d)elete or u)ndelete mail,  m)ail a message,  r)eply or f)orward mail,  q)uit
+    To read a message, press <return>.  j = move down, k = move up, ? = help
+
+Command:

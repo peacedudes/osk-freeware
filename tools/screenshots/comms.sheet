@@ -164,11 +164,8 @@ run     filter -v <msg.txt
 wait    6
 
 shot    frm
-cap     Lists who your mail is from, one line each.  On this disk it
-cap     opens the folder, names you, and answers that there is no mail --
-cap     even though `messages' and `readmsg' both find the one message
-cap     that is there.  The port waits for a line feed to end each
-cap     header, and an OS-9 folder's blank line is a carriage return.
+cap     Lists who your mail is from, one line each, with the subject:
+cap     here the one letter in the folder that ships for this account.
 try     frm
 run     frm
 wait    6
@@ -417,9 +414,8 @@ cap     The UUCP mail router.  Given a path file -- made here by pathalias
 cap     from a three-hop map -- it turns ralph@pirsqrd into a UUCP route,
 cap     phoenix!seabass!pirsqrd!ralph, and with -d it shows its working and
 cap     the uux command and letter it would send, without sending them.
-cap     -h names this host; a real system names it in SYS/hostname.  For
-cap     any user but the super-user it signs the letter `nobody': it looks
-cap     the sender up by user number alone.
+cap     -h names this host; a real system names it in SYS/hostname.  The
+cap     letter is signed with your login name.
 try     smail -h milkyway -p paths -d ralph@pirsqrd <letter
 run     rm -rf /dd/tmp/SMAIL; mkdir -p /dd/tmp/SMAIL
 run     builtin cd /dd/tmp/SMAIL

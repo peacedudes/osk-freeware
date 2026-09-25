@@ -225,14 +225,6 @@ def main(argv):
             # Each capture was read that day.  These show the one thing each
             # can show here: a device, a display, a network or a second user
             # this disk does not have, and the caption names it.
-            "elm": "as any user but the super-user it answers `You have no "
-                   "password entry!' -- it compares the password file's user "
-                   "number with getuid()'s whole group.user word.  "
-                   "FOR-RDOGGETT 45 is the one-instruction patch; until "
-                   "that is decided the refusal is the true card",
-            "mw": "`Can't setuid, please check File/Moduleowner!' for anyone "
-                  "but the super-user: its module header names owner 30.95. "
-                  "FOR-RDOGGETT 48 is the header patch",
             "authwn": "WN's per-request authenticator; inetd and wn run it, "
                       "and alone it has nothing to authenticate",
             "inetdc": "what inetd forks per connection; no message strings, "

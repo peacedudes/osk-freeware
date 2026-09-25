@@ -2,4 +2,3 @@
 # One name per line.  tools/audit_panels.py --gate fails on a program that
 # fails and is not here, and on a name here that now passes: fixing a card
 # is a line removed from this file.  Written 2026-09-03 from the first run.
-elm
