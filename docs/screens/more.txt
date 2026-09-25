@@ -1,5 +1,24 @@
-more DOC/samples/jabber.txt
-Twas brillig, and the slithy toves
-     Did gyre and gimble in the wabe:
-All mimsy were the borogoves,
-     And the mome raths outgrabe.
+INDEX -- what is on this disk, and where it came from
+======================================================
+
+Every command here runs with this disk mounted as /dd.  os9exec is the
+kernel: point it at the disk and name a program, and the disk becomes /dd.
+
+  *  A star before a name means that program uses one of Microware's
+     runtime trap modules -- cio, and for some math or csl.  Those five
+     modules are on this disk, in CMDS, included with Microware's
+     permission (SOURCES.txt records the grant), so a starred program
+     runs here like any other; the star tells you what it depends on.
+     The grid at the foot of this file lists the starred programs, and
+     its header carries the count.  A few names appear in more than one
+     directory, so the grid holds slightly more files than names.
+
+  Four programs are BASIC09 I-code: bio, blackjack, dedit and
+  wysetime.  They are I-code modules (type 2, language 2) and need
+  Microware's runb to interpret them, the way a starred program needs
+  cio.  Run them by bare name with runb loaded -- `load runb` then
+  `bio`.  Giving runb a pathname instead raises BASIC09 error 43,
+  "Unknown procedure".  BASIC09's own codes are 10-80 and are not OS-9 error n
+umbers.
+  SYS/errmsg carries text for them anyway -- 67 entries, 000:010 to
+-- [ More ] --

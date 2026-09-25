@@ -615,17 +615,23 @@ snap
 
 shot    more
 size    24 80
-cap     The plain pager, the one every Unix had: it shows a screenful and
-cap     waits for SPACE.  Given a short file it simply prints it and stops.
-cap     `less' is the fuller one on this disk, with searching and backwards
-cap     movement; this is the small one.
-try     more DOC/samples/jabber.txt
+cap     The plain pager: a file a screenful at a time, and Enter for the
+cap     next.  The screenful is the terminal's page length -- `tmode pag=24'
+cap     here; with the page length at 0 it never stops.  It reads Enter from
+cap     standard input, so it cannot page a pipe: fed one, it takes the next
+cap     line as the answer and drops it.  `less' pages pipes, searches and
+cap     goes back.
+try     more DOC/INDEX
+run     tmode pag=24
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     more DOC/samples/jabber.txt
+run     more DOC/INDEX
 wait    5
+snap
+send    q\r
+wait    3
 
 shot    diff3
 size    24 80
