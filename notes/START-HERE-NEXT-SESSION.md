@@ -6,7 +6,7 @@ One page.  The plan is `notes/PLAN.md`; what needs rdoggett is
 to a page: a finding goes in the file it belongs to, and a finished
 session's narrative goes into the history file, not here.
 
-## Where it stands, 2026-09-25 (early morning)
+## Where it stands, 2026-09-25
 
 - **Every program on the image has a card taken by running it**, and
   `tools/check_disk.py disk` is the gate -- read its list, not a count.
@@ -14,8 +14,9 @@ session's narrative goes into the history file, not here.
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
 - **Emulator: os9exec `289d55e`** (fix/scf-pd-eor) is the checkpoint last
-  verified -- suite 1015/1015 twice (after mmon's case moved), play-tests
-  151/151, as tester on a fresh image.  docs/try runs it.  The os9exec
+  verified -- suite 1017/1017 twice on 2026-09-25 (after the list and
+  mmon changes; nn's fix after it was checked by its own families),
+  play-tests 151/151 on 2026-09-24, as tester on a fresh image.  docs/try runs it.  The os9exec
   release commit is still to come (CPU/FPU review, console restructure):
   when it is named, pin it, rebuild docs/try from it (tools/wasm-web.sh in
   a `git archive' export; keep our page's own edits), and re-run.
