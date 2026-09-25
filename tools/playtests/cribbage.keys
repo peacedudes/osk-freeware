@@ -8,7 +8,9 @@ key     \r
 wait    3
 key     s
 key     \r
-wait    5
+# Wait for the dealt hand rather than a fixed time: under load the deal
+# came later than five seconds and the snap caught the screen before it.
+until   +-----+
 snap    hand
 key     \003
 wait    2
