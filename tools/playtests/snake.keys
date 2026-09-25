@@ -1,0 +1,18 @@
+name    snake
+prog    snake
+# BSD snake: the board, then four moves left and four down.  Until
+# 2026-09-24 some cursor moves arrived as text on the board -- stdout was
+# unbuffered, and the C library held back each move's ESC after a flush --
+# and this script failed for its stray escape fragments.  It is the
+# regression test for that rebuild (SRC/snake/README.OSK).
+size    24 80
+wait    8
+snap    board
+keys    hhhh
+wait    4
+keys    jjjj
+wait    4
+snap    moved
+key     x
+wait    4
+expect  You made

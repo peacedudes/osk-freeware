@@ -244,9 +244,7 @@ wait    2
 shot    snake
 cap     Snake: you are the `I', the money is the `$' and the snake is the
 cap     line of `s' with `S' for its head.  Move with h, j, k and l and
-cap     reach the money before the snake reaches you; `x' quits.  Some of
-cap     its cursor moves arrive as text, so the board picks up stray
-cap     characters as you play.
+cap     reach the money before the snake reaches you; `x' quits.
 try     snake
 run     snake
 wait    10

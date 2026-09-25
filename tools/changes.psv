@@ -92,7 +92,7 @@ sed|This is the archive's GNU sed 1.06 binary, unchanged. It took the name becau
 sed_1.06|Module name changed from sed to sed_1.06 to match its file, so loading it no longer answers for the sed in CMDS. Otherwise identical to the archive's.
 NETPBM/sirtopnm|Rebuilt with one loop bound corrected: it skipped two bytes too few of the SIR header, so every colour plane came back shifted and a SIR file did not convert back to the picture it came from.
 slice|Default output names are <input>.001 rather than <input>:001, and -m writes one mailbox file per day, since RBF names cannot carry a colon.
-snake|Rebuilt with echo turned off while it plays: the port's raw() and cook() were empty, so each key you typed was echoed into the middle of its cursor codes and scattered them across the board.
+snake|Rebuilt from its source with two changes: echo is turned off while it plays (the port's raw() and cook() were empty, so each key typed was echoed onto the board), and stdout is no longer made unbuffered -- with it, the C library held back the ESC of each cursor move after a flush, so moves were printed on the board as text.
 soelim|One token fixed in its usage message, which printed an empty name where the program's name belongs.
 stone|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
 tet|Replaced by a rebuild from its source with the keyboard compiled in (the build first shipped took no keys), then fixed so it really pauses between moves, turns echo off and keeps a score file.
