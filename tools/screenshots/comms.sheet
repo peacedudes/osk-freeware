@@ -69,19 +69,19 @@ run     autoreply off
 wait    6
 
 shot    checkalias
-cap     Checks whether a mail alias resolves.  It prints nothing and hands
-cap     back the same status whether the alias is in the table or not, so
-cap     listalias -- which prints the match -- is the better way to ask.
-try     checkalias os9; echo "exit: $?"
-os9     checkalias os9; echo exit: $?
-run     newalias
+cap     Checks what mail aliases expand to before you rely on them, by asking
+cap     elm: `os9' is one of the shared aliases newalias -g compiles, and a
+cap     name that is no alias comes back as a UUCP address.  It starts elm
+cap     by name, so load elm first.
+try     checkalias os9 nosuchalias
+run     newalias -g
 wait    8
+run     load /dd/CMDS/ELM/elm
+wait    3
 run     clear
 wait    1
-run     checkalias os9; echo "exit: $?"
-wait    5
-run     checkalias nosuchalias; echo "exit: $?"
-wait    5
+run     checkalias os9 nosuchalias
+wait    6
 
 shot    disable
 cap     Turns a serial port's terminal monitor off.  It wants the port's
@@ -142,12 +142,13 @@ wait    5
 
 shot    filter
 cap     A pipe stage that sorts incoming mail into folders by rule -- its own
-cap     usage line begins with the pipe.  With no rules file at SYS/.elm it
-cap     says so and mails the message through anyway, which is the safe
-cap     thing for a filter to do.  It wants a scratch device at /r0: a real
-cap     OS-9 system has a RAM disk there and `mount -r=256k /r0' makes one
-cap     under os9exec.  It leaves the terminal without its automatic line
-cap     feed, so `tmode -lf' or a fresh login puts that back.
+cap     usage line begins with the pipe.  Its rules are .elm/filter_rules in
+cap     the home directory the password file gives you -- USR/TESTER for
+cap     tester, as here, SYS for the super-user -- and with none it says so
+cap     and mails the message through.  It wants a scratch device at /r0: a
+cap     real OS-9 system has a RAM disk there and `mount -r=256k /r0' makes
+cap     one under os9exec.  It leaves the terminal without its automatic
+cap     line feed, so `tmode -lf' or a fresh login puts that back.
 try     filter -v <msg.txt
 run     mount -r=256k /r0
 wait    2
@@ -1431,8 +1432,9 @@ shot    finger
 cap     Shows what the system knows about a user: the home directory, the
 cap     shell that account logs in with, and the `.project' and `.plan'
 cap     files it would print if the account had written them.  It reads
-cap     the password file this disk ships, so a local name answers here;
-cap     given `user@host' it asks that machine instead.
+cap     the password file this disk ships, and knows only this machine's
+cap     accounts: there is no network in it, and `tester@localhost' is
+cap     `No such user'.
 try     finger tester
 run     clear
 wait    1

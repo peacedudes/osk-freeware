@@ -136,3 +136,4 @@ rnews|the super-user (UUCP/rnews; MNEWS/rnews is another program)|SRC/uucpbb/rne
 rendsk|the super-user|SRC/eff_rendsk/rendsk.c: "allowed for superuser only!"; tools/datatests/superuser.cases
 bootlogger|the super-user|measured 2026-09-24 as tester: "BOOTLOGGER can be run only by the SYSTEM !"; tools/datatests/superuser.cases
 rndir|your own OS-9's dir, rename and del, loaded: `load /h1/CMDS/dir' above all|measured 2026-09-24: with this disk's dir answering it renames nothing; tools/datatests/rndir.cases
+checkalias|elm resident: `load /dd/CMDS/ELM/elm' -- it starts elm by name|measured 2026-09-24: without it, nothing printed and exit status 221; tools/datatests/mail2.cases

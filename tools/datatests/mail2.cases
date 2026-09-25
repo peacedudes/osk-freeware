@@ -104,12 +104,17 @@ run     /dd/CMDS/UUCP/philmail -?
 expect  is an off-line mail reader for UNIX mail
 expect  this version can only handle 50 messages
 
-# checkalias answers NOTHING for an alias that exists and nothing for one
-# that does not -- `listalias' is the tool that answers. Pinned as a defect,
-# with the usage line proving the program ran at all.
-case    checkalias-prints-nothing-either-way
-run     /dd/CMDS/ELM/checkalias os9
-run     /dd/CMDS/ELM/checkalias nosuchalias
+# checkalias forks `elm -c <alias>' by bare name, and a bare-name fork is
+# found among the resident modules or in the execution directory, never
+# through PATH -- so with elm not loaded it prints nothing and hands back
+# E_MNF.  Loaded, elm does the expanding, and a name that is no alias
+# comes back as a UUCP address.
+case    checkalias-forks-elm-by-name
+run     /dd/CMDS/ELM/checkalias os9; echo "checkalias status $?"
 run     /dd/CMDS/ELM/checkalias
+run     load /dd/CMDS/ELM/elm
+run     /dd/CMDS/ELM/checkalias nosuchalias
+expect  checkalias status 221
 expect  Usage: checkalias alias [alias ...]
-absent  os9-freeware
+expect  Expands to: nosuchalias@.UUCP
+absent  no password entry

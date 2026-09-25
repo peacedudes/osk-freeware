@@ -544,8 +544,10 @@ snap
 shot    eset
 size    24 80
 fresh
-cap     eset changes the value of an existing event, and `-a' releases
-cap     every process waiting on it.  Starting the print spooler makes the
+cap     eset changes the value of an existing event.  Its usage line also
+cap     offers `-a', to release every process waiting on it, but it takes
+cap     exactly two arguments and answers a third with that usage line,
+cap     changing nothing.  Starting the print spooler makes the
 cap     `spoolqueue' event to try it on: it is created holding 0, and
 cap     `edir -e' either side of the eset shows the 42 arrive.  eset says
 cap     nothing when it works; the event directory is the evidence.

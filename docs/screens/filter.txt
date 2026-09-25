@@ -1,0 +1,7 @@
+filter -?
+Usage: | filter [-nrvlq] [-f rules] [-o file]
+        or: filter [-c] -[s|S]
+$ filter -v <msg.txt
+filter (Thu Sep 24 17:35:13 2026 tester): Couldn't read filter rules file "/dd/U
+SR/TESTER/.elm/filter_rules"!
+filter (Thu Sep 24 17:35:13 2026 tester): Mailing message to tester

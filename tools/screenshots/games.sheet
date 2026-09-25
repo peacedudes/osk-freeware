@@ -617,10 +617,12 @@ wait    2
 # --------------------------------------------------------- chess utilities
 
 shot    bincheckr
-cap     Checks a GNU Chess opening book for how well it is packed: entry
-cap     size, book size, pocket and count.  Given the 145K book that ships
-cap     in GAMES it reports the entry size and then zeroes for the rest, and
-cap     is aborted as it closes the file.
+cap     Checks a GNU Chess binary opening book for how well it is packed:
+cap     entry size, book size, pocket and count.  It reads a book layout
+cap     older than anything here -- GAMES/gnuchess.book is the text library
+cap     and GNU Chess's own binary book is a later form -- so it reports the
+cap     entry size, zeroes for the rest, and stops on a math trap as it
+cap     averages over no entries.
 try     bincheckr gnuchess.book
 run     builtin cd /dd/GAMES
 wait    1
@@ -680,17 +682,16 @@ run     wc -l board.ps; cat board.ps
 wait    6
 
 shot    postprint
-cap     Meant to print the positions in GNU Chess's saved hash file as
-cap     PostScript, a board to a page with the best move and the search
-cap     depth.  Given GNU Chess's opening book in place of a saved hash it
+cap     Prints the positions in GNU Chess's hash file as PostScript, a
+cap     board to a page with the best move and the search depth.  It takes
+cap     no arguments: the hash file's name is built in, and it is the one
+cap     in GNUCHESS4.0/MISC, which holds no searched positions -- so it
 cap     writes the first line of the page setup and stops.  DOC/postprint
 cap     has the manual page.
-try     postprint gnuchess.book
-run     builtin cd /dd/GAMES
-wait    1
+try     postprint
 run     clear
 wait    1
-run     postprint gnuchess.book
+run     postprint
 wait    12
 
 # ------------------------------------------------------------ dungeon crawl
@@ -976,7 +977,8 @@ shot    larn
 cap     Larn: the dungeon is drawn as you find it, letters for what is in
 cap     it, and the two lines at the foot are your spells, armour class,
 cap     level and the six attributes.  RETURN gets past the opening text.
-cap     Its saved games and score file are in GAMES/LARN/PLAYGROUND.
+cap     A saved game goes to Larn.sav in your home directory; the
+cap     scoreboard, help and maze are in GAMES/LARN/PLAYGROUND.
 try     larn
 run     larn
 wait    12
@@ -1102,10 +1104,11 @@ wait    14
 snap
 
 shot    hotel
-cap     hotel, a hotel-chain board game in the manner of Acquire: it asks
-cap     how many are playing -- two here -- and draws the board, the
-cap     numbered tiles in hand and the seven chains' shares.  Each turn
-cap     you play a tile by its number.
+cap     hotel, a hotel-chain board game in the manner of Acquire, played
+cap     against the computer: it asks how many are playing -- two here --
+cap     seats you among them at random and plays the others itself.  It
+cap     draws the board, the numbered tiles in hand and the seven chains'
+cap     shares, and each turn you play a tile by its number.
 try     hotel
 run     hotel
 wait    5
@@ -1592,8 +1595,10 @@ wait    2
 
 shot    yahtzee
 size    24 80
-cap     Yahtzee for one player or several: it asks how many are playing and
-cap     their names, then rolls five dice a turn, keeps the ones you choose
+cap     Yahtzee for one player or several: it asks how many are playing --
+cap     two here -- and lists each as Computer until space switches the one
+cap     under the cursor to Human; j and k move between them and RETURN
+cap     starts.  Then it rolls five dice a turn, keeps the ones you choose
 cap     and re-rolls the rest, and scores the box you pick.  A different
 cap     program from `yahtzee2' beside it.  It wants the terminal
 cap     description in TERMCAP rather than the name of a file, which the
@@ -1605,6 +1610,10 @@ run     clear
 wait    1
 run     yahtzee
 wait    6
+send    2
+wait    2
+send    \s
+wait    2
 snap
 send    \003
 wait    2

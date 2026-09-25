@@ -286,7 +286,12 @@ SPARSE_OK = {"rain",
              # su      becomes `tester' and runs whoami, which answers
              #         `tester' -- one word, and the whole proof that it
              #         changed identity (2026-09-22).
-             "su"}
+             "su",
+             # postprint takes no arguments and prints the first line of a
+             # PostScript page setup from the hash file compiled into it --
+             # the shipped file holds no positions, so that one line is all
+             # it has to say (2026-09-24).
+             "postprint"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

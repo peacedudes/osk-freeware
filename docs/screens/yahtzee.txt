@@ -1,10 +1,10 @@
 .---------------------------.
 |    --#y#a#h#t#z#e#e#--    |
 |                           |
-| number of players:        |
+| number of players: 2      |
 |                           |
-|                           |
-|                           |
+|  0 Human                  |
+|  1 Computer               |
 |                           |
 |                           |
 |                           |

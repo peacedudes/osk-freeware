@@ -105,8 +105,12 @@ send    \030\003
 wait    3
 
 shot    emacs
-cap     MicroEMACS 4.00, the full one with the macro language; its macros
-cap     and help are in USR/LIB/EMACS.  Control-X control-C leaves it.
+cap     MicroEMACS 4.00, the full one with the macro language.  Control-X
+cap     control-C leaves it.  It looks for its startup file, .emacsrc, and
+cap     its help, emacs.hlp, in your home directory, the current one and
+cap     each PATH directory, then in memacs400 on /h0 or /h1 -- not in
+cap     USR/LIB/EMACS, where its macros ship, or SYS, where emacs.hlp is.
+cap     Put those two on PATH and ESC ? shows the help.
 try     emacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2

@@ -130,7 +130,7 @@ cfscores b445893f8f3368fd
 charcnt 6f3d8f7999fc7036
 chardef e715b4eac47ee844
 chbase 19a911b330380a09
-checkalias 17a0c27a8214bdce
+checkalias 1965ae32b541202b
 checkenv af7526fb1be42dde
 checkfile 554ccfe7a3a0b684
 checkgame 61724e39a71a366a
@@ -292,6 +292,7 @@ field 23e15abb15f652dd
 file c9d8fdc888312ccd
 fileserv c3168e35b7f83844
 fillup dd094c0bcbd90d64
+filter e674aeb4127a47e4
 find bc48b346d17192b8
 finger 5226d6a06de64203
 fish 97279909ded02a23
@@ -674,7 +675,7 @@ pnmtops 54564430e06ac0c6
 pnmtosgi e425885f462084f9
 poker 82d2300aa146e42d
 postnews cf27d5fa47119b0b
-postprint 35dd579cb7894377
+postprint b0447d9104fe4551
 ppm3d e1a4dfaa4b542848
 ppmbrighten aadf6b97292e1422
 ppmchange 1a69737121b34f50
@@ -1003,7 +1004,7 @@ xydown 02a8d3c30f67c056
 xyt d635823690053449
 yacc 68da3ce1893fa99a
 yagi 469ad661c6ada1aa
-yahtzee f060aa13e469da09
+yahtzee 0e910a0150b862d5
 yahtzee2 306ae00f69e44fe8
 yes 11260d4297218e4d
 yidslots 0f4f51c2d7080adb
