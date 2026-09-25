@@ -760,13 +760,11 @@ run     signal 3 0; echo "status $?"
 wait    4
 shot    setime
 super
-cap     setime prompts for the date and time as one string, two digits
-cap     each: year, month, day, hour, minute, second, in that order, so
-cap     the format is what this card has to give you.  Nothing here can
-cap     move the clock, and it is not this program's doing: under os9exec
-cap     the call that sets the time does nothing and reports success, so
-cap     `setime', `setime2', `setimex' and `setyear' all report the time
-cap     and leave it alone.  On your own system they set it.
+cap     setime sets the system clock: it prompts for the date and time as
+cap     one string, two digits each -- year, month, day, hour, minute,
+cap     second, in that order.  Under os9exec the call that sets the time
+cap     reports success and leaves the clock alone, so here it shows the
+cap     prompt and the time as it was; on your own system the clock moves.
 try     setime -?
 run     setime -?
 wait    5
@@ -943,7 +941,8 @@ cap     setyear sets the year, and only the year, leaving the month, day
 cap     and time alone: `setyear 2026'.  It prints the date it ends up
 cap     with, which is what the card shows -- under os9exec the call that
 cap     sets the time does nothing and reports success, so the date it
-cap     prints is the one it started from.
+cap     prints is the one it started from.  On your own system the year
+cap     changes.
 try     setyear 2026
 run     setyear 2026
 wait    3
