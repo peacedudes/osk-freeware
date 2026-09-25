@@ -25,7 +25,6 @@ $ rtf fact.f
 $ r68 -q fact.a -o=fact.r
 $ r68 -q rtfstart.a -o=rtfstart.r
 $ l68 rtfstart.r fact.r -l=sys.l -o=fact
-l68: error - can't create output file
 $ fact
    n         n!
            1           1

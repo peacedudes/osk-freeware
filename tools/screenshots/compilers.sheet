@@ -682,6 +682,7 @@ run     ls -l y.tab.c
 wait    6
 
 shot    fact
+super
 size    50 80
 cap     The Fortran example, end to end: the source, this disk's RTF/68K
 cap     compiling it to 68000 assembly, your own OS-9's `r68' assembling
@@ -690,9 +691,9 @@ cap     `sys.l', and the finished program printing 1! to 12!.  Twelve is as
 cap     far as a 32-bit integer reaches -- 13! overflows.  r68, l68, sys.l
 cap     and the `oskdefs.d' r68 reads come from /h1 and were put in place
 cap     first, with the run-time library every RTF program wants: `load
-cap     os9lib'.  l68 writes the program to your execution directory, in
-cap     place of the fact that ships -- which was removed first, so what
-cap     runs here is the one just built.
+cap     os9lib'.  l68 writes the program to your execution directory --
+cap     the super-user's to write -- in place of the fact that ships, which
+cap     was removed first, so what runs here is the one just built.
 try     rtf fact.f
 run     rm -rf /dd/tmp/FACT > /nil 2>/nil; mkdir -p /dd/tmp/FACT
 wait    3
