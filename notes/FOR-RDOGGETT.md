@@ -3,7 +3,7 @@
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
 the same number.
-Updated 2026-09-25 (early morning).
+Updated 2026-09-25.
 
 ## Needs you
 
@@ -11,6 +11,12 @@ Updated 2026-09-25 (early morning).
 verified on 289d55e (suite 1015/1015 twice, play-tests 151/151, as
 tester); the browser page runs it.  When the release commit is named I pin
 it, rebuild the page from it and run everything once more.
+
+**52. Patch collect2?**  The three 1991 collect2 binaries (GCC2/collect,
+GCC139/gcc_collect, gpp_collect) test their scan pointer before setting it,
+so the constructor table can come out empty depending on where the heap
+lands -- real OS-9 too; the 1994 source (gcc272_collect) fixes it.  Their
+cards say so now; want a binary patch staged, or leave them as they are?
 
 ## No action, just so you know
 

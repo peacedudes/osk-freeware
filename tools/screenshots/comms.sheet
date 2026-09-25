@@ -727,7 +727,9 @@ fresh
 cap     Builds TOP Munich's SysInfo table, a resident module of named
 cap     settings and locks, from SYS/sysinfo.  -d shows each line as it is
 cap     read: the host name, where MNews keeps its news, and the locks its
-cap     programs take.  MNews and nn read it, so run it once first.
+cap     programs take.  MNews and nn read it, so run it once first --
+cap     once per boot: a second run says `can't create sysinfo', since
+cap     the event its first run made is still there.
 try     setup -d
 run     builtin cd /dd
 run     clear

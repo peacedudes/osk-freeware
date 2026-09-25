@@ -443,6 +443,9 @@ cap     into the file -o names: one constructor, _GLOBAL_$I$main, and no
 cap     destructors.  It lives in the GCC2 directory, off the command
 cap     path, and is run from there with `./'.  gpp assembles with your
 cap     own OS-9's r68, resident.
+cap     This 1991 build tests its scan pointer before it sets it, so
+cap     where its memory lands can leave the table empty (`dc.l 0');
+cap     gcc272_collect is built from the source that fixes it.
 try     ./collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
@@ -496,6 +499,9 @@ cap     object with one global object whose class has a constructor, it
 cap     writes the table naming that constructor, _GLOBAL_$I$main, into
 cap     the file -o names.  The object is made by `gpp -c', which
 cap     assembles with your own OS-9's r68, resident.
+cap     This 1991 build tests its scan pointer before it sets it, so
+cap     where its memory lands can leave the table empty (`dc.l 0');
+cap     gcc272_collect is built from the source that fixes it.
 try     gcc_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGC; mkdir -p /dd/tmp/CLGC; builtin cd /dd/tmp/CLGC
@@ -548,6 +554,9 @@ cap     whose class has a constructor, it writes the table naming that
 cap     constructor, _GLOBAL_$I$main, into the file -o names.  The object
 cap     is made by `gpp -c', which assembles with your own OS-9's r68,
 cap     resident.
+cap     This 1991 build tests its scan pointer before it sets it, so
+cap     where its memory lands can leave the table empty (`dc.l 0');
+cap     gcc272_collect is built from the source that fixes it.
 try     gpp_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGP; mkdir -p /dd/tmp/CLGP; builtin cd /dd/tmp/CLGP

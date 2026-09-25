@@ -170,8 +170,11 @@ expect  Starts a special timesharing-monitor, best for Hayes-Modems
 # silence -- which is how its card came to say it "stays silent".  logon is
 # off its execution directory, so the block names it with logon_path.
 # The locks are added in the family's setup, before its one `setup': a
-# second `setup' in the same session answers "can't create sysinfo", even
-# with the first module unlinked.  The last case below puts the file back.
+# second `setup' answers "can't create sysinfo" and exits 169, E$EvBusy --
+# the event its first run created still exists (unlinking the module does
+# not remove it), as on a real OS-9; traced by the os9exec session
+# 2026-09-25.  SysInfo is set up once per boot.  The last case below puts
+# the file back.
 # Driven through a pty on 2026-09-25 it offered login: on /t1, logged tester
 # in, and offered login: again after ESC; here, where nothing can type on
 # /t1, what is asserted is that it took both locks and stayed.  mmon and
