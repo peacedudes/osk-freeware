@@ -370,11 +370,28 @@ def sheet_shots(sheets=None):
                                    "try": shot.get("try"),
                                    "os9": shot.get("os9"),
                                    "setup": hidden_setup(shot),
+                                   "keys": typed_keys(shot),
                                    "fold": shot.get("fold", False),
                                    "for": shot["for"] or [shot["name"]],
                                    "sheet": f[:-6],
                                    "path": os.path.join(SHEETS, f)}
     return shots
+
+
+def typed_keys(shot):
+    """What the card typed AT the program -- its `send' lines, one entry per
+    line entered -- so the page can show a reader which text on the screen
+    was typed rather than printed.  Only pieces of two or more printable
+    characters: a lone `q' or a space would match anywhere."""
+    out = []
+    for k, v in shot["acts"]:
+        if k != "send":
+            continue
+        for piece in v.replace("\\r", "\r").split("\r"):
+            piece = piece.strip()
+            if len(piece) >= 2 and all(32 <= ord(c) < 127 for c in piece):
+                out.append(piece)
+    return out
 
 
 def hidden_setup(shot):
@@ -384,7 +401,16 @@ def hidden_setup(shot):
     so `Try it' starts where the card did; see docs/try/setup.json."""
     runs = [v for k, v in shot["acts"] if k == "run"]
     cut = next((i for i, v in enumerate(runs) if v.strip() == "clear"), None)
-    return runs[:cut] if cut else []
+    out = []
+    # A long line with no quoting is entered as its `;'-separated parts: the
+    # page types each at bash's prompt, and a line wider than the terminal
+    # is redrawn in scrambled pieces there.
+    for v in (runs[:cut] if cut else []):
+        if len(v) > 60 and not any(q in v for q in "'\"`\\"):
+            out += [p.strip() for p in v.split(";") if p.strip()]
+        else:
+            out.append(v)
+    return out
 
 
 def pick(name, want, first="", fold=False):
@@ -467,6 +493,7 @@ def collect():
                     "try": (meta.get("try") if meta else None),
                     "os9": (meta.get("os9") if meta else None),
                     "setup": (meta.get("setup") if meta else []),
+                    "keys": (meta.get("keys") if meta else []),
                     "for": [p for p in shows if p in bycat],
                     "stanza_hash": taken,
                     "cat": cat[0], "sub": cat[1]})
@@ -559,7 +586,8 @@ def main():
                     screens.setdefault(prog, {"n": e["name"], "c": e["cap"],
                                               "s": e["screen"],
                                               **({"try": e["try"]} if e.get("try") else {}),
-                                              **({"os9": e["os9"]} if e.get("os9") else {})})
+                                              **({"os9": e["os9"]} if e.get("os9") else {}),
+                                              **({"k": e["keys"]} if e.get("keys") else {})})
     # WHAT TRYING EACH CARD NEEDS, for the page's Try It button:
     # tools/tryable.py.  `disk' is left out to keep the file small.
     import tryable
@@ -581,7 +609,9 @@ def main():
     # os9lib and the reader's r68 loaded.  The page enters these lines, from
     # this file on our own site, before typing the command; the link names
     # only the stanza, so no link can make the page run text of its own.
-    setup = {e["name"]: e["setup"] for e in ordered if e.get("setup")}
+    setup = {e["name"]: {**({"setup": e["setup"]} if e.get("setup") else {}),
+                         **({"keys": e["keys"]} if e.get("keys") else {})}
+             for e in ordered if e.get("setup") or e.get("keys")}
     with open(os.path.join(DOCS, "try", "setup.json") if writing else os.devnull, "w") as f:
         json.dump(setup, f, ensure_ascii=True, indent=0, sort_keys=True)
         f.write("\n")

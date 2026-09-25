@@ -4,6 +4,7 @@
     --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#454E55; --faint:#6E787F;
     --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
     --warn:#8C2F1E; --ok:#2E6A4F; --screen:#0E1113; --phosphor:#CFE3CF;
+    --de:#2F5A78; --typed:#F2C46D;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --serif:ui-serif,Charter,"Iowan Old Style",Georgia,serif;
@@ -11,11 +12,11 @@
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#B1BCC3; --faint:#8A959C;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97;}}
+    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4;}}
   :root[data-theme="dark"]{
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#B1BCC3; --faint:#8A959C;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97;}
+    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4;}
 
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -76,6 +77,10 @@
        align-items:baseline;cursor:pointer;border-radius:7px}
   li.p:hover{background:var(--hair)}
   li.p.out .nm,li.p.out .ds{opacity:.55}
+  /* A program that talks German at the terminal: a slightly different hue,
+     so the reader who wants English can see it coming (the In German chip
+     filters for them). */
+  li.p.de .nm,li.p.de .ds{color:var(--de)}
   li.p.out .nm{text-decoration:line-through;text-decoration-thickness:1px}
   .panel.out .pn{opacity:.7}
   .whynot{border-left:3px solid var(--rule);padding:4px 0 4px 10px;margin:10px 0}
@@ -121,6 +126,9 @@
     white-space:pre;overflow-x:auto;background:var(--screen);color:var(--phosphor);
     border-radius:6px;padding:10px 12px}
   pre.shot .pr{color:var(--faint)}
+  pre.shot .ty{color:var(--typed);font-weight:600}
+  .shotcap .tykey{color:var(--faint)}
+  .shotcap .ty{color:var(--screen);background:var(--typed);font-weight:600;font-family:var(--mono);padding:0 .25em;border-radius:2px}
   .shotcap{margin:.5rem 0 0;color:var(--dim);font-size:12.5px;line-height:1.45;max-width:64ch}
   /* A caption quotes a key or a command as `x' -- the keys that get you OUT
      of a full-screen program most of all.  Those are what a reader hunts for,
@@ -338,13 +346,22 @@ function setShell(s){
 // A picture is a session: its typed lines start `$ '.  Show them at the
 // reader's own prompt, and where the card spells the command differently
 // for the OS-9 shell, show that spelling on the line that typed it.
+// WHAT WAS TYPED IS SHOWN AS TYPED: the command after the prompt, and the
+// keys the card entered at the program (shot.k, from its sheet's `send'
+// lines) wherever a line ends with one -- forth waits silently for
+// `20 fib . cr', and a reader who cannot tell it was typed waits too.
 function shotHTML(shot){
   const cmd = tryFor(shot);
+  const keys = (shot.k||[]).map(esc).sort((a,b)=>b.length-a.length);
   return esc(shot.s).split("\n").map(ln => {
-    if(!ln.startsWith("$ ")) return ln;
-    let typed = ln.slice(2);
-    if(shell==="os9" && shot.os9 && typed===esc(shot.try||"")) typed = esc(shot.os9);
-    return `<span class="pr">${esc(PROMPT[shell])}</span>${typed}`;
+    if(ln.startsWith("$ ")){
+      let typed = ln.slice(2);
+      if(shell==="os9" && shot.os9 && typed===esc(shot.try||"")) typed = esc(shot.os9);
+      return `<span class="pr">${esc(PROMPT[shell])}</span><span class="ty">${typed}</span>`;
+    }
+    const body = ln.replace(/\s+$/,"");
+    const k = keys.find(k => body.endsWith(k));
+    return k ? `${body.slice(0, body.length-k.length)}<span class="ty">${k}</span>` : ln;
   }).join("\n");
 }
 // RUN IT IN THE BROWSER.  The whole disk runs in docs/try/ -- os9exec built to
@@ -431,7 +448,7 @@ function brief(d){
 }
 function row(p, where){
   const on = picked.has(p.name);
-  return `<li class="p${on?" picked":""}${p.out?" out":""}" tabindex="0" data-n="${esc(p.name)}"`+
+  return `<li class="p${on?" picked":""}${p.out?" out":""}${p.lang==="German"?" de":""}" tabindex="0" data-n="${esc(p.name)}"`+
     `${st.sel===p.name?' aria-current="true"':''}>`+
     `<button class="pick" data-pick="${esc(p.name)}" tabindex="-1" `+
     `aria-label="pick ${esc(p.name)}">${on?"&#10003;":"+"}</button>`+
@@ -667,7 +684,7 @@ function renderPanel(){
   const seeHTML=shot
     ? `<div class="see"><div class="k">see it run</div>`+
       `<pre class="shot">${shotHTML(shot)}</pre>`+
-      `<p class="shotcap">${keys(esc(shot.c))}</p></div>`
+      `<p class="shotcap">${keys(esc(shot.c))}${shotHTML(shot).includes('class="ty"')?' <span class="tykey">Typed text is shown <span class="ty">like this</span>.</span>':''}</p></div>`
     : "";
   // What the program says of itself when asked, captured whole
   // (tools/help.psv says how each one is asked; docs/help/ holds the

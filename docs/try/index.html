@@ -180,10 +180,12 @@
   // card sheets; the link only NAMES a card, so it cannot make this page
   // enter text of its own.  One line per quiet spell, like a person typing.
   const cardName = params.get('card');
-  let setupLines = null;
+  let setupLines = null, cardKeys = [];
   const setupReady = (cardName && /^[\w.+-]+$/.test(cardName))
     ? fetch('setup.json').then(r => r.ok ? r.json() : {}).then(j => {
-        setupLines = Array.isArray(j[cardName]) ? j[cardName].slice() : [];
+        const c = j[cardName] || {};
+        setupLines = Array.isArray(c.setup) ? c.setup.slice() : [];
+        cardKeys = Array.isArray(c.keys) ? c.keys : [];
       }).catch(() => { setupLines = []; })
     : Promise.resolve().then(() => { setupLines = []; });
   function typeRun() {
@@ -209,6 +211,11 @@
     }
     typedRun = true;
     typeText(runCmd);
+    // Say what the card typed next: a program like forth waits in silence,
+    // and nothing on the screen tells a reader it is their turn.
+    if (cardKeys.length)
+      Module.os9status('press Enter to run it; then the card typed: ' +
+                       cardKeys.slice(0, 3).join('  |  '));
     runWaiting = true;
     // FORGET IT ONCE TYPED.  Reloading -- or attaching a disk as /h1, which
     // reloads this same address -- would otherwise type the command again,
