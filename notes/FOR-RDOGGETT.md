@@ -12,12 +12,6 @@ verified on 289d55e (suite 1015/1015 twice, play-tests 151/151, as
 tester); the browser page runs it.  When the release commit is named I pin
 it, rebuild the page from it and run everything once more.
 
-**52. Patch collect2?**  The three 1991 collect2 binaries (GCC2/collect,
-GCC139/gcc_collect, gpp_collect) test their scan pointer before setting it,
-so the constructor table can come out empty depending on where the heap
-lands -- real OS-9 too; the 1994 source (gcc272_collect) fixes it.  Their
-cards say so now; want a binary patch staged, or leave them as they are?
-
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
@@ -64,6 +58,10 @@ and nothing is lost either way.
 
 **19.** The stray `GAMES/HACK/PLAYGROUND/save/0tester` stays, per your
 "don't overdo it".
+
+**Done 2026-09-25:** 52 -- collect2's entry test patched in all three
+1991 builds (tools/patch_collect_entry.py; SOURCES "PATCHED"); collect.cases
+failed on the old binaries and passes on the new.
 
 **Done 2026-09-23:** 36 settled (WebAssembly build committed in docs/try, disk.gz built by CI); 28 done (five READMEs reworded, gate widened).
 

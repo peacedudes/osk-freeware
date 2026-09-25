@@ -1,0 +1,29 @@
+family  collect
+# collect2 builds the table of C++ global constructors a link needs.  The
+# three 1991 builds -- GCC139/gcc_collect, gpp_collect and GCC2/collect --
+# tested their scan pointer before setting it, so where the heap landed
+# decided whether they read the object at all: after `gpp -c' and `mdir',
+# all three wrote an EMPTY table (`dc.l 0') here, with no error, and a
+# program linked with it would never construct its global objects.
+# tools/patch_collect_entry.py fixed the entry test (2026-09-25).  This is
+# that arrangement, and it failed on all three before the patch.
+load    /h1/CMDS/r68
+load    /h1/CMDS/mdir
+setup   W=/dd/tmp/CTAB
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W
+setup   builtin cd $W
+
+case    collect-finds-the-constructor-wherever-its-heap-lands
+run     /dd/CMDS/printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
+run     mdir > /nil
+run     /dd/CMDS/GCC139/gcc_collect greet.r > t1.a
+run     /dd/CMDS/gpp_collect greet.r > t2.a
+run     /dd/CMDS/GCC2/collect greet.r > t3.a
+run     echo "gcc_collect $(/dd/CMDS/grep -c GLOBAL t1.a)"
+run     echo "gpp_collect $(/dd/CMDS/grep -c GLOBAL t2.a)"
+run     echo "collect $(/dd/CMDS/grep -c GLOBAL t3.a)"
+expect  gcc_collect 1
+expect  gpp_collect 1
+expect  collect 1
