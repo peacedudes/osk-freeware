@@ -48,9 +48,14 @@ run     /dd/CMDS/SYSADMIN/logon -?
 expect  Function: Log into a multiuser enviroment
 expect  -v=<file>   Verify a entrytypes file
 
-case    mmon-prints-its-usage
+# mmon's module is readable by its owner only (0.0, access $0005), and
+# os9exec from 289d55e refuses to fork a module the caller cannot read, as
+# OS-9 does -- so tester is refused and only the super-user runs it
+# (superuser.cases shows its usage).  bash words the refusal as below.
+case    mmon-is-for-the-super-user
 run     /dd/CMDS/SYSADMIN/mmon -?
-expect  Starts a special timesharing-monitor, best for Hayes-Modems
+expect  cannot execute
+absent  timesharing-monitor
 
 case    watch-is-for-the-super-user
 # As the super-user it prints its usage ("watches the device for an

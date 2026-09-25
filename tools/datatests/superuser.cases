@@ -155,6 +155,12 @@ run     /dd/CMDS/SYSADMIN/crontab -u=tester -l
 expect  no crontab for tester
 absent  must be privileged
 
+# mmon, TOP's timesharing monitor: owner-only (legacy.cases shows tester
+# refused).
+case    mmon-prints-its-usage
+run     /dd/CMDS/SYSADMIN/mmon -?
+expect  Starts a special timesharing-monitor, best for Hayes-Modems
+
 # LEAVE NOTHING OF THE SUPER-USER'S BEHIND.  The nn database built above is
 # 0.0's, and owner-only; a later family runs as tester and cannot remove it,
 # so mnews.cases' nnadmin case -- which needs the database ABSENT -- failed
