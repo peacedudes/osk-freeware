@@ -740,38 +740,48 @@ run     ls -l div.a
 wait    6
 
 shot    for
+super
+size    40 80
 cap     The RTF Fortran compile driver: `for fact' compiles fact.f with
 cap     `rtf', assembles the result with `r68' and deletes the assembly,
-cap     printing each command as it runs it through `shell'.  The shell,
-cap     r68 and del are your own OS-9's, loaded from /h1 with the Fortran
-cap     run-time, os9lib; fact.r is what is left for `lnk'.  At the bash
-cap     prompt `for' is also the loop keyword, so it is reached by path.
-try     .../CMDS/for fact
-os9     for fact
-run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB
+cap     printing each command as it runs it through `shell'.  Then `lnk
+cap     fact' links it into a program and `fact' runs it: 1! to 12!.  The
+cap     shell, r68, l68 and del are your own OS-9's, loaded from /h1 with
+cap     the Fortran run-time, os9lib; lnk installs into CMDS, so this is
+cap     the super-user's job.  At the bash prompt `for' is also the loop
+cap     keyword, so it is reached by path.
+try     .../CMDS/for fact; lnk fact; fact
+os9     for fact; lnk fact; fact
+run     rm -rf /dd/tmp/FORA > /nil 2>/nil; mkdir -p /dd/tmp/FORA; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/FORA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
 run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
 run     builtin cd /dd/tmp/FORA
 wait    1
+run     r68 -q rtfstart.a -o=/dd/LIB/rtfstart.r
+wait    5
 run     clear
 wait    1
 run     .../CMDS/for fact
 wait    15
-run     ls
-wait    3
+run     lnk fact
+wait    10
+run     fact
+wait    6
 
 shot    lnk
+super
 cap     The RTF Fortran link driver: `lnk fact' links fact.r with the
 cap     Fortran start-up code and Microware's `sys.l' into a program, and
 cap     prints the `l68' command it runs.  It looks for both in LIB on /h0
 cap     and writes the program to CMDS there, as its authors' systems were
-cap     laid out: here sys.l was copied into LIB from /h1, rtfstart.r
+cap     laid out -- the super-user's to write: here sys.l was copied into
+cap     LIB from /h1, rtfstart.r
 cap     assembled from SRC/rtf/rtfstart.a, fact compiled with `for', and
 cap     the fact that ships removed, all first -- so the fact that runs is
 cap     the one lnk just made.
 try     lnk fact
-run     rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
+run     rm -rf /dd/tmp/LNKA > /nil 2>/nil; mkdir -p /dd/tmp/LNKA; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKA; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
 run     load /dd/CMDS/os9lib /h1/CMDS/shell /h1/CMDS/r68 /h1/CMDS/l68 /h1/CMDS/del
 wait    5
