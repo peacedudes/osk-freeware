@@ -219,7 +219,10 @@ def from_origins(root, progs):
             # provenance (a person, a forum, a disk).
             if re.match(r"^[\w.+-]+\.(ar|lzh|lha|zoo|arc|tar|Z|gz)$", arch):
                 arch = ""
-            progs[m.group(1)].update(src=m.group(2), origin=m.group(3),
+            # `--' in the tree column is ORIGINS' "no source tree", not a
+            # directory: printed as-is it made 234 cards say `Source: SRC/--'.
+            progs[m.group(1)].update(src="" if m.group(2) == "--" else m.group(2),
+                                     origin=m.group(3),
                                      archive=arch)
 
 
