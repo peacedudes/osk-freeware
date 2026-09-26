@@ -3,14 +3,16 @@
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
 the same number.
-Updated 2026-09-25.
+Updated 2026-09-26.
 
 ## Needs you
 
-**1. Push os9exec and name its release commit.**  This collection is
-verified on 289d55e (suite 1015/1015 twice, play-tests 151/151, as
-tester); the browser page runs it.  When the release commit is named I pin
-it, rebuild the page from it and run everything once more.
+**1. Merge and publish -- your call, when you are ready.**  os9exec is
+pushed (release-v4.1.0, f2954f3) and this collection is verified on it:
+suite 1019/1019 twice, play-tests 151/151, CI green on Linux.  What is
+left is yours: merging this branch to main (a push to main publishes the
+catalogue to Pages) and making anything public.  When os9exec sends its
+merge commit, I pin CI to it.
 
 ## No action, just so you know
 

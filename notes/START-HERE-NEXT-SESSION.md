@@ -53,8 +53,7 @@ session's narrative goes into the history file, not here.
 
 ## Needs rdoggett (FOR-RDOGGETT)
 
-1 (push os9exec and name its release commit).  52 is done: collect2's
-entry test patched, collect.cases asserts it.
+1 (merge to main and publish -- his decision; nothing else waits on him).
 
 ## Work, in order -- take the top one not done, never ask which
 
