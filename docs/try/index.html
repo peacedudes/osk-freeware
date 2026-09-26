@@ -168,6 +168,37 @@
     clearTimeout(quietTimer);
     quietTimer = setTimeout(typeRun, READY_QUIET_MS);
   }
+  // A LONG COMMAND IS TYPED IN LINES.  bash takes the terminal to be 80
+  // columns wide, and a line wider than that it scrolls sideways, showing
+  // `<DEX DEMO/gulls.gif...' with its start cut off (2026-09-26; 87 cards
+  // have commands that wide).  So the command is broken between words, at
+  // spaces outside quotes, with a backslash-newline: bash reads that as the
+  // same command continued and RUNS NOTHING until the reader's own Enter --
+  // even a break that landed inside quotes only continues the line.  Only
+  // at bash: Microware's shell does not scroll a long line.
+  const LINE_MAX = 70;
+  function wrapForBash(cmd) {
+    if (cmd.length + 5 <= 79) return cmd;
+    const words = [];
+    let cur = '', q = null;
+    for (let i = 0; i < cmd.length; i++) {
+      const ch = cmd[i];
+      if (q) { cur += ch; if (ch === q) q = null; else if (ch === '\\' && q === '"' && i + 1 < cmd.length) cur += cmd[++i]; continue; }
+      if (ch === "'" || ch === '"' || ch === '`') { q = ch; cur += ch; continue; }
+      if (ch === '\\' && i + 1 < cmd.length) { cur += ch + cmd[++i]; continue; }
+      if (ch === ' ') { if (cur) words.push(cur); cur = ''; continue; }
+      cur += ch;
+    }
+    if (cur) words.push(cur);
+    const lines = [];
+    let line = '';
+    for (const w of words) {
+      if (line && line.length + 1 + w.length > LINE_MAX) { lines.push(line); line = w; }
+      else line = line ? line + ' ' + w : w;
+    }
+    if (line) lines.push(line);
+    return lines.join(' \\\n');
+  }
   function typeText(text) {
     for (const ch of text) {
       const c = ch.charCodeAt(0);
@@ -219,7 +250,7 @@
       return;
     }
     typedRun = true;
-    typeText(runCmd);
+    typeText(wantShell ? runCmd : wrapForBash(runCmd));
     // Say what the card typed next: a program like forth waits in silence,
     // and nothing on the screen tells a reader it is their turn.
     if (cardKeys.length)
@@ -255,7 +286,7 @@
   term.onData((data) => {
     for (const ch of data) {
       const c = ch.charCodeAt(0);
-      if (c === 0x01 && typedRun && !ownLineEntered) { typeText(runCmd); continue; }
+      if (c === 0x01 && typedRun && !ownLineEntered) { typeText(wantShell ? runCmd : wrapForBash(runCmd)); continue; }
       if (c === 0x0d) { if (runWaiting) runWaiting = false; else ownLineEntered = true; }
       Module.os9keys.push(KEYMAP[c] ?? c);
     }
