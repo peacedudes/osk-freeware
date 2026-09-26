@@ -973,7 +973,9 @@ if __name__ == "__main__":
                 import difflib
                 have = open(p, encoding="utf-8", newline="").read()
                 text = dict(wanted)[p]
-                cut = lambda s: s.replace("><", ">\n<").split("\n")
+                # The page's data is one JSON line; cut it per program too.
+                cut = lambda s: s.replace("><", ">\n<").replace(
+                    '},{"name"', '},\n{"name"').split("\n")
                 for d in list(difflib.unified_diff(cut(have), cut(text),
                                                    "committed", "generated",
                                                    n=0, lineterm=""))[:12]:
