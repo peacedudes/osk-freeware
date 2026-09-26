@@ -47,6 +47,11 @@ CHARSET = re.compile(rb"\x1b([()])([0-9A-B])")
 # ESC G <digit> is the TeleVideo attribute (G0 plain, G4 reverse): dropped.
 TVI_CUP = re.compile(rb"\x1b=([\x20-\x7e])([\x20-\x7e])")
 TVI_ATTR = re.compile(rb"\x1bG[0-9]")
+# MM/1 window colours: ESC 2 <n> sets the foreground, ESC 3 <n> the
+# background, n a palette number 0-15.  dm draws its highlight with them.
+# Unhandled, the ESC was skipped and the `2' and `3' printed as text round
+# every name (2026-09-26); a terminal that is not an MM/1 shows nothing.
+MM1_COLOR = re.compile(rb"\x1b[23][\x00-\x0f]")
 
 # TeleVideo / ADM-3A clear-to-end-of-line.  `fuddle', a TeleVideo program,
 # clears its status line with ESC T before writing "White's move:" over it;
@@ -221,6 +226,10 @@ class Screen:
                 if m and (m.group(1)[0] - 0x20) < self.rows \
                         and (m.group(2)[0] - 0x20) < self.cols:
                     self.row, self.col = m.group(1)[0] - 0x20, m.group(2)[0] - 0x20
+                    i = m.end()
+                    continue
+                m = MM1_COLOR.match(data, i)
+                if m:
                     i = m.end()
                     continue
                 m = TVI_ATTR.match(data, i)

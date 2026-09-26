@@ -1,24 +1,149 @@
                                Disk Master v1.4
 +----------------------------------------------+-------------------------------+
-| 32==PARENT==23                               |       2File Information       |
-| 2.ELM23                                      |                               |
-| .article23                                   |           Filename            |
-| .bashrc23                                    |              ..               |
-| .newsrc23                                    |          Attributes           |
-| 2.nn23                                       |           d-ewrewr            |
-| .pnewsexpert23                               |      2Length:2 1440 bytes     |
-| .rnlast23                                    |        Creation date          |
-| .rnsoft23                                    |           00/00/00            |
-| 2ADL23                                       |        Last modified2         |
-| 2CMDS23                                      |        126/09/24 02:54        |
-| 2DEFS23                                      |                               |
-| 2DEMO23                                      +-------------------------------+
-| 2DOC23                                       |                               |
-| 2DOS23                                       |       Current disk info       |
-| 2ETC23                                       |                               |
-| 2GAMES23                                     |      Can't get size of /dd    |
-| 2GNUCHESS4.023                               |                               |
-| 2GNULIB23                                    |                               |
-| 2LIB23                                       |                               |
+| ==PARENT==                                   |       File Information        |
+| .ELM                                         |                               |
+| .bashrc                                      |           Filename            |
+| .newsrc                                      |           .bashrc             |
+| ADL                                          |          Attributes           |
+| CMDS                                         |           ---wr-wr            |
+| DEFS                                         |      Length: 3557 bytes       |
+| DEMO                                         |        Creation date          |
+| DOC                                          |           126/09/26           |
+| DOS                                          |        Last modified          |
+| ETC                                          |        126/08/03 19:00        |
+| GAMES                                        |                               |
+| GCCDEFS                                      +-------------------------------+
+| GCCLIB                                       |                               |
+| GNUCHESS4.0                                  |       Current disk info       |
+| GNULIB                                       |                               |
+| LIB                                          |      Can't get size of /dd    |
+| LOG                                          |                               |
+| MAIL                                         |                               |
+| SBPROLOG                                     |                               |
 +-  -------------------------------------------+-------------------------------+
-2Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell2
+ Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell
+------------------------------------------------------------------------------
+                               Disk Master v1.4
++------------------------------------------------------------------------------+
+|                                DiskMaster v1.4                               |
+|                                by  Bob Devries                               |
+|                                                                              |
+|  <Down Arrow>    -       Press the down arrow to move the cursor bar down.   |
+|  <Space Bar>     -       Press the spacebar to go to the end of the directory|
+|  <Up Arrow>      -       Press the up arrow key to move the cursor up.       |
+|  <Backspace>     -       Press the backspace to go to the start of the dir.  |
+|  <Enter>         -       Press the enter key to change to the highlighted    |
+|                          directory.                                          |
+|                                                                              |
+|  A               -       Change file attributes.                             |
+|                          The attributes of the  currently  highlighted  file |
+|                          are  shown  next  to  the  filename. Supply the new |
+|                          attributes the way you would  for the ATTR command. |
+|                          e.g.  -e  -pe  -r  -pr NOTE: The directory bit will |
+|                          not be changed. Pressing ENTER or ESC will abort.   |
+|                          Requires OS-9 ATTR command.                         |
+|                                                                              |
+|                                                                              |
+|Press any key...                                                              |
++-  ---------------------------------------------------------------------------+
+     Help is on the way...
+------------------------------------------------------------------------------
+                               Disk Master v1.4
++------------------------------------------------------------------------------+
+|  C               -       Copy file                                           |
+|                          The currently hightlighted  file  will be copied to |
+|                          another file, or into another directory.  e.g. Copy |
+|                          filename   TO:   /DD/SYS  or    Copy  filename  TO: |
+|                          newname. Pressing Enter or ESC will abort.          |
+|                          Requires OS-9 COPY command.                         |
+|                                                                              |
+|  R               -       Renames the current file to the name you supply.    |
+|                          Pressing ENTER or ESC will abort.                   |
+|                          Requires the OS-9 RENAME command.                   |
+|                                                                              |
+|  D               -       Delete file                                         |
+|                          Deletes   the   currently   highlighted   file   or |
+|                          directory. You will be asked if you are sure!       |
+|                          Pressing ENTER or ESC will abort.                   |
+|                          Requires OS-9 DEL and DELDIR command.               |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|Press any key...                                                              |
++-  ---------------------------------------------------------------------------+
+     Help is on the way...
+------------------------------------------------------------------------------
+                               Disk Master v1.4
++------------------------------------------------------------------------------+
+|  N               -       Log new directory or device                         |
+|                          Changes  to  a  new  device or directory.  Pressing |
+|                          ENTER or ESC will abort                             |
+|                                                                              |
+|  M               -       Make directory                                      |
+|                          Creates  a  new  directory,  either  in the current |
+|                          working directory,  or  on another device. Pressing |
+|                          ENTER or ESC will abort.                            |
+|                                                                              |
+|  O               -       Move a file                                         |
+|                          Removes  the  currently  highlighted  file from the |
+|                          current  directory  and  places   it   in   another |
+|                          directory on the same device. Pressing ENTER or ESC |
+|                          will abort.                                         |
+|                          Requires Lukas Zeller's MOVE utility.               |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|Press any key...                                                              |
++-  ---------------------------------------------------------------------------+
+     Help is on the way...
+------------------------------------------------------------------------------
+                               Disk Master v1.4
++------------------------------------------------------------------------------+
+|  T               -       Tag a file                                          |
+|                          Just  colours  (tags)   the  currently  highlighted |
+|                          file, or, if already will set it back to the normal |
+|                          untagged state.  Used for multi-file  operations in |
+|                          the Copy, Delete, Move and Attr commands.           |
+|                                                                              |
+|  L               -       List file                                           |
+|                          Lists the currently  highlighted file to the screen |
+|                          in nineteen  line  pages,  waiting  for  a keypress |
+|                          between  screens.  Pressing  'Q' or ESC quits  this |
+|                          function.  If the file  is an archive, with an ext- |
+|                          ension of  .lzh, .lha, .zoo, .ar, .zip, or .gz  its |
+|                          contents will be listed.                            |
+|                                                                              |
+|  U               -       Unarchive a file.                                   |
+|                          Only LZH or LHA archives are supported as yet.      |
+|                          Pressing  ESC  aborts this function. Press ENTER to |
+|                          unarchive into the current directory.               |
+|                          Requires Mike Haaland's LHA utility.                |
+|Press any key...                                                              |
++-  ---------------------------------------------------------------------------+
+     Help is on the way...
+------------------------------------------------------------------------------
+                               Disk Master v1.4
++------------------------------------------------------------------------------+
+|                                                                              |
+|  H               -       Help                                                |
+|                          Lists  this  help file.  Pressing 'Q' or ESC aborts |
+|                          this function.                                      |
+|                                                                              |
+|  Q               -       Quit                                                |
+|                          Quits  DiskMaster,  returning   to   your  original |
+|                          directory.                                          |
+|                                                                              |
+|  S               -       Clears  the  screen and gives a shell prompt.  Type |
+|                          'logout' to return to DiskMaster.                   |
+|                                                                              |
+|  Mouse Operation -       The mouse will be used if a descriptor '/mouse'  is |
+|                          found.  Use  the  left  button  to  select files or |
+|                          operations, right button to descend or ascend  into |
+|                          directories. To moove to the next page of filenames |
+|                          place the mouse on the bottom border, and press the |
+|                          right  mouse  button.  To go  back  a page move the |
+|                          top border and press the right mouse button.        |
+|Press any key...                                                              |
++-  ---------------------------------------------------------------------------+
+     Help is on the way...

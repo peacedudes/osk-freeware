@@ -62,6 +62,9 @@ Sheet format (blank lines and `#' comments ignored):
                                    and a count -- for a program that floods
                                    one line; off by default, because ASCII
                                    art is made of repeated lines
+    pages                          publish EVERY `snap', in order, one after
+                                   another with a rule between -- for help a
+                                   full-screen program pages through
     frames                         publish the stanza as a FILMSTRIP: one
                                    line per frame, top to bottom -- for a
                                    program that animates by rewriting one
@@ -221,6 +224,9 @@ def parse(path):
             cur["fold"] = True
         elif word == "frames":
             cur["frames"] = True
+            continue
+        elif word == "pages":
+            cur["pages"] = True
         elif word == "fresh":
             # END THE SESSION AFTER THIS STANZA.  For a stanza that leaves
             # something RESIDENT the next one would inherit: a background
@@ -395,6 +401,16 @@ class Session:
         os.close(self.master)
 
 
+class Pages:
+    """Several rendered screens published as one, a rule between them."""
+    def __init__(self, texts, cols):
+        self.texts, self.cols = texts, cols
+
+    def text(self):
+        rule = "\n" + "-" * min(self.cols, 78) + "\n"
+        return rule.join(t for t in self.texts if t.strip())
+
+
 def moments(sess, shot, start, end):
     """Render the stanza at several moments and keep the fullest.
 
@@ -410,6 +426,13 @@ def moments(sess, shot, start, end):
     its full output rather than an early fragment of it.
     """
     rows, cols = shot["size"]
+    # PAGES: every snap, in order.  dm's help is four pages behind a key;
+    # the fullest single moment would publish one of them (2026-09-26).
+    if shot.get("pages") and shot.get("_snaps"):
+        texts = [ansiscreen.render(trim_partial(sess.slice(start, at)),
+                                   rows, cols).text().rstrip("\n")
+                 for at in shot["_snaps"] if at > start]
+        return Pages(texts, cols)
     best, best_worth = None, -1
     fallback, fallback_worth = None, -1
     # A stanza that said WHERE to look is not asking for the fullest moment.

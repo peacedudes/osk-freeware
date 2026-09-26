@@ -415,25 +415,51 @@ wait    10
 snap
 
 shot    dm
-size    30 80
-cap     dm, Disk Master 1.4: a two-pane browser with the directory on the
-cap     left and a file-information panel on the right, and its commands
-cap     along the foot.  It carries those out through system(), so SHELL
-cap     has to name a shell that can run them -- `sh' here.
-cap     Arrow keys move; the letter in each word on the bottom line picks
-cap     that command -- typed in LOWER case, though the line prints them
-cap     capitalised.  Capital `H' does nothing; `h' lists the help.
-try     SHELL=CMDS/sh dm SYS
-os9     setenv SHELL CMDS/sh; dm SYS
+size    24 80
+pages
+cap     dm, Disk Master 1.4: a two-pane browser, the directory on the left
+cap     and a file-information panel on the right, with its commands along
+cap     the foot.  It was written for the MM/1, and two things follow on
+cap     any other terminal.  Its cursor keys are the MM/1's: Ctrl-N moves
+cap     down and Ctrl-P up -- a vt100 or browser arrow key does nothing --
+cap     with Space for the end of the list, Backspace for the start and
+cap     Enter to open a directory.  And its highlight is drawn in the
+cap     MM/1's own colour codes, which other terminals do not show: the
+cap     File Information panel names the file the bar is on.  The command
+cap     letters are typed in lower case.  It reads the directory you are
+cap     in -- its -d option lists nothing unless you are already there --
+cap     and runs its commands through system(), so SHELL names `sh'.
+cap     Below the panes, its help, page by page, as `h' shows it --
+cap     the last page, the author's credit, is left off.
+try     SHELL=CMDS/sh dm
+os9     setenv SHELL CMDS/sh; dm
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     SHELL=CMDS/sh dm SYS
+run     SHELL=CMDS/sh dm
 wait    12
+send    \016
+send    \016
+wait    3
 snap
+send    h
+wait    6
+snap
+send    \040
+wait    4
+snap
+send    \040
+wait    4
+snap
+send    \040
+wait    4
+snap
+send    \040
+wait    4
+snap
+quit    q
 kill
-
 shot    fstat
 size    26 80
 cap     fstat reads a file's RBF file descriptor -- the sector RBF keeps
