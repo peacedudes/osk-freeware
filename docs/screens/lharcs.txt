@@ -1,4 +1,4 @@
-lharcs a tmp/ARC/ls.lzh SYS/motd
+$ lharcs a tmp/ARC/ls.lzh SYS/motd
 SYS/motd - Frozen(100%)o
 $ lharcs l tmp/ARC/ls.lzh
    SIZE  RATIO     STAMP    NAME

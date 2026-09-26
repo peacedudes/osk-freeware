@@ -1,4 +1,4 @@
-uue -l=40 big
+$ uue -l=40 big
 $ ls -l
 total 15872
 -r-xr-xr-x   1 7        1            5804 Sep 24 01:10 big

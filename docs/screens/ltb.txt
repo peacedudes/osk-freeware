@@ -1,4 +1,4 @@
-head -n 3 < proffsym.new
+$ head -n 3 < proffsym.new
 
 ! proff symbols
 ! flag value of 1 indicate

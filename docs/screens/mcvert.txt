@@ -1,4 +1,4 @@
-mcvert -U j.txt.MAC
+$ mcvert -U j.txt.MAC
 Converting     j.txt                          type = "TEXT", author = "OS-9"
 $ ls -l j.txt.MAC j.txt01.hqx
 -rw-------   1 7        1             256 Sep 24 01:18 j.txt.MAC

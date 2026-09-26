@@ -1,4 +1,4 @@
-ppmshift 6 tmp/NEAB/t.ppm > tmp/NEAB/s.ppm
+$ ppmshift 6 tmp/NEAB/t.ppm > tmp/NEAB/s.ppm
 $ ppmtopgm tmp/NEAB/s.ppm | pgmtopbm | pbmtoascii -2x4
 MMMMMHMHHM&MHMHMRHHZ&9?D64&]S&$S
 MHHRMH6RH&6MHHM6Rkk&$FS/}F&\$&Z/

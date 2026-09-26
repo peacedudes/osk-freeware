@@ -1,4 +1,4 @@
-ppmpat -gingham3 48 24 > tmp/at.ppm
+$ ppmpat -gingham3 48 24 > tmp/at.ppm
 $ pbmmake -g 48 24 > tmp/at.pbm
 $ ppmquant 16 tmp/at.ppm > tmp/q16.ppm
 ppmquant: making histogram...

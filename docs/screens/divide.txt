@@ -1,4 +1,4 @@
-divide -l=4 tmp/ENC/dv.txt tmp/ENC/piece
+$ divide -l=4 tmp/ENC/dv.txt tmp/ENC/piece
 $ ls -l tmp/ENC/piece.1 tmp/ENC/piece.2 tmp/ENC/piece.3
 -rw-------   1 7        1              60 Sep 24 01:21 tmp/ENC/piece.1
 -rw-------   1 7        1              91 Sep 24 01:21 tmp/ENC/piece.2

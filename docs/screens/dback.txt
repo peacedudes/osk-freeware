@@ -1,4 +1,4 @@
-dback db dbk
+$ dback db dbk
 Backing up db/  to db/~ onto dbk
 copy -r -b=4k   db/one dbk/one
 copy -r -b=4k   db/two dbk/two

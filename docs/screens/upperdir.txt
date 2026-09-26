@@ -1,4 +1,4 @@
-ls tmp/TEXTA/UD
+$ ls tmp/TEXTA/UD
 MixedCase.TXT  subdir
 $ upperdir tmp/TEXTA/UD
 

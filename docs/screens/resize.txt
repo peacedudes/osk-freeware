@@ -1,4 +1,4 @@
-resize
+$ resize
 LINES=30; COLUMNS=100; export LINES COLUMNS
 $ resize -s
 setenv LINES 30

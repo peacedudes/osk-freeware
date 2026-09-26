@@ -1,4 +1,4 @@
-cxref SRC/keep/about.c | head -n 24
+$ cxref SRC/keep/about.c | head -n 24
 
    1 /* about -- everything this collection knows about one program, on one scre
 en.

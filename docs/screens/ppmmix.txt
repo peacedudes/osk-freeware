@@ -1,4 +1,4 @@
-ppmmix 0.5 tmp/NEAB/a.ppm tmp/NEAB/b.ppm > tmp/NEAB/m.ppm
+$ ppmmix 0.5 tmp/NEAB/a.ppm tmp/NEAB/b.ppm > tmp/NEAB/m.ppm
 $ ppmhist tmp/NEAB/m.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----

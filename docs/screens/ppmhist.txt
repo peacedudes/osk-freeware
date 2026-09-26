@@ -1,4 +1,4 @@
-ppmpat -tartan 80 40 > tmp/t.ppm
+$ ppmpat -tartan 80 40 > tmp/t.ppm
 $ ppmhist tmp/t.ppm | head -n 18
  r   g   b      lum     count
 --- --- ---     ---     -----

@@ -1,4 +1,4 @@
-liborder make.r parse.r stat.r
+$ liborder make.r parse.r stat.r
 stat.r
 parse.r
 make.r

@@ -1,4 +1,4 @@
-ls -l USR/LIB/ELM
+$ ls -l USR/LIB/ELM
 total 23040
 -rw-------   1 7        1             527 Sep 24 00:02 aliases
 -rw-------   1 7        1              56 Sep 24 00:02 aliases.dir

@@ -1,4 +1,4 @@
-hexbin j.txt01.hqx
+$ hexbin j.txt01.hqx
 $ ls -l
 total 1024
 -rw-------   1 7        1             256 Sep 24 01:19 j.txt.bin

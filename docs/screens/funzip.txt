@@ -1,4 +1,4 @@
-funzip < DOC/zip/sample.zip | head -n 16
+$ funzip < DOC/zip/sample.zip | head -n 16
 funzip warning: zip file has more than one entry--rest ignored
 File Readme for:
 

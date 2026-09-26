@@ -1,4 +1,4 @@
-pbmtoicon tmp/NPMB/b.pbm > tmp/NPMB/o.icon
+$ pbmtoicon tmp/NPMB/b.pbm > tmp/NPMB/o.icon
 $ cat tmp/NPMB/o.icon | head -8
 /* Format_version=1, Width=48, Height=24, Depth=1, Valid_bits_per_item=16
  */

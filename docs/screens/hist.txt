@@ -1,4 +1,4 @@
-hist
+$ hist
 whoamitester
 todayToday is Thursday, the twenty-fourth day of September, two thousand and
 twenty-six. The time is twenty-six minutes and eight seconds after two

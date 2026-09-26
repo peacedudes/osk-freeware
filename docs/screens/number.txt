@@ -1,4 +1,4 @@
-number 1234567
+$ number 1234567
 one million.
 two hundred thirty-four thousand.
 five hundred sixty-seven.

@@ -1,4 +1,4 @@
-cat fox
+$ cat fox
 the quick brown fox
 jumps over the lazy dog
 $ field 2 4 1 < fox

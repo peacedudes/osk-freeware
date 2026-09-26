@@ -1,4 +1,4 @@
-cat arr src
+$ cat arr src
 \[:n+,@r
 [?1][
 x = A[I,J,K] + B[N,M]

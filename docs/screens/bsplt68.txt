@@ -1,4 +1,4 @@
-ls -l
+$ ls -l
 total 9728
 -rw-rw-rw-   1 7        1            9526 Sep 24 01:09 OS9Boot
 $ bsplt68 OS9Boot

@@ -1,4 +1,4 @@
-pnmpaste tmp/NEAB/pt.pgm 8 8 tmp/NEAB/r.pgm > tmp/NEAB/ps.pgm
+$ pnmpaste tmp/NEAB/pt.pgm 8 8 tmp/NEAB/r.pgm > tmp/NEAB/ps.pgm
 $ pgmtopbm tmp/NEAB/ps.pgm | pbmtoascii -2x4
 MMRMFR&$S$S?\|::S:-:.
 MM9HHS&S//(|||?/<:: --

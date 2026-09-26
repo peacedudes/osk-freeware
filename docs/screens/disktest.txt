@@ -1,4 +1,4 @@
-disktest
+$ disktest
 buffersize : 32603392 bytes
 read: -22013363 Bytes/sec
 write: -1034628096 Bytes/sec

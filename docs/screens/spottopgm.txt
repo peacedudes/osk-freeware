@@ -1,2 +1,2 @@
-spottopgm
+$ spottopgm
 Usage: spottopgm [-1|2|3] [Firstcol Firstline Lastcol Lastline] input_file

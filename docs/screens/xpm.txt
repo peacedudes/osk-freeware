@@ -1,4 +1,4 @@
-ppmpat -gingham3 48 24 > tmp/xp.ppm
+$ ppmpat -gingham3 48 24 > tmp/xp.ppm
 $ ppmquant 16 tmp/xp.ppm > tmp/qx.ppm
 ppmquant: making histogram...
 ppmquant: 6 colors found

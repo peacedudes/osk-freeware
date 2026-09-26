@@ -1,4 +1,4 @@
-cat greet.lua
+$ cat greet.lua
 print("hello, "..argv[1])
 print(argv.n.." arguments")
 $ luac -x -o greet greet.lua

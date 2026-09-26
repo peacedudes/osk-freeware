@@ -1,4 +1,4 @@
-sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
+$ sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
 109 the
 64 and
 58 a

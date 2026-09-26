@@ -1,4 +1,4 @@
-Libr2Ascii -infile tmp/cat.libr | head -n 22
+$ Libr2Ascii -infile tmp/cat.libr | head -n 22
 4
 2
 "B0001" #C(:TYPE Book :AUTHOR "Kernighan and Ritchie"

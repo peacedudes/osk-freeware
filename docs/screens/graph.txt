@@ -1,4 +1,4 @@
-modinfo graph | head -n 14
+$ modinfo graph | head -n 14
 ------------------------------------ graph  - - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - - -
 Module name           = Graph

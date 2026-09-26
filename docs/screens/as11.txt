@@ -1,4 +1,4 @@
-as11 sample.a11
+$ as11 sample.a11
                         * sample.a11 -- a 68HC11 program for as11.  Bit manipulation opera
 nds on
                         * the 'HC11 are separated by BLANKS, not commas -- see DOC/xasm/as

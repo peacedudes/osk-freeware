@@ -1,4 +1,4 @@
-ppmtosixel tmp/NPMB/q.ppm > tmp/NPMB/o.six
+$ ppmtosixel tmp/NPMB/q.ppm > tmp/NPMB/o.six
 ppmtosixel: maxval is not 100 - automatically rescaling colors
 ppmtosixel: computing colormap...
 ppmtosixel: 6 colors found

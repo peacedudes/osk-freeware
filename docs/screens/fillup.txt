@@ -1,4 +1,4 @@
-ls -l tmp/TEXTA/pad.txt
+$ ls -l tmp/TEXTA/pad.txt
 -rw-rw-rw-   1 7        1              44 Sep 24 02:17 tmp/TEXTA/pad.txt
 $ fillup -n=64 -i=46 tmp/TEXTA/pad.txt
 20 bytes (value=46) appended: total file size is now 64

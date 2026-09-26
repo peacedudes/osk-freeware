@@ -1,4 +1,4 @@
-virmf < run.mf
+$ virmf < run.mf
 This is METAFONT, C Version 2.7
 **(/DD/SYS/TEX/MFINPUTS/logo10.mf (/DD/SYS/TEX/MFINPUTS/logo.mf [77] [69]
 [84] [65] [70] [79] [78]) )

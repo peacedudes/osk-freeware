@@ -1,4 +1,4 @@
-westley 7
+$ westley 7
 westley
 loves me
 westley

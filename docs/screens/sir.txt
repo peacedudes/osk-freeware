@@ -1,4 +1,4 @@
-ppmmake rgb:ff/00/00 8 4 > tmp/red.ppm
+$ ppmmake rgb:ff/00/00 8 4 > tmp/red.ppm
 $ pnmtosir tmp/red.ppm > tmp/red.sir
 pnmtosir: Writing a 24-bit SIR format (MGI TYPE 11)
 $ sirtopnm tmp/red.sir | pnmnoraw | head -n 6

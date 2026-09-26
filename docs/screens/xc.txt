@@ -1,4 +1,4 @@
-cat tmp/SHL/cmds.txt
+$ cat tmp/SHL/cmds.txt
 notes to myself
 % whoami
 $ wc -l SYS/motd

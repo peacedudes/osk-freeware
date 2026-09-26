@@ -1,4 +1,4 @@
-ppmtotga tmp/NPIB/c.ppm > tmp/NPIB/t.tga
+$ ppmtotga tmp/NPIB/c.ppm > tmp/NPIB/t.tga
 ppmtotga: computing colormap...
 ppmtotga: 6 colors found
 $ tgatoppm tmp/NPIB/t.tga > tmp/NPIB/back.ppm

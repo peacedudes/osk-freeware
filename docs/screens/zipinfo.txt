@@ -1,4 +1,4 @@
-zipinfo DOC/zip/sample.zip
+$ zipinfo DOC/zip/sample.zip
 Archive:  DOC/zip/sample.zip   7413 bytes   2 files
 d---------  2.0 unx    4033 b- defN 30-Aug-92 12:00 readme
 d---------  2.0 unx    5218 b- stor 30-Aug-92 12:00 ziprules

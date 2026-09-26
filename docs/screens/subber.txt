@@ -1,4 +1,4 @@
-cat words
+$ cat words
 ,fox,cat
 ,here,there
 $ cat in

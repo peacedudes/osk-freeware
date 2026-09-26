@@ -1,4 +1,4 @@
-tput -Tvt100 lines
+$ tput -Tvt100 lines
 24
 $ tput -Tvt100 cols
 80

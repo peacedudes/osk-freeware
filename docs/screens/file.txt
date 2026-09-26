@@ -1,4 +1,4 @@
-file CMDS/today DOC/INDEX DEMO/gulls.gif
+$ file CMDS/today DOC/INDEX DEMO/gulls.gif
 CMDS/today              OS-9 Program Module "today"
 DOC/INDEX               unidentified text file
 DEMO/gulls.gif          GIF picture ver. 87a 320 x 200, interlaced, 256 colors

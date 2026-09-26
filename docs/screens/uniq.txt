@@ -1,4 +1,4 @@
-uniq < tmp/TXT/dups
+$ uniq < tmp/TXT/dups
 pear
 apple
 pear

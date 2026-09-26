@@ -1,4 +1,4 @@
-pnmscale -width 30 DEMO/sphere.pgm > tmp/t.pgm
+$ pnmscale -width 30 DEMO/sphere.pgm > tmp/t.pgm
 $ pnmtile 150 40 tmp/t.pgm | pgmtopbm -threshold -value 0.4 | pbmtoascii
 MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM     MMMMMMMMMMMM"""""""""""MM
 MMMMMM""                      MMMMMM""                      MMMMMM""                      MMMMMM""                      MMMMMM""

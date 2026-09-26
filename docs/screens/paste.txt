@@ -1,4 +1,4 @@
-paste tmp/TEXTA/a.txt tmp/TEXTA/b.txt
+$ paste tmp/TEXTA/a.txt tmp/TEXTA/b.txt
 one     eins
 two     zwei
 three   drei

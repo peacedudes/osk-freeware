@@ -1,4 +1,4 @@
-xfmt -m DOC/xfmt/xfmt.1 | head -n 18
+$ xfmt -m DOC/xfmt/xfmt.1 | head -n 18
 
                                                            XFMT(1) LOCAL
 

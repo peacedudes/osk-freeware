@@ -1,4 +1,4 @@
-pbmmake -g 48 24 > tmp/base.pbm
+$ pbmmake -g 48 24 > tmp/base.pbm
 $ pbmtoplot tmp/base.pbm | wc
      36     85   2889
 $ pbmtozinc tmp/base.pbm | head -n 6

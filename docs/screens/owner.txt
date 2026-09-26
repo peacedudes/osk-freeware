@@ -1,4 +1,4 @@
-fstat tmp/FILESA/own.txt
+$ fstat tmp/FILESA/own.txt
 
 Filename:     tmp/FILESA/own.txt
 Owner:        1.7

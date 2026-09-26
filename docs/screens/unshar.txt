@@ -1,4 +1,4 @@
-unshar which6.shar
+$ unshar which6.shar
 unshar:  Sending header to which6.sha.hdr.
 unshar:  Doing which6.shar:
 Extracting which6.c

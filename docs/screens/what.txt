@@ -1,4 +1,4 @@
-what
+$ what
 
 What's where in the GEPARD:
 IO-Address  Ref-Byte  Name of the card

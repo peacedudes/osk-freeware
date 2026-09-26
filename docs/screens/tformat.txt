@@ -1,4 +1,4 @@
-head -n 12 < DOC/vi/vi.txt | tformat 60
+$ head -n 12 < DOC/vi/vi.txt | tformat 60
 PVIC 1.0a =========
 PVIC is a Portable VI Clone derived from STEVIE  3.69B.  It
 has been written in Kernighan and Ritchie C, so it compiles

@@ -1,4 +1,4 @@
-mail
+$ mail
  1 : < > From tester        Thu Sep 24 00:57:19 2026
         Hello from the collection.
  2 : < > From tester        Thu Sep 24 00:00:27 2026

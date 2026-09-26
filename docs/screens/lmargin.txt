@@ -1,4 +1,4 @@
-lmargin -l4 <DOC/globe.doc
+$ lmargin -l4 <DOC/globe.doc
     globe -- show the currently-lit face of the Earth in ASCII
 
         globe

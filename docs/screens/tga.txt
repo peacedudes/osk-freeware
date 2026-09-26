@@ -1,4 +1,4 @@
-ppmtotga tmp/base.ppm | tgatoppm | pnmfile
+$ ppmtotga tmp/base.ppm | tgatoppm | pnmfile
 ppmtotga: computing colormap...
 ppmtotga: 6 colors found
 stdin:  PPM raw, 48 by 24  maxval 255

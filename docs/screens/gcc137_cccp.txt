@@ -1,4 +1,4 @@
-./gcc137_cccp hello.c
+$ ./gcc137_cccp hello.c
 # 1 "hello.c"
 
 int main()

@@ -1,4 +1,4 @@
-lpsched /nil & edir -e; eset spoolqueue 42; edir -e
+$ lpsched /nil & edir -e; eset spoolqueue 42; edir -e
 <4>
    Event Directory at  2:41:47
 

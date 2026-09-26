@@ -1,4 +1,4 @@
-keep greg
+$ keep greg
 collection at /dd, keeping into /dd/tmp/SYSB/kp
 
 greg:

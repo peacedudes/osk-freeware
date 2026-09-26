@@ -1,4 +1,4 @@
-unstr tmp/TXT/say.dat tmp/TXT/say.out
+$ unstr tmp/TXT/say.dat tmp/TXT/say.out
 $ cat tmp/TXT/say.out
 A closed mouth gathers no feet.
 %%

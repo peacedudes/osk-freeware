@@ -1,4 +1,4 @@
-uld got.txt
+$ uld got.txt
 uld version 1.4   (c) 1986 FHL
 
 Beginning XMODEM upload (control-X will abort).

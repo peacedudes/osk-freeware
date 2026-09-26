@@ -1,4 +1,4 @@
-pbmtoxbm tmp/base.pbm | xbmtopbm | pnmfile
+$ pbmtoxbm tmp/base.pbm | xbmtopbm | pnmfile
 stdin:  PBM raw, 48 by 24
 $ pbmtoybm tmp/base.pbm | ybmtopbm | pnmfile
 stdin:  PBM raw, 48 by 24

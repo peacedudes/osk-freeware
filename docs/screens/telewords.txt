@@ -1,4 +1,4 @@
-telewords 468 | head -n 18
+$ telewords 468 | head -n 18
 gmt
 gmu
 gmv

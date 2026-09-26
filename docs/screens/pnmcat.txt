@@ -1,4 +1,4 @@
-pnmscale -xysize 74 88 DEMO/sphere.pgm > tmp/s.pgm
+$ pnmscale -xysize 74 88 DEMO/sphere.pgm > tmp/s.pgm
 $ pnminvert tmp/s.pgm > tmp/si.pgm
 $ pnmcat -lr tmp/s.pgm tmp/si.pgm | pgmtopbm | pbmtoascii -2x4
 M9RM96R6RRH&S&<$7/77?T}&S$7Z$&S&%|}7/ .. .. -.-.:<:://|i:(<:>S/:i?:>\//<|\

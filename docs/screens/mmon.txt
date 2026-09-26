@@ -1,4 +1,4 @@
-tail -l=26 DOC/SYSADMIN/mmon.config.sample
+$ tail -l=26 DOC/SYSADMIN/mmon.config.sample
 #       be_tolerant
 
 /t1

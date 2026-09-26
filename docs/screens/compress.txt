@@ -1,2 +1,2 @@
-compress -v tmp/ARC/idx4
+$ compress -v tmp/ARC/idx4
 tmp/ARC/idx4: Compression: 53.83% -- replaced with tmp/ARC/idx4.Z

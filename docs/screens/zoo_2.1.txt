@@ -1,4 +1,4 @@
-zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
+$ zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
 Zoo:  SYS/motd --  ( 0%) added
 $ booz l tmp/ARC/z2.zoo
 Length    CF  Size Now  Date      Time

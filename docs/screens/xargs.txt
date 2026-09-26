@@ -1,4 +1,4 @@
-ls
+$ ls
 one  two
 $ ls | xargs wc -l
       2 one

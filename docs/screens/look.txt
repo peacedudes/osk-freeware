@@ -1,4 +1,4 @@
-look abs GAMES/words
+$ look abs GAMES/words
 abscess
 abscissa
 abscissae

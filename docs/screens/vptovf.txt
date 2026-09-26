@@ -1,4 +1,4 @@
-vptovf DOC/tex/sample.vpl tmp/TEX/s.vf tmp/TEX/s.tfm
+$ vptovf DOC/tex/sample.vpl tmp/TEX/s.vf tmp/TEX/s.tfm
 This is VPtoVF, C Version 1.3
 '101.
 $ ls -l tmp/TEX/s.vf tmp/TEX/s.tfm

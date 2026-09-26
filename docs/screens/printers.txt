@@ -1,4 +1,4 @@
-pbmtolj tmp/base.pbm | wc
+$ pbmtolj tmp/base.pbm | wc
       0      1    288
 $ pbmtoepson tmp/base.pbm | wc
       3      4    168

@@ -1,4 +1,4 @@
-ls -l tmp/ENC/d.txt
+$ ls -l tmp/ENC/d.txt
 -rw-rw-rw-   1 7        1              35 Sep 24 01:14 tmp/ENC/d.txt
 $ des tmp/ENC/d.txt
 Type password for tmp/ENC/d.txt: freeware

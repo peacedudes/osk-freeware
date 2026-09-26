@@ -1,4 +1,4 @@
-pgmtolispm tmp/base.pgm | lispmtopgm | pnmfile
+$ pgmtolispm tmp/base.pgm | lispmtopgm | pnmfile
 lispmtopgm: depth is too large - try reconfiguring with PGM_BIGGRAYS
 pnmfile: EOF / read error reading magic number
 $ ppmtomap tmp/base.ppm | head -n 8

@@ -1,4 +1,4 @@
-cpucache -?
+$ cpucache -?
 Syntax: cpucache [on|off]
 Function: display/switch 68020/68030/68040 on-chip caches
 Options:

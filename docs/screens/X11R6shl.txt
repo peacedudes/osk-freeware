@@ -1,4 +1,4 @@
-modinfo X11R6shl | head -n 14
+$ modinfo X11R6shl | head -n 14
 ----------------------------------- X11R6shl  - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - -
 Module name           = X11R6shl

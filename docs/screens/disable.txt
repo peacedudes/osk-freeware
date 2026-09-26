@@ -1,2 +1,2 @@
-$ ./enable /tty
+$ disable /tty
 mtsmon isn't running

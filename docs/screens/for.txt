@@ -1,4 +1,4 @@
-command for fact
+$ command for fact
 rtf fact
  RTF/68K Version 2.14 (19-May-1987)
  Total Errors   0   Warnings   0

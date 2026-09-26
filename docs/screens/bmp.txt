@@ -1,4 +1,4 @@
-ppmtobmp tmp/base.ppm | bmptoppm | pnmfile
+$ ppmtobmp tmp/base.ppm | bmptoppm | pnmfile
 ppmtobmp: computing colormap...
 ppmtobmp: 6 colors found
 ppmtobmp: Using 4 bits per pixel

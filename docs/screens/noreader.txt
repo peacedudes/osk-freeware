@@ -1,4 +1,4 @@
-ppmmake red 16 16 > tmp/nr.ppm
+$ ppmmake red 16 16 > tmp/nr.ppm
 $ hipstopgm tmp/nr.ppm
 hipstopgm: error reading header
 $ qrttoppm tmp/nr.ppm | head -n 3

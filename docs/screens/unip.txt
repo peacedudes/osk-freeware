@@ -1,4 +1,4 @@
-sepwords < DOC/README-CIO | sort | unip | head -n 18
+$ sepwords < DOC/README-CIO | sort | unip | head -n 18
 !!!
 !!!'
 "000000".

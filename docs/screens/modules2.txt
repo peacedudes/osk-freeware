@@ -1,4 +1,4 @@
-modinfo CMDS/ptxm | head -n 12
+$ modinfo CMDS/ptxm | head -n 12
 ---------------------------------- CMDS/ptxm  - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - -
 Module name           = Ptxm

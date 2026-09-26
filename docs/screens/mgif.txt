@@ -1,4 +1,4 @@
-mgif -i gulls.gif
+$ mgif -i gulls.gif
 
 
 Enter ReadGIF

@@ -1,4 +1,4 @@
-wf -x 12 -y 12 -t Words
+$ wf -x 12 -y 12 -t Words
                                      Words
 
 

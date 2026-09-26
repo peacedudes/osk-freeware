@@ -1,4 +1,4 @@
-gtar cvf tmp/ARC/keep2.tar SRC/keep
+$ gtar cvf tmp/ARC/keep2.tar SRC/keep
 SRC/keep/
 SRC/keep/about.c
 SRC/keep/keep.c

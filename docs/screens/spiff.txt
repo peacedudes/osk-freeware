@@ -1,4 +1,4 @@
-spiff tmp/TXT/a tmp/TXT/b
+$ spiff tmp/TXT/a tmp/TXT/b
 2c2
 < banana
 ---

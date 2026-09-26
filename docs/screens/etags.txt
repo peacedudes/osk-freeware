@@ -1,4 +1,4 @@
-etags keep.c
+$ etags keep.c
 $ head -4 tags
 Mkeep   keep.c  /^main(argc, argv)$/
 copy_file       keep.c  /^static int copy_file(from, to, executable)$/

@@ -1,4 +1,4 @@
-cuts -e tmp/TEXTA/fox.txt | head -n 4
+$ cuts -e tmp/TEXTA/fox.txt | head -n 4
 .0000.I.A.1260924.BIN."fox.txt"...............................................@
 # os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
 .0001.D!0#@+@+8!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0!0#A

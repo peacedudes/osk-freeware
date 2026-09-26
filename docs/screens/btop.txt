@@ -1,4 +1,4 @@
-btop tmp/b1
+$ btop tmp/b1
 + O + O + O O O
 + O O + + O + O
 + O O + O O + +

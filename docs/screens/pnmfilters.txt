@@ -1,4 +1,4 @@
-giftopnm DEMO/gulls.gif | pnmscale -xysize 76 44 > tmp/w.ppm
+$ giftopnm DEMO/gulls.gif | pnmscale -xysize 76 44 > tmp/w.ppm
 $ pnmnlfilt 1.0 0.5 tmp/w.ppm | pnmfile
 stdin:  PPM raw, 71 by 44  maxval 255
 $ ppmflash 0.4 tmp/w.ppm | pnmfile

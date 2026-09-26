@@ -1,4 +1,4 @@
-lprm 2; lpq
+$ lprm 2; lpq
 Defaultprinter: /pipe/prt
 other Printers:
 1 Spoolfiles

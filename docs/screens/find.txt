@@ -1,4 +1,4 @@
-find SYS "-n=cal*" -o
+$ find SYS "-n=cal*" -o
 SYS/TEX/MFINPUTS/CM/calu.mf
 Cannot open 'sequence.mail'
 Cannot open 'sequence.news'

@@ -1,4 +1,4 @@
-pgmenhance -9 tmp/NEAB/en.pgm > tmp/NEAB/enh.pgm
+$ pgmenhance -9 tmp/NEAB/en.pgm > tmp/NEAB/enh.pgm
 $ pgmtopbm tmp/NEAB/enh.pgm | pbmtoascii -2x4
 MMM9H&&S$&{||!::/.:: .
 MMHH9&&&S$$???:>;'\-.-

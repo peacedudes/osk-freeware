@@ -1,4 +1,4 @@
-runb bio
+$ runb bio
 
 Biorhythm (c) 1987 by F.Kaefer V2.2e
 

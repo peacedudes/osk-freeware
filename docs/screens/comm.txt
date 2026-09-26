@@ -1,4 +1,4 @@
-comm tmp/B3C/a tmp/B3C/b
+$ comm tmp/B3C/a tmp/B3C/b
 apple
                 banana
                 cherry

@@ -1,4 +1,4 @@
-slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
+$ slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
 slice: 14 lines rejected to /nil
 $ ls -l
 total 24064

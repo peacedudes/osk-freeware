@@ -1,4 +1,4 @@
-uid tester
+$ uid tester
 User tester  GID:(UNKNOWN) 1  UID:7.
 $ newgrp -?
 Syntax: newgrp [<gid>]

@@ -1,4 +1,4 @@
-discord < README-KSH | head -n 20
+$ discord < README-KSH | head -n 20
 .PP
 Do echo loop x echo
 loop i in assembly,

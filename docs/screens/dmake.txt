@@ -1,4 +1,4 @@
-rm -f tmp/greeting
+$ rm -f tmp/greeting
 $ dmake -V
 dmake - Copyright (c) 1990,1991 by Dennis Vadura, Version 3.70, PL 2
 

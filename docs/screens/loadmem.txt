@@ -1,4 +1,4 @@
-loadmem 8000 80FF m.txt
+$ loadmem 8000 80FF m.txt
 $ savemem 8000 8027 back.bin
 $ dump back.bin
 

@@ -1,4 +1,4 @@
-./collect -o ctors.a greet.r
+$ ./collect -o ctors.a greet.r
 $ cat ctors.a
         psect collect_gc,0,0,0,0,0
         vsect

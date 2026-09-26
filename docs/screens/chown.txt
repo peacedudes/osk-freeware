@@ -1,4 +1,4 @@
-fstat tmp/FILESA/usr.txt
+$ fstat tmp/FILESA/usr.txt
 
 Filename:     tmp/FILESA/usr.txt
 Owner:        0.0

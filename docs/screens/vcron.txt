@@ -1,4 +1,4 @@
-vcron
+$ vcron
 vcron: YOU are NOT allowed to start Vcron !
 $ crontab -l
 no crontab for tester

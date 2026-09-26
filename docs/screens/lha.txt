@@ -1,4 +1,4 @@
-lha a tmp/ARC/k.lzh SRC/keep/keep.c
+$ lha a tmp/ARC/k.lzh SRC/keep/keep.c
 SRC/keep/keep.c - Frozen (32%)
 $ lha l tmp/ARC/k.lzh
  PERMSSN  UID GID    SIZE  RATIO     STAMP    NAME

@@ -1,4 +1,4 @@
-combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix
+$ combine tmp/UTILA/cmb/even tmp/UTILA/cmb/odd tmp/UTILA/cmb/mix
 
 file: tmp/UTILA/cmb/even  opened for input
 file: tmp/UTILA/cmb/odd  opened for input

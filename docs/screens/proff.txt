@@ -1,4 +1,4 @@
-proff tmp/TXT/jab.r | head -n 14
+$ proff tmp/TXT/jab.r | head -n 14
 
 
 

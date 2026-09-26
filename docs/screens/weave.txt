@@ -1,4 +1,4 @@
-weave sample none
+$ weave sample none
 This is WEAVE, C Version 4.2
 *1*2
 Writing the output file...*1*2

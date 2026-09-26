@@ -1,4 +1,4 @@
-rsconvert tmp/old.ray
+$ rsconvert tmp/old.ray
 /* Converted by rsconvert */
 screen 32 24
 

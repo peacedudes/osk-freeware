@@ -1,4 +1,4 @@
-gcc_cccp DOC/samples/hello.c tmp/hello.i
+$ gcc_cccp DOC/samples/hello.c tmp/hello.i
 $ cat tmp/hello.i
 # 1 "DOC/samples/hello.c"
 int main()

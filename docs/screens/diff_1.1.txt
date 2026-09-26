@@ -1,4 +1,4 @@
-diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
+$ diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 2c2
 < pear
 ---

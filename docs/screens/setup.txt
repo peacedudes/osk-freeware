@@ -1,4 +1,4 @@
-setup -d
+$ setup -d
 info_num  = 10
 info_size = 800
 info      = 49074

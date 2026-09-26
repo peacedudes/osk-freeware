@@ -1,4 +1,4 @@
-unpacklib.os9 alib.l
+$ unpacklib.os9 alib.l
 $ ls
 adump.r        gethostname.r  perror.r       stat.r         strucmp.r
 alarm.r        getopt.r       pipe.r         strchr.r       strucpy.r

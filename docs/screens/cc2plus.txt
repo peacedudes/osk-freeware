@@ -1,4 +1,4 @@
-./cc2plus -version
+$ ./cc2plus -version
 GNU C++ version 2.5.8 (68k, Motorola/OSK syntax, srcdbg support) compiled by GNU
  C version 2.5.8.
 enabled: -fpeephole -ffunction-cse -fpcc-struct-return -fcommon -mregparm

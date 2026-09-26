@@ -1,4 +1,4 @@
-mesg -?
+$ mesg -?
 Syntax: mesg [-]flags
 Function: Changes flags for current user in utmp
 Options:

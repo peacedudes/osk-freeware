@@ -1,4 +1,4 @@
-ref crc_of
+$ ref crc_of
 keep.c, line 88:
 /* ---------------------------------------------------------------- CRC ---
  * The OS-9 module CRC: polynomial $800063, complemented.  Used here on

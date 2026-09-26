@@ -1,4 +1,4 @@
-strings -l=12 CMDS/file | head -n 14
+$ strings -l=12 CMDS/file | head -n 14
 $00017F: <t install math trap handler >
 $0002DC: <File Manager >
 $0002EA: <Trap Library >

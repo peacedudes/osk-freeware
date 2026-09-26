@@ -1,4 +1,4 @@
-ls -lR tmp/FILESA/bk
+$ ls -lR tmp/FILESA/bk
 total 1536
 -rw-rw-rw-   1 7        1              40 Sep 24 02:44 notes.txt
 -rw-rw-rw-   1 7        1              40 Sep 24 02:44 notes.txt_bak

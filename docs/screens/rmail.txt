@@ -1,3 +1,3 @@
-rmail tester < letter
+$ rmail tester < letter
 $ ls tester
 m201260924134047  mail..list

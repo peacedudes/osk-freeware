@@ -1,4 +1,4 @@
-mkindex < /nil
+$ mkindex < /nil
       0     -1
 $ ls -l
 total 85504

@@ -1,4 +1,4 @@
-pgmramp -lr 152 88 > tmp/r2.pgm
+$ pgmramp -lr 152 88 > tmp/r2.pgm
 $ pgmramp -tb 152 88 > tmp/r3.pgm
 $ pnmarith -multiply tmp/r2.pgm tmp/r3.pgm | pgmtopbm | pbmtoascii -2x4
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM

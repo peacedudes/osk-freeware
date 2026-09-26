@@ -1,4 +1,4 @@
-mtvtoppm x.mtv > out.ppm
+$ mtvtoppm x.mtv > out.ppm
 $ pnmfile out.ppm
 out.ppm:        PPM raw, 4 by 2  maxval 255
 $ pnmnoraw out.ppm

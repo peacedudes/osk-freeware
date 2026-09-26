@@ -1,4 +1,4 @@
-pageline < tmp/TXT/titles
+$ pageline < tmp/TXT/titles
 The 1
 Art 1
 of 1

@@ -1,4 +1,4 @@
-cat bits
+$ cat bits
 + O + + O + + +
 + O O + + O + O
 + O O + O O + +

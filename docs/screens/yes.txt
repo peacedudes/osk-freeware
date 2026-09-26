@@ -1,4 +1,4 @@
-yes hello | head -n 3
+$ yes hello | head -n 3
 hello
 hello
 hello

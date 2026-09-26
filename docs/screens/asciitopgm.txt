@@ -1,4 +1,4 @@
-cat tmp/NPIB/art.txt
+$ cat tmp/NPIB/art.txt
 
 
 

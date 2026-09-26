@@ -1,4 +1,4 @@
-morse -s sos
+$ morse -s sos
  ...,
  ---,
  ...,

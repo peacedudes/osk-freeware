@@ -1,4 +1,4 @@
-unzip -l sample.zip
+$ unzip -l sample.zip
  Length    Date    Time    Name ("^" ==> case
  ------    ----    ----    ----   conversion)
    4033  08-30-92  12:00   readme

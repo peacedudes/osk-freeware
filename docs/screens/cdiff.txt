@@ -1,4 +1,4 @@
-head -n 3 SYS/holidays > tmp/h1 2>/nil
+$ head -n 3 SYS/holidays > tmp/h1 2>/nil
 $ sed -e "s/Day/DAY/" tmp/h1 > tmp/h2
 $ cdiff tmp/h1 tmp/h2
 >>>> Difference of file "tmp/h1" and file "tmp/h2".

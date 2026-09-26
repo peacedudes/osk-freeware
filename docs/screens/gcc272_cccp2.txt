@@ -1,4 +1,4 @@
-./gcc272_cccp2 hello.c hello.i; cat hello.i
+$ ./gcc272_cccp2 hello.c hello.i; cat hello.i
 # 1 "hello.c"
 
 int main()

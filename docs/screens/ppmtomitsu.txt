@@ -1,4 +1,4 @@
-ppmtomitsu tmp/NPMB/q.ppm > tmp/NPMB/o.mitsu
+$ ppmtomitsu tmp/NPMB/q.ppm > tmp/NPMB/o.mitsu
 ppmtomitsu: found 6 colors - using the lookuptable-method
 ppmtomitsu: rotating image for output
 $ ls -l tmp/NPMB/o.mitsu

@@ -1,4 +1,4 @@
-pgmramp -lr 48 24 > tmp/base.pgm
+$ pgmramp -lr 48 24 > tmp/base.pgm
 $ ppmpat -gingham3 48 24 > tmp/base.ppm
 $ pbmmake -g 48 24 > tmp/base.pbm
 $ pnmfile tmp/base.pgm tmp/base.ppm tmp/base.pbm

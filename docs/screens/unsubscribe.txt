@@ -1,4 +1,4 @@
-cat .newsrc
+$ cat .newsrc
 control!
 junk!
 $ unsubscribe comp.sys.m68k

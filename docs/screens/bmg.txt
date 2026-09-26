@@ -1,4 +1,4 @@
-bmg cribbage DOC/INDEX
+$ bmg cribbage DOC/INDEX
   cpu             cribbage        crypto          cuts
 /h0/games/hack/playground, cribbage wants /h0/games/crib/criblog).
   crib           cribbage.  Needs TERM set, so run it from a login session --

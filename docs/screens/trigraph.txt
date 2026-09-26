@@ -1,4 +1,4 @@
-trigraph | head -n 22
+$ trigraph | head -n 22
 char*a??(??)=??<
 "??=include<stdio.h>",
 "??=include<stdlib.h>",

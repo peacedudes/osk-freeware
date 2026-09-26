@@ -1,4 +1,4 @@
-cat tmp/DEV/t.a
+$ cat tmp/DEV/t.a
  nam test
  start ldx #buf
 loop lda ,x+

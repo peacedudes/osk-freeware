@@ -1,3 +1,3 @@
-pgmtolispm tmp/NPMB/g.pgm > tmp/NPMB/o.lispm
+$ pgmtolispm tmp/NPMB/g.pgm > tmp/NPMB/o.lispm
 $ ls -l tmp/NPMB/o.lispm
 -rw-rw-rw-   1 7        1            1573 Sep 24 02:33 tmp/NPMB/o.lispm

@@ -1,4 +1,4 @@
-mkdict < /nil
+$ mkdict < /nil
 $ ls -l
 total 85504
 -rw-rw-rw-   1 0        0           80520 Aug  3 19:00 dict

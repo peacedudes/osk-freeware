@@ -1,4 +1,4 @@
-fstat CMDS/tar
+$ fstat CMDS/tar
 
 Filename:     CMDS/tar
 Owner:        0.0

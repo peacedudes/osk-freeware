@@ -1,4 +1,4 @@
-pgmramp -lr 40 20 > tmp/ramp.pgm
+$ pgmramp -lr 40 20 > tmp/ramp.pgm
 $ pgmtopbm -threshold tmp/ramp.pgm > tmp/ramp.pbm
 $ ppmpat -gingham2 40 20 > tmp/ging.ppm
 $ pnmfile tmp/ramp.pgm tmp/ramp.pbm tmp/ging.ppm

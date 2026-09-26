@@ -1,4 +1,4 @@
-echo "alpha" > tmp/fc1
+$ echo "alpha" > tmp/fc1
 $ echo "bravo" >> tmp/fc1
 $ cp tmp/fc1 tmp/fc2
 $ echo "charlie" >> tmp/fc2

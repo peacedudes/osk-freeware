@@ -1,2 +1,2 @@
-su tester whoami
+$ su tester whoami
 tester

@@ -1,4 +1,4 @@
-msattrib +r a:MOTD.TXT
+$ msattrib +r a:MOTD.TXT
 $ msattrib a:MOTD.TXT
   A    R     A:/MOTD.TXT
 $ msattrib -r a:MOTD.TXT

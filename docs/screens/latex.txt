@@ -1,4 +1,4 @@
-latex small.tex
+$ latex small.tex
 This is TeX, C Version 3.14
 (small.tex
 LaTeX Version 2.09 <7 Dec 1989>

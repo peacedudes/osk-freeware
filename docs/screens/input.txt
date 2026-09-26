@@ -1,4 +1,4 @@
-input <lines.txt
+$ input <lines.txt
 the first line
 the second line
 and the third

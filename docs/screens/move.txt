@@ -1,4 +1,4 @@
-dir from to
+$ dir from to
 
 Directory of "from" 03:02:13  09/24/126
 

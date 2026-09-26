@@ -1,4 +1,4 @@
-unkeep greg
+$ unkeep greg
 greg:
   removed /dd/tmp/SYSB/kp/CMDS/greg
 

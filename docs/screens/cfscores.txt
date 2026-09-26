@@ -1,4 +1,4 @@
-cfscores
+$ cfscores
 *----------------------*
 * Losses for tester    *
 *======================*

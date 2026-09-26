@@ -1,4 +1,4 @@
-ls -lR tmp/FILESA/rmd
+$ ls -lR tmp/FILESA/rmd
 total 1024
 -rw-rw-rw-   1 7        1              40 Sep 24 02:43 a
 drwxrwxrwx   1 7        1              96 Sep 24 02:43 sub

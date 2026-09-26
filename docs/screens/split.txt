@@ -1,4 +1,4 @@
-split -l 10 SYS/holidays tmp/TEXTA/SP/part
+$ split -l 10 SYS/holidays tmp/TEXTA/SP/part
 $ ls -l tmp/TEXTA/SP
 total 2048
 -rw-------   1 7        1             196 Sep 24 02:08 partaa

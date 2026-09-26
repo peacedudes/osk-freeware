@@ -1,4 +1,4 @@
-dirname CMDS/GAMES/hack ; echo
+$ dirname CMDS/GAMES/hack ; echo
 CMDS/GAMES
 $ dirname SYS/termcap ; echo
 SYS

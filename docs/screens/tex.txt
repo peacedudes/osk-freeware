@@ -1,4 +1,4 @@
-cat story.tex | head -n 6
+$ cat story.tex | head -n 6
 \hrule
 \vskip 1in
 \centerline{\bf A SHORT STORY}

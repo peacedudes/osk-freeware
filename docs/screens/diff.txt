@@ -1,4 +1,4 @@
-head -n 12 SYS/motd > tmp/a.txt 2>/nil
+$ head -n 12 SYS/motd > tmp/a.txt 2>/nil
 $ sed -e "s/OS-9/OS-Nine/" tmp/a.txt > tmp/b.txt
 $ diff -c tmp/a.txt tmp/b.txt
 *** tmp/a.txt   126/9/24 1:26 AM--- tmp/b.txt   126/9/24 1:27 AM***************

@@ -1036,6 +1036,12 @@
 "builtin cd /dd"
 ]
 },
+"disable": {
+"setup": [
+"/h1/CMDS/load /dd/CMDS/DRIVERS/tty",
+"disable -?"
+]
+},
 "discord": {
 "setup": [
 "builtin cd /dd/DOC"

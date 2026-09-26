@@ -1,4 +1,4 @@
-dvioki story.dvi
+$ dvioki story.dvi
 [TeX82 DVI Translator Version 2.10]
 [OKIDATA 192 dot matrix printer at 144dpi]
 [Input from DVI file story.dvi]

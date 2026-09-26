@@ -1,4 +1,4 @@
-ppmforge -mesh 8 -width 72 -height 44 -seed 7 > tmp/NEAB/pl.ppm
+$ ppmforge -mesh 8 -width 72 -height 44 -seed 7 > tmp/NEAB/pl.ppm
 ppmforge: planet: -seed 7 -dimension 2.40 -power 1.20 -mesh 8
 ppmforge:         -inclination -4 -hour 5 -ice 0.40 -glaciers 0.75
 ppmforge:         -stars 100 -saturation 125.

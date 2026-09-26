@@ -1,2 +1,2 @@
-lessecho one "two words" three
+$ lessecho one "two words" three
 one "two words" three

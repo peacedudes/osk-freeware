@@ -1,2 +1,2 @@
-gzipcpu32k_csl -v tmp/ARC/g7
+$ gzipcpu32k_csl -v tmp/ARC/g7
 tmp/ARC/g7:              65.0% -- replaced with tmp/ARC/g7.gz

@@ -1,4 +1,4 @@
-ifdef -DOSK tmp/DEV/ifd.c
+$ ifdef -DOSK tmp/DEV/ifd.c
 int on_os9 = 1;
 int always = 2;
 $ ifdef -UOSK tmp/DEV/ifd.c

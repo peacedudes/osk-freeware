@@ -1,4 +1,4 @@
-macunpack -H
+$ macunpack -H
 File output options:
 -b:     MacBinary (default)
 -s:     MacBinary stream to standard output

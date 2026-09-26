@@ -1,2 +1,2 @@
-texidx sample.idx
+$ texidx sample.idx
 texi: virtual memory exhausted

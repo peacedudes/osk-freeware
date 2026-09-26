@@ -1,4 +1,4 @@
-pktype logo10.120pk > pt.out
+$ pktype logo10.120pk > pt.out
 $ cat pt.out | head -n 16
 This is PKtype, C Version 2.3
 'GFtoPK 2.3 output from METAFONT output 2026.09.24:0157'

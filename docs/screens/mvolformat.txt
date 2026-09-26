@@ -1,4 +1,4 @@
-mvolformat /r0 Data 2
+$ mvolformat /r0 Data 2
 format /r0 "-v=Data Vol 1" -r
 Hit RETURN when drive ready:
 

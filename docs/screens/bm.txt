@@ -1,4 +1,4 @@
-echo "hello from bm" | bm -s "a test" someone@far.ampr
+$ echo "hello from bm" | bm -s "a test" someone@far.ampr
 $ cat mqueue/1.txt
 Date: Thu, 24 Sep 26 03:15:15 GMT
 Message-Id: <1@test.ampr>

@@ -1,4 +1,4 @@
-pnmcut 8 4 24 12 tmp/NEAB/r.pgm > tmp/NEAB/c.pgm
+$ pnmcut 8 4 24 12 tmp/NEAB/r.pgm > tmp/NEAB/c.pgm
 $ pnmfile tmp/NEAB/r.pgm tmp/NEAB/c.pgm
 tmp/NEAB/r.pgm: PGM raw, 48 by 24  maxval 255
 tmp/NEAB/c.pgm: PGM raw, 24 by 12  maxval 255

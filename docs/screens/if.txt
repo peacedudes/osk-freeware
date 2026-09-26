@@ -1,4 +1,4 @@
-command if def TERM whoami endif
+$ command if def TERM whoami endif
 tester
 $ command if loaded nosuch whoami else today endif
 Today is Thursday, the twenty-fourth day of September, two thousand and

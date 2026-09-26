@@ -1,4 +1,4 @@
-ppmtoilbm tmp/base.ppm | ilbmtoppm | pnmfile
+$ ppmtoilbm tmp/base.ppm | ilbmtoppm | pnmfile
 ppmtoilbm: computing colormap...
 ppmtoilbm: 6 colors found
 ppmtoilbm: BODY compression (byterun1): 8%

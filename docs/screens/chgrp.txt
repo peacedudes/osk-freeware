@@ -1,4 +1,4 @@
-fstat tmp/FILESA/grp.txt
+$ fstat tmp/FILESA/grp.txt
 
 Filename:     tmp/FILESA/grp.txt
 Owner:        1.7

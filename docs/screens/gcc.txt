@@ -1,4 +1,4 @@
-printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
 $ ./gcc -v
 gcc version 1.42
 $ ./gcc -v -c hello.c

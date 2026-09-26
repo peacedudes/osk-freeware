@@ -1,4 +1,4 @@
-fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
+$ fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
 m201260924142417  mail..list
 $ cat tmp/FSMAIL/tester/m2*
 >From FILESERV Thu, 24 Sep 26 14:24:17 -0500

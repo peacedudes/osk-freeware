@@ -1,4 +1,4 @@
-submit demo
+$ submit demo
 wc poem
       4     23    137 poem
 md5 poem

@@ -1,4 +1,4 @@
-grep -n "chess" DOC/INDEX | head -n 10
+$ grep -n "chess" DOC/INDEX | head -n 10
 881:  ggrep           gnuchess        gnuchessn       gnuchessr
 1021:ularn is complete and also runs.  gnuchessc and gnuan read their data
 1600: *gnuchess       GNU Chess, the build `gnuchess' runs: first on PATH, it

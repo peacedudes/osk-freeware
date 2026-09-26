@@ -1,4 +1,4 @@
-ls -l motd
+$ ls -l motd
 -rw-rw-rw-   1 7        1              40 Sep 24 02:39 motd
 $ cp motd motd.copy; ls -l motd.copy
 -rw-rw-rw-   1 7        1              40 Sep 24 02:39 motd.copy

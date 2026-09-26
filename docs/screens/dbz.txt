@@ -1,4 +1,4 @@
-dbz history
+$ dbz history
 $ ls -l history.dir history.pag
 -rw-------   1 7        1              60 Sep 24 01:03 history.dir
 -rw-------   1 7        1          480044 Sep 24 01:03 history.pag

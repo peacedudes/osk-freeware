@@ -1,4 +1,4 @@
-lmail tester < tmp/note
+$ lmail tester < tmp/note
 $ tail -l=5 SPOOL/MAIL/tester
 Subject: hello
 Status: N

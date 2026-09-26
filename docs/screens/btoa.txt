@@ -1,4 +1,4 @@
-cat tmp/ENC/j.txt
+$ cat tmp/ENC/j.txt
 Twas brillig, and the slithy toves
 $ btoa < tmp/ENC/j.txt
 xbtoa Begin

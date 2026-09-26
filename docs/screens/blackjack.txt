@@ -1,4 +1,4 @@
-runb blackjack
+$ runb blackjack
    Las Vegas Blackjack
 written by: Mike Theys - Aug. 1969
 What is your name? Tester

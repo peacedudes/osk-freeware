@@ -1,4 +1,4 @@
-ppmtopcx tmp/base.ppm > tmp/t.pcx
+$ ppmtopcx tmp/base.ppm > tmp/t.pcx
 ppmtopcx: computing colormap...
 ppmtopcx: 6 colors found
 $ ls -l tmp/t.pcx

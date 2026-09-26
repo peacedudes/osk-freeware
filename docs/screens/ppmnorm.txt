@@ -1,4 +1,4 @@
-ppmhist tmp/NEAB/nd.ppm
+$ ppmhist tmp/NEAB/nd.ppm
  r   g   b      lum     count
 --- --- ---     ---     -----
 101 101 101     101     800

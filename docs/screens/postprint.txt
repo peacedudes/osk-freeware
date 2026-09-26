@@ -1,2 +1,2 @@
-postprint
+$ postprint
 /V 11 72 mul def /L 60 def

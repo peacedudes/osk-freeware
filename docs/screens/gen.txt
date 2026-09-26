@@ -1,4 +1,4 @@
-gen -p tmp/SYSB/demo
+$ gen -p tmp/SYSB/demo
 $ cat tmp/SYSB/demo.c | head -n 16
 /*********************************************************************
 file name and type:

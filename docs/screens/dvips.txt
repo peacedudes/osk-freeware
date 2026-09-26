@@ -1,4 +1,4 @@
-dvips -M story.dvi -o story.ps
+$ dvips -M story.dvi -o story.ps
 This is dvipsk 5.495b Copyright 1986, 1992 Radical Eye Software
 ' TeX output 2026.09.24:0214' -> story.ps
 <tex.pro>. [1]

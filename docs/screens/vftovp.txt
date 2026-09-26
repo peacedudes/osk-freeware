@@ -1,4 +1,4 @@
-vftovp s.vf s.tfm tmp/TEX/back.vpl
+$ vftovp s.vf s.tfm tmp/TEX/back.vpl
 This is VFtoVP, C Version 1.2
 A one-character virtual font, for demonstrating vptovf and vftovp
 MAPFONT 0: cmr10 at 10.00pt

@@ -1,4 +1,4 @@
-ls -l f
+$ ls -l f
 -rw-rw-rw-   1 0        0              16 Sep 24 01:12 f
 $ trunc f 8
 $ ls -l f; cat f; echo

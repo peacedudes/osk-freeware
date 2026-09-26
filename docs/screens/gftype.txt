@@ -1,4 +1,4 @@
-gftype -i logo10.120gf > gt.out
+$ gftype -i logo10.120gf > gt.out
 $ cat gt.out | head -n 22
 This is GFtype, C Version 3.1
 Options selected: Mnemonic output = false; pixel output = true.

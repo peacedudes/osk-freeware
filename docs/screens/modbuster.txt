@@ -1,4 +1,4 @@
-modbuster twomods
+$ modbuster twomods
 cat
 getenv
 .

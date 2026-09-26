@@ -1,4 +1,4 @@
-time wc DOC/samples/jabber.txt
+$ time wc DOC/samples/jabber.txt
       4     23    137 DOC/samples/jabber.txt
 
 Real time     :   0    s

@@ -1,4 +1,4 @@
-pnmtofits tmp/base.pgm | fitstopnm | pnmfile
+$ pnmtofits tmp/base.pgm | fitstopnm | pnmfile
 fitstopnm: writing PGM file
 stdin:  PGM raw, 48 by 24  maxval 255
 $ pnmtoxwd tmp/base.ppm | xwdtopnm | pnmfile

@@ -1,4 +1,4 @@
-zc 50325
+$ zc 50325
 Des Moines, IA.
 $ zc 02139
 Cambridge, MA.

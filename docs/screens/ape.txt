@@ -1,4 +1,4 @@
-ape -b=12k -l=5 < VH/jargon.txt | head -n 14
+$ ape -b=12k -l=5 < VH/jargon.txt | head -n 14
 on, folklore the text communications of relation well adapted to eliminated and
 the `Jargon File in they, too,
 contrast, high-context common heritage of hacker folklore and larger population

@@ -1,4 +1,4 @@
-echo "%token NUM" > tmp/b.y
+$ echo "%token NUM" > tmp/b.y
 $ echo "%%" >> tmp/b.y
 $ echo "expr : expr NUM | NUM ;" >> tmp/b.y
 $ bison -v tmp/b.y

@@ -1,4 +1,4 @@
-msdir a:
+$ msdir a:
  Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00
  Directory for A:/

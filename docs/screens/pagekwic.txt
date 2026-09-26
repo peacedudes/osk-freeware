@@ -1,4 +1,4 @@
-pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
+$ pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
 Twas brillig, and 1
 brillig, and Twas 1
 and Twas brillig, 1

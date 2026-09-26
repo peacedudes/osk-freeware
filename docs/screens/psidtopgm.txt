@@ -1,4 +1,4 @@
-echo ffffffffffffffff0000000000000000 > tmp/NPIB/i.ps
+$ echo ffffffffffffffff0000000000000000 > tmp/NPIB/i.ps
 $ psidtopgm 8 2 8 < tmp/NPIB/i.ps > tmp/NPIB/p.pgm
 $ pnmnoraw tmp/NPIB/p.pgm
 P2

@@ -1,4 +1,4 @@
-lharc a tmp/ARC/l.lzh SYS/motd
+$ lharc a tmp/ARC/l.lzh SYS/motd
 
 SYS/motd - Frozen(100%)o
 $ lharc l tmp/ARC/l.lzh

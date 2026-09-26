@@ -1,4 +1,4 @@
-ls -al SYS | head -n 18
+$ ls -al SYS | head -n 18
 total 958464
 drwxrwxrwx   1 0        0            1408 Sep 24 02:46 .
 drwxrwxrwx   1 0        0            1440 Sep 24 00:11 ..

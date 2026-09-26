@@ -1,4 +1,4 @@
-filter -?
+$ filter -?
 Usage: | filter [-nrvlq] [-f rules] [-o file]
         or: filter [-c] -[s|S]
 $ filter -v <msg.txt

@@ -1,4 +1,4 @@
-newsrun -v; cat junk/1
+$ newsrun -v; cat junk/1
 Processsing `..' Name restriction
 Processsing `.' Name restriction
 Processsing `.keep' Name restriction

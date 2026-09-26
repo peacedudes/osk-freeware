@@ -1,4 +1,4 @@
-pgmtopbm tmp/NEAB/sr.pgm | pbmtoascii -2x4
+$ pgmtopbm tmp/NEAB/sr.pgm | pbmtoascii -2x4
 MMHM&Fk&$?}???S:::-:-.
 MMM9H&$F&Z{||:>::/: -.
 MMH9&HZ&$\((((/;::::`.

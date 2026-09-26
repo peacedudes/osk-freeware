@@ -1,4 +1,4 @@
-cat tmp/DEV/p.diff
+$ cat tmp/DEV/p.diff
 2c2
 < two
 ---

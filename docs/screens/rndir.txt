@@ -1,4 +1,4 @@
-rndir -l
+$ rndir -l
 
 #### RNDIR  V1.0  13.02.1990 by F.R.Schmitt ####
 

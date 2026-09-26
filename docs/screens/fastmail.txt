@@ -1,4 +1,4 @@
-messages
+$ messages
 There is 1 message in your mailbox
 $ fastmail msg.txt tester
 $ messages

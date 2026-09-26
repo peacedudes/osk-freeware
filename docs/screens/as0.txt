@@ -1,4 +1,4 @@
-as0 sample.a0 - l s
+$ as0 sample.a0 - l s
 0001                         * sample.a0 -- a 6800 program for as0, the 6800/6802 cross-as
 sembler.
 0002                         *

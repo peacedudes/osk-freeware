@@ -1,4 +1,4 @@
-biory
+$ biory
   Ausgabe im Listingfile 'Biory.Lis'
   Name Vorname (RETURN=Ende)  : Anna Bergmann
   Geburtsdatum (TTMMJJ)       : 140365

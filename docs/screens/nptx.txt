@@ -1,4 +1,4 @@
-nptx <name.txt
+$ nptx <name.txt
 Public  jqpublic
 J.Public        jqpublic
 John.Public     jqpublic

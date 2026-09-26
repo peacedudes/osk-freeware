@@ -1,4 +1,4 @@
-jumble2
+$ jumble2
 Do you want directions? n
 
 Difficulty levels:

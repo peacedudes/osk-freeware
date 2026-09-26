@@ -1,4 +1,4 @@
-export PORT=/term; run "ls SYS"
+$ export PORT=/term; run "ls SYS"
 ATERM           birthdays       ephem.db        magic           setterm
 HELP            bootlog         errmsg          motd            startup
 PEP             browse.hlp      gnuplot.gih     mtools.conf     startup.mk

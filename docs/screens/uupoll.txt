@@ -1,4 +1,4 @@
-uupoll seabass
+$ uupoll seabass
 $ ls -l SPOOL/uucp/seabass
 total 1024
 -rw-------   1 1        3               0 Sep 24 00:35 C.seabassAPOLL

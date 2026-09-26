@@ -1,4 +1,4 @@
-zip test.zip motd
+$ zip test.zip motd
 adding motd (deflated 44%)
 zip warning: new zip file left as: _Z000004
 zip error: file not found

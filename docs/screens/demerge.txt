@@ -1,4 +1,4 @@
-demerge both
+$ demerge both
 $ ls -l
 total 41984
 -rw-rw-rw-   1 0        0           20898 Sep 24 01:12 both

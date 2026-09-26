@@ -1,4 +1,4 @@
-smiley "8-)" "*<|:-)"
+$ smiley "8-)" "*<|:-)"
 8-)     excited
         glasses
         sunglasses

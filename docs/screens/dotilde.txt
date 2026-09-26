@@ -1,4 +1,4 @@
-dotilde <msg.txt
+$ dotilde <msg.txt
 Unrecognized tilde command
 
 Continuing...type "." or <ESC> to end message...

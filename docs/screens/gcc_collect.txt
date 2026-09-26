@@ -1,4 +1,4 @@
-gcc_collect -o ctors.a greet.r
+$ gcc_collect -o ctors.a greet.r
 $ cat ctors.a
         psect collect_gc,0,0,0,0,0
         vsect

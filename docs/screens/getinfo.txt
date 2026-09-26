@@ -1,4 +1,4 @@
-getinfo -a
+$ getinfo -a
 SYSINFO Rev. 1
 
 Name                  Type        Parameter

@@ -1,4 +1,4 @@
-brushtopbm DOC/samples/os9.brush | pbmtoascii
+$ brushtopbm DOC/samples/os9.brush | pbmtoascii
 
     o"""o   o""""   o"""o
     M   M   "ooo    "oooM

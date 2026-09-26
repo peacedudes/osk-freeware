@@ -1,4 +1,4 @@
-pnmscale -xysize 152 88 DEMO/sphere.pgm > tmp/sph.pgm
+$ pnmscale -xysize 152 88 DEMO/sphere.pgm > tmp/sph.pgm
 $ pgmtopbm tmp/sph.pgm | pbmtoascii -2x4
 M9RMRMRM9RM9RRM&RM&H&FR6H&&S6&&$9S&$&&SFSF&&S}FS$&S$&S$&])&Z%}$?[$\$$\S$)?\\
 MHH&RHMH&9H&HH&M1RH&&Fk&FF$$$7Z&4?%$$S$)Z?(($%\4|?4|Z??T$$$$\$$$$\$$%|T$?S?(

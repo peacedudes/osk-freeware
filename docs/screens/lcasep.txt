@@ -1,2 +1,2 @@
-lcasep <name.txt
+$ lcasep <name.txt
 john q public

@@ -1,4 +1,4 @@
-wn -L /nil -l /nil <rq.crlf | head -n 18
+$ wn -L /nil -l /nil <rq.crlf | head -n 18
 HTTP/1.0 200 OK
 
 Server: WN/1.14.4 OS-9 Version

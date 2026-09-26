@@ -1,4 +1,4 @@
-ppmpat -madras 64 40 > tmp/n.ppm
+$ ppmpat -madras 64 40 > tmp/n.ppm
 $ ppmntsc 0.8 tmp/n.ppm | pnmfile
 stdin:  PPM raw, 64 by 40  maxval 255
 $ ppmqvga tmp/n.ppm | pnmfile

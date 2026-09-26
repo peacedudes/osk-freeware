@@ -1,4 +1,4 @@
-dld motd
+$ dld motd
 dld version 1.4   (c) 1986 FHL
 
 Beginning XMODEM download (control-X will abort).

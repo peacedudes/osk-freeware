@@ -1,4 +1,4 @@
-mscd a:/DOCS
+$ mscd a:/DOCS
 $ mscd
 A:/DOCS
 $ msdir

@@ -1,4 +1,4 @@
-echo "stressed" | rev
+$ echo "stressed" | rev
 desserts
 $ cat tmp/B3R/w.txt
 stressed

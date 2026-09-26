@@ -1,4 +1,4 @@
-msmove a:MOTD.TXT a:/MOVED/MOTD.TXT
+$ msmove a:MOTD.TXT a:/MOVED/MOTD.TXT
 $ msdir a:/MOVED
  Volume in drive A is FREEWARE
  Volume Serial Number is 35D7-0A00

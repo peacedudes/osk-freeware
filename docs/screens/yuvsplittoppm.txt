@@ -1,4 +1,4 @@
-ppmtoyuvsplit tmp/NPIB/y tmp/NPIB/c.ppm
+$ ppmtoyuvsplit tmp/NPIB/y tmp/NPIB/c.ppm
 $ yuvsplittoppm tmp/NPIB/y 48 24 > tmp/NPIB/back.ppm
 $ pnmfile tmp/NPIB/back.ppm
 tmp/NPIB/back.ppm:      PPM raw, 48 by 24  maxval 255

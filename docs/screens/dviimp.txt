@@ -1,4 +1,4 @@
-dviimp story.dvi
+$ dviimp story.dvi
 [TeX82 DVI Translator Version 2.10]
 [imPRESS [Imagen laser printer family]]
 [Input from DVI file story.dvi]

@@ -1,2 +1,2 @@
-echo hello world | encode | decode
+$ echo hello world | encode | decode
 hello world

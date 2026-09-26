@@ -1,2 +1,2 @@
-lgrep ksh SYS/password SYS/login SYS/motd
+$ lgrep ksh SYS/password SYS/login SYS/motd
 SYS/login

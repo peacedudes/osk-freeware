@@ -1,4 +1,4 @@
-devprc -a
+$ devprc -a
 
 PID=2, NAME=bash
         PROCESSPATH=0, SYSPATH=1, DEVICE=/term

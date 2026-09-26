@@ -1,4 +1,4 @@
-pathalias -l milkyway map
+$ pathalias -l milkyway map
 milkyway        %s
 phoenix phoenix!%s
 seabass phoenix!seabass!%s

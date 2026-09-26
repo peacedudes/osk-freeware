@@ -1,4 +1,4 @@
-pgmramp -lr 30 16 > tmp/ramp2.pgm
+$ pgmramp -lr 30 16 > tmp/ramp2.pgm
 $ pnmtile 60 32 tmp/ramp2.pgm > tmp/tile2.pgm
 $ pnmpad -white -l10 -r10 tmp/tile2.pgm > tmp/pad2.pgm
 $ pnmfile tmp/ramp2.pgm tmp/tile2.pgm tmp/pad2.pgm

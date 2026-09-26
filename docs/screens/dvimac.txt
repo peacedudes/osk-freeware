@@ -1,4 +1,4 @@
-dvimac story.dvi
+$ dvimac story.dvi
 [TeX82 DVI Translator Version 2.10]
 [Apple ImageWriter 144 dpi dot matrix printer]
 [Input from DVI file story.dvi]

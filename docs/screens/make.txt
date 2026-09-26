@@ -1,4 +1,4 @@
-rm -f tmp/greeting
+$ rm -f tmp/greeting
 $ make -f DOC/make/demo.mk greeting
 os9exec() : cp /dd/SYS/motd /dd/tmp/greeting
 $ ls -l tmp/greeting

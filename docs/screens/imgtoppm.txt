@@ -1,2 +1,2 @@
-imgtoppm tmp/NPIB/none.img
+$ imgtoppm tmp/NPIB/none.img
 imgtoppm: tmp/NPIB/none.img -

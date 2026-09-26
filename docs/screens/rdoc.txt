@@ -1,4 +1,4 @@
-rdoc SRC/keep/keep.c | tail -l=24
+$ rdoc SRC/keep/keep.c | tail -l=24
        case  break
        case  break
        case  break

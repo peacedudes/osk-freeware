@@ -1,4 +1,4 @@
-printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
+$ printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
 $ rnews batch.txt
 Must be root
 $ ls -laR SPOOL/news/COMP

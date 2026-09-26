@@ -1,4 +1,4 @@
-cat tmp/TEXTA/c1.txt
+$ cat tmp/TEXTA/c1.txt
 the quick brown fox
 jumps over the lazy dog
 and lands in the river

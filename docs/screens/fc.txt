@@ -1,4 +1,4 @@
-CMDS/fc tmp/ENC/fc.txt
+$ CMDS/fc tmp/ENC/fc.txt
 Oops! File was already less than 350,000 bytes!
 That's ok. Now you have two copies of the same
 file.

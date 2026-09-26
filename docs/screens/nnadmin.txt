@@ -1,4 +1,4 @@
-nnadmin C
+$ nnadmin C
 
 Configuration:
 

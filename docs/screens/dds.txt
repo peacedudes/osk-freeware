@@ -1,4 +1,4 @@
-dds < tmp/dds.in
+$ dds < tmp/dds.in
 Ok
 Ok
 Ok

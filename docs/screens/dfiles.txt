@@ -1,4 +1,4 @@
-dfiles SYS
+$ dfiles SYS
 cmp -s  SYS/.LOCKS/MAIL.LOCKS/.keep SYS/.LOCKS/MAIL/.keep
 cmp -s  SYS/TEX/FONTS/PK144/Makefile SYS/TEX/FONTS/EPSON/Makefile
 cmp -s  SYS/TEX/FONTS/PK300/Makefile SYS/TEX/FONTS/EPSON/Makefile

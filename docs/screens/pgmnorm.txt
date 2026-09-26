@@ -1,4 +1,4 @@
-pgmnorm mo.pgm > mn.pgm
+$ pgmnorm mo.pgm > mn.pgm
 pgmnorm: remapping 96..150 to 0..255
 $ pgmtopbm mn.pgm | pbmtoascii -2x4
 \%/:?i</\:\\<//S/\%//:i?/:\\:i?]

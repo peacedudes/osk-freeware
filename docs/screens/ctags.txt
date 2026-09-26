@@ -1,4 +1,4 @@
-ctags keep.c
+$ ctags keep.c
 $ cat tags | head -n 8
 Mkeep   keep.c  /^main(argc, argv)$/
 copy_file       keep.c  /^static int copy_file(from, to, executable)$/

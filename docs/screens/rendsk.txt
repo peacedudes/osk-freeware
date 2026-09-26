@@ -1,4 +1,4 @@
-dinfo /dd
+$ dinfo /dd
 Device name   : /dd
 Volume name   : "OSK-Freeware"
 Creation date : 2026-9-23 23:12

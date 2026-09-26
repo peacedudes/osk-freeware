@@ -1,2 +1,2 @@
-echo ';:Ahello;:A' | cvt_help | xd
+$ echo ';:Ahello;:A' | cvt_help | xd
      0: 01 68 65 6C 6C 6F 01 0D

@@ -1,4 +1,4 @@
-export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
+$ export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
 $ ./gcc272 -S hello.c
 $ cat hello.a
         psect hello_gc,0,0,0,0,0

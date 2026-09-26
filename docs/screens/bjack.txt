@@ -1,4 +1,4 @@
-bjack 500
+$ bjack 500
 Shuffle...
 Total $500.  Wager?100
 Dealer: A?      Player: 84

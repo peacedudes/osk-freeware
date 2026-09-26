@@ -1,4 +1,4 @@
-wns -w=1 GPL DOC/README
+$ wns -w=1 GPL DOC/README
 DOC/README:
 DOC/README:Where a package is under the GPL, its COPYING file is kept here too -
 - that

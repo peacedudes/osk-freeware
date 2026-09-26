@@ -1,4 +1,4 @@
-almanac 0101.1995 12.0000
+$ almanac 0101.1995 12.0000
 
 Geocentric Coordinates       12:00:00       1/01/1995
 

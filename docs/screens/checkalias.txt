@@ -1,2 +1,2 @@
-checkalias os9 nosuchalias
+$ checkalias os9 nosuchalias
 Expands to: os9-freeware (The OS-9 Freeware Collection), nosuchalias@.UUCP

@@ -1,4 +1,4 @@
-vtxtcn; ls -l
+$ vtxtcn; ls -l
  packed:    33490 unpacked:     5049
 total 221184
 -rw-------   1 7        1              56 Sep 24 01:30 gtext.inc

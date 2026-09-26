@@ -1,4 +1,4 @@
-cat words.pl
+$ cat words.pl
 # words.pl -- the ten words a text uses most, with how often.
 #
 #     perl words.pl <file> ...

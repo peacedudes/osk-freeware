@@ -1,2 +1,2 @@
-m4_0.5 tmp/BLGX/mm.m4
+$ m4_0.5 tmp/BLGX/mm.m4
 hello world

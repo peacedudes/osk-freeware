@@ -1,2 +1,2 @@
-blastem -s motd; echo ""
+$ blastem -s motd; echo ""
 Blastem: Cannot open modem path (/t0) -

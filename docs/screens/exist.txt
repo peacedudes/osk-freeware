@@ -1,4 +1,4 @@
-exist SYS/motd; echo "exist says $?"
+$ exist SYS/motd; echo "exist says $?"
 exist says 0
 $ exist SYS/no-such-file; echo "exist says $?"
 exist says 1

@@ -1,4 +1,4 @@
-x9eyes
+$ x9eyes
 PwCreateMap error
 $ setbgptn SYS/motd
 setbgptn: can't open `/win'

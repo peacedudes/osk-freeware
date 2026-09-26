@@ -357,7 +357,15 @@ def sheet_shots(sheets=None):
                          "stanzas of one name share one capture file"
                          % (f, shot["name"], shots[shot["name"]]["sheet"]))
         for shot in parsed:
-            first = next((v for k, v in shot["acts"] if k == "run"), "")
+            # THE FIRST COMMAND ON THE SCREEN: the first `run' after the
+            # stanza's `clear', not its first `run' -- which is usually the
+            # hidden setup the clear wiped (a cd, a mkdir), so the shown
+            # command never matched and no card's first line got its `$',
+            # nor the typed-text colour that goes with it (2026-09-26).
+            runs = [v for k, v in shot["acts"] if k == "run"]
+            cut = next((i for i, v in enumerate(runs) if v.strip() == "clear"), None)
+            after = runs[cut + 1:] if cut is not None else runs
+            first = after[0] if after else ""
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
                                    "first": first,
                                    # Everything the stanza actually typed, so

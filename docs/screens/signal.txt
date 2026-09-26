@@ -1,4 +1,4 @@
-cron &
+$ cron &
 <4>
 $ signal 4 0; echo "status $?"
 status 0

@@ -1,2 +1,2 @@
-autoreply off
+$ autoreply off
 No-one is autoreplying to their mail!

@@ -1,4 +1,4 @@
-map -e DOC/INDEX
+$ map -e DOC/INDEX
                 Blockmap of DOC/INDEX 00:58:47
 Owner:   0.0
 Attr:  ---wr-wr

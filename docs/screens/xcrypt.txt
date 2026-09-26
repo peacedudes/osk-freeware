@@ -1,4 +1,4 @@
-cat a.txt
+$ cat a.txt
 Welcome to os9exec -- OS-9/68k emulator
 $ echo x > a.enc
 $ xcrypt a.txt a.enc

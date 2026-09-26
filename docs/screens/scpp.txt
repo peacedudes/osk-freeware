@@ -1,4 +1,4 @@
-cat s.c
+$ cat s.c
 #define WIDTH 80
 #define DEPTH 24
 int w = WIDTH, d = DEPTH;

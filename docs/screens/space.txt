@@ -1,4 +1,4 @@
-space DOC/gnuplot
+$ space DOC/gnuplot
 Space requirement of "DOC/gnuplot":
 
                                  Contents  Contents   Sectors   Sectors   # of

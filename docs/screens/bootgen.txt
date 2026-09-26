@@ -1,4 +1,4 @@
-bootgen -n=256 /r0 wc head
+$ bootgen -n=256 /r0 wc head
 $ ls -l /r0
 total 65536
 -rw-r--r--   1 7        1           65280 Sep 24 00:52 OS9boot

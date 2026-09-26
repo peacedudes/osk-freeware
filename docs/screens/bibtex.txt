@@ -1,4 +1,4 @@
-bibtex
+$ bibtex
 Please type input file name (no extension)--small
 This is BibTeX, C Version 0.99c
 The top-level auxiliary file: small.aux

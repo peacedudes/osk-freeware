@@ -1,2 +1,2 @@
-ssl DOC/INDEX
+$ ssl DOC/INDEX
 Sie sind doch nicht der Superuser - ooooder ?

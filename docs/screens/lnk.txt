@@ -1,4 +1,4 @@
-lnk fact
+$ lnk fact
 l68 -l=/h0/LIB/sys.l /h0/LIB/rtfstart.r -o=/h0/CMDS/fact fact.r
 $ fact
    n         n!

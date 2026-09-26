@@ -1,3 +1,3 @@
-dbz history
+$ dbz history
 $ newshist "<one@site.uucp>"
 newshist: no history entry for <one@site.uucp> nor <<one@site.uucp>>

@@ -1,4 +1,4 @@
-printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
 $ ./gcc2 -S -o hello.a hello.c
 $ cat hello.a | head -n 8
         psect hello_gc,0,0,0,0,0

@@ -1,4 +1,4 @@
-basename CMDS/GAMES/hack ; echo
+$ basename CMDS/GAMES/hack ; echo
 hack
 $ basename DOC/tex/none.ch .ch ; echo
 none

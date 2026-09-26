@@ -1,4 +1,4 @@
-lnk.org fact
+$ lnk.org fact
 $ fact
    n         n!
            1           1

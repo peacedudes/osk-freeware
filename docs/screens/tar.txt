@@ -1,4 +1,4 @@
-tar cvf tmp/ARC/keep.tar SRC/keep
+$ tar cvf tmp/ARC/keep.tar SRC/keep
 a SRC/keep/about.c, 24 tape blocks
 a SRC/keep/keep.c, 65 tape blocks
 a SRC/keep/keep.sh, 9 tape blocks

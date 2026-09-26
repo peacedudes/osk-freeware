@@ -1,4 +1,4 @@
-pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
+$ pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
 $ cat tmp/NPMB/o.fs | head -8
 FirstName:
 LastName:

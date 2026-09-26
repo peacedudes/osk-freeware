@@ -1,4 +1,4 @@
-xrf small.c
+$ xrf small.c
 Language table loaded
 int count = 0;
 main()

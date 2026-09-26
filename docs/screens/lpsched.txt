@@ -1,4 +1,4 @@
-lpsched /nil & edir -e
+$ lpsched /nil & edir -e
 <4>
    Event Directory at  1:48:58
 

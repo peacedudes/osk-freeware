@@ -1,4 +1,4 @@
-xyt -x
+$ xyt -x
 Unable to open log file!
 xyt - version 1.02
    XModem/YModem/YBatch transfer utility

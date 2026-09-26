@@ -1,3 +1,3 @@
-pbmtogem tmp/NPMB/b.pbm > tmp/NPMB/o.gem
+$ pbmtogem tmp/NPMB/b.pbm > tmp/NPMB/o.gem
 $ ls -l tmp/NPMB/o.gem
 -rw-rw-rw-   1 7        1              88 Sep 24 02:30 tmp/NPMB/o.gem

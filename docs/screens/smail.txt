@@ -1,4 +1,4 @@
-smail -h milkyway -p paths -d ralph@pirsqrd <letter
+$ smail -h milkyway -p paths -d ralph@pirsqrd <letter
 resolve: parse address 'ralph@pirsqrd' = 'ralph' @ 'pirsqrd' (DOMAIN)
 getpath: looking for '.pirsqrd'
 getpath: looking for 'pirsqrd'

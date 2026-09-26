@@ -1,4 +1,4 @@
-rm -f tmp/greeting
+$ rm -f tmp/greeting
 $ gmake -v
 GNU Make version 3.67, by Richard Stallman and Roland McGrath.
 Copyright (C) 1988, 89, 90, 91, 92, 93 Free Software Foundation, Inc.

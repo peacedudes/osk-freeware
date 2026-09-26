@@ -1,4 +1,4 @@
-fold -w 24 tmp/B3C/fox.txt
+$ fold -w 24 tmp/B3C/fox.txt
 The quick brown fox jump
 s over the lazy dog, and
  then over the lazy dog

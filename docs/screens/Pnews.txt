@@ -1,4 +1,4 @@
-Pnews -h post -s
+$ Pnews -h post -s
 I see you've never used this version of Pnews before.  I will give you extra
 help this first time through, but then you must remember what you learned.
 If you don't understand any question, type h and a CR (carriage return) for

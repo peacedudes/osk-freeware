@@ -1,4 +1,4 @@
-helpindex dinfo.hlp
+$ helpindex dinfo.hlp
 Writing index for "dinfo.hlp" to "dinfo.ndx" ..done (4 pages).
 $ ls -l
 total 4096

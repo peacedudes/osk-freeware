@@ -1,4 +1,4 @@
-adlcomp tiny.adl -o tiny -i..
+$ adlcomp tiny.adl -o tiny -i..
 ADL compiler - Version 3.2 - June 7, 1987
 Copyright 1985, 1986, 1987 by Ross Cunniff
 All rights reserved

@@ -1,4 +1,4 @@
-ag "dirty room"
+$ ag "dirty room"
 dirt roomy
 dirty moor
 dirty room

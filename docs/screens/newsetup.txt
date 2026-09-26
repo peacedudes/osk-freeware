@@ -1,4 +1,4 @@
-newsetup; cat .newsrc
+$ newsetup; cat .newsrc
 Creating .newsrc in /dd to be used by news programs.
 If you have never used the news system before, you may find the articles
 in news.announce.newusers to be helpful.  There is also a manual entry for rn.

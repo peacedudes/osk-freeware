@@ -1,4 +1,4 @@
-pgmramp -lr 40 20 > tmp/ramp.pgm
+$ pgmramp -lr 40 20 > tmp/ramp.pgm
 $ pnmtops tmp/ramp.pgm | head -n 18
 %!PS-Adobe-2.0 EPSF-2.0
 %%Creator: pnmtops

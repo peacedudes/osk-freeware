@@ -1,4 +1,4 @@
-echo abcdefghij
+$ echo abcdefghij
 abcdefghij
 $ echo abcdefghij | colrm 3 5
 abfghij

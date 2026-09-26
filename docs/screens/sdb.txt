@@ -1,4 +1,4 @@
-sdb
+$ sdb
 SDB - version 2.0
 SDB> create people ( name char 12 town char 12 ) 20
 SDB> insert people

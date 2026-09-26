@@ -1,4 +1,4 @@
-cat tmp/TXT/rag.txt
+$ cat tmp/TXT/rag.txt
 Twas brillig,
 and the slithy
 toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mom

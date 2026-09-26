@@ -1,4 +1,4 @@
-pbmtoxbm < tmp/NPMB/b.pbm > tmp/NPMB/o.xbm
+$ pbmtoxbm < tmp/NPMB/b.pbm > tmp/NPMB/o.xbm
 $ cat tmp/NPMB/o.xbm | head -6
 #define noname_width 48
 #define noname_height 24

@@ -1,4 +1,4 @@
-howfrag cat clear ls
+$ howfrag cat clear ls
 cat: 1 segments, 48 max
 clear: 1 segments, 48 max
 ls: 1 segments, 48 max

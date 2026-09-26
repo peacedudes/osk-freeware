@@ -1,4 +1,4 @@
-echo "readmsg is now resident and answers by name:"
+$ echo "readmsg is now resident and answers by name:"
 readmsg is now resident and answers by name:
 $ sh -c "readmsg -\?"
 Usage: readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}

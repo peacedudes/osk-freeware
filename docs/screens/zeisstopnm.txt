@@ -1,2 +1,2 @@
-zeisstopnm tmp/NPIB/nr.ppm
+$ zeisstopnm tmp/NPIB/nr.ppm
 zeisstopnm: Input file not in Zeiss format (too small)

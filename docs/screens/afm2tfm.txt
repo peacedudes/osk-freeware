@@ -1,4 +1,4 @@
-afm2tfm n019003l.afm
+$ afm2tfm n019003l.afm
 n019003l NimbusSanL-Regu
 $ ls -l n019003l.afm n019003l.tfm
 -rw-rw-rw-   1 7        1           27644 Sep 24 01:44 n019003l.afm

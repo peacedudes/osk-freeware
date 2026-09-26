@@ -1,2 +1,2 @@
-bdecode msg.txt
+$ bdecode msg.txt
 bdecode: msg.txt: Missing header

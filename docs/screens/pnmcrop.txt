@@ -1,4 +1,4 @@
-pnmcrop tmp/NEAB/p.pgm > tmp/NEAB/c.pgm
+$ pnmcrop tmp/NEAB/p.pgm > tmp/NEAB/c.pgm
 pnmcrop: cropping 4 rows off the top
 pnmcrop: cropping 4 rows off the bottom
 pnmcrop: cropping 9 cols off the left

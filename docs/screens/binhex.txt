@@ -1,4 +1,4 @@
-binhex j.txt.MAC
+$ binhex j.txt.MAC
 (This file must be converted with BinHex 4.0)
 
 :"@SZG(Kd!&4&@&428bdj!*!&)`!!!!#qc&4hBA-JBR*TE'aTCb`JB@jN)(4SC5"

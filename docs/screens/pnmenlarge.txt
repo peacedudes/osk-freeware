@@ -1,4 +1,4 @@
-pnmenlarge 3 tmp/NEAB/b.pbm > tmp/NEAB/e.pbm
+$ pnmenlarge 3 tmp/NEAB/b.pbm > tmp/NEAB/e.pbm
 $ pnmfile tmp/NEAB/b.pbm tmp/NEAB/e.pbm
 tmp/NEAB/b.pbm: PBM raw, 16 by 8
 tmp/NEAB/e.pbm: PBM raw, 48 by 24

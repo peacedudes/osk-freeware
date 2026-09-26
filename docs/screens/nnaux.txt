@@ -1,4 +1,4 @@
-nnaux post article 1 send
+$ nnaux post article 1 send
 $ cat junk/1
 Path: osk!tester
 From: tester@osk.UUCP

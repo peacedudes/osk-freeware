@@ -1,4 +1,4 @@
-ppmtogif tmp/base.ppm > tmp/t.gif
+$ ppmtogif tmp/base.ppm > tmp/t.gif
 ppmtogif: computing colormap...
 ppmtogif: 6 colors found
 $ giftopnm tmp/t.gif > tmp/back.ppm

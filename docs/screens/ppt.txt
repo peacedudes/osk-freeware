@@ -1,4 +1,4 @@
-ppt OS-9
+$ ppt OS-9
 ___________
 | o  o.ooo|
 | o o . oo|

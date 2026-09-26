@@ -1,4 +1,4 @@
-pagefraz < tmp/TXT/titles
+$ pagefraz < tmp/TXT/titles
 The Art of Computer 1
 Art of Computer Programming 1
 of Computer Programming Structured 1

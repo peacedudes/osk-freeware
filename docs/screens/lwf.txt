@@ -1,4 +1,4 @@
-lwf tmp/PRT/j.txt | head -n 14
+$ lwf tmp/PRT/j.txt | head -n 14
 %!PS-Adobe-2.0
 %%Creator: lwf on evtech
 %%CreationDate: Thu Sep 24 01:44:58 2026

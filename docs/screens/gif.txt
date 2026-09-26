@@ -1,4 +1,4 @@
-ppmtogif tmp/base.ppm | giftopnm | pnmfile
+$ ppmtogif tmp/base.ppm | giftopnm | pnmfile
 ppmtogif: computing colormap...
 ppmtogif: 6 colors found
 stdin:  PPM raw, 48 by 24  maxval 255

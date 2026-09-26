@@ -1,4 +1,4 @@
-mswrite motd a:RAW.TXT
+$ mswrite motd a:RAW.TXT
 $ msread a:RAW.TXT raw.out
 Copying RAW.TXT
 $ chksum motd raw.out

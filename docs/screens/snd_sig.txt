@@ -1,4 +1,4 @@
-cron &
+$ cron &
 <3>
 $ snd_sig 3
 $ snd_sig 99

@@ -1,4 +1,4 @@
-cat list.txt
+$ cat list.txt
 /dd/SYS/motd
 /dd/SYS/holidays
 /dd/SYS/birthdays

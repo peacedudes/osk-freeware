@@ -1,4 +1,4 @@
-dvijet story.dvi
+$ dvijet story.dvi
 [TeX82 DVI Translator Version 2.10]
 [Hewlett-Packard 2686A Laser Jet laser printer]
 [Input from DVI file story.dvi]

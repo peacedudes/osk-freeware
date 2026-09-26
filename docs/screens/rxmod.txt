@@ -1,4 +1,4 @@
-rxmod -?
+$ rxmod -?
  4ERXMod - Err:  -? "
 RXmod Ed.4 Rv.2 - load Module via SCF from TXMod on Host
 Syntax: rxmod [<opts> [module(s)]]

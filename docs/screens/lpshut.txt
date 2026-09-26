@@ -1,4 +1,4 @@
-lpshut; lpq
+$ lpshut; lpq
 Spooler is not active
 Defaultprinter: /pipe/prt
 other Printers:

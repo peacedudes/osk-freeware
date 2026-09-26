@@ -1,4 +1,4 @@
-bru -c -q -v -f tmp/ARC/keep.bru SRC/keep
+$ bru -c -q -v -f tmp/ARC/keep.bru SRC/keep
 Using tmp/ARC/keep.bru as the target device-file
 SRC/keep
 SRC/keep/about.c

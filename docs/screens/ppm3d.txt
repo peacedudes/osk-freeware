@@ -1,4 +1,4 @@
-ppm3d tmp/NEAB/t.ppm tmp/NEAB/s.ppm > tmp/NEAB/3d.ppm
+$ ppm3d tmp/NEAB/t.ppm tmp/NEAB/s.ppm > tmp/NEAB/3d.ppm
 $ pnmfile tmp/NEAB/3d.ppm
 tmp/NEAB/3d.ppm:        PPM raw, 64 by 32  maxval 255
 $ ppmtopgm tmp/NEAB/3d.ppm | pgmtopbm | pbmtoascii -2x4

@@ -1,4 +1,4 @@
-printmail 1
+$ printmail 1
 From: The OS-9 Freeware Collection <os9-freeware>
 To: tester
 Subject: Welcome -- this is a real mail folder

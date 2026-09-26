@@ -1,4 +1,4 @@
-marc a1.arc a2.arc termcap
+$ marc a1.arc a2.arc termcap
 adding file:   termcap
 $ arc v a1.arc
 Name          Length    Stowage    SF   Size now  Date       Time    CRC

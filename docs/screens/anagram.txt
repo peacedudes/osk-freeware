@@ -1,4 +1,4 @@
-anagram listen parsley
+$ anagram listen parsley
 enlist
 listen
 silent

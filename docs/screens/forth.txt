@@ -1,4 +1,4 @@
-forth fibonacci.tst
+$ forth fibonacci.tst
 TILE Forth version 2.48, Copyright (c) 1989, by Mikael Patel
 Loading Fibonacci benchmark...
 20 fib . cr

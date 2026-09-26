@@ -1,4 +1,4 @@
-cat tmp/SHL/script.ksh
+$ cat tmp/SHL/script.ksh
 print hello from a ksh script
 for f in a b c; do print item $f; done
 $ ksh < tmp/SHL/script.ksh

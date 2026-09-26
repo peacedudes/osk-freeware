@@ -1,4 +1,4 @@
-ticktalk 13 45; ticktalk -french 13 45; ticktalk -afrikaans 13 45
+$ ticktalk 13 45; ticktalk -french 13 45; ticktalk -afrikaans 13 45
 Quarter To Two pm
 Quatorze Heures Moins Le Quart
 Kwart Voor Twee nm

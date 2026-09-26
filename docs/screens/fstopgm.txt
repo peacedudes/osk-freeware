@@ -1,4 +1,4 @@
-pgmtofs tmp/NPIB/g.pgm > tmp/NPIB/f.fs
+$ pgmtofs tmp/NPIB/g.pgm > tmp/NPIB/f.fs
 $ fstopgm tmp/NPIB/f.fs > tmp/NPIB/back.pgm
 $ pnmfile tmp/NPIB/back.pgm
 tmp/NPIB/back.pgm:      PGM raw, 48 by 24  maxval 255

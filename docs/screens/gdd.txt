@@ -1,4 +1,4 @@
-cat tmp/TEXTA/fox.txt
+$ cat tmp/TEXTA/fox.txt
 the quick brown fox
 jumps over the lazy dog
 $ gdd if=tmp/TEXTA/fox.txt conv=ucase > tmp/TEXTA/up.txt

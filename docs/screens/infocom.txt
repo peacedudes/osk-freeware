@@ -1,4 +1,4 @@
-infocom dejavu.z3
+$ infocom dejavu.z3
 
 [
 [

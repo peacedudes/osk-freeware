@@ -1,4 +1,4 @@
-cat h.pas
+$ cat h.pas
 program hello; begin writeln('hi') end.
 $ p2c h.pas
 hello

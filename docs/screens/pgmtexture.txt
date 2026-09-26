@@ -1,4 +1,4 @@
-giftopnm DEMO/gulls.gif | ppmtopgm > tmp/gg2.pgm
+$ giftopnm DEMO/gulls.gif | ppmtopgm > tmp/gg2.pgm
 $ pnmscale -xysize 60 40 tmp/gg2.pgm > tmp/gg3.pgm
 $ pgmtexture -d 2 tmp/gg3.pgm | head -n 14
 (Image has 184 graylevels.)

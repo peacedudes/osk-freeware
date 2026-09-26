@@ -1,2 +1,2 @@
-checksum tmp/ENC/j.txt
+$ checksum tmp/ENC/j.txt
 File 'tmp/ENC/j.txt': bytes=35, checksum=$0C9F (3231)

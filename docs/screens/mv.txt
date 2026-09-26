@@ -1,4 +1,4 @@
-ls -l
+$ ls -l
 total 512
 -rw-rw-rw-   1 7        1              40 Sep 24 02:40 one
 $ mv -v one two

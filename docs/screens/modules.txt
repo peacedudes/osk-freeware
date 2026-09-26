@@ -1,4 +1,4 @@
-modinfo CMDS/cio | head -n 6
+$ modinfo CMDS/cio | head -n 6
 ----------------------------------- CMDS/cio  - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - -
 Module name           = cio

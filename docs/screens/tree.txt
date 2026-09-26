@@ -1,4 +1,4 @@
-tree CMDS
+$ tree CMDS
 CMDS --------+- ADL
              |- COMMS
              |- DEMOS

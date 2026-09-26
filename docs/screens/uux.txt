@@ -1,2 +1,2 @@
-uux seabass\!rnews
+$ uux seabass\!rnews
 uux: Unknown Host 'seabass'

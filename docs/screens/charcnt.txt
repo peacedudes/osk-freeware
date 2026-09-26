@@ -1,4 +1,4 @@
-charcnt holidays motd
+$ charcnt holidays motd
 
 
  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt  ch  cnt

@@ -1,4 +1,4 @@
-ar -u tmp/k2.ar SRC/keep/keep.c
+$ ar -u tmp/k2.ar SRC/keep/keep.c
 archiving <SRC/keep/keep.c>
 $ ar -t tmp/k2.ar
                                                     file   stored

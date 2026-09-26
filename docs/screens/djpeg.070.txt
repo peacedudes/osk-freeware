@@ -1,4 +1,4 @@
-djpeg.070 -pnm tmp/GFXA/j.jpg > tmp/GFXA/d70.ppm
+$ djpeg.070 -pnm tmp/GFXA/j.jpg > tmp/GFXA/d70.ppm
   95%
 
 $ ls -l tmp/GFXA/j.jpg tmp/GFXA/d70.ppm

@@ -1,4 +1,4 @@
-zipnote DOC/zip/sample.zip
+$ zipnote DOC/zip/sample.zip
 @ readme
 @
 @ ziprules

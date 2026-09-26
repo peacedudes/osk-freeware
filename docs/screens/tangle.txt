@@ -1,4 +1,4 @@
-tangle sample none
+$ tangle sample none
 This is TANGLE, C Version 4.2
 *1*2
 Writing the output file

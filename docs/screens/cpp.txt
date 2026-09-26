@@ -1,4 +1,4 @@
-cat t.c
+$ cat t.c
 #define GREET(who) "hello, " who
 #define N 3
 #if N > 2

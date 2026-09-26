@@ -1,4 +1,4 @@
-dvialw story.dvi
+$ dvialw story.dvi
 [TeX82 DVI Translator Version 2.10b]
 [PostScript [Apple LaserWriter laser printer]]
 [Input from DVI file story.dvi]

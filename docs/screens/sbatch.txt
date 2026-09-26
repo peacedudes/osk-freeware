@@ -1,4 +1,4 @@
-sbatch nbr
+$ sbatch nbr
 Spooling news for nbr
 Spooling /h0/SPOOL/MNEWS/comp/os/os9/2
 Sending 269 bytes

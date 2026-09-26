@@ -1,3 +1,3 @@
-rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
+$ rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
 $ pnmfile tmp/NPIB/r.pgm
 tmp/NPIB/r.pgm: PGM raw, 48 by 24  maxval 255

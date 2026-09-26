@@ -1,4 +1,4 @@
-ppmtoacad tmp/NPIB/q.ppm > tmp/NPIB/s.sld
+$ ppmtoacad tmp/NPIB/q.ppm > tmp/NPIB/s.sld
 ppmtoacad: computing colourmap...
 ppmtoacad: 6 colours found
 $ sldtoppm tmp/NPIB/s.sld > tmp/NPIB/back.ppm

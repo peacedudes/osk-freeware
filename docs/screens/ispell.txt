@@ -1,4 +1,4 @@
-ispell -l tmp/TXT/spell.txt
+$ ispell -l tmp/TXT/spell.txt
 brilig
 slithy
 tovs

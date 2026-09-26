@@ -1,2 +1,2 @@
-echo hello world | encode
+$ echo hello world | encode
 2@\8`&JRb xJzz'QE)H$D @

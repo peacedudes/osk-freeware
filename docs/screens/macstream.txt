@@ -1,4 +1,4 @@
-macstream -d ms.txt > ms.stream
+$ macstream -d ms.txt > ms.stream
 $ ls -l ms.stream
 -rw-rw-rw-   1 7        1             256 Sep 24 01:19 ms.stream
 $ dump ms.stream

@@ -1,4 +1,4 @@
-pbmclean noise.pbm | pbmtoascii -2x4
+$ pbmclean noise.pbm | pbmtoascii -2x4
 o/T#?|$ `^\'$D\$q,:H\$i~[9&v/:[^
 MbS$:&$?\$??D&:$&>/H?PHHHH||}F//
 ':?}/:?\?.\S/?<T<`&T-::S+?<|S?$?

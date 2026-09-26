@@ -1,3 +1,3 @@
-pnmtosgi tmp/NPMB/c.ppm > tmp/NPMB/o.sgi
+$ pnmtosgi tmp/NPMB/c.ppm > tmp/NPMB/o.sgi
 $ ls -l tmp/NPMB/o.sgi
 -rw-rw-rw-   1 7        1            1736 Sep 24 02:35 tmp/NPMB/o.sgi

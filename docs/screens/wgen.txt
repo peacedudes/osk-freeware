@@ -1,4 +1,4 @@
-wgen
+$ wgen
 Enter resoultion(step): 256
 Fundamental harmonic intensity (0-200): 150
 Second      harmonic intensity (0-200): 75

@@ -1,4 +1,4 @@
-kept
+$ kept
 
 greg
     /dd/tmp/SYSB/kp/CMDS/greg                         2226

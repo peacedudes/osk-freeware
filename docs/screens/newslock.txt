@@ -1,4 +1,4 @@
-newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+$ newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
 status 1
 $ ls -l tmp/MAILA
 total 1024

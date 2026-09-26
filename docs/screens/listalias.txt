@@ -1,4 +1,4 @@
-listalias
+$ listalias
 home                 os9-freeware (This Collection)
 self                 tester (Me)
 os9                  os9-freeware (The OS-9 Freeware Collection)

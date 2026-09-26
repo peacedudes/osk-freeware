@@ -1,4 +1,4 @@
-lpsched /nil & edir; eunlink spoolqueue; edir
+$ lpsched /nil & edir; eunlink spoolqueue; edir
 <4>
    Event Directory at  2:42:25
 

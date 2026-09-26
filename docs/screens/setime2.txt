@@ -1,4 +1,4 @@
-setime2
+$ setime2
       yyy mm dd hh mm ss [am/pm]
 Time: 126 9 3 14 30 0
 Date: Thursday  September 24, 2026 01:18:21

@@ -1,4 +1,4 @@
-echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
+$ echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
 $ echo "greet(reader)" >> tmp/m.m4
 $ echo "syscmd(whoami)" >> tmp/m.m4
 $ cat tmp/m.m4

@@ -1,4 +1,4 @@
-xd -c motd
+$ xd -c motd
      0: 57 65 6C 63 6F 6D 65 20  74 6F 20 6F 73 39 65 78 | Welcome to os9ex
     10: 65 63 20 2D 2D 20 4F 53  2D 39 2F 36 38 6B 20 65 | ec -- OS-9/68k e
     20: 6D 75 6C 61 74 6F 72 0D                          | mulator.
