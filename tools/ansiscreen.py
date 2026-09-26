@@ -31,7 +31,11 @@ import sys
 ROWS, COLS = 24, 80
 
 # ESC [ <params> <final>, plus the bare two-character escapes curses emits.
-CSI = re.compile(rb"\x1b\[([0-9;?]*)([@-~])")
+# C0 control bytes INSIDE the parameters are executed and skipped by a VT100,
+# which then carries on with the sequence.  testibc (Omegasoft Pascal) writes
+# its numbers as raw bytes -- ESC [ \x01 ; \x01 H -- and the card printed
+# `[;H' as text until this allowed them (2026-09-26).
+CSI = re.compile(rb"\x1b\[([0-9;?\x00-\x1a\x1c-\x1f]*)([@-~])")
 ESC2 = re.compile(rb"\x1b([=>78MDEHc])")
 
 # ESC ( <c> and ESC ) <c> designate a character set for G0 and G1.  `0' is
@@ -47,6 +51,9 @@ CHARSET = re.compile(rb"\x1b([()])([0-9A-B])")
 # ESC G <digit> is the TeleVideo attribute (G0 plain, G4 reverse): dropped.
 TVI_CUP = re.compile(rb"\x1b=([\x20-\x7e])([\x20-\x7e])")
 TVI_ATTR = re.compile(rb"\x1bG[0-9]")
+# VT52 (Atari ST) cursor on and off, ESC e and ESC f: dropped.  mgif writes
+# ESC e on exit and its card ended in a stray `e' (2026-09-26).
+VT52_CURSOR = re.compile(rb"\x1b[ef]")
 # MM/1 window colours: ESC 2 <n> sets the foreground, ESC 3 <n> the
 # background, n a palette number 0-15.  dm draws its highlight with them.
 # Unhandled, the ESC was skipped and the `2' and `3' printed as text round
@@ -103,8 +110,9 @@ CP437_BOX = {
 class Screen:
     """An 80x24 character grid with a cursor, fed a byte stream."""
 
-    def __init__(self, rows=ROWS, cols=COLS):
+    def __init__(self, rows=ROWS, cols=COLS, dialect=None):
         self.rows, self.cols = rows, cols
+        self.dialect = dialect     # `dm1520': a Datamedia 1520's codes as well
         self.grid = [[" "] * cols for _ in range(rows)]
         self.row = self.col = 0
         self.saved = (0, 0)        # cursor kept by ESC 7 / CSI s
@@ -200,6 +208,39 @@ class Screen:
         i, n = 0, len(data)
         while i < n:
             b = data[i:i + 1]
+            # A DATAMEDIA 1520, asked for by the stanza (`term dm1520'): names
+            # and ynad are hard-wired for one whatever TERM says -- RS col+32
+            # row+32 addresses the cursor, column first; ^Y homes, ^L clears,
+            # ^] and ^K clear to the end of the line and screen, ^\ and ^_
+            # move right and up.  Only when asked: preset writes ^\ lead-ins,
+            # and other programs' ^K and ^L mean something else (2026-09-26).
+            if self.dialect == "dm1520":
+                c = data[i]
+                if c == 0x1E and i + 2 < n:
+                    self.col = min(max(data[i + 1] - 32, 0), self.cols - 1)
+                    self.row = min(max(data[i + 2] - 32, 0), self.rows - 1)
+                    i += 3
+                    continue
+                if c in (0x19, 0x0C, 0x1D, 0x0B, 0x1C, 0x1F):
+                    if c == 0x19:
+                        self.row = self.col = 0
+                    elif c == 0x0C:
+                        self.grid = [[" "] * self.cols for _ in range(self.rows)]
+                        self.row = self.col = 0
+                    elif c == 0x1D:
+                        for x in range(self.col, self.cols):
+                            self.grid[self.row][x] = " "
+                    elif c == 0x0B:
+                        for x in range(self.col, self.cols):
+                            self.grid[self.row][x] = " "
+                        for r in range(self.row + 1, self.rows):
+                            self.grid[r] = [" "] * self.cols
+                    elif c == 0x1C:
+                        self.col = min(self.col + 1, self.cols - 1)
+                    elif c == 0x1F:
+                        self.row = max(self.row - 1, 0)
+                    i += 1
+                    continue
             if b == b"\x0e":                  # SO: shift to G1
                 self.shifted = True
                 i += 1
@@ -226,6 +267,10 @@ class Screen:
                 if m and (m.group(1)[0] - 0x20) < self.rows \
                         and (m.group(2)[0] - 0x20) < self.cols:
                     self.row, self.col = m.group(1)[0] - 0x20, m.group(2)[0] - 0x20
+                    i = m.end()
+                    continue
+                m = VT52_CURSOR.match(data, i)
+                if m:
                     i = m.end()
                     continue
                 m = MM1_COLOR.match(data, i)
@@ -315,8 +360,8 @@ class Screen:
         return sum(1 for r in self.grid for c in r if c != " ")
 
 
-def render(data, rows=ROWS, cols=COLS):
-    s = Screen(rows, cols)
+def render(data, rows=ROWS, cols=COLS, dialect=None):
+    s = Screen(rows, cols, dialect)
     s.feed(data)
     return s
 

@@ -98,6 +98,12 @@ def paths_in(binary):
         if not m:
             break
         found = m.group().decode("ascii")
+        # AN RCS FILE NAME IS NOT A FILE THE PROGRAM OPENS.  hdump carries
+        # its builder's `/dd/USR/.../rcs/od.c_v' in an RCS $Header$ string,
+        # and the card listed it as something hdump needs (2026-09-26).
+        if re.search(r"/rcs/[^/]*[_,]v$", found, re.I):
+            pos = m.start() + 1
+            continue
         if found not in seen:
             seen.add(found)
             order.append(found)

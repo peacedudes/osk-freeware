@@ -295,7 +295,10 @@ SPARSE_OK = {"rain",
              # PostScript page setup from the hash file compiled into it --
              # the shipped file holds no positions, so that one line is all
              # it has to say (2026-09-24).
-             "postprint"}
+             "postprint",
+             # hackwish runs hack out of sight and prints two lines at the
+             # end: the goodbye and the game number the wish was found in.
+             "hackwish"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

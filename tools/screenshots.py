@@ -62,6 +62,8 @@ Sheet format (blank lines and `#' comments ignored):
                                    and a count -- for a program that floods
                                    one line; off by default, because ASCII
                                    art is made of repeated lines
+    term    dm1520                 render the screen as that terminal would --
+                                   for a program hard-wired for one
     pages                          publish EVERY `snap', in order, one after
                                    another with a rule between -- for help a
                                    full-screen program pages through
@@ -227,6 +229,11 @@ def parse(path):
             continue
         elif word == "pages":
             cur["pages"] = True
+        elif word == "term":
+            # The terminal the PROGRAM assumes, when it is not the vt100 the
+            # session is: `term dm1520' renders a Datamedia 1520's codes
+            # (tools/ansiscreen.py).  Nothing is sent to the program.
+            cur["term"] = rest
         elif word == "fresh":
             # END THE SESSION AFTER THIS STANZA.  For a stanza that leaves
             # something RESIDENT the next one would inherit: a background
@@ -430,7 +437,7 @@ def moments(sess, shot, start, end):
     # the fullest single moment would publish one of them (2026-09-26).
     if shot.get("pages") and shot.get("_snaps"):
         texts = [ansiscreen.render(trim_partial(sess.slice(start, at)),
-                                   rows, cols).text().rstrip("\n")
+                                   rows, cols, shot.get("term")).text().rstrip("\n")
                  for at in shot["_snaps"] if at > start]
         return Pages(texts, cols)
     best, best_worth = None, -1
@@ -440,7 +447,8 @@ def moments(sess, shot, start, end):
     for at in snaps or (list(shot.get("_marks", [])) + [end]):
         if at <= start:
             continue
-        scr = ansiscreen.render(trim_partial(sess.slice(start, at)), rows, cols)
+        scr = ansiscreen.render(trim_partial(sess.slice(start, at)), rows, cols,
+                                shot.get("term"))
         n, raw = worth(scr), ink(scr)
         if n >= best_worth:
             best, best_worth = scr, n
