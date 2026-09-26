@@ -304,8 +304,15 @@ def from_effo(root, progs):
     """
     docdir = os.path.join(root, "DOC")
     for d in sorted(os.listdir(docdir)):
-        path = os.path.join(docdir, d, "info_" + d)
-        if not os.path.isfile(path) or d not in progs:
+        # CASE-INSENSITIVE, as OS-9 is: DOC/help's file is `Info_help', which
+        # macOS found as `info_help' and Linux did not -- so CI built a page
+        # without help's info and called the committed one stale (2026-09-26).
+        sub = os.path.join(docdir, d)
+        want = ("info_" + d).lower()
+        hit = (next((e for e in sorted(os.listdir(sub)) if e.lower() == want), None)
+               if os.path.isdir(sub) else None)
+        path = os.path.join(sub, hit) if hit else ""
+        if not hit or not os.path.isfile(path) or d not in progs:
             continue
         info, key = {}, None
         for l in open(path, "rb").read().decode("latin-1").replace("\r", "\n").split("\n"):
