@@ -12,7 +12,7 @@ setup /dd/CMDS/chgrp 3 /dd/tmp/brut/src/sub/b.txt
 setup /dd/CMDS/chown 9 /dd/tmp/brut/src/sub
 setup /dd/CMDS/chgrp 5 /dd/tmp/brut/src/sub
 setup /h1/CMDS/attr /dd/tmp/brut/src/a.txt -npw -npr -ne -w -r
-setup /h1/CMDS/attr /dd/tmp/brut/src/cat -e -pe -pr -npw
+setup /h1/CMDS/attr /dd/tmp/brut/src/cat -e -pe -pr -npw -nw
 setup /h1/CMDS/attr /dd/tmp/brut/src/sub/deep -npw
 
 case backup
