@@ -16,7 +16,7 @@ on:
       os9exec_ref:
         description: 'os9exec ref to build against'
         required: false
-        default: fix/scf-pd-eor
+        default: release-v4.1.0
 
 env:
   # WHICH os9exec. The collection is developed and tested against the branch
