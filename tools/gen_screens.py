@@ -235,7 +235,11 @@ def trim(text, first=""):
     # several programs here reads that one four times at start-up.  It is
     # noise about os9exec on a card about the program; recorded in
     # notes/os9exec-bugs, and left off the picture.
-    lines = [ln for ln in lines if not ln.startswith("F$SetSys: unimplemented")]
+    # os9exec 8d7d870 and later print their notices behind `# ' -- the old
+    # filter matched only the bare form, and five getsys lines came back
+    # (2026-09-26).
+    lines = [ln for ln in lines
+             if not re.match(r"^(# )?F\$SetSys: unimplemented", ln)]
     while lines and not lines[0].strip():
         lines.pop(0)
     while lines and not lines[-1].strip():
