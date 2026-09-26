@@ -13,9 +13,9 @@ session's narrative goes into the history file, not here.
 - **Harnesses run as `tester`**, not the super-user.  A data-test family
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
-- **Emulator: os9exec `8d7d870`** (branch fix/scf-pd-eor, renamed
-  release-v4.1.0 on 2026-09-25 -- CI's OS9EXEC_REF still names the old
-  branch until it is frozen to a commit), named by the os9exec
+- **Emulator: os9exec `8d7d870`** (branch release-v4.1.0, pushed as
+  f2954f3 on 2026-09-26 with the same emulator source; CI follows that
+  branch until it is frozen to the merge commit), named by the os9exec
   session as the release candidate on 2026-09-25 and not yet pushed there.
   Verified on it: suite 1019/1019 twice on a fresh image as it ships
   (modules publicly writable), play-tests 151/151, as tester.  docs/try

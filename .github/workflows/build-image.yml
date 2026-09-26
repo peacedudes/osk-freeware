@@ -51,8 +51,13 @@ env:
   # behind it, several under deliberate contention. The lesson is not the
   # hash, which will be stale again: it is that the person who owns the
   # emulator knows which commit is good and a tip does not.
+  #
+  # 2026-09-26: the working branch was renamed release-v4.1.0 and pushed
+  # (f2954f3; its emulator source is 8d7d870's, on which the suite passed
+  # 1019/1019 twice). fix/scf-pd-eor no longer exists on GitHub. Freeze to
+  # the merge commit the os9exec project names.
   OS9EXEC_REPO: peacedudes/os9exec
-  OS9EXEC_REF: fix/scf-pd-eor
+  OS9EXEC_REF: release-v4.1.0
 
 jobs:
   build:
