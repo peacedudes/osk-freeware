@@ -14,8 +14,8 @@ setup   /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
 # was found at, which is what makes it useful on a module.
 case    strings-reports-each-run-with-its-offset
 run     /dd/CMDS/strings $W/plain.txt
-expect  $000000: <Welcome to os>
-expect  $00001D: <k emulator>
+expect  $000000: <Welcome to the OS>
+expect  $000013: < freeware collection>
 
 case    strings-lists-its-match-options
 run     /dd/CMDS/strings -?

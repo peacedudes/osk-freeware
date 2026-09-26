@@ -39,8 +39,8 @@ absent  MAXLINECOUNT
 case    pagekwic-and-pagefraz-build-a-keyword-in-context-index
 run     /dd/CMDS/pagekwic /dd/SYS/motd /dd/tmp/C11/k2.txt
 run     /dd/CMDS/cat /dd/tmp/C11/k2.txt
-expect  Welcome to os9exec --
-expect  -- Welcome to os9exec
+expect  Welcome to the OS-9 1
+expect  OS-9 Welcome to the 1
 absent  word too long
 
 case    etags-writes-a-tags-file-with-real-tags

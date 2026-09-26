@@ -31,7 +31,7 @@ case    newmail-finds-the-folder-when-USER-is-set
 run     export USER=tester
 run     /dd/CMDS/ELM/newmail -d
 expect  default folder: "/dd/SPOOL/MAIL/tester"
-expect  size = 804
+expect  size = 717
 
 case    messages-counts-what-is-in-the-folder
 run     /dd/CMDS/ELM/messages

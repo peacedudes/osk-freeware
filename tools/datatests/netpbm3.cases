@@ -78,7 +78,7 @@ run     /dd/CMDS/m4 /dd/tmp/N3/m.in
 run     /dd/CMDS/REBUILT/sed_1.06 -e "s/Welcome/Hello/" /dd/SYS/motd
 run     /dd/CMDS/sed -e "s/Welcome/Hello/" /dd/SYS/motd
 expect  42
-expect  Hello to os9exec -- OS-9/68k emulator
+expect  Hello to the OS-9 freeware collection
 
 case    savemem-and-loadmem-want-hex-addresses-and-the-super-user
 run     /dd/CMDS/savemem

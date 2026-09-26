@@ -35,7 +35,7 @@ run     /dd/CMDS/rm /dd/tmp/raw.out
 run     /dd/CMDS/mswrite $MOTD a:RAW.TXT
 run     /dd/CMDS/msread a:RAW.TXT /dd/tmp/raw.out
 run     /dd/CMDS/md5 /dd/tmp/raw.out
-expect  f2783580b7a4c5ef6a29ec5895e6ad95
+expect  6ae70057a9ed39f4db5229e3871721ae
 
 case    the-file-really-reached-the-dos-disk
 run     /dd/CMDS/msdir a:

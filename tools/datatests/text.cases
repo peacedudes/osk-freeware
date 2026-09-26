@@ -39,7 +39,7 @@ absent  No more memory
 # what a byte-order sort MEANS and is worth pinning down.
 case    sort-orders-lines
 run     /dd/CMDS/sort $T | /dd/CMDS/head -n 1
-expect  Welcome to os9exec
+expect  Welcome to the OS-9 freeware collection
 
 case    uniq-drops-the-repeat
 run     /dd/CMDS/sort $T | /dd/CMDS/uniq -c | /dd/CMDS/grep alpha
@@ -260,7 +260,7 @@ absent  No Wisecracks coming
 # fork path that was said to be impossible.
 case    ksh-forks-an-external-command
 run     /dd/CMDS/ksh -c "/dd/CMDS/chksum /dd/SYS/motd"
-expect  4b68af85
+expect  b4d9f557
 
 # TEX TYPESETS.  DOC/STATUS listed tex/latex/slitex among the SILENT because
 # they prompt with `**' and a sweep types nothing at it.  Run the ENGINE and
@@ -338,8 +338,8 @@ expect  yes came back
 
 case    hdump-shows-hex-and-the-characters
 run     /dd/CMDS/hdump -h /dd/SYS/motd
-expect  Welcome to os9ex
-expect  5765 6c63 6f6d 6520 746f 206f 7339 6578
+expect  Welcome to the O
+expect  5765 6c63 6f6d 6520 746f 2074 6865 204f
 
 case    undump-rebuilds-exactly-what-hdump-wrote
 run     /dd/CMDS/rm -rf /dd/tmp/undA
@@ -348,7 +348,7 @@ run     /dd/CMDS/hdump -h /dd/SYS/motd > /dd/tmp/undA/m.hex
 run     /dd/CMDS/undump /dd/tmp/undA/back < /dd/tmp/undA/m.hex
 run     /dd/CMDS/cat /dd/tmp/undA/back
 run     /dd/CMDS/wc -c /dd/tmp/undA/back
-expect  Welcome to os9exec -- OS-9/68k emulator
+expect  Welcome to the OS-9 freeware collection
 expect  40 /dd/tmp/undA/back
 absent  bad hex value
 

@@ -58,7 +58,7 @@ run     /dd/CMDS/wc -c $M
 run     /dd/CMDS/UUCP/rmail tester < $W/msg.txt
 run     /dd/CMDS/wc -c $M
 expect  can't change to mailbox: /dd/SPOOL/MAIL/tester/tester
-expect  804 /dd/SPOOL/MAIL/tester
+expect  717 /dd/SPOOL/MAIL/tester
 
 # makedb builds smail's path-alias dbm from the palias that ships. A dbm is
 # a .dir/.pag pair and the .dir of a small table is legitimately empty, so

@@ -111,7 +111,7 @@ run     /dd/CMDS/dump $W/fixed.txt
 expect  40 /dd/SYS/motd
 expect  41 /dd/tmp/NET/crlf.txt
 expect  41 /dd/tmp/NET/fixed.txt
-expect  6D75 6C61 746F 720D 0D
+expect  6C65 6374 696F 6E0D 0D
 
 # rxmod loads a module sent over a serial line by txmod, and its trap
 # handler IS on this disk beside it -- `load' installs it and the message

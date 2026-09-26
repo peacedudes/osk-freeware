@@ -42,7 +42,7 @@ case    valspeak-writes-a-file-where-it-used-to-write-nothing
 run     /dd/CMDS/GAMES/valspeak < $C5/a.txt > $C5/v.txt
 run     /dd/CMDS/wc -c $C5/a.txt $C5/v.txt
 expect  40 /dd/tmp/C5/a.txt
-expect  40 /dd/tmp/C5/v.txt
+expect  41 /dd/tmp/C5/v.txt
 
 # setfont copies a downloadable font to the terminal. Redirected, that is a
 # byte-for-byte copy of the file -- which is exactly what it did not do.

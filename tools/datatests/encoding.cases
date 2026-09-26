@@ -158,9 +158,9 @@ run     /dd/CMDS/ptob /dd/tmp/b2 > /dd/tmp/b3
 run     /dd/CMDS/tcmp /dd/tmp/b1 /dd/tmp/b3
 expect  are identical
 run     /dd/CMDS/md5 /dd/tmp/b3
-expect  f2783580b7a4c5ef6a29ec5895e6ad95
+expect  6ae70057a9ed39f4db5229e3871721ae
 run     /dd/CMDS/cat /dd/tmp/b3
-expect  Welcome to os9exec
+expect  Welcome to the OS-9 freeware collection
 
 # ediff does not compare files -- it reformats diff's output. DOC/INDEX called
 # it a "visual file compare", which implies the opposite.

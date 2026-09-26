@@ -19,7 +19,7 @@ expect  Total of
 case    cp-copies-the-bytes
 run     /dd/CMDS/cp /dd/tmp/ft/one /dd/tmp/ft/two
 run     /dd/CMDS/md5 /dd/tmp/ft/one /dd/tmp/ft/two
-expect  f2783580b7a4c5ef6a29ec5895e6ad95
+expect  6ae70057a9ed39f4db5229e3871721ae
 
 case    mv-renames-rather-than-copies
 run     /dd/CMDS/mv /dd/tmp/ft/two /dd/tmp/ft/three
@@ -107,7 +107,7 @@ expect  216
 # through the login environment, which is what a person actually types.
 case    a-bare-command-name-is-found-on-the-image
 run     /dd/CMDS/ksh -c "PATH=/dd/CMDS; export PATH; chksum /dd/SYS/motd"
-expect  4b68af85
+expect  b4d9f557
 
 # THE SILENT HALF OF THE cio SELECTOR MISMATCH, asserted so a fix announces
 # itself. These programs open the file, read NOT ONE BYTE (measured with

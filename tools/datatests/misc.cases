@@ -103,7 +103,7 @@ run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/MV/mv1
 run     /dd/CMDS/move /dd/tmp/MV/mv1 /dd/tmp/MV/mv2
 run     /dd/CMDS/md5 /dd/tmp/MV/mv2
 run     echo LISTING; /dd/CMDS/ls /dd/tmp/MV
-expect  f2783580b7a4c5ef6a29ec5895e6ad95
+expect  6ae70057a9ed39f4db5229e3871721ae
 expect  LISTING
 expect  mv2
 absent  mv1
@@ -147,14 +147,14 @@ expect  Function : remove modules from memory
 
 case    cuts-decodes-a-coco-usenet-transfer
 run     /dd/CMDS/cuts -d /dd/SYS/motd
-expect  >>>Welcome to os9exec
+expect  >>>Welcome to the OS-9 freeware collection
 
 case    the-kwic-numbering-pass-numbers-every-word
 run     /dd/CMDS/rm /dd/tmp/k1.txt
 run     /dd/CMDS/pageline /dd/SYS/motd /dd/tmp/k1.txt
 run     /dd/CMDS/cat /dd/tmp/k1.txt
 expect  Welcome 1
-expect  emulator
+expect  collection
 
 case    eunlink-and-dback-describe-themselves
 run     /dd/CMDS/eunlink -?
