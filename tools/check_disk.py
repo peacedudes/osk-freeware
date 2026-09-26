@@ -1719,6 +1719,16 @@ def check_captures_match_their_stanzas(root):
     import gen_screens
     caps = os.path.join(os.path.dirname(gen_screens.CAPS), "playtests")
     sheets = os.path.join(tools_dir(), "screenshots")
+    # THE CAPTURES ARE LOCAL.  notes/playtests/ is gitignored, so a fresh
+    # clone -- CI's -- has none, and this check reported every card as
+    # uncaptured on the workflow's first run (2026-09-26).  With no capture
+    # directory at all there is nothing to compare; CI's own step, `Check no
+    # screen has drifted from its stanza', compares the published screens.
+    # An EMPTY or partial directory is still checked, which is the case
+    # that matters locally.
+    if not os.path.isdir(caps):
+        print("    no capture directory here (a fresh clone) -- nothing to compare")
+        return True, ""
     missing, stale = [], []
     for name, meta in sorted(gen_screens.sheet_shots(sheets).items()):
         cap = os.path.join(caps, "%s.shot.txt" % name)

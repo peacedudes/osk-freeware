@@ -117,7 +117,7 @@ def resolve(root, path):
         if not part:
             continue
         try:
-            match = next((e for e in os.listdir(here) if e.lower() == part.lower()), None)
+            match = next((e for e in sorted(os.listdir(here)) if e.lower() == part.lower()), None)
         except (NotADirectoryError, PermissionError, FileNotFoundError):
             return False
         if match is None:
@@ -133,7 +133,7 @@ def survey(root):
         full = os.path.join(root, d)
         if not os.path.isdir(full):
             continue
-        for name in os.listdir(full):
+        for name in sorted(os.listdir(full)):
             binary = os.path.join(full, name)
             if not os.path.isfile(binary):
                 continue

@@ -240,7 +240,7 @@ def on_disk(root, path):
     here = root
     for seg in m.group(1).strip("/").split("/"):
         try:
-            names = os.listdir(here)
+            names = sorted(os.listdir(here))   # filesystem order differs by OS
         except OSError:
             return None
         hit = next((n for n in names if n.lower() == seg.lower()), None)
@@ -564,7 +564,8 @@ def unseen(root, progs):
     # catalogue AND to this.  CMDS/archives is the one exception and holds
     # the original .lzh archives, not programs.
     missing = []
-    for base, _, files in os.walk(os.path.join(root, "CMDS")):
+    for base, dirs, files in os.walk(os.path.join(root, "CMDS")):
+        dirs.sort()
         rel = os.path.relpath(base, root)
         if os.path.basename(base) == "archives":
             continue

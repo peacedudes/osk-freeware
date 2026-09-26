@@ -48,8 +48,13 @@ DATA_EXT = {".dat", ".hlp", ".ps", ".book", ".fmt", ".base", ".inc", ".err",
 def index(root):
     """Every file under `root', keyed by lower-case basename."""
     found = {}
-    for base, _, files in os.walk(root):
-        for f in files:
+    # SORTED WALKS, here and in scan(): os.walk follows the filesystem's
+    # own order, which APFS and ext4 do not share, so CI on Linux wrote a
+    # different DOC/DEPENDS from the same tree (2026-09-26).  Where a name
+    # is in two places, the first in sorted order is the one named.
+    for base, dirs, files in os.walk(root):
+        dirs.sort()
+        for f in sorted(files):
             found.setdefault(f.lower(), []).append(os.path.join(base, f))
     return found
 
@@ -68,7 +73,8 @@ def scan(root, everything=False):
     """(program, filename, where it is) for each bare name that exists."""
     here = index(root)
     rows = []
-    for base, _, files in os.walk(os.path.join(root, "CMDS")):
+    for base, dirs, files in os.walk(os.path.join(root, "CMDS")):
+        dirs.sort()
         for f in sorted(files):
             path = os.path.join(base, f)
             try:
