@@ -13,14 +13,17 @@ session's narrative goes into the history file, not here.
 - **Harnesses run as `tester`**, not the super-user.  A data-test family
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
-- **Emulator: os9exec `8d7d870`** (fix/scf-pd-eor), named by the os9exec
+- **Emulator: os9exec `8d7d870`** (branch fix/scf-pd-eor, renamed
+  release-v4.1.0 on 2026-09-25 -- CI's OS9EXEC_REF still names the old
+  branch until it is frozen to a commit), named by the os9exec
   session as the release candidate on 2026-09-25 and not yet pushed there.
   Verified on it: suite 1019/1019 twice on a fresh image as it ships
   (modules publicly writable), play-tests 151/151, as tester.  docs/try
   runs it.  Still to do when os9exec pushes its final commit: freeze
   .github/workflows/build-image.yml's OS9EXEC_REF to that commit (it tracks
   the branch until then, as its own comments say), and re-run if the final
-  commit is not 8d7d870.  `lesspipe' needs 2a95c75 or later; mmon's cases
+  commit is not 8d7d870.  os9exec says the final commit may add only CI
+  workflows and README text, which change nothing the emulator runs.  `lesspipe' needs 2a95c75 or later; mmon's cases
   need 289d55e or later.
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
