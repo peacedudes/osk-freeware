@@ -72,6 +72,10 @@ cap     parent, priority, CPU time, age and share of the CPU -- reading the
 cap     ages through F$SetSys's Julian and second-of-day globals.  Here it
 cap     catches the shell and itself.
 try     aprocs
+run     exec shell
+wait    2
+run     clear
+wait    1
 run     aprocs
 wait    5
 shot    argproc_demo
@@ -162,6 +166,10 @@ cap     devprc shows which device each process holds a path to: `-a' walks
 cap     every process and lists its open paths and their devices.  `ptxminst'
 cap     installs Ptxm, and `t_trtest' is a test driver for tree functions.
 try     devprc -a; ptxminst -?; t_trtest
+run     exec shell
+wait    2
+run     clear
+wait    1
 run     devprc -a
 wait    8
 run     ptxminst -?
