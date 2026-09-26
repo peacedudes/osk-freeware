@@ -1,5 +1,5 @@
 $ cat password
-su, ,0.0,128,/dd/cmds,/dd/sys,shell -p="su: "
+root, ,0.0,128,/dd/cmds,/dd/sys,shell -p="root: "
 tester,,1.7,128,/dd/CMDS,/dd/USR/TESTER,shell
 ,,1.99,128,/dd/CMDS,/dd/USR/ANON,shell -p="anon: "
 uucp,,3.1,128,/dd/CMDS/UUCP,/dd/USR/LIB/UUCP,shell
@@ -11,13 +11,13 @@ $ cut -d, -f3 password
 3.1
 0.0
 $ cut -d, -f1-3 password
-su, ,0.0
+root, ,0.0
 tester,,1.7
 ,,1.99
 uucp,,3.1
 os9,,0.0
 $ cut -c1-4 password
-su,
+root
 test
 ,,1.
 uucp

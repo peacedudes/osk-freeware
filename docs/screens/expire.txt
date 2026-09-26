@@ -1,2 +1,14 @@
 $ expire -t
-expire: you are not the superuser!
+expire (Sep 26-05:38:17) expiring articles over 14 days old
+would expire newsgroup: alt.folklore.computers
+would expire newsgroup: alt.folklore.urban
+would expire newsgroup: alt.magic
+would expire newsgroup: comp.lang.c
+would expire newsgroup: comp.os.linux
+would expire newsgroup: comp.os.os9
+would expire newsgroup: comp.sys.m6809
+would expire newsgroup: junk
+would expire newsgroup: local.general
+would expire newsgroup: news.announce
+would expire newsgroup: news.announce.important
+would expire newsgroup: news.announce.newusers

@@ -92,6 +92,7 @@ run     /dd/CMDS/cp /dd/SYS/motd $W/plain.txt
 run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/ssl plain.txt"
 expect  File descriptor sector plain.txt:
 expect   Seg#     start    lenght
+expect     1      0
 
 # As tester: `uuclean: you are not the superuser!'  (from misc6)
 case    uuclean-explains-how-it-ages-the-spool
@@ -150,7 +151,7 @@ expect  0 /dd/tmp/pt2
 # uidmask.cases).
 case    logname-names-the-super-user
 run     /dd/CMDS/logname
-expect  su
+expect  root
 absent  no login name
 
 # crontab's -u is the super-user's (legacy.cases shows tester refused).

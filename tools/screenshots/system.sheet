@@ -431,6 +431,7 @@ run     scsiutil -?
 wait    8
 
 shot    sddemo
+super
 cap     White's Speedisk 2.10, a disk defragmenter, drawing the map of a
 cap     volume it is about to work on.
 try     sddemo
@@ -464,18 +465,17 @@ try     sqrtx
 run     sqrtx
 wait    6
 shot    ssl
-cap     ssl asks RBF for a file's segment list -- the sectors it was
-cap     given, in order.  It prints the heading and no rows for every
-cap     file tried here, the segment information it wants not being
-cap     available in this environment.  `map -e' answers the same
-cap     question about a file's blocks, and does work; it has its own
-cap     card.
-try     ssl DOC/INDEX
-run     builtin cd /dd
+super
+cap     ssl shows a file's segment list: the sector its file descriptor
+cap     sits in, then each run of sectors the file occupies, read off the
+cap     raw disk.  It finds the file by name in the current directory, so
+cap     change to the file's directory first.
+try     ssl INDEX
+run     builtin cd /dd/DOC
 wait    1
 run     clear
 wait    1
-run     ssl DOC/INDEX
+run     ssl INDEX
 wait    4
 shot    top
 cap     top lists processes with their share of the CPU and refreshes every
@@ -989,6 +989,7 @@ snap
 send    q
 wait    2
 shot    bootlogger
+super
 cap     Writes the time the machine came up into SYS/bootlog and says
 cap     nothing.  It returns silently whenever you run it, so the log is
 cap     the only way to see that it did anything -- and running it by hand

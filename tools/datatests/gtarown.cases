@@ -27,7 +27,7 @@ case    gtar-lists-the-owner-and-group-of-a-tester-file
 run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/ksh -c 'cd /dd/tmp/gtarown/in; /dd/CMDS/REBUILT/gtar cf ../a.tar mine root'"
 run     /dd/CMDS/su -s /dd/CMDS/bash tester -c "/dd/CMDS/REBUILT/gtar tvf /dd/tmp/gtarown/a.tar"
 expect  tester/1 
-expect  su/0 
+expect  root/0 
 
 case    an-extract-by-the-super-user-restores-both-owners
 run     /dd/CMDS/ksh -c "cd /dd/tmp/gtarown/out; /dd/CMDS/REBUILT/gtar xf ../a.tar"

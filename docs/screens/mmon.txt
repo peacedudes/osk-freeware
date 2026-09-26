@@ -26,4 +26,13 @@ $ tail -l=26 DOC/SYSADMIN/mmon.config.sample
         be_tolerant = Smtp
         fix_speed = 9600
 $ watch -?
-watch: Only the superuser (0.0) may start watch!
+Syntax: watch [<opts>] <device> [<opts>]
+Function: watches the device for an incoming call
+Options:
+     -t=<time>    The time to keep to mmon stay on line (in min)
+     -c=<cmd>     The command to execute by an incoming call
+     -d           No device as argument given
+     -d=<dev>     Starts the program on this device
+     -m=<mtch>    The string <mtch> is the RING of the modem
+     -b=<time>    Between two rings, there may pass maximum of <time> secs.
+     -l=<logfile> Write a logfile to <logfile>

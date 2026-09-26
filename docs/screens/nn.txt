@@ -1,5 +1,5 @@
 Newsgroup:#comp.os.os9                                  Articles:#1#of#1/1#NEW
 
-a su@osk.UUCP       1  MNews on this disk
+a root@osk.UUCP     1  MNews on this disk
 
---#06:49#--#SELECT#--#help:?#-----All-----
+--#05:39#--#SELECT#--#help:?#-----All-----

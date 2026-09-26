@@ -103,6 +103,7 @@ run     shell "echo before; timeout; echo after"
 wait    3
 
 shot    mmon
+super
 for     mmon watch
 size    48 80
 cap     mmon is TOP's timesharing monitor, the job Microware's tsmon does,
@@ -136,9 +137,12 @@ run     erradm -?
 wait    3
 
 shot    vcron
+super
 for     vcron crontab
-cap     Vixie's cron.  vcron runs only for members of the group Cron,
-cap     which this disk has not got, so it says so; crontab lists,
+cap     Vixie's cron: vcron is the daemon, started by the super-user, that
+cap     runs each user's table at its times.  It goes into the background
+cap     and stays there, asleep between runs -- it prints `Already locked:
+cap     lck.cron!' as it starts and runs regardless.  crontab lists,
 cap     installs, edits and removes a user's own table.
 try     crontab -l
 run     clear

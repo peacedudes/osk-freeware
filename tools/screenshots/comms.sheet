@@ -57,7 +57,7 @@ wait    5
 shot    autoreply
 cap     Sends an automatic reply while you are away.  It resolves your
 cap     mailbox by the session's numeric owner rather than $USER, so
-cap     under this identity it reaches for a mailbox named `su' and
+cap     under this identity it reaches for a mailbox named `root' and
 cap     stops there; turning autoreplying off does not need the mailbox
 cap     and answers for real.
 try     autoreply off
@@ -530,6 +530,7 @@ run     ls -l history.dir history.pag
 wait    5
 
 shot    expire
+super
 cap     Deletes news articles past their expiry date.  -t previews
 cap     without deleting, walking every newsgroup in the active file.
 try     expire -t
@@ -1063,6 +1064,7 @@ send    n\r
 wait    4
 
 shot    rnews
+super
 size    30 80
 cap     Unpacks an incoming news batch.  Given one real article with a
 cap     `Newsgroups:' header, it files it under the matching directory tree in
@@ -1646,6 +1648,7 @@ run     rmail tester; uulog
 wait    6
 
 shot    uuclean
+super
 cap     Removes stale jobs from the UUCP spool.  Its help lists the age
 cap     and selection options.
 try     uuclean -?

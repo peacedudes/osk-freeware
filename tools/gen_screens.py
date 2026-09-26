@@ -368,6 +368,9 @@ def sheet_shots(sheets=None):
             first = after[0] if after else ""
             shots[shot["name"]] = {"hash": screenshots.stanza_hash(shot),
                                    "first": first,
+                                   # Shot as the super-user: the card says so
+                                   # over its screen (2026-09-26).
+                                   "super": bool(shot.get("super")),
                                    # Everything the stanza actually typed, so
                                    # `demonstrated' below can tell a program
                                    # that was RUN from one merely credited.
@@ -601,7 +604,8 @@ def main():
                                               "s": e["screen"],
                                               **({"try": e["try"]} if e.get("try") else {}),
                                               **({"os9": e["os9"]} if e.get("os9") else {}),
-                                              **({"k": e["keys"]} if e.get("keys") else {})})
+                                              **({"k": e["keys"]} if e.get("keys") else {}),
+                                              **({"su": 1} if (sheets_by_name.get(e["name"]) or {}).get("super") else {})})
     # WHAT TRYING EACH CARD NEEDS, for the page's Try It button:
     # tools/tryable.py.  `disk' is left out to keep the file small.
     import tryable

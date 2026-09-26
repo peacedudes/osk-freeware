@@ -6,9 +6,9 @@ SRC/keep/keep.sh
 SRC/keep/kept.sh
 SRC/keep/unkeep.sh
 $ gtar tvf tmp/ARC/keep2.tar
-drwxrwxrwx su/0       0 Sep 24 12:17 2026 SRC/keep/
--rw-rw-rw- su/0   12024 Aug  3 19:00 2026 SRC/keep/about.c
--rw-rw-rw- su/0   32902 Aug  3 19:00 2026 SRC/keep/keep.c
--rw-rw-rw- su/0    4513 Aug  3 19:00 2026 SRC/keep/keep.sh
--rw-rw-rw- su/0    1169 Aug  3 19:00 2026 SRC/keep/kept.sh
--rw-rw-rw- su/0    2220 Aug  3 19:00 2026 SRC/keep/unkeep.sh
+drwxrwxrwx root/0     0 Sep 26 05:34 2026 SRC/keep/
+-rw-rw-rw- root/0 12024 Aug  3 19:00 2026 SRC/keep/about.c
+-rw-rw-rw- root/0 32902 Aug  3 19:00 2026 SRC/keep/keep.c
+-rw-rw-rw- root/0  4513 Aug  3 19:00 2026 SRC/keep/keep.sh
+-rw-rw-rw- root/0  1169 Aug  3 19:00 2026 SRC/keep/kept.sh
+-rw-rw-rw- root/0  2220 Aug  3 19:00 2026 SRC/keep/unkeep.sh

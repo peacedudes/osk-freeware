@@ -164,6 +164,7 @@
   .runit{margin:8px 0 0;font-size:13.5px}
   .runit.none{color:var(--faint)}
   .runit .rneed{color:var(--faint)}
+  .see .k .su{color:var(--accent)}
   .try code.copycmd{cursor:pointer;position:relative;transition:background .15s}
   .try code.copycmd:hover{background:var(--rule)}
   .try code.copycmd:focus-visible{outline:2px solid var(--faint);outline-offset:2px}
@@ -699,7 +700,7 @@ function renderPanel(){
   const shot=SHOTS[p.name];
   const tryCmd=tryFor(shot)||p.name;
   const seeHTML=shot
-    ? `<div class="see"><div class="k">see it run</div>`+
+    ? `<div class="see"><div class="k">see it run${shot.su?` <span class="su">&mdash; as the super-user (root)</span>`:""}</div>`+
       `<pre class="shot">${shotHTML(shot)}</pre>`+
       `<p class="shotcap">${keys(esc(shot.c))}${shotHTML(shot).includes('class="ty"')?' <span class="tykey">Typed text is shown <span class="ty">like this</span>.</span>':''}</p></div>`
     : "";

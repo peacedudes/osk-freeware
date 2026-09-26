@@ -3,4 +3,4 @@ $ pwparse < password
         uucp
 
         tester
-        su
+        root

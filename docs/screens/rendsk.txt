@@ -1,17 +1,16 @@
 $ dinfo /dd
 Device name   : /dd
-Volume name   : "OSK-Freeware"
-Creation date : 2026-9-23 23:12
-Capacity      : 339968 KBytes (1359872 sectors, 100.00%)
-Free          : 180487 KBytes (721948 sectors, 53.09%) in 91 Blocks
-Used          : 159481 KBytes (637924 sectors, 46.91%)
-Largest block : 180071 KBytes (720284 sectors, 52.97%)
+Volume name   : "OSK-FREEWARE"
+Creation date : 2026-9-26 5:34
+Capacity      : 421888 KBytes (1687552 sectors, 100.00%)
+Free          : 225909 KBytes (903636 sectors, 53.55%) in 2 Blocks
+Used          : 195979 KBytes (783916 sectors, 46.45%)
+Largest block : 225906 KBytes (903624 sectors, 53.55%)
 $ rendsk /dd CARD-CATALOGUE; dinfo /dd
-rendsk: allowed for superuser only!
 Device name   : /dd
-Volume name   : "OSK-Freeware"
-Creation date : 2026-9-23 23:12
-Capacity      : 339968 KBytes (1359872 sectors, 100.00%)
-Free          : 180487 KBytes (721948 sectors, 53.09%) in 91 Blocks
-Used          : 159481 KBytes (637924 sectors, 46.91%)
-Largest block : 180071 KBytes (720284 sectors, 52.97%)
+Volume name   : "CARD-CATALOGUE"
+Creation date : 2026-9-26 5:34
+Capacity      : 421888 KBytes (1687552 sectors, 100.00%)
+Free          : 225909 KBytes (903636 sectors, 53.55%) in 2 Blocks
+Used          : 195979 KBytes (783916 sectors, 46.45%)
+Largest block : 225906 KBytes (903624 sectors, 53.55%)

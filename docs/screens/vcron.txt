@@ -1,4 +1,5 @@
 $ vcron
-vcron: YOU are NOT allowed to start Vcron !
+[4] vcron started
+vcron: Already locked: lck.cron!
 $ crontab -l
-no crontab for tester
+no crontab for root

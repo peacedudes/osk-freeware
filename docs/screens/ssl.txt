@@ -1,2 +1,6 @@
-$ ssl DOC/INDEX
-Sie sind doch nicht der Superuser - ooooder ?
+$ ssl INDEX
+
+File descriptor sector INDEX: 3bb34
+ Seg#     start    lenght
+-------------------------
+   1      03bb35    040b

@@ -101,7 +101,7 @@ expect  0
 
 case    cut-takes-a-field
 run     /dd/CMDS/cut -d, -f1 /dd/SYS/password | /dd/CMDS/head -n 1
-expect  su
+expect  root
 
 case    charcnt-counts-characters
 run     /dd/CMDS/charcnt < $T

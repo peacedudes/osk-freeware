@@ -95,7 +95,7 @@ bmp 095921447e784b82
 boa f4637911e805fd45
 bog 6a559c9a353d94f5
 bootgen 59e9073a84820da3
-bootlogger 83fdf259d873030f
+bootlogger 979197c8009a3310
 browse d6333f7a41d2fe63
 bru 8569242e36f26037
 brushtopbm 0e1f564c1ef05e09
@@ -280,7 +280,7 @@ eunlink 7473e7b60c9e207e
 every 1a87d90bcd248316
 exist c54bb20bc7c4df89
 expand 6d527f34be7958ca
-expire 4f5c0139a9bff507
+expire 9dbc5d6c463eae04
 expr 93380e70a1308318
 fact c0e21f17c277abb2
 factor 1ccd0e9539df7630
@@ -518,7 +518,7 @@ mkdict 429d03cfca6f7aec
 mkdir ed4d64f149e31208
 mkindex 56e25e6b32f8fb0c
 mmenu 4e8e7749965d76c0
-mmon c10fc6020351aa8c
+mmon 1e3509f73f3fcb0d
 modbuster cb744ce6cbe812b3
 modinfo 35b55f276b3cbaeb
 modules b8fce7e45a55afef
@@ -735,7 +735,7 @@ rechne 59c965a157f88843
 ref 24ef05ffb6b7e3a9
 relaynews f7a9d398616e4a4e
 remove 9bd13869d0eed3a0
-rendsk a2b8a5173c3a3a45
+rendsk 101cf00fcc961b65
 repeat 86d732ebd88df086
 repunsel 3ae476f3868f0533
 resize d198db39123e3928
@@ -747,7 +747,7 @@ rmail f9a4f50ffff07b04
 rn 85eb406433256e38
 rndir 7a475e6bc3153ecb
 rndname 41a53ac034e446fe
-rnews 4d20cedcc809543a
+rnews caf76bb0bcc2b99d
 robots 0fbe984846b11774
 roff d40c26c3bca3deb1
 rogue bf3417536df76e53
@@ -778,7 +778,7 @@ screen_nocio cbf8a0fbb8973db4
 scriptmaster c2480f44f645d209
 scsiutil c928a84aba4e57da
 sdb a79ec8986d276df3
-sddemo c472fc5dc89bc5e1
+sddemo 459f420e4ee8b112
 sed 86aff8401aaf7f06
 sed_1.06 b45e5f3769a58252
 sepwords 2946a889b8fd59d2
@@ -829,7 +829,7 @@ split 6e90775ab9b17fef
 splstat f223ff456a981b4f
 spottopgm f14a2c92ed428c34
 sqrtx 27e19ff0d5f65f07
-ssl 14b797edbedf2d17
+ssl 95070425ae32d0f4
 sterm ad3781050e051e44
 stevie 37e9afa88771dcfd
 stone 1a340282f3de4054
@@ -924,7 +924,7 @@ unsubscribe 0d927590b28d92fa
 unzip ee4a5b0c4de86033
 upperdir 7456190d2c69ba1c
 utree 141c58b85cb30aa3
-uuclean 61b9ee9dcd19b1db
+uuclean 2cbc92595adc0e1d
 uucp 05e486c2e07d12a2
 uud 4a82bba53adf681d
 uudecode 9d17dbb5520dbcd3
@@ -941,7 +941,7 @@ v7make 2a9b2e869566b585
 valspeak 7d51b124e270473b
 vc 184340ae7a592513
 vcraps 4a4e9c21b6113efa
-vcron 1a4c5ac4bd6b553d
+vcron 2446dfc2fed2168b
 version 4cf80677f3f5a15c
 vftovp 01cee193d3f83aa4
 vi 815e0cedeedc2fec

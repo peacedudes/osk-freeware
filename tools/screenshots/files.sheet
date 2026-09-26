@@ -510,6 +510,7 @@ wait    8
 snap
 
 shot    rendsk
+super
 size    26 80
 cap     rendsk changes the volume name of a disk -- the name written in the
 cap     identification sector, not any file on it.  `dinfo' either side

@@ -4001,7 +4001,7 @@
 },
 "ssl": {
 "setup": [
-"builtin cd /dd"
+"builtin cd /dd/DOC"
 ]
 },
 "stevie": {
