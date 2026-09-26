@@ -406,6 +406,12 @@ def hidden_setup(shot):
     # page types each at bash's prompt, and a line wider than the terminal
     # is redrawn in scrambled pieces there.
     for v in (runs[:cut] if cut else []):
+        # `exec shell' is how a card shows Microware's shell, as a real OS-9
+        # user has it (top's listing names its parent shell).  In the browser
+        # that is the reader's choice, which the page already makes -- so it
+        # is not replayed, or a reader who picked bash would lose it.
+        if v.strip() == "exec shell":
+            continue
         if len(v) > 60 and not any(q in v for q in "'\"`\\"):
             out += [p.strip() for p in v.split(";") if p.strip()]
         else:

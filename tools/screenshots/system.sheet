@@ -474,6 +474,8 @@ cap     top lists processes with their share of the CPU and refreshes every
 cap     few seconds: plain `top' shows your own, busy or idle, and `top -a'
 cap     everyone's.  The number is the interval; interrupt it to leave.
 try     top 3
+run     exec shell
+wait    2
 run     clear
 wait    1
 run     top 3
