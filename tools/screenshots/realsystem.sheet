@@ -209,8 +209,10 @@ quit    l\r
 shot    mwb
 cap     mwb, the manual workbench: it creates and edits manual entries a
 cap     section at a time, writes them out in proff format, and previews,
-cap     formats, prints and indexes them.  It keeps them under USR/DOC/.MAN
-cap     on /h0, in a workspace directory SOURCE, which it needs to find.
+cap     formats, prints and indexes them.
+cap     Make its directory before the first run -- at the root of /h0,
+cap     `mkdir -p USR/DOC/.MAN/SOURCE' -- or it stops at once with
+cap     `Can't change to' that directory.
 try     mwb
 run     mkdir -p /h0/USR/DOC/.MAN/SOURCE
 wait    2
