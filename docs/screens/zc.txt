@@ -1,3 +1,6 @@
-De Kalb, IL.
-$ Cambridge, MA.
-$ Zip Code not found!
+zc 50325
+Des Moines, IA.
+$ zc 02139
+Cambridge, MA.
+$ zc 99999
+Zip Code not found!

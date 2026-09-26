@@ -28,8 +28,8 @@ expect  80
 expect  1B 5B 48 1B 5B 32 4A
 
 case    zc-names-the-city-for-a-zip-code
-run     /dd/CMDS/zc 60115 < /nil
-expect  De Kalb, IL.
+run     /dd/CMDS/zc 50325 < /nil
+expect  Des Moines, IA.
 
 case    cdecl-explains-a-declaration
 run     echo "explain char *argv[]" | /dd/CMDS/cdecl

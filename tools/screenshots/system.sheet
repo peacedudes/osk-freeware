@@ -1141,10 +1141,10 @@ cap     is three quarters of a megabyte of them, one line per code, and a
 cap     code that is not in the table is told so rather than guessed at.
 cap     With no argument it opens a small form instead, where C clears the
 cap     field and Q leaves.
-try     zc 60115
+try     zc 50325
 run     clear
 wait    1
-run     zc 60115
+run     zc 50325
 wait    3
 run     zc 02139
 wait    3
