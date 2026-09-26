@@ -470,21 +470,13 @@ wait    1
 run     ssl DOC/INDEX
 wait    4
 shot    top
-cap     top lists the processes by their share of the CPU and refreshes every
-cap     few seconds -- here `-a', which lists them all rather than only those
-cap     that have used any CPU since the last pass.  The interval is an
-cap     argument; interrupt it to leave.
-cap     It used to print these headings and then take a bus error, which its
-cap     card showed.  The cause was its own: it walked the process table by a
-cap     count without bounding it by the array that holds it, ran off the end
-cap     into whatever was beyond, and handed those bytes to F$GPrDsc as a
-cap     process id.  Rebuilt from SRC/eff_top with the walk bounded,
-cap     2026-09-18; the build needs no Microware module, so the star is gone
-cap     from its entry too.
-try     top -a 3
+cap     top lists processes with their share of the CPU and refreshes every
+cap     few seconds: plain `top' shows your own, busy or idle, and `top -a'
+cap     everyone's.  The number is the interval; interrupt it to leave.
+try     top 3
 run     clear
 wait    1
-run     top -a 3
+run     top 3
 wait    12
 snap
 kill

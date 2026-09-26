@@ -1,0 +1,22 @@
+name    topown
+prog    top 3
+# Plain `top' lists your own processes, busy or idle (2026-09-26).  Before,
+# it listed only those that had used a tick since the last screen, so with
+# nothing else running it showed its headings and, now and then, itself --
+# `bash' sitting at its prompt used no ticks and never appeared.  bash is
+# the line that tells the two apart.  A plain `bash' matches the prompt
+# and `top' the command line -- measured: that version PASSED against the
+# old binary, whose screen had headings and no rows.  So these are the
+# rows themselves: bash is process 3 and top process 4 in this session,
+# both 1.7 at priority 128.
+rate    0.6
+wait    8
+snap    listed
+expect  Id PId Grp.Usr Prio
+expect    3   2   1.7    128
+expect    4   3   1.7    128
+absent  Process Aborted
+wait    8
+snap    refreshed
+key     \003
+wait    2
