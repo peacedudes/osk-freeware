@@ -722,7 +722,6 @@ run     ls -l y.tab.c
 wait    6
 
 shot    fact
-super
 size    50 80
 cap     The Fortran example, end to end: the source, this disk's RTF/68K
 cap     compiling it to 68000 assembly, your own OS-9's `r68' assembling
@@ -732,9 +731,8 @@ cap     far as a 32-bit integer reaches -- 13! overflows.  r68, l68, sys.l
 cap     and the `oskdefs.d' r68 reads come from /h1 and were put in place
 cap     first, with the run-time library every RTF program wants: `load
 cap     os9lib'.  l68 writes the program to your execution directory --
-cap     here CMDS, which on this disk only the super-user may write, so
-cap     this card runs as the super-user -- in place of the fact that
-cap     ships, removed first, so what runs is the one just built.
+cap     here CMDS -- in place of the fact that ships, removed first, so
+cap     what runs is the one just built.
 try     rtf fact.f
 run     rm -rf /dd/tmp/FACT > /nil 2>/nil; mkdir -p /dd/tmp/FACT
 wait    3
@@ -782,16 +780,14 @@ run     ls -l div.a
 wait    6
 
 shot    for
-super
 size    40 80
 cap     The RTF Fortran compile driver: `for fact' compiles fact.f with
 cap     `rtf', assembles the result with `r68' and deletes the assembly,
 cap     printing each command as it runs it through `shell'.  Then `lnk
 cap     fact' links it into a program and `fact' runs it: 1! to 12!.  The
 cap     shell, r68, l68 and del are your own OS-9's, loaded from /h1 with
-cap     the Fortran run-time, os9lib.  lnk installs into CMDS, which on
-cap     this disk only the super-user may write, so this card runs as the
-cap     super-user.  At bash `for' is also the loop keyword,
+cap     the Fortran run-time, os9lib.  lnk installs into CMDS.  At bash
+cap     `for' is also the loop keyword,
 cap     so there it is `command for'; at the OS-9 shell just `for'.
 try     command for fact; lnk fact; fact
 os9     for fact; lnk fact; fact
@@ -811,13 +807,11 @@ run     fact
 wait    6
 
 shot    lnk
-super
 cap     The RTF Fortran link driver: `lnk fact' links fact.r with the
 cap     Fortran start-up code and Microware's `sys.l' into a program, and
 cap     prints the `l68' command it runs.  It looks for both in LIB on /h0
 cap     and writes the program to CMDS there, as its authors' systems were
-cap     laid out; on this disk only the super-user may write CMDS, so this
-cap     card runs as the super-user.  The start-up code,
+cap     laid out.  The start-up code,
 cap     rtfstart.r, ships in LIB from the RTF archive; sys.l is your own
 cap     OS-9's, copied into LIB from /h1.  fact was compiled with `for' and
 cap     the fact that ships removed first, so the fact that runs is the one
@@ -839,7 +833,6 @@ run     fact
 wait    6
 
 shot    lnk.org
-super
 cap     The original build of `lnk', the RTF Fortran link driver.  It does
 cap     the same job and names the start-up code `fstart.r' where lnk says
 cap     `rtfstart.r' -- the same SRC/rtf/rtfstart.a, assembled under the

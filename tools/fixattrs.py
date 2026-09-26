@@ -15,7 +15,7 @@ MODE_DIR to 0777 in mktar.py changes nothing in the image. Verified by
 building it both ways and comparing.
 
 Files are already right and are left alone: tar does honour the mode on a
-regular file, giving modules `--e-re-r` and data `----r--r`.
+regular file, giving modules `-ewrewr` and data `---wr-wr`.
 
 The attribute byte, high bit first: d s pe pw pr e w r. A directory with
 everything a directory needs is 0xBF, which is exactly what os9exec's own

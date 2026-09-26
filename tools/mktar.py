@@ -11,7 +11,7 @@ The archive carries the ATTRIBUTES the finished disk should have, because tar
 sets them from the mode bits as it extracts. That removes the separate `attr`
 pass the old build needed:
 
-    OS-9 module (4AFC magic)  0555  ->  e+pe+r+pr, not writable
+    OS-9 module (4AFC magic)  0777  ->  e+w+r+pe+pw+pr
     everything else           0666  ->  r+w+pr+pw, no execute
     directory                 0777  ->  d+e+w+r+pe+pw+pr
 
@@ -28,6 +28,14 @@ see it -- RBF gives the super-user a software bypass, so the write just
 works and the disk looks fine. Log in as yourself and sokoban stops with
 "cannot open score file". That is the bug this mode fixes, and it is why
 testing as 0.0 could not find it.
+
+MODULES ARE PUBLICLY WRITABLE TOO (rdoggett, 2026-09-25).  The image is a
+scratch copy anyone mints fresh from the master, not a system to protect:
+"let the kids draw on the walls, it's kind of a whiteboard."  With modules
+0555 nobody but the super-user could replace or delete a program in CMDS,
+so a compiler that writes its output to the execution directory -- l68, the
+Fortran and C++ drivers -- failed for everyone else.  A reader who keeps a
+copy on their own system can lock it down there.
 
 A DIRECTORY MUST BE WRITABLE or the programs that create files in it fail --
 advent writes glorkz into GAMES/ADV, larn its scoreboard, and 35 programs use
@@ -57,7 +65,7 @@ not close; the check stays in because exceeding it silently truncates.
 import os, sys, tarfile
 
 MODULE_MAGIC = b"\x4a\xfc"
-MODE_MODULE, MODE_DATA, MODE_DIR = 0o555, 0o666, 0o777
+MODE_MODULE, MODE_DATA, MODE_DIR = 0o777, 0o666, 0o777
 
 
 def is_command(path):
