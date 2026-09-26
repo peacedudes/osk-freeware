@@ -967,6 +967,17 @@ if __name__ == "__main__":
         for p in stale:
             print("  %s is stale -- run tools/gen_catalog.py %s"
                   % (os.path.relpath(p, repo), root))
+            # SAY WHERE.  On CI (Linux) the page came out different from the
+            # one built here, and "stale" alone could not say why.
+            if os.path.exists(p):
+                import difflib
+                have = open(p, encoding="utf-8", newline="").read()
+                text = dict(wanted)[p]
+                cut = lambda s: s.replace("><", ">\n<").split("\n")
+                for d in list(difflib.unified_diff(cut(have), cut(text),
+                                                   "committed", "generated",
+                                                   n=0, lineterm=""))[:12]:
+                    print("    " + d[:200])
         if stale:
             raise SystemExit(1)
         print("  every program on the disk is in the catalogue and has a category")
