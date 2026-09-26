@@ -1861,7 +1861,7 @@
 | `lessecho` | &#9733; prints its arguments back quoted for a shell -- the helper less uses to hand file names on<br>`usage: lessecho [-ox] [-cx] [-pn] [-dn] [-a] file ...` |
 | `lesskey` | turns a key-binding file into the binary less reads: a `#command' section, then one key and one command per line<br>`usage: lesskey [-o output] [input]` |
 | `man` | reads one of this disk's own manual pages: `man md5' formats DOC/md5/md5.1 with nroff and pages it with less. `man -k <word>' lists the pages whose name contains the word and `man -w <name>' says where one is.  Every page is indexed in DOC/MANPAGES.  A shell script, so you can read it |
-| `more` | the plain pager: a screenful at a time, Enter for the next. The screenful is the terminal's page length (tmode pag=); at 0 it never stops.  It reads Enter from standard input, so it cannot page a pipe -- use less for that |
+| `more` | the plain pager: 24 lines at a time, Enter for the next. The 24 is built in -- tmode pag= does not change it.  It reads Enter from standard input, so fed a pipe it never waits: each prompt takes the next line of the text as its answer, and that line is lost.  less pages a pipe |
 | `mwb` | &#9733; writes and edits manual entries in the proff format TOP's manuals use, kept under USR/DOC/.MAN on /h0<br>`Syntax: mwb {<opts>}` |
 
 </details>

@@ -2454,7 +2454,6 @@
 },
 "more": {
 "setup": [
-"tmode pag=24",
 "builtin cd /dd"
 ]
 },

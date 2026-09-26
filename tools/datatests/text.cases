@@ -371,3 +371,18 @@ run     /dd/CMDS/disdvi /dd/DOC/mg/mg_doc.dvi
 expect  PRE       version          : 2
 expect  numerator        : 25400000
 expect  magnification    : 1000
+
+# more pages 24 lines, built in -- tmode pag= does not change it (measured
+# 2026-09-25 on a pty at pag=10, 0 and 24; its card had said otherwise).
+# It reads Enter from standard input, so a pipe answers each prompt with
+# the next line of the text and that line is lost: 23 lines, the prompt,
+# line 24 gone.
+case    more-pages-24-lines-and-a-pipe-answers-its-prompt
+run     /dd/CMDS/rm -rf /dd/tmp/MORET; /dd/CMDS/mkdir -p /dd/tmp/MORET
+run     i=1; while [ $i -le 60 ]; do echo "line $i" >> /dd/tmp/MORET/f; i=$((i+1)); done
+run     /dd/CMDS/cat /dd/tmp/MORET/f | /dd/CMDS/more
+expect  line 23
+expect  -- [ More ] --line 25
+expect  -- [ More ] --line 49
+absent  line 24
+absent  line 48

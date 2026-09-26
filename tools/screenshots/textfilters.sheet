@@ -615,14 +615,12 @@ snap
 
 shot    more
 size    24 80
-cap     The plain pager: a file a screenful at a time, and Enter for the
-cap     next.  The screenful is the terminal's page length -- `tmode pag=24'
-cap     here; with the page length at 0 it never stops.  It reads Enter from
-cap     standard input, so it cannot page a pipe: fed one, it takes the next
-cap     line as the answer and drops it.  `less' pages pipes, searches and
-cap     goes back.
+cap     The plain pager: a file 24 lines at a time, and Enter for the next.
+cap     The 24 is built in; the terminal's page length does not change it.
+cap     It reads Enter from standard input, so it cannot page a pipe: fed
+cap     one, it takes the next line as the answer and that line is lost.
+cap     `less' pages pipes, searches and goes back.
 try     more DOC/INDEX
-run     tmode pag=24
 run     builtin cd /dd
 wait    1
 run     clear
