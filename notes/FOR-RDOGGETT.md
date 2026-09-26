@@ -22,6 +22,20 @@ program with what it needs; the page already attaches, keeps and saves an
 "New empty disk as /h1" button (size, volume name, the standard CMDS/SYS
 directories), and the catalogue's picks producing one `keep' line.  Say
 yes and I build it; it adds a feature to the public page.
+MEASURED 2026-09-26: os9exec `mount -k=16M' makes a blank 16 MB RBF disk
+that gzips to 16 KB.  Mounted as /h1, `keep fortune' made CMDS, GAMES and
+SYS on it itself, wrote the program and its fortunes.dat, recorded both in
+SYS/kept, and /h1/CMDS/fortune ran.  So the button is the whole job: fetch
+that 16 KB, inflate it, hand it to the page's existing attach; `Save /h1'
+already downloads the result.
+
+**54. Rebuild pnmsmooth?**  The shipped binary (archive build) hands
+pnmconvol empty file names: SRC/netpbm/PNM/pnmsmooth.c line 50 fills
+argblk[] at its declaration, before tempfn and pnmfn are set, so the fork
+passes nothing useful -- only `-dump' works.  Moving those two assignments
+to just before the fork, and a recipe to build it, would make it smooth.
+It replaces an archive binary, so it is your call; the card now shows
+-dump and pnmconvol and says why.
 
 ## No action, just so you know
 
