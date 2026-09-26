@@ -33,6 +33,17 @@ session's narrative goes into the history file, not here.
   in another order), and `Info_help' matched `info_help' only on a
   case-insensitive disk.  Release and Pages steps run only on main or a
   tag.
+- **2026-09-26: an editor's pass over every card.**  Four fresh reviewers
+  read all 1108 cards as a publisher would (910 findings, 129 HIGH); six
+  agents fixed them sheet by sheet, and their changes to shared files came
+  back as proposals applied centrally.  About 80 programs that borrowed a
+  sibling's screen have cards of their own; 80 screens cut off at the top
+  were found by re-shooting in an 80-row window.  The superuser is `root';
+  super-user cards say so.  The renderer knows MM/1 colour codes, VT52
+  cursor codes, a Datamedia 1520 (`term dm1520') and C0 bytes inside a CSI;
+  a stanza can publish several screens (`pages', dm's help).  SYS/motd and
+  the welcome letter no longer talk about an emulator.  The review tooling
+  is scratch-only: review bundles, apply.py and apply_index.py.
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
   Never make it public.
@@ -70,6 +81,14 @@ session's narrative goes into the history file, not here.
    ten minutes, by design.)  mw's `-1[%dX' is mw sending
    termcap's `ec' without a count -- its bug; the termcap is right.
    `browse' printing the year as 126 is period behaviour and stays.
+   NEW 2026-09-26: the cio selector mismatch reaches past $41/$42 --
+   `cuts' calls $43 (fputc) and $44 (fgetc), which our cio also answers
+   with memory routines, so it writes only CRs.  tools/cio_macro_scan.py
+   looks at $41/$42 only; extend it to $43/$44, confirm the mapping against
+   the cio module, and update DOC/README-CIO's list and count.
+   Reported to os9exec 2026-09-26, their call: the pipe byte counter shared
+   by readers (ppmtopict | wc), an orphan's F$Exit ending the emulator
+   (vcron), and one image as /dd and /h0 being two RBF instances.
    mmon is CLEARED (2026-09-25): it wanted its two SysInfo locks and
    logon's path in SYS/mmon.config, and then offers login: on /t1;
    superuser.cases asserts it.

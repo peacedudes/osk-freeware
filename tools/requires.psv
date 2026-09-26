@@ -54,7 +54,7 @@ hexed|a directory for the dump, named with -t; without it the dump goes to /r0, 
 hexed|the termcap ENTRY in TERMCAP, not a filename -- `. SYS/termcap.entry'|measured 2026-09-18 with -e=vi
 cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/usr/lib/crontab"; DOC/cron/cron.txt: "The command field is a command line to be passed to the shell"
 tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026-09-14: after the three answers it sends ESC f and stops at instruction $A000 (E_PRCABT); its usage line names it hiplot
-dm|Microware's pd, which it runs through SHELL to learn its current directory|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
+dm|your own OS-9's pd, resident (SYS/login loads it from /h1): dm learns its directory by running `pd >/pipe/getcwdpipe', and without pd it shows `ERROR 216: Can't open /pipe/getcwdpipe' for five seconds each time -- its error routine sleeps 5 -- then carries on|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
 uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
 fact|the RTF run-time library resident: `load os9lib' from CMDS|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits
 man|nroff and less, and TMACDIR set to /dd/LIB so nroff finds the man macros|/dd/startup and SYS/login both set TMACDIR; measured 2026-09-18
