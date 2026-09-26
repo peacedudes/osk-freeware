@@ -25,6 +25,14 @@ session's narrative goes into the history file, not here.
   commit is not 8d7d870.  os9exec says the final commit may add only CI
   workflows and README text, which change nothing the emulator runs.  `lesspipe' needs 2a95c75 or later; mmon's cases
   need 289d55e or later.
+- **CI has run** (first time, 2026-09-26, manual run on this branch):
+  green end to end on Linux -- gate, catalogue, os9exec from
+  release-v4.1.0, image built and read back.  Its first runs found three
+  things this Mac hides: captures are gitignored (the gate now skips that
+  check in a fresh clone), directory walks were unsorted (DEPENDS came out
+  in another order), and `Info_help' matched `info_help' only on a
+  case-insensitive disk.  Release and Pages steps run only on main or a
+  tag.
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
   Never make it public.
