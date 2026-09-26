@@ -1,11 +1,11 @@
 $ lpsched /nil & edir -e; eset spoolqueue 42; edir -e
 <4>
-   Event Directory at  2:41:47
+   Event Directory at 11:13:40
 
 #Lnk  Value Wait Inc Sig Inc Event Name
 ----- ----- -------- ------- ----------
     1     0        2      -1 spoolqueue
-   Event Directory at  2:41:47
+   Event Directory at 11:13:40
 
 #Lnk  Value Wait Inc Sig Inc Event Name
 ----- ----- -------- ------- ----------

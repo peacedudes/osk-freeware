@@ -1,0 +1,24 @@
+$ modinfo CMDS/cio
+----------------------------------- CMDS/cio  - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - -
+Module name           = cio
+System revision       = 1
+Module size           = 18058
+Owner Id              = 1.0
+Offset to module name = 00004396H
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = c009H   reentrant
+Edition               = 6
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 7e44H
+
+
+Offset to execution entry point   = 0000008aH
+Offset to exception entry point   = 00000000H
+Data storage requirement          = 1426 Bytes
+Stack size                        = 4196 Bytes
+Offset to initialized data        = 0000439aH
+Offset to data reference lists    = 000045f8H

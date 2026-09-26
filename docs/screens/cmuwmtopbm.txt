@@ -1,0 +1,2 @@
+$ pbmtocmuwm tmp/base.pbm | cmuwmtopbm | pnmfile
+stdin:  PBM raw, 48 by 24

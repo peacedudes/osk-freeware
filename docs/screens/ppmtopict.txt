@@ -1,0 +1,4 @@
+$ ppmtopict tmp/base.ppm > tmp/t.pict; ls -l tmp/t.pict
+ppmtopict: computing colormap...
+ppmtopict: 6 colors found
+-rw-rw-rw-   1 0        0             904 Sep 26 08:21 tmp/t.pict

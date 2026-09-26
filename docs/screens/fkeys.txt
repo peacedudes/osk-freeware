@@ -1,3 +1,4 @@
+$ cat f_keys
 clear
  6=dir\n
 11=\1b
@@ -6,7 +7,7 @@ clear
 15=help
 16=shell -e\n
 
-$ fkeys DOC/fkeys/f_keys >tmp/fk; dump tmp/fk
+$ fkeys f_keys > fk; dump fk
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------

@@ -1,3 +1,9 @@
+$ cat hello.c
+#define ANSWER 42
+int main()
+{
+  return ANSWER;
+}
 $ ./gcc137_cccp hello.c
 # 1 "hello.c"
 

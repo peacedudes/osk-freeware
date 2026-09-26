@@ -1,0 +1,7 @@
+$ ppmtorgb3 base.ppm
+$ ls -l base.red base.grn base.blu
+-rw-------   1 7        1            1165 Sep 26 10:38 base.blu
+-rw-------   1 7        1            1165 Sep 26 10:38 base.grn
+-rw-------   1 7        1            1165 Sep 26 10:38 base.red
+$ rgb3toppm base.red base.grn base.blu | pnmfile
+stdin:  PPM raw, 48 by 24  maxval 255

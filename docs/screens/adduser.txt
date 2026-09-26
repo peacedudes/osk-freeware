@@ -1,17 +1,16 @@
-$ adduser -?
- ADDUSER: add a user to or remove a user from the system
- Usage: adduser [opts] [<username> [<userid>] ]
+$ adduser alice
 
- opts: -r <username>  - remove <username> from the system
-       -s  - allow the creation of super users
-       -?             - this message
+Enter new user ID number
+    ('Q' to quit) or press <ENTER> and I'll pick:
 
-       acceptable command lines are:
-          adduser
-          adduser <username>
-          adduser <username> <userid>
-          adduser -r <username>
-          adduser -s <username>
+Adding new user 'alice' as UID 0.256
+Do you wish to customize alice's login script?
+     (NO means use default script)       y/n --> n
 
-v2.1 (94Sep30) This is free software released under the GNU General Public
-License.  Please send suggestions/bug reports to:  bob@kc2wz.bubble.org
+User 'alice' has been added to the system
+
+**NOTE** the password for user 'alice' is NOT set right now.
+         You must use the utility PASSWORD to set it.
+
+$ grep alice SYS/password
+alice,000000,0.256,128,/dd/cmds,/DD/USR/alice,ulogin;ex shell

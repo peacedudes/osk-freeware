@@ -1,11 +1,3 @@
-$ initvdu -?
-
-initvdu v1.4 (c) M.C.Gregorie, 1994
-
-Syntax  : initvdu [<opts>]
-Function: initialise the login VDU from termcap
-Options :
-     -d           debug (no initialisation)
-     -r           reset the vdu ('rs' capability)
-     -a=xx        use the xx capability
-                  default is initialise ('is' capability)
+$ initvdu -d
+Using the 'is' capability for terminal type 'xterm-256color'
+Capability 'is'=<$1B>[!p<$1B>[?3;4l<$1B>[4l<$1B>>

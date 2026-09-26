@@ -1,6 +1,6 @@
 $ lpsched /nil & edir -e
 <4>
-   Event Directory at  2:41:10
+   Event Directory at 11:13:03
 
 #Lnk  Value Wait Inc Sig Inc Event Name
 ----- ----- -------- ------- ----------

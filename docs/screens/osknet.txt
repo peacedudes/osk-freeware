@@ -1,3 +1,7 @@
+$ osknet
+
+
+
                     OSKNET an OS9 friendly version of:
 
           Internet Protocol Package, (C) 1988 by Phil Karn, KA9Q

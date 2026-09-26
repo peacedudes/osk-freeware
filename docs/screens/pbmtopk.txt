@@ -1,0 +1,13 @@
+$ pbmtopk t.pk t.tfm 300 -c 65 a.pbm
+pbmtopk: This is PBMtoPK, version 2.4
+pbmtopk: 72 bytes written to packed file.
+pbmtopk: 148 bytes written to tfm file.
+$ pktopbm t.pk -x 24 -y 20 -c 65 b.pbm
+pktopbm: This is PKtoPBM, version 2.4
+pktopbm: 72 bytes read from packed file.
+$ pbmtoascii b.pbm
+                  o
+                 o"o
+                o" "o
+                M"""M
+              oMo   oMo

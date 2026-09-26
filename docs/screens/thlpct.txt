@@ -1,0 +1,28 @@
+$ modinfo thlpct
+------------------------------------ thlpct  - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - -
+Module name           = thlpct
+System revision       = 1
+Module size           = 108
+Owner Id              = 0.0
+Offset to module name = 00000060H
+Access permission     = e-re-re-r
+Type/Language          = 0f00H  Device Descriptor      not a programm
+Attribute/Revision    = 8000H   reentrant
+Edition               = 3
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 3f58H
+
+
+Device controller adress         = 00000000H
+Trap Vector number               = 0
+Hardware IRQ level               = 0
+IRQ Polling Priority             = 0
+Mode                             = a7H
+Offset to file manager name      = 0049H LFCRMan
+Offset to device Driver name     = 0052H null
+Offset to Device Configuration   = 0058H
+Option table size                = 1
+Device type                      = 1 RBF

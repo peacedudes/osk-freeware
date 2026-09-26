@@ -1,0 +1,3 @@
+$ ppmtopjxl tmp/base.ppm | wc
+(Computing colormap...  Done.  6 colors found.)
+      0      1    445

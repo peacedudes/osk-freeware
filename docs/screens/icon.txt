@@ -1,4 +1,2 @@
 $ pbmtoicon tmp/base.pbm | icontopbm | pnmfile
 stdin:  PBM raw, 48 by 24
-$ pbmtomacp tmp/base.pbm | macptopbm | pnmfile
-stdin:  PBM raw, 576 by 720

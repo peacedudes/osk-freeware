@@ -1,3 +1,5 @@
+$ crypto -h
+
 This program allows you to interactively solve cryptogram puzzles, or to simply
 filter the input to the standard output IF the output has been redirected.  The
 input can be pre-encoded or I can encode it for you.  If I encode it, I will be

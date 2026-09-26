@@ -1,24 +1,7 @@
-j8]m.i8[.l8^m.j8].n9@m.l8^.p9Bm.n9@.s9Dm.p9B.u9Fm.s9D.x9Hm.u9F.{9Jm.x9H.~9Lm.{9/
-a9Nm.~9L/e9Pm/a9N/h9Qm/e9P/k9Sm/h9Q/n9Um/k9S/q9Vm/n9U/t9Xm/q9V/w9Ym/t9X/y9Zm/w9/
-{9[m/y9Z/}9[m/{9[/.9\m/}9[0`9\m/.9\0a9\m0`9\0b9\m0a9\0b9\m0b9\0b9[m0b9\0b9[m0b90
-a9Zm0b9[0`9Ym0a9Z/.9Xm0`9Y/}9Vm/.9X/|9Um/}9V/z9Sm/|9U/x9Rm/z9S/v9Pm/x9R/s9Nm/v9/
-q9Lm/s9N/n9Jm/q9L/k9Hm/n9J/h9Fm/k9H/e9Dm/h9F/b9Cm/e9D/`9Am/b9C.}8_m/`9A.z8]m.}8.
-w8\m.z8].t8Zm.w8\.r8Ym.t8Z.o8Xm.r8Y.m8Wm.o8X.k8Vm.m8W.i8Um.k8V.g8Um.i8U.f8Um.g8.
-e8Um.f8U.d8Um.e8U.d8Um.d8U.d8Vm.d8U.d8Wm.d8V.e8Xm.d8W.f8Ym.e8X.g8[m.f8Y.i8\m.g8.
-k8^m.i8\.m9@m.k8^.p9Bm.m9@.s9Em.p9B.v9Gm.s9E.y9Im.v9G.}9Km.y9I/`9Nm.}9K/d9Pm/`9/
-h9Rm/d9P/k9Tm/h9R/o9Vm/k9T/r9Wm/o9V/u9Ym/r9W/x9Zm/u9Y/{9\m/x9Z/~9]m/{9\0`9]m/~90
-b9^m0`9]0c9^m0b9^0d9^m0c9^0e9^m0d9^0e9^m0e9^0e9]m0e9^0e9]m0e9]0d9\m0e9]0d9[m0d90
-b9Zm0d9[0a9Xm0b9Z/.9Wm0a9X/}9Um/.9W/{9Sm/}9U/x9Qm/{9S/v9Om/x9Q/s9Mm/v9O/p9Km/s9/
-m9Im/p9K/j9Gm/m9I/f9Dm/j9G/c9Bm/f9D/`9@m/c9B.}8^m/`9@.z8\m.}8^.v8[m.z8\.s8Ym.v8.
-q8Wm.s8Y.n8Vm.q8W.k8Um.n8V.i8Tm.k8U.g8Sm.i8T.e8Rm.g8S.c8Rm.e8R.b8Rm.c8R.a8Rm.b8.
-`8Rm.a8R.`8Sm.`8R.`8Tm.`8S.a8Um.`8T.b8Wm.a8U.c8Xm.b8W.e8Zm.c8X.g8\m.e8Z.i8^m.g8.
-l9Am.i8^.o9Cm.l9A.s9Fm.o9C.w9Hm.s9F.{9Km.w9H..9Mm.{9K/c9Pm..9M/g9Rm/c9P/k9Tm/g9/
-o9Wm/k9T/s9Ym/o9W/w9Zm/s9Y/z9\m/w9Z/}9]m/z9\0`9_m/}9]0c9_m0`9_0e:@m0c9_0f:Am0e:0
-h:Am0f:A0i:Am0h:A0i:@m0i:A0i:@m0i:@0i9_m0i:@0i9^m0i9_0h9]m0i9^0f9\m0h9]0e9Zm0f90
-c9Ym0e9Z0a9Wm0c9Y/~9Um0a9W/{9Sm/~9U/y9Pm/{9S/u9Nm/y9P/r9Lm/u9N/o9Im/r9L/l9Gm/o9/
-h9Em/l9G/d9Bm/h9E/a9@m/d9B.}8^m/a9@.z8\m.}8^.v8Ym.z8\.s8Xm.v8Y.p8Vm.s8X.l8Tm.p8.
-i8Sm.l8T.g8Qm.i8S.d8Pm.g8Q.b8Pm.d8P.`8Om.b8P-~8Om.`8O-}8Om-~8O-|8Om-}8O-|8Pm-|8-
-|8Qm-|8P-|8Rm-|8Q-}8Tm-|8R-~8Um-}8T.`8Wm-~8U.b8Zm.`8W.e8\m.b8Z.h8_m.e8\.k9Am.h8.
-o9Dm.k9A.s9Gm.o9D.x9Jm.s9G.|9Mm.x9J/a9Pm.|9M/f9Rm/a9P/j9Um/f9R/o9Wm/j9U/s9Zm/o9/
-x9\m/s9Z/|9^m/x9\/.9_m/|9^0c:Am/.9_0f:Bm0c:A0h:Cm0f:B0j:Cm0h:C0l:Cm0j:C0m:Cm0l:0
-n:Cm0m:C0n:Cm0n:C0n:Bm0n:C0m:Am0n:B0l:@m0m:A0k9^m0l:@0im-.8M
+$ lorenz3d
+dt ->0.01
+z mag ->20
+z offset ->0
+a ->10
+b ->28
+c ->

@@ -1,5 +1,8 @@
-$ vcron
-[4] vcron started
-vcron: Already locked: lck.cron!
-$ crontab -l
-no crontab for root
+$ vcron &
+<3>
+$ [4] vcron started
+procs
+ Id PId Grp.Usr  Prior  MemSiz Sig S    CPU Time   Age Module & I/O
+  2   0   0.0     128   91.46k   0 w        0.12  0:00 bash <>>>term
+  4   0   0.0     128   21.92k   0 s        0.00  0:00 vcron <>>>nil
+  5   2   0.0     128   23.64k   0 *        0.00  0:00 procs <>>>term

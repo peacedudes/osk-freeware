@@ -13,9 +13,8 @@ Try:
     messages        what is in the folder
     elm             the full-screen reader.  `q' quits it.
 
-Nothing here delivers mail to you -- that is a separate job, and
-/dd/CMDS/UUCP is what does it, over a serial line, to another machine
-that also speaks UUCP.  On this disk, under an emulator, there is no
-serial line, so this folder is as far as the story goes.
+Delivering mail to you is a separate job: the programs in CMDS/UUCP
+do it, over a serial line to another machine that also speaks UUCP,
+once your site is set up in SYS/UUCP.
 
 Delete this message whenever you like; it is an ordinary file.

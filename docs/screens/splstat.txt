@@ -1,4 +1,2 @@
-$ splstat -?
-Splstat: must be system manager
-$ lpq
-lpq: no spooler installed
+$ splstat; echo "status $?"
+status 0

@@ -1,2 +1,6 @@
-$ gouldtoppm tmp/NPIB/nr.ppm
-gouldtoppm: cannot read gould header(2nd)
+$ gouldtoppm x.gould | pnmnoraw
+P3
+4 2
+255
+65 66 67  68 69 70  71 72 73  74 75 76
+97 98 99  100 101 102  103 104 105  106 107 108

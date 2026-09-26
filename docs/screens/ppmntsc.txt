@@ -1,13 +1,8 @@
-$ ppmpat -madras 64 40 > tmp/n.ppm
-$ ppmntsc 0.8 tmp/n.ppm | pnmfile
-stdin:  PPM raw, 64 by 40  maxval 255
-$ ppmqvga tmp/n.ppm | pnmfile
-stdin:  PPM raw, 64 by 40  maxval 255
-$ pnmtorast tmp/n.ppm > tmp/w.ras
-pnmtorast: computing colormap...
-pnmtorast: 6 colors found
-$ rasttopnm tmp/w.ras | pnmfile
-rasttopnm: writing PPM file
-stdin:  PPM raw, 64 by 40  maxval 255
-$ pnmtoddif < /nil
-pnmtoddif: EOF / read error reading magic number
+$ ppmmake rgb:c8/c8/c8 4 4 | ppmntsc 0.5 | pnmnoraw
+P3
+4 4
+255
+100 100 100  100 100 100  100 100 100  100 100 100
+200 200 200  200 200 200  200 200 200  200 200 200
+100 100 100  100 100 100  100 100 100  100 100 100
+200 200 200  200 200 200  200 200 200  200 200 200

@@ -1,3 +1,12 @@
+$ cat letter
+Subject: hello
+
+a line of mail
 $ rmail tester < letter
 $ ls tester
-m201260924134047  mail..list
+m201260926103442  mail..list
+$ cat tester/m2*
+>From  Sat, 26 Sep 26 10:34:42 -0500
+Subject: hello
+
+a line of mail

@@ -1,3 +1,37 @@
+$ i_am_i
+PROGRAM I_AM_I(output);
+VAR
+   zaehler : integer;
+   string1 : string[16];
+   string2 : string[2];
+
+FUNCTION tabelle(x : integer) : string;
+BEGIN (* of tabelle *)
+   CASE x OF
+     1 :  tabelle := 'PROGRAM I_AM_I(output);';
+     2 :  tabelle := 'VAR';
+     3 :  tabelle := '   zaehler : integer;';
+     4 :  tabelle := '   string1 : string[16];';
+     5 :  tabelle := '   string2 : string[2];';
+     6 :  tabelle := ' ';
+     7 :  tabelle := 'FUNCTION tabelle(x : integer) : string;';
+     8 :  tabelle := 'BEGIN (* of tabelle *)';
+     9 :  tabelle := '   CASE x OF';
+    10 :  tabelle := '   END (* of case *)';
+    11 :  tabelle := 'END; (* of tabelle *)';
+    12 :  tabelle := ' ';
+    13 :  tabelle := 'BEGIN (* of I_AM_I *)';
+    14 :  tabelle := '   string1 := concat(';
+    15 :  tabelle := '   chr(32),chr(58),chr(32),chr(32),chr(116),';
+    16 :  tabelle := '   chr(97),chr(98),chr(101),chr(108),chr(108),';
+    17 :  tabelle := '   chr(101),chr(32),chr(58),chr(61),chr(32),chr(39));';
+    18 :  tabelle := '   string2 := concat(chr(39),chr(59));';
+    19 :  tabelle := '   FOR zaehler := 1 TO 9 DO';
+    20 :  tabelle := '      writeln(tabelle(zaehler));';
+    21 :  tabelle := '   FOR zaehler := 1 TO 28 DO ';
+    22 :  tabelle := '                    BEGIN';
+    23 :  tabelle := '                       write(zaehler:6,string1);';
+    24 :  tabelle := '                       writeln(tabelle(zaehler),string2)';
     25 :  tabelle := '                    END;';
     26 :  tabelle := '   FOR zaehler := 10 TO 28 DO';
     27 :  tabelle := '      writeln(tabelle(zaehler))';

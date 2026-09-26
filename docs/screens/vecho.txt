@@ -1,0 +1,2 @@
+$ vecho "one, \c"; vecho two
+one, two

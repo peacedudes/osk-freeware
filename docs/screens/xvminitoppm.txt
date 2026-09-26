@@ -1,7 +1,6 @@
-$ xvminitoppm x.xv > out.ppm
-$ pnmfile out.ppm
-out.ppm:        PPM raw, 8 by 2  maxval 255
-$ pnmnoraw out.ppm
+$ printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv
+$ printf "0123456789abcdef" >> x.xv
+$ xvminitoppm x.xv | pnmnoraw
 P3
 8 2
 255

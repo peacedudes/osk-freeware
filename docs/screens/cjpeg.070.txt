@@ -1,2 +1,2 @@
-$ cjpeg.070 -quality 50 tmp/GFXA/j.ppm > tmp/GFXA/x.jpg
+$ cjpeg.070 -quality 50 j.ppm > x.jpg
 $ Premature end of input file

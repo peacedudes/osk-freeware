@@ -1,2 +1,20 @@
-$ postprint
+$ postprint | head -n 16
 /V 11 72 mul def /L 60 def
+L V moveto
+R (e2e3 flags kql depth 5 score -1) show
+L  V 100 sub moveto
+C ('#[rnbqkbnr;pp ppp p;        ;  p   p ;        ;P      P; PPPPPP ;RNBQKBNR;]'
+) show
+/L 160 L add def
+L V moveto
+R (b1c3 flags kql depth 5 score -4) show
+L  V 100 sub moveto
+C ('#[rnbqkbnr;p  ppppp;        ; pp     ;        ;P      P; PPPPPP ;RNBQKBNR;]]
+') show
+/L 160 L add def
+L V moveto
+R (e2e3 flags kql depth 5 score -1) show
+L  V 100 sub moveto
+C ('#[rnbqkbnr;pp pp pp;     p  ;  p     ;        ;P      P; PPPPPP ;RNBQKBNR;]]
+') show
+/V V 120 sub def /L 60 def

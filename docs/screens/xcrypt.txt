@@ -1,5 +1,5 @@
 $ cat a.txt
-Welcome to os9exec -- OS-9/68k emulator
+Welcome to the OS-9 freeware collection
 $ echo x > a.enc
 $ xcrypt a.txt a.enc
 Key:thiskeyisplentylongenough
@@ -7,6 +7,6 @@ $ dump a.enc
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
-0000  BCAA 26A2 3993 8615 5A67 B120 36B7 07E6 ..&.9...Zg. 6...
-0010  EA71 692D A4F3 E49D D130 B83D A9CF A139 .qi-.....0.=...9
-0020  0FBF CBA6                               ....
+0000  BCAA 26A2 3993 8681 89E0 F1C3 9206 3A38 ..&.9.........:8
+0010  1504 A2C7 FD7B 03D3 FAD4 13D2 9A0C A5A3 .....{..........
+0020  C4BF 3FA6                               ..?.

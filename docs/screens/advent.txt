@@ -1,3 +1,13 @@
+$ advent
+Section 1
+Section 2
+Section 3
+Section 4
+Section 5
+Section 6
+Section 7
+Section 8
+Section 9
 Section 10
 Section 11
 Section 12
@@ -21,3 +31,12 @@ in
     There is food here.
 
     There is a bottle of water here.
+take lamp
+
+     OK
+take keys
+
+     OK
+xyzzy
+
+     It is now pitch dark.  If you proceed you will likely fall into a pit.

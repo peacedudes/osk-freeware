@@ -1,5 +1,5 @@
 $ chksum tmp/ENC/j.txt SYS/motd
 09f241c9
-4b68af85
+b4d9f557
 ========
-3e861588
+c1374f5a

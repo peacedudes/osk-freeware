@@ -1,5 +1,5 @@
 $ hist
 whoamitester
-todayToday is Thursday, the twenty-fourth day of September, two thousand and
-twenty-six. The time is twenty-six minutes and eight seconds after two
+todayToday is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is two minutes and forty-six seconds after eight
 AM, Daylight Savings Time. The moon is waxing gibbous.

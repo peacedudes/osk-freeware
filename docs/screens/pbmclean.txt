@@ -1,9 +1,31 @@
-$ pbmclean noise.pbm | pbmtoascii -2x4
-o/T#?|$ `^\'$D\$q,:H\$i~[9&v/:[^
-MbS$:&$?\$??D&:$&>/H?PHHHH||}F//
-':?}/:?\?.\S/?<T<`&T-::S+?<|S?$?
-?qP?&?/?`. :?$????\;::>7!&~/#T??
-$'"?M~?b?/?:H\i`?/-/?~<?$:qD.':?
-^M\&}|[?&/?:|?\.\,$&?7=?|\&?bv|?
-&P:?'$d>?T?&*!|:$-?-:?:^#Z)$<bHS
-^`H>|/:?&d:??T?b$?$'4:$$: `/?,b:
+$ pbmtoascii speckled.pbm; pbmclean speckled.pbm | pbmtoascii
+  "   o  M"oo     o        "    " o"        M           "
+M      o      o              o
+ M  "             "       "      "  "       o        "
+   o       "o"                            o     o    o
+  oo       o     "o o "o"            "    o             o
+       "  oo   oMM"Mo  o"""oM     "   M""Mo     o
+"    "        o"    "o "ooo "o        M   M          o
+          "o  M    MMM o ""Mo"oooooo  "MoMM    "    Mo
+               Mo "oM  Mo  oM           oM       ""    "
+oo     ""  "o   """"   " ""M  "  "    ""
+  "o       "  "      o            "     o        o  o
+ ""         o     o                   o       "  o      o
+     o           oo    o                    "     "
+   o           oo "              "o    "   o " "      "
+   "                                             "     "
+         M"oo                     o"        M
+M
+ M
+           "o"
+  oo             "o o "o"                 o
+          oo   oMM"Mo  o"""oM         M""Mo
+              o"    "o "ooo "o        M   M          o
+          "o  M    MMM o ""Mo"oooooo  "MoMM         Mo
+               Mo "oM  Mo  oM           oM       ""
+oo     ""  "o   """"   " ""M          ""
+  "o       "
+ ""                                              o
+                 oo                               "
+   o           oo "              "o
+   "

@@ -1,14 +1,23 @@
-   These rules consist of text describing how to play Backgammon
-followed by a tutorial session where you play a practice game
-against the computer.  When using this program, think carefuly
-before typing, since it reacts as soon as you type something.  In
-addition, the program presents text output, such as these rules,
-in small blocks that will not roll off the top of the screen.
-Frequently, you will see the characters '-->' indicating that the
-program is waiting for you to finish reading, and will continue
-printing when you type a space or newline.  Also, the rules are
-divided into sections, and although you should read them in or-
-der, you can go directly to any of them by typing one of the fol-
-lowing letters:
-(Remember to hit a space or a newline to continue.)
-Error: 000:000 - readc
+_____________________________________________________
+|                       |   |                       |
+|13  14  15  16  17  18 |   |19  20  21  22  23  24 |
+| w               r     |   | r                   w |
+| w               r     |   | r                   w |
+| w               r     |   | r                     |
+| w                     |   | r                     |
+| w                     |   | r                     |
+|                       |BAR|                       |
+| r                     |   |                       |
+| r                     |   | w                     |
+| r                     |   | w                     |
+| r               w     |   | w   w               r |
+| r               w     |   | w   w               r |
+|12  11  10   9   8   7 |   | 6   5   4   3   2   1 |
+|_______________________|___|_______________________|
+
+
+To start the game, I roll a 3, and you roll a 1.  This means
+that I get to start first.  I move 8-5,6-5 since this makes a
+new point and helps to trap your back men on 1.  You should be
+able to do a similar move with your roll.
+Error: 000:000 - readc          Move:

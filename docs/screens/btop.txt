@@ -10,10 +10,9 @@ $ btop tmp/b1
 + O O O + O + +
 + O O + O O O O
 + + O + + + + +
-+ O O + O O O O
++ O O O + O + +
 $ btop tmp/b1 > tmp/b2
 $ ptob tmp/b2 > tmp/b3
 $ diff tmp/b1 tmp/b3
 $ cat tmp/b3
-Welcome to o
-$ rm -f tmp/b1 tmp/b2 tmp/b3
+Welcome to t

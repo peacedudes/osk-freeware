@@ -1,0 +1,16 @@
+$ modinfo CMDS/WN/wn.stb
+-------------------------------- CMDS/WN/wn.stb  - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - -
+Module name           = wn.stb
+System revision       = 1
+Module size           = 7968
+Owner Id              = 0.0
+Offset to module name = 00000030H
+Access permission     = e-re-re-r
+Type/Language          = 0400H  Data Module            not a programm
+Attribute/Revision    = 8001H   reentrant
+Edition               = 7
+Comment string offset = 00000000H
+Symbol table offset   = 00000038H
+Ident code            = 0000H
+Header parity         = 2b79H

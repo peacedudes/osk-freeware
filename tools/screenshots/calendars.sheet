@@ -34,20 +34,26 @@ send    \r
 wait    2
 
 shot    digclk
-cap     A clock in block digits, with the machine's name above it and the
-cap     full date and time below.  By default it redraws once a minute;
-cap     give it a refresh rate in seconds to update faster.  At Microware's
-cap     own shell it can't find its terminal type and won't draw; at bash
-cap     or ksh it works as shown.
-try     digclk
-run     digclk
+pages
+cap     A clock in block digits, redrawn every second with `digclk 1': the
+cap     name your system's init module gives it above -- here the host's --
+cap     and the date written out below in romanised Japanese, Nihon-go, to
+cap     begin with.  Ctrl-C steps to the next language, and on through French,
+cap     Spanish, Czech, Roman numerals, Julian, Pig Latin, Unix and English;
+cap     Ctrl-E stops it.  It reads TERM, so set that at your shell.
+try     digclk 1
+run     clear
+wait    1
+run     digclk 1
 wait    5
 snap
-wait    1
+send    \003
+wait    4
+snap
 
 shot    gcl
-cap     A grand digital clock: the time drawn large across the terminal,
-cap     redrawn as it runs.  -n says how many seconds to run; without it
+cap     The last frame of a six-second run: the time drawn large across the
+cap     terminal.  -s scrolls the digits and -i inverts the video; without -n
 cap     it runs until stopped.
 try     gcl -n=6
 run     gcl -n=6
@@ -56,12 +62,10 @@ snap
 wait    4
 
 shot    ephem
-cap     A live panel from the SYS configuration and star database: date,
-cap     sidereal time and site at the top, and below it each body's
-cap     position -- right ascension, declination, azimuth, altitude and
-cap     more.  It keeps recomputing as it runs, and without a coprocessor
-cap     the outer planets take a while to fill in.  RETURN passes the
-cap     opening page; control-D quits.
+cap     The live panel, from the configuration and star database in SYS: date,
+cap     sidereal time and site at the top, and below it each body's right
+cap     ascension, declination, azimuth, altitude and more, recomputed as it
+cap     runs.  RETURN passes the opening page; control-D quits.
 try     ephem -c ephem.cfg -d ephem.db
 run     builtin cd /dd/SYS
 wait    1
@@ -75,9 +79,10 @@ snap
 quit    \004
 
 shot    ephem881
-cap     The same ephemeris built for a 68881 floating-point coprocessor:
-cap     with hardware floating point the whole table fills in at once,
-cap     Mars through Pluto included.
+cap     The same ephemeris built for a 68881 floating-point coprocessor, which
+cap     it needs.  In this run its date field reads 9/07/2026 and its calendar
+cap     gives September 31 days, while the Julian date and the table agree
+cap     with ephem's 24 September.
 try     ephem881 -c ephem.cfg -d ephem.db
 run     builtin cd /dd/SYS
 wait    1
@@ -102,10 +107,11 @@ run     lunisolar 2026 EST | head -n 14
 wait    6
 
 shot    nasa
-cap     Converts NASA two-line orbital elements, the form satellite
-cap     elements are published in, into the kepler.dat that `orbit'
-cap     reads.  It takes nasa.dat from the current directory and writes
-cap     kepler.dat beside it; this is one satellite in and out.
+cap     Converts NASA two-line orbital elements, the form satellite elements
+cap     are published in, into the kepler.dat that `orbit' reads.  Here
+cap     nasa.dat, in the current directory, holds one set, for the ISS, pasted
+cap     in from a published list: nasa names the satellite as it reads it, and
+cap     kepler.dat is what it wrote.
 try     nasa
 run     mkdir -p /dd/tmp/CAL > /nil 2>/nil; printf "ISS (ZARYA)\r1 25544U 98067A   26246.50000000  .00016717  00000-0  10270-3 0  9005\r2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537\r" > /dd/tmp/CAL/nasa.dat
 run     builtin cd /dd/tmp/CAL
@@ -120,13 +126,15 @@ run     cat kepler.dat
 wait    4
 
 shot    orbit
-size    50 80
-cap     A satellite tracker: AO-13 over Pittsburgh through a morning in
-cap     March 1990, ten minutes a line -- azimuth and elevation, doppler
-cap     shift, range, height, the point beneath the satellite and the
-cap     transponder mode it is in.  It reads kepler.dat, mode.dat and a
-cap     site file by name from the current directory, and DOC/orbit holds
-cap     them, so it is run from there.
+size    40 80
+pages
+cap     A satellite tracker: the questions it asks -- a satellite from
+cap     kepler.dat, the site, the start date and time, and the step -- then
+cap     AO-13 over Pittsburgh through a morning in March 1990, ten minutes a
+cap     line: azimuth and elevation, doppler shift, range, height, the point
+cap     beneath the satellite and the transponder mode it is in.  It reads its
+cap     files by name from the current directory, and DOC/orbit holds them, so
+cap     run it there.
 try     orbit
 run     builtin cd /dd/DOC/orbit
 wait    1
@@ -146,8 +154,10 @@ send    1\r
 wait    4
 send    10\r
 wait    4
+snap
 send    \r
 wait    20
+snap
 
 shot    qt
 cap     The time the way a person says it: `just gone ten past four',
@@ -169,7 +179,7 @@ run     setimex
 wait    8
 
 shot    today
-cap     The date, the time and the moon's phase, in a sentence.
+cap     The date, the time and the moon's phase, spelt out in three sentences.
 try     today
 run     today
 wait    6
@@ -186,12 +196,11 @@ wait    6
 
 shot    almanac
 size    24 80
-cap     Where the Sun, Moon and the eight planets stood at a given moment:
-cap     right ascension and declination, the apparent diameter of each, and
-cap     its distance in astronomical units.  Give it a longitude and latitude
-cap     as well and it adds azimuth and altitude for an observer standing
-cap     there.  Its constants were taken from the 1990 Astronomical Almanac,
-cap     so the further a date lies from then the softer the accuracy.
+cap     Noon UT on 1 January 1995: right ascension, declination, apparent
+cap     diameter and distance for the Sun, Moon and planets.  The Moon's row
+cap     is printed to fewer places, the dashes filling out the columns: its
+cap     position is computed only to the minute.  Give a longitude and
+cap     latitude as well and it adds azimuth and altitude.
 try     almanac 0101.1995 12.0000
 run     clear
 wait    1

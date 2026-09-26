@@ -1,7 +1,9 @@
-$ spiff tmp/TXT/a tmp/TXT/b
+$ cat tmp/TXT/s1 tmp/TXT/s2; spiff tmp/TXT/s1 tmp/TXT/s2
+total 1.0
+count 10
+total 1.00
+count 11
 2c2
-< banana
+< count 10
 ---
-> blueberry
-4a5
-> elder
+> count 11

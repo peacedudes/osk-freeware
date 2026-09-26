@@ -1,0 +1,2 @@
+$ pbmmake -g 40 20 | pbmto4425 | wc
+     23      8    182

@@ -62,11 +62,9 @@ wait    3
 
 shot    rpn
 size    50 80
-cap     A reverse-Polish calculator on whole numbers.  A number typed is
-cap     pushed on the stack; the words add, sub, mul, div and mod combine
-cap     the top two, and, or, xor and not work bitwise, pr prints an
-cap     entry and pop discards one.  After each line it shows the top
-cap     of the stack and how deep it is.  ? lists the words; q leaves.
+cap     12 and 34 added, the sum times 100, then divided by 7: after each line
+cap     rpn shows the top of the stack and how deep it is.  `?' lists the
+cap     words it knows; q leaves.
 try     rpn
 run     rpn
 wait    2
@@ -92,12 +90,9 @@ wait    2
 
 shot    checkfile
 size    30 80
-cap     A cheque-book register, full screen.  A adds a record through a
-cap     form -- item number, date as YY/MM/DD, a type code, description,
-cap     account and amount, with cheques entered as negative amounts --
-cap     and C accepts it.  R lists every record with the balance, as
-cap     shown; V edits, F changes the data file, Q quits.  Records go
-cap     in testfile.dat in the current directory.  It needs TERM set.
+cap     Two records added through its form -- an electric bill entered as a
+cap     cheque, a pay cheque as a deposit -- and R listing them with the
+cap     balance.  Records go in testfile.dat in the current directory.
 try     checkfile
 run     rm -rf /dd/tmp/MTHB > /nil 2>/nil; mkdir -p /dd/tmp/MTHB
 wait    2
@@ -149,22 +144,28 @@ wait    3
 quit    Q
 
 shot    oleo
-size    20 80
-cap     GNU Oleo 1.6, a spreadsheet.  It opens on its copyright notice and
-cap     the help character, and waits for a key before drawing the grid.  It
-cap     used to stop on an illegal instruction before reaching this far; two
-cap     fixes in the emulator's trap handling on 2026-09-11 let it run.
+size    24 80
+cap     GNU Oleo 1.6, a spreadsheet, past its opening notice: 6*7 typed into
+cap     the first cell and its value shown there.  Its help character is ^H.
 try     oleo
+run     clear
+wait    1
 run     oleo
 wait    6
+send    \s
+wait    4
+send    =6*7\r
+wait    4
+snap
+quit    \030\003yes\r
+wait    2
 
 shot    scqref
-cap     The quick-reference card for sc, the spreadsheet: a document
-cap     that prints itself, 360 lines in sections A to Q -- options,
-cap     cursor movement, cell entry, files, ranges, the function
-cap     lists.  Page it with less: space for the next page, q to leave.
+cap     Page it with less: space for the next page, q to leave.
 try     scqref | less
 os9     scqref ! less
+run     clear
+wait    1
 run     scqref | less
 wait    10
 snap
@@ -184,7 +185,7 @@ wait    5
 
 shot    primes
 size    30 80
-cap     primes lists the primes between two numbers.
+cap     The twenty-five primes up to 100, one to a line.
 try     primes 1 100
 run     builtin cd /dd
 wait    1
@@ -195,7 +196,8 @@ wait    5
 
 shot    number
 size    24 80
-cap     number writes a number out in English words, a part at a time.
+cap     1234567 in English words, a part to a line; the `...' is number's
+cap     own mark for the end of a number.
 try     number 1234567
 run     builtin cd /dd
 wait    1
@@ -208,10 +210,9 @@ shot    dc
 size    24 80
 cap     The integer desk calculator after 6*7: the display top right, five
 cap     memory slots down the left, and the keypad laid out like the Atari
-cap     ST's.  DCGRAPHIC is not optional on a terminal without the Cumana
-cap     graphics dc expects: set as shown it draws the boxes out of six
-cap     plain characters, and without it the frame comes out as rubbish.
-cap     Q or ESC leaves it.
+cap     ST's.  DCGRAPHIC names six plain characters to draw the boxes with;
+cap     without it the frame is drawn in characters your terminal may not
+cap     have.  Q or ESC leaves it.
 try     DCGRAPHIC='++++|-' dc
 run     clear
 wait    1
@@ -229,7 +230,7 @@ cap     An arbitrary-precision calculator: each sum above its answer.  Two to
 cap     the two-hundredth comes out in full, a seventh to forty decimal
 cap     places, and pi as four times the arctangent of one -- `scale' says
 cap     how many places to keep, and -l loads the maths library that a(1)
-cap     comes from.  Typed at on its own, bc answers sum by sum until `quit'.
+cap     comes from.  Run on its own, bc answers line by line until `quit'.
 try     echo "2^200" | bc
 run     clear
 wait    1

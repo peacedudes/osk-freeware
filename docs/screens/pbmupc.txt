@@ -1,20 +1,27 @@
-       "o "Mo"MM M o oMo"MM  M M  M"oM "MM M M" o"Mo" M" M"M M"o "  M"
-      " M oM oMM"M " o"oM"Mo "oM  Mo"oM MM M MM M"M o"M" MoM o"M "  oM
-      " M  M oMMoM M "Mo"MM  M M  Mo"M oMM M M" oMMo "Mo"M M "Mo M  o"
-      o"o "M oMM M " Mo"MoM" "oM  M Mo oMM M MM oMM " M oM"M "oM o  M"
-      o M oM" MM"M " oM"oMM  M M  M M"o MM M M" o"Mo""M oM"M M"o "  M"
-      o M  M"oMMoM M oM"oMMo "oM  M"oM "MM M MM "MM o"M oMoM M"o M  oM
-        M oM oMM M " o"M MM  M M  Mo"M "MM o"Mo MoM o"M oM M "Mo "  o"
-      " M  M" MM"M " M"M"oM" "oM  Mo"M oMM M M" oMM" oM" M"M "oM "  M"
-      o"o "Mo"MMoM M o"M"MM  M M  M M"o MM M MM oMMo" M" MoM M"o M  oM
-      o M oM oMM M " M"oMoM" M M  Mo"M oMM M M" o"M o"M"oM M "Mo "  oM
-      o M  M oMM"M " oM"oMM  "oM  M M"o MM M MM M"Mo "M oM"M Mo" M  o"
-       o" oM" MMoM M M MoMMo M M  Mo"M oMM M M" oMMo" M" MoM "oM o  M"
-      o M  M"oMM M o "M MoM  "oM  M M"o MM M MM oMM o"Mo"M M M"o "  oM
-      o M "M oMM"M M "M"oMMo M M  Mo"M oMM M M" o"Mo oM oM"M "Mo M  o"
-      o M oM" MM M o M"oMoM  "oM  M M"o MM M MM M"Mo "M oMoM "oM o  M"
-      o M  Mo"MM"M " o"M MM" M M  M"oM "MM o"Mo MoM "oM" M M M"o "  M"
-  o o o M  Mo" o"o o"o o oo ooo  o"o M " o o o o  o"o  oo   o  M "  oM o oo
-  "  M  "  M "  M    o""oo" o o"M  o M ""  o M  M "  M  M  " " o "  o" "oo"
- "o  "         M   o"  M  M  "M "  o    M  o"o  M "  o  "   "          M  M
-  """             "" "  ""   "   ""      ""   ""  """   "   "           " "
+$ pbmupc 0 72890 00011 | pbmreduce 3 | pbmtoascii
+
+
+
+      o o oo ooooo o oooooo  ooo  o ooo oM oooo ooM  oo oooo ooo o  oo
+       o" oM oMMoM " oMo"MM" ooM  M"oM oMM o MM "oM" oM" M M "oM "  "o
+      o M  M" MM M M oMo"MM  M M  M Mo" MM M M" M"Mo" M"oM"M M"o M  M"
+       "o "Mo"MM"M o "o"MoMo M M  M"oM "MM M MM M"M o"Mo MoM M"o "  M"
+      " M oM oMM M M "M"oMM  "oM  Mo"oM MM M M" oMMo oM "M M "M" "  oM
+      " M  M "MM"M o M"oMoM" M M  M M"o MM M MM oMM o"M" M"M "oM M  o"
+      o"o "M" MMoM " oMM MM  "oM  Mo"M oMM M M" o"Mo oM"oM"M M"o o  M"
+      o M oM"oMM M M o"oM"Mo M M  M M"o MM M MM M"Mo oMo MoM "Mo "  M"
+      o M  M oMM"M o "Mo"MM  "oM  Mo"M oMM M M" oMMo oM "M M Mo" M  oM
+        M oM" MMoM " Mo"MoM" M M  M M"o MM M MM o"M o MM M"M o"M o  o"
+      " M  M"oMM M M oM"oMMo "oM  M"oM "MM o"Mo "MM "oM "M M "Mo "  M"
+      o"o oM oMM"M o "oM"oM  M M  Mo"M "MM M M" M"Mo" M"oM"M Mo" M  oM
+      o M  M" MMoM " M"oM"Mo "oM  Mo"M oMM M MM M"Mo "Mo MoM "oM o  "o
+      o M oM"oMM M M "Mo"MM  M M  M M"o MM o"Mo oMM o"M oM M M"o "  M"
+      o M  M oMM"M o Mo"MoM" M M  Mo"M oMM M M" oMM o"M oM"M M"M "  M"
+        M oM" MMoM " oM"oMM  "oM  M M"o MM M MM oMM o"M oMoM oMo M  oM
+      " M  M"oMM M M o"Mo"Mo M M  Mo"M oMM M M" oMM o"M oM M oMo "  o"
+       "o oM oMM"M o "Mo"MM  "oM  M M"o MM M MM oMM o"M oM"M oMo M  M"
+      " M  M" MMoM " Mo"MoM" M M  Mo"M oMM M MM  MM o"M oMoM oMo "  oM
+  ooo " M oM"o" oo ooo o oo o oo o o M o o o  o o ooo  oo   o  o M  oM o oo
+  o  M "o  M o  M    o "oo" M  Mo  " M  M  " M  "o   M  "   "  " o  o" "oo"
+  o  "         M   o"  M  M  "M M  M    "  M M  M "  o  M   "o         M  M
+  """             """  "" "  "   " "     ""   ""  """   "               " "

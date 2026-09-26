@@ -1,3 +1,37 @@
+$ paranoia
+
+
+
+
+Welcome to Paranoia!
+
+HOW TO PLAY:
+
+  Just press <RETURN> until you are asked to make a choice.
+  Select 'a' or 'b' or whatever for your choice, then press <RETURN>.
+  You may select 'p' at any time to get a display of your statistics.
+  Always choose the least dangerous option.  Continue doing this until you win.
+  At times you will use a skill or engage in combat and and will be informed of
+  the outcome.  These sections will be self explanatory.
+
+HOW TO DIE:
+
+  As Philo-R-DMD you will die at times during the adventure.
+  When this happens you will be given an new clone at a particular location.
+  The new Philo-R will usually have to retrace some of the old Philo-R's path;
+  hopefully he won't make the same mistake as his predecessor.
+
+HOW TO WIN:
+
+  Simply complete the mission before you expend all six clones.
+  If you make it, congratulations.
+  If not, you can try again later.
+---------- More ----------
+------------------------------------------------------------------------------
+Primary Attributes                      Secondary Attributes
+===============================================================================
+Strength ..................... 13       Carrying Capacity ................. 30
+Endurance .................... 13       Damage Bonus ....................... 0
 Agility ...................... 15       Macho Bonus ....................... -1
 Manual Dexterity ............. 15       Melee Bonus ...................... +5%
 Moxie ........................ 13       Aimed Weapon Bonus .............. +10%
@@ -22,3 +56,10 @@ Equipment: Red Reflec Armour, Laser Pistol, Laser Barrel (red),
 briefing cells.  When you finally look around you, you see that you are alone
 in a large mission briefing room.
 ---------- More ----------
+
+In the centre of the room is a table and a single chair.  There is an Orange
+folder on the table top, but you can't make out the lettering on it.
+
+Select 'a' or 'b' :
+ a - You sit down and read the folder.
+ b - You leave the room.

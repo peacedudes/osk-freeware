@@ -1,0 +1,24 @@
+$ modinfo CMDS/os9lib
+--------------------------------- CMDS/os9lib  - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - -
+Module name           = os9lib
+System revision       = 1
+Module size           = 29272
+Owner Id              = 0.0
+Offset to module name = 00000048H
+Access permission     = e-re-re-r
+Type/Language          = 0101H  Programm Module        68000 Object Code Module
+Attribute/Revision    = 8001H   reentrant
+Edition               = 0
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 4347H
+
+
+Offset to execution entry point =  00000050H
+Offset to exception entry point =  00000050H
+Data storage requirement        =  1216 Bytes
+Stack size                      =  0 Bytes
+Offset to initialized data      =  00007244H
+Offset to data reference lists  =  0000724cH

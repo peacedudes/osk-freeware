@@ -1,2 +1,6 @@
-$ lcasep <name.txt
-john q public
+$ cat paths
+MilkyWay        MilkyWay!%s
+Phoenix.UUCP    MilkyWay!Phoenix!%s
+$ lcasep <paths
+milkyway        MilkyWay!%s
+phoenix.uucp    MilkyWay!Phoenix!%s

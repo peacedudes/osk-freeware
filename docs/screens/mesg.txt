@@ -3,5 +3,3 @@ Syntax: mesg [-]flags
 Function: Changes flags for current user in utmp
 Options:
        -<flags>   the flags to be changed
-$ speak tester
-speak: Unable to call tester.

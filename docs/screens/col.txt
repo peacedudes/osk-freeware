@@ -2,6 +2,8 @@ $ dump tmp/B3C/over.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
-0000  6208 5F6F 085F 6C08 5F64 2074 7970 650D b._o._l._d type.
+0000  616E 205F 0869 5F08 6D5F 0870 5F08 6F5F an _.i_.m_.p_.o_
+0010  0872 5F08 745F 0861 5F08 6E5F 0874 2077 .r_.t_.a_.n_.t w
+0020  6F72 640D                               ord.
 $ col -b < tmp/B3C/over.txt
-___d type
+an important word

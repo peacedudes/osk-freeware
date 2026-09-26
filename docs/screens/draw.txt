@@ -1,23 +1,24 @@
-         Draw Commands                      (...Nils McCarthy)
-
-   ^L        redraw the screen                      y k u
-   \<char>   set pen character to char               \|/
-   p         toggles pen up/down                    h-.-l
-   <esc>     quit                                    /|\
-   ^Z        move up one screen                     b j n
-   ^V        move down one screen                Cursor Movement
-   <CR>      move to beginning of line
-   r         read a file into buffer
-   w         write buffer to file
-   ^T        enter text line
-   ^F        fill region with current char
-   ^N        clear buffer
-    $        shell excape
-
-keys may be redefined by:  setenv DRAW name=key,name=key,...
-...where names are any of the following:
-    up, down, right, left, up_left, up_right, down_left,
-    down_right, pentoggle, penkey, shell
-
-
-press any key to continue
+.------------------------------------------------------------------------------.
+|*####################                                                         |
+|#*                  #                                                         |
+|# *                 #                                                         |
+|#  *                #                                                         |
+|#   *               #                                                         |
+|#    *              #                                                         |
+|#     *             #                                                         |
+|#      *            #                                                         |
+|########*############                                                         |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+|                                                                              |
+`------------------------------------------------------------------------------'
+September 26, 2026 Saturday 8:10:22 am     brush: '#'  pen up    x,y(0,0)
+                                 57                *       DOWN      8,8)

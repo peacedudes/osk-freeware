@@ -1,9 +1,13 @@
 $ printf "int main()\r{\r  return 0;\r}\r" > hello.c
-$ ./gcc -v
-gcc version 1.42
 $ ./gcc -v -c hello.c
 gcc version 1.42
  cccp -v -undef -D__GNUC__ -DOSK -D__OSK__ -D__mc68000__ -Dmc68000 hello.c cc.00
-0005.cpp
-./gcc: Can't fork 'cccp': module not found (hello.c)
-./gcc: cc.000005.cpp: file not found (hello.c)
+0004.cpp
+GNU CPP version 1.39
+ cc1 cc.000004.cpp -quiet -dumpbase hello.c -version -o cc.000004.a
+GNU C version 1.39 (68k, Motorola syntax) compiled by GNU C version 1.39.
+default target switches: -mregparm -mstack-check
+ r68 -v -q cc.000004.a -o=hello.r
+68000 Resident assembler Version 1.9, Edition 66
+$ ls hello.*
+hello.c  hello.r

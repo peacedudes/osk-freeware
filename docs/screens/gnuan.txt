@@ -1,3 +1,12 @@
+$ gnuan
+
+Book used 9585 of 12000 entries.
+Input the file with the algebraic moves of the game.
+moves
+
+Input the search depth you want to use.  (1 to 29)(- for depth from file)
+2
+
 Input the maximum number of minutes per move you want to use.
 1
 
@@ -17,39 +26,20 @@ Move White Black      Score Depth     Best Line
 
 Move# 4    Target= 6000    Clock: 0
  2.    125    0     1181   b5c6  d7c6  f3e5
-Ambiguous Move!
+  4   h2h3*            125    2    b5c6  d7c6  f3e5
 
-Bad move.    Board position is:
+Move# 5    Target= 6000    Clock: 0
+ 2.    338    0     1453   a6b5  b1c3  g8f6
+            h7h6*      338    2    a6b5  b1c3  g8f6
 
- R - B Q K B N R
- - P P P - P P P
- P - N - - - - -
- - b - - P - - -
- - - - - p - - -
- - - - - - n - -
- p p p p - p p p
- r n b q k - - r
+Move# 5    Target= 6000    Clock: 0
+ 2.    127    0     1254   b5c6  d7c6  f3e5
+  5   b5c6             127    2    b5c6  d7c6  f3e5
 
+Move# 6    Target= 6000    Clock: 0
+ 2.    -92    0      792   d7c6  f3e5  g8f6
+            d7c6       -92    2    d7c6  f3e5  g8f6
 
-Process   Pid: 4, gnuan, edition 7
-    Exit code: E_PRCABT(228) Process Aborted
-  Directories: Current   - /dd
-               Execution - /dd/CMDS
-        Files: 00 fCons /term
- Last syscall: I$WritLn (0x008c)
-    Registers: Dn=7FF00000 00000000 00000000 00000000
-                  00000000 FFFFFF9D 00000204 0000001C
-               An=001096AA 0019B058 0010275E 0019B6CC
-                  0019B6C8 0019B012 00112EC0 0019B012
-               PC=001096AA SR=0003
- Executing: -->001096aa: 4e75 4a82 6b14 4a80 6a02 RTS.L
-               001096ac: 4a82 6b14 4a80 6a02 6024 TST.L D2
-       Memory: Static    -     0010AEC0 - 0019B720  591968 bytes
-               Allocated - 000 0010AEC0 - 0019B720  591968 bytes
-                           001 000C13C0 - 000C23C0    4096 bytes
-                           002 000C23C0 - 000C33C0    4096 bytes
-                           003 000C43C0 - 000D7CA0   80096 bytes
-                           004 0019B740 - 001AF020   80096 bytes
-                           005 000D8CC0 - 000D9CC0    4096 bytes
-# # Exception: pid=4 vector=$07 err=#000:107 ... process will be killed (x to co
-ntinue)
+           White's percentage was 50.00%.     Black's percentage was 50.00%.
+
+           Elapsed time was 1 seconds.

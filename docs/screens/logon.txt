@@ -3,12 +3,8 @@ $ logon tester
 
 $ dir
 
-Directory of "." 06:26:00  09/25/126
+Directory of "." 08:07:54  09/26/126
 
 MAIL
 
 Total of 1 files.
-
-$ eof
-$ shell "echo before; timeout; echo after"
-before

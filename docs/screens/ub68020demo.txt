@@ -1,3 +1,31 @@
-UniBasic Version 1.10
+$ ub68020demo bench1.b -c; tail -l=16 bench1.c
 
+UniBasic Version 1.10
 OS9/68020 Version
+
+*************** DEMO VERSION ***************
+Modification expressly forbidden!!!
+
+To order call: (573) 236-4372 or 4373
+EMail at mlsmith@vax2.rain.gen.mo.us
+
+Versions for other operating systems available
+
+Copyright  1995, 1996 Computer Design Lab
+All Rights Reserved
+
+_Lbl2:;
+/* LN:8  shell "date" */
+_a0=_StrConst2;
+_TmpVec1._Ptr=_a0;
+_TmpVec1._Len=5;
+_TmpVec1._Lnk=0;
+_MovStr(&_IOBufVec,&_TmpVec1);
+system(_IOBuffer);
+exit(0);
+ErrExit:;
+puts("Error Exit");
+exit(errno);
+}
+
+/*Function and Subroutine Section*/

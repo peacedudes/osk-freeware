@@ -3,9 +3,9 @@
 # it reads under /dd/tmp/FILESA, and the picture is what follows `clear'.
 
 shot    howfrag
-cap     howfrag reports how fragmented a file is -- how many separate disk
-cap     pieces it is stored in, out of the 48 a file descriptor holds.  A
-cap     high count on a file that grows a lot is the sign to re-copy it.
+cap     Three programs from CMDS, one line each: every one is stored in a
+cap     single piece of the 48 its file descriptor can hold.  A high count
+cap     on a file that grows a lot is the sign to re-copy it.
 try     howfrag cat clear ls
 run     builtin cd /dd/CMDS
 wait    1
@@ -34,9 +34,9 @@ snap
 shot    dirname
 size    24 80
 cap     dirname prints the other half of a path: everything up to the last
-cap     slash, with the filename dropped.  A name with no directory in it
-cap     leaves nothing to print.  It writes no newline, so `; echo' ends
-cap     the line.
+cap     slash, with the filename dropped.  A device name alone, /dd, has
+cap     no directory above it and leaves nothing to print.  It writes no
+cap     newline, so `; echo' ends the line.
 try     dirname CMDS/GAMES/hack ; echo
 run     builtin cd /dd
 wait    1
@@ -178,10 +178,10 @@ snap
 shot    dback
 size    26 80
 cap     dback backs one directory up onto another, copying only the files
-cap     that are new or have changed.  Given just the two directories it
+cap     that are new or have changed.  db holds two small files, one and
+cap     two, and dbk starts empty.  Given just the two directories dback
 cap     lists the `copy' commands it would run; -e runs them, with your own
-cap     OS-9's `copy', loaded from /h1.  Here the listing, then the backup,
-cap     then the backup directory holding both files.
+cap     OS-9's `copy', loaded first.  Then dbk holds both files.
 try     dback -e db dbk
 run     load /h1/CMDS/copy
 wait    3
@@ -231,21 +231,20 @@ snap
 
 shot    remove
 size    26 80
-cap     remove takes a module out of memory -- it does not touch files.
-cap     `load' puts a program's module in the module directory, where it
-cap     can be started by name from anywhere; after `remove' the same name
-cap     is not found.  `rm' is what deletes files.
+cap     `load' puts readmsg's module in the module directory, where sh
+cap     starts it by name from anywhere and it answers with its usage;
+cap     after `remove readmsg' the same name is not found.  `rm' is what
+cap     deletes files.
 try     remove readmsg
 run     builtin cd /dd
 wait    1
 run     load /dd/CMDS/ELM/readmsg
 wait    3
 run     clear
-run     echo "readmsg is now resident and answers by name:"
 run     sh -c "readmsg -\?"
 wait    4
 run     remove readmsg
-run     echo "after remove, the module is gone:"
+wait    2
 run     sh -c "readmsg -\?"
 wait    5
 snap
@@ -255,14 +254,12 @@ size    26 80
 cap     dir lists a directory.  `-e' is the long form: owner, date and time,
 cap     the attribute letters, the sector the file descriptor sits on, and
 cap     the length in bytes.
-try     dir -e ksh
-run     builtin cd /dd/SYS
+try     dir -e SYS/ksh
+run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     clear
-wait    1
-run     dir -e ksh
+run     dir -e SYS/ksh
 wait    8
 snap
 
@@ -282,10 +279,8 @@ snap
 
 shot    l
 size    26 80
-cap     `l' lists a text file, folding it at a width you choose and ending
-cap     every line with a carriage return -- written for long-line
-cap     documents that would otherwise run off the screen.  `-40' sets the
-cap     width; 79 columns is the default.  It takes files, not directories.
+cap     A one-line file folded at 40 columns under l's `List of File'
+cap     header; 79 is the default width.
 try     l -40 tmp/FILESA/long.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; rm -f /dd/tmp/FILESA/long.txt > /nil 2>/nil
 wait    4
@@ -301,8 +296,7 @@ snap
 
 shot    tree
 size    30 80
-cap     tree draws the shape of a directory tree with line graphics --
-cap     directories only, sorted, from the one you name.
+cap     The directories under CMDS, sorted, joined by line graphics.
 try     tree CMDS
 run     builtin cd /dd
 wait    1
@@ -314,8 +308,8 @@ snap
 
 shot    utree
 size    24 80
-cap     Opened on the DOC directory: three hundred of them in the tree
-cap     pane, the files of the current one below, the tree menu across
+cap     Opened on the DOC directory: its directories in the tree pane, the
+cap     files of the current one below, the tree menu across
 cap     the top.  `>' or RETURN crosses into the file pane and RETURN or
 cap     `q' comes back, while `<' goes up a level; a capital letter acts
 cap     on the whole tagged set instead of the one file under the cursor.
@@ -338,8 +332,8 @@ wait    3
 
 shot    du
 size    26 80
-cap     du adds up what a directory tree holds: bytes, kilobytes, sectors
-cap     and the number of files, one line per directory, with a total.
+cap     DOC/gnuplot and its demo directory, one line each, then the total.
+cap     The date in the heading is OS-9's year 126 printed after `19'.
 try     du DOC/gnuplot
 run     builtin cd /dd
 wait    1
@@ -365,15 +359,15 @@ snap
 
 shot    dfiles
 size    26 80
-cap     dfiles hunts a tree for files with identical contents and writes
-cap     out the `cmp' commands that would prove each pair equal.  The list
-cap     is the answer; no `cmp' program ships here to run it through.
-try     dfiles SYS
+cap     Each line names a pair with identical contents, as the `cmp'
+cap     command that would prove it; -c runs them, and -d writes `diff'
+cap     commands instead, for the diff on this disk.
+try     dfiles SYS/TEX
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     dfiles SYS
+run     dfiles SYS/TEX
 wait    12
 kill
 snap
@@ -384,23 +378,21 @@ cap     find walks a directory tree looking for what you describe and
 cap     prints what it matched.  `-n=' gives the name, wildcards allowed,
 cap     and `-o' asks for the pathnames.  Its other tests are on size,
 cap     owner, group, permissions and depth.
-try     find SYS "-n=cal*" -o
+try     find DOC "-n=cal*" -o
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     find SYS "-n=cal*" -o
+run     find DOC "-n=cal*" -o
 wait    10
 snap
 
 shot    ff
 size    26 80
-cap     ff -- find file -- lists every file under the current directory
-cap     whose name contains the word given.  It builds the command
-cap     `dir -ausr ! grep -e=<name>' and hands it to `shell', so it wants
-cap     your own OS-9's shell and grep resident; SYS/login loads the shell
-cap     from /h1, and grep is loaded the same way.  Given nothing it asks
-cap     in dialect what to look for.
+cap     Given nothing, it asks in German dialect what to look for; given
+cap     `term', it lists every file under SYS whose name contains it.  It
+cap     runs `dir -ausr ! grep term' through your own OS-9's shell, with
+cap     its grep, both loaded first.
 try     ff
 run     load /h1/CMDS/shell /h1/CMDS/grep
 wait    3
@@ -417,20 +409,14 @@ snap
 shot    dm
 size    24 80
 pages
-cap     dm, Disk Master 1.4: a two-pane browser, the directory on the left
-cap     and a file-information panel on the right, with its commands along
-cap     the foot.  It was written for the MM/1, and two things follow on
-cap     any other terminal.  Its cursor keys are the MM/1's: Ctrl-N moves
-cap     down and Ctrl-P up -- a vt100 or browser arrow key does nothing --
-cap     with Space for the end of the list, Backspace for the start and
-cap     Enter to open a directory.  And its highlight is drawn in the
-cap     MM/1's own colour codes, which other terminals do not show: the
-cap     File Information panel names the file the bar is on.  The command
-cap     letters are typed in lower case.  It reads the directory you are
-cap     in -- its -d option lists nothing unless you are already there --
-cap     and runs its commands through system(), so SHELL names `sh'.
-cap     Below the panes, its help, page by page, as `h' shows it --
-cap     the last page, the author's credit, is left off.
+cap     dm, Disk Master 1.4: the directory on the left, a panel on the right
+cap     for the file the bar is on, and its commands along the foot, typed
+cap     in lower case.  Written for the MM/1: Ctrl-N moves the bar down and
+cap     Ctrl-P up -- an arrow key does nothing -- and the bar is drawn in
+cap     the MM/1's colour codes, which other terminals do not show.  It
+cap     runs its commands through system(), so SHELL names `sh', and it
+cap     lists the directory you are in.  Below the panes, its help page by
+cap     page as `h' shows it, the last page, the author's credit, left off.
 try     SHELL=CMDS/sh dm
 os9     setenv SHELL CMDS/sh; dm
 run     builtin cd /dd
@@ -478,11 +464,11 @@ wait    6
 snap
 
 shot    owner
+super
 size    26 80
-cap     owner changes a file's owner; it does not show one.  `owner tester
-cap     <file>' looks the name up in SYS/password, reports the number it
-cap     found, and writes it into the file descriptor -- fstat either side
-cap     shows the owner going from 0.0 to 1.7.
+cap     The super-user's command: `owner tester <file>' looks the name up
+cap     in SYS/password, reports the number it found, and writes it into
+cap     the file descriptor -- fstat either side shows 0.0 become 1.7.
 try     owner tester tmp/FILESA/own.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/own.txt
 wait    5
@@ -518,10 +504,10 @@ wait    8
 snap
 
 shot    chgrp
+super
 size    26 80
-cap     chgrp sets the other half of the pair, the group: fstat before and
-cap     after shows 0.0 becoming 3.0.  Everything on this disk arrives
-cap     owned 0.0.
+cap     chgrp sets the group half of a file's owner, and it is the
+cap     super-user's: fstat before and after shows 0.0 becoming 3.0.
 try     chgrp 3 tmp/FILESA/grp.txt; fstat tmp/FILESA/grp.txt
 run     mkdir -p /dd/tmp/FILESA > /nil 2>/nil; cp /dd/SYS/motd /dd/tmp/FILESA/grp.txt
 wait    5
@@ -560,7 +546,8 @@ cap     edir lists the event directory.  An OS-9 event is a counter
 cap     processes wait on to take turns.  The print spooler makes one:
 cap     start it and `spoolqueue' is there, with its value, what a waiting
 cap     process adds to it and what a signalling one does.  `-e' is the
-cap     long listing; plain `edir' prints the names alone.
+cap     long listing; plain `edir' prints the names alone.  The spooler
+cap     stays in the background afterwards.
 try     lpsched /nil & edir -e
 run     clear
 wait    1
@@ -571,13 +558,11 @@ snap
 shot    eset
 size    24 80
 fresh
-cap     eset changes the value of an existing event.  Its usage line also
-cap     offers `-a', to release every process waiting on it, but it takes
-cap     exactly two arguments and answers a third with that usage line,
-cap     changing nothing.  Starting the print spooler makes the
-cap     `spoolqueue' event to try it on: it is created holding 0, and
-cap     `edir -e' either side of the eset shows the 42 arrive.  eset says
-cap     nothing when it works; the event directory is the evidence.
+cap     eset changes the value of an existing event.  Starting the print
+cap     spooler makes the `spoolqueue' event to try it on: it is created
+cap     holding 0, and `edir -e' either side of the eset shows the 42
+cap     arrive.  eset says nothing when it works.  The spooler stays in the
+cap     background afterwards.
 try     lpsched /nil & edir -e; eset spoolqueue 42; edir -e
 run     clear
 wait    1
@@ -588,8 +573,8 @@ snap
 shot    eunlink
 size    24 80
 fresh
-cap     eunlink is the other end of the same pair: it drops a link to an
-cap     event, and the event goes when the last user lets go.  The print
+cap     eunlink drops a link to an event, and the event goes when the last
+cap     user lets go.  The print
 cap     spooler's `spoolqueue' is a real one to do it to -- listed by the
 cap     first edir, gone from the second.  It takes an event name, never a
 cap     filename.
@@ -607,20 +592,22 @@ cap     text is the form Libr2Ascii writes: a page count, a card count, then
 cap     one record per book, then the title, author and subject indexes.
 cap     `-outfile' names the catalogue to create and the text arrives on
 cap     standard input.  Two books go in, a catalogue comes out, and
-cap     Libr2Ascii reads it straight back.
-try     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
-os9     Ascii2Libr -outfile tmp/cat2.libr <DOC/samples/cat.txt; ls -l tmp/cat2.libr
-run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr /dd/tmp/cat2.libr > /nil 2>/nil
+cap     Libr2Ascii reads it straight back, with the page count, 4, that the
+cap     new catalogue uses.
+try     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt
+os9     Ascii2Libr -outfile tmp/cat2.libr <DOC/samples/cat.txt
+run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat2.libr > /nil 2>/nil
 wait    4
-run     Ascii2Libr -outfile /dd/tmp/cat2.libr < /dd/DOC/samples/cat.txt
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     cat DOC/samples/cat.txt | head -n 4
 wait    5
-run     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
+run     Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt
 wait    12
+run     ls -l tmp/cat2.libr
+wait    3
 run     Libr2Ascii -infile tmp/cat2.libr | head -n 6
 wait    10
 snap
@@ -721,11 +708,9 @@ snap
 
 shot    PrintLabels
 size    30 80
-cap     PrintLabels copies a template file out once per card, replacing
-cap     %title, %author, %publisher, %city, %year and %id with that card's
-cap     fields -- so it prints labels, or any listing you can describe in a
-cap     template.  The three-line template is shown first, then the two
-cap     books it produced.  Its options each take a separate argument.
+cap     The three-line template first, then what PrintLabels made of it for
+cap     the catalogue's two books: %title, %author, %publisher, %city,
+cap     %year and %id replaced by each card's fields.
 try     Ascii2Libr -outfile tmp/cat.libr < DOC/samples/cat.txt; PrintLabels -infile tmp/cat.libr -templatefile DOC/samples/label.tpl
 run     mkdir -p /dd/tmp > /nil 2>/nil; rm -f /dd/tmp/cat.libr > /nil 2>/nil
 wait    4

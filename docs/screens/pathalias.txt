@@ -1,3 +1,7 @@
+$ cat map
+milkyway phoenix(20)
+phoenix seabass(30)
+seabass pirsqrd(10)
 $ pathalias -l milkyway map
 milkyway        %s
 phoenix phoenix!%s

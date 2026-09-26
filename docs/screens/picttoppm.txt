@@ -1,0 +1,6 @@
+$ ppmtopict tmp/base.ppm > tmp/t.pict; picttoppm tmp/t.pict | pnmfile
+ppmtopict: computing colormap...
+ppmtopict: 6 colors found
+picttoppm: warning: can't load font directory 'fontdir'
+
+stdin:  PPM raw, 48 by 24  maxval 255

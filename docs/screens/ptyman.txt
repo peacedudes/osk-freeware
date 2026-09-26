@@ -1,6 +1,4 @@
-Offset to excecution entry point = 00000000H
-Data storage requirement         = 46 Bytes
-
+$ modinfo ptyman
 ------------------------------------ ptyman  - - - - - - - - - - - - - - - - - -
  - - - - - - - - - - - - - - - - - -
 Module name           = PtyMan

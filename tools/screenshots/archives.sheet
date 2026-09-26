@@ -31,18 +31,16 @@ run     ar2 -t tmp/k3.ar
 wait    6
 
 shot    arc
-cap     ARC, the format that came before zip: `a' adds and `v' lists with
-cap     the compression column.  The archive name has to be a bare
-cap     filename in the current directory, because arc writes it under a
-cap     temporary name and then renames it into place; that rename fails
-cap     if the target names a subdirectory.
+cap     In a directory holding copies of SYS/motd and SYS/termcap, `a' adds
+cap     both and `v' lists them with the compression column.  The archive
+cap     name has to be a bare filename in the current directory: arc
+cap     writes under a temporary name and renames it into place, and that
+cap     rename fails if the target names a subdirectory.
 try     arc a m.arc motd termcap
-run     builtin cd /dd/SYS
-wait    1
-run     clear
-wait    1
-run     rm -f m.arc
+run     rm -rf /dd/tmp/ARCA > /nil 2>/nil; mkdir -p /dd/tmp/ARCA; cp /dd/SYS/motd /dd/SYS/termcap /dd/tmp/ARCA
 wait    4
+run     builtin cd /dd/tmp/ARCA
+wait    1
 run     clear
 wait    1
 run     arc a m.arc motd termcap
@@ -51,11 +49,13 @@ run     arc v m.arc
 wait    8
 
 shot    marc
-cap     marc merges a named member from one arc archive into another; it
-cap     does not create archives of its own.  Here termcap is copied into
-cap     an archive that already held motd, and the listing shows both.
+cap     marc copies a named member from one arc archive into another: here
+cap     termcap goes from a2.arc into a1.arc, which already held motd, and
+cap     the listing shows both.
 try     marc a1.arc a2.arc termcap
-run     rm -f a1.arc a2.arc; arc a a1.arc /dd/SYS/motd; arc a a2.arc /dd/SYS/termcap
+run     rm -rf /dd/tmp/MARC > /nil 2>/nil; mkdir -p /dd/tmp/MARC; builtin cd /dd/tmp/MARC
+wait    2
+run     arc a a1.arc /dd/SYS/motd; arc a a2.arc /dd/SYS/termcap
 wait    8
 run     clear
 wait    1
@@ -77,12 +77,10 @@ run     cat tmp/ARC/one tmp/ARC/two
 wait    5
 
 shot    modbuster
-cap     Splits a file holding several OS-9 modules into one file per
-cap     module, each named for the module it holds, in the current
-cap     directory.  Here a file made by joining two commands comes apart
-cap     into the two again, and the listing shows them.  It leaves an
-cap     empty file called `?' behind as well -- what it made of the end
-cap     of the input, after the last module it recognised.
+cap     A file made by joining two commands, cat and getenv, comes apart
+cap     into the two again, each named for the module it holds.  The empty
+cap     file `?' is what it made of the end of the input, after the last
+cap     module it recognised.
 try     modbuster twomods
 run     rm -rf /dd/tmp/MODC > /nil 2>/nil; mkdir -p /dd/tmp/MODC
 wait    2
@@ -138,7 +136,8 @@ run     compress_4.0 -v tmp/ARC/idx5
 wait    8
 
 shot    gzip
-cap     GNU gzip on the same file, for comparison with compress.
+cap     gzip -v on a copy of DOC/INDEX: 65% smaller, and the file is
+cap     replaced by one ending .gz.
 try     gzip -v tmp/ARC/g1
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g1*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g1
 wait    3
@@ -150,7 +149,8 @@ run     gzip -v tmp/ARC/g1
 wait    8
 
 shot    gzip68k_csl
-cap     The same 68000 build of gzip 1.2.4, linked against csl instead.
+cap     The 68000 build of gzip 1.2.4, linked against csl, on a copy of
+cap     DOC/INDEX.
 try     gzip68k_csl -v tmp/ARC/g3
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/g3*; cat /dd/DOC/INDEX > /dd/tmp/ARC/g3
 wait    3
@@ -200,9 +200,8 @@ run     lha l tmp/ARC/k.lzh
 wait    5
 
 shot    lharc
-for     lharc xlharc
-cap     LHarc, the older sibling of lha: pack, then list.  xlharc, a
-cap     third build of the same reader, lists the same archive.
+cap     LHarc, the older sibling of lha: pack SYS/motd, then list the
+cap     archive with its ratio.
 try     lharc a tmp/ARC/l.lzh SYS/motd
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/l.lzh
 wait    2
@@ -214,8 +213,21 @@ run     lharc a tmp/ARC/l.lzh SYS/motd
 wait    10
 run     lharc l tmp/ARC/l.lzh
 wait    6
-run     xlharc l tmp/ARC/l.lzh
+
+shot    xlharc
+cap     A third build of C-LHarc 1.00, listing an archive that lharc made
+cap     of SYS/motd, then extracting it into an empty directory.
+try     xlharc l l.lzh; xlharc x l.lzh
+run     rm -rf /dd/tmp/XLH > /nil 2>/nil; mkdir -p /dd/tmp/XLH; builtin cd /dd/tmp/XLH
+wait    2
+run     cp /dd/SYS/motd motd; lharc a l.lzh motd; rm motd
 wait    8
+run     clear
+wait    1
+run     xlharc l l.lzh; xlharc x l.lzh
+wait    10
+run     ls -l
+wait    4
 
 shot    lharcs
 cap     An older LHarc, version 1.01, packing a file and listing it back
@@ -234,44 +246,66 @@ wait    6
 
 shot    zoo
 cap     zoo, packing and then listing -- compression ratio per member.
-try     zoo a tmp/ARC/k.zoo SRC/keep/keep.c
+try     zoo a tmp/ARC/k.zoo SRC/keep/keep.c; zoo l tmp/ARC/k.zoo
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/k.zoo
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     zoo a tmp/ARC/k.zoo SRC/keep/keep.c
-wait    6
-run     zoo l tmp/ARC/k.zoo
-wait    5
+run     zoo a tmp/ARC/k.zoo SRC/keep/keep.c; zoo l tmp/ARC/k.zoo
+wait    10
 
 shot    zoo_2.1
-for     zoo_2.1 booz fiz
-cap     zoo 2.1, newer than the 2.01 that ships as `zoo', writes an
-cap     archive; booz lists it with a bare letter rather than a
-cap     dash-letter; fiz walks its internal directory structure.
-try     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
+cap     zoo 2.1, newer than the 2.01 that ships as `zoo': it adds SYS/motd
+cap     to an archive and lists it back.
+try     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd; zoo_2.1 l tmp/ARC/z2.zoo
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/z2.zoo
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
-wait    10
-run     booz l tmp/ARC/z2.zoo
+run     zoo_2.1 a tmp/ARC/z2.zoo SYS/motd; zoo_2.1 l tmp/ARC/z2.zoo
+wait    12
+
+shot    booz
+cap     booz listing an archive that zoo made of SYS/motd: `l' lists, `x'
+cap     extracts and `t' tests.
+try     booz l tmp/ARC/zb.zoo
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/zb.zoo
+wait    2
+run     builtin cd /dd
+wait    1
+run     zoo a tmp/ARC/zb.zoo SYS/motd
 wait    8
-run     fiz tmp/ARC/z2.zoo
+run     clear
+wait    1
+run     booz l tmp/ARC/zb.zoo
+wait    8
+
+shot    fiz
+cap     fiz searching a zoo archive that holds SYS/motd for the tags that
+cap     mark its parts: each DIR line is a directory entry, with its offset
+cap     in the archive, the path and name it holds, and after `==>' where
+cap     it says the file's data starts; each DATA line is where fiz found
+cap     data.  The DIR at 42 points to 117, and the data is at 117.
+try     fiz tmp/ARC/zf.zoo
+run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/zf.zoo
+wait    2
+run     builtin cd /dd
+wait    1
+run     zoo_2.1 a tmp/ARC/zf.zoo SYS/motd
+wait    8
+run     clear
+wait    1
+run     fiz tmp/ARC/zf.zoo
 wait    10
 
 shot    zip
-cap     Info-ZIP's zip deflates into a temporary of its own -- _Z000003 --
-cap     and then cannot put your name on it: the rename fails and it says
-cap     so.  The temporary is the archive.  Rename it yourself and unzip
-cap     lists it, extracts it, and the file comes back byte for byte.
-cap     Stand in the directory and use bare names at both ends; a pathname
-cap     with a slash loses its leading one and cannot be unzipped back.
+cap     zip deflates into a temporary named _Z<number>, and the rename onto
+cap     the name you gave fails; the temporary is the archive, and once it
+cap     is renamed unzip lists it.
 try     zip test.zip motd
 run     rm -rf /dd/tmp/ZIPT > /nil 2>/nil; mkdir -p /dd/tmp/ZIPT; cp /dd/SYS/termcap /dd/tmp/ZIPT/motd
 wait    5
@@ -290,17 +324,15 @@ shot    unzip
 cap     Info-ZIP unzip extracting an archive of two members, one deflated
 cap     and one stored.  `unzip -l' lists what is inside; `unzip' on its
 cap     own extracts it into the current directory.
-try     unzip sample.zip
+try     unzip -l sample.zip; unzip sample.zip
 run     rm -rf /dd/tmp/UNZ > /nil 2>/nil; mkdir -p /dd/tmp/UNZ > /nil 2>/nil
 run     cp /dd/DOC/zip/sample.zip /dd/tmp/UNZ/sample.zip
 run     builtin cd /dd/tmp/UNZ
 wait    3
 run     clear
 wait    1
-run     unzip -l sample.zip
-wait    6
-run     unzip sample.zip
-wait    8
+run     unzip -l sample.zip; unzip sample.zip
+wait    14
 run     ls
 wait    5
 
@@ -397,40 +429,33 @@ wait    3
 shot    tar
 cap     GNU tar 1.10 packing a directory into a .tar and listing what it
 cap     wrote, with permissions, sizes and dates.
-try     tar cvf tmp/ARC/keep.tar SRC/keep
+try     tar cvf tmp/ARC/keep.tar SRC/keep; tar tvf tmp/ARC/keep.tar
 run     rm -f /dd/tmp/ARC/keep.tar; mkdir -p /dd/tmp/ARC > /nil 2>/nil
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     tar cvf tmp/ARC/keep.tar SRC/keep
-wait    6
-run     tar tvf tmp/ARC/keep.tar
-wait    5
+run     tar cvf tmp/ARC/keep.tar SRC/keep; tar tvf tmp/ARC/keep.tar
+wait    11
 
 shot    gtar
-cap     Another build of GNU tar, packing the same directory and listing
-cap     it back with owner and permissions.
-try     gtar cvf tmp/ARC/keep2.tar SRC/keep
+cap     Another build of GNU tar, packing SRC/keep and listing it back with
+cap     owner and permissions.
+try     gtar cvf tmp/ARC/keep2.tar SRC/keep; gtar tvf tmp/ARC/keep2.tar
 run     mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/keep2.tar
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     gtar cvf tmp/ARC/keep2.tar SRC/keep
-wait    6
-run     gtar tvf tmp/ARC/keep2.tar
-wait    5
+run     gtar cvf tmp/ARC/keep2.tar SRC/keep; gtar tvf tmp/ARC/keep2.tar
+wait    11
 
 shot    liborder
-cap     Given relocatable objects it prints them in the order you would feed
-cap     them to `merge' to build a library -- last first, which is the order
-cap     the linker wants.  Measured: it reverses whatever list it is given.
-cap     It does not read a finished .l; handed one it takes the first bytes
-cap     for an object header and asks for a length that is not there.
-cap     `-modinfo' prints an object's public names instead.
+cap     Three of make's relocatable objects, printed last first, the order to
+cap     merge them into a library; then `-modinfo' naming one object's
+cap     public names.  It reads .r files, not a finished .l library.
 try     liborder make.r parse.r stat.r
 run     builtin cd /dd/SRC/eff_make
 wait    1
@@ -442,9 +467,10 @@ run     liborder -modinfo stat.r
 wait    5
 
 shot    unpacklib
-cap     Splits an OS-9 library apart into its member modules -- it gets
-cap     the first two out of this one and then stops on a bad sync word
-cap     partway through.
+cap     Splits an OS-9 library into its member modules. This build names the
+cap     first two and then stops at a sync word it does not expect -- on
+cap     this library and on every other in LIB tried; unpacklib.os9 takes
+cap     the same library apart whole.
 try     unpacklib -verbose LIB/blarslib.l
 run     builtin cd /dd
 wait    1

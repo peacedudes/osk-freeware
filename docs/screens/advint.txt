@@ -1,4 +1,4 @@
-$ sh -c "chd /dd/tmp/GAMESA; advint osample"
+$ advint osample
 ADVINT v1.2 - Copyright (c) 1986, by David Betz
 Welcome to the sample adventure.
 This appears to be the livingroom. There is a hallway to the north and a closet

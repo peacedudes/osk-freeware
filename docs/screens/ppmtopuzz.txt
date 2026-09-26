@@ -1,0 +1,4 @@
+$ ppmtopuzz tmp/base.ppm > tmp/t.puzz; wc -c tmp/t.puzz
+ppmtopuzz: computing colormap...
+ppmtopuzz: 6 colors found
+   1179 tmp/t.puzz

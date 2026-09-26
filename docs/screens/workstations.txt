@@ -1,6 +1,2 @@
 $ pbmtomgr tmp/base.pbm | mgrtopbm | pnmfile
 stdin:  PBM raw, 48 by 24
-$ pbmtoatk tmp/base.pbm | atktopbm | pnmfile
-stdin:  PBM raw, 48 by 24
-$ pbmtocmuwm tmp/base.pbm | cmuwmtopbm | pnmfile
-stdin:  PBM raw, 48 by 24

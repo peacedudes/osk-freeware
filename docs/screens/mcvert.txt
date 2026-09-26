@@ -1,8 +1,8 @@
 $ mcvert -U j.txt.MAC
 Converting     j.txt                          type = "TEXT", author = "OS-9"
 $ ls -l j.txt.MAC j.txt01.hqx
--rw-------   1 7        1             256 Sep 24 01:18 j.txt.MAC
--rw-------   1 7        1             135 Sep 24 01:18 j.txt01.hqx
+-rw-------   1 7        1             256 Sep 26 08:55 j.txt.MAC
+-rw-------   1 7        1             135 Sep 26 08:55 j.txt01.hqx
 $ cat j.txt01.hqx
 (This file must be converted with BinHex 4.0)
 

@@ -16,4 +16,4 @@ Type return (or n/q) to send the plot to the -Plp550M printer :
 Postscript file has been sent to the -Plp550M printer
 Congratulations!!!  You have been TERMINATED...
 $ ls -l dataplot.ps
--rw-------   1 7        1          141635 Sep 24 01:57 dataplot.ps
+-rw-------   1 7        1          141635 Sep 26 09:31 dataplot.ps

@@ -1,23 +1,17 @@
-$ wn -L /nil -l /nil <rq.crlf | head -n 18
+$ cat rq
+GET /index.html HTTP/1.0
+
+$ autolf -c -C -L < rq > rq.crlf
+$ wn -L /nil -l /nil <rq.crlf | autolf -N | head -n 18
 HTTP/1.0 200 OK
-
 Server: WN/1.14.4 OS-9 Version
-
-Date: Thu, 24 Sep 2026 06:41:26 GMT
-
+Date: Sat, 26 Sep 2026 16:10:11 GMT
 Last-modified: Tue, 04 Aug 2026 00:00:00 GMT
-
 Content-type: text/html
-
 Content-length: 838
-
 Accept-Range: bytes, lines
-
 Title: Served by OS-9
-
 Link: <mailto:root>; rev="Made"
-
-
 
 <html>
 <head><title>OS-9/68000 Freeware Collection</title></head>

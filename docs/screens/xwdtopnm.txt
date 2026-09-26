@@ -1,0 +1,5 @@
+$ pnmtoxwd tmp/base.ppm | xwdtopnm | pnmfile
+pnmtoxwd: computing colormap...
+pnmtoxwd: 6 colors found
+xwdtopnm: writing PPM file
+stdin:  PPM raw, 48 by 24  maxval 255

@@ -1,5 +1,2 @@
 $ pbmtopgm 3 3 noise.pbm | pnmfile
 stdin:  PGM raw, 64 by 32  maxval 9
-$ pbmtopgm 3 3 noise.pbm > blur.pgm
-$ pnmfile blur.pgm
-blur.pgm:       PGM raw, 64 by 32  maxval 9

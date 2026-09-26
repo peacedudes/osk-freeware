@@ -1,8 +1,8 @@
 $ head -n 12 SYS/motd > tmp/a.txt 2>/nil
 $ sed -e "s/OS-9/OS-Nine/" tmp/a.txt > tmp/b.txt
 $ diff -c tmp/a.txt tmp/b.txt
-*** tmp/a.txt   126/9/24 1:26 AM--- tmp/b.txt   126/9/24 1:27 AM***************
+*** tmp/a.txt   126/9/26 8:14 AM--- tmp/b.txt   126/9/26 8:14 AM***************
 *** 1,1 ****
-! Welcome to os9exec -- OS-9/68k emulator
+! Welcome to the OS-9 freeware collection
 --- 1,1 ----
-! Welcome to os9exec -- OS-Nine/68k emulator
+! Welcome to the OS-Nine freeware collection

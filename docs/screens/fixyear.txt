@@ -1,0 +1,20 @@
+$ dir -e
+
+Directory of "." 08:18:40  09/26/126
+
+ Owner   Last modified  Attributes Sector Bytecount Name
+-------  -------------  ---------- ------ --------- -----
+  0.0    05/09/26 0818   ---wr-wr   BF224         6 old.txt
+
+Total of 1 files containing 6 bytes.
+$ fixyear -l old.txt
+old.txt updated from 1905 to 2005
+$ dir -e
+
+Directory of "." 08:18:46  09/26/126
+
+ Owner   Last modified  Attributes Sector Bytecount Name
+-------  -------------  ---------- ------ --------- -----
+  0.0    105/09/26 0818   ---wr-wr   BF224         6 old.txt
+
+Total of 1 files containing 6 bytes.

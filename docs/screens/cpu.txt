@@ -1,19 +1,47 @@
+         ==== THE OS9/68k CPU-SPEED PROGRAM  SPEED VERSION 1.0 ====
+          === (c.) 1988 F.R.Schmitt  MPI Kernphysik Heidelberg ===
+                        <##08:36:54###26-Sep-19126##>
+
+
+                     0        05        10        15         20         25 Mhz
+                     |---------|---------|---------|----------|----------|
+CPU-SPEED            |                                                   |
+                     |---------|---------|---------|----------|----------|
+                     0        05        10        15         20         25 Mhz
+
+         Your CPU is performing like a 68000 CPU running at: 0.06 Mhz
+
+
+CURRENT TEST NO : #0000000000#
+
+ELAPSED TIME    : #0000:00:00#
+
+
+
+
+-----------------------------------------------------------------------------
+
+Process   Pid: 4, cpu, edition 7
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
+               Execution - /dd/CMDS
+        Files: 00 fCons /term
  Last syscall: F$Time (0x0015)
     Registers: Dn=7FF00000 00000000 00000000 00000000
-                  DDDDDDD4 00000266 00001A50 0000001C
-               An=000A43DA 000C42C4 000C4544 000C453E
-                  000C453A 000C427E 000CAB40 000C427E
-               PC=000A43DA SR=0003
- Executing: -->000a43da: 4e75 4a82 6b14 4a80 6a02 RTS.L
-               000a43dc: 4a82 6b14 4a80 6a02 6024 TST.L D2
-       Memory: Static    -     000C2B40 - 000C4590    6736 bytes
-               Allocated - 000 000C2B40 - 000C4590    6736 bytes
-                           001 000C45C0 - 000C63C0    7680 bytes
-                           002 000C63C0 - 000C73C0    4096 bytes
-                           003 000A4780 - 000A4F80    2048 bytes
+                  DDDDDDD4 000002A4 00001A90 0000001C
+               An=000CBFDA 000CDB06 000CDDC4 000CDDBE
+                  000CDDBA 000CDAC0 000D4380 000CDAC0
+               PC=000CBFDA SR=0003
+ Executing: -->000cbfda: 4e75 4a82 6b14 4a80 6a02 RTS.L
+               000cbfdc: 4a82 6b14 4a80 6a02 6024 TST.L D2
+       Memory: Static    -     000CC380 - 000CDE10    6800 bytes
+               Allocated - 000 000CC380 - 000CDE10    6800 bytes
+                           001 000CDE40 - 000CFC40    7680 bytes
+                           002 000CFC40 - 000D0C40    4096 bytes
+                           003 00098900 - 00099100    2048 bytes
  Trap handler: 13 #44 cio, edition 6
                15 #46 math, edition 13
-# # Exception: pid=4 vector=$07 err=#000:107 ... process will be killed (x to co
-ntinue)
+# Exception: pid=4 vector=$07 err=#000:107 -- process will be killed (x to conti
+nue)
 $ exit
 $ exit

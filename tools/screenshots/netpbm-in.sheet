@@ -4,32 +4,37 @@
 # colour picture).  Where this disk also carries the matching writer, the
 # card makes a real file in that format and reads it back, so the picture is
 # a round trip and pnmfile confirms a valid PNM came out.  Where no writer
-# for the format ships, the reader is handed a file it is not meant to read
-# and shown rejecting it by name -- which is what it does when a stranger
-# gives it the wrong thing.
+# for the format ships, a small file in the format is made by hand -- printf
+# for the text, pbyte for the bytes printf cannot write -- wherever the
+# format is simple enough; the rest are handed a file they are not meant to
+# read and shown rejecting it.
 #
-# Every stanza is self-contained: it makes its own input under /dd/tmp/NPIB,
+# Every stanza is self-contained: it makes its own input under /dd/tmp,
 # so `--only <name>' works.  Stanzas run top to bottom.
 
 # ---- round trips: the matching writer ships, so read back what it wrote ----
 
 shot    asciitopgm
 cap     Turns ASCII art back into a greyscale image, each character weighted
-cap     by how much ink it carries.  Here it reads the picture pbmtoascii
-cap     drew of the word `npbm', and pnmfile confirms a 40x8 PGM came out.
-try     asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     pbmtext "npbm" | pbmtoascii > /dd/tmp/NPIB/art.txt
-wait    8
-run     builtin cd /dd
+cap     by how much ink it carries.  pbmtext and pbmtoascii draw the word
+cap     `npbm' as characters, and asciitopgm reads those 8 lines of 40
+cap     back; pnmfile confirms a 40x8 PGM came out.
+try     pbmtext "npbm" | pbmtoascii > art.txt; cat art.txt; asciitopgm 8 40 < art.txt > a.pgm; pnmfile a.pgm
+os9     pbmtext "npbm" ! pbmtoascii >-art.txt; cat art.txt; asciitopgm 8 40 <art.txt >-a.pgm; pnmfile a.pgm
+run     rm -rf /dd/tmp/ASCB > /nil 2>/nil; mkdir -p /dd/tmp/ASCB
+wait    3
+run     builtin cd /dd/tmp/ASCB
 wait    1
 run     clear
-run     cat tmp/NPIB/art.txt
-wait    3
-run     asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
-wait    5
-run     pnmfile tmp/NPIB/a.pgm
-wait    5
+wait    1
+run     pbmtext "npbm" | pbmtoascii > art.txt
+wait    14
+run     cat art.txt
+wait    14
+run     asciitopgm 8 40 < art.txt > a.pgm
+wait    14
+run     pnmfile a.pgm
+wait    14
 
 shot    fstopgm
 cap     Reads a Usenix FaceSaver file -- the mugshot format of the Usenix
@@ -69,8 +74,8 @@ wait    5
 
 shot    psidtopgm
 cap     Reads the hex digits of PostScript `image' operator data into a
-cap     greyscale image -- not a scanner format.  Given a width, height and
-cap     bits per sample it decodes the hex: a white row over a black one.
+cap     greyscale image.  Given a width, height and bits per sample it
+cap     decodes the hex: a white row over a black one.
 try     psidtopgm 8 2 8 < tmp/NPIB/i.ps > tmp/NPIB/p.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     builtin cd /dd
@@ -86,34 +91,35 @@ wait    5
 shot    rawtopgm
 cap     Reads headerless bytes as a greyscale image, given the width and
 cap     height -- how you get a picture out of a machine that wrote no header
-cap     at all.  Fed the pixel bytes of a ramp, pnmfile confirms a 48x24 PGM.
-try     rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
-wait    5
-run     builtin cd /dd
+cap     at all.  Sixteen letters make an 8x2 strip, each letter's code its
+cap     grey.
+try     printf "ABCDEFGHabcdefgh" > r.raw; rawtopgm 8 2 r.raw | pnmnoraw
+os9     printf "ABCDEFGHabcdefgh" >-r.raw; rawtopgm 8 2 r.raw ! pnmnoraw
+run     rm -rf /dd/tmp/RAWG > /nil 2>/nil; mkdir -p /dd/tmp/RAWG
+wait    3
+run     builtin cd /dd/tmp/RAWG
 wait    1
 run     clear
-run     rawtopgm 48 24 < tmp/NPIB/g.pgm > tmp/NPIB/r.pgm
-wait    5
-run     pnmfile tmp/NPIB/r.pgm
-wait    5
+wait    1
+run     printf "ABCDEFGHabcdefgh" > r.raw; rawtopgm 8 2 r.raw | pnmnoraw
+wait    8
 
 shot    rawtoppm
-cap     Reads headerless bytes as a colour image, given the width and height.
-cap     Fed the pixel bytes of a colour pattern, pnmfile confirms a 48x24
-cap     PPM came out.
-try     rawtoppm 48 24 < tmp/NPIB/c.ppm > tmp/NPIB/r.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads headerless bytes as a colour image, three to a pixel, given
+cap     the width and height.  Twenty-four letters make a 4x2 picture, their
+cap     codes the red, green and blue that pnmnoraw spells out.
+try     printf "ABCDEFGHIJKLabcdefghijkl" > r.raw; rawtoppm 4 2 r.raw | pnmnoraw
+os9     printf "ABCDEFGHIJKLabcdefghijkl" >-r.raw; rawtoppm 4 2 r.raw ! pnmnoraw
+run     rm -rf /dd/tmp/RAWP > /nil 2>/nil; mkdir -p /dd/tmp/RAWP
+wait    3
+run     builtin cd /dd/tmp/RAWP
 wait    1
 run     clear
-run     rawtoppm 48 24 < tmp/NPIB/c.ppm > tmp/NPIB/r.ppm
-wait    5
-run     pnmfile tmp/NPIB/r.ppm
-wait    5
+wait    1
+run     printf "ABCDEFGHIJKLabcdefghijkl" > r.raw
+wait    3
+run     rawtoppm 4 2 r.raw | pnmnoraw
+wait    8
 
 shot    sldtoppm
 cap     Reads an AutoCAD slide (.sld) -- the format AutoCAD shows in a slide
@@ -189,22 +195,32 @@ wait    5
 run     pnmfile tmp/NPIB/back.ppm
 wait    5
 
-# ---- no writer for the format ships, so the reader is shown rejecting a
-#      file it is not meant to read; no sample in that format is on the disk
+# ---- no writer for the format ships: a sample is made by hand where the
+#      format allows, and otherwise the reader is shown rejecting a stranger
 
 shot    bioradtopgm
-cap     Reads a Bio-Rad confocal microscope image into a greyscale picture.
-cap     No file in that format ships here; handed a colour picture it says
-cap     so rather than guessing.
-try     bioradtopgm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads a Bio-Rad confocal microscope image: a 76-byte header, then
+cap     a stack of images.  No such file ships, so one is made here --
+cap     printf writes the header with its 12345 signature (the `90' at byte
+cap     54), pbyte sets the size to 4 by 2, one image, bytes.  Given no
+cap     image number it only reports what the file holds; -0 takes the
+cap     first image, and the letters' codes come back as greys.
+try     bioradtopgm x.pic; bioradtopgm -0 x.pic | pnmnoraw
+os9     bioradtopgm x.pic; bioradtopgm -0 x.pic ! pnmnoraw
+run     rm -rf /dd/tmp/BIOB > /nil 2>/nil; mkdir -p /dd/tmp/BIOB
+wait    3
+run     builtin cd /dd/tmp/BIOB
 wait    1
+run     printf "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx90xxxxxxxxxxxxxxxxxxxx" > x.pic; printf "ABCDabcd" >> x.pic
+wait    3
+run     pbyte x.pic 0 04; pbyte x.pic 1 00; pbyte x.pic 2 02; pbyte x.pic 3 00; pbyte x.pic 4 01; pbyte x.pic 5 00; pbyte x.pic e 01; pbyte x.pic f 00
+wait    6
 run     clear
-run     bioradtopgm tmp/NPIB/nr.ppm
-wait    5
+wait    1
+run     bioradtopgm x.pic
+wait    6
+run     bioradtopgm -0 x.pic | pnmnoraw
+wait    8
 
 shot    brushtopbm
 cap     Reads a Xerox doodle brush file into a bitmap.  DOC/samples holds a
@@ -219,47 +235,49 @@ run     brushtopbm DOC/samples/os9.brush | pbmtoascii
 wait    6
 
 shot    gouldtoppm
-cap     Reads a Gould scanner image into a colour picture.  No file in that
-cap     format ships here; handed a colour picture it says the Gould header
-cap     will not read rather than guessing.
-try     gouldtoppm tmp/NPIB/nr.ppm
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
-wait    5
-run     builtin cd /dd
+cap     Reads a Gould scanner image: a 512-byte header, then the pixels.
+cap     No such file ships, so one is made here -- printf pads a header of
+cap     spaces, pbyte sets two lines of twelve bytes at 24 bits a pixel --
+cap     and twenty-four letters come back as the colours of a 4x2 picture.
+try     gouldtoppm x.gould | pnmnoraw
+os9     gouldtoppm x.gould ! pnmnoraw
+run     rm -rf /dd/tmp/GOUB > /nil 2>/nil; mkdir -p /dd/tmp/GOUB
+wait    3
+run     builtin cd /dd/tmp/GOUB
 wait    1
+run     printf "%512s" "" > x.gould; printf "ABCDEFGHIJKLabcdefghijkl" >> x.gould
+wait    3
+run     pbyte x.gould 2 02; pbyte x.gould 3 00; pbyte x.gould 4 0c; pbyte x.gould 5 00; pbyte x.gould 6 18; pbyte x.gould 7 00; pbyte x.gould 8 01; pbyte x.gould 9 00
+wait    6
 run     clear
-run     gouldtoppm tmp/NPIB/nr.ppm
-wait    5
+wait    1
+run     gouldtoppm x.gould | pnmnoraw
+wait    8
 
 shot    hipstopgm
-cap     Reads a HIPS image -- the format of a human-vision research
-cap     library -- into a greyscale picture.  Its header is nine lines of
-cap     text (where it came from, its name, how many frames, the date,
-cap     rows, columns, bits a pixel, packing, pixel format) and then
-cap     history lines up to a line holding one dot; after that it is one
-cap     byte a pixel.  So printf writes one, and sixteen characters of
-cap     text make a strip eight pixels by two.
-try     hipstopgm x.hips > out.pgm
+cap     A HIPS file is nine lines of header and a line holding one dot,
+cap     then one byte a pixel, so printf can write one: here rows 2,
+cap     columns 8, and sixteen characters that come back as a strip of
+cap     greys eight pixels by two.
+try     printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips; printf "0123456789abcdef" >> x.hips; hipstopgm x.hips | pnmnoraw
+os9     printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" >-x.hips; printf "0123456789abcdef" >+x.hips; hipstopgm x.hips ! pnmnoraw
 run     rm -rf /dd/tmp/HIPB > /nil 2>/nil; mkdir -p /dd/tmp/HIPB
 wait    3
 run     builtin cd /dd/tmp/HIPB
 wait    1
-run     printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips; printf "0123456789abcdef" >> x.hips
-wait    3
 run     clear
 wait    1
-run     hipstopgm x.hips > out.pgm
-wait    5
-run     pnmfile out.pgm
-wait    3
-run     pnmnoraw out.pgm
-wait    4
+run     printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips
+wait    10
+run     printf "0123456789abcdef" >> x.hips
+wait    10
+run     hipstopgm x.hips | pnmnoraw
+wait    10
 
 shot    hpcdtoppm
 cap     Reads a Kodak Photo CD image into a colour picture.  No Photo CD
-cap     file ships here; handed a colour picture it reports the read error
-cap     rather than guessing.
+cap     file ships here; handed a small colour picture instead it stops with
+cap     a read error.
 try     hpcdtoppm tmp/NPIB/nr.ppm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
 run     ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm
@@ -271,38 +289,43 @@ run     hpcdtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    imgtoppm
-cap     Reads an Img Software Set (AT&T Image-8) image into a colour
-cap     picture -- not GEM IMG, which gemtopbm reads.  No file in that format
-cap     ships here; handed a name that is not there it says it cannot open it.
-try     imgtoppm tmp/NPIB/none.img
-run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     builtin cd /dd
+cap     Reads an Img Software Set (AT&T Image-8) picture.  Its blocks are
+cap     tagged in plain text -- AT with the width, height and colour-map
+cap     size in four digits each, PD with the pixels, each with an
+cap     eight-digit length -- so printf can write one: a 4x2 picture of
+cap     greys, the letters' codes.
+try     printf "IMGFILE0AT00000012000400020000PD00000008ABCDabcd" > x.img; imgtoppm x.img | pnmnoraw
+os9     printf "IMGFILE0AT00000012000400020000PD00000008ABCDabcd" >-x.img; imgtoppm x.img ! pnmnoraw
+run     rm -rf /dd/tmp/IMGB > /nil 2>/nil; mkdir -p /dd/tmp/IMGB
+wait    3
+run     builtin cd /dd/tmp/IMGB
 wait    1
 run     clear
-run     imgtoppm tmp/NPIB/none.img
-wait    5
+wait    1
+run     printf "IMGFILE0AT00000012000400020000PD00000008ABCDabcd" > x.img
+wait    8
+run     imgtoppm x.img | pnmnoraw
+wait    8
 
 shot    mtvtoppm
-cap     Reads the output of the MTV ray tracer into a colour picture.  An
-cap     MTV image is one line of width and height and then three raw bytes
-cap     a pixel, so one can be written with printf: twenty-four characters
-cap     of text make a picture four pixels by two, and their codes are the
-cap     colours that come out.
-try     mtvtoppm x.mtv > out.ppm
+cap     An MTV image is one line of width and height, then three bytes a
+cap     pixel, so printf can write one: twenty-four characters make a
+cap     picture four pixels by two, and their codes are the colours that
+cap     come out.
+try     printf "4 2\r" > x.mtv; printf "0123456789abcdefghijklmn" >> x.mtv; mtvtoppm x.mtv | pnmnoraw
+os9     printf "4 2\r" >-x.mtv; printf "0123456789abcdefghijklmn" >+x.mtv; mtvtoppm x.mtv ! pnmnoraw
 run     rm -rf /dd/tmp/MTVB > /nil 2>/nil; mkdir -p /dd/tmp/MTVB
 wait    3
 run     builtin cd /dd/tmp/MTVB
 wait    1
-run     printf "4 2\r" > x.mtv; printf "0123456789abcdefghijklmn" >> x.mtv
-wait    3
 run     clear
 wait    1
-run     mtvtoppm x.mtv > out.ppm
-wait    5
-run     pnmfile out.ppm
-wait    3
-run     pnmnoraw out.ppm
-wait    4
+run     printf "4 2\r" > x.mtv
+wait    10
+run     printf "0123456789abcdefghijklmn" >> x.mtv
+wait    10
+run     mtvtoppm x.mtv | pnmnoraw
+wait    10
 
 shot    spctoppm
 cap     Reads an Atari ST Spectrum 512 picture into a colour image.  No
@@ -319,8 +342,8 @@ run     spctoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    spottopgm
-cap     Reads a spot-scanner image into a greyscale picture, optionally
-cap     cropped to a rectangle.  No spot file ships here; run with no
+cap     Reads a SPOT satellite image into a greyscale picture, optionally
+cap     cropped to a rectangle.  No SPOT file ships here; run with no
 cap     arguments it prints what it expects.
 try     spottopgm
 run     clear
@@ -342,27 +365,24 @@ run     ximtoppm tmp/NPIB/nr.ppm
 wait    5
 
 shot    xvminitoppm
-cap     Reads an XV thumbnail -- the small preview the XV image viewer
-cap     saves -- into a colour picture.  A thumbnail is `P7 332', a
-cap     comment line, the size, and then one byte a pixel indexing a fixed
-cap     palette of three bits of red, three of green and two of blue, so
-cap     one can be written with printf.  Sixteen characters of text make a
-cap     strip eight pixels by two.
-try     xvminitoppm x.xv > out.ppm
+cap     An XV thumbnail indexes a fixed palette -- three bits of red, three
+cap     of green and two of blue a byte -- after a three-line header, so
+cap     printf can write one.  Sixteen bytes make a strip eight pixels by
+cap     two.
+try     printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv; printf "0123456789abcdef" >> x.xv; xvminitoppm x.xv | pnmnoraw
+os9     printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" >-x.xv; printf "0123456789abcdef" >+x.xv; xvminitoppm x.xv ! pnmnoraw
 run     rm -rf /dd/tmp/XVB > /nil 2>/nil; mkdir -p /dd/tmp/XVB
 wait    3
 run     builtin cd /dd/tmp/XVB
 wait    1
-run     printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv; printf "0123456789abcdef" >> x.xv
-wait    3
 run     clear
 wait    1
-run     xvminitoppm x.xv > out.ppm
-wait    5
-run     pnmfile out.ppm
-wait    3
-run     pnmnoraw out.ppm
-wait    4
+run     printf "P7 332\r#END_OF_COMMENTS\r8 2 255\r" > x.xv
+wait    10
+run     printf "0123456789abcdef" >> x.xv
+wait    10
+run     xvminitoppm x.xv | pnmnoraw
+wait    10
 
 shot    zeisstopnm
 cap     Reads a Zeiss confocal microscope image into a PNM.  No Zeiss file

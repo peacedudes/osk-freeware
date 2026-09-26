@@ -1,20 +1,13 @@
-$ about hack
- hack           hack -- the original dungeon crawl NetHack grew out of
+$ about wump
+ wump           hunt the Wumpus through a cave of tunnels by the hazards you
+                sense: a draft means a pit is next door, a smell the Wumpus
+                himself.  Move room to room, then loose a crooked arrow along
+                a path of rooms to kill him -- but miss and he may wake and eat
+                you.  `-h' for a harder cave; `-r'/`-t'/`-a' resize it
 
-  for        GAMES -- Dungeon crawl
-  how        run it by its full path: `/dd/CMDS/GAMES/hack', not `hack'.
-             It chdirs into its playground and then stats argv[0] to
-             date-check saved levels, so a bare name cannot resolve and it
-             stops with "Cannot get status of hack." Invoked in full it
-             starts: "Are you an experienced player?". Its playground --
-             record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.
-  from       Usenet           CMDS/GAMES -- no intact source; a different build
-from EFFO PD disk 6's
-  needs      /h0/games/hack/playground              here
-             /dd/sys/termcap                        here
-             /h0/sys/termcap                        here
-  source     none on this disk
-  docs       DOC/hack
+  for        GAMES -- Other games
+  from       4.3BSD Net/2     usr/src/games/wump, 1990 -- University of California, Berkeley
+  source     SRC/wump
 
-  run it     hack
-  take it    keep hack
+  run it     wump
+  take it    keep wump

@@ -1,2 +1,7 @@
-$ imgtoppm tmp/NPIB/none.img
-imgtoppm: tmp/NPIB/none.img -
+$ printf "IMGFILE0AT00000012000400020000PD00000008ABCDabcd" > x.img
+$ imgtoppm x.img | pnmnoraw
+P3
+4 2
+255
+65 65 65  66 66 66  67 67 67  68 68 68
+97 97 97  98 98 98  99 99 99  100 100 100

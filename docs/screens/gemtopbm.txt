@@ -1,0 +1,2 @@
+$ pbmtogem tmp/base.pbm | gemtopbm | pnmfile
+stdin:  PBM raw, 48 by 24

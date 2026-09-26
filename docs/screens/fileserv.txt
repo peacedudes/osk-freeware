@@ -1,21 +1,29 @@
+$ cat tmp/fsreq
+From tester Mon Sep 21 00:00:00 2026
+Subject: request
+
+reply tester
+dir
+quit
 $ fileserv <tmp/fsreq; ls tmp/FSMAIL/tester
-m201260924142417  mail..list
+m201260926080006  mail..list
 $ cat tmp/FSMAIL/tester/m2*
->From FILESERV Thu, 24 Sep 26 14:24:17 -0500
+>From FILESERV Sat, 26 Sep 26 08:00:06 -0500
 Received: by milkyway.andromeda.org (RMail OS-9/68K UUCP)
-        id <AA00003@milkyway.andromeda.org>; Thu, 24 Sep 26 14:24:17 -0500
+        id <AA00001@milkyway.andromeda.org>; Sat, 26 Sep 26 08:00:06 -0500
 From: OS-9 FileServer <milkyway.andromeda.org!FILESERV>
-Message-Id: <1260924142417.AA00003@milkyway.andromeda.org>
-Subject: Fileserver unavailable
+Message-Id: <1260926080006.AA00001@milkyway.andromeda.org>
+Subject: dir
 Reply-To: nobody@milkyway.andromeda.org
 To: tester
-Date: Thu, 24 Sep 26 14:24:17 -0500
+Date: Sat, 26 Sep 26 08:00:06 -0500
 X-Fileserver: OS-9 FileServ -- Version 2.1 (94Sep30)
 
-Sorry, the fileserver is not available now.
 
-If you have questions about the server or need help, you can send mail to:
-milkyway.andromeda.org!postmaster.
+Directory of "." 08:00:06  09/26/126
 
-      Sincerely,
-      milkyway!fileserv
+ Owner   Last modified  Attributes Sector Bytecount Name
+-------  -------------  ---------- ------ --------- -----
+  0.0    126/08/03 1900   ---wr-wr   561C8       107 README
+
+Total of 1 files containing 107 bytes.

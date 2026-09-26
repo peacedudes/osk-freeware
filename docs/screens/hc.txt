@@ -1,8 +1,8 @@
 $ cat motd
-Welcome to os9exec -- OS-9/68k emulator
+Welcome to the OS-9 freeware collection
 $ hc +8 motd
-       Welcome to os9exec -- OS-9/68k emulator
+       Welcome to the OS-9 freeware collection
 $ hc -11 motd
- os9exec -- OS-9/68k emulator
+ the OS-9 freeware collection
 $ hc -l "> " motd
-> Welcome to os9exec -- OS-9/68k emulator
+> Welcome to the OS-9 freeware collection

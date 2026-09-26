@@ -1,0 +1,19 @@
+$ ppmtouil tmp/base.ppm | head -n 16
+ppmtouil: computing colormap...
+ppmtouil: 6 colors found
+module tmp/base
+version = 'V1.0'
+names = case_sensitive
+include file 'XmAppl.uil';
+
+value
+    LemonChiffon3 : color( 'LemonChiffon3' );
+    MediumOrchid4 : color( 'MediumOrchid4' );
+    gray58 : color( 'gray58' );
+    gray10 : color( 'gray10' );
+    gray23 : color( 'gray23' );
+    gray43 : color( 'gray43' );
+
+value
+  tmp/base_rgb : color_table (
+    LemonChiffon3 = '`',

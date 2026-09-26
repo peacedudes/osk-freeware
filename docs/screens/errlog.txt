@@ -1,15 +1,7 @@
-$ errlog -?
-Syntax: errlog [<opts>]
-Function: collects error messages in one file
-Options:
-     -b=<size>    buffer size
-$ erradm -?
-Syntax: erradm <opts>
-Function: Change the status of the error logging demon
-Options:
-     -r       Remove logfile
-     -s       Start errorlogging
-     -h       Stop errorlogging
-     -f       Force to flush the demon's buffer
-     -e       Stops the demon
-     -p       Prints the errorlist
+$ errlog &
+<3>
+$ procs
+ Id PId Grp.Usr  Prior  MemSiz Sig S    CPU Time   Age Module & I/O
+  2   0   0.0     128   91.46k   0 w        0.14  0:00 bash <>>>term
+  3   2   0.0     128   20.89k   0 s        0.00  0:00 errlog <>>>nil
+  4   2   0.0     128   23.64k   0 *        0.00  0:00 procs <>>>term

@@ -1,4 +1,10 @@
-$ dotilde <msg.txt
-Unrecognized tilde command
+$ dotilde "~r note" 0 7 ">" letter . x
+
+Appending file: note
+
+The disk arrived today.
 
 Continuing...type "." or <ESC> to end message...
+$ cat letter
+Dear Bob,
+The disk arrived today.

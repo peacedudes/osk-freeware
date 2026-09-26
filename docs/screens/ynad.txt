@@ -1,10 +1,23 @@
-$ ynad
-.!YNAD - Yet Another Name & Address program "-----------------------------------
---------------------------------------------!$Code:!&Surname:!'First Name:!)Addr
-ess 1:V)Phone:!*Address 2:!,City:D,State:V,Zip Code: ---------------------------
------------------------------------------------------ .Filesystem in use:K.Conta
-ins      entries 0Action:*0Find (general)*1Read exact*2Update this entry*3Add a
-new entry*4Beginning of file*5End of fileF0Next entryF1Previous entryF2Switch pr
-ime indexF3Delete this recordF4Quit the program 6-------------------------------
------------------------------------------------- 7Enter the name of filesystem t
-o be used.
+              YNAD - Yet Another Name & Address program
+-------------------------------------------------------------------------------
+
+ Code:
+
+ Surname:
+ First Name:
+
+ Address 1:                                           Phone:
+ Address 2:
+
+ City:                              State:            Zip Code:
+-------------------------------------------------------------------------------
+Filesystem in use:                         Contains      entries
+
+Action:   Find (general)              Next entry
+          Read exact                  Previous entry
+          Update this entry           Switch prime index
+          Add a new entry             Delete this record
+          Beginning of file           Quit the program
+          End of file
+-------------------------------------------------------------------------------
+Enter the name of filesystem to be used.

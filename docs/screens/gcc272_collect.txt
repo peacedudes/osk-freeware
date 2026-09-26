@@ -1,0 +1,24 @@
+$ cat greet.cc
+class Greeter {
+public:
+  Greeter() { n = 1; }
+  int n;
+};
+Greeter hello;
+int main()
+{
+  return hello.n;
+}
+$ gcc272_collect -o c.a cstart.r greet.r -l=gcc.l -l=clibn.l -l=sys.l
+$ cat c.a
+        psect collect_gc,0,0,0,0,0
+        vsect
+__CTOR_LIST__:
+        dc.l 1
+        dc.l _GLOBAL_$I$main
+        dc.l 0
+__DTOR_LIST__:
+        dc.l 0
+        dc.l 0
+        ends
+        ends

@@ -1,18 +1,23 @@
+$ sine
+
+Process   Pid: 4, sine, edition 1
+    Exit code: E_PRCABT(228) Process Aborted
+  Directories: Current   - /dd
                Execution - /dd/CMDS
         Files: 00 fCons /term
  Last syscall: F$TLink (0x0021)
-    Registers: Dn=00000005 00000000 00000080 00000006
-                  DDDDDDD4 0000026E 00002B40 00000020
-               An=000D3954 000D320E 000D3900 000A0680
-                  AAAAAAA4 000D31C8 000D8940 000D31C8
-               PC=000D3954 SR=0004
- Executing: -->000d3954: 4e73 48e7 7ffc 3e11 3d47 RTE.L
-               000d3956: 48e7 7ffc 3e11 3d47 8018 MVMLE.L #$7ffc,-(A7)
-       Memory: Static    -     000D0940 - 000D3480   11072 bytes
-               Allocated - 000 000D0940 - 000D3480   11072 bytes
-                           001 000D6BC0 - 000E73D0   67600 bytes
-                           002 000E7400 - 000EA920   13600 bytes
+    Registers: Dn=00000005 00000000 00000080 00000003
+                  DDDDDDD4 000002AC 00002B80 00000020
+               An=000D9B54 000DD810 000D9B00 000A0680
+                  AAAAAAA4 000DD7CA 000E2F40 000DD7CA
+               PC=000D9B54 SR=0004
+ Executing: -->000d9b54: 4e73 48e7 7ffc 3e11 3d47 RTE.L
+               000d9b56: 48e7 7ffc 3e11 3d47 8018 MVMLE.L #$7ffc,-(A7)
+       Memory: Static    -     000DAF40 - 000DDAC0   11136 bytes
+               Allocated - 000 000DAF40 - 000DDAC0   11136 bytes
+                           001 000DDAC0 - 000EE2D0   67600 bytes
+                           002 000EE300 - 000F1820   13600 bytes
  Trap handler: 05 #36 Graph, edition 4
                15 #46 math, edition 13
-# # Exception: pid=4 vector=$08 err=#000:108 ... process will be killed (x to co
-ntinue)
+# Exception: pid=4 vector=$08 err=#000:108 -- process will be killed (x to conti
+nue)

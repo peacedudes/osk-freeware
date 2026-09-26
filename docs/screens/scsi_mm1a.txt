@@ -1,0 +1,16 @@
+$ modinfo CMDS/MM1/scsi_mm1a
+------------------------------ CMDS/MM1/scsi_mm1a  - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - -
+Module name           = scsi_mm1a
+System revision       = 1
+Module size           = 4218
+Owner Id              = 0.2
+Offset to module name = 0000106cH
+Access permission     = e-re-re-r
+Type/Language          = 0201H  Subroutine Module      68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 28
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 125eH

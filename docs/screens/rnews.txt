@@ -1,19 +1,24 @@
-$ printf "#! rnews %s\r" $LEN > batch.txt; cat art.txt >> batch.txt
+$ cat batch.txt
+#! rnews 59
+Newsgroups: comp.os.os9
+Subject: test article
+
+hello there
 $ rnews batch.txt
 $ ls -laR SPOOL/news/COMP
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 05:40 .
-drwxrwxrwx   1 0        0             256 Sep 26 05:40 ..
-drw-r--r--   1 0        0              96 Sep 26 05:40 OS
+drw-r--r--   1 0        0              96 Sep 26 11:28 .
+drwxrwxrwx   1 0        0             160 Sep 26 11:28 ..
+drw-r--r--   1 0        0              96 Sep 26 11:28 OS
 
 SPOOL/news/COMP/OS:
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 05:40 .
-drw-r--r--   1 0        0              96 Sep 26 05:40 ..
-drw-r--r--   1 0        0              96 Sep 26 05:40 OS9
+drw-r--r--   1 0        0              96 Sep 26 11:28 .
+drw-r--r--   1 0        0              96 Sep 26 11:28 ..
+drw-r--r--   1 0        0              96 Sep 26 11:28 OS9
 
 SPOOL/news/COMP/OS/OS9:
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 05:40 .
-drw-r--r--   1 0        0              96 Sep 26 05:40 ..
--rw-------   1 0        0              59 Sep 26 05:40 a1
+drw-r--r--   1 0        0              96 Sep 26 11:28 .
+drw-r--r--   1 0        0              96 Sep 26 11:28 ..
+-rw-------   1 0        0              59 Sep 26 11:28 a2

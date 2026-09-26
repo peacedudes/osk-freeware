@@ -1,7 +1,8 @@
 $ cat .newsrc
-control!
-junk!
+comp.os.os9: 1-12
+news.announce.newusers! 1-3
 $ subscribe news.announce.newusers
+Newsgroup news.announce.newusers is now subscribed.
 $ cat .newsrc
-control!
-junk!
+comp.os.os9: 1-12
+news.announce.newusers: 1-3

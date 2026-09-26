@@ -1,4 +1,9 @@
+$ cat history
+<one@site.uucp> 999999999~-     comp.os.os9/1
+<two@site.uucp> 999999999~-     comp.os.os9/2
 $ dbz history
-$ ls -l history.dir history.pag
--rw-------   1 7        1              60 Sep 24 01:03 history.dir
--rw-------   1 7        1          480044 Sep 24 01:03 history.pag
+$ ls -l
+total 481280
+-rw-rw-rw-   1 7        1              84 Sep 26 08:31 history
+-rw-------   1 7        1              60 Sep 26 08:31 history.dir
+-rw-------   1 7        1          480044 Sep 26 08:31 history.pag

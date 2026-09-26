@@ -1,3 +1,4 @@
+$ cwdis dwarf.e
 Number of instructions: 4
 Starting instruction: 1
 NO.     OPCODE  FIRSTPARA       SECONDPARA

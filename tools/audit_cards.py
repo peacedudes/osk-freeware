@@ -169,7 +169,7 @@ def main(argv):
             # one of these cards SAYS SO in its caption.  The screen is an
             # error line; the card is correct.  Flagged by the rule,
             # wrongly by the point -- same as `perr' above.
-            "ximtoppm": NOREADER, "gouldtoppm": NOREADER,
+            "ximtoppm": NOREADER,
             "hpcdtoppm": NOREADER, "spottopgm": NOREADER,
             # FOUR MORE WHOSE FAILURE IS THE POINT OF THE CARD (2026-09-13).
             # Each caption states the finding, and each was read before being
@@ -206,6 +206,25 @@ def main(argv):
                       "tester and as the super-user, with and without the "
                       "tmode reset, on four os9exec builds.  No sample is "
                       "published; the caption says why",
+            # OWN CARDS SINCE 2026-09-26 -- each used to borrow a sibling's
+            # screen, which the review flagged.  What each can say here:
+            "msg": "sends a line to another user's terminal and prints nothing "
+                   "of its own; with one user logged in there is nobody to "
+                   "reach, and the caption says so",
+            "speak": "a chat with another logged-in user on another port; "
+                     "with nobody there its `Unable to call' is the answer",
+            "erradm": "drives errlog; nothing on this disk writes to errlog, "
+                      "so there is no log for -p to print",
+            "remdate": "an OS-9/NET tool: it opens a network device like /n0, "
+                       "which os9exec does not provide",
+            "prexd": "the OS-9/NET remote-execution daemon; without a network "
+                     "device its syntax is what it can show",
+            "setbgptn": "an X68000 PW/X program: it opens the window device "
+                        "/win, which is not here",
+            "tsmon2": "a timesharing monitor for a serial line; it opens the "
+                      "line it is given, and there is no /t1 to open",
+            "chp": "an OS-9/NET remote login (`rex <node> login'); with no "
+                   "network it returns in silence, and the caption says so",
             "rex": "one of the OS-9/NET remote tools, shipped for real "
                    "systems and untested here: each opens a network "
                    "device like /n0, which os9exec does not provide, so "
@@ -256,12 +275,6 @@ def main(argv):
                       "reaches for a scratch file on /r0, the RAM disk this "
                       "disk has no device for",
             # TWO MORE PIECES OF ABSENT HARDWARE.  Both read 2026-09-13.
-            "dpark": "restores a physical RBF drive's head to track 00 -- "
-                     "something you did before moving a drive, and there is "
-                     "no drive head here to park",
-            "sbreak": "sends a break on a serial device; its card already "
-                      "runs it bare and gets `sbreak: Must specify device!', "
-                      "and there is no serial device here to name",
             # THREE TERMINAL PROGRAMS THAT NEED HARDWARE NOBODY HAS HERE, and
             # a definition file that does not ship.  Each was read 2026-09-13
             # and each caption already names the requirement.  `fontgen' is

@@ -1,3 +1,8 @@
+$ ls CMDS/GAMES | column
+accordian       colortest       jotto           pacman          tet
+advcom          convert         juggle          perp            tformat
+advent          corewar         jumble2         poker           thricken
+advint          craps           kalah           postprint       torus
 animal          crib            knight          puzzle          trek
 apfel           cribbage        lander          rain            trek73
 arithmetic      cwasm           larn            reversi         tt

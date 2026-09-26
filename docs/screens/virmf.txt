@@ -1,3 +1,5 @@
+$ cat run.mf
+\mode=epsonlo; mode_setup; input logo10
 $ virmf < run.mf
 This is METAFONT, C Version 2.7
 **(/DD/SYS/TEX/MFINPUTS/logo10.mf (/DD/SYS/TEX/MFINPUTS/logo.mf [77] [69]
@@ -6,10 +8,8 @@ Font metrics written on logo10.tfm.
 Output written on logo10.120gf (7 characters, 608 bytes).
 Transcript written on logo10.log.
 $ ls -l
-total 6144
--rw-------   1 7        1             632 Sep 24 01:50 back.120gf
--rw-------   1 7        1             608 Sep 24 02:15 logo10.120gf
--rw-------   1 7        1             307 Sep 24 02:15 logo10.log
--rw-------   1 7        1             256 Sep 24 02:15 logo10.tfm
--rw-rw-rw-   1 7        1            2249 Sep 24 01:58 pt.out
--rw-rw-rw-   1 7        1              40 Sep 24 02:15 run.mf
+total 2560
+-rw-------   1 7        1             608 Sep 26 12:09 logo10.120gf
+-rw-------   1 7        1             307 Sep 26 12:09 logo10.log
+-rw-------   1 7        1             256 Sep 26 12:09 logo10.tfm
+-rw-rw-rw-   1 7        1              40 Sep 26 12:09 run.mf

@@ -1,8 +1,8 @@
-$ echo 500000 | dhry | tail -l=8
+$ echo 5000000 | dhry | tail -l=8
 Str_1_Loc:           DHRYSTONE PROGRAM, 1'ST STRING
         should be:   DHRYSTONE PROGRAM, 1'ST STRING
 Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-Microseconds for one run through Dhrystone:    4.0
-Dhrystones per Second:                      250000.0
+Microseconds for one run through Dhrystone:    3.6
+Dhrystones per Second:                      277777.8

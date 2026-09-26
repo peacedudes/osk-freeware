@@ -1,3 +1,5 @@
-$ c7decode <msg.txt
-c7decode: Bad data
-+.#.X ..
+$ encode < note.txt > note.c7
+$ cat note.c7; echo
+,b\8`&JR_"SnY^qo$H6igxFzN9`fxG3!GP3!zz!MT
+$ c7decode < note.c7
+Hello from the news spool.

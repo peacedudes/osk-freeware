@@ -2,42 +2,44 @@
 # one stanza per program.
 
 shot    gs403
-size    30 100
-cap     Ghostscript 4.03 rendering a line of PostScript.  The page is
-cap     rasterised to a bitmap at 48 dots per inch, and pbmtoascii shows
-cap     that bitmap as text.  GS_LIB names its fonts and initialisation
-cap     files, in LIB/gs403.
-try     cat DOC/samples/hello.ps; gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm DOC/samples/hello.ps -c quit; pbmtoascii tmp/PRT/hello.pbm
+size    30 80
+cap     Ghostscript 4.03 rendering a line of PostScript -- hello.ps, the
+cap     sample in DOC/samples, read from standard input (`-').  The page
+cap     is rasterised to a bitmap at 48 dots per inch, and pbmtoascii
+cap     shows that bitmap as text.  GS_LIB must name LIB/gs403, where its
+cap     fonts and initialisation files are.
+try     gs403 -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=h - <hello.ps
 run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; export GS_LIB=/dd/LIB/gs403
+run     cp /dd/DOC/samples/hello.ps /dd/tmp/PRT/hello.ps
 wait    2
-run     builtin cd /dd
+run     builtin cd /dd/tmp/PRT
 wait    1
 run     clear
 wait    1
-run     cat DOC/samples/hello.ps
+run     cat hello.ps
 wait    2
-run     gs403 -q -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=tmp/PRT/hello.pbm DOC/samples/hello.ps -c quit
+run     gs403 -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=h - <hello.ps
 wait    60
-run     pbmtoascii tmp/PRT/hello.pbm
+run     pbmtoascii -2x4 h
 wait    10
 
 shot    gs33
-cap     Ghostscript 3.33, the earlier build on this disk -- gs403 is the
-cap     complete one.  Its devices are printer codes, not a plain bitmap,
-cap     so here it turns a line of PostScript into what an Epson-compatible
-cap     printer would receive, shown as a dump.  `xmode: not found' is a
-cap     helper it looks for and does without.
-try     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit; dump tmp/PRT/old.out | head -n 8
-os9     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit ! dump tmp/PRT/old.out ! head -n 8
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/old.ps
+cap     Ghostscript 3.33, the earlier build on this disk.  Its devices are
+cap     printer codes, not a plain bitmap, so here it turns a line of
+cap     PostScript into what an Epson-compatible printer would receive,
+cap     shown as a dump.  It first runs `xmode' to set up the printer port
+cap     /p; with no /p device here, xmode answers that it cannot link "p",
+cap     and gs33 carries on.
+try     gs33 -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=o a.ps -c quit
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "/Helvetica-Bold findfont 40 scalefont setfont\r8 14 moveto (OS-9/68000) show\rshowpage\r" > /dd/tmp/PRT/a.ps
 wait    2
-run     builtin cd /dd
+run     builtin cd /dd/tmp/PRT
 wait    1
 run     clear
 wait    1
-run     gs33 -q -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit
+run     gs33 -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=o a.ps -c quit
 wait    45
-run     dump tmp/PRT/old.out | head -n 8
+run     dump o | head -n 8
 wait    5
 
 shot    lwf
@@ -58,14 +60,17 @@ shot    alps
 cap     Writes the control sequence that switches an ALPS ASP-1000
 cap     printer to letter quality (-lq) or back (-norm): three bytes,
 cap     meant to be sent to the printer device.  Shown here as a dump.
-try     alps -lq > tmp/PRT/alps.out; dump tmp/PRT/alps.out
-os9     alps -lq >-tmp/PRT/alps.out; dump tmp/PRT/alps.out
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; alps -lq > /dd/tmp/PRT/alps.out
-wait    3
-run     builtin cd /dd
+try     alps -lq > lq.out; dump lq.out
+os9     alps -lq >-lq.out; dump lq.out
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; rm -f /dd/tmp/PRT/lq.out
+wait    2
+run     builtin cd /dd/tmp/PRT
 wait    1
 run     clear
-run     dump tmp/PRT/alps.out
+wait    1
+run     alps -lq > lq.out
+wait    3
+run     dump lq.out
 wait    5
 
 shot    epson
@@ -88,11 +93,9 @@ wait    4
 
 shot    lmargin
 size    30 80
-cap     lmargin indents.  It reads standard input and writes it out again
-cap     with a left margin of the width you ask for, so it takes a file by
-cap     redirect or a program's output by pipe.  Nothing of it reaches a
-cap     printer: the name `epson' in its usage line came with it from a
-cap     sibling program, and the margin it sets is spaces in the text.
+cap     A document with a four-space margin added.  The margin is spaces in
+cap     the text, and nothing is sent to a printer: the name `epson' in its
+cap     usage line came with it from a sibling program.
 try     lmargin -l4 <DOC/globe.doc
 run     clear
 wait    1
@@ -163,12 +166,12 @@ run     lpshut; lpq
 wait    6
 
 shot    prjob
-cap     Prints a queued job.  With no spooler installed it says so --
-cap     even its own option list gives the same answer.
-try     prjob -?; prjob
-os9     prjob
-run     prjob -?
-wait    4
+cap     prjob is the lp spooler's printer process: lpsched starts it and it
+cap     prints the jobs in the queue.  Run on its own, with no spooler in
+cap     memory, it says so.
+try     prjob
+run     clear
+wait    1
 run     prjob
 wait    4
 
@@ -204,14 +207,16 @@ run     splprt; echo "status $?"
 wait    5
 
 shot    splstat
-cap     The queue status of the disk's other spooler.  Asking for its
-cap     options answers instead that its device number is out of range
-cap     -- as close as it comes to a queue with none running.  lpq, the
-cap     other spooler's, says so in plainer words.
-try     splstat -?; lpq
-run     splstat -?
-wait    4
-run     lpq
+cap     splstat reports the queue in SPL/splq as two tables, jobs and
+cap     printers.  The queue ships empty, and with nothing queued it prints
+cap     nothing and returns 0.  The command that queues a job is not part
+cap     of this set; its options, which change jobs and printers, are the
+cap     system manager's.
+try     splstat; echo "status $?"
+run     builtin cd /dd
+run     clear
+wait    1
+run     splstat; echo "status $?"
 wait    4
 
 shot    perr

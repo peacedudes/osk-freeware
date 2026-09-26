@@ -1,0 +1,24 @@
+000cfffa (pear)
+line (or .):  fig
+compar(fig,pear)=-10
+compar(fig,apple)=5
+tree_srch=00000000
+add? y
+compar(fig,pear)=-10
+compar(fig,apple)=5
+  000cffd2 (apple)
+000cffaa (fig)
+  000cfffa (pear)
+line (or .):  apple
+compar(apple,fig)=-5
+compar(apple,apple)=0
+tree_srch=000cffd2
+     <apple>
+delete? y
+compar(fig,apple)=5
+compar(apple,apple)=0
+duar called, pc=000CFFD2: <apple>
+delete=1
+000cffaa (fig)
+  000cfffa (pear)
+line (or .):

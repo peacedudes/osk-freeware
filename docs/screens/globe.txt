@@ -1,23 +1,24 @@
-             ._od#HMMMMMHM6&##o_
-          _dHMMMMMMMMMMMMMMH##9R'^~_
-       .dHMMMMMMMMMMMMMMMMMMH,`*   `"\.
-     .dMMMMMMMMMMMMMMMMMMM#*iD~'      `\.
-    dMMMMMMMMMMMMMMMMMM#`M\,dH          `\
-  .dMMMMMMMMMMMMMMMMMMMH  *"'             \
-  HMH#MMMMMMMMMMMMMMMMHb -                 $
- dMM' $MMMH'`HMMMM\H"' :                    \
-|M?'  `MM'  .`TMMMH   -M\       `           `|
-MM'    Mb   ` |i`#'  ./!ML                   |
-M|      "    ?bM|  .oHr``'  `                |
-H             $MM_|MMM\#/ |o\\_            - |
-|              `*6??:'|*|`":9"MMHov+\       '|
-H.                """`"'*' __."9"*~ `"|      ?
-|H|                    .,##MML_Mb      | . `.|
- 9b.                .,oHMMMMMMMMM?    \  `  /
- `&                 |MMMMMMMMMMMMM|        |
-  `\                 9MMH##HMMMMMH'       /
-    \.    .          `"     `###'    ,| ,/
-     `\.                      "'  ,/^'./'
-       `~\                          ,/'
-          "-\_                  _.-"
-              ""\dHMMMMMMMMM=:-"
+$ globe
+              _od#HM["MMMM:$--v_.
+          ,oHMR'$HMM: `"'  "' -HHHb_
+       .dHMMMMMMMMM#M?         `*&MMMb.
+     .dMMMMMMMMMH""'`"           ,HMHMMb.
+    /MMMMMMMMMP'             -    *H6ddPH?
+   /JMMMMM#M''                    .MMMMM#Hb
+  | MMM?   H&,                   `HMMMMMMMMH
+ /  |MM_#|`"DHb\_.                HMMMMMMMMMb
+|    ""HM#.      !                |MMMMMMMMMM|
+|       `HoodMMH##_               `*MMMMMMMMMH
+|         `|MMMMMMMH#o              `**"'*MMMM
+|      .  |MMMMMMMMMMMbo.                 dMMM
+|         &MMMMMMMMMMMMMMMMb.             |MMM
+|          9MMMMMMMMMMMMMMMH'             |MMH
+|           *HMMMMMMMMMMMMT               HMM|
+ \            TMMMMMMMMMMM'              |MMP
+ `|           `MMMMMMMM'"'               dMH
+  `\           MMMMMMH'                 ,MP
+    \.         MMMM#'                   i/
+     `\.       TMM?                   ./'
+       `~\     `*M?,-    _          ,/'
+          "-\_    ` ,, .        _.-"
+              "-\=vHMb__ooo#==-"

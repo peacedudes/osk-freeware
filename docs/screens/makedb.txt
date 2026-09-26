@@ -1,4 +1,4 @@
 $ makedb -o palias palias.src
 $ ls -l palias.dir palias.pag
--rw-------   1 7        1               0 Sep 24 00:58 palias.dir
--rw-------   1 7        1            1024 Sep 24 00:58 palias.pag
+-rw-------   1 7        1               0 Sep 26 10:49 palias.dir
+-rw-------   1 7        1            1024 Sep 26 10:49 palias.pag

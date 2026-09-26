@@ -4,11 +4,9 @@
 
 shot    ttyexp
 size    30 80
-cap     Fireworks for a terminal: bursts of characters are thrown out
-cap     from a point, arc under gravity and fall away, with trails.  Each
-cap     option is one letter and a number: -s how many bursts at once,
-cap     -p how many points in each, -x and -y the size, -w a wind, -D how
-cap     many seconds it runs.  It clears the screen when it is done.
+cap     Two bursts of fifty points each, caught partway through their fall.
+cap     Besides -s, -p and -D, -x and -y set the size of each burst, -g the
+cap     gravity and -w a wind.
 try     ttyexp -s2 -p50
 run     ttyexp -s2 -p50
 wait    3
@@ -19,9 +17,7 @@ wait    7
 
 shot    xmas
 size    24 80
-cap     A Christmas card drawn in characters: the tree is drawn and trimmed,
-cap     lights blink along its strings, and reindeer run across the screen
-cap     before the card starts over.  It loops until control-C.
+cap     The reindeer mid-run past the tree, with the greeting across the top.
 try     xmas
 run     xmas
 wait    60

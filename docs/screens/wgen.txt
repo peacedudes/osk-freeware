@@ -1,8 +1,13 @@
 $ wgen
-Enter resoultion(step): 256
+Enter resoultion(step): 128
 Fundamental harmonic intensity (0-200): 150
 Second      harmonic intensity (0-200): 75
 Third       harmonic intensity (0-200): 40
 Fourth      harmonic intensity (0-200): 20
 Fifth       harmonic intensity (0-200): 10
-Sixth       harmonic intensity (0-200):
+Sixth       harmonic intensity (0-200): 5
+Seventh     harmonic intensity (0-200): 0
+Eighth      harmonic intensity (0-200): 0
+Sixteenth   harmonic intensity (0-200): 0
+
+,c Am,` A2d$Am,c A/w(Am2d$A-x,Am/w(A+.0Am-x,A*f4Am+.0A(g8Am*f4A%z<Am(g8A

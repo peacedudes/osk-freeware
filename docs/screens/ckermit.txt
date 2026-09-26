@@ -1,3 +1,6 @@
+$ ckermit
+C-Kermit 5A(190) BETA.14, 24 Jul 94, for OS-9/68000
+
 Type ? or HELP for help
 C-Kermit>show features
 

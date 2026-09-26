@@ -3,25 +3,22 @@
 # textb (Screen toys) have lived here since the sheet was written and stay.
 
 shot    areacode
-cap     Looks up North American telephone area codes, as many as you give
-cap     it, and answers each with the cities or region it covers.  The
-cap     table is from the late 1980s, so codes added since are not in it,
-cap     and a number it does not know is said to be no area code at all.
+cap     Five codes asked at once: 212, 415, 314 and 617 answered with the
+cap     cities they cover, and 999 is not an area code.
 try     areacode 212 415 314 617 999
 run     areacode 212 415 314 617 999
 wait    4
 
 shot    biory
 size    44 100
-cap     A biorhythm chart, in German.  It asks for a name (Name Vorname),
-cap     a birth date as six digits, day month year (Geburtsdatum), and the
-cap     first and last years to chart, two digits each (Gueltigkeitsbereich),
-cap     writes the chart to Biory.Lis in the current directory and asks
-cap     for the next name;
-cap     RETURN there ends it.  Each month is three rows -- Koerper (body),
-cap     Seele (emotion), Geist (mind) -- with K marking the day a cycle
-cap     crosses from high to low or back.  It needs the Fortran run-time,
-cap     os9lib, loaded first.
+cap     A biorhythm chart, in German.  It asks for a name (Name Vorname), a
+cap     birth date as six digits, day month year (Geburtsdatum), and the first
+cap     and last years to chart, two digits each (Gueltigkeitsbereich), writes
+cap     the chart to Biory.Lis in the current directory and asks for the next
+cap     name; RETURN there ends it.  Each month is three rows -- Koerper
+cap     (body), Seele (emotion), Geist (mind) -- with K marking the day a
+cap     cycle crosses from high to low or back.  It needs the Fortran
+cap     run-time, os9lib, loaded first.
 try     biory
 run     load /dd/CMDS/os9lib
 wait    2
@@ -71,13 +68,9 @@ wait    6
 
 shot    england
 size    40 100
-cap     A year of weather for a tabletop game, one line a day: sky,
-cap     temperature, precipitation, wind, snow on the ground and the day's
-cap     notes, with the month's high, low and average at its foot.  This
-cap     is the mid-Atlantic climate on the Gregorian calendar; `england 2'
-cap     does two years.  The same program is built five more times for
-cap     other climates and calendars: florida, georgia, minnesota, japan
-cap     and shire.
+cap     January of the first year, a day a line: sky, temperature,
+cap     precipitation, wind, snow on the ground and the day's notes, holidays
+cap     among them.  `england 2' does two years.
 try     england | head -n 37
 os9     england ! head -n 37
 run     england | head -n 37
@@ -95,7 +88,8 @@ wait    10
 shot    georgia
 size    40 100
 cap     The weather program on its south-Atlantic profile: a mild, wet
-cap     January, with a blizzard now and then when the temperature dips.
+cap     January, cloud and rain on a handful of days and no snow on the
+cap     ground.
 try     georgia | head -n 37
 os9     georgia ! head -n 37
 run     georgia | head -n 37
@@ -134,25 +128,22 @@ wait    10
 
 shot    logisim
 size    40 100
-cap     A logic simulator.  It reads a circuit written as text -- one gate
-cap     a line, named by type, with its input nodes and its output -- and
-cap     runs it as a pulse diagram: a row for each node named on the
-cap     circuit's `view' line, a column a step, # for high and _ for low,
-cap     with the step numbers in the bars above and below.  This is the
-cap     16-bit counter that ships with it in DOC/logisim, counting up from
-cap     the top row; the other sample there is a master-slave flip-flop
-cap     whose input you set at a prompt.  Esc stops the run.  PORT must
-cap     name your terminal, because it reopens the keyboard through that
-cap     path.
-try     logisim DOC/logisim/counter.lsi
+cap     A logic simulator.  It reads a circuit written as text -- one gate a
+cap     line, named by type, with its input nodes and its output -- and runs
+cap     it as a pulse diagram: a row for each node named on the circuit's
+cap     `view' line, a column a step, # for high and _ for low, with the step
+cap     numbers in the bars above and below.  This is the 16-bit counter that
+cap     ships with it in DOC/logisim, counting up from the top row; the other
+cap     sample there is a master-slave flip-flop whose input you set at a
+cap     prompt.  Esc stops the run.  PORT must name your terminal, because it
+cap     reopens the keyboard through that path.
+try     PORT=/term logisim DOC/logisim/counter.lsi
 os9     setenv PORT /term; logisim DOC/logisim/counter.lsi
-run     export PORT=/term
-wait    1
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     logisim DOC/logisim/counter.lsi
+run     PORT=/term logisim DOC/logisim/counter.lsi
 wait    10
 snap
 send    \033
@@ -161,10 +152,8 @@ send    y
 wait    3
 
 shot    name
-cap     Invents names for the characters in a tabletop game, as many as
-cap     you ask for, by dealing out vowels and consonants in turn with
-cap     the letter frequencies of a Scrabble set; the apostrophe counts
-cap     as a letter.
+cap     Eight names from `name 8'; the apostrophe counts as a letter, as in
+cap     Eb'duna.
 try     name 8
 run     name 8
 wait    4
@@ -187,33 +176,30 @@ run     newsgen
 wait    6
 
 shot    pwgen
-cap     Pronounceable passwords: give it a length, 4 to 16, and how many,
-cap     and it strings syllables into words that can be said and so
-cap     remembered.  It takes a while over each one.
+cap     Five pronounceable passwords from `pwgen 8 5', strung together from
+cap     syllables that can be said and so remembered.  Each is seven letters:
+cap     the length counts the end of the string, so it gives one fewer letter
+cap     than it is asked for.
 try     pwgen 8 5
 run     pwgen 8 5
 wait    20
 
 shot    rpoem
 size    30 80
-cap     Writes verses at random from a grammar and a word list; the
-cap     number is how many, and without one it writes thirty.  Its
-cap     grammar is in GAMES/SNOBOL.
+cap     Three verses, each four lines on one pattern -- a thing that should or
+cap     may do something, then `But' and `While' -- with the words drawn at
+cap     random from its grammar in GAMES/SNOBOL.
 try     rpoem 3
 run     rpoem 3
 wait    8
 
 shot    rstory
 size    64 100
-cap     A cumulative tale in the shape of The Old Woman and Her Pig: a
-cap     child buys an animal that will not cross an obstacle and asks one
-cap     helper after another, each refusing, until the chain runs back
-cap     and everyone gets home.  The animal, the obstacle and every helper
-cap     are drawn at random, so no two tellings match.  It writes the tale
-cap     with formatting commands for tformat, which sets it justified on
-cap     the page under a dated heading; on its own it prints them as
-cap     `.b' and `.c' lines above the text.  Its grammar and word lists
-cap     are in GAMES/SNOBOL.
+cap     One telling, set by tformat under its dated heading: a kind old aunt,
+cap     a dog that will not cross a fallen tree, and the chain of water,
+cap     farmer, sword, man and knife that at last gets her home.  Every
+cap     telling draws its own.  Without tformat it prints the formatting
+cap     commands as `.b' and `.c' lines above the text.
 try     rstory | tformat
 os9     rstory ! tformat
 run     rstory | tformat
@@ -221,11 +207,9 @@ wait    12
 
 shot    scales
 size    30 80
-cap     Scales and chords for practice, dealt into a random order with a
-cap     tick-box each and written to scales.lst in the current directory,
-cap     or to a file you name.  The options say what goes in the deck:
-cap     -d diatonic scales, -a altered scales, -m modes, -c chords.  Each
-cap     entry gives the key signature and the spelling.
+cap     `scales -d -c' deals the diatonic scales and the chords, 195 cards,
+cap     into scales.lst; the first seven, each with a tick-box and its
+cap     spelling.
 try     scales -d -c
 run     rm -rf /dd/tmp/SCLA > /nil 2>/nil; mkdir -p /dd/tmp/SCLA > /nil 2>/nil
 run     builtin cd /dd/tmp/SCLA
@@ -258,17 +242,17 @@ wait    60
 
 shot    phoon
 size    25 80
-cap     phoon draws the phase of the moon, lit from the correct side, with
-cap     the days and hours to the next quarter beside it.  With no argument
-cap     it draws tonight's; give a date -- year month day -- for any other,
-cap     and `-l' sets the height.  Once in a while the moon turns out to be
-cap     made of green cheese.
+cap     The moon for 7 October 2025, lit from the correct side, with the days
+cap     and hours since the full moon and to the last quarter beside it.  With
+cap     no argument it draws tonight's, and `-l' sets the height.  One run in
+cap     seventeen, by the clock, draws the moon in the letters GREENCHEESE
+cap     instead of @.
 try     phoon 2025 10 7
 run     phoon 2025 10 7
 wait    3
 
 shot    globe
-size    24 80
+size    28 80
 cap     globe draws the Earth as it is lit right now, one of thirty ASCII
 cap     views spread across the day, so the globe turns from one run to the
 cap     next as the hours pass.  It takes no options.
@@ -278,10 +262,8 @@ wait    3
 
 shot    spew
 size    24 80
-cap     spew builds mock National Enquirer headlines from a grammar of
-cap     phrases and slots -- almost a yacc in reverse.  `spew' makes one,
-cap     `spew 5' makes five; point it at your own rules file for other
-cap     kinds of nonsense.
+cap     Four headlines; a rules file of your own makes other kinds of
+cap     nonsense.
 try     spew 4
 run     spew 4
 wait    2
@@ -298,17 +280,14 @@ wait    2
 
 shot    fudd
 size    24 80
-cap     fudd rewrites text the way Elmer Fudd would say it -- r and l both
-cap     become w, th becomes d -- so any sentence comes out in his hunting
-cap     lisp.  Pipe text through it.
+cap     His own line, run through it.
 try     echo "Be very very quiet, I am hunting rabbits." | fudd
 run     echo "Be very very quiet, I am hunting rabbits." | fudd
 wait    2
 
 shot    pig
 size    24 80
-cap     pig rewrites English in pig latin: every word of two letters or more
-cap     moves its first letter to the end and adds `a'.  Pipe text through it.
+cap     One sentence through it.
 try     echo "Pig latin was a language popular in the forties." | pig
 run     echo "Pig latin was a language popular in the forties." | pig
 wait    2
@@ -360,12 +339,14 @@ wait    2
 
 shot    ogrify
 size    24 80
-cap     ogrify folds text to lower case, wraps it at 40 columns, and swaps
-cap     words at random for words from the list it is given -- here
-cap     thirty in a hundred, from the list it was posted with.
+cap     Each word stands a thirty-in-a-hundred chance of being swapped for one
+cap     from ogre.words, the list it came with -- here `fox' became `force' --
+cap     and the text is folded to lower case and wrapped at 40 columns.  It is
+cap     run in DOC/ogrify, where the list is.
 try     echo "The quick brown fox jumps over a dog" | ogrify ogre.words -30
 run     builtin cd /dd/DOC/ogrify
 run     clear
+wait    1
 run     echo "The quick brown fox jumps over a dog" | ogrify ogre.words -30
 wait    2
 
@@ -420,9 +401,10 @@ wait    4
 
 shot    dds
 size    24 80
-cap     A BASIC interpreter in 1536 characters -- the contest's Best Language
-cap     Tool.  It prompts `Ok'; here a five-line program is typed in, listed
-cap     back and run.  Input must be in capitals.
+cap     A BASIC interpreter in 1536 characters of C, a winner of the
+cap     International Obfuscated C Code Contest.  It prompts `Ok'; here a
+cap     five-line program, then LIST, RUN and BYE, come from a file, and the
+cap     program is listed back and run.  Type in capitals.
 try     dds < tmp/dds.in
 run     mkdir -p /dd/tmp > /nil 2>/nil; printf '10 PRINT "HELLO OS-9"\r20 FOR I = 1 TO 3\r30 PRINT I\r40 NEXT I\r50 END\rLIST\rRUN\rBYE\r' > /dd/tmp/dds.in
 wait    2
@@ -476,7 +458,7 @@ run     psychic 2
 wait    2
 
 shot    lotto
-size    24 80
+size    34 80
 cap     Asked whether to hear a testimonial, whether you believe and whether
 cap     you really believe -- y to all three -- it draws six numbers.
 try     lotto -a 1

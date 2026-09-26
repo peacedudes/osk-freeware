@@ -1,19 +1,8 @@
-$ UnMacpack -H
-File output options:
--b:     MacBinary (default)
--s:     MacBinary stream to standard output
--f:     three fork mode, skipping empty forks
--3:     the same, writing also empty forks
--r:     resource forks only
--d:     data forks only
--u:     data forks only with Mac -> Unix text file translation
--U:     as -u, but filename will not have an extension
--a:     not supported, needs recompilation
-Macunpack specific options:
--i:     give information only, do not unpack
--l:     give listing
--v:     give verbose listing
--q:     query for every file/folder before unpacking
--V:     give information about this version
--H:     this message
-Default is silent unpacking
+$ UnMacpack -v -d j.txt.MAC; ls -l; cat j.txt.data
+This is "MacBinary" input.
+name="j.txt", type=TEXT, author=OS-9, data=35, rsrc=0
+        Data: No compression, Rsrc: empty.
+total 1024
+-rw-------   1 7        1             256 Sep 26 08:55 j.txt.MAC
+-rw-------   1 7        1              35 Sep 26 08:56 j.txt.data
+Twas brillig, and the slithy toves

@@ -1,0 +1,6 @@
+$ pbmtomacp tmp/base.pbm | macptopbm | pnmcrop | pnmfile
+pnmcrop: cropping 348 rows off the top
+pnmcrop: cropping 348 rows off the bottom
+pnmcrop: cropping 264 cols off the left
+pnmcrop: cropping 264 cols off the right
+stdin:  PBM raw, 48 by 24

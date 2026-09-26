@@ -1,2 +1,12 @@
-$ bioradtopgm tmp/NPIB/nr.ppm
-bioradtopgm: Not a Biorad file
+$ bioradtopgm x.pic
+bioradtopgm: Image size: 4 cols, 2 rows
+bioradtopgm: Byte image (8 bits)
+bioradtopgm: Input contains 1 image
+$ bioradtopgm -0 x.pic | pnmnoraw
+bioradtopgm: Image size: 4 cols, 2 rows
+bioradtopgm: Byte image (8 bits)
+P2
+4 2
+255
+65 66 67 68
+97 98 99 100

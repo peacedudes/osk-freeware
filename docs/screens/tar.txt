@@ -1,11 +1,10 @@
-$ tar cvf tmp/ARC/keep.tar SRC/keep
+$ tar cvf tmp/ARC/keep.tar SRC/keep; tar tvf tmp/ARC/keep.tar
 a SRC/keep/about.c, 24 tape blocks
 a SRC/keep/keep.c, 65 tape blocks
 a SRC/keep/keep.sh, 9 tape blocks
 a SRC/keep/kept.sh, 3 tape blocks
 a SRC/keep/unkeep.sh, 5 tape blocks
-$ tar tvf tmp/ARC/keep.tar
-drwx---rwx-   0/  0        0 Sep 23 23:12 2026 SRC/keep/
+drwx---rwx-   0/  0        0 Sep 26 07:46 2026 SRC/keep/
 -rw----rw--   0/  0    12024 Aug  3 19:00 2026 SRC/keep/about.c
 -rw----rw--   0/  0    32902 Aug  3 19:00 2026 SRC/keep/keep.c
 -rw----rw--   0/  0     4513 Aug  3 19:00 2026 SRC/keep/keep.sh

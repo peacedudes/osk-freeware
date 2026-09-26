@@ -1,13 +1,3 @@
-$ snap
-syntax: snap {opt} [<file>] {opt}
-function: write terminal screen snapshot to <file> (default "polaroid")
-options:
-        -s[=]<num>  starting line number
-        -e[=]<num>  ending line number
-        -l          list known terminal types (TERM)
-        -n                      remove last character of long (80-char) lines
-
-xterm-256color: Unknown terminal type
 $ snap -l
 Known terminal types:
         kt7 amb85h abm85

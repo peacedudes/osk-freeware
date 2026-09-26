@@ -1,0 +1,28 @@
+$ modinfo pty
+------------------------------------- pty  - - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - - -
+Module name           = pty
+System revision       = 1
+Module size           = 122
+Owner Id              = 0.1
+Offset to module name = 00000072H
+Access permission     = e-re-re-r
+Type/Language          = 0f00H  Device Descriptor      not a programm
+Attribute/Revision    = 8000H   reentrant
+Edition               = 0
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 3f5eH
+
+
+Device controller adress         = 00000000H
+Trap Vector number               = 0
+Hardware IRQ level               = 0
+IRQ Polling Priority             = 0
+Mode                             = fbH
+Offset to file manager name      = 0064H PtyMan
+Offset to device Driver name     = 006bH PtyDrv
+Offset to Device Configuration   = 0000H
+Option table size                = 28
+Device type                      = 0 SCF

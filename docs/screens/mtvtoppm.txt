@@ -1,7 +1,6 @@
-$ mtvtoppm x.mtv > out.ppm
-$ pnmfile out.ppm
-out.ppm:        PPM raw, 4 by 2  maxval 255
-$ pnmnoraw out.ppm
+$ printf "4 2\r" > x.mtv
+$ printf "0123456789abcdefghijklmn" >> x.mtv
+$ mtvtoppm x.mtv | pnmnoraw
 P3
 4 2
 255

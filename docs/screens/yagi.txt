@@ -1,3 +1,33 @@
+$ yagi
+This program designs UHF/VHF yagi antennas based on designs by DL6WU.
+See "More Gain with Yagi Antennas", VHF Communications, 3/77, 4/77, 3/82
+
+Center frequency of antenna (in MHz)? 144
+Number of antenna elements (9-40)? 9
+Boom diameter (in millimeters)? 20
+Are the elements insulated from the boom (Y/N)? N
+You may use any of the following tubing sizes for the elements.
+Select the size closest to the commercial tube size.
+
+    1:  6.2mm
+    2:  7.3mm
+    3:  8.7mm
+    4: 10.4mm
+    5: 11.7mm
+    6: 13.1mm
+
+Tubing size (1-6)? 4
+
+Yagi design data:
+
+   Frequency: 144.00 MHz
+   Wavelength: 2.082m
+   # of elements: 9
+   Diameter of boom: 20.0mm
+   Electrical boomlength: 3861.9mm
+   Boom wavelengths: 1.855
+   Maximum practical gain: 11.3 dBD
+   Horizontal beam width: 37 degrees
    Vertical beam width: 45 degrees
    Horizontal stacking distance: 3.257m
    Vertical stacking distance: 2.696m

@@ -1,9 +1,5 @@
-$ echo "readmsg is now resident and answers by name:"
-readmsg is now resident and answers by name:
 $ sh -c "readmsg -\?"
 Usage: readmsg [-anhp] [-f Folder] {MessageNum ... | pattern | *}
 $ remove readmsg
-$ echo "after remove, the module is gone:"
-after remove, the module is gone:
 $ sh -c "readmsg -\?"
 readmsg: nowhere found

@@ -1,5 +1,5 @@
 $ sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
-34333     1 SYS/motd
+22142     1 SYS/motd
 11804     1 SYS/holidays
 21283     1 SYS/birthdays
-08332   246 DOC/INDEX
+24300   259 DOC/INDEX

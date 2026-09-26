@@ -1,0 +1,24 @@
+$ modinfo CMDS/csl020
+--------------------------------- CMDS/csl020  - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - -
+Module name           = csl
+System revision       = 1
+Module size           = 43794
+Owner Id              = 1.0
+Offset to module name = 0000a13cH
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = c005H   reentrant
+Edition               = 15
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 7173H
+
+
+Offset to execution entry point   = 000000beH
+Offset to exception entry point   = 00000000H
+Data storage requirement          = 8664 Bytes
+Stack size                        = 4196 Bytes
+Offset to initialized data        = 0000a140H
+Offset to data reference lists    = 0000a978H

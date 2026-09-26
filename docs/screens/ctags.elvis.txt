@@ -1,4 +1,6 @@
-$ getcmdln  cmdline.c       /^char *getcmdln(firstc)$/
+$ ctags.elvis cmdline.c
+$ cat tags | head -n 8
+getcmdln        cmdline.c       /^char *getcmdln(firstc)$/
 do_command_line cmdline.c       /^void do_command_line(cmdline)$/
 do_exit cmdline.c       /^void do_exit()        /* v1.1 */$/
 bad_command     cmdline.c       /^void bad_command()$/

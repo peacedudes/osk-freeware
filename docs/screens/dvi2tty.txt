@@ -1,18 +1,21 @@
- *eing
-bound to a particular key, although you may actually have to type more than one*
- * character
-to form a single key. Most commands are bound to keys with control and meta mod*
- *ifiers.
-   To type a control character, use the control key on your keyboard like a shi*
- *ft key: hold
-down the control key while typing the character. In this manual, we will indica*
- *te control
-characters like C-x _ here, typing the character "x" while holding down the con*
- *trol key.
-   Some keyboards also have a meta key that works like the control key. (It may*
- * be labelled
-something else; on the Atari ST, for example, the key marked "Alternate" is the*
- * meta key.)
-If your keyboard doesn't have a meta key, don't panic.  You can also use the es*
- *cape key
-as a meta prefix; first type the escape, and t
+$ dvi2tty -q -w79 mg_doc.dvi | head -n 20
+
+
+
+
+               The MG Reference Manual
+
+
+                      Release MG2A
+
+
+
+                      Sandra J. Loosemore
+
+
+
+             Copyright Oc1987, Sandra J. Loosemore
+
+This document, or sections of this document, may be freely redis-
+
+tributed provided that the copyright notice and the following disclaimer

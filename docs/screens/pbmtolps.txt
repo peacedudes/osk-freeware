@@ -1,0 +1,13 @@
+$ pbmtolps tmp/base.pbm | head -n 12
+%!PS-Adobe-2.0 EPSF-2.0
+%%Creator: pbmtolps
+%%Title: tmp/base.pbm
+%%BoundingBox: 299 392 312 399
+%%EndComments
+%%EndProlog
+gsave
+300.240000 398.880000 translate
+72 300.000000 div dup neg scale
+/a { 0 rmoveto 0 rlineto } def
+/b { 0 row 1 add dup /row exch def moveto } def
+/c { a b } def

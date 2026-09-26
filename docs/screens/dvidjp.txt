@@ -6,6 +6,5 @@ $ dvidjp story.dvi
 [Output on file story.dvi_djc]
 [1 pages]
 [1{1}]  [OK]
-$ ls -l story.dvi_*
--rw-------   1 7        1           12689 Sep 24 02:02 story.dvi_alw
--rw-------   1 7        1           16133 Sep 24 02:02 story.dvi_djc
+$ ls -l story.dvi_djc
+-rw-------   1 7        1           16133 Sep 26 11:57 story.dvi_djc

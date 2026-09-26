@@ -1,0 +1,10 @@
+$ pbmtolj tmp/base.pbm > tmp/lj.out
+$ dump tmp/lj.out | head -n 8
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  1B45 1B26 6C30 451B 2A74 3735 521B 2A72 .E.&l0E.*t75R.*r
+0010  3141 1B2A 6236 5755 5555 5555 551B 2A62 1A.*b6WUUUUUU.*b
+0020  3657 AAAA AAAA AAAA 1B2A 6236 5755 5555 6W.......*b6WUUU
+0030  5555 551B 2A62 3657 AAAA AAAA AAAA 1B2A UUU.*b6W.......*
+0040  6236 5755 5555 5555 551B 2A62 3657 AAAA b6WUUUUUU.*b6W..

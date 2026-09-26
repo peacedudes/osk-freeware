@@ -1,3 +1,4 @@
-Today is Thursday, the twenty-fourth day of September, two thousand and
-twenty-six. The time is sixteen minutes and nine seconds after one AM,
-Daylight Savings Time. The moon is waxing gibbous.
+$ screen_nocio
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. In fifty-two seconds, the time will be twenty minutes before
+nine AM, Daylight Savings Time. The moon is waxing gibbous.

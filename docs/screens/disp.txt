@@ -1,5 +1,4 @@
-Device type                      = 0 SCF
-
+$ modinfo disp
 ------------------------------------- disp  - - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - - -
 Module name           = disp

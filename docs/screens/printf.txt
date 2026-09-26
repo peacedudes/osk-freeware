@@ -1,6 +1,2 @@
 $ printf "%-8s|%5d|%6.2f\n" apples 12 3.14159
 apples  |   12|  3.14
-$ printf "hello, %s\n" world
-hello, world
-$ printf "plain text, no conversion\n"
-plain text, no conversion

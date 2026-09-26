@@ -3,7 +3,7 @@ $ fstat tmp/FILESA/usr.txt
 Filename:     tmp/FILESA/usr.txt
 Owner:        0.0
 Attributes:   ---wr-wr
-Created:      09/23/2026
+Created:      09/26/2026
 Modified:     08/03/2026 07:00 pm
 File Length:  40 $(28)
 $ chown 5 tmp/FILESA/usr.txt; fstat tmp/FILESA/usr.txt
@@ -11,6 +11,6 @@ $ chown 5 tmp/FILESA/usr.txt; fstat tmp/FILESA/usr.txt
 Filename:     tmp/FILESA/usr.txt
 Owner:        0.5
 Attributes:   ---wr-wr
-Created:      09/23/2026
-Modified:     09/24/2026 02:52 am
+Created:      09/26/2026
+Modified:     09/26/2026 11:23 am
 File Length:  40 $(28)

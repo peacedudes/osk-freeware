@@ -2,8 +2,8 @@
 # program.  Every stanza makes what it reads under /dd/tmp/ENC.
 
 shot    btoa
-cap     Encodes a file as printable text, five characters for every four
-cap     bytes, with a checksum on the last line -- denser than uuencode.
+cap     A line of Jabberwocky, then the same 35 bytes as btoa writes them,
+cap     between its start and end lines.
 try     cat tmp/ENC/j.txt; btoa < tmp/ENC/j.txt
 os9     cat tmp/ENC/j.txt; btoa <tmp/ENC/j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
@@ -18,16 +18,17 @@ run     btoa < tmp/ENC/j.txt
 wait    5
 
 shot    atob
-cap     Decodes what btoa encoded: the text comes back exactly.
-try     cat tmp/ENC/j.btoa; atob < tmp/ENC/j.btoa
-os9     cat tmp/ENC/j.btoa; atob <tmp/ENC/j.btoa
-run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt; btoa < /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.btoa
+cap     A line of text encoded by btoa, and atob turning it back: the text
+cap     comes back exactly.
+try     btoa < tmp/ENC/j.txt > tmp/ENC/j.btoa; cat tmp/ENC/j.btoa; atob < tmp/ENC/j.btoa
+os9     btoa <tmp/ENC/j.txt >tmp/ENC/j.btoa; cat tmp/ENC/j.btoa; atob <tmp/ENC/j.btoa
+run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     cat tmp/ENC/j.btoa
+run     btoa < tmp/ENC/j.txt > tmp/ENC/j.btoa; cat tmp/ENC/j.btoa
 wait    3
 run     atob < tmp/ENC/j.btoa
 wait    5
@@ -66,9 +67,7 @@ run     tcmp big out/big
 wait    2
 
 shot    uuencode
-cap     Wraps a file as printable text, the way binaries crossed mail and
-cap     news before attachments: a begin line with the file's mode and
-cap     name, the data, an end line.
+cap     A begin line with the file's mode and name, the data, an end line.
 try     uuencode tmp/ENC/j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
@@ -80,8 +79,8 @@ run     uuencode tmp/ENC/j.txt
 wait    5
 
 shot    uudecode
-cap     Undoes uuencode: the file named on the begin line is written back
-cap     into the current directory.
+cap     A one-line uuencoded file becomes j.txt again, in the current
+cap     directory.
 try     cat j.uue; uudecode j.uue; ls; cat j.txt
 run     rm -rf /dd/tmp/ENC/dec > /nil 2>/nil; mkdir -p /dd/tmp/ENC/dec; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC; uuencode j.txt > dec/j.uue
@@ -99,11 +98,8 @@ run     cat j.txt
 wait    4
 
 shot    uuexpand
-cap     Expands a file into a run of `0' and `1' characters, one for each
-cap     bit -- despite the shared prefix, unrelated to uuencode.  It is
-cap     meant to move a file between machines with different byte or
-cap     character sizes; uuexpand -u reverses it, and the checksums here
-cap     match.
+cap     35 bytes become 280 characters, one per bit; reversed with -u, the
+cap     checksums match.
 try     uuexpand < tmp/ENC/j.txt > tmp/ENC/j.exp; cat tmp/ENC/j.exp; uuexpand -u < tmp/ENC/j.exp > tmp/ENC/j.back; chksum tmp/ENC/j.txt tmp/ENC/j.back
 os9     uuexpand <tmp/ENC/j.txt >tmp/ENC/j.exp; cat tmp/ENC/j.exp; uuexpand -u <tmp/ENC/j.exp >tmp/ENC/j.back; chksum tmp/ENC/j.txt tmp/ENC/j.back
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
@@ -122,10 +118,8 @@ run     chksum tmp/ENC/j.txt tmp/ENC/j.back
 wait    4
 
 shot    mimecode
-cap     Base64, the binary-to-text encoding mail attachments and the web use.
-cap     Here it turns a line of text into printable base64; `mimecode -d'
-cap     turns the printable form back into the original bytes.  uuencode and
-cap     btoa above are the older kinds.
+cap     A line of text turned into printable base64; `mimecode -d' turns the
+cap     printable form back into the original bytes.
 try     mimecode -e < tmp/ENC/m.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/m.txt
 wait    2
@@ -137,12 +131,9 @@ run     mimecode -e < tmp/ENC/m.txt
 wait    5
 
 shot    compface
-cap     A 48x48 black-and-white face, squeezed into the short line of
-cap     printable characters that goes in a mail header's `X-Face:' field.
-cap     Readers that understand the field show the picture beside the
-cap     message.  The image goes in as 144 hex words, 48 rows of three.
-cap     It writes the line without a line feed after it, so this keeps the
-cap     output in a file and prints that.
+cap     The sample face in DOC/compface, 144 hex words, squeezed into a few
+cap     lines of printable characters. It writes them without a final line
+cap     feed, so this keeps the output in a file and prints that.
 try     compface DOC/compface/face.hex > tmp/CFACE/x; cat tmp/CFACE/x
 os9     compface DOC/compface/face.hex >tmp/CFACE/x; cat tmp/CFACE/x
 run     rm -f /dd/tmp/CFACE > /nil 2>/nil; mkdir -p /dd/tmp/CFACE > /nil 2>/nil
@@ -155,11 +146,10 @@ run     compface DOC/compface/face.hex > tmp/CFACE/x; cat tmp/CFACE/x
 wait    6
 
 shot    uncompface
-cap     The other direction: an `X-Face:' line turned back into the 144 hex
-cap     words it was made from, so the picture can be looked at again.  All
-cap     48 rows come out; the last of them are what stays on the screen.
-try     uncompface tmp/CFACE/y > tmp/CFACE/back; cat tmp/CFACE/back
-os9     uncompface tmp/CFACE/y >tmp/CFACE/back; cat tmp/CFACE/back
+cap     An `X-Face:' line turned back into the 144 hex words it was made
+cap     from, three to a row; the first 16 of its 48 rows.
+try     uncompface tmp/CFACE/y > tmp/CFACE/back; head -n 16 < tmp/CFACE/back
+os9     uncompface tmp/CFACE/y >tmp/CFACE/back; head -n 16 < tmp/CFACE/back
 run     rm -f /dd/tmp/CFACE > /nil 2>/nil; mkdir -p /dd/tmp/CFACE > /nil 2>/nil
 wait    2
 run     compface /dd/DOC/compface/face.hex > /dd/tmp/CFACE/y
@@ -168,7 +158,7 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     uncompface tmp/CFACE/y > tmp/CFACE/back; cat tmp/CFACE/back
+run     uncompface tmp/CFACE/y > tmp/CFACE/back; head -n 16 < tmp/CFACE/back
 wait    6
 
 shot    checksum
@@ -184,7 +174,7 @@ run     checksum tmp/ENC/j.txt
 wait    4
 
 shot    chksum
-cap     The checksum of two of the disk's own files.
+cap     The checksum of two files.
 try     chksum tmp/ENC/j.txt SYS/motd
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
@@ -206,10 +196,10 @@ run     md5 SYS/motd SYS/password DOC/INDEX
 wait    5
 
 shot    crypto
-cap     An assistant for solving cryptograms: it takes a substitution
-cap     cipher text and lets you try letter assignments and see the
-cap     result.  These are its options; its interactive commands are
-cap     listed by -i.
+size    30 80
+cap     Its options: it solves a cryptogram interactively, or, with its
+cap     output redirected, encodes or filters text; -i lists the interactive
+cap     commands.
 try     crypto -h
 run     crypto -h
 wait    6
@@ -238,15 +228,12 @@ run     ls -l tmp/ENC/d.txt.n
 wait    4
 
 shot    xcrypt
-cap     Scrambles a file against a key you type at its `Key:' prompt.  Two
-cap     things it needs that its syntax line does not say.  The output file
-cap     has to exist already: it asks OS-9 to create one with a Unix
-cap     permission word, OS-9 reads that word as its own attribute byte and
-cap     refuses, and the syntax line you get is that refusal, not a
-cap     complaint about your arguments.  And the direction comes from the
-cap     name it is invoked by -- one starting with `e' encrypts, anything
-cap     else decrypts -- so as `xcrypt' it always takes the decrypt path.
-cap     Ten characters of key or more, or it tells you the key is short.
+cap     Scrambles a file against a key typed at its `Key:' prompt, ten
+cap     characters or more. The output file must exist already: it creates
+cap     one with a Unix permission word, which OS-9 refuses. The direction
+cap     comes from its module name -- one starting with `e' encrypts -- so
+cap     as `xcrypt' it always takes the decrypt path, which is what dump
+cap     shows here.
 try     xcrypt a.txt a.enc
 run     rm -rf /dd/tmp/XCA > /nil 2>/nil; mkdir -p /dd/tmp/XCA
 wait    2
@@ -268,13 +255,10 @@ run     dump a.enc
 wait    3
 
 shot    todos
-cap     Turns OS-9 line endings into DOS ones: every CR becomes CR LF.
-cap     It writes the converted text into todos.$$$.<n> in the directory
-cap     you are standing in and then forks OS-9's own del and rename to
-cap     move it over the original, which is where it stops here -- so the
-cap     file you named is untouched and the conversion is waiting under
-cap     the temporary name.  Rename it yourself, as below.  autolf -c -C
-cap     -L does the same job as a filter and renames nothing.
+cap     Every CR becomes CR LF, with one LF more at the end. The result is
+cap     written to todos.$$$.<n>, and the rename onto the original fails:
+cap     the shell reads the `$$' in that name as its own process number.
+cap     Rename it yourself, as here.
 try     todos le.txt
 run     rm -rf /dd/tmp/TDOS > /nil 2>/nil; mkdir -p /dd/tmp/TDOS; printf "one\rtwo\r" > /dd/tmp/TDOS/le.txt
 wait    2
@@ -292,10 +276,8 @@ run     dump dos.txt
 wait    4
 
 shot    toos9
-cap     The other direction, DOS line endings back to OS-9, and the same
-cap     arrangement: the converted text is left in toos9.$$$.<n> because
-cap     the rename onto the original cannot be made here.  Rename it and
-cap     there it is.  autolf -C does the same job as a filter.
+cap     CR LF back to CR, with one $FF byte at the end. As with todos, the
+cap     result is left in toos9.$$$.<n> for you to rename.
 try     toos9 dos.txt
 run     rm -rf /dd/tmp/TOS9 > /nil 2>/nil; mkdir -p /dd/tmp/TOS9; printf "one\rtwo\r" > /dd/tmp/TOS9/le.txt
 wait    2
@@ -346,9 +328,8 @@ run     binhex j.txt.MAC
 wait    6
 
 shot    mcvert
-cap     Converts between MacBinary and BinHex either way: -U makes the
-cap     BinHex for uploading, -D takes it back to MacBinary for
-cap     downloading.  Here a MacBinary file becomes a .hqx.
+cap     A MacBinary file becomes a .hqx: a banner line, then the data in
+cap     BinHex's alphabet between colons.
 try     mcvert -U j.txt.MAC; ls -l j.txt.MAC j.txt01.hqx; cat j.txt01.hqx
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/j.txt.MAC /dd/tmp/ENC/j.txt01.hqx; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 run     builtin cd /dd/tmp/ENC
@@ -416,31 +397,38 @@ wait    4
 
 shot    macunpack
 size    24 80
-cap     Opens PackIt archives from a Macintosh, listing what it can do:
-cap     the fork it writes, the Macintosh-to-Unix text translation, and
-cap     the listing and query modes.  `-H' is the flag it names itself;
-cap     it rejects `-?'.  No PackIt archive is on this disk to open.
-try     macunpack -H
+cap     Unpacks Macintosh archives and files: here a MacBinary file made by
+cap     macbin, listed with -v and written out with -u as its data fork
+cap     alone, Mac line ends turned into Unix ones.  PackIt archives are
+cap     what it was written for; none is on this disk.
+try     macunpack -v -u j.txt.MAC; ls -l; cat j.txt.text
+run     rm -rf /dd/tmp/MUP > /nil 2>/nil; mkdir -p /dd/tmp/MUP; builtin cd /dd/tmp/MUP
+wait    2
+run     printf "Twas brillig, and the slithy toves\r" > j.txt; macbin j.txt; rm j.txt
+wait    4
 run     clear
 wait    1
-run     macunpack -H
+run     macunpack -v -u j.txt.MAC; ls -l; cat j.txt.text
 wait    8
 
 shot    UnMacpack
 size    24 80
-cap     Another PackIt extractor, listing what it can do: the fork it
-cap     writes, the Macintosh-to-Unix text translation, and the listing
-cap     and query modes.  `-H' is the flag it names itself; it rejects
-cap     `-?'.  No PackIt archive is on this disk to open.
-try     UnMacpack -H
+cap     A MacBinary file made by macbin, listed with -v and written out with
+cap     -d as its data fork alone. PackIt and its successors are the
+cap     archives it was written for; none is on this disk.
+try     UnMacpack -v -d j.txt.MAC; ls -l; cat j.txt.data
+run     rm -rf /dd/tmp/UMP > /nil 2>/nil; mkdir -p /dd/tmp/UMP; builtin cd /dd/tmp/UMP
+wait    2
+run     printf "Twas brillig, and the slithy toves\r" > j.txt; macbin j.txt; rm j.txt
+wait    4
 run     clear
 wait    1
-run     UnMacpack -H
+run     UnMacpack -v -d j.txt.MAC; ls -l; cat j.txt.data
 wait    8
 
 shot    unsit
-cap     Opens StuffIt archives from a Macintosh: its options.  No StuffIt
-cap     archive is on this disk to open.
+cap     Its options: -l lists a StuffIt archive, -r and -d take one fork
+cap     only. A StuffIt archive is what it opens, and none is on this disk.
 try     unsit -?
 run     unsit -?
 wait    5
@@ -558,8 +546,8 @@ wait    5
 
 shot    bcd
 size    24 80
-cap     bcd prints text as an 80-column punched card, with a hole punched in
-cap     the rows each character's code needs.
+cap     A punched card for `OS-9': each character is a column, with a hole
+cap     marked `]' in the rows its code needs.
 try     bcd OS-9
 run     builtin cd /dd
 wait    1

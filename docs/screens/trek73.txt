@@ -1,23 +1,29 @@
-Captain: my last name is Kirk: My sex is:    I'm expecting [1-9] enemy vessels
+$ trek73
+
+
+Captain: my last name is Kirk
+Kirk: My sex is: m
+   I'm expecting [1-9] enemy vessels 1
+
 
 
 Space, the final frontier.
-These are the voyages of the starship Hood.
+These are the voyages of the starship Lexington.
 Its five year mission: to explore strange new worlds,
 to seek out new life and new civilizations,
 to boldly go where no man has gone before!
 
                     S T A R    T R E K
 
-Kirk:  Captain's log, stardate 12609.24
-   We are presently on course for Altair 6 to attend inauguration
-   cermonies on the planet.
+Kirk:  Captain's log, stardate 12609.26
+   We are to negotiate a treaty to mine dilithium crystals from
+   the Halkans.
 Sulu:  Sir, I'm picking up a vessel on an interception
-   course with the Hood.
-Spock:  Sensors identify it as a Kzinti Strike Cruiser,
-   probably under the command of Captain Fellus.
+   course with the Lexington.
+Spock:  Sensors identify it as an Orion Heavy Cruiser,
+   probably under the command of Captain Hamilcar.
 Kirk:  Sound general quarters, Lieutenant!
 Uhura:  Aye, Sir!
-Computer: The Kzintis are attacking the Hood with the Galaxy.
+Computer: The Orions are attacking the Lexington with the Thunderduck.
 
 Kirk: Code [1-32]

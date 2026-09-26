@@ -1,0 +1,5 @@
+$ pnmtorast tmp/base.ppm | rasttopnm | pnmfile
+pnmtorast: computing colormap...
+pnmtorast: 6 colors found
+rasttopnm: writing PPM file
+stdin:  PPM raw, 48 by 24  maxval 255

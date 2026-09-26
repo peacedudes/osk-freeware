@@ -1,4 +1,15 @@
-nt
+$ monop
+How many players? 2
+Player 1's name: Alice
+Player 2's name: Bob
+
+Alice (1) rolls 5
+Bob (2) rolls 4
+Alice (1) goes first
+
+Alice (1) (cash $1500) on === GO ===
+-- Command: print
+Name      Own      Price Mg # Rent      Name      Own      Price Mg # Rent
 === GO ===                              Free Parki
 Mediterran - Purple    60               Kentucky a - Red      220
 Community                               Chance ii

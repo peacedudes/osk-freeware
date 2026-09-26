@@ -1,0 +1,2 @@
+$ pbmtoatk tmp/base.pbm | atktopbm | pnmfile
+stdin:  PBM raw, 48 by 24

@@ -4,11 +4,8 @@
 # /dd/tmp/DEV.
 
 shot    sieve
-cap     The sieve of Eratosthenes, a classic speed test: it finds the primes
-cap     below a fixed limit and repeats the whole pass a hundred times.  Its
-cap     whole output is the two lines below, and what it measures is the gap
-cap     between them -- so run it under your own OS-9's `time' for a figure.
-cap     The Dhrystone builds report their own rate; this one does not.
+cap     Its whole output is these two lines; the time between them is the
+cap     measurement, so run it under your own OS-9's `time' for a figure.
 try     sieve
 run     sieve
 wait    10
@@ -35,92 +32,94 @@ wait    10
 
 shot    dhry
 size    28 80
-cap     Dhrystone 2.1, the classic integer benchmark, built with Microware's
-cap     cc.  It reads the number of runs from its input and then reports the
-cap     checks and the rate; 500,000 runs is enough for the clock to measure.
-cap     Eleven more builds of the same source follow, so the compilers can be
-cap     compared.
-try     echo 500000 | dhry | tail -l=8
-os9     echo 500000 ! dhry ! tail -l=8
-run     echo 500000 | dhry | tail -l=8
-wait    30
+cap     Dhrystone 2.0, the integer benchmark, built with Microware's cc.
+cap     It reads the number of runs from its input, then reports the checks
+cap     and the rate.  Eleven more builds of the same source sit beside it,
+cap     one per compiler and option set; run on the same machine, their
+cap     rates compare the compilers.
+try     echo 5000000 | dhry | tail -l=8
+os9     echo 5000000 ! dhry ! tail -l=8
+run     echo 5000000 | dhry | tail -l=8
+wait    45
 
 shot    dhryO2
 cap     Dhrystone built with Microware's cc at -O2.
-try     echo 500000 | dhryO2 | tail -l=6
-os9     echo 500000 ! dhryO2 ! tail -l=6
-run     echo 500000 | dhryO2 | tail -l=6
-wait    30
+try     echo 5000000 | dhryO2 | tail -l=6
+os9     echo 5000000 ! dhryO2 ! tail -l=6
+run     echo 5000000 | dhryO2 | tail -l=6
+wait    45
 
 shot    dhryGcc
 cap     Dhrystone built with GCC 1.
-try     echo 500000 | dhryGcc | tail -l=6
-os9     echo 500000 ! dhryGcc ! tail -l=6
-run     echo 500000 | dhryGcc | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcc | tail -l=6
+os9     echo 5000000 ! dhryGcc ! tail -l=6
+run     echo 5000000 | dhryGcc | tail -l=6
+wait    45
 
 shot    dhryGcco2
 cap     Dhrystone built with GCC 1 at -O2.
-try     echo 500000 | dhryGcco2 | tail -l=6
-os9     echo 500000 ! dhryGcco2 ! tail -l=6
-run     echo 500000 | dhryGcco2 | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcco2 | tail -l=6
+os9     echo 5000000 ! dhryGcco2 ! tail -l=6
+run     echo 5000000 | dhryGcco2 | tail -l=6
+wait    45
 
 shot    dhryGccin
 cap     Dhrystone built with GCC 1 with inlining.
-try     echo 500000 | dhryGccin | tail -l=6
-os9     echo 500000 ! dhryGccin ! tail -l=6
-run     echo 500000 | dhryGccin | tail -l=6
-wait    30
+try     echo 5000000 | dhryGccin | tail -l=6
+os9     echo 5000000 ! dhryGccin ! tail -l=6
+run     echo 5000000 | dhryGccin | tail -l=6
+wait    45
 
 shot    dhryGccmx
 cap     Dhrystone built with GCC 1, mixed options.
-try     echo 500000 | dhryGccmx | tail -l=6
-os9     echo 500000 ! dhryGccmx ! tail -l=6
-run     echo 500000 | dhryGccmx | tail -l=6
-wait    30
+try     echo 5000000 | dhryGccmx | tail -l=6
+os9     echo 5000000 ! dhryGccmx ! tail -l=6
+run     echo 5000000 | dhryGccmx | tail -l=6
+wait    45
 
 shot    dhryGcc2
 cap     Dhrystone built with GCC 2.
-try     echo 500000 | dhryGcc2 | tail -l=6
-os9     echo 500000 ! dhryGcc2 ! tail -l=6
-run     echo 500000 | dhryGcc2 | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcc2 | tail -l=6
+os9     echo 5000000 ! dhryGcc2 ! tail -l=6
+run     echo 5000000 | dhryGcc2 | tail -l=6
+wait    45
 
 shot    dhryGcc2o2
 cap     Dhrystone built with GCC 2 at -O2.
-try     echo 500000 | dhryGcc2o2 | tail -l=6
-os9     echo 500000 ! dhryGcc2o2 ! tail -l=6
-run     echo 500000 | dhryGcc2o2 | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcc2o2 | tail -l=6
+os9     echo 5000000 ! dhryGcc2o2 ! tail -l=6
+run     echo 5000000 | dhryGcc2o2 | tail -l=6
+wait    45
 
 shot    dhryGcc2in
 cap     Dhrystone built with GCC 2 with inlining.
-try     echo 500000 | dhryGcc2in | tail -l=6
-os9     echo 500000 ! dhryGcc2in ! tail -l=6
-run     echo 500000 | dhryGcc2in | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcc2in | tail -l=6
+os9     echo 5000000 ! dhryGcc2in ! tail -l=6
+run     echo 5000000 | dhryGcc2in | tail -l=6
+wait    45
 
 shot    dhryGcc2mx
 cap     Dhrystone built with GCC 2, mixed options.
-try     echo 500000 | dhryGcc2mx | tail -l=6
-os9     echo 500000 ! dhryGcc2mx ! tail -l=6
-run     echo 500000 | dhryGcc2mx | tail -l=6
-wait    30
+try     echo 5000000 | dhryGcc2mx | tail -l=6
+os9     echo 5000000 ! dhryGcc2mx ! tail -l=6
+run     echo 5000000 | dhryGcc2mx | tail -l=6
+wait    45
 
 shot    dhryshamu
-cap     Dhrystone, the shamu build.
-try     echo 500000 | dhryshamu | tail -l=6
-os9     echo 500000 ! dhryshamu ! tail -l=6
-run     echo 500000 | dhryshamu | tail -l=6
-wait    30
+cap     Dhrystone built with GCC 1 at -O2 with inlining, strength
+cap     reduction and no frame pointer.
+try     echo 5000000 | dhryshamu | tail -l=6
+os9     echo 5000000 ! dhryshamu ! tail -l=6
+run     echo 5000000 | dhryshamu | tail -l=6
+wait    45
 
 shot    dhryshamu2
-cap     Dhrystone, a second shamu build.
-try     echo 500000 | dhryshamu2 | tail -l=6
-os9     echo 500000 ! dhryshamu2 ! tail -l=6
-run     echo 500000 | dhryshamu2 | tail -l=6
-wait    30
+cap     Dhrystone built with GCC 2 at -O2 with inlining, strength
+cap     reduction and no frame pointer.
+try     echo 5000000 | dhryshamu2 | tail -l=6
+os9     echo 5000000 ! dhryshamu2 ! tail -l=6
+run     echo 5000000 | dhryshamu2 | tail -l=6
+wait    45
 
 shot    disktest
 cap     Times reads and writes through the disk system, in the current
@@ -156,17 +155,20 @@ run     cb < tmp/DEV/ugly.c
 wait    8
 
 shot    indent
-size    30 80
-cap     GNU indent reformatting C source to a house style: the head of what it
-cap     makes of about.c, with -st sending the result to the screen.
-try     indent SRC/keep/about.c -st | head -n 20
-os9     indent SRC/keep/about.c -st ! head -n 20
-run     builtin cd /dd
+size    36 80
+cap     GNU indent reformatting C source to a house style: max.c as typed,
+cap     then what indent makes of it, with -st sending the result to the
+cap     screen.
+try     indent max.c -st
+run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "int max(a, b)\rint a, b;\r{\rif (a > b) {\rreturn a;\r}\relse { return b; }\r}\r" > /dd/tmp/DEV/max.c
+run     builtin cd /dd/tmp/DEV
 wait    1
 run     clear
 wait    1
-run     indent SRC/keep/about.c -st | head -n 20
-wait    15
+run     cat max.c
+wait    2
+run     indent max.c -st
+wait    10
 
 shot    cpr
 size    24 80
@@ -198,9 +200,9 @@ run     unifdef -dOSK tmp/DEV/ifd.c
 wait    5
 
 shot    ifdef
-cap     The same job by another author: -Dsymbol keeps the branch for a symbol
-cap     you define, -Usymbol the branch for one you leave undefined.  The same
-cap     source is resolved both ways.
+cap     Resolves #ifdefs: -Dsymbol keeps the branch for a symbol you
+cap     define, -Usymbol the branch for one you leave undefined.  ifd.c is
+cap     shown, then resolved both ways.
 try     ifdef -DOSK tmp/DEV/ifd.c
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "#ifdef OSK\rint on_os9 = 1;\r#else\rint on_os9 = 0;\r#endif\rint always = 2;\r" > /dd/tmp/DEV/ifd.c
 wait    3
@@ -208,6 +210,8 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
+run     cat tmp/DEV/ifd.c
+wait    2
 run     ifdef -DOSK tmp/DEV/ifd.c
 wait    5
 run     ifdef -UOSK tmp/DEV/ifd.c
@@ -218,9 +222,6 @@ size    30 80
 cap     patch applying a diff: it recognises what it was handed -- "Looks like
 cap     a normal diff to me" -- takes Plan A, and the hunk succeeds.  The file
 cap     is updated and the original is kept beside it as p1.orig.
-cap     Until 2026-09-18 this card showed it failing, and the failure was its
-cap     own: the port opened its files with Unix modes, and OS-9 reads mode 0
-cap     as no access bits at all, so the read that followed was refused.
 try     patch tmp/DEV/p1 tmp/DEV/p.diff
 run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "one\rtwo\rthree\r" > /dd/tmp/DEV/p1; printf "one\rTWO\rthree\r" > /dd/tmp/DEV/p2; diff /dd/tmp/DEV/p1 /dd/tmp/DEV/p2 > /dd/tmp/DEV/p.diff
 wait    6
@@ -237,15 +238,16 @@ wait    4
 
 shot    bcheck
 cap     Counts brackets in a C source, line by line, so a mismatch can be
-cap     found: the running nesting depth beside each line.
-try     bcheck SRC/keep/about.c | head -n 16
-os9     bcheck SRC/keep/about.c ! head -n 16
-run     builtin cd /dd
+cap     found: the running nesting depth beside each line, rising at each
+cap     `{' and falling at each `}' back to 00 at the end.
+try     bcheck max.c
+run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "int max(a, b)\rint a, b;\r{\rif (a > b) {\rreturn a;\r}\relse { return b; }\r}\r" > /dd/tmp/DEV/max.c
+run     builtin cd /dd/tmp/DEV
 wait    1
 run     clear
 wait    1
-run     bcheck SRC/keep/about.c | head -n 16
-wait    8
+run     bcheck max.c
+wait    6
 
 shot    ccheck
 cap     Checks C source for mismatched brackets, quotes and comment markers,
@@ -292,15 +294,15 @@ wait    4
 
 shot    cxref
 size    30 80
-cap     A C cross-reference.  It prints the source with line numbers (shown
-cap     here) and then a table of every symbol and the lines it appears on.
-try     cxref SRC/keep/about.c | head -n 24
-os9     cxref SRC/keep/about.c ! head -n 24
-run     builtin cd /dd
+cap     A C cross-reference: the source with its lines numbered, then a
+cap     table of every symbol and the lines it appears on.
+try     cxref max.c
+run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf "int max(a, b)\rint a, b;\r{\rif (a > b) {\rreturn a;\r}\relse { return b; }\r}\r" > /dd/tmp/DEV/max.c
+run     builtin cd /dd/tmp/DEV
 wait    1
 run     clear
 wait    1
-run     cxref SRC/keep/about.c | head -n 24
+run     cxref max.c
 wait    10
 
 shot    rdoc
@@ -335,8 +337,8 @@ wait    10
 
 shot    ref
 cap     Looks a C function up in a tags file and prints the lines around where
-cap     it is defined.  Here ctags indexes keep.c and ref shows the definition
-cap     of crc_of, comment header and all.
+cap     it is defined.  The tags file was made first with `ctags keep.c';
+cap     ref shows the definition of crc_of, comment header and all.
 try     ref crc_of
 run     rm -rf /dd/tmp/DEV/ref > /nil 2>/nil; mkdir -p /dd/tmp/DEV/ref
 run     cp /dd/SRC/keep/keep.c /dd/tmp/DEV/ref/keep.c
@@ -362,12 +364,10 @@ wait    6
 
 shot    sdb
 size    30 80
-cap     SDB 2.0, "a Simple Database System" by David Betz -- a small
-cap     relational database, not a debugger.  A relation is a file, a
-cap     tuple a record, an attribute a field.  Here a relation is created
-cap     with two fields, one record is typed into it (a blank line ends
-cap     the entry), and `print * from people ;' reads it back.  DOC/sdb
-cap     holds the manual and `help' lists the commands.
+cap     A relation with two fields is created, one record is typed into it
+cap     (a blank line ends the entry), and `print * from people ;' reads
+cap     it back.  DOC/sdb holds the manual, and `help' at its prompt lists
+cap     the commands.
 try     sdb
 run     rm -rf /dd/tmp/SDBC > /nil 2>/nil; mkdir -p /dd/tmp/SDBC
 wait    3
@@ -410,7 +410,7 @@ cap     Tabulates assembly source into label, opcode and argument columns, a
 cap     filter: -b reads 6809 mnemonics, 68000 otherwise.
 try     tab -b < tmp/DEV/t.a
 os9     tab -b <tmp/DEV/t.a
-run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
+run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\rstart ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
 run     builtin cd /dd
 wait    1
@@ -425,7 +425,7 @@ shot    xlate
 cap     Translates 6809 assembly source into 68000: registers mapped, branches
 cap     sized, one instruction for one.
 try     xlate tmp/DEV/t.a
-run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\r start ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
+run     mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf " nam test\rstart ldx #buf\rloop lda ,x+\r beq done\r bsr putc\r bra loop\rdone rts\rbuf fcc /hello/\r fcb 0\r end\r" > /dd/tmp/DEV/t.a
 wait    3
 run     builtin cd /dd
 wait    1

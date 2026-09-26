@@ -1,19 +1,21 @@
 _____________________________________________________
 |                       |   |                       |
 |13  14  15  16  17  18 |   |19  20  21  22  23  24 |
-| w               r     |   | r                   w |
-| w               r     |   | r                   w |
-| w               r     |   | r                     |
+| w               r     |   | r   r               w |
+| w               r     |   | r   r               w |
 | w                     |   | r                     |
 | w                     |   | r                     |
+| w                     |   |                       |
 |                       |BAR|                       |
 | r                     |   | w                     |
 | r                     |   | w                     |
 | r               w     |   | w                     |
-| r               w     |   | w                     |
-| r       r       w     |   | w                   r |
+| r               w     |   | w                   r |
+| r               w     |   | w                   r |
 |12  11  10   9   8   7 |   | 6   5   4   3   2   1 |
 |_______________________|___|_______________________|
 Player is white, computer is red.
 
-Error: 000:000 - readc          Move:
+White rolls 6 6.                Move:
+
+Are you sure you want to quit?  (Y or N)  Yes.

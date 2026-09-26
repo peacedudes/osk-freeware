@@ -1,3 +1,5 @@
+$ demo -a -b -c=7 one two
+
         option index (optind) after egetopt():     2
                 egetopt() return value:            a (97)
                 char that begins option (optchar): -

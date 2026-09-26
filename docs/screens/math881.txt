@@ -1,0 +1,24 @@
+$ modinfo CMDS/math881
+--------------------------------- CMDS/math881  - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - -
+Module name           = math
+System revision       = 1
+Module size           = 3220
+Owner Id              = 1.0
+Offset to module name = 00000c7aH
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = c001H   reentrant
+Edition               = 6
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 7bbeH
+
+
+Offset to execution entry point   = 00000050H
+Offset to exception entry point   = 00000000H
+Data storage requirement          = 0 Bytes
+Stack size                        = 0 Bytes
+Offset to initialized data        = 00000c80H
+Offset to data reference lists    = 00000c88H

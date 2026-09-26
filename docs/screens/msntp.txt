@@ -1,3 +1,4 @@
+$ msntp 127.0.0.1
 msntp: unable to locate IP address/number
 msntp: 000:216 (E$PNNF) That path name doesn't lead to anything - check the spel
 ling and location.

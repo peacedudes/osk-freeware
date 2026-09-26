@@ -20,4 +20,3 @@
     a    b    c    d    e    f    g    h
 
     Human          4:50
-                                               Abort?

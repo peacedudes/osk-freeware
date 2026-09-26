@@ -5,3 +5,27 @@ Test fuer BigSet mit 36 Elementen
 
 define Set A
 Set A :      {}
+
+
+include 16 in Set A
+Set A :      16
+
+
+include 31 in Set A
+Set A :      16   31
+
+
+exclude 23 in Set A
+Set A :      16   31
+
+
+exclude 16 in Set A
+Set A :      31
+
+
+include 16 in Set A
+Set A :      16   31
+
+
+define Set B, include 23
+Set B :      23

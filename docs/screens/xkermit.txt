@@ -1,3 +1,4 @@
+$ xkermit
 OS-9 Kermit Version 1 Release 5
 Usage: kermit c[le line esc.char]   (connect mode)
 or:    kermit s[difl line] file ... (send mode)

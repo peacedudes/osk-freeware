@@ -1,3 +1,8 @@
+$ cat hello.i
+int main()
+{
+  return 42;
+}
 $ ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
         psect   hello_gc,0,0,0,0,0
         align

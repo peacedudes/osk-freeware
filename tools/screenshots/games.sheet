@@ -5,15 +5,12 @@
 # ---------------------------------------------------------------- adventure
 
 shot    advcom
-size    30 80
-cap     The ADVSYS compiler: it turns an adventure written in ADVSYS source
-cap     into the world file the interpreter plays, naming every actor,
-cap     location and thing as it goes and counting the words, objects and
-cap     code at the end.  The sample adventure is in GAMES/ADVSYS.  advcom
-cap     opens its `@objects.adi' include by bare name in the data directory
-cap     and keeps a filename in twenty characters, so both files are copied
-cap     to a working directory and it is run there, under a shell whose
-cap     `chd' moves the data directory.
+size    92 80
+cap     The ADVSYS compiler turning the sample adventure into the world file
+cap     the interpreter plays: it names every function, object and method as
+cap     it reads them, and ends by counting the words, objects and code.  The
+cap     sample is in GAMES/ADVSYS; run it in a directory holding osample.adv
+cap     and objects.adi.
 try     advcom osample
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil
 wait    3
@@ -21,11 +18,11 @@ run     cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv
 wait    4
 run     cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi
 wait    4
-run     load /dd/CMDS/GAMES/advcom
-wait    4
+run     builtin cd /dd/tmp/GAMESA
+wait    1
 run     clear
 wait    1
-run     sh -c "chd /dd/tmp/GAMESA; advcom osample"
+run     advcom osample
 wait    45
 
 shot    advint
@@ -33,8 +30,8 @@ size    24 80
 cap     The ADVSYS interpreter, playing the world advcom has just built from
 cap     the sample source: you start in the livingroom, `n' takes you to the
 cap     hallway and `e' into the storage room, where there is a rusty key.
-cap     Type at the `:' prompt.  Like the compiler it opens its world file by
-cap     bare name, so it is run in the directory holding it.
+cap     Type at the `:' prompt.  Run it in the directory holding the world
+cap     file.
 try     advint osample
 run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil
 wait    3
@@ -42,15 +39,13 @@ run     cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv
 wait    4
 run     cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi
 wait    4
-run     load /dd/CMDS/GAMES/advcom
-wait    3
-run     sh -c "chd /dd/tmp/GAMESA; advcom osample" > /nil
+run     builtin cd /dd/tmp/GAMESA
+wait    1
+run     advcom osample > /nil
 wait    45
-run     load /dd/CMDS/GAMES/advint
-wait    3
 run     clear
 wait    1
-run     sh -c "chd /dd/tmp/GAMESA; advint osample"
+run     advint osample
 wait    12
 send    look\r
 wait    5
@@ -60,11 +55,11 @@ send    e\r
 wait    6
 
 shot    advent
-cap     Colossal Cave, the first adventure of them all.  It loads its twelve
-cap     sections of text, offers instructions, and drops you on the road
-cap     outside the brick building; `in' takes you to the well house, where
-cap     the lamp and the keys are, and `xyzzy' is the magic word.  Its world
-cap     file lives in GAMES/adv.
+size    48 80
+cap     Colossal Cave: it loads its twelve sections of text, offers
+cap     instructions, and drops you on the road outside the brick building.
+cap     `in' takes you into the well house, where the lamp and the keys are;
+cap     `xyzzy' is the magic word.  Its data is in GAMES/adv.
 try     advent
 run     advent
 wait    8
@@ -80,13 +75,11 @@ send    xyzzy\r
 wait    6
 
 shot    infocom.tcap
-cap     An interpreter for Infocom's Z-machine, playing a story file: a
-cap     status line across the top with the room name and the score, the
-cap     text below it, and a `>' prompt for commands like `look' and
-cap     `inventory'.  Three Inform demonstration stories ship in
-cap     GAMES/INFORM -- dejavu, hellow and shell.  This build reads the
-cap     terminal description from termcap, and is the one to use at a
-cap     terminal.
+cap     An interpreter for Infocom's Z-machine, playing dejavu.z3: the status
+cap     line across the top, in reverse video (each # a lit blank), names the
+cap     room and the score, with the story below it and a `>' prompt for
+cap     commands like `look' and `inventory'.  Three Inform demonstration
+cap     stories ship in GAMES/INFORM -- dejavu, hellow and shell.
 try     infocom.tcap dejavu.z3
 run     builtin cd /dd/GAMES/INFORM
 wait    1
@@ -104,10 +97,10 @@ send    inventory\r
 wait    6
 
 shot    inform
-cap     inform compiling hellow.inf, the source of one of the three demos
-cap     in GAMES/INFORM, into hellow.z3, a story file that infocom plays.
-cap     Name the source without its .inf.  The file it writes is byte for
-cap     byte the hellow.z3 that ships.
+cap     inform compiling hellow.inf, the source of one of the three demos in
+cap     GAMES/INFORM, into hellow.z3, a story file that infocom plays; ls -l
+cap     shows the file it wrote.  Name the source without its .inf; the
+cap     library headers it includes are in SRC/inform beside it.
 try     inform hellow
 run     rm -rf /dd/tmp/INFK > /nil 2>/nil; mkdir -p /dd/tmp/INFK
 run     cp /dd/SRC/inform/hellow.inf /dd/SRC/inform/parser.h /dd/SRC/inform/verblib.h /dd/SRC/inform/grammar.h /dd/tmp/INFK
@@ -122,10 +115,10 @@ run     ls -l hellow.z3
 wait    2
 
 shot    infocom
-cap     The same Z-machine interpreter without the termcap display code.  It
-cap     plays the story, but it writes the cursor codes for its status line
-cap     as literal text, which is the row of brackets down the left.  For a
-cap     readable screen use infocom.tcap; RETURN clears each `More' prompt.
+cap     A Z-machine interpreter playing dejavu.z3 from GAMES/INFORM. It writes
+cap     the cursor codes for its status line as literal text, which is the row
+cap     of brackets down the left, and still plays the story; infocom.tcap is
+cap     the build for a terminal.  RETURN clears each `More' prompt.
 try     infocom dejavu.z3
 run     builtin cd /dd/GAMES/INFORM
 wait    1
@@ -141,19 +134,25 @@ send    look\r
 wait    6
 
 shot    paranoia
+size    36 80
+pages
 cap     The Paranoia text adventure.  It rolls you a Troubleshooter --
 cap     attributes, secret society, mutant power, equipment -- and then
 cap     wakes you on the floor of a briefing room.  RETURN clears each
 cap     `More' and goes on; you get six clones.
 try     paranoia
+run     clear
+wait    1
 run     paranoia
 wait    8
+snap
 send    \r
 wait    4
 send    \r
 wait    4
 send    \r
 wait    5
+snap
 
 # ------------------------------------------------------------------- arcade
 
@@ -179,9 +178,8 @@ wait    2
 
 shot    mz
 size    24 80
-cap     mz at skill 3: the p is you, each c a monster taking the shortest
-cap     way to you, and the dots are the pellets you eat for points.  The
-cap     number pad moves; control-C is the only way out.
+cap     Skill 3: the p is you, each c a monster taking the shortest way to
+cap     you, and the dots are the pellets you eat for points.
 try     mz
 run     clear
 run     mz
@@ -200,14 +198,17 @@ wait    3
 
 shot    pacman
 size    26 80
-cap     Pac-Man in an ASCII maze: you are `OS9', chased by four ghosts
-cap     labelled CPM, MPM, RAM and ROM, and the keypad moves you -- 8 up, 2 down,
-cap     4 left, 6 right.  It asks your name and whether you want instructions,
-cap     then draws the board with TeleVideo cursor codes, which this terminal
-cap     does not paint, so little of it reaches the screen.  Its maze, help
-cap     and score files are in GAMES/pacman.
+cap     Pac-Man in an ASCII maze, with your system's tmode loaded, which it
+cap     forks to set the terminal.  It asks your name and whether you want
+cap     instructions, then draws the maze by moving the cursor with single
+cap     control characters that an ANSI terminal like this one does not
+cap     follow, so only the maze's top wall reaches the screen: the board does
+cap     not draw here.  Its maze, help and score files are in GAMES/pacman.
 try     pacman
+run     load /h1/CMDS/tmode
+wait    2
 run     clear
+wait    1
 run     pacman
 send    Tester\r
 wait    3
@@ -222,20 +223,14 @@ wait    2
 shot    robots
 size    24 80
 cap     Robots: you are the `I', the robots are the `#', and they walk
-cap     straight at you every time you move -- steer them into each other
-cap     and they become junk heaps, `@'.  Run it with `-m' so they take one
-cap     step per move of yours; the keys are the numeric keypad 1-9 with 5
-cap     to stand still, `t' to teleport and `s' for a last stand.  The
-cap     panel keeps the screen, robot and score counts; when they get you
-cap     the top ten appears in the arena, under the name USER gives, and
-cap     `robots -s' prints that list on its own.
+cap     straight at you every time you move -- steer them into each other and
+cap     they become junk heaps, `@'.  The panel on the right keeps the keys,
+cap     the screen, robot and score counts.  `robots -s' prints the top ten on
+cap     its own.
 try     robots -m
 run     robots -m
 wait    8
-keys    8
-wait    3
-snap
-keys    4
+keys    5
 wait    3
 snap
 send    \003
@@ -254,11 +249,8 @@ wait    3
 
 shot    worm
 size    24 80
-cap     Worm: you are the `@' and your body is the `o's.  h, j, k and l
-cap     steer; with no key the worm keeps going the way it last went, and
-cap     H, J, K and L run several squares at once.  Eat a digit to grow
-cap     that much longer.  The game ends when the worm runs into the wall
-cap     or into itself; control-C leaves.
+cap     The worm heading right along the middle of the field, the `@' its
+cap     head, and a 6 below it to eat.  Control-C leaves.
 try     worm
 run     worm
 wait    3
@@ -275,12 +267,9 @@ send    \003
 wait    2
 
 shot    sokoban
-cap     Sokoban: push every packet, the `$', onto a storage square, the
-cap     `.', without trapping one in a corner.  `@' is you.  The status line
-cap     counts the level, the packets, the ones stored and your moves and
-cap     pushes.  Its fifty levels, its help text and its saved games are in
-cap     GAMES/SOKOBAN, and it asks the system for your user name, so run it
-cap     from a login.
+cap     Level 1, drawn two characters to a square: six packets, the `$$', the
+cap     storage squares, `....', at the right, and you, the `@@'.  The status
+cap     line counts the packets, the ones stored and your moves and pushes.
 try     sokoban
 run     sokoban
 wait    10
@@ -289,11 +278,10 @@ send    \003
 wait    3
 
 shot    tet
-cap     Tetris, with the well on the left and the menu on the right: `p'
-cap     plays, s or j moves the falling piece left, f or l right, d or k
-cap     turns it, space drops it, ESC pauses and `q' leaves to the
-cap     high-score table it keeps in GAMES/tet.hs.  It wants a real
-cap     terminal; from a pipe it draws the board and reads nothing.
+cap     A game under way: pieces stacking in the well on the left, the next
+cap     piece in the box at the top right and the keys in the menu beside it.
+cap     `q' leaves to the high-score table in GAMES/tet.hs.  It reads its keys
+cap     from a terminal.
 try     tet
 run     tet
 wait    8
@@ -326,10 +314,9 @@ wait    3
 shot    back
 size    40 80
 burst
-cap     Backgammon drawn as a full board, points numbered 1 to 24, with the
-cap     dice cup and the doubling status on the right.  Single letters are
-cap     the commands: `R' rolls, `D' doubles, `H' is the help, `N' starts a
-cap     new game and `Q' quits.
+cap     The opening position, one side's checkers drawn as [] and the other's
+cap     as <>, with the empty dice cups, the command menu and the doubling
+cap     status on the right, waiting at `Command?'.
 try     back
 run     export TERM=vt100
 run     clear
@@ -374,11 +361,9 @@ send    10\r
 wait    8
 
 shot    chess
-cap     Chess against the machine on a shaded board, one move in: it asks
-cap     which colour you want, your name and whether the game is long or
-cap     short, then takes a move as two squares -- `e2' for the piece and
-cap     `e4' for where it goes, two keystrokes each with no RETURN.  Its
-cap     reply is on the line under the board.
+cap     One move in, playing white: your pieces carry a star, e2-e4 has been
+cap     played, and the machine's reply, e7-e5, is on the line under the board
+cap     with the prompt for your next move.
 try     chess
 run     chess
 wait    8
@@ -414,9 +399,9 @@ send    \003
 wait    3
 
 shot    cribbage
-cap     A second cribbage, drawn the same way but a different program: the
-cap     board on the right, the dialogue under it, and the same cut for the
-cap     crib.  It offers you the rules first.  Like `crib' it needs TERM.
+cap     Another build of the BSD cribbage that crib is: your hand fanned out
+cap     on the left, the pegging board on the right, and the cut for the crib
+cap     under it, waiting for a discard.  It needs TERM set.
 try     cribbage
 run     cribbage
 wait    8
@@ -429,58 +414,56 @@ send    \003
 wait    3
 
 shot    gnuan
-size    72 80
-cap     GNU Chess's analyser: give it a file of moves and a search depth and
-cap     it annotates the game move by move, scoring each and naming the best
-cap     line it found.  Moves it recognises from the opening book are marked
-cap     `book'.  The file holds one move pair to a line.  Past its end it
-cap     searches the next move itself, then says `Ambiguous Move!' and `Bad
-cap     move', which is how it reads end of input, and prints the position
-cap     reached -- and then its
-cap     floating-point code raises an overflow trap (TRAPV) that nothing
-cap     handles, so the process is stopped: that is the dump under the board.
+size    50 80
+cap     GNU Chess's analyser annotating a five-move game from a file of
+cap     moves, one move pair to a line: the opening moves it finds in the
+cap     book are marked `book', each later one is scored with the best line
+cap     it searched, and the closing percentages say how often each side
+cap     played the move it would have chosen.  A line reading `draw' ends
+cap     the game.
 try     gnuan
-run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; printf 'e2e4 e7e5\rg1f3 b8c6\rf1b5 a7a6\r' > /dd/tmp/GAMESA/moves
-wait    4
-run     builtin cd /dd
-wait    1
+run     rm -rf /dd/tmp/G4GNUAN > /nil 2>/nil; mkdir -p /dd/tmp/G4GNUAN
+run     builtin cd /dd/tmp/G4GNUAN
+run     echo "e2e4 e7e5" > moves; echo "g1f3 b8c6" >> moves; echo "f1b5 a7a6" >> moves
+run     echo "h2h3 h7h6" >> moves; echo "b5c6 d7c6" >> moves; echo draw >> moves
+wait    3
 run     clear
 wait    1
 run     gnuan
 wait    8
-send    tmp/GAMESA/moves\r
+send    moves\r
 wait    5
 send    2\r
 wait    4
 send    1\r
-wait    30
+wait    60
 
 shot    gnuchess
 size    24 80
-cap     GNU Chess after 1. e4, answered with the Sicilian (c7c5) straight
-cap     out of the opening book, which ships here, read by the build
-cap     `gnuchess' runs.  It asks for a
-cap     time control first (`1' is a move a minute) and takes moves as
-cap     `e2e4'; a clock for each side and the search depth sit to the right.
-cap     It reads the terminal description out of TERMCAP itself, so the
-cap     entry is put in the variable first.
+cap     GNU Chess after 1. e4, answered with c7c5 out of its opening book,
+cap     with a clock for each side and the search depth on the right.  It asks
+cap     for a time control first (`1' is a move a minute) and takes moves as
+cap     `e2e4'.  It reads TERMCAP as the terminal description itself, so source
+cap     SYS/termcap.entry into your shell first.
 try     gnuchess
 run     . /dd/SYS/termcap.entry
 wait    4
 run     clear
 wait    1
-run     /dd/CMDS/gnuchess
+run     gnuchess
 wait    12
 send    1\r
 wait    10
 send    e2e4\r
 wait    22
+snap
 kill
 
 shot    gnuchessc
-cap     GNU Chess 4.0 built to be driven by `chesstool', which draws the
-cap     board itself, so this one prints none -- by design; it still plays, taking a move as `e2e4' and printing its own reply
-cap     on the next line.  For a board, see `gnuchess' or `nchess'.
+cap     GNU Chess 4.0 built to be driven by `chesstool', which draws the board
+cap     itself, so this one prints none: it takes a move as `e2e4' and prints
+cap     its own reply on the next line.  For a board, see `gnuchess' or
+cap     `nchess'.
 try     gnuchessc
 run     gnuchessc
 wait    8
@@ -488,11 +471,11 @@ send    e2e4\r
 wait    12
 
 shot    gnuchessn
-cap     A GNU Chess display that draws the squares as blocks of hashes, so
-cap     the light and dark ones can be told apart on a terminal with no
-cap     highlighting.  Moves go in as `e2e4'.  It reads
-cap     TERMCAP as the terminal description itself, so the entry is put in
-cap     the variable first.
+cap     The squares drawn as blocks of hashes, so the light and dark ones can
+cap     be told apart on a terminal with no highlighting.  It asks for a time
+cap     control first (`1' is a move a minute) and takes moves as `e2e4'.  It
+cap     reads TERMCAP as the terminal description itself, so source
+cap     SYS/termcap.entry into your shell first.
 try     gnuchessn
 run     . /dd/SYS/termcap.entry
 wait    4
@@ -500,20 +483,27 @@ run     clear
 wait    1
 run     gnuchessn
 wait    14
+send    1\r
+wait    8
 send    e2e4\r
-wait    15
+wait    20
+snap
 kill
 
 shot    gnuchessr
-cap     GNU Chess with the plainest display of all -- pieces as letters,
-cap     capitals for one side and lower case for the other, nothing that
-cap     needs a terminal to draw.  It asks for the time control as
-cap     `#moves #minutes' and then takes moves as `e2e4'.
+cap     The plainest GNU Chess display: pieces as letters, capitals for one
+cap     side and lower case for the other.  It asks for a time control as
+cap     `#moves #minutes' (40 moves in 5 minutes here) and for the operator
+cap     time, then takes moves as `e2e4' and prints its reply.
 try     gnuchessr
 run     gnuchessr
 wait    10
+send    40 5\r
+wait    4
+send    0\r
+wait    6
 send    e2e4\r
-wait    12
+wait    20
 
 shot    mille
 cap     Mille Bornes, the French road-race card game: your hand on the left
@@ -530,10 +520,9 @@ wait    3
 shot    napoleon
 size    24 80
 cap     The opening: Napoleon states its licence, then describes the central
-cap     office where the game begins -- the ebony desk, the chair you can twirl
-cap     on, the one exit south -- and notes the scroll lying on the desk.  That
-cap     scroll is where the licence it just mentioned can be read in full.  The
-cap     `(napoleon)' prompt takes whole sentences, not verb-noun pairs.
+cap     office where the game begins -- the ebony desk, the chair you can
+cap     twirl on, the one exit south -- and the scroll lying on the desk,
+cap     which holds the licence in full.
 try     napoleon
 run     clear
 wait    1
@@ -546,15 +535,20 @@ send    q\r
 wait    2
 
 shot    nchess
-cap     GNU Chess 4.0 with its plain display, thinking: the board in
-cap     letters, then a line for each depth it searched showing the score,
-cap     the time, the nodes and the line it likes, and the totals at the
-cap     foot.  It asks for a time control as `#moves #minutes' first.
+size    36 80
+cap     GNU Chess 4.0 with its plain display, thinking: asked for 40 moves in
+cap     5 minutes, it shows the board in letters, then a line for each depth
+cap     it searched with the score, the time, the nodes and the line it likes,
+cap     and the totals at the foot before its reply.
 try     nchess
 run     nchess
 wait    8
+send    40 5\r
+wait    4
+send    0\r
+wait    6
 send    e2e4\r
-wait    12
+wait    25
 
 shot    drawpoker
 size    24 80
@@ -575,11 +569,13 @@ keys    y
 wait    3
 
 shot    poker
-cap     Cold-hand poker: it asks what you want to bet, deals, and lets you
-cap     draw.  It wants the word `no', not `N', and says so in its own
-cap     voice if you try.  One of four games written in SNOBOL4; their data
-cap     is in GAMES/SNOBOL.
+cap     Cold-hand poker against the computer: no rules asked for, a bet limit
+cap     of 50 per cent of the pot and a 10-chip ante, then the deal -- five
+cap     cards, and the choice to bet or check.  One of four games written in
+cap     SNOBOL4; their data is in GAMES/SNOBOL.
 try     poker
+run     clear
+wait    1
 run     poker
 wait    5
 send    no\r
@@ -590,12 +586,15 @@ send    10\r
 wait    8
 
 shot    queens
-cap     The eight-queens problem for any board: it reads the size as a
-cap     number on standard input and draws every arrangement it finds with
-cap     no two queens attacking.  A six-by-six board here.
+size    34 80
+cap     The eight-queens problem for any board: it reads the size as a number
+cap     on standard input and draws every arrangement it finds with no two
+cap     queens attacking.  A six-by-six board here, which has four.
 try     echo 6 | queens
 os9     echo 6 ! queens
-run     echo 6 | queens | head -n 21
+run     clear
+wait    1
+run     echo 6 | queens
 wait    8
 
 shot    tttt
@@ -615,12 +614,13 @@ wait    2
 # --------------------------------------------------------- chess utilities
 
 shot    bincheckr
+size    34 80
 cap     Checks a GNU Chess binary opening book for how well it is packed:
-cap     entry size, book size, pocket and count.  It reads a book layout
-cap     older than anything here -- GAMES/gnuchess.book is the text library
-cap     and GNU Chess's own binary book is a later form -- so it reports the
-cap     entry size, zeroes for the rest, and stops on a math trap as it
-cap     averages over no entries.
+cap     entry size, book size, pocket and count.  It reads a binary book
+cap     layout older than anything on this disk -- GAMES/gnuchess.book is the
+cap     text library -- so given that file it reports the entry size and
+cap     zeroes, and then stops on a math trap as it averages over no entries:
+cap     the register dump is the system reporting the trap.
 try     bincheckr gnuchess.book
 run     builtin cd /dd/GAMES
 wait    1
@@ -631,77 +631,85 @@ wait    10
 
 shot    checkgame
 size    30 80
-cap     Reads a saved GNU Chess game -- the `chess.lst' that gnuchess writes
-cap     when you type `list' -- replays it looking for illegal moves and
-cap     prints the board it finishes on.  A game is made here first by
-cap     playing one move against gnuchess and listing it.
+cap     A two-move game listed by gnuchessc's `list' command, replayed and
+cap     checked move by move: the moves it accepted, and the board it
+cap     reaches.  It stops one move short of the end of the list.
 try     checkgame chess.lst
-run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; rm -f /dd/tmp/GAMESA/chess.lst
-run     . /dd/SYS/termcap.entry
-run     load /dd/CMDS/GAMES/gnuchess
-run     builtin cd /dd/tmp/GAMESA
+run     rm -rf /dd/tmp/G4CHK > /nil 2>/nil; mkdir -p /dd/tmp/G4CHK
+run     builtin cd /dd/tmp/G4CHK
+run     echo e2e4 > moves; echo d2d4 >> moves; echo list >> moves; echo quit >> moves
+wait    2
+run     gnuchessc < moves > /nil 2>/nil
+wait    25
+run     cat CLp* > chess.lst
 wait    3
-run     gnuchess > /nil 2>/nil
-wait    12
-send    1\r
-wait    8
-send    e2e4\r
-wait    20
-send    list\r
-wait    8
-send    quit\r
-wait    6
 run     clear
 wait    1
 run     cat chess.lst
-wait    5
+wait    4
 run     checkgame chess.lst
 wait    10
 
 shot    game
 size    24 80
-cap     Meant to draw a saved GNU Chess game board by board as PostScript,
-cap     one page a move, for printing with the ChessFont file its
-cap     documentation names.  It writes the first line of the page setup
-cap     and stops there, so there is nothing to print -- and that is not
-cap     the game file's fault: tried again on a real `chess.lst' played
-cap     out of gnuchess and listed, the output is the same one line.
-cap     DOC/game has the manual page.
-try     game g.lst 1 2
-run     mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo "e2e4      0      0      0     8" > /dd/tmp/GAMESA/g.lst
-wait    4
-run     builtin cd /dd/tmp/GAMESA
-wait    1
+cap     A two-move game, listed by gnuchessc's `list' command, drawn as
+cap     PostScript: for each move, its number and score and then the board
+cap     as a line of ChessFont characters, one rank to a `;'.  Put the
+cap     ChessFont file from SRC/gnuchess/GNUCHESS4.0/MISC in front of it
+cap     and send it to a PostScript printer.  Like checkgame it stops one
+cap     move short of the end of the list.
+try     game chess.lst
+run     rm -rf /dd/tmp/G4GAME > /nil 2>/nil; mkdir -p /dd/tmp/G4GAME
+run     builtin cd /dd/tmp/G4GAME
+run     echo e2e4 > moves; echo d2d4 >> moves; echo list >> moves; echo quit >> moves
+wait    2
+run     gnuchessc < moves > /nil 2>/nil
+wait    25
+run     cat CLp* > chess.lst
+wait    3
 run     clear
 wait    1
-run     game g.lst 1 2 > board.ps
-wait    12
-run     wc -l board.ps; cat board.ps
-wait    6
+run     game chess.lst
+wait    10
 
 shot    postprint
-cap     Prints the positions in GNU Chess's hash file as PostScript, a
-cap     board to a page with the best move and the search depth.  It takes
-cap     no arguments: the hash file's name is built in, and it is the one
-cap     in GNUCHESS4.0/MISC, which holds no searched positions -- so it
-cap     writes the first line of the page setup and stops.  DOC/postprint
-cap     has the manual page.
-try     postprint
+size    24 80
+cap     The positions GNU Chess has searched and kept in its hash file,
+cap     printed as PostScript: for each, the best move, the search depth and
+cap     the score, then the board as a line of ChessFont characters, one
+cap     rank to a `;'.  The hash file shipped is empty; a short game with
+cap     gnuchessc, out of its opening book, filled it first.  The file's
+cap     name is built in, GNUCHESS4.0/MISC on /h0.
+try     postprint | head -n 16
+os9     postprint ! head -n 16
+run     rm -rf /dd/tmp/G4PP > /nil 2>/nil; mkdir -p /dd/tmp/G4PP
+run     builtin cd /dd/tmp/G4PP
+run     cat /h0/GNUCHESS4.0/MISC/gnuchess.hash > hash.save
+wait    4
+run     echo a2a3 > moves; echo h2h3 >> moves; echo quit >> moves
+wait    2
+run     gnuchessc < moves > /nil 2>/nil
+wait    60
 run     clear
 wait    1
-run     postprint
+run     postprint | head -n 16
 wait    12
+snap
+run     cat hash.save > /h0/GNUCHESS4.0/MISC/gnuchess.hash
+wait    4
 
 # ------------------------------------------------------------ dungeon crawl
 
 shot    hackwish
 size    24 80
-cap     The moment it wins -- the wish made, the game saved.  `Found in game N'
-cap     counts the hacks it played before a wizard turned up holding a wand of
-cap     wishing.
-cap     It carries hack's full path built in, because hack reopens itself by
-cap     the name it was launched with and bash passes only the bare word.
+cap     The end of a run: hack's goodbye as the game is saved, and the number
+cap     of the game in which a new wizard started with a wand of wishing.
+cap     hack's own screens pass unseen between.  With no argument it wishes
+cap     for three potions of gain level; `hack' then carries on with the wish
+cap     granted.
 try     hackwish
+run     clear
+wait    1
 run     hackwish
 wait    75
 snap
@@ -710,18 +718,18 @@ wait    2
 
 shot    hack
 cap     Hack, the dungeon crawl NetHack grew out of: a room drawn in line
-cap     characters, `@' for you, a letter for each monster -- `d' is a dog
-cap     -- and your hit points, armour class, strength and experience along
-cap     the foot.  It relaunches itself by the name it was started with, so
-cap     the two shells want it differently: at bash give the whole pathlist
-cap     shown, because bash hands a program only the bare word you typed; at
-cap     the OS-9 shell plain `hack' is enough.  Its saves and scores live in
-cap     GAMES/HACK/PLAYGROUND.
+cap     characters, `@' for you, a letter for each monster -- `d' is a dog --
+cap     and your hit points, armour class, strength and experience along the
+cap     foot.  It relaunches itself by the name it was started with, so at
+cap     bash give the whole pathlist shown; at the OS-9 shell plain `hack' is
+cap     enough.  Its saves and scores live in GAMES/HACK/PLAYGROUND.
 try     /dd/CMDS/GAMES/hack
 os9     hack
 run     /dd/CMDS/GAMES/hack
 wait    10
-send    n\r
+send    n
+wait    4
+send    \s
 wait    6
 snap
 send    \003
@@ -790,7 +798,7 @@ wait    8
 
 
 shot    trek
-size    24 80
+size    34 80
 cap     A short game at novice skill, and the short-range scan of the first
 cap     quadrant: the Enterprise is E, a starbase #, stars *, and beside the
 cap     grid the ship's stardate, condition, energy, torpedoes and shields.
@@ -841,9 +849,10 @@ wait    6
 shot    bandit
 size    24 80
 cap     A pull of the one-armed bandit: the three reels after the spin, the
-cap     payoff table beside them, and the bankroll and bet prompt below.  It
-cap     reads TERMCAP as the terminal description itself, so the entry is put
-cap     in the variable first.  `q' at the bet prompt walks away with the total.
+cap     payoff table beside them, and the new total and the bet prompt below.
+cap     `q' at the bet prompt walks away with the total.  It reads TERMCAP as
+cap     the terminal description itself, so source SYS/termcap.entry into your
+cap     shell first.
 try     bandit
 run     . /dd/SYS/termcap.entry
 wait    2
@@ -864,7 +873,7 @@ size    24 80
 cap     A few seconds into an easy game: the words drift down toward the
 cap     bottom border, and the hits and misses so far sit at the top.  Type a
 cap     word and SPACE before it lands.  It reads TERMCAP as the terminal
-cap     description itself, so the entry is put in the variable first.
+cap     description itself, so source SYS/termcap.entry into your shell first.
 try     typefast
 run     . /dd/SYS/termcap.entry
 wait    2
@@ -945,7 +954,7 @@ send    \r
 wait    3
 
 shot    jumble
-size    24 80
+size    28 80
 cap     All twenty-four orderings of the letters of `team', one to a line.
 cap     Reading down the list for real words finds meat, mate and tame.
 try     jumble team
@@ -972,11 +981,10 @@ send    \s
 wait    3
 
 shot    larn
-cap     Larn: the dungeon is drawn as you find it, letters for what is in
-cap     it, and the two lines at the foot are your spells, armour class,
-cap     level and the six attributes.  RETURN gets past the opening text.
-cap     A saved game goes to Larn.sav in your home directory; the
-cap     scoreboard, help and maze are in GAMES/LARN/PLAYGROUND.
+cap     The first level of the dungeon, drawn as you find it with letters for
+cap     what is in it; the two lines at the foot are your spells, armour
+cap     class, level and the six attributes.  RETURN gets past the opening
+cap     text.
 try     larn
 run     larn
 wait    12
@@ -987,10 +995,10 @@ send    \003
 wait    3
 
 shot    ularn
-cap     ULarn, the larn variant: it asks you to pick a character class --
-cap     ogre, wizard, klingon, elf, rogue, geek, dwarf or rambo -- and then
-cap     drops you in the dungeon with the same two status lines.  Its
-cap     fortunes, help, maps and scores are in GAMES/ULARN.
+cap     ULarn: it asks you to pick a character class -- ogre, wizard, klingon,
+cap     elf, rogue, geek, dwarf or rambo -- and drops you in the dungeon, here
+cap     as a wizard, with your spells, armour class and attributes along the
+cap     foot.  Its fortunes, help, maps and scores are in GAMES/ULARN.
 try     ularn
 run     ularn
 wait    10
@@ -1005,9 +1013,9 @@ wait    3
 # ------------------------------------------------------------------ puzzles
 
 shot    maze
-cap     A maze generator small enough to have won an obfuscated-C contest.
-cap     It reads the number of rows on standard input and draws a maze that
-cap     wide across the terminal.
+cap     A maze generator small enough to have won an obfuscated-C contest.  It
+cap     reads the number of rows on standard input and draws a maze that many
+cap     rows tall, as wide as the terminal.
 try     echo 11 | maze
 os9     echo 11 ! maze
 run     echo 11 | maze
@@ -1033,11 +1041,10 @@ send    q
 wait    2
 
 shot    animal
-cap     The guess-the-animal game, which learns: it asks yes-or-no questions
-cap     down a tree of things it already knows and makes a final guess, and
-cap     when it is wrong it asks you what you were thinking of and what
-cap     question would have told the two apart, then writes the answer back
-cap     into its data file.  A file to start from is in DOC/animal.
+cap     Four yes answers down the tree in DOC/animal's example file -- living,
+cap     human, female, a politician -- and its final guess.  When a guess is
+cap     wrong it asks what you were thinking of and a question that tells the
+cap     two apart, and writes them into the file.
 try     animal example
 run     builtin cd /dd/DOC/animal
 wait    1
@@ -1058,10 +1065,9 @@ send    \003
 wait    2
 
 shot    bog
-cap     Boggle: sixteen lettered dice in a four-by-four tray and three
-cap     minutes on the clock to type every word you can trace through
-cap     adjoining letters.  `?' shows the rules.  Its word list, index and
-cap     help text are in GAMES/BOG.
+cap     A tray of sixteen letters with 2:54 left on the three-minute clock:
+cap     type every word you can trace through adjoining letters.  `?' shows
+cap     the rules.
 try     bog
 run     bog
 wait    8
@@ -1072,9 +1078,9 @@ send    \003
 wait    2
 
 shot    hang
-cap     Hangman: the word as blanks, the letters still unused along the top
-cap     and the gallows filling in as you get them wrong.  Type a letter to
-cap     guess it.  Its word list is GAMES/dict.
+cap     Six letters guessed, a, e, i, o, r and t: the seven-letter word shows
+cap     the t, the a and the i in place, and the guessed letters are gone from
+cap     the list at the top.  Type a letter to guess it.
 try     hang
 run     hang
 wait    6
@@ -1088,17 +1094,19 @@ wait    2
 
 shot    fuddle
 size    24 80
-cap     A chess variant that shuffles -- "fuddles" -- the pieces into fresh
-cap     places and plays a game from there.  It asks whether you want white,
-cap     draws a shaded board with a compact list of the pieces above it, makes
-cap     its own move, and waits for yours, taken as two squares like `e2e4'.
-cap     It addresses the terminal the TeleVideo way, so the board is redrawn a
-cap     character at a time; here it is White's move.
+cap     Chess against the computer, written for a TeleVideo terminal: it
+cap     clears the screen and moves the cursor with TeleVideo codes, which an
+cap     ANSI terminal like this one does not follow, so the pieces and the
+cap     board land in the wrong places.  The moves still read: at the top
+cap     right, after `fuddling...', its word for thinking, it answers e2e4
+cap     with d7 to d5.
 try     fuddle
 run     fuddle
 wait    6
 send    y\r
 wait    14
+send    e2e4\r
+wait    20
 snap
 
 shot    hotel
@@ -1120,11 +1128,10 @@ send    Bob\r
 wait    8
 
 shot    stone
-cap     A stones game in the Nim family.  You set the size of the pile, the
-cap     winning parity and the most that may be taken at once, then you and
-cap     the machine take turns removing stones.  Here the pile is 21 and it
-cap     is asking for your first take.  One of four games written in SNOBOL4;
-cap     their data is in GAMES/SNOBOL.
+cap     A stones game in the Nim family, set up by four answers that it does
+cap     not echo: no rules, a pile of 21, winner's parity 1 and at most 3
+cap     taken at a time.  Now it asks for your first take.  One of four games
+cap     written in SNOBOL4; their data is in GAMES/SNOBOL.
 try     stone
 run     stone
 wait    5
@@ -1139,27 +1146,32 @@ wait    8
 
 shot    draw
 for     draw
-cap     A character-graphics drawing program: it rules a canvas across the
-cap     terminal and you move a cursor over it laying down characters.  This
-cap     is what `?' shows -- vi's hjkl to move, yubn for
-cap     the diagonals, `p' to lift and drop the pen, backslash to choose the
-cap     character it draws with, and a shell escape.  The keys can be
-cap     rebound through an environment variable.
+cap     A character-graphics drawing program: a box drawn on its canvas by
+cap     dropping the pen with `p' and walking it round with the l, j, h and k
+cap     keys, then a diagonal in `*' with the pen character changed by
+cap     `\*' and the n key.  `?' lists the rest of the keys; ESC leaves.
 try     draw
 run     draw
 wait    8
-keys    ?
-wait    6
-kill
+keys    p
+keys    llllllllllllllllllll
+keys    jjjjjjjj
+keys    hhhhhhhhhhhhhhhhhhhh
+keys    kkkkkkkk
+keys    \*
+keys    nnnnnnnn
+wait    3
+snap
+send    \033
+wait    3
 
 shot    lorenz3d
 for     lorenz3d
 cap     The Lorenz attractor in three dimensions, asked for parameter by
 cap     parameter: the time step, the z magnification and offset, then
-cap     Lorenz's own a, b and c -- 10, 28 and 8/3 here, the values that
-cap     make the butterfly.  What it draws with is Tektronix vector codes,
-cap     so on a vt100 the picture arrives as characters; the dialogue is
-cap     the part worth capturing.
+cap     Lorenz's own a, b and c -- 10 and 28 here, with 8/3 for c the value
+cap     that makes the butterfly.  It then draws in Tektronix vector codes,
+cap     for a Tektronix graphics terminal.
 try     lorenz3d
 run     lorenz3d
 wait    4
@@ -1172,7 +1184,8 @@ wait    2
 send    10\r
 wait    2
 send    28\r
-wait    2
+wait    3
+snap
 send    2.667\r
 wait    2
 kill
@@ -1199,6 +1212,7 @@ send    q
 wait    2
 
 shot    zot
+size    44 80
 cap     Prints a line of text in one of fourteen animated styles: the
 cap     letters slide in from a side, bounce, sort themselves, or turn up
 cap     one at a time like a game-show board, and settle as the line.  Shown
@@ -1213,18 +1227,13 @@ run     zot -s=5 "Microware OS-9/68000 -- the freeware collection, 1987 to 1996"
 wait    6
 
 shot    convert
-cap     Starts the WORLD text adventure.  Its opening sets you on a trail
-cap     near the top of a pass on a strange world, your landing craft and the
-cap     dome that houses the rest of your party far below, and leaves you at
-cap     the `>>>' prompt.
+cap     Starts the WORLD text adventure.  Its opening sets you on a trail near
+cap     the top of a pass on a strange world, your landing craft and the dome
+cap     that houses the rest of your party far below, and leaves you at the
+cap     `>' prompt.
 try     convert
 run     convert
-wait    5
-send    \r
-wait    6
-snap
-send    \r
-wait    4
+wait    8
 snap
 send    quit\r
 wait    3
@@ -1241,47 +1250,53 @@ run     builtin cd /dd/tmp/VTXT
 wait    1
 run     clear
 wait    1
-run     vtxtcn; ls -l
+run     vtxtcn
 wait    20
-
-shot    mkindex
-cap     Builds the index bog reads its dictionary through, in the
-cap     directory holding the dictionary; it reports two counts.
-try     mkindex
-run     builtin cd /dd/GAMES/BOG
-wait    1
-run     clear
-wait    1
-run     mkindex < /nil
-wait    12
 run     ls -l
-wait    3
+wait    4
 
 shot    mkdict
-cap     Builds bog's dictionary from a word list, run in the directory that
-cap     holds the list.  It works quietly and leaves the dictionary and its
-cap     help text in GAMES/BOG, where bog reads them.
-try     mkdict
-run     builtin cd /dd/GAMES/BOG
-wait    1
+cap     Builds bog's dictionary from a word list: it reads the list on
+cap     standard input, keeps the words bog can use, and writes them
+cap     compressed, each sharing the start of the word before it.  Here a copy
+cap     of GAMES/words, 164,034 bytes, becomes a dictionary of 80,520, the
+cap     size of bog's own in GAMES/BOG, which bog reads through the index
+cap     mkindex makes.
+try     mkdict < words > dict
+run     rm -rf /dd/tmp/G4BOG > /nil 2>/nil; mkdir -p /dd/tmp/G4BOG
+run     builtin cd /dd/tmp/G4BOG
+run     cat /dd/GAMES/words > words
+wait    6
 run     clear
 wait    1
-run     mkdict < /nil
-wait    12
+run     mkdict < words > dict
+wait    25
 run     ls -l
-wait    5
+wait    4
+
+shot    mkindex
+size    32 80
+cap     The index bog reads its dictionary through, made from a dictionary
+cap     on standard input -- here a copy of the one in GAMES/BOG: a line
+cap     for each first letter, with the offsets where its words start and
+cap     end.  bog's own is that output kept as dict.ind beside the
+cap     dictionary.
+try     mkindex < dict
+run     rm -rf /dd/tmp/G4BOGI > /nil 2>/nil; mkdir -p /dd/tmp/G4BOGI
+run     builtin cd /dd/tmp/G4BOGI
+run     cat /dd/GAMES/BOG/dict > dict
+wait    4
+run     clear
+wait    1
+run     mkindex < dict
+wait    15
 
 shot    wisecrack
 cap     A server: started in the background with the `&', it feeds slogans
-cap     from a German OS-9 club seminar of 1992-93 into /pipe/txtpipe, in
-cap     German -- "VIEL SPASS MIT OSK" is "have fun with OSK" -- and prints
-cap     nothing itself.  Each `ask' then pulls out the next one.  Type the
-cap     `&': started in the foreground it waits for a reader and, under
-cap     os9exec, neither Ctrl-C nor Ctrl-E gets the terminal back.  Stop it
-cap     when you have finished with it -- `signal <id> 0', the id bash
-cap     printed in angle brackets -- because a server left parked on a read
-cap     after its shell has gone is the one thing here that can take the
-cap     emulator with it.
+cap     from a German OS-9 club seminar of 1992-93 into /pipe/txtpipe and
+cap     prints nothing itself.  Each `ask' then pulls out the next one --
+cap     "VIEL SPASS MIT OSK" is "have fun with OSK".  Stop it when you have
+cap     finished with `signal <id> 0', the id bash printed in angle brackets.
 try     wisecrack &
 run     wisecrack &
 wait    3
@@ -1289,25 +1304,23 @@ run     ask
 wait    5
 run     ask
 wait    5
-run     signal 3 0
+run     signal 4 0
 wait    3
 
 shot    ask
-cap     Reads the next message from the pipe wisecrack writes to and
-cap     prints it, one a call, in German: they are the slogans of a 1992-93
-cap     OS-9 club seminar.  wisecrack must be running behind it, started
-cap     with the `&' as shown; on its own ask says "No Wisecracks coming".
-cap     Stop the server when you have finished -- `signal <id> 0', the id
-cap     bash printed -- because one left parked on the pipe after its shell
-cap     has gone can take the emulator with it.
-try     wisecrack &; ask
+cap     Two calls, two slogans, in German, pulled from the pipe wisecrack
+cap     writes to: they come from a 1992-93 OS-9 club seminar.  Start the
+cap     server first with `wisecrack &'; on its own ask says "No Wisecracks
+cap     coming".  When you have finished, stop the server with `signal <id> 0',
+cap     the id bash printed.
+try     ask
 run     wisecrack &
 wait    3
 run     ask
 wait    5
 run     ask
 wait    5
-run     signal 3 0
+run     signal 4 0
 wait    3
 
 shot    shuffle
@@ -1324,9 +1337,9 @@ send    q
 wait    2
 
 shot    cyberwar
-cap     A game written for G-Windows, the graphics system this disk does
-cap     not carry: at a terminal it exits without a word.
-try     cyberwar
+cap     A game written for G-Windows: at a terminal it exits without a word,
+cap     with status 221. It needs G-Windows.
+try     cyberwar; echo "status $?"
 run     cyberwar; echo "status $?"
 wait    6
 
@@ -1339,15 +1352,16 @@ run     puzzle
 wait    6
 
 shot    scriptmaster
-cap     A scripting tool for G-Windows: at a terminal it exits without a
-cap     word.
-try     scriptmaster
+cap     A scripting tool for G-Windows: at a terminal it exits at once with
+cap     status 208, an unknown service request -- the G-Windows calls it makes
+cap     are not there.  It needs G-Windows.
+try     scriptmaster; echo "status $?"
 run     scriptmaster; echo "status $?"
 wait    5
 
 shot    colortest
-cap     A colour chart for G-Windows: it looks for the /win device and
-cap     says it cannot.
+cap     At a terminal: it looks for /win, the G-Windows display, and stops
+cap     because there is none.  It needs G-Windows to report on.
 try     colortest
 run     colortest
 wait    6
@@ -1360,11 +1374,9 @@ wait    5
 
 shot    wump
 size    24 80
-cap     Hunt the Wumpus: you move room to room through a cave of tunnels,
-cap     reading the hazards you sense -- a draft is a pit next door, a
-cap     smell is the Wumpus himself.  Move with `m' and a room number, or
-cap     loose a crooked arrow with `s' and a path of rooms to kill him.
-cap     Miss and he may wake and eat you.
+cap     Room 19 of the cave: bats and a pit nearby, and tunnels to rooms 6, 7
+cap     and 12. Move with `m' and a room number, or loose a crooked arrow with
+cap     `s' and a path of rooms.
 try     wump
 run     wump
 send    n\r
@@ -1416,11 +1428,9 @@ wait    2
 
 shot    accordian
 size    24 80
-cap     Accordian solitaire: the deck is dealt in a row, and a stack moves
-cap     one or three places left onto a card of the same suit or rank,
-cap     closing the gap.  Squeeze the whole deck into a single pile to win
-cap     -- which almost never happens.  `d' deals one, `D' the rest, `f'
-cap     finds a move, `u' undoes, `x' exits.
+cap     The whole deck dealt with `D', fifty-two cards laid out in four
+cap     columns, and the prompt waiting for a move.  `d' deals one, `D' the
+cap     rest, `f' finds a move, `u' undoes, `x' exits.
 try     accordian
 run     accordian
 wait    6
@@ -1432,11 +1442,10 @@ wait    2
 
 shot    saa
 size    24 80
-cap     Streets and Alleys solitaire: eight stacks and a foundation per
-cap     suit.  Move the top card of a stack to a foundation (in suit, ace
-cap     up) or onto a stack card of the next rank up; an empty stack takes
-cap     anything.  Order every card and you win.  Type a stack 1-8 then a
-cap     destination -- 0 for a foundation; `?' for help, `q' quits.
+cap     A fresh deal: the four foundations, S, H, D and C, empty down the
+cap     left, and the cards dealt out beside them, with the prompt waiting for
+cap     a stack to move from.  Type a stack 1-8 then a destination -- 0 for a
+cap     foundation; `?' for help, `q' quits.
 try     saa
 run     saa
 wait    6
@@ -1446,10 +1455,10 @@ wait    2
 
 shot    bs
 size    24 80
-cap     Battleships against the computer.  Place your fleet on the lower
-cap     grid -- move the cursor with h/j/k/l, rotate with a letter, or `R'
-cap     to scatter them all -- then hunt the computer's ships on the upper
-cap     grid by firing at squares.  First to sink the other's fleet wins.
+cap     Battleships against the computer, the fleet scattered with `R': your
+cap     ships on the Main Board at the left, and the Hit/Miss Board at the
+cap     right where you fire at the computer's.  Move the cursor with the
+cap     h/j/k/l keys or the number pad and strike any other key to fire.
 try     bs
 run     bs
 wait    5
@@ -1463,11 +1472,11 @@ wait    2
 
 shot    jotto
 size    24 80
-cap     Jotto: you and the computer each pick a secret five-letter word of
-cap     all different letters, then take turns guessing.  Each wrong guess
-cap     is answered by how many of its letters occur in the hidden word;
-cap     first to guess the other's word wins.  It plays with a built-in
-cap     word list.
+cap     Jotto: you and the computer each pick a secret five-letter word of all
+cap     different letters, then take turns guessing.  Each guess is answered
+cap     by how many of its letters occur in the hidden word -- `beach' has one
+cap     in the computer's -- and the first to guess the other's word wins.
+cap     Its word list is GAMES/JOTTO/jotto.d.
 try     jotto
 run     jotto
 send    y\r
@@ -1507,10 +1516,9 @@ wait    2
 
 shot    othello
 size    24 80
-cap     Othello against the computer: place a disk so it flanks a line of
-cap     the opponent's between it and one of yours, and every disk trapped
-cap     flips to your colour.  It asks how many players and a level 1-5;
-cap     a move is the row letter A-H then the column number 1-8.  Q quits.
+cap     A one-player game at level 3, three moves in: X has five disks to O's
+cap     two, and it is O's turn.  A move is the row letter A-H, then the
+cap     column number 1-8; Q quits.
 try     othello
 run     othello
 wait    5
@@ -1564,14 +1572,11 @@ wait    2
 run     cat /dd/tmp/canfield.save > /dd/GAMES/cfscores
 
 shot    monop
-size    24 80
-cap     Monopoly for two to nine players: the Parker Brothers board game
-cap     played at the keyboard.  It asks the players' names, rolls for
-cap     order, then each turn you `roll' to move and buy the property you
-cap     land on; `print' shows the board with every square's owner, price
-cap     and rent, `where' shows the pieces, and `mortgage', `buy houses'
-cap     and `trade' manage what you own.  Money is tracked for you.
-cap     `quit' ends the game.
+size    44 80
+cap     A two-player game set up for Alice and Bob: the names asked for, the
+cap     roll for who goes first, and `print' listing the board, each square
+cap     with its colour group and price.  Each turn you `roll' to move and buy
+cap     what you land on; `where' shows the pieces and `quit' ends the game.
 try     monop
 run     monop
 wait    2
@@ -1581,10 +1586,7 @@ send    Alice\r
 send    Bob\r
 wait    2
 send    print\r
-wait    2
-snap
-send    where\r
-wait    2
+wait    3
 snap
 send    quit\r
 wait    1
@@ -1593,14 +1595,11 @@ wait    2
 
 shot    yahtzee
 size    24 80
-cap     Yahtzee for one player or several: it asks how many are playing --
-cap     two here -- and lists each as Computer until space switches the one
-cap     under the cursor to Human; j and k move between them and RETURN
-cap     starts.  Then it rolls five dice a turn, keeps the ones you choose
-cap     and re-rolls the rest, and scores the box you pick.  A different
-cap     program from `yahtzee2' beside it.  It wants the terminal
-cap     description in TERMCAP rather than the name of a file, which the
-cap     login shell's own .bashrc arranges for you.
+cap     Two players asked for, and the first switched from Computer to Human
+cap     with the space bar; j and k move between them and RETURN starts.  Then
+cap     it rolls five dice a turn, keeps the ones you choose and re-rolls the
+cap     rest.  It wants the terminal description itself in TERMCAP, which the
+cap     login shell arranges for it.
 try     yahtzee
 run     . /dd/SYS/termcap.entry
 wait    2
@@ -1618,13 +1617,10 @@ wait    2
 
 shot    yahtzee2
 size    24 80
-cap     Yahtzee 2.1, the poker-dice game, with a curses scoreboard: up to
-cap     six players, human or computer, roll five dice three times a turn
-cap     and bank each roll in one of thirteen categories.  The dice boxes
-cap     are drawn across the top, the categories down the left, and the
-cap     computer plays a studied game.  Press a number to hold a die,
+cap     Two computer players, run fast with -f, at the end of their game, 244
+cap     to 220: the last roll across the top, the thirteen categories down the
+cap     left, and the offer to play another.  Press a number to hold a die,
 cap     space to reroll, `?' for help, `b' for the rules, `q' to quit.
-cap     High scores are kept in GAMES/YAHTZEE.
 try     yahtzee2 -f
 run     yahtzee2 -f
 wait    2
@@ -1644,15 +1640,14 @@ wait    2
 
 shot    corewar
 size    24 80
-cap     Core War: two battle programs written in Redcode, the warriors bomb.rc,
-cap     dwarf.rc, gemini.rc and the rest, fight for control of a circular
-cap     memory.  `corewar <cycles> a.e b.e' runs the fight; the screen maps the
-cap     core, a 1 or a 2 marking the cells each program holds, with the cycles
-cap     counting down.  Assemble a warrior with cwasm (cwasm dwarf.rc makes
-cap     dwarf.e); twelve samples and their objects are in GAMES/COREWARS.
+cap     dwarf.e against imp.e for 2000 cycles, from GAMES/COREWARS: the map of
+cap     core at the end, the imp's 2s spread through a stretch of it, and
+cap     nobody won.  Assemble a warrior with cwasm (cwasm dwarf.rc makes
+cap     dwarf.e).
 try     corewar 2000 dwarf.e imp.e
 run     builtin cd /dd/GAMES/COREWARS
 run     clear
+wait    1
 run     corewar 2000 dwarf.e imp.e
 wait    3
 snap
@@ -1670,19 +1665,20 @@ cap     object with cwasm first; the samples in GAMES/COREWARS come ready-made.
 try     cwdis dwarf.e
 run     builtin cd /dd/GAMES/COREWARS
 run     clear
+wait    1
 run     cwdis dwarf.e
 wait    2
 snap
 
 shot    cwasm
 size    24 80
-cap     The Core War assembler: cwasm reads a Redcode warrior (a .rc file) and
-cap     writes the object .e that corewar loads -- `cwasm dwarf.rc' makes
-cap     dwarf.e.  Name several and it assembles each in turn.  Twelve sample
-cap     warriors are in GAMES/COREWARS; cwdis prints an object back out.
+cap     Four sample warriors from GAMES/COREWARS assembled in turn, each named
+cap     as it is done; `cwasm dwarf.rc' writes dwarf.e, the object corewar
+cap     loads.  cwdis prints an object back out.
 try     cwasm dwarf.rc imp.rc gemini.rc mice.rc
 run     builtin cd /dd/GAMES/COREWARS
 run     clear
+wait    1
 run     cwasm dwarf.rc imp.rc gemini.rc mice.rc
 wait    2
 snap
@@ -1715,12 +1711,11 @@ wait    2
 
 shot    reversi
 size    24 80
-cap     Othello, part way into a game against the computer.  It starts by
-cap     asking three things -- the board setup, who plays which colour, and
-cap     a strength from Apprentice to Very Hard -- and then draws the board
-cap     with the four opening disks.  The cursor moves with the arrow keys
-cap     or hjkl and RETURN puts a disk down; `m' reopens the menu.  Not the
-cap     same program as `othello', which is another author's.
+cap     A new game, three RETURNs into the menu -- the board setup, who plays
+cap     which colour, and a strength from Apprentice to Very Hard: the four
+cap     opening disks, two all, with both colours left to human players.  The
+cap     arrow keys or hjkl move the cursor and RETURN puts a disk down; ESC
+cap     brings the menu back.
 try     reversi
 run     clear
 wait    1
@@ -1738,12 +1733,11 @@ wait    2
 
 shot    scrabble
 size    24 80
-cap     Scrabble on the full fifteen-by-fifteen board, one player against the
-cap     computer.  It reads its word list first -- the 19,577 usable words of
-cap     GAMES/words -- then draws the board with its premium squares and deals
-cap     seven letters.  `hjkl' move the cursor, `H' or `V' enters a word across
-cap     or down from where it sits, `T' trades letters back into the pool, `A'
-cap     asks the computer what it would play, and `Q' quits.
+cap     You against the computer, `Mach 1': the empty board with its premium
+cap     squares, and seven letters dealt to each of you, the blank a `*'.
+cap     `hjkl' move the cursor, `H' or `V' enters a word across or down from
+cap     where it sits, `A' asks the computer what it would play, and `Q'
+cap     quits.
 try     scrabble -n 2 -m 1
 run     clear
 wait    1
@@ -1806,8 +1800,9 @@ wait    2
 
 shot    hanoimod
 size    24 80
-cap     The same solution drawn as towers: after each move, a line per tower
-cap     lists the disks on it, largest first.  The first five of seven moves.
+cap     The three-disk solution drawn as towers: after each move, a line per
+cap     tower lists the disks on it, largest first.  The first five of seven
+cap     moves.
 try     hanoimod 3 | head -n 20
 os9     hanoimod 3 ! head -n 20
 run     clear
@@ -1954,9 +1949,10 @@ wait    6
 snap
 
 shot    trek73
-size    24 80
-cap     A battle opens after three answers: the captain's name, a sex and
-cap     one enemy vessel.  Code [1-32] waits for a command.
+size    32 80
+cap     A battle opens after three answers, typed at prompts that share the
+cap     first line: the captain's name, Kirk, the sex, `m', and one enemy
+cap     vessel.  Code [1-32] waits for a command.
 try     trek73
 run     clear
 wait    1
@@ -1971,9 +1967,10 @@ wait    6
 snap
 
 shot    ski
-size    24 80
-cap     A run down the slope, one row a turn: you are the I, trees are Y, and
-cap     the ? waits for a letter -- here R, then L -- or Return.
+size    24 100
+cap     A run down the slope, one row a turn: you are the I, and the ? at the
+cap     end of each row waits for a letter -- here R, then L -- or Return.
+cap     The Y's coming up are trees.
 try     ski
 run     clear
 wait    1
@@ -1999,8 +1996,9 @@ snap
 
 shot    wf
 size    30 80
-cap     A 12 by 12 square from the post's word file, with its title and the
-cap     list of the words it hid.
+cap     A 12 by 12 square with its title and the list of the words it hid,
+cap     made from `words', the file it reads from the current directory when
+cap     no -f names one.  DOC/wf has that file and a second, words.2.
 try     wf -x 12 -y 12 -t Words
 run     builtin cd /dd/DOC/wf
 wait    1
@@ -2036,7 +2034,7 @@ wait    6
 snap
 
 shot    kalah
-size    30 80
+size    40 80
 cap     A Kalah game at skill 2: the opening move from bin 3, the computer's
 cap     reply, and its advice for the next move.
 try     kalah
@@ -2056,10 +2054,49 @@ send    -2\r
 wait    4
 snap
 
+shot    craps
+size    24 80
+cap     Ten dollars on the pass line and one roll of the dice: six and five,
+cap     eleven, a winner on the come-out.  Each bet is a key, then the amount
+cap     and Return -- `p' is the pass line; `r' rolls, `?' lists every key and
+cap     `q' leaves.
+try     craps
+run     clear
+wait    1
+run     craps
+wait    6
+send    p
+wait    1
+send    10\r
+wait    2
+send    r
+wait    5
+snap
+send    q
+wait    4
+
+shot    thricken
+size    24 80
+cap     The first level, Cyclic Madness, four moves in: collect every one of
+cap     the level's pieces and the next loads, and the panel counts the
+cap     moves and the bearings still to collect.  h, j, k and l move, `s'
+cap     and `r' save and restore the level, and `q' leaves.
+try     thricken
+run     clear
+wait    1
+run     thricken
+wait    6
+keys    llll
+wait    3
+snap
+send    q
+wait    4
+
 shot    yidslots
 size    24 80
-cap     Three windows spinning through parts of names.  A bet of five is
-cap     placed, the windows stop, and the combination is judged.
+cap     A slot machine, a 1980s Usenet novelty: its three windows spin through
+cap     first names and the two halves of surnames.  A bet of five is placed,
+cap     the windows stop on Myron Guildenbaum, and it does not pay.
 try     yidslots
 run     clear
 wait    1
@@ -2083,10 +2120,9 @@ snap
 shot    mw
 size    24 80
 fresh
-cap     The maze from above, and along the bottom the score strip for eight
-cap     players.  A computer player, started with `mw -l=5' before this game,
-cap     has joined as player 2.  `w' walks, `a' and `d' turn, `s' shoots,
-cap     `m' drops a mine and `Q' quits.
+cap     The maze from above, you the ^^ near the middle, and along the bottom
+cap     the score strip for eight players: a computer player, started with `mw
+cap     -l=5' before this game, has joined as player 2.
 try     mw
 run     export TERM=vt100 USER=tester
 run     mw -l=5 >/nil &

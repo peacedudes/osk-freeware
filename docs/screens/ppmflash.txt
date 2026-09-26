@@ -1,0 +1,7 @@
+$ ppmhist dim.ppm; ppmflash 0.5 dim.ppm | ppmhist
+ r   g   b      lum     count
+--- --- ---     ---     -----
+ 64  32  16     40      8
+ r   g   b      lum     count
+--- --- ---     ---     -----
+159 143 135     147     8

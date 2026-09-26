@@ -2,13 +2,13 @@ $ ppmtopcx tmp/base.ppm > tmp/t.pcx
 ppmtopcx: computing colormap...
 ppmtopcx: 6 colors found
 $ ls -l tmp/t.pcx
--rw-rw-rw-   1 7        1             512 Sep 24 01:03 tmp/t.pcx
-$ pcxtoppm tmp/t.pcx | pnmfile
+-rw-rw-rw-   1 7        1             566 Sep 26 10:36 tmp/t.pcx
+$ pcxtoppm tmp/t.pcx > tmp/b.ppm
 pcxtoppm: Version: 5
 pcxtoppm: BitsPerPixel: 1
 pcxtoppm: Xmin: 0   Ymin: 0   Xmax: 47   Ymax: 23
 pcxtoppm: Planes: 3    BytesPerLine: 6    PaletteInfo: 1
 pcxtoppm: 16 color -> ppm
-pcxtoppm: stdin:        PPM raw, 48 by 24  maxval 255
-d
-$ one!
+pcxtoppm: done!
+$ pnmfile tmp/b.ppm
+tmp/b.ppm:      PPM raw, 48 by 24  maxval 255

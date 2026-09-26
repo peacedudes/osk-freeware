@@ -1,6 +1,6 @@
 $ cat tmp/DEV/t.a
  nam test
- start ldx #buf
+start ldx #buf
 loop lda ,x+
  beq done
  bsr putc
@@ -11,7 +11,7 @@ buf fcc /hello/
  end
 $ xlate tmp/DEV/t.a
  nam test
- move.b #buf
+start move.l #buf,a0
 loop move.b (a0)+,d0
  beq.s done
  bsr.s putc

@@ -1,3 +1,11 @@
+$ kalah
+
+KALAH / PIGEON PLAGUE
+ --A Game of Strategy
+Copyright(C) 1983, M.J.Knudsen.
+Version dated 85-2-21
+
+
 Type 'p' for Pigeons,
   or 'k' for Kalah,
   or 'q' to quit: k

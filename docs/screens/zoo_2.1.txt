@@ -1,14 +1,9 @@
-$ zoo_2.1 a tmp/ARC/z2.zoo SYS/motd
+$ zoo_2.1 a tmp/ARC/z2.zoo SYS/motd; zoo_2.1 l tmp/ARC/z2.zoo
 Zoo:  SYS/motd --  ( 0%) added
-$ booz l tmp/ARC/z2.zoo
+
+Archive tmp/ARC/z2.zoo:
 Length    CF  Size Now  Date      Time
 --------  --- --------  --------- --------
-      40   0%       40   3 Aug 26 19:00:00  motd
-$ fiz tmp/ARC/z2.zoo
-****************
-      20: DIR  [] ==> 196607
-****************
-      42: DIR [SYS] [motd] ==>  117
-     117: DATA
-****************
-     157: DIR  [] ==>    0
+      40   0%       40   3 Aug 26 19:00:00   SYS/motd
+--------  --- --------  --------- --------
+      40   0%       40     1 file

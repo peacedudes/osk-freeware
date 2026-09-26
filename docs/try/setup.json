@@ -2,8 +2,7 @@
 "Ascii2Libr": {
 "setup": [
 "mkdir -p /dd/tmp > /nil 2>/nil",
-"rm -f /dd/tmp/cat.libr /dd/tmp/cat2.libr > /nil 2>/nil",
-"Ascii2Libr -outfile /dd/tmp/cat2.libr < /dd/DOC/samples/cat.txt",
+"rm -f /dd/tmp/cat2.libr > /nil 2>/nil",
 "builtin cd /dd"
 ]
 },
@@ -44,8 +43,9 @@
 "mkdir -p /dd/tmp/CNC",
 "builtin cd /dd/tmp/CNC",
 "printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"builtin cd /h0/SPOOL/CNEWS",
 "printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
-"rm -f /dd/.pnewsexpert > /nil 2>/nil"
+"echo yes > /dd/.pnewsexpert"
 ]
 },
 "PrintCards": {
@@ -69,6 +69,14 @@
 "cd UAC"
 ]
 },
+"UnMacpack": {
+"setup": [
+"rm -rf /dd/tmp/UMP > /nil 2>/nil",
+"mkdir -p /dd/tmp/UMP",
+"builtin cd /dd/tmp/UMP",
+"printf \"Twas brillig, and the slithy toves\\r\" > j.txt; macbin j.txt; rm j.txt"
+]
+},
 "X11R6shl": {
 "setup": [
 "builtin cd /dd"
@@ -79,6 +87,14 @@
 "rm -rf /dd/tmp/A2PC > /nil 2>/nil; mkdir -p /dd/tmp/A2PC",
 "builtin cd /dd/tmp/A2PC",
 "cp /dd/SYS/password password; echo '{ w += NF } END { print NR, w }' > count.awk"
+]
+},
+"adduser": {
+"setup": [
+"grep -v \"^alice,\" /dd/SYS/password > /dd/tmp/G2pw.new; cp /dd/tmp/G2pw.new /dd/SYS/password",
+"rm -rf /dd/USR/ALICE /dd/SPOOL/MAIL/ALICE /dd/LOG/alice.login > /nil 2>/nil",
+"export MAIL=/dd/SPOOL/MAIL",
+"builtin cd /dd"
 ]
 },
 "adlcomp": {
@@ -117,7 +133,7 @@
 "mkdir -p /dd/tmp/GAMESA > /nil 2>/nil",
 "cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv",
 "cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi",
-"load /dd/CMDS/GAMES/advcom"
+"builtin cd /dd/tmp/GAMESA"
 ]
 },
 "advent": {
@@ -137,9 +153,8 @@
 "mkdir -p /dd/tmp/GAMESA > /nil 2>/nil",
 "cat /dd/GAMES/ADVSYS/osample.adv > /dd/tmp/GAMESA/osample.adv",
 "cat /dd/GAMES/ADVSYS/objects.adi > /dd/tmp/GAMESA/objects.adi",
-"load /dd/CMDS/GAMES/advcom",
-"sh -c \"chd /dd/tmp/GAMESA; advcom osample\" > /nil",
-"load /dd/CMDS/GAMES/advint"
+"builtin cd /dd/tmp/GAMESA",
+"advcom osample > /nil"
 ]
 },
 "afm2tfm": {
@@ -157,9 +172,8 @@
 },
 "alps": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil",
-"alps -lq > /dd/tmp/PRT/alps.out",
-"builtin cd /dd"
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; rm -f /dd/tmp/PRT/lq.out",
+"builtin cd /dd/tmp/PRT"
 ]
 },
 "animal": {
@@ -169,7 +183,10 @@
 },
 "answer": {
 "keys": [
-"tester"
+"self",
+"Mary called about the disk.",
+"She will ring back at four.",
+"bye"
 ],
 "setup": [
 "newalias"
@@ -197,13 +214,18 @@
 },
 "arc": {
 "setup": [
-"builtin cd /dd/SYS"
+"rm -rf /dd/tmp/ARCA > /nil 2>/nil",
+"mkdir -p /dd/tmp/ARCA",
+"cp /dd/SYS/motd /dd/SYS/termcap /dd/tmp/ARCA",
+"builtin cd /dd/tmp/ARCA"
 ]
 },
 "arepdaemon": {
 "setup": [
 "rm -f /dd/USR/LIB/ELM/autoreply.data /dd/USR/LIB/ELM/autoreply.log",
-"builtin cd /dd"
+"echo \"I am away until Monday.\" > /dd/tmp/away.txt",
+"echo \"tester /dd/tmp/away.txt 0\" > /dd/USR/LIB/ELM/autoreply.data",
+"builtin cd /dd/USR/LIB/ELM"
 ]
 },
 "arithmetic": {
@@ -265,9 +287,8 @@
 },
 "asciitopgm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"pbmtext \"npbm\" | pbmtoascii > /dd/tmp/NPIB/art.txt",
-"builtin cd /dd"
+"rm -rf /dd/tmp/ASCB > /nil 2>/nil; mkdir -p /dd/tmp/ASCB",
+"builtin cd /dd/tmp/ASCB"
 ]
 },
 "atc": {
@@ -275,14 +296,14 @@
 "export TERM=vt100 USER=tester"
 ]
 },
-"ateri": {
+"atktopbm": {
 "setup": [
 "builtin cd /dd"
 ]
 },
 "atob": {
 "setup": [
-"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt; btoa < /dd/tmp/ENC/j.txt > /dd/tmp/ENC/j.btoa",
+"mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
 "builtin cd /dd"
 ]
 },
@@ -309,7 +330,9 @@
 },
 "autoreply": {
 "setup": [
-"autoreply -?"
+"rm -f /dd/USR/LIB/ELM/autoreply.data",
+"echo \"I am away until Monday.\" > /dd/tmp/away.txt",
+"builtin cd /dd"
 ]
 },
 "back": {
@@ -339,13 +362,15 @@
 },
 "bcheck": {
 "setup": [
-"builtin cd /dd"
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"int max(a, b)\\rint a, b;\\r{\\rif (a > b) {\\rreturn a;\\r}\\relse { return b; }\\r}\\r\" > /dd/tmp/DEV/max.c",
+"builtin cd /dd/tmp/DEV"
 ]
 },
 "bdecode": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"not a batch\\r\" > /dd/tmp/EC/msg.txt",
-"builtin cd /dd/tmp/EC"
+"rm -rf /dd/tmp/BDC; mkdir -p /dd/tmp/BDC",
+"printf \"Decode the following with bdecode\\rSGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N\\r/00\\r42 baa8\\r\" > /dd/tmp/BDC/batch.txt",
+"builtin cd /dd/tmp/BDC"
 ]
 },
 "beav": {
@@ -355,15 +380,16 @@
 },
 "bibtex": {
 "keys": [
-"small"
+"cite"
 ],
 "setup": [
-"mkdir -p /dd/tmp/TEX > /nil 2>/nil",
-"rm -f /dd/tmp/TEX/small.dvi /dd/tmp/TEX/small.aux",
-"cp /dd/SYS/TEX/SAMPLES/small.tex /dd/tmp/TEX/small.tex",
-"builtin cd /dd/tmp/TEX",
-"latex small.tex > /nil",
-"builtin cd /dd/tmp/TEX"
+"rm -rf /dd/tmp/BIBT",
+"mkdir -p /dd/tmp/BIBT",
+"cp /dd/SYS/TEX/SAMPLES/xampl.bib /dd/tmp/BIBT",
+"builtin cd /dd/tmp/BIBT",
+"printf '\\\\documentstyle{article}\\r\\\\begin{document}\\rSee \\\\cite{book-full} and \\\\cite{article-full}.\\r\\\\bibliographystyle{plain}\\r\\\\bibliography{xampl}\\r\\\\end{document}\\r' > cite.tex",
+"latex cite.tex > /nil",
+"builtin cd /dd/tmp/BIBT"
 ]
 },
 "bincheckr": {
@@ -390,9 +416,17 @@
 },
 "bioradtopgm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/BIOB > /nil 2>/nil; mkdir -p /dd/tmp/BIOB",
+"builtin cd /dd/tmp/BIOB",
+"printf \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx90xxxxxxxxxxxxxxxxxxxx\" > x.pic; printf \"ABCDabcd\" >> x.pic",
+"pbyte x.pic 0 04",
+"pbyte x.pic 1 00",
+"pbyte x.pic 2 02",
+"pbyte x.pic 3 00",
+"pbyte x.pic 4 01",
+"pbyte x.pic 5 00",
+"pbyte x.pic e 01",
+"pbyte x.pic f 00"
 ]
 },
 "biory": {
@@ -468,12 +502,10 @@
 },
 "boa": {
 "setup": [
-"rm -rf /dd/tmp/BOAK > /nil 2>/nil",
-"mkdir -p /dd/tmp/BOAK/CONF /dd/tmp/BOAK/logs",
-"cp /dd/c/unid/boa/osk/CONF/boa.conf /dd/c/unid/boa/osk/CONF/mime.types /dd/tmp/BOAK/CONF",
-"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/BOAK/r.cr; echo \"\" >> /dd/tmp/BOAK/r.cr",
-"autolf -c -C -L < /dd/tmp/BOAK/r.cr > /dd/tmp/BOAK/get.req",
-"builtin cd /dd/tmp/BOAK"
+"rm -f /dd/c/unid/boa/osk/logs/access_log /dd/c/unid/boa/osk/logs/error_log",
+"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/boa.cr; echo \"\" >> /dd/tmp/boa.cr",
+"autolf -c -C -L < /dd/tmp/boa.cr > /dd/c/unid/boa/osk/get.req",
+"builtin cd /h0/c/unid/boa/osk"
 ]
 },
 "bootgen": {
@@ -486,6 +518,13 @@
 "setup": [
 "rm -f /dd/SYS/bootlog > /nil 2>/nil",
 "builtin cd /dd"
+]
+},
+"booz": {
+"setup": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/zb.zoo",
+"builtin cd /dd",
+"zoo a tmp/ARC/zb.zoo SYS/motd"
 ]
 },
 "browse": {
@@ -539,8 +578,8 @@
 },
 "c7decode": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"not encoded\\r\" > /dd/tmp/EC/msg.txt",
-"builtin cd /dd/tmp/EC"
+"rm -rf /dd/tmp/C7D; mkdir -p /dd/tmp/C7D; echo \"Hello from the news spool.\" > /dd/tmp/C7D/note.txt",
+"builtin cd /dd/tmp/C7D"
 ]
 },
 "caesar": {
@@ -556,10 +595,18 @@
 "cam": {
 "keys": [
 "1.5",
-"0.4",
-"0.9",
-"1.4",
-"1.8"
+".02",
+".08",
+".18",
+".30",
+".40",
+".45",
+".40",
+".30",
+".18",
+".08",
+".02",
+"1.2"
 ]
 },
 "canfield": {
@@ -604,6 +651,11 @@
 "builtin cd /dd"
 ]
 },
+"cctrap": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
+]
+},
 "cdecl": {
 "setup": [
 "builtin cd /dd"
@@ -622,7 +674,7 @@
 },
 "charcnt": {
 "setup": [
-"builtin cd /dd/SYS"
+"builtin cd /dd"
 ]
 },
 "chardef": {
@@ -657,18 +709,15 @@
 ]
 },
 "checkgame": {
-"keys": [
-"e2e4",
-"list",
-"quit"
-],
 "setup": [
-"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil",
-"rm -f /dd/tmp/GAMESA/chess.lst",
-". /dd/SYS/termcap.entry",
-"load /dd/CMDS/GAMES/gnuchess",
-"builtin cd /dd/tmp/GAMESA",
-"gnuchess > /nil 2>/nil"
+"rm -rf /dd/tmp/G4CHK > /nil 2>/nil; mkdir -p /dd/tmp/G4CHK",
+"builtin cd /dd/tmp/G4CHK",
+"echo e2e4 > moves",
+"echo d2d4 >> moves",
+"echo list >> moves",
+"echo quit >> moves",
+"gnuchessc < moves > /nil 2>/nil",
+"cat CLp* > chess.lst"
 ]
 },
 "checksum": {
@@ -713,24 +762,26 @@
 "builtin cd /dd"
 ]
 },
+"cio": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "cjpeg": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm",
-"pbyte /dd/tmp/GFXA/j.ppm 2 0a",
-"pbyte /dd/tmp/GFXA/j.ppm 8 0a",
-"pbyte /dd/tmp/GFXA/j.ppm c 0a",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXC > /nil 2>/nil; mkdir -p /dd/tmp/GFXC",
+"builtin cd /dd/tmp/GFXC",
+"ppmpat -gingham3 48 24 > j.ppm"
 ]
 },
 "cjpeg.070": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm",
-"pbyte /dd/tmp/GFXA/j.ppm 2 0a",
-"pbyte /dd/tmp/GFXA/j.ppm 8 0a",
-"pbyte /dd/tmp/GFXA/j.ppm c 0a",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXF > /nil 2>/nil; mkdir -p /dd/tmp/GFXF",
+"builtin cd /dd/tmp/GFXF",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a"
 ]
 },
 "ckermit": {
@@ -750,9 +801,14 @@
 "load /h1/CMDS/shell"
 ]
 },
+"cmuwmtopbm": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "col": {
 "setup": [
-"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"b\\b_o\\b_l\\b_d type\" > /dd/tmp/B3C/over.txt",
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"an _\\bi_\\bm_\\bp_\\bo_\\br_\\bt_\\ba_\\bn_\\bt word\" > /dd/tmp/B3C/over.txt",
 "builtin cd /dd"
 ]
 },
@@ -778,11 +834,11 @@
 },
 "combine": {
 "setup": [
-"rm -rf /dd/tmp/UTILA/cmb > /nil 2>/nil",
-"mkdir -p /dd/tmp/UTILA/cmb > /nil 2>/nil",
-"printf 'AAAAAAAA' > /dd/tmp/UTILA/cmb/even",
-"printf 'BBBBBBBB' > /dd/tmp/UTILA/cmb/odd",
-"builtin cd /dd"
+"rm -rf /dd/tmp/G2cmb > /nil 2>/nil",
+"mkdir -p /dd/tmp/G2cmb > /nil 2>/nil",
+"printf 'AAAAAAAA' > /dd/tmp/G2cmb/even",
+"printf 'BBBBBBBB' > /dd/tmp/G2cmb/odd",
+"builtin cd /dd/tmp/G2cmb"
 ]
 },
 "comm": {
@@ -874,6 +930,11 @@
 "builtin cd /dd"
 ]
 },
+"craps": {
+"keys": [
+"10"
+]
+},
 "creadoc": {
 "setup": [
 "rm -rf /dd/tmp/CRD",
@@ -889,6 +950,26 @@
 "cron": {
 "setup": [
 "set +H",
+"builtin cd /dd"
+]
+},
+"crontab": {
+"setup": [
+"printf 'lck.cron,l\\r' > /dd/tmp/crontab.si; setup /dd/tmp/crontab.si",
+"mkdir -p /h0/SPOOL/VCRON",
+"rm -rf /dd/tmp/CRT",
+"mkdir -p /dd/tmp/CRT",
+"builtin cd /dd/tmp/CRT",
+"echo \"30 6 * * 1-5 date >>weekdays\" > mytab"
+]
+},
+"csl": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"csl020": {
+"setup": [
 "builtin cd /dd"
 ]
 },
@@ -913,8 +994,11 @@
 },
 "cuts": {
 "setup": [
-"mkdir -p /dd/tmp/TEXTA; echo \"the quick brown fox\" > /dd/tmp/TEXTA/fox.txt; echo \"jumps over the lazy dog\" >> /dd/tmp/TEXTA/fox.txt",
-"builtin cd /dd"
+"set +H",
+"rm -rf /dd/tmp/CUTS > /nil 2>/nil",
+"mkdir -p /dd/tmp/CUTS",
+"builtin cd /dd/tmp/CUTS",
+"printf '.0000.I.A.260926.ASC.\"fox.txt\"................................................=\\r.0001.Dthe quick brown fox!=jumps over the lazy dog!=#........................9\\r.0000.I.A.260926.ASC.\"fox.txt\"................................................=\\r' > fox.cut"
 ]
 },
 "cvtbase": {
@@ -936,7 +1020,8 @@
 },
 "cxref": {
 "setup": [
-"builtin cd /dd"
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"int max(a, b)\\rint a, b;\\r{\\rif (a > b) {\\rreturn a;\\r}\\relse { return b; }\\r}\\r\" > /dd/tmp/DEV/max.c",
+"builtin cd /dd/tmp/DEV"
 ]
 },
 "dback": {
@@ -951,8 +1036,9 @@
 },
 "dbz": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"<one@site.uucp> 999999999 1\\r\" > /dd/tmp/EC/history",
-"builtin cd /dd/tmp/EC"
+"rm -rf /dd/tmp/DBZ; mkdir -p /dd/tmp/DBZ",
+"printf \"<one@site.uucp>\\t999999999~-\\tcomp.os.os9/1\\r<two@site.uucp>\\t999999999~-\\tcomp.os.os9/2\\r\" > /dd/tmp/DBZ/history",
+"builtin cd /dd/tmp/DBZ"
 ]
 },
 "dc": {
@@ -964,6 +1050,14 @@
 "setup": [
 "mkdir -p /dd/tmp > /nil 2>/nil; printf '10 PRINT \"HELLO OS-9\"\\r20 FOR I = 1 TO 3\\r30 PRINT I\\r40 NEXT I\\r50 END\\rLIST\\rRUN\\rBYE\\r' > /dd/tmp/dds.in",
 "builtin cd /dd"
+]
+},
+"dedit": {
+"keys": [
+"/dd@"
+],
+"setup": [
+"load /h1/CMDS/runb"
 ]
 },
 "delbak": {
@@ -1006,6 +1100,11 @@
 "builtin cd /dd"
 ]
 },
+"di": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
+]
+},
 "diff": {
 "setup": [
 "builtin cd /dd"
@@ -1028,7 +1127,7 @@
 },
 "dir": {
 "setup": [
-"builtin cd /dd/SYS"
+"builtin cd /dd"
 ]
 },
 "dirname": {
@@ -1075,18 +1174,20 @@
 },
 "djpeg": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXD > /nil 2>/nil; mkdir -p /dd/tmp/GFXD",
+"builtin cd /dd/tmp/GFXD",
+"cp /dd/SRC/jpeglib/JPEG_5A/testimg.jpg testimg.jpg"
 ]
 },
 "djpeg.070": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm",
-"pbyte /dd/tmp/GFXA/j.ppm 2 0a",
-"pbyte /dd/tmp/GFXA/j.ppm 8 0a",
-"pbyte /dd/tmp/GFXA/j.ppm c 0a",
-"cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXE > /nil 2>/nil; mkdir -p /dd/tmp/GFXE",
+"builtin cd /dd/tmp/GFXE",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a",
+"cjpeg -quality 50 j.ppm > j.jpg"
 ]
 },
 "dld": {
@@ -1116,13 +1217,10 @@
 },
 "dotilde": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"hello\\r~x\\rmore text\\r\" > /dd/tmp/EC/msg.txt",
-"builtin cd /dd/tmp/EC"
-]
-},
-"drivers": {
-"setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/DTL; mkdir -p /dd/tmp/DTL",
+"echo \"Dear Bob,\" > /dd/tmp/DTL/letter",
+"echo \"The disk arrived today.\" > /dd/tmp/DTL/note",
+"builtin cd /dd/tmp/DTL"
 ]
 },
 "du": {
@@ -1228,6 +1326,11 @@
 "builtin cd /dd"
 ]
 },
+"editor": {
+"setup": [
+"builtin cd /dd/GAMES"
+]
+},
 "elvis": {
 "setup": [
 "mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
@@ -1285,6 +1388,17 @@
 "builtin cd /dd"
 ]
 },
+"erradm": {
+"setup": [
+"printf 'lck.errlog,l\\r' > /dd/tmp/errlog.si; setup /dd/tmp/errlog.si",
+"errlog &"
+]
+},
+"errlog": {
+"setup": [
+"printf 'lck.errlog,l\\r' > /dd/tmp/errlog.si; setup /dd/tmp/errlog.si"
+]
+},
 "etags": {
 "setup": [
 "mkdir -p /dd/tmp/DEV > /nil 2>/nil; rm -f /dd/tmp/DEV/TAGS",
@@ -1318,10 +1432,21 @@
 "builtin cd /dd"
 ]
 },
+"fastcc": {
+"setup": [
+"rm -rf /dd/tmp/G2cc > /nil 2>/nil",
+"mkdir -p /dd/tmp/G2cc",
+"cp /dd/DOC/samples/hello.c /dd/tmp/G2cc/hello.c",
+"load /h1/CMDS/cpp /h1/CMDS/c68 /h1/CMDS/o68 /h1/CMDS/r68 /h1/CMDS/l68",
+"export CDEF=/h1/DEFS CLIB=/h1/LIB",
+"builtin cd /dd/tmp/G2cc"
+]
+},
 "fastmail": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"hello from fastmail\\r\" > /dd/tmp/EC/msg.txt",
-"builtin cd /dd/tmp/EC"
+"load /h1/CMDS/list",
+"rm -rf /dd/tmp/FMAIL; mkdir -p /dd/tmp/FMAIL; echo \"hello from fastmail\" > /dd/tmp/FMAIL/msg.txt",
+"builtin cd /dd/tmp/FMAIL"
 ]
 },
 "fc": {
@@ -1368,11 +1493,13 @@
 "rm -rf /dd/tmp/FSMAIL",
 "mkdir -p /dd/tmp/FSMAIL/tester",
 "export MAIL=/dd/tmp/FSMAIL",
+"cp /dd/SYS/UUCP/Parameters /dd/tmp/Parameters.fs",
+"grep -v \"^server = no\" /dd/tmp/Parameters.fs > /dd/SYS/UUCP/Parameters",
 "echo \"From tester Mon Sep 21 00:00:00 2026\" > /dd/tmp/fsreq",
 "echo \"Subject: request\" >> /dd/tmp/fsreq",
 "echo \"\" >> /dd/tmp/fsreq",
 "echo \"reply tester\" >> /dd/tmp/fsreq",
-"echo \"help\" >> /dd/tmp/fsreq",
+"echo \"dir\" >> /dd/tmp/fsreq",
 "echo \"quit\" >> /dd/tmp/fsreq",
 "load /dd/CMDS/UUCP/rmail"
 ]
@@ -1403,13 +1530,31 @@
 "fixtext": {
 "setup": [
 "rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
-"printf \"line one\\nline two\\n\" > /dd/tmp/EC/ft.in",
+"printf \"line one\\012line two\\012\" > /dd/tmp/EC/ft.in",
 "builtin cd /dd/tmp/EC"
+]
+},
+"fixyear": {
+"setup": [
+"rm -rf /dd/tmp/FIXY",
+"mkdir -p /dd/tmp/FIXY",
+"builtin cd /dd/tmp/FIXY",
+"echo hello > old.txt",
+"set -- $(dir -e | grep ' old.txt$'); [ \"$7\" = old.txt ] && pbyte /dd@ ${5}03 05"
+]
+},
+"fiz": {
+"setup": [
+"mkdir -p /dd/tmp/ARC > /nil 2>/nil; rm -f /dd/tmp/ARC/zf.zoo",
+"builtin cd /dd",
+"zoo_2.1 a tmp/ARC/zf.zoo SYS/motd"
 ]
 },
 "fkeys": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/FKY; mkdir -p /dd/tmp/FKY",
+"cp /dd/DOC/fkeys/f_keys /dd/tmp/FKY/f_keys",
+"builtin cd /dd/tmp/FKY"
 ]
 },
 "flex": {
@@ -1467,6 +1612,11 @@
 "builtin cd /dd"
 ]
 },
+"fuddle": {
+"keys": [
+"e2e4"
+]
+},
 "funzip": {
 "setup": [
 "builtin cd /dd"
@@ -1484,8 +1634,14 @@
 },
 "game": {
 "setup": [
-"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; echo \"e2e4      0      0      0     8\" > /dd/tmp/GAMESA/g.lst",
-"builtin cd /dd/tmp/GAMESA"
+"rm -rf /dd/tmp/G4GAME > /nil 2>/nil; mkdir -p /dd/tmp/G4GAME",
+"builtin cd /dd/tmp/G4GAME",
+"echo e2e4 > moves",
+"echo d2d4 >> moves",
+"echo list >> moves",
+"echo quit >> moves",
+"gnuchessc < moves > /nil 2>/nil",
+"cat CLp* > chess.lst"
 ]
 },
 "gawk": {
@@ -1495,7 +1651,9 @@
 },
 "gcc": {
 "setup": [
-"builtin cd /dd/CMDS/GCC2"
+"load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68",
+"builtin cd /dd/CMDS/GCC2",
+"rm -f hello.c hello.r"
 ]
 },
 "gcc137": {
@@ -1517,13 +1675,15 @@
 },
 "gcc2": {
 "setup": [
-"builtin cd /dd/CMDS/GCC2"
+"load /h1/CMDS/r68",
+"builtin cd /dd/CMDS/GCC2",
+"rm -f hello.c hello.a hello.r"
 ]
 },
 "gcc272": {
 "setup": [
 "builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272",
-"printf \"int main()\\r{\\r  return 0;\\r}\\r\" > hello.c"
+"rm -f hello.c hello.a"
 ]
 },
 "gcc272_cc2": {
@@ -1542,6 +1702,19 @@
 "setup": [
 "builtin cd /dd/CMDS/GCC272",
 "printf \"#define ANSWER 42\\rint main()\\r{\\r  return ANSWER;\\r}\\r\" > hello.c"
+]
+},
+"gcc272_collect": {
+"setup": [
+"load /h1/CMDS/r68",
+"export PATH=$PATH:/dd/CMDS/GCC272",
+"rm -rf /dd/tmp/CL272",
+"mkdir -p /dd/tmp/CL272",
+"builtin cd /dd/tmp/CL272",
+"cp /h1/LIB/cstart.r /h1/LIB/clibn.l /h1/LIB/sys.l .",
+"cp /dd/GNULIB/libgcc000.l gcc.l",
+"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
 "gcc_cccp": {
@@ -1565,6 +1738,11 @@
 "builtin cd /dd"
 ]
 },
+"gemtopbm": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "gen": {
 "setup": [
 "rm -f /dd/tmp/SYSB/demo.c > /nil 2>/nil",
@@ -1583,6 +1761,13 @@
 "getinfo": {
 "setup": [
 "setup"
+]
+},
+"getsys": {
+"setup": [
+"rm -rf /dd/tmp/G2gs > /nil 2>/nil; mkdir -p /dd/tmp/G2gs",
+"builtin cd /dd/tmp/G2gs",
+"getsys > gs.out 2>/nil"
 ]
 },
 "gftopk": {
@@ -1623,11 +1808,14 @@
 },
 "gnuan": {
 "keys": [
-"tmp/GAMESA/moves"
+"moves"
 ],
 "setup": [
-"mkdir -p /dd/tmp/GAMESA > /nil 2>/nil; printf 'e2e4 e7e5\\rg1f3 b8c6\\rf1b5 a7a6\\r' > /dd/tmp/GAMESA/moves",
-"builtin cd /dd"
+"rm -rf /dd/tmp/G4GNUAN > /nil 2>/nil",
+"mkdir -p /dd/tmp/G4GNUAN",
+"builtin cd /dd/tmp/G4GNUAN",
+"echo \"e2e4 e7e5\" > moves; echo \"g1f3 b8c6\" >> moves; echo \"f1b5 a7a6\" >> moves",
+"echo \"h2h3 h7h6\" >> moves; echo \"b5c6 d7c6\" >> moves; echo draw >> moves"
 ]
 },
 "gnuchess": {
@@ -1653,6 +1841,7 @@
 },
 "gnuchessr": {
 "keys": [
+"40 5",
 "e2e4"
 ]
 },
@@ -1664,10 +1853,10 @@
 },
 "gnuplot": {
 "keys": [
-"set terminal",
 "set terminal postscript",
 "set output \"tmp/plot.ps\"",
-"plot [-6:6] sin(x)/x"
+"plot [-6:6] sin(x)/x",
+"quit"
 ],
 "setup": [
 "builtin cd /dd"
@@ -1675,14 +1864,24 @@
 },
 "gouldtoppm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"ppmmake red 16 16 > /dd/tmp/NPIB/nr.ppm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GOUB > /nil 2>/nil; mkdir -p /dd/tmp/GOUB",
+"builtin cd /dd/tmp/GOUB",
+"printf \"%512s\" \"\" > x.gould; printf \"ABCDEFGHIJKLabcdefghijkl\" >> x.gould",
+"pbyte x.gould 2 02",
+"pbyte x.gould 3 00",
+"pbyte x.gould 4 0c",
+"pbyte x.gould 5 00",
+"pbyte x.gould 6 18",
+"pbyte x.gould 7 00",
+"pbyte x.gould 8 01",
+"pbyte x.gould 9 00"
 ]
 },
 "gpp": {
 "setup": [
-"builtin cd /dd/CMDS/GCC2"
+"load /h1/CMDS/r68",
+"builtin cd /dd/CMDS/GCC2",
+"rm -f hello.c hello.r"
 ]
 },
 "gpp_collect": {
@@ -1717,15 +1916,21 @@
 },
 "gs33": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"/Helvetica-Bold findfont 40 scalefont setfont\\r8 14 moveto (OS-9/68000) show\\rshowpage\\r\" > /dd/tmp/PRT/old.ps",
-"builtin cd /dd"
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"/Helvetica-Bold findfont 40 scalefont setfont\\r8 14 moveto (OS-9/68000) show\\rshowpage\\r\" > /dd/tmp/PRT/a.ps",
+"builtin cd /dd/tmp/PRT"
 ]
 },
 "gs403": {
 "setup": [
 "mkdir -p /dd/tmp/PRT > /nil 2>/nil",
 "export GS_LIB=/dd/LIB/gs403",
-"builtin cd /dd"
+"cp /dd/DOC/samples/hello.ps /dd/tmp/PRT/hello.ps",
+"builtin cd /dd/tmp/PRT"
+]
+},
+"gshell": {
+"setup": [
+"builtin cd /dd/SYS"
 ]
 },
 "gtar": {
@@ -1775,6 +1980,11 @@
 "rm -f /dd/tmp/ARC/g7*",
 "cat /dd/DOC/INDEX > /dd/tmp/ARC/g7",
 "builtin cd /dd"
+]
+},
+"h0t": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
 ]
 },
 "hc": {
@@ -1828,16 +2038,10 @@
 "builtin cd /dd"
 ]
 },
-"hinterhalt": {
-"setup": [
-"testibc"
-]
-},
 "hipstopgm": {
 "setup": [
 "rm -rf /dd/tmp/HIPB > /nil 2>/nil; mkdir -p /dd/tmp/HIPB",
-"builtin cd /dd/tmp/HIPB",
-"printf \"osk\\rstrip\\r1\\rtoday\\r2\\r8\\r8\\r0\\r0\\r.\\r\" > x.hips; printf \"0123456789abcdef\" >> x.hips"
+"builtin cd /dd/tmp/HIPB"
 ]
 },
 "hist": {
@@ -1897,13 +2101,14 @@
 },
 "imgtoppm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"builtin cd /dd"
+"rm -rf /dd/tmp/IMGB > /nil 2>/nil; mkdir -p /dd/tmp/IMGB",
+"builtin cd /dd/tmp/IMGB"
 ]
 },
 "indent": {
 "setup": [
-"builtin cd /dd"
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \"int max(a, b)\\rint a, b;\\r{\\rif (a > b) {\\rreturn a;\\r}\\relse { return b; }\\r}\\r\" > /dd/tmp/DEV/max.c",
+"builtin cd /dd/tmp/DEV"
 ]
 },
 "inews": {
@@ -2013,6 +2218,11 @@
 "exit"
 ]
 },
+"keydrv.mm1": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "ksh": {
 "setup": [
 "mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf \"print hello from a ksh script\\rfor f in a b c; do print item \\$f; done\\r\" > /dd/tmp/SHL/script.ksh",
@@ -2037,8 +2247,10 @@
 },
 "lcasep": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"John Q Public\\r\" > /dd/tmp/EC/name.txt",
-"builtin cd /dd/tmp/EC"
+"set +H",
+"rm -rf /dd/tmp/LCP; mkdir -p /dd/tmp/LCP",
+"printf \"MilkyWay\\tMilkyWay!%%s\\rPhoenix.UUCP\\tMilkyWay!Phoenix!%%s\\r\" > /dd/tmp/LCP/paths",
+"builtin cd /dd/tmp/LCP"
 ]
 },
 "less": {
@@ -2092,6 +2304,11 @@
 "builtin cd /dd/SRC/eff_make"
 ]
 },
+"liborder.os9": {
+"setup": [
+"builtin cd /dd/SRC/eff_make"
+]
+},
 "libsplit": {
 "setup": [
 "builtin cd /dd"
@@ -2100,11 +2317,6 @@
 "life": {
 "setup": [
 "builtin cd /dd/GAMES/LIFE"
-]
-},
-"lispm": {
-"setup": [
-"builtin cd /dd"
 ]
 },
 "lispmtopgm": {
@@ -2168,7 +2380,6 @@
 },
 "logisim": {
 "setup": [
-"export PORT=/term",
 "builtin cd /dd"
 ]
 },
@@ -2278,6 +2489,11 @@
 "builtin cd /dd/tmp/ENC"
 ]
 },
+"macptopbm": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "macsave": {
 "setup": [
 "rm -rf /dd/tmp/ENC/ms > /nil 2>/nil; mkdir -p /dd/tmp/ENC/ms; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/j.txt",
@@ -2290,6 +2506,14 @@
 "setup": [
 "mkdir -p /dd/tmp/ENC > /nil 2>/nil; rm -f /dd/tmp/ENC/ms.stream; printf \"Twas brillig, and the slithy toves\\r\" > /dd/tmp/ENC/ms.txt",
 "builtin cd /dd/tmp/ENC"
+]
+},
+"macunpack": {
+"setup": [
+"rm -rf /dd/tmp/MUP > /nil 2>/nil",
+"mkdir -p /dd/tmp/MUP",
+"builtin cd /dd/tmp/MUP",
+"printf \"Twas brillig, and the slithy toves\\r\" > j.txt; macbin j.txt; rm j.txt"
 ]
 },
 "mail": {
@@ -2308,7 +2532,8 @@
 "echo 'Subject: hello' > /dd/tmp/MAILX/letter",
 "echo '' >> /dd/tmp/MAILX/letter",
 "echo 'a line of mail' >> /dd/tmp/MAILX/letter",
-"rmail tester < /dd/tmp/MAILX/letter"
+"rmail tester < /dd/tmp/MAILX/letter",
+"builtin cd /dd/tmp/MAILX"
 ]
 },
 "make": {
@@ -2330,6 +2555,14 @@
 "builtin cd /dd/tmp/EC"
 ]
 },
+"makeinfo": {
+"setup": [
+"rm -rf /dd/tmp/MKI",
+"mkdir -p /dd/tmp/MKI",
+"builtin cd /dd/tmp/MKI",
+"printf '\\\\input texinfo\\r@setfilename hi.info\\r@settitle Hi\\r@node Top\\r@chapter Hi\\r\\rA small manual.\\r@bye\\r' > hi.texi"
+]
+},
 "makelex": {
 "setup": [
 "mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"Allah:TF:SO:0\\rBMW:TDF:SU:0\\rBabylon:HIF:SO:n\\r\" > /dd/tmp/TXT/wl",
@@ -2343,15 +2576,26 @@
 },
 "marc": {
 "setup": [
-"rm -f a1.arc a2.arc",
-"arc a a1.arc /dd/SYS/motd",
-"arc a a2.arc /dd/SYS/termcap"
+"rm -rf /dd/tmp/MARC > /nil 2>/nil",
+"mkdir -p /dd/tmp/MARC",
+"builtin cd /dd/tmp/MARC",
+"arc a a1.arc /dd/SYS/motd; arc a a2.arc /dd/SYS/termcap"
 ]
 },
 "mastrm": {
 "keys": [
 "red green blue yellow",
 "white black red green"
+]
+},
+"math": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"math881": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "mcvert": {
@@ -2395,7 +2639,9 @@
 },
 "mkdict": {
 "setup": [
-"builtin cd /dd/GAMES/BOG"
+"rm -rf /dd/tmp/G4BOG > /nil 2>/nil; mkdir -p /dd/tmp/G4BOG",
+"builtin cd /dd/tmp/G4BOG",
+"cat /dd/GAMES/words > words"
 ]
 },
 "mkdir": {
@@ -2407,7 +2653,9 @@
 },
 "mkindex": {
 "setup": [
-"builtin cd /dd/GAMES/BOG"
+"rm -rf /dd/tmp/G4BOGI > /nil 2>/nil; mkdir -p /dd/tmp/G4BOGI",
+"builtin cd /dd/tmp/G4BOGI",
+"cat /dd/GAMES/BOG/dict > dict"
 ]
 },
 "mmenu": {
@@ -2438,22 +2686,11 @@
 "builtin cd /dd"
 ]
 },
-"modules": {
-"setup": [
-"builtin cd /dd"
-]
-},
-"modules2": {
-"setup": [
-"builtin cd /dd"
-]
-},
 "monop": {
 "keys": [
 "Alice",
 "Bob",
 "print",
-"where",
 "quit",
 "yes"
 ]
@@ -2534,6 +2771,16 @@
 "mscopy /dd/SYS/motd a:MOTD.TXT > /nil"
 ]
 },
+"msdrv.901_340": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"msdrv_340.901.ms": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "mshell": {
 "setup": [
 "load /h1/CMDS/shell",
@@ -2603,8 +2850,7 @@
 "mtvtoppm": {
 "setup": [
 "rm -rf /dd/tmp/MTVB > /nil 2>/nil; mkdir -p /dd/tmp/MTVB",
-"builtin cd /dd/tmp/MTVB",
-"printf \"4 2\\r\" > x.mtv; printf \"0123456789abcdefghijklmn\" >> x.mtv"
+"builtin cd /dd/tmp/MTVB"
 ]
 },
 "mv": {
@@ -2634,11 +2880,6 @@
 "mkdir -p /h0/USR/DOC/.MAN/SOURCE"
 ]
 },
-"names": {
-"setup": [
-"builtin cd /dd"
-]
-},
 "napoleon": {
 "keys": [
 "quit"
@@ -2652,12 +2893,18 @@
 },
 "nchess": {
 "keys": [
+"40 5",
 "e2e4"
 ]
 },
 "nethack3": {
 "setup": [
 "export TERM=vt100"
+]
+},
+"newgrp": {
+"setup": [
+"printf 'users::1:tester\\rstaff::5:tester\\r' > /dd/SYS/group"
 ]
 },
 "newmail": {
@@ -2686,15 +2933,17 @@
 },
 "newshist": {
 "setup": [
-"mkdir -p /dd/lib/news > /nil 2>/nil; printf \"<one@site.uucp> 9999999999 1\\r\" > /dd/lib/news/history",
-"builtin cd /dd/lib/news"
+"mkdir -p /dd/lib/news > /nil 2>/nil",
+"printf \"<one@site.uucp>\\t999999999~-\\tcomp.os.os9/1\\r<two@site.uucp>\\t999999999~-\\tcomp.os.os9/2\\r\" > /dd/lib/news/history",
+"builtin cd /dd/lib/news",
+"dbz history"
 ]
 },
 "newslock": {
 "setup": [
 "mkdir -p /dd/tmp/MAILA > /nil 2>/nil",
-"builtin cd /dd",
-"echo $$ > tmp/MAILA/tmplock"
+"builtin cd /dd/tmp/MAILA",
+"echo $$ > tmplock"
 ]
 },
 "newsrun": {
@@ -2814,11 +3063,6 @@
 "printf 'OK\\ry\\r' > ok"
 ]
 },
-"noreader": {
-"setup": [
-"builtin cd /dd"
-]
-},
 "nptx": {
 "setup": [
 "rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"jqpublic\\tJohn Q Public\\r\" > /dd/tmp/EC/name.txt",
@@ -2847,9 +3091,22 @@
 "builtin cd /dd"
 ]
 },
+"ob68kdemo": {
+"setup": [
+"rm -rf /dd/tmp/G2ob > /nil 2>/nil",
+"mkdir -p /dd/tmp/G2ob",
+"cp /dd/DOC/omnibasic/bench1.b /dd/tmp/G2ob/bench1.b",
+"builtin cd /dd/tmp/G2ob"
+]
+},
 "ogrify": {
 "setup": [
 "builtin cd /dd/DOC/ogrify"
+]
+},
+"oleo": {
+"keys": [
+"=6*7"
 ]
 },
 "orbit": {
@@ -2865,6 +3122,11 @@
 "os9dsk": {
 "setup": [
 "builtin cd /dd/DOC/os9dsk"
+]
+},
+"os9lib": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "owner": {
@@ -2884,6 +3146,9 @@
 "pacman": {
 "keys": [
 "Tester"
+],
+"setup": [
+"load /h1/CMDS/tmode"
 ]
 },
 "pagefraz": {
@@ -2904,7 +3169,14 @@
 ]
 },
 "passwd": {
+"keys": [
+"lemon7",
+"lemon7"
+],
 "setup": [
+"load /h1/CMDS/shell /h1/CMDS/copy",
+"ls /dd/tmp/G2pw.orig > /nil 2>/nil || cp /dd/SYS/password /dd/tmp/G2pw.orig",
+"cp /dd/tmp/G2pw.orig /dd/SYS/password",
 "builtin cd /dd"
 ]
 },
@@ -2938,7 +3210,9 @@
 "rm -rf tmp/PBMA",
 "mkdir -p tmp/PBMA",
 "builtin cd tmp/PBMA",
-"pgmnoise 64 32 | pgmtopbm -threshold > noise.pbm"
+"pbmtext OS-9 > os9.pbm",
+"pgmnoise 57 29 | pgmtopbm -threshold -value 0.08 > dots.pbm",
+"pnmarith -minimum os9.pbm dots.pbm > speckled.pbm"
 ]
 },
 "pbmmake": {
@@ -2951,7 +3225,7 @@
 "rm -rf tmp/PBMB",
 "mkdir -p tmp/PBMB",
 "builtin cd tmp/PBMB",
-"pgmnoise 64 32 | pgmtopbm -threshold > noise.pbm"
+"pbmtext OS-9 > os9.pbm"
 ]
 },
 "pbmreduce": {
@@ -2961,11 +3235,26 @@
 "builtin cd /dd"
 ]
 },
+"pbmto10x": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "pbmtobbnbg": {
 "setup": [
 "rm -rf /dd/tmp/BBNB > /nil 2>/nil; mkdir -p /dd/tmp/BBNB",
 "pbmmake -g 16 8 > /dd/tmp/BBNB/b.pbm",
 "builtin cd /dd/tmp/BBNB"
+]
+},
+"pbmtoepsi": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"pbmtoepson": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "pbmtog3": {
@@ -2982,10 +3271,30 @@
 "builtin cd /dd"
 ]
 },
+"pbmtogo": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "pbmtoicon": {
 "setup": [
 "mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
 "pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+]
+},
+"pbmtolj": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"pbmtoln03": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"pbmtolps": {
+"setup": [
 "builtin cd /dd"
 ]
 },
@@ -3011,6 +3320,18 @@
 "builtin cd /dd"
 ]
 },
+"pbmtopk": {
+"setup": [
+"rm -rf /dd/tmp/PKA > /nil 2>/nil; mkdir -p /dd/tmp/PKA",
+"builtin cd /dd/tmp/PKA",
+"pbmtext A > a.pbm"
+]
+},
+"pbmtoplot": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "pbmtoptx": {
 "setup": [
 "mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
@@ -3022,6 +3343,11 @@
 "setup": [
 "mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
 "pbmmake -g 48 24 > /dd/tmp/NPMB/b.pbm",
+"builtin cd /dd"
+]
+},
+"pbmtozinc": {
+"setup": [
 "builtin cd /dd"
 ]
 },
@@ -3067,9 +3393,8 @@
 },
 "pgmedge": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"ppmpat -gingham3 40 20 | ppmtopgm > /dd/tmp/NEAB/gg.pgm",
-"builtin cd /dd/tmp/NEAB"
+"rm -rf /dd/tmp/EDGB > /nil 2>/nil; mkdir -p /dd/tmp/EDGB",
+"builtin cd /dd/tmp/EDGB"
 ]
 },
 "pgmenhance": {
@@ -3108,7 +3433,9 @@
 },
 "pgmtexture": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/PGTX > /nil 2>/nil; mkdir -p /dd/tmp/PGTX",
+"builtin cd /dd/tmp/PGTX",
+"giftopnm /dd/DEMO/gulls.gif | ppmtopgm | pnmscale -xysize 60 40 | pnmdepth 31 > gg.pgm"
 ]
 },
 "pgmtofs": {
@@ -3125,10 +3452,18 @@
 "builtin cd /dd"
 ]
 },
-"pgmtoppm": {
+"pi1toppm": {
 "setup": [
-"mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
-"pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm",
+"builtin cd /dd"
+]
+},
+"pi3topbm": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"picttoppm": {
+"setup": [
 "builtin cd /dd"
 ]
 },
@@ -3138,14 +3473,16 @@
 "builtin cd /dd/tmp/MF"
 ]
 },
+"pktopbm": {
+"setup": [
+"rm -rf /dd/tmp/PKB > /nil 2>/nil; mkdir -p /dd/tmp/PKB",
+"builtin cd /dd/tmp/PKB",
+"cp /dd/SYS/TEX/FONTS/PK300/cmbx10.300pk cmbx10.300pk"
+]
+},
 "pktype": {
 "setup": [
 "mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF; gftopk logo10.120gf /dd/tmp/MF/logo10.120pk > /nil"
-]
-},
-"plotters": {
-"setup": [
-"builtin cd /dd"
 ]
 },
 "pltotf": {
@@ -3155,9 +3492,17 @@
 "builtin cd /dd"
 ]
 },
+"pnmalias": {
+"setup": [
+"rm -rf /dd/tmp/ALIB > /nil 2>/nil; mkdir -p /dd/tmp/ALIB",
+"builtin cd /dd/tmp/ALIB",
+"printf \"P2\\r6 4\\r255\\r255 255 255 255 255 0\\r255 255 255 255 0 0\\r255 255 0 0 0 0\\r0 0 0 0 0 0\\r\" > edge.pgm"
+]
+},
 "pnmarith": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/PNAR > /nil 2>/nil; mkdir -p /dd/tmp/PNAR",
+"builtin cd /dd/tmp/PNAR"
 ]
 },
 "pnmcat": {
@@ -3165,12 +3510,18 @@
 "builtin cd /dd"
 ]
 },
+"pnmcomp": {
+"setup": [
+"rm -rf /dd/tmp/COMB > /nil 2>/nil; mkdir -p /dd/tmp/COMB",
+"builtin cd /dd/tmp/COMB",
+"pbmtext OS-9 > os9.pbm; pgmramp -tb 152 88 > ramp.pgm"
+]
+},
 "pnmconvol": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"pgmnoise 48 24 > /dd/tmp/NEAB/n.pgm",
-"pgmkernel 3 > /dd/tmp/NEAB/k.pgm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/CNVB > /nil 2>/nil; mkdir -p /dd/tmp/CNVB",
+"builtin cd /dd/tmp/CNVB",
+"pgmnoise 152 88 > n.pgm; pgmkernel 3 > k.pgm"
 ]
 },
 "pnmcrop": {
@@ -3190,9 +3541,9 @@
 },
 "pnmdepth": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/DEPB > /nil 2>/nil; mkdir -p /dd/tmp/DEPB",
+"builtin cd /dd/tmp/DEPB",
+"pgmramp -lr 152 44 > ramp.pgm"
 ]
 },
 "pnmenlarge": {
@@ -3217,11 +3568,6 @@
 "builtin cd /dd"
 ]
 },
-"pnmfilters": {
-"setup": [
-"builtin cd /dd"
-]
-},
 "pnmflip": {
 "setup": [
 "mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
@@ -3238,20 +3584,28 @@
 },
 "pnmhisteq": {
 "setup": [
-"mkdir -p /dd/tmp > /nil 2>/nil",
-"builtin cd /dd"
+"rm -rf /dd/tmp/HEQB > /nil 2>/nil; mkdir -p /dd/tmp/HEQB",
+"builtin cd /dd/tmp/HEQB",
+"cp /dd/DEMO/sphere.pgm sphere.pgm"
 ]
 },
 "pnmhistmap": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/HMAB > /nil 2>/nil; mkdir -p /dd/tmp/HMAB",
+"builtin cd /dd/tmp/HMAB",
+"giftopnm /dd/DEMO/gulls.gif | ppmtopgm > g.pgm"
 ]
 },
 "pnminvert": {
 "setup": [
 "builtin cd /dd"
+]
+},
+"pnmnlfilt": {
+"setup": [
+"rm -rf /dd/tmp/NLFB > /nil 2>/nil; mkdir -p /dd/tmp/NLFB",
+"builtin cd /dd/tmp/NLFB",
+"printf \"P2\\r7 3\\r255\\r100 100 100 100 100 100 100\\r100 100 100 255 100 100 100\\r100 100 100 100 100 100 100\\r\" > spot.pgm"
 ]
 },
 "pnmnoraw": {
@@ -3300,8 +3654,9 @@
 },
 "pnmsmooth": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"builtin cd /dd"
+"rm -rf /dd/tmp/SMOB > /nil 2>/nil; mkdir -p /dd/tmp/SMOB",
+"builtin cd /dd/tmp/SMOB",
+"pgmnoise 152 88 > n.pgm"
 ]
 },
 "pnmtile": {
@@ -3349,6 +3704,20 @@
 "world",
 "testing postnews",
 "This is only a test."
+],
+"setup": [
+"load /dd/CMDS/UUCP/rnews",
+"rm -rf /dd/SPOOL/news/COMP > /nil 2>/nil",
+"builtin cd /dd"
+]
+},
+"postprint": {
+"setup": [
+"rm -rf /dd/tmp/G4PP > /nil 2>/nil; mkdir -p /dd/tmp/G4PP",
+"builtin cd /dd/tmp/G4PP",
+"cat /h0/GNUCHESS4.0/MISC/gnuchess.hash > hash.save",
+"echo a2a3 > moves; echo h2h3 >> moves; echo quit >> moves",
+"gnuchessc < moves > /nil 2>/nil"
 ]
 },
 "ppm3d": {
@@ -3380,15 +3749,29 @@
 "builtin cd /dd"
 ]
 },
-"ppmdither": {
+"ppmdist": {
 "setup": [
 "builtin cd /dd"
 ]
 },
+"ppmdither": {
+"setup": [
+"rm -rf /dd/tmp/PDIT > /nil 2>/nil; mkdir -p /dd/tmp/PDIT",
+"builtin cd /dd/tmp/PDIT",
+"giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 152 88 > gulls.ppm"
+]
+},
+"ppmflash": {
+"setup": [
+"rm -rf /dd/tmp/FLSB > /nil 2>/nil; mkdir -p /dd/tmp/FLSB",
+"builtin cd /dd/tmp/FLSB",
+"ppmmake rgb:40/20/10 4 2 > dim.ppm"
+]
+},
 "ppmforge": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"builtin cd /dd"
+"rm -rf /dd/tmp/FRGB > /nil 2>/nil; mkdir -p /dd/tmp/FRGB",
+"builtin cd /dd/tmp/FRGB"
 ]
 },
 "ppmforge-clouds": {
@@ -3417,15 +3800,23 @@
 },
 "ppmnorm": {
 "setup": [
-"mkdir -p /dd/tmp/NEAB > /nil 2>/nil",
-"ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/nw.ppm",
-"ppmdim 0.4 /dd/tmp/NEAB/nw.ppm > /dd/tmp/NEAB/nd.ppm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/NRMB > /nil 2>/nil; mkdir -p /dd/tmp/NRMB",
+"builtin cd /dd/tmp/NRMB",
+"pgmramp -lr 152 44 | pgmtoppm rgb:40/40/40-rgb:80/80/80 > dim.ppm"
 ]
 },
-"ppmntsc": {
+"ppmquant": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/PQNT > /nil 2>/nil; mkdir -p /dd/tmp/PQNT",
+"builtin cd /dd/tmp/PQNT",
+"giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 152 88 > gulls.ppm"
+]
+},
+"ppmqvga": {
+"setup": [
+"rm -rf /dd/tmp/QVGB > /nil 2>/nil; mkdir -p /dd/tmp/QVGB",
+"builtin cd /dd/tmp/QVGB",
+"giftopnm /dd/DEMO/gulls.gif | pnmscale -xysize 152 88 > gulls.ppm"
 ]
 },
 "ppmrelief": {
@@ -3455,6 +3846,16 @@
 "builtin cd /dd"
 ]
 },
+"ppmtoicr": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"ppmtomap": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "ppmtomitsu": {
 "setup": [
 "mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
@@ -3463,11 +3864,36 @@
 "builtin cd /dd"
 ]
 },
+"ppmtopi1": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"ppmtopict": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"ppmtopjxl": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"ppmtopuzz": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "ppmtosixel": {
 "setup": [
 "mkdir -p /dd/tmp/NPMB > /nil 2>/nil",
 "ppmpat -gingham3 48 24 > /dd/tmp/NPMB/c.ppm",
 "ppmquant 16 /dd/tmp/NPMB/c.ppm > /dd/tmp/NPMB/q.ppm",
+"builtin cd /dd"
+]
+},
+"ppmtouil": {
+"setup": [
 "builtin cd /dd"
 ]
 },
@@ -3483,6 +3909,12 @@
 "builtin cd /dd"
 ]
 },
+"preset": {
+"setup": [
+"rm -rf /dd/tmp/G2ps > /nil 2>/nil; mkdir -p /dd/tmp/G2ps",
+"builtin cd /dd/tmp/G2ps"
+]
+},
 "pri": {
 "setup": [
 "mount -r=256k /r0",
@@ -3492,11 +3924,6 @@
 ]
 },
 "primes": {
-"setup": [
-"builtin cd /dd"
-]
-},
-"printers": {
 "setup": [
 "builtin cd /dd"
 ]
@@ -3532,6 +3959,21 @@
 "builtin cd /dd/tmp/UTILA/pb"
 ]
 },
+"ptxm": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"pty": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
+]
+},
+"ptydrv": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
+]
+},
 "ptyman": {
 "setup": [
 "builtin cd /dd/CMDS/DRIVERS"
@@ -3542,43 +3984,73 @@
 "builtin cd /dd/SYS"
 ]
 },
+"qrttoppm": {
+"setup": [
+"rm -rf /dd/tmp/QRTB > /nil 2>/nil; mkdir -p /dd/tmp/QRTB",
+"builtin cd /dd/tmp/QRTB",
+"printf \"HHHH\" > x.qrt; printf \"00ABCDEFGHIJKL01abcdefghijkl\" >> x.qrt",
+"pbyte x.qrt 0 04",
+"pbyte x.qrt 1 00",
+"pbyte x.qrt 2 02",
+"pbyte x.qrt 3 00"
+]
+},
 "qsort9": {
 "setup": [
 "mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"pear\\rapple\\rpear\\rfig\\rfig\\rfig\\rapple\\r\" > /dd/tmp/TXT/dups",
 "builtin cd /dd"
 ]
 },
+"rasttopnm": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "rawtopgm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/RAWG > /nil 2>/nil; mkdir -p /dd/tmp/RAWG",
+"builtin cd /dd/tmp/RAWG"
 ]
 },
 "rawtoppm": {
 "setup": [
-"mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/NPIB/c.ppm",
-"builtin cd /dd"
+"rm -rf /dd/tmp/RAWP > /nil 2>/nil; mkdir -p /dd/tmp/RAWP",
+"builtin cd /dd/tmp/RAWP"
 ]
 },
 "rayshade": {
 "setup": [
+"rm -rf /dd/tmp/RAYB > /nil 2>/nil; mkdir -p /dd/tmp/RAYB",
 "load /h1/CMDS/shell",
 "load /dd/CMDS/GCC139/gcc_cccp",
 "builtin cd /dd"
 ]
 },
+"rb37c65": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "rdjpgcom": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom -comment \"OS-9 freeware disk\" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc.jpg",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXG > /nil 2>/nil; mkdir -p /dd/tmp/GFXG",
+"builtin cd /dd/tmp/GFXG",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a",
+"cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom -comment \"OS-9 freeware disk\" j.jpg > jc.jpg"
 ]
 },
 "rdjpgcom.070": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil; ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm; pbyte /dd/tmp/GFXA/j.ppm 2 0a; pbyte /dd/tmp/GFXA/j.ppm 8 0a; pbyte /dd/tmp/GFXA/j.ppm c 0a; cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg; wrjpgcom.070 -comment \"IJG 0.70 build\" /dd/tmp/GFXA/j.jpg > /dd/tmp/GFXA/jc7.jpg",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXJ > /nil 2>/nil; mkdir -p /dd/tmp/GFXJ",
+"builtin cd /dd/tmp/GFXJ",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a",
+"cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom.070 -comment \"68000 build\" j.jpg > jc7.jpg"
 ]
 },
 "rdoc": {
@@ -3626,6 +4098,13 @@
 "setup": [
 "rm -rf /dd/tmp/B3R; mkdir -p /dd/tmp/B3R; echo \"stressed\" > /dd/tmp/B3R/w.txt; echo \"drawer\" >> /dd/tmp/B3R/w.txt; echo \"regal\" >> /dd/tmp/B3R/w.txt",
 "builtin cd /dd"
+]
+},
+"rgb3toppm": {
+"setup": [
+"rm -rf /dd/tmp/RGB3 > /nil 2>/nil; mkdir -p /dd/tmp/RGB3",
+"builtin cd /dd/tmp/RGB3",
+"ppmpat -gingham3 48 24 > base.ppm"
 ]
 },
 "rm": {
@@ -3685,7 +4164,8 @@
 "rm -rf /dd/SPOOL/news/COMP /dd/art.txt /dd/batch.txt",
 "printf \"Newsgroups: comp.os.os9\\rSubject: test article\\r\\rhello there\\r\" > /dd/art.txt",
 "LEN=$(cat /dd/art.txt | wc -c)",
-"builtin cd /dd"
+"builtin cd /dd",
+"printf \"#! rnews %s\\r\" $LEN > batch.txt; cat art.txt >> batch.txt"
 ]
 },
 "roff": {
@@ -3733,6 +4213,11 @@
 "cp /dd/SRC/rtf/div.f /dd/tmp/CMPA/div.f",
 "load /dd/CMDS/os9lib",
 "builtin cd /dd/tmp/CMPA"
+]
+},
+"rtfdat": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "run": {
@@ -3809,13 +4294,25 @@
 "Me"
 ]
 },
+"screen": {
+"setup": [
+"rm -rf /dd/tmp/SCRN; mkdir -p /dd/tmp/SCRN",
+"export HOME=/dd/tmp/SCRN",
+"builtin cd /dd/tmp/SCRN"
+]
+},
 "screen_nocio": {
 "setup": [
 "load /h1/CMDS/shell",
 "rm -rf /dd/tmp/UTILA/home > /nil 2>/nil",
-"mkdir -p /dd/tmp/UTILA/home/.SCREENS > /nil 2>/nil",
-"printf 'today\\r' > /dd/tmp/UTILA/home/.SCREENS/hi",
+"mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil",
+"printf 'today\\r' > /dd/tmp/UTILA/home/.screens/hi",
 "export HOME=/dd/tmp/UTILA/home"
+]
+},
+"scsi_mm1a": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "sdb": {
@@ -3848,6 +4345,11 @@
 "builtin cd /dd"
 ]
 },
+"setbgptn": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "setime2": {
 "keys": [
 "126 9 3 14 30 0"
@@ -3859,6 +4361,11 @@
 ]
 },
 "setup-image": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"sgitopnm": {
 "setup": [
 "builtin cd /dd"
 ]
@@ -3905,7 +4412,8 @@
 },
 "sir": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/SIRB > /nil 2>/nil; mkdir -p /dd/tmp/SIRB",
+"builtin cd /dd/tmp/SIRB"
 ]
 },
 "sldtoppm": {
@@ -3940,6 +4448,11 @@
 "snd_sig": {
 "setup": [
 "set +H"
+]
+},
+"snddrv": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "soelim": {
@@ -3984,7 +4497,7 @@
 },
 "spiff": {
 "setup": [
-"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"apple\\rbanana\\rcherry\\rdate\\r\" > /dd/tmp/TXT/a; printf \"apple\\rblueberry\\rcherry\\rdate\\relder\\r\" > /dd/tmp/TXT/b",
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf \"total 1.0\\rcount 10\\r\" > /dd/tmp/TXT/s1; printf \"total 1.00\\rcount 11\\r\" > /dd/tmp/TXT/s2",
 "builtin cd /dd"
 ]
 },
@@ -3997,6 +4510,18 @@
 "setup": [
 "mkdir -p /dd/tmp/TEXTA/SP; rm -f /dd/tmp/TEXTA/SP/*",
 "builtin cd /dd"
+]
+},
+"splstat": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"sputoppm": {
+"setup": [
+"rm -rf /dd/tmp/SPUB > /nil 2>/nil; mkdir -p /dd/tmp/SPUB",
+"builtin cd /dd/tmp/SPUB",
+"ppmmake red 16 16 > nr.ppm"
 ]
 },
 "ssl": {
@@ -4028,7 +4553,7 @@
 },
 "strfile": {
 "setup": [
-"mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf \"A closed mouth gathers no feet.\\r%%%%\\rThe second mouse gets the cheese.\\r%%%%\\rNever test for an error you do not know how to handle.\\r%%%%\\r\" > /dd/tmp/TXT/say",
+"mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf \"A closed mouth gathers no feet.\\r%%%%\\rThe second mouse gets the cheese.\\r%%%%\\rNever test for an error you do not know how to handle.\\r\" > /dd/tmp/TXT/say",
 "builtin cd /dd"
 ]
 },
@@ -4067,8 +4592,11 @@
 },
 "subscribe": {
 "setup": [
-"unsubscribe news.announce.newusers",
-"builtin cd /dd"
+"rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS",
+"echo \"comp.os.os9: 1-12\" > /dd/tmp/SUBS/.newsrc",
+"echo \"news.announce.newusers! 1-3\" >> /dd/tmp/SUBS/.newsrc",
+"export HOME=/dd/tmp/SUBS",
+"builtin cd /dd/tmp/SUBS"
 ]
 },
 "sum": {
@@ -4076,9 +4604,17 @@
 "builtin cd /dd"
 ]
 },
+"t_trtest": {
+"keys": [
+"pear",
+"apple",
+"fig",
+"apple"
+]
+},
 "tab": {
 "setup": [
-"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\r start ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\rstart ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
 "builtin cd /dd"
 ]
 },
@@ -4191,6 +4727,11 @@
 "builtin cd /dd"
 ]
 },
+"thlpct": {
+"setup": [
+"builtin cd /dd/CMDS/DRIVERS"
+]
+},
 "tiffish": {
 "setup": [
 "builtin cd /dd"
@@ -4199,6 +4740,11 @@
 "time": {
 "setup": [
 "builtin cd /dd"
+]
+},
+"timeout": {
+"setup": [
+"load /h1/CMDS/shell"
 ]
 },
 "todos": {
@@ -4287,9 +4833,25 @@
 ". /dd/SYS/termcap.entry"
 ]
 },
+"ub68020demo": {
+"setup": [
+"rm -rf /dd/tmp/G2u2 > /nil 2>/nil",
+"mkdir -p /dd/tmp/G2u2",
+"cp /dd/DOC/unibasic/bench1.b /dd/tmp/G2u2/bench1.b",
+"builtin cd /dd/tmp/G2u2"
+]
+},
+"ub68kdemo": {
+"setup": [
+"rm -rf /dd/tmp/G2ub > /nil 2>/nil",
+"mkdir -p /dd/tmp/G2ub",
+"cp /dd/DOC/unibasic/bench1.b /dd/tmp/G2ub/bench1.b",
+"builtin cd /dd/tmp/G2ub"
+]
+},
 "ul": {
 "setup": [
-"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"b\\b_o\\b_l\\b_d type\" > /dd/tmp/B3C/over.txt",
+"rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e \"an _\\bi_\\bm_\\bp_\\bo_\\br_\\bt_\\ba_\\bn_\\bt word\" > /dd/tmp/B3C/over.txt",
 "builtin cd /dd"
 ]
 },
@@ -4405,8 +4967,11 @@
 },
 "unsubscribe": {
 "setup": [
-"subscribe comp.sys.m68k",
-"builtin cd /dd"
+"rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS",
+"echo \"comp.os.os9: 1-12\" > /dd/tmp/SUBS/.newsrc",
+"echo \"comp.sys.m68k: 1-40\" >> /dd/tmp/SUBS/.newsrc",
+"export HOME=/dd/tmp/SUBS",
+"builtin cd /dd/tmp/SUBS"
 ]
 },
 "unzip": {
@@ -4427,6 +4992,15 @@
 },
 "utree": {
 "setup": [
+"builtin cd /dd"
+]
+},
+"uucp": {
+"setup": [
+"rm -rf /dd/SPOOL/uucp/phoenix /dd/tmp/UUCPQ",
+"mkdir -p /dd/SPOOL/uucp/phoenix",
+"mkdir -p /dd/tmp/UUCPQ",
+"echo \"a note for phoenix\" > /dd/tmp/UUCPQ/note.txt",
 "builtin cd /dd"
 ]
 },
@@ -4476,14 +5050,10 @@
 "builtin cd /dd"
 ]
 },
-"uustat": {
-"setup": [
-"uustat -?"
-]
-},
 "uux": {
 "setup": [
-"uux -?"
+"rm -rf /dd/SPOOL/uucp/uunet",
+"builtin cd /dd/SPOOL/uucp"
 ]
 },
 "uuxqt": {
@@ -4506,9 +5076,20 @@
 "builtin cd /dd"
 ]
 },
+"vc": {
+"keys": [
+"=42",
+"=r0c0*2"
+]
+},
 "vcraps": {
 "keys": [
 "10"
+]
+},
+"vcron": {
+"setup": [
+"printf 'lck.cron,l\\r' > /dd/tmp/vcron.si; setup /dd/tmp/vcron.si"
 ]
 },
 "version": {
@@ -4565,8 +5146,8 @@
 },
 "virmf": {
 "setup": [
-"mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MF/run.mf",
-"builtin cd /dd/tmp/MF"
+"rm -rf /dd/tmp/MFV; mkdir -p /dd/tmp/MFV; echo \"\\\\mode=epsonlo; mode_setup; input logo10\" > /dd/tmp/MFV/run.mf",
+"builtin cd /dd/tmp/MFV"
 ]
 },
 "virtex": {
@@ -4637,7 +5218,7 @@
 },
 "wgen": {
 "keys": [
-"256",
+"128",
 "150",
 "75",
 "40",
@@ -4650,15 +5231,29 @@
 "builtin cd /dd"
 ]
 },
+"windio.52": {
+"setup": [
+"builtin cd /dd"
+]
+},
+"wish": {
+"setup": [
+"builtin cd /dd/GAMES"
+]
+},
 "wn": {
 "setup": [
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
+"rm -rf /dd/tmp/WNQ; mkdir -p /dd/tmp/WNQ",
 "builtin cd /h0/c/unid/wn_1.14.3/osk",
 "wndex 2>/nil",
-"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/EC/rq",
-"echo \"\" >> /dd/tmp/EC/rq",
-"autolf -c -C -L < /dd/tmp/EC/rq > /dd/tmp/EC/rq.crlf",
-"builtin cd /dd/tmp/EC"
+"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/WNQ/rq",
+"echo \"\" >> /dd/tmp/WNQ/rq",
+"builtin cd /dd/tmp/WNQ"
+]
+},
+"wn.stb": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "wndex": {
@@ -4683,39 +5278,33 @@
 "quit"
 ]
 },
-"writeonly": {
-"setup": [
-"builtin cd /dd"
-]
-},
 "wrjpgcom": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm",
-"pbyte /dd/tmp/GFXA/j.ppm 2 0a",
-"pbyte /dd/tmp/GFXA/j.ppm 8 0a",
-"pbyte /dd/tmp/GFXA/j.ppm c 0a",
-"cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXH > /nil 2>/nil; mkdir -p /dd/tmp/GFXH",
+"builtin cd /dd/tmp/GFXH",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a",
+"cjpeg -quality 50 j.ppm > j.jpg"
 ]
 },
 "wrjpgcom.070": {
 "setup": [
-"mkdir -p /dd/tmp/GFXA > /nil 2>/nil",
-"ppmpat -gingham3 48 24 > /dd/tmp/GFXA/j.ppm",
-"pbyte /dd/tmp/GFXA/j.ppm 2 0a",
-"pbyte /dd/tmp/GFXA/j.ppm 8 0a",
-"pbyte /dd/tmp/GFXA/j.ppm c 0a",
-"cjpeg -quality 50 /dd/tmp/GFXA/j.ppm > /dd/tmp/GFXA/j.jpg",
-"builtin cd /dd"
+"rm -rf /dd/tmp/GFXI > /nil 2>/nil; mkdir -p /dd/tmp/GFXI",
+"builtin cd /dd/tmp/GFXI",
+"ppmpat -gingham3 48 24 > j.ppm",
+"pbyte j.ppm 2 0a",
+"pbyte j.ppm 8 0a",
+"pbyte j.ppm c 0a",
+"cjpeg -quality 50 j.ppm > j.jpg"
 ]
 },
 "wysetime": {
 "setup": [
 "load /h1/CMDS/runb",
-"rm -f /dd/tmp/wysetime.out",
-"runb wysetime > /dd/tmp/wysetime.out",
-"builtin cd /dd"
+"rm -rf /dd/tmp/WYT; mkdir -p /dd/tmp/WYT",
+"builtin cd /dd/tmp/WYT"
 ]
 },
 "xargs": {
@@ -4723,11 +5312,6 @@
 "rm -rf /dd/tmp/XARG > /nil 2>/nil; mkdir -p /dd/tmp/XARG",
 "printf \"alpha\\rbeta\\r\" > /dd/tmp/XARG/one; printf \"gamma\\r\" > /dd/tmp/XARG/two",
 "builtin cd /dd/tmp/XARG"
-]
-},
-"xbm": {
-"setup": [
-"builtin cd /dd"
 ]
 },
 "xbmtopbm": {
@@ -4773,8 +5357,16 @@
 },
 "xlate": {
 "setup": [
-"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\r start ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
+"mkdir -p /dd/tmp/DEV > /nil 2>/nil; printf \" nam test\\rstart ldx #buf\\rloop lda ,x+\\r beq done\\r bsr putc\\r bra loop\\rdone rts\\rbuf fcc /hello/\\r fcb 0\\r end\\r\" > /dd/tmp/DEV/t.a",
 "builtin cd /dd"
+]
+},
+"xlharc": {
+"setup": [
+"rm -rf /dd/tmp/XLH > /nil 2>/nil",
+"mkdir -p /dd/tmp/XLH",
+"builtin cd /dd/tmp/XLH",
+"cp /dd/SYS/motd motd; lharc a l.lzh motd; rm motd"
 ]
 },
 "xlisp": {
@@ -4789,6 +5381,11 @@
 "builtin cd /dd"
 ]
 },
+"xpmtoppm": {
+"setup": [
+"builtin cd /dd"
+]
+},
 "xrf": {
 "setup": [
 "rm -rf /dd/tmp/DEV/xrf > /nil 2>/nil; mkdir -p /dd/tmp/DEV/xrf; cp /dd/DOC/xrf/c.xrf /dd/tmp/DEV/xrf/C.XRF; printf \"int count = 0;\\rmain()\\r{\\r  int i;\\r  for (i = 0; i < count; i++)\\r    total(i);\\r}\\r\" > /dd/tmp/DEV/xrf/small.c",
@@ -4798,8 +5395,12 @@
 "xvminitoppm": {
 "setup": [
 "rm -rf /dd/tmp/XVB > /nil 2>/nil; mkdir -p /dd/tmp/XVB",
-"builtin cd /dd/tmp/XVB",
-"printf \"P7 332\\r#END_OF_COMMENTS\\r8 2 255\\r\" > x.xv; printf \"0123456789abcdef\" >> x.xv"
+"builtin cd /dd/tmp/XVB"
+]
+},
+"xwdtopnm": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "yacc": {
@@ -4819,6 +5420,11 @@
 "yahtzee": {
 "setup": [
 ". /dd/SYS/termcap.entry"
+]
+},
+"ybmtopbm": {
+"setup": [
+"builtin cd /dd"
 ]
 },
 "yes": {

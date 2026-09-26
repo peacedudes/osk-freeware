@@ -26,10 +26,13 @@ send    Q\r
 wait    2
 
 shot    editor
-cap     A full-screen file picker in front of the umacs editor: the
-cap     directory as a lettered list, + and - to page, . to change
-cap     directory, a letter to open that file.  Run it bare.
+cap     Started in GAMES: the directory as a lettered list, + and - to page, .
+cap     to change directory, and a letter to open that file in umacs.
 try     editor
+run     builtin cd /dd/GAMES
+wait    1
+run     clear
+wait    1
 run     editor
 wait    6
 snap
@@ -71,17 +74,18 @@ send    \033:q!\r
 wait    3
 
 shot    elvprsv
-cap     Elvis runs this itself when it dies with a file open, to keep the
-cap     buffer for elvrec.  Run by hand with nothing to preserve it says
-cap     nothing, and that is all there is to see of it.
+cap     Elvis runs this itself when it dies with a file open, to keep the text
+cap     for elvrec to bring back; it writes into usr/preserve on /dd.  Run by
+cap     hand with nothing to preserve, it says nothing.
 try     elvprsv
 run     elvprsv
 wait    5
 
 shot    elvrec
-cap     Lists the elvis buffers that were preserved by a crash, and brings
-cap     one back by name.  With nothing preserved it lists nothing; asked
-cap     for a file it names what it looked for.
+cap     With nothing preserved: the bare run lists nothing, and asked for a
+cap     file it names what it looked for.  It reads the index elvprsv keeps in
+cap     usr/preserve on /dd, a directory this disk does not ship; elvprsv
+cap     needs it made before it can keep anything.
 try     elvrec
 run     elvrec
 wait    5
@@ -105,12 +109,10 @@ send    \030\003
 wait    3
 
 shot    emacs
-cap     MicroEMACS 4.00, the full one with the macro language.  Control-X
-cap     control-C leaves it.  It looks for its startup file, .emacsrc, and
-cap     its help, emacs.hlp, in your home directory, the current one and
-cap     each PATH directory, then in memacs400 on /h0 or /h1 -- not in
-cap     USR/LIB/EMACS, where its macros ship, or SYS, where emacs.hlp is.
-cap     Put those two on PATH and ESC ? shows the help.
+cap     Opened on a four-line file: the text, the mode line with the version
+cap     and the file's name, and `[Read 4 lines]'.  Control-X control-C leaves
+cap     it.  With SYS, where emacs.hlp is, and USR/LIB/EMACS, where its macros
+cap     are, on PATH, ESC ? shows the help.
 try     emacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -125,9 +127,8 @@ send    \030\003
 wait    3
 
 shot    umacs
-cap     uMacs 1.0, MicroEMACS in 45K -- the same Emacs keys, keyboard
-cap     macros included.  Its mode line names the file.  Control-X
-cap     control-C leaves it.
+cap     The sample poem open, the mode line naming the file and `[Read 4
+cap     lines]' below it.  Control-X control-C leaves.
 try     umacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -158,8 +159,8 @@ send    \030\003
 wait    3
 
 shot    mg
-cap     Mg, MicroGnuEmacs: Emacs keys in 79K, its documentation under
-cap     DOC/mg.  Control-X control-C leaves it.
+cap     The sample poem open, the mode line naming the file and `(Read 4
+cap     lines)' below it.  Control-X control-C leaves.
 try     mg DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
@@ -193,19 +194,14 @@ send    :q\r
 wait    2
 
 shot    hexed
-cap     A hex editor made out of your text editor: it writes the file out as
-cap     a hex dump, opens that in the editor -e names, and when you leave it
-cap     turns the dump back into the file.  Both halves are shown here doing
-cap     their work -- and the editing step in between is the part this disk
-cap     cannot do.
-cap     hexed hands the whole thing to system() as `chd <dir> ; <editor>
-cap     <file>.hd', and only Microware's own shell parses that line.  With
-cap     that shell resident and SHELL naming it, vi opens on the dump;
-cap     measured 2026-09-18.  So on your own OS-9 this is a working hex
-cap     editor, and here it is a round trip.
-cap     -t names the directory for the dump and is not optional: without it
-cap     the dump goes to /r0, a RAM disk you would have to mount first
-cap     (`mount -r=256k /r0').
+cap     Both halves of its round trip: it writes the file out as a hex dump,
+cap     jabber.txt.hd in the directory -t names, and turns the dump back into
+cap     the file when the editor -e names has finished.  It hands the editor
+cap     to system() as `chd <dir> ; <editor> <file>.hd', a line only
+cap     Microware's own shell parses, so with that shell resident and SHELL
+cap     naming it, vi opens on the dump in between; at bash the editor step is
+cap     skipped, as here.  Without -t the dump goes to /r0, a RAM disk you
+cap     mount first.
 try     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil
 wait    2
@@ -219,12 +215,12 @@ run     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
 wait    10
 
 shot    hexedit
-cap     HEXPERT, a hex viewer and editor, on a module from the disk: one
-cap     16-byte row and the mode is its whole display.  It reads the
-cap     terminal description from TERMCAP as text rather than as a file
-cap     name, so the entry goes into the variable first -- that is what the
-cap     leading `.' line does, and without it hexedit prints the terminal
-cap     type and exits.
+cap     HEXPERT, a hex viewer and editor, on a module from the disk.  Its
+cap     display does not draw here: every cursor move this build sends names
+cap     the same place, so the menu, the status line and the rows of hex all
+cap     land on the top two lines, the last row written on top.  It reads
+cap     TERMCAP as the terminal description itself, so the leading `.' line
+cap     sources the entry into your shell first.  `q' leaves.
 try     . SYS/termcap.entry; hexedit CMDS/today
 run     . /dd/SYS/termcap.entry
 wait    3
@@ -233,17 +229,14 @@ wait    1
 run     clear
 wait    1
 run     hexedit CMDS/today
-wait    12
-kill
+wait    15
+snap
+quit    q
 
 shot    pbyte
-cap     Patches bytes in a file at a hex offset -- the smallest binary
-cap     editor here.  Three bytes at offset 0 turn `Twas' into `ABCs'.
-cap     This is the one card that shows its own setup, and deliberately:
-cap     pbyte writes into the file you hand it, so a demo has to copy a
-cap     sample to scratch first rather than patch something the disk
-cap     ships.  Every other card hides its staging because hiding it
-cap     costs the reader nothing; this one cannot.
+cap     Three bytes at offset 0 turn `Twas' into `ABCs'. pbyte writes into the
+cap     file it is given, so the sample is copied to scratch first, then shown
+cap     before and after.
 try     cat DOC/samples/jabber.txt > tmp/pb.txt; pbyte tmp/pb.txt 0 41 42 43
 run     builtin cd /dd
 wait    1
@@ -260,8 +253,8 @@ wait    3
 
 shot    chbase
 size    40 80
-cap     Converts a number between bases: 255 from base 10 to 16 is FF,
-cap     and a target base of 0 prints every base from 2 to 36.
+cap     255 into base 16, then into all thirty-five bases at once, 2 to 36,
+cap     with a target base of 0.
 try     chbase 255 10 16
 run     chbase 255 10 16
 wait    4
@@ -280,8 +273,8 @@ run     sed "s/the/THE/g" DOC/samples/jabber.txt
 wait    6
 
 shot    sed_1.06
-cap     A second build of sed, kept under its version number, doing the
-cap     same substitution.
+cap     The same GNU sed 1.06 as sed, its module renamed to match its file
+cap     name, doing the same substitution.
 try     sed_1.06 "s/the/THE/g" DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
@@ -308,8 +301,8 @@ send    :q!\r
 wait    3
 
 shot    vi.elvis
-cap     Elvis under the name a Unix hand types.  Kept in CMDS/REBUILT
-cap     because CMDS/vi is PVIC, a different vi clone.
+cap     Elvis 1.7 kept as vi.elvis in CMDS/REBUILT, because CMDS/vi is PVIC, a
+cap     different vi clone; opened here on a four-line file.
 try     vi.elvis tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -382,7 +375,9 @@ cap     Builds a tags file for elvis from C source: one line per function,
 cap     with the file and a search pattern that finds it.
 try     ctags.elvis cmdline.c
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; rm -f /dd/tmp/EDIT/tags
+wait    3
 run     cp /dd/SRC/pvic/SRCE/cmdline.c /dd/tmp/EDIT/cmdline.c
+wait    6
 run     builtin cd /dd/tmp/EDIT
 wait    2
 run     clear

@@ -12,9 +12,3 @@ PID=4, NAME=devprc
         PROCESSPATH=0, SYSPATH=1, DEVICE=/term
         PROCESSPATH=1, SYSPATH=1, DEVICE=/term
         PROCESSPATH=2, SYSPATH=1, DEVICE=/term
-
-$ ptxminst -?
-Error #000:221 (E_MNF) Module Not Found
-
-$ t_trtest
-line (or .):

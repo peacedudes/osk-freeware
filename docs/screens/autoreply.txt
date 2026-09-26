@@ -1,2 +1,8 @@
+$ autoreply tmp/away.txt
+You've been added to the autoreply system.
+$ autoreply
+You're currently autoreplying to mail with the file /dd/tmp/away.txt
 $ autoreply off
-No-one is autoreplying to their mail!
+You've been removed from the autoreply table.
+$ autoreply
+You're not currently autoreplying to mail.

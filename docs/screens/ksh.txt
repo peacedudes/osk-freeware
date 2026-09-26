@@ -9,6 +9,6 @@ item c
 
 $ ksh -c "print the date is; today"
 the date is
-Today is Thursday, the twenty-fourth day of September, two thousand and
-twenty-six. The time is twenty-one minutes and twenty-six seconds after
-two AM, Daylight Savings Time. The moon is waxing gibbous.
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. In forty seconds, the time will be eight AM, Daylight
+Savings Time. The moon is waxing gibbous.

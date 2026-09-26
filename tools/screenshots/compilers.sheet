@@ -19,8 +19,8 @@ wait    14
 shot    as09
 size    30 90
 cap     as09, the 6809 assembler -- the one of the six xasm tools that
-cap     assembles for the 6809 itself, not one of its 8-bit relatives;
-cap     none of the six assembles 68000 code.  It says nothing and writes
+cap     targets the 6809 rather than the 6800 family; none of the six
+cap     assembles 68000 code.  It says nothing and writes
 cap     Motorola S-records beside the source: four instructions at $1000,
 cap     in the format a ROM burner reads.
 try     as09 t.a
@@ -34,7 +34,7 @@ run     builtin cd /dd/tmp/CMPA
 wait    2
 run     clear
 wait    1
-run     cat t.a
+run     cat c.a
 wait    4
 run     as09 t.a
 wait    12
@@ -101,14 +101,14 @@ run     as11 sample.a11
 wait    14
 
 shot    assembler
-cap     A full-screen file picker that hands a chosen file to the
-cap     assembler family; not an assembler itself.  Control-C leaves it;
-cap     q, Q, control-D and ESC do not.
+cap     A full-screen file picker that hands the file you choose to the
+cap     assembler: a capital letter picks a file, a small one asks for
+cap     parameters too, and `!' leaves.
 try     assembler
 run     assembler
 wait    8
 snap
-send    \003
+send    !
 wait    3
 
 shot    compiler
@@ -200,25 +200,31 @@ run     cat lex.yy.c | head -n 10
 wait    5
 
 shot    gcc
-cap     The GCC drivers live in their own directory, off the command
-cap     path, so each is run from there with `./'.  This is `gcc', the
-cap     older driver, reporting version 1.42.  Asked to compile it prints
-cap     the preprocessor command it wants, then stops: it looks for a pass
-cap     called `cccp'.  DOC/rayshade shows how to put one there --
-cap     `copy CMDS/GCC139/gcc_cccp cccp' in the directory it looks in.
-cap     The drivers that need nothing extra are `gcc2' and `gpp'.
+fresh
+size    30 80
+cap     GCC2's `gcc', the 1.42 driver, run from its own directory with
+cap     `./' since it is off the command path.  -v prints each pass as it
+cap     forks it: GCC 1.39's preprocessor and compiler, which it forks as
+cap     `cccp' and `cc1', and your own OS-9's r68.  All three were loaded
+cap     first -- `load CMDS/GCC139/gcc_cccp CMDS/GCC139/gcc_cc1' from /dd,
+cap     and r68 from your OS-9 -- and hello.r is the object it made.
 try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc -v -c hello.c
-run     builtin cd /dd/CMDS/GCC2
+run     load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68
 wait    3
+run     builtin cd /dd/CMDS/GCC2
+wait    2
+run     rm -f hello.c hello.r
 run     clear
 wait    1
 run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
-wait    3
-wait    1
-run     ./gcc -v
-wait    6
+wait    2
 run     ./gcc -v -c hello.c
-wait    10
+wait    14
+run     ls hello.*
+wait    3
+snap
+run     rm -f hello.c hello.r
+wait    1
 
 shot    gcc137
 for     gcc137
@@ -236,42 +242,76 @@ run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
 wait    2
 run     ./gcc137 -B$PWD/gcc137_ -S hello.c
 wait    8
-run     ls hello.*; cat hello.a
-wait    2
+run     cat hello.a
+wait    3
+snap
 run     rm -f hello.c hello.a hello.s
 wait    1
 
 shot    gcc272
-for     gcc272 gcc272_collect
-cap     `gcc272', GNU C and C++ 2.7.2, the newest gcc here, run from its own
-cap     directory.  It forks its passes by name, so GCC2_OPTS points it at
-cap     each one with -F, by the path $PWD gives; asked to stop at assembly
-cap     (`-S') it writes 68k assembly for your own r68.
-try     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"; ./gcc272 -S hello.c
+size    30 80
+cap     `gcc272', GNU C and C++ 2.7.2, run from its own directory.  It
+cap     forks its passes by name, so GCC2_OPTS points it at each one with
+cap     -F, by the path $PWD gives; asked to stop at assembly (`-S') it
+cap     writes 68k assembly for your own r68.
+try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"; ./gcc272 -S hello.c
 run     builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272
 wait    2
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     rm -f hello.c hello.a
 run     clear
+wait    1
+run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
 wait    1
 run     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
 wait    1
 run     ./gcc272 -S hello.c
 wait    8
 run     cat hello.a
-wait    2
+wait    3
+snap
 run     rm -f hello.c hello.a
 wait    1
 
+shot    gcc272_collect
+fresh
+size    30 80
+cap     GNU C++ 2.7.2's collect2, which gcc272 runs at every link: it
+cap     builds the table of global constructors and destructors a C++
+cap     program needs.  greet.r is greet.cc compiled with `gpp -c' -- one
+cap     global object whose class has a constructor.  This collect reads
+cap     the whole link, so it is given what gcc272 would give it: your
+cap     OS-9's cstart.r, clibn.l and sys.l, and GNULIB's libgcc000.l,
+cap     copied beside greet.r, the last as gcc.l.  The table in c.a names
+cap     the constructor.
+try     gcc272_collect -o c.a cstart.r greet.r -l=gcc.l -l=clibn.l -l=sys.l
+run     load /h1/CMDS/r68
+run     export PATH=$PATH:/dd/CMDS/GCC272
+run     rm -rf /dd/tmp/CL272; mkdir -p /dd/tmp/CL272; builtin cd /dd/tmp/CL272
+run     cp /h1/LIB/cstart.r /h1/LIB/clibn.l /h1/LIB/sys.l .; cp /dd/GNULIB/libgcc000.l gcc.l
+run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
+wait    12
+run     clear
+wait    1
+run     cat greet.cc
+wait    2
+run     gcc272_collect -o c.a cstart.r greet.r -l=gcc.l -l=clibn.l -l=sys.l
+wait    10
+run     cat c.a
+wait    3
+
 shot    gcc137_cccp
 cap     GNU C 1.37.1's preprocessor, one of the passes gcc137 runs, given
-cap     a small C file by hand, in its own directory: the macro is
-cap     expanded, and the `# 1 "..."' line marks where the source began.
+cap     a small C file by hand, in its own directory: ANSWER is expanded
+cap     to 42, and the `# 1 "..."' line marks where the source began.
 try     ./gcc137_cccp hello.c
 run     builtin cd /dd/CMDS/GCC137
 wait    1
 run     printf "#define ANSWER 42\rint main()\r{\r  return ANSWER;\r}\r" > hello.c
 run     clear
 wait    1
+run     cat hello.c
+wait    2
 run     ./gcc137_cccp hello.c
 wait    6
 snap
@@ -281,13 +321,15 @@ wait    1
 shot    gcc137_cc1
 cap     GNU C 1.37.1's compiler proper, given preprocessed C by hand: it
 cap     writes 68k assembly for your own r68 -- a stack check, then the
-cap     function itself.
+cap     function itself, returning 42.
 try     ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
 run     builtin cd /dd/CMDS/GCC137
 wait    1
 run     printf "int main()\r{\r  return 42;\r}\r" > hello.i
 run     clear
 wait    1
+run     cat hello.i
+wait    2
 run     ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
 wait    8
 snap
@@ -326,6 +368,7 @@ run     rm -f hello.i hello.a
 wait    1
 
 shot    gcc272_cc2plus
+size    50 80
 cap     GNU C 2.7.2's C++ compiler proper, given a small class by hand: it
 cap     writes 68k assembly for your own r68, the member function under its
 cap     C++ mangled name, f__1G.
@@ -335,6 +378,8 @@ wait    1
 run     printf "class G { public: int f() { return 42; } };\rint main() { G g; return g.f(); }\r" > hello.ii
 run     clear
 wait    1
+run     cat hello.ii
+wait    2
 run     ./gcc272_cc2plus hello.ii -o hello.a -quiet; cat hello.a
 wait    12
 snap
@@ -342,42 +387,53 @@ run     rm -f hello.ii hello.a
 wait    1
 
 shot    gcc2
+size    30 80
 cap     `gcc2', the GCC 2.5.6 C driver, run from its own directory since
 cap     it is off the command path.  Asked to stop at assembly (`-S') it
-cap     succeeds, writing 68k assembly in Microware syntax -- `psect',
-cap     `link.w a5,#0'.  Asked to go all the way it compiles and then
-cap     calls `r68' to assemble, the 68k assembler that comes with your
-cap     OS-9.
+cap     writes 68k assembly in Microware syntax -- `psect', `link.w
+cap     a5,#0'.  With -c it goes on to assemble, with `r68' from your own
+cap     OS-9, loaded first, and hello.r is the object.
 try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc2 -S -o hello.a hello.c
+run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
 wait    3
+run     rm -f hello.c hello.a hello.r
 run     clear
 wait    1
 run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
-wait    3
-wait    1
+wait    2
 run     ./gcc2 -S -o hello.a hello.c
 wait    12
 run     cat hello.a | head -n 8
 wait    5
-run     ./gcc2 -o hello hello.c
-wait    10
+run     ./gcc2 -c hello.c; ls hello.*
+wait    12
+snap
+run     rm -f hello.c hello.a hello.r
+wait    1
 
 shot    gpp
+size    30 80
 cap     `gpp', the GCC2 C++ driver (1.40.3), run from its own directory.
-cap     It runs the whole pipeline -- `gpp_cccp' preprocesses,
-cap     `gpp_cc1plus' compiles to assembly -- then calls `r68' to
-cap     assemble, which comes with your OS-9.
+cap     -v shows the whole pipeline -- `gpp_cccp' preprocesses,
+cap     `gpp_cc1plus' compiles to assembly, and `r68', your own OS-9's,
+cap     loaded first, assembles hello.r.
 try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gpp -v -c hello.c
+run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
 wait    3
+run     rm -f hello.c hello.r
 run     clear
 wait    1
 run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
-wait    3
-wait    1
+wait    2
 run     ./gpp -v -c hello.c
 wait    16
+run     ls hello.*
+wait    3
+snap
+run     rm -f hello.c hello.r
+wait    1
 
 shot    cccp2
 fresh
@@ -468,8 +524,9 @@ run     gcc_cc1 -version
 wait    8
 
 shot    gcc_cc1plus
-cap     The GCC 1.x C++ compiler pass (version 1.37.1), reporting its
-cap     version.
+fresh
+cap     GCC139's C++ compiler pass, reporting its version, 1.37.1; the
+cap     GCC139 driver gpp runs it.
 try     gcc_cc1plus -version
 run     gcc_cc1plus -version
 wait    8
@@ -490,12 +547,12 @@ wait    5
 
 shot    gcc_collect
 fresh
-cap     collect2 again -- the same global-constructor collector as the
-cap     GCC2 directory's, reached here under the GCC 1.39 name.  Given an
-cap     object with one global object whose class has a constructor, it
-cap     writes the table naming that constructor, _GLOBAL_$I$main, into
-cap     the file -o names.  The object is made by `gpp -c', which
-cap     assembles with your own OS-9's r68, resident.
+size    30 80
+cap     GCC 1.39's collect2, which builds the table of global constructors
+cap     and destructors a C++ program needs before linking.  greet.r is
+cap     greet.cc compiled with `gpp -c', which assembles with your own
+cap     OS-9's r68, loaded first; the table collect writes into the file -o
+cap     names holds its one constructor, _GLOBAL_$I$main.
 try     gcc_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGC; mkdir -p /dd/tmp/CLGC; builtin cd /dd/tmp/CLGC
@@ -504,6 +561,8 @@ run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
 wait    1
+run     cat greet.cc
+wait    2
 run     gcc_collect -o ctors.a greet.r
 wait    8
 run     cat ctors.a
@@ -526,8 +585,9 @@ run     gcc_cccp2 -version
 wait    8
 
 shot    gpp_cc1plus
-cap     The GCC C++ compiler pass installed on the command path under the
-cap     name the `gpp' driver forks it by.  It reports its version.
+cap     GCC2's C++ compiler pass, 1.40.3, installed on the command path
+cap     under the name the `gpp' driver forks it by.  It reports its
+cap     version.
 try     gpp_cc1plus -version
 run     gpp_cc1plus -version
 wait    8
@@ -542,12 +602,12 @@ wait    8
 
 shot    gpp_collect
 fresh
-cap     collect2 under the name the `gpp' driver forks it by -- the same
-cap     collector as the others.  Given an object with one global object
-cap     whose class has a constructor, it writes the table naming that
-cap     constructor, _GLOBAL_$I$main, into the file -o names.  The object
-cap     is made by `gpp -c', which assembles with your own OS-9's r68,
-cap     resident.
+size    30 80
+cap     GCC2's collect2, installed on the command path under the name the
+cap     `gpp' driver forks it by.  greet.r is greet.cc compiled with `gpp
+cap     -c', which assembles with your own OS-9's r68, loaded first; the
+cap     table collect writes into the file -o names holds its one
+cap     constructor, _GLOBAL_$I$main.
 try     gpp_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGP; mkdir -p /dd/tmp/CLGP; builtin cd /dd/tmp/CLGP
@@ -556,6 +616,8 @@ run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
 wait    1
+run     cat greet.cc
+wait    2
 run     gpp_collect -o ctors.a greet.r
 wait    8
 run     cat ctors.a
@@ -579,8 +641,9 @@ run     ls -l tmp/greeting
 wait    6
 
 shot    dmake
-cap     dmake, a parallel make, on the same rule -- its own makefile
-cap     dialect still reads the shipped makefile and builds the target.
+cap     dmake, a parallel make with a makefile dialect of its own, on the
+cap     greeting rule of DOC/make/demo.mk, which copies SYS/motd: it reads
+cap     the shipped makefile and builds the target.
 try     dmake -f DOC/make/demo.mk greeting
 run     builtin cd /dd
 wait    1
@@ -620,9 +683,9 @@ run     m4 tmp/m.m4
 wait    8
 
 shot    m4_0.5
-cap     A second build of the m4 macro processor.  It reads a macro
-cap     definition and expands each use: `greet(world)' becomes
-cap     `hello world'.
+cap     The same GNU m4 0.5 as m4, kept in REBUILT under its version
+cap     name.  It reads a macro definition and expands each use:
+cap     `greet(world)' becomes `hello world'.
 try     m4_0.5 tmp/BLGX/mm.m4
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
 run     printf 'define(greet,hello $1)greet(world)\r' > /dd/tmp/BLGX/mm.m4
@@ -633,9 +696,10 @@ run     m4_0.5 tmp/BLGX/mm.m4
 wait    5
 
 shot    make
-cap     `make' building a target from a shipped makefile: it runs the
-cap     rule's command and names the file it made.  Run again with the
-cap     target already up to date, it does nothing and stays silent.
+cap     `make' building a target from a shipped makefile.  It prints each
+cap     command after `os9exec() :', the name of the C library call it
+cap     starts the command with, then ls shows the file made.  Run again
+cap     with the target up to date, it does nothing and stays silent.
 try     make -f DOC/make/demo.mk greeting
 run     builtin cd /dd
 wait    1
@@ -651,12 +715,23 @@ run     make -f DOC/make/demo.mk greeting
 wait    10
 
 shot    makeinfo
-cap     GNU makeinfo turns Texinfo source into Info files.  Its options
-cap     take a leading `+', not the GNU-style `--', so `+version' answers
-cap     where `--version' would not.
-try     makeinfo +version
-run     makeinfo +version
-wait    6
+size    36 80
+cap     GNU makeinfo turning a small Texinfo file into Info: the file it
+cap     writes is named by @setfilename, and each @node becomes a node an
+cap     Info reader can move between.  Its options take a leading `+', not
+cap     `--' -- `makeinfo +version'.
+try     makeinfo hi.texi
+run     rm -rf /dd/tmp/MKI; mkdir -p /dd/tmp/MKI; builtin cd /dd/tmp/MKI
+run     printf '\\input texinfo\r@setfilename hi.info\r@settitle Hi\r@node Top\r@chapter Hi\r\rA small manual.\r@bye\r' > hi.texi
+wait    2
+run     clear
+wait    1
+run     cat hi.texi
+wait    2
+run     makeinfo hi.texi
+wait    8
+run     cat hi.info
+wait    3
 
 shot    a2p
 size    24 80
@@ -681,7 +756,7 @@ wait    6
 
 shot    p2c
 size    36 80
-cap     p2c translating Pascal into C, which is what it is for.  It writes
+cap     p2c translating Pascal into C.  It writes
 cap     `h.c' beside the source.  The warning is p2c's own and correct:
 cap     nothing has told it what `writeln' is, because the Pascal run-time
 cap     declarations live elsewhere and this one-line program does not ask
@@ -723,16 +798,13 @@ wait    6
 
 shot    fact
 size    50 80
-cap     The Fortran example, end to end: the source, this disk's RTF/68K
-cap     compiling it to 68000 assembly, your own OS-9's `r68' assembling
-cap     that and the Fortran start-up code, `l68' linking both against its
-cap     `sys.l', and the finished program printing 1! to 12!.  Twelve is as
-cap     far as a 32-bit integer reaches -- 13! overflows.  r68, l68, sys.l
-cap     and the `oskdefs.d' r68 reads come from /h1 and were put in place
-cap     first, with the run-time library every RTF program wants: `load
-cap     os9lib'.  l68 writes the program to your execution directory --
-cap     here CMDS -- in place of the fact that ships, removed first, so
-cap     what runs is the one just built.
+cap     The Fortran example built by hand, one command at a time: rtf
+cap     compiles fact.f to 68000 assembly, r68 assembles it and the
+cap     Fortran start-up code rtfstart.a from SRC/rtf, l68 links both
+cap     against sys.l, and fact prints 1! to 12!.  r68, l68, sys.l and the
+cap     oskdefs.d r68 reads are your own OS-9's; `load os9lib' came first.
+cap     l68 writes the program to your execution directory, CMDS, over the
+cap     fact that ships.
 try     rtf fact.f
 run     rm -rf /dd/tmp/FACT > /nil 2>/nil; mkdir -p /dd/tmp/FACT
 wait    3
@@ -836,8 +908,9 @@ shot    lnk.org
 cap     The original build of `lnk', the RTF Fortran link driver.  It does
 cap     the same job and names the start-up code `fstart.r' where lnk says
 cap     `rtfstart.r' -- the same SRC/rtf/rtfstart.a, assembled under the
-cap     other name into LIB on /h0, beside Microware's `sys.l'.  Set up as
-cap     lnk's card is, it links fact.r without a word, and the program runs.
+cap     other name into LIB on /h0, beside Microware's `sys.l'.  With fact
+cap     compiled by `for' and sys.l in LIB, it links fact.r without a
+cap     word, and the program runs.
 try     lnk.org fact
 run     rm -rf /dd/tmp/LNKB > /nil 2>/nil; mkdir -p /dd/tmp/LNKB /dd/LIB; cp /dd/SRC/rtf/fact.f /dd/SRC/rtf/rtfstart.a /h1/DEFS/oskdefs.d /dd/tmp/LNKB; cp /h1/LIB/sys.l /dd/LIB; rm -f /dd/CMDS/fact
 wait    4
@@ -858,11 +931,9 @@ wait    6
 
 shot    v7make
 size    24 80
-cap     The make of Seventh Edition Unix: a makefile names a target, what it
-cap     depends on and the commands to bring it up to date, and v7make runs
-cap     those whose target is older than its dependencies.  It prints each
-cap     command as it runs it, and hands it to `shell' -- your own OS-9's,
-cap     which SYS/login loads from /h1.  Public domain.
+cap     count depends on poem, and count does not exist, so v7make prints
+cap     `wc poem' and runs it, through your own OS-9's `shell', loaded
+cap     first.
 try     v7make count
 run     load /h1/CMDS/shell
 wait    3
@@ -881,11 +952,9 @@ wait    6
 
 shot    ltb
 size    24 80
-cap     Builds a lexical table: it reads a list of words and writes the hash
-cap     table for them as C, ready to compile in.  This is what makes `proff'
-cap     rebuildable -- the words are proff's own requests, from SRC/proff,
-cap     and what comes out is the lextab.h and lextab.d its parser is
-cap     compiled from, byte for byte as they ship.
+cap     The words here are proff's own requests, from SRC/proff; ltb writes
+cap     their hash table as C, lextab.h and lextab.d, which proff's parser
+cap     is compiled from.
 try     ltb proffsym.new lextab
 run     rm -rf /dd/tmp/LTB > /nil 2>/nil; mkdir -p /dd/tmp/LTB
 wait    3

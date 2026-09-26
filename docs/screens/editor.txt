@@ -6,19 +6,19 @@ Directory : .
    !  exit Menue       .  change directory
 
 ===== Edit what File ?                                                  =====
-A  ADL                             B  CMDS
-C  DEFS                            D  DEMO
-E  DOC                             F  DOS
-G  ETC                             H  GAMES
-I  GNUCHESS4.0                     J  GNULIB
-K  LIB                             L  LOG
-M  MAIL                            N  News
-O  SBPROLOG                        P  SOURCES.txt
-Q  SPL                             R  SPOOL
-S  SRC                             T  SYS
-U  UAC                             V  USR
-W  VH                              X  a1.arc
-Y  a2.arc                          Z  alarm.r
+A  ADV                             B  ADVSYS
+C  ATC                             D  BKS
+E  BOG                             F  CASTLE
+G  COOKIE                          H  COREWARS
+I  CRAPS                           J  CRIB
+K  CRYPT                           L  CYBERWAR
+M  FORTUNE                         N  HACK
+O  HEXA                            P  INFORM
+Q  JOTTO                           R  JUMBLE2
+S  LARN                            T  LETTERS
+U  LIB                             V  LIFE
+W  MISC                            X  MONOP
+Y  PACMAN                          Z  PERP
 
 
 Select file :

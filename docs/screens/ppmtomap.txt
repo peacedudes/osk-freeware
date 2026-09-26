@@ -1,0 +1,6 @@
+$ ppmtomap tmp/base.ppm | pnmnoraw
+ppmtomap: 6 colors found
+P3
+6 1
+255
+216 206 149  111 62 147  163 134 148  7 25 53  59 43 100  111 115 101

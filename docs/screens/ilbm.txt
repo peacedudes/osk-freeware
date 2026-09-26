@@ -1,10 +1,6 @@
 $ ppmtoilbm tmp/base.ppm | ilbmtoppm | pnmfile
 ppmtoilbm: computing colormap...
 ppmtoilbm: 6 colors found
-ppmtoilbm: BODY compression (byterun1): 8%
+ppmtoilbm: BODY compression (byterun1): 2%
 ilbmtoppm: input is a 3-plane ILBM
-stdin:  PPM raw, 48 by 24  maxval 255
-$ pnmtosgi tmp/base.ppm > tmp/t.sgi
-$ sgitopnm tmp/t.sgi | pnmfile
-sgitopnm: writing PPM image
 stdin:  PPM raw, 48 by 24  maxval 255

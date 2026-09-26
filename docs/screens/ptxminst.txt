@@ -1,0 +1,2 @@
+$ ptxminst; echo "status $?"
+status 221

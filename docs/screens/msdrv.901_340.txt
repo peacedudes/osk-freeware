@@ -1,0 +1,19 @@
+$ modinfo CMDS/MM1/msdrv.901_340
+---------------------------- CMDS/MM1/msdrv.901_340  - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - -
+Module name           = msdrv
+System revision       = 1
+Module size           = 656
+Owner Id              = 0.0
+Offset to module name = 00000286H
+Access permission     = e-re-re-r
+Type/Language          = 0c01H  System                 68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 8
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 1c48H
+
+
+This is a very special module

@@ -1,0 +1,3 @@
+$ pnmtosgi tmp/base.ppm > tmp/t.sgi; sgitopnm tmp/t.sgi | pnmfile
+sgitopnm: writing PPM image
+stdin:  PPM raw, 48 by 24  maxval 255

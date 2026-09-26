@@ -1,0 +1,5 @@
+$ erradm -s
+$ erradm -f
+$ erradm -p
+erradm: Can't read /h0/SYS/errorlog.
+$ erradm -e

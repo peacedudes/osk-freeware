@@ -1,8 +1,7 @@
 # The filters, each one on real text off this disk.
 
 shot    bmg
-cap     bmg, a Boyer-Moore grep, and fgrep beside it -- both older and
-cap     faster than the GNU one, and both still here.
+cap     bmg, a Boyer-Moore grep, beside fgrep on the same search.
 try     bmg cribbage DOC/INDEX
 run     builtin cd /dd
 wait    1
@@ -47,8 +46,9 @@ run     cursive Freeware
 wait    6
 
 shot    diff
-cap     A Decus C diff on two versions of the same file, in context form:
-cap     the changed line marked with `!' in each.
+cap     GNU diff 1.4 on two versions of the same file, in context form: the
+cap     changed line marked with `!' in each. The two header lines run
+cap     together because the OS-9 port's date string has no line end.
 try     diff -c tmp/a.txt tmp/b.txt
 run     builtin cd /dd
 wait    1
@@ -62,8 +62,8 @@ run     diff -c tmp/a.txt tmp/b.txt
 wait    5
 
 shot    diff_1.1
-cap     A second build of GNU diff 1.1.  Two short lists that differ on one
-cap     line: diff_1.1 reports the change, pear becoming peach.
+cap     GNU diff 1.1, the archive's build, on two short lists that differ on
+cap     one line: pear becoming peach.
 try     diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
 run     printf 'apple\rpear\rplum\r' > /dd/tmp/BLGX/d1
@@ -94,27 +94,28 @@ run     fcomp tmp/fc1 tmp/fc2
 wait    6
 
 shot    gothic
-size    272 96
+size    62 80
 cap     Sets a word in fraktur capitals, each letter drawn large down the
-cap     screen, for a title page or a poster.  `-h' draws it at half size
-cap     to fit a short terminal.
-try     gothic OS-9
-run     gothic OS-9
+cap     screen, for a title page or a poster.  This is `-h', half size,
+cap     which fits 80 columns; without it the letters are over 100 wide.
+try     gothic -h OS-9
+run     clear
+wait    1
+run     gothic -h OS-9
 wait    6
 snap
 
 shot    grep
-cap     GNU grep 2.0 searching the disk's own index, with the count beside
-cap     the hits.
-try     grep -n "chess" DOC/INDEX
+cap     GNU grep 2.0 searching the disk's own index: -n puts the line number
+cap     beside each hit, and -c "" counts the lines.
+try     grep -n "chess" DOC/INDEX | head -n 10; grep -c "" DOC/INDEX
+os9     grep -n "chess" DOC/INDEX ! head -n 10; grep -c "" DOC/INDEX
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     grep -n "chess" DOC/INDEX | head -n 10
-wait    6
-run     grep -c "" DOC/INDEX
-wait    4
+run     grep -n "chess" DOC/INDEX | head -n 10; grep -c "" DOC/INDEX
+wait    10
 
 shot    wns
 cap     A windowing search of the disk's own README: every line holding
@@ -159,18 +160,20 @@ run     sgrep arr < src
 wait    4
 
 shot    jargon
-cap     The Jargon File browser, jumping straight to the entry for
-cap     kluge.  It reads jargon.txt and jargon.idx from the VH
-cap     directory on its own; give it a document by name and it looks
-cap     for that instead.
-try     jargon -b kluge jargon
-run     jargon -b kluge jargon
+cap     The Jargon File browser, opened at the entry for kluge: its first 20
+cap     lines. It reads jargon.txt and jargon.idx from the VH directory on
+cap     its own; give it a document by name and it looks for that instead.
+try     jargon -b kluge jargon | head -n 20
+os9     jargon -b kluge jargon ! head -n 20
+run     clear
+wait    1
+run     jargon -b kluge jargon | head -n 20
 wait    10
 
 shot    lout
-cap     Basser Lout 2.05, a document formatter in the TeX tradition,
-cap     saying what it is.  Setting a document needs Lout's own include
-cap     library beside it; the version line is what it prints alone.
+cap     Lout's version line. Setting a document needs Lout's include
+cap     library, installed where the program looks for it: LOUT2/LIB on /h0,
+cap     a path compiled in.
 try     lout -V
 run     lout -V
 wait    6
@@ -210,9 +213,8 @@ wait    5
 shot    what
 cap     what prints the expansion cards fitted to a GEPARD, the German 68k
 cap     machine much of the EFFO material was written for: address,
-cap     reference byte and name.  With no GEPARD underneath it the table
-cap     comes out empty, and it ignores anything given to it on the command
-cap     line.
+cap     reference byte and name. Without a GEPARD the table comes out empty,
+cap     and it ignores anything given to it on the command line.
 try     what
 run     builtin cd /dd
 wait    1
@@ -224,8 +226,8 @@ run     what CMDS/today
 wait    8
 
 shot    tformat
-cap     The opening of PVIC's own notes refilled to sixty columns, each
-cap     line justified to both margins by spreading the spaces.
+cap     The opening of PVIC's own notes refilled to sixty columns, justified
+cap     by spreading the spaces; the heading line runs into the paragraph.
 try     head -n 12 < DOC/vi/vi.txt | tformat 60
 os9     head -n 12 <DOC/vi/vi.txt!tformat 60
 run     builtin cd /dd
@@ -236,26 +238,23 @@ run     head -n 12 < DOC/vi/vi.txt | tformat 60
 wait    8
 
 shot    unip
-cap     unip is `unique with page numbers' -- the last stage of the index
-cap     chain that starts with sepwords: split a document into words, sort
-cap     them, and print each one once with the pages it appeared on.  The
-cap     page column is empty here because nothing upstream paginated the
-cap     text; what is left is the vocabulary of the file, in order.
-try     sepwords < DOC/README-CIO | sort | unip | head -n 18
-os9     sepwords DOC/README-CIO!sort!unip!head -n 18
+cap     unip is `unique with page numbers', the last stage of the KWIC index
+cap     chain: pageline splits DOC/README-CIO into words, counting 20 lines
+cap     to a page, grep keeps the ones starting with a letter, sort orders
+cap     them, and unip prints each word once with the pages it appears on.
+try     pageline -l=20 DOC/README-CIO | grep "^[a-z]" | sort | unip -i | head -n 18
+os9     pageline -l=20 DOC/README-CIO ! grep "^[a-z]" ! sort ! unip -i ! head -n 18
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     sepwords < DOC/README-CIO | sort | unip | head -n 18
-wait    10
+run     pageline -l=20 DOC/README-CIO | grep "^[a-z]" | sort | unip -i | head -n 18
+wait    14
 
 shot    btop
-cap     btop turns each character of a file into a grid of O and dots --
-cap     how a font or a bitmap moved through a mail system that would only
-cap     carry text, long before uuencode.  ptob turns the grid back into
-cap     bytes; diff finding nothing to report is the proof the twelve
-cap     bytes came back unchanged.
+cap     Twelve bytes of SYS/motd as btop draws them, one grid of O and
+cap     middle dots per character; ptob turns the grids back into bytes, and
+cap     diff finding nothing to report shows the twelve came back unchanged.
 try     btop tmp/b1
 run     builtin cd /dd
 wait    1
@@ -314,8 +313,8 @@ wait    10
 
 shot    roff
 size    30 80
-cap     roff, the older formatter, on the same text: title centred, the
-cap     paragraph filled and justified to a narrower measure.
+cap     roff on Jabberwocky: the title centred, the paragraphs filled and
+cap     justified to a narrower measure.
 try     roff tmp/TXT/jab.r | head -n 14
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf ".ce\rJABBERWOCKY\r.sp\rTwas brillig, and the slithy toves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r.sp\rBeware the Jabberwock, my son -- the jaws that bite, the claws that catch.\r" > /dd/tmp/TXT/jab.r
 wait    3
@@ -340,8 +339,8 @@ run     proff tmp/TXT/jab.r | head -n 14
 wait    10
 
 shot    fmt
-cap     Refills ragged text into even lines, to 72 columns or to a width
-cap     given as -<n>.
+cap     Three ragged lines refilled to the default 72 columns, then to 30
+cap     with -30.
 try     fmt tmp/TXT/rag.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brillig,\rand the slithy\rtoves did gyre and gimble in the wabe: all mimsy were the borogoves, and the mome raths outgrabe.\r" > /dd/tmp/TXT/rag.txt
 wait    3
@@ -369,10 +368,10 @@ run     xfmt -m DOC/xfmt/xfmt.1 | head -n 18
 wait    8
 
 shot    strfile
-cap     Turns a file of sayings separated by %% lines into the indexed
-cap     .dat file fortune reads, and reports what it found.
+cap     Three sayings indexed into say.dat: strfile counts them and reports
+cap     the longest and shortest.
 try     strfile tmp/TXT/say
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\rNever test for an error you do not know how to handle.\r%%%%\r" > /dd/tmp/TXT/say
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\rNever test for an error you do not know how to handle.\r" > /dd/tmp/TXT/say
 wait    3
 run     builtin cd /dd
 wait    1
@@ -384,10 +383,9 @@ run     strfile tmp/TXT/say
 wait    5
 
 shot    unstr
-cap     unstr is strfile's reverse: given the .dat file, and a name for
-cap     the result, it writes the sayings back out as plain text --
-cap     silently, if it succeeds, so the real proof is in the file it
-cap     wrote.
+cap     Two sayings that strfile made into say.dat, written back out as
+cap     plain text. unstr is silent when it succeeds, so cat shows the
+cap     result.
 try     unstr tmp/TXT/say.dat tmp/TXT/say.out
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; rm -f /dd/tmp/TXT/say.dat /dd/tmp/TXT/say.out; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say; strfile /dd/tmp/TXT/say > /nil
 wait    4
@@ -401,9 +399,9 @@ run     cat tmp/TXT/say.out
 wait    5
 
 shot    cookhash
-cap     Builds the hash file the cookie program uses to pick a saying
-cap     at random from a file of them.
-try     cookhash < tmp/TXT/say > tmp/TXT/say.hash
+cap     Builds the hash file the cookie program uses to pick a saying at
+cap     random. say holds two sayings, each ended by a %% line.
+try     cookhash < tmp/TXT/say > tmp/TXT/say.hash; ls -l tmp/TXT/say.hash
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "A closed mouth gathers no feet.\r%%%%\rThe second mouse gets the cheese.\r%%%%\r" > /dd/tmp/TXT/say
 wait    3
 run     builtin cd /dd
@@ -436,34 +434,33 @@ wait    6
 
 shot    spiff
 cap     spiff compares two files and reports the differences in diff's
-cap     shape: a changed line and an added one.
-try     spiff tmp/TXT/a tmp/TXT/b
-run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "apple\rbanana\rcherry\rdate\r" > /dd/tmp/TXT/a; printf "apple\rblueberry\rcherry\rdate\relder\r" > /dd/tmp/TXT/b
+cap     shape, but reads numbers as numbers: 1.0 and 1.00 are the same to
+cap     it, so only the changed count is reported.
+try     cat tmp/TXT/s1 tmp/TXT/s2; spiff tmp/TXT/s1 tmp/TXT/s2
+run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "total 1.0\rcount 10\r" > /dd/tmp/TXT/s1; printf "total 1.00\rcount 11\r" > /dd/tmp/TXT/s2
 wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     spiff tmp/TXT/a tmp/TXT/b
-wait    6
+run     cat tmp/TXT/s1 tmp/TXT/s2; spiff tmp/TXT/s1 tmp/TXT/s2
+wait    8
 
 shot    uniq
 cap     Drops repeated adjacent lines; after a sort, -c counts each.
-try     uniq < tmp/TXT/dups
+try     uniq < tmp/TXT/dups; sort tmp/TXT/dups | uniq -c
+os9     uniq <tmp/TXT/dups; sort tmp/TXT/dups ! uniq -c
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     uniq < tmp/TXT/dups
-wait    4
-run     sort tmp/TXT/dups | uniq -c
-wait    5
+run     uniq < tmp/TXT/dups; sort tmp/TXT/dups | uniq -c
+wait    9
 
 shot    nsort
-cap     A sort filter: the same seven lines, lexical order, duplicates
-cap     kept.
+cap     The seven lines, then nsort's order: lexical, duplicates kept.
 try     cat tmp/TXT/dups; echo ---; nsort < tmp/TXT/dups
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
@@ -475,7 +472,7 @@ run     cat tmp/TXT/dups; echo ---; nsort < tmp/TXT/dups
 wait    5
 
 shot    qsort9
-cap     Another sort filter, by quicksort, on the same seven lines.
+cap     Sorts seven lines by quicksort, duplicates kept.
 try     qsort9 < tmp/TXT/dups
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "pear\rapple\rpear\rfig\rfig\rfig\rapple\r" > /dd/tmp/TXT/dups
 wait    3
@@ -511,12 +508,11 @@ run     ggrep -n USR password
 wait    5
 
 shot    bmgtest
-cap     A demonstration of the Boyer-Moore-Gosper search that `bm' is built
+cap     A demonstration of the Boyer-Moore-Gosper search that bmg is built
 cap     on: given a pattern and a file it prints every line that matches,
-cap     streaming through the file rather than reading it whole.  Shown
-cap     three ways -- a word that is there, one that is not, and the same
-cap     search on standard input, which is the form that worked while the
-cap     named-file form was returning nothing.
+cap     streaming through the file rather than reading it whole. A word that
+cap     is there, one that is not -- the exit status is 0 either way, so it
+cap     does not signal a miss -- and the same search on standard input.
 try     bmgtest OS-9 SYS/motd
 run     builtin cd /dd
 wait    1
@@ -531,8 +527,8 @@ wait    4
 
 shot    bmgtest2
 cap     The other Boyer-Moore-Gosper demonstration: the same search, but it
-cap     reads the whole file into memory first rather than streaming
-cap     through it.  Same three invocations as `bmgtest' beside it.
+cap     reads the whole file into memory first rather than streaming through
+cap     it. The exit status is 0 for a miss as well as a hit.
 try     bmgtest2 OS-9 SYS/motd
 run     builtin cd /dd
 wait    1
@@ -547,12 +543,9 @@ wait    4
 
 shot    pagekwic
 size    36 80
-cap     A PHRASE keyword-in-context index, not a line-by-line one: it
-cap     slides a window of `-f' words along the text and prints every
-cap     rotation of each window, so a phrase may span a line break.  That
-cap     is the design -- its own source calls it a phrase utility -- so
-cap     give it continuous prose rather than a list.  Here, three words
-cap     at a time over the first verse of Jabberwocky.
+cap     It slides a window of -f words along the text and prints each
+cap     rotation of it, with the page number: here three words at a time
+cap     over the first verse of Jabberwocky.
 try     pagekwic -f=3 < DOC/samples/jabber.txt | head -n 14
 run     builtin cd /dd
 wait    1
@@ -563,8 +556,8 @@ wait    6
 
 shot    pagefraz
 size    36 80
-cap     The phrase index of the same set: each title broken into the
-cap     phrases an index would list.
+cap     Four book titles, in tmp/TXT/titles, broken into the four-word
+cap     phrases an index would list, each with its page number.
 try     pagefraz < tmp/TXT/titles
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
 wait    3
@@ -576,7 +569,9 @@ run     pagefraz < tmp/TXT/titles
 wait    8
 
 shot    pageline
-cap     Numbers the lines of the same set for the index to refer to.
+cap     Four book titles split into one word per line, each with its page
+cap     number. The last word comes out without its number: pageline writes
+cap     a word's number only when the next word begins.
 try     pageline < tmp/TXT/titles
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "The Art of Computer Programming\rStructured Programming\rThe C Programming Language\rThe Mythical Man-Month\r" > /dd/tmp/TXT/titles
 wait    3
@@ -589,9 +584,7 @@ wait    8
 
 shot    ispell
 cap     ispell reading a line of Jabberwocky and naming the words its
-cap     dictionary does not hold.  The table is LIB/ispell.hash, 17,632
-cap     words, which `buildhash' makes from SRC/ispell/dict.191 -- so the
-cap     dictionary is yours to add to.
+cap     dictionary does not hold, one to a line.
 try     ispell -l tmp/TXT/spell.txt
 run     mkdir -p /dd/tmp/TXT > /nil 2>/nil; printf "Twas brilig and the slithy tovs did gyre and gimble in the wabe.\r" > /dd/tmp/TXT/spell.txt
 wait    3

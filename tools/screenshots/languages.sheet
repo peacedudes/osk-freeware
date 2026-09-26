@@ -22,10 +22,8 @@ wait    4
 
 shot    adlrun
 size    36 80
-cap     Playing a compiled ADL world.  AARD ships ready to run in
-cap     ADL/AARD: it opens at the museum entrance, and the > prompt
-cap     takes the usual adventure commands -- look, take, inventory,
-cap     a direction.  save and restore keep a game; quit leaves.
+cap     AARD, which ships compiled in ADL/AARD: the museum entrance, the lamp
+cap     taken, the inventory, and a step south to the rotunda.
 try     adlrun aard
 run     builtin cd /dd/ADL/AARD
 wait    1
@@ -43,10 +41,9 @@ quit    quit\ry\r
 
 shot    adldebug
 size    40 80
-cap     The ADL debugger on a compiled world: it loads the symbol table
-cap     and gives a > prompt where ? lists its commands.  Each one dumps
-cap     a table of the world -- objects, nouns, verbs, routines, strings
-cap     -- over a range of numbers, $ standing for the last.  q leaves.
+cap     tiny is the small demo world in ADL/DEMOS, compiled first with
+cap     adlcomp: `adlcomp tiny.adl -o tiny -i..'.  The debugger loads it with
+cap     its symbol table, and ? lists the commands.
 try     adldebug tiny
 run     builtin cd /dd/ADL/DEMOS
 wait    1
@@ -65,11 +62,9 @@ quit    q\r
 
 shot    adltouch
 size    30 80
-cap     Re-dates an ADL save file -- `touch an ADL save file', its source
-cap     says: it writes the number given over the file's first four bytes,
-cap     the stamp that ties a saved game to the world it came from.  It
-cap     writes to any file, so here it is shown on a compiled world; the
-cap     two dumps show the first bytes before and after.  It prints nothing.
+cap     It writes to any file, so here it is shown on a compiled world, tiny
+cap     from ADL/DEMOS; the two dumps show the first bytes before and after.
+cap     It prints nothing.
 try     adltouch tiny 7
 run     builtin cd /dd/ADL/DEMOS
 wait    1
@@ -86,11 +81,10 @@ wait    4
 
 shot    forth
 size    30 80
-cap     TILE Forth, with a source file loaded from the command line:
-cap     fibonacci.tst from lib/tile/TST defines fib, and typing at the
-cap     prompt runs it -- 20 fib leaves the answer on the stack, . prints
-cap     it, cr ends the line.  A colon definition makes a new word and
-cap     runs at once.  The prompt is silent; bye leaves.
+cap     fibonacci.tst from lib/tile/TST, loaded from the command line, defines
+cap     fib: 20 fib leaves the answer on the stack, . prints it, cr ends the
+cap     line.  A colon definition makes a new word, which then runs by name.
+cap     The prompt is silent; bye leaves.
 try     forth fibonacci.tst
 run     builtin cd /dd/lib/tile/TST
 wait    1

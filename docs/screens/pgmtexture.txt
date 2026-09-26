@@ -1,13 +1,20 @@
-$ giftopnm DEMO/gulls.gif | ppmtopgm > tmp/gg2.pgm
-$ pnmscale -xysize 60 40 tmp/gg2.pgm > tmp/gg3.pgm
-$ pgmtexture -d 2 tmp/gg3.pgm | head -n 14
-(Image has 184 graylevels.)
+$ pgmtexture -d 2 gg.pgm > gg.tex; cat gg.tex
+(Image has 26 graylevels.)
 (Computing spatial dependence matrix... done.)
-(Computing textural features......
+(Computing textural features............... done.)
+
 Angle                          0         45         90        135        Avg
-Angular Second Moment  1.462e-02  8.240e-03  9.716e-03  9.403e-03  1.049e-02
-Contrast               2.700e+02  5.744e+02  4.163e+02  3.861e+02  4.117e+02
-Correlation            8.781e-01  7.962e-01  8.301e-01  8.621e-01  8.416e-01
-Variance               8.915e+02  8.801e+02  8.881e+02  8.694e+02  8.823e+02
-Inverse Diff Moment    3.968e-01  2.847e-01  3.258e-01  3.018e-01  3.273e-01
-Sum Average            2.303e+02  2.247e+02  2.27......
+Angular Second Moment  1.166e-01  8.095e-02  9.897e-02  9.036e-02  9.672e-02
+Contrast               4.505e+00  9.499e+00  6.920e+00  6.433e+00  6.839e+00
+Correlation            8.827e-01  8.140e-01  8.401e-01  8.732e-01  8.525e-01
+Variance               1.618e+01  1.673e+01  1.639e+01  1.654e+01  1.646e+01
+Inverse Diff Moment    7.126e-01  5.819e-01  6.307e-01  6.046e-01  6.325e-01
+Sum Average            3.478e+01  3.392e+01  3.437e+01  3.395e+01  3.426e+01
+Sum Variance           1.204e+03  1.170e+03  1.186e+03  1.176e+03  1.184e+03
+Sum Entropy            1.168e+00  1.183e+00  1.168e+00  1.162e+00  1.170e+00
+Entropy                1.493e+00  1.602e+00  1.551e+00  1.562e+00  1.552e+00
+Difference Variance    5.827e-04  3.835e-04  4.499e-04  4.128e-04  4.572e-04
+Difference Entropy     5.656e-01  7.281e-01  6.709e-01  6.776e-01  6.605e-01
+Meas of Correlation-1 -3.988e-01 -2.673e-01 -3.363e-01 -3.091e-01 -3.279e-01
+Meas of Correlation-2  7.026e-01  5.324e-01  6.397e-01  5.801e-01  6.137e-01
+Max Correlation Coeff  2.175e-02  1.104e-02  7.734e-02  2.843e-02  3.464e-02

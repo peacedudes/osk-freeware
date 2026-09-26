@@ -1,24 +1,31 @@
+$ trek
+
+   * * *   S T A R   T R E K   * * *
+
+Press return to continue.
+
 What length game: s
 What skill game: n
 Enter a password: x
 5 Klingons
-3 starbases at 3,4, 7,5, 3,0
+3 starbases at 2,0, 4,2, 4,1
 It takes 250 units to kill a Klingon
 
 Command: s
 
 Short range sensor scan
   0 1 2 3 4 5 6 7 8 9
-0 . . . * . . . . . . 0   stardate      2600.00
-1 . . . . . . . . . . 1   condition     GREEN
-2 . . . . . . . . * . 2   position      3,4/3,3
-3 . . * E * . . . . . 3   warp factor   5.0
-4 . . . . . . . . . . 4   total energy  5000
-5 . . . . * . . . . . 5   torpedoes     10
-6 . . . . . . . . . . 6   shields       up, 100%
-7 . . . . . . . . . . 7   Klingons left 5
-8 . . . . . . . . . . 8   time left     8.00
-9 # . . * . . . . * . 9   life support  active
+0 @ . . . * . . . . . 0   stardate      3600.00
+1 . . . . . * . . . . 1   condition     GREEN
+2 . . . . . . . . . . 2   position      2,0/5,6
+3 . . . . . * . . . . 3   warp factor   5.0
+4 . . * . . . . . . . 4   total energy  5000
+5 . . . . # . E . . . 5   torpedoes     10
+6 . . . . . . . * . . 6   shields       up, 100%
+7 . * . . . . . . . . 7   Klingons left 5
+8 . . . . * . . . . . 8   time left     8.00
+9 . . . . . . . . . . 9   life support  active
   0 1 2 3 4 5 6 7 8 9
+Starsystem Rigel III
 
 Command:

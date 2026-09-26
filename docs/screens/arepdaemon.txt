@@ -1,13 +1,11 @@
-$ ls -l USR/LIB/ELM
-total 23040
--rw-------   1 7        1             527 Sep 24 00:02 aliases
--rw-------   1 7        1              56 Sep 24 00:02 aliases.dir
--rw-------   1 7        1           19996 Sep 24 00:02 aliases.pag
--rw-rw-rw-   1 0        0             896 Aug  3 19:00 aliases.text
-$ arepdaemon
-$ ls -l USR/LIB/ELM
-total 23040
--rw-------   1 7        1             527 Sep 24 00:02 aliases
--rw-------   1 7        1              56 Sep 24 00:02 aliases.dir
--rw-------   1 7        1           19996 Sep 24 00:02 aliases.pag
--rw-rw-rw-   1 0        0             896 Aug  3 19:00 aliases.text
+$ cat autoreply.data
+tester /dd/tmp/away.txt 0
+$ arepdaemon &
+<4>
+$ cat autoreply.log
+9/26-7:38: Autoreply data file has changed!  Reading...
+9/26-7:38: adding tester to the active list
+9/26-7:38: New mail for tester
+9/26-7:38: auto-replying to 'os9-freeware'
+$ cat autoreply.data
+tester /dd/tmp/away.txt 804

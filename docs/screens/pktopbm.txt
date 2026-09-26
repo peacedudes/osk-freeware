@@ -1,0 +1,25 @@
+$ pktopbm cmbx10.300pk -x 40 -y 44 -c 65 a.pbm; pbmtoascii a.pbm
+pktopbm: This is PKtoPBM, version 2.4
+pktopbm: 5540 bytes read from packed file.
+
+
+
+
+
+
+
+
+                MMM
+               MMMMM
+              oMMMMMo
+             oMMMMMMMo
+             MM MMMMMM
+            MM   MMMMMM
+           MM    "MMMMMM
+          MM"     "MMMMMM
+         oM"       "MMMMMo
+        oMMMMMMMMMMMMMMMMMo
+        MM           MMMMMM
+       MM             MMMMMM
+      MM"             "MMMMMM
+  MMMMMMMMMM       MMMMMMMMMMMMMM

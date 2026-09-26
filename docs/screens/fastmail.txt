@@ -1,5 +1,3 @@
-$ messages
-There is 1 message in your mailbox
-$ fastmail msg.txt tester
-$ messages
-There is 1 message in your mailbox
+$ fastmail -d msg.txt tester
+Mailing to tester [via rmail]
+list /dd/TMP/fastmail.4 msg.txt ! smail tester

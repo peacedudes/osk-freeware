@@ -1,0 +1,2 @@
+$ pbmtoln03 tmp/base.pbm | wc
+      5      6    260

@@ -7,8 +7,8 @@ $ net
 
      OS9-68k Port, Robert E. Brose II, N0QBJ, 44.94.249.29, St. Paul, MN
 
-                  This version is K5JB.k35c with options:
-                  AX.25/Seg, AX.25/vcipcall, Netrom, MBOX
+                  This version is K5JB.k37 with options:
+                  AX.25/Seg, Netrom, MBOX
                   MDKISS, Mulport, Heard, Unix, OS9-68K
 
 Warning: File /dd/startup.net not found

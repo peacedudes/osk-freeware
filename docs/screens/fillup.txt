@@ -1,9 +1,9 @@
 $ ls -l tmp/TEXTA/pad.txt
--rw-rw-rw-   1 7        1              44 Sep 24 02:17 tmp/TEXTA/pad.txt
+-rw-rw-rw-   1 7        1              44 Sep 26 08:36 tmp/TEXTA/pad.txt
 $ fillup -n=64 -i=46 tmp/TEXTA/pad.txt
 20 bytes (value=46) appended: total file size is now 64
 $ ls -l tmp/TEXTA/pad.txt
--rw-rw-rw-   1 7        1              64 Sep 24 02:17 tmp/TEXTA/pad.txt
+-rw-rw-rw-   1 7        1              64 Sep 26 08:37 tmp/TEXTA/pad.txt
 $ dump tmp/TEXTA/pad.txt
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E

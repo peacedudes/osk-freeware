@@ -1,11 +1,10 @@
-$ unzip -l sample.zip
+$ unzip -l sample.zip; unzip sample.zip
  Length    Date    Time    Name ("^" ==> case
  ------    ----    ----    ----   conversion)
    4033  08-30-92  12:00   readme
    5218  08-30-92  12:00   ziprules
  ------                    -------
    9251                    2
-$ unzip sample.zip
   Inflating: readme
  Extracting: ziprules
 $ ls

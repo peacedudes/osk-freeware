@@ -9,5 +9,5 @@ main:
         bsr _stkcheck
         move.l (a7)+,d0 :2
         link.w a5,#0
-$ ./gcc2 -o hello hello.c
-./gcc2: Can't fork 'r68': 000:221 module not found (hello.c)
+$ ./gcc2 -c hello.c; ls hello.*
+hello.a  hello.c  hello.r

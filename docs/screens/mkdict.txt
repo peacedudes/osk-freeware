@@ -1,6 +1,5 @@
-$ mkdict < /nil
+$ mkdict < words > dict
 $ ls -l
-total 85504
--rw-rw-rw-   1 0        0           80520 Aug  3 19:00 dict
--rw-rw-rw-   1 0        0             416 Aug  3 19:00 dict.ind
--rw-rw-rw-   1 0        0            3620 Aug  3 19:00 helpfile
+total 245248
+-rw-rw-rw-   1 7        1           80520 Sep 26 08:20 dict
+-rw-rw-rw-   1 7        1          164034 Sep 26 08:20 words

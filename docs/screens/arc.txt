@@ -1,11 +1,11 @@
-arc a m.arc motd termcap
+$ arc a m.arc motd termcap
 Creating new archive: m.arc
 adding file:   motd           analyzing, storing, done. (0%)
 adding file:   termcap        analyzing, crunched, done. (36%)
 $ arc v m.arc
 Name          Length    Stowage    SF   Size now  Date       Time    CRC
 ============  ========  ========  ====  ========  =========  ======  ====
-motd                41     --       0%        41  19 Sep 26   7:00p  9e9a
-termcap            984  Crunched   36%       636  19 Sep 26   7:00p  4d1f
+motd                41     --       0%        41   8 Oct 26   8:39a  2875
+termcap            984  Crunched   36%       636   8 Oct 26   8:39a  4d1f
         ====  ========            ====  ========
 Total      2      1025             34%       677

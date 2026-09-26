@@ -1,23 +1,23 @@
 $ ppmtopgm tmp/clouds.ppm | pgmtopbm | pbmtoascii -2x4
-M9HM9H9HZ&777/|//?://;/|S:(($FHRM9HRMHRM9MHHRMRM9RMRMRM9M9RM9HRM9&&&\4TZ&99M
-F&&&&R$\?/:<:?\<//:::/:>\:S////$S&RFFFR6MHRHR&9&MHDMH6MHH&&Z7&$?}???\|\:)||\
-S?S$S$$):\:S.:>:.'. :: ::/|>:\|T|%kRM9RM&kFR&91Z&D9M&HHH&6&$?(<%??\/<::S;:((
-S$S(|?\\::>:-:::`.- . ..:\:;:%:?\<$$$\$$$$&SS4$R$6&&HFR6R&||?!|||>\::::\:\((
-%Z//S:%:\%|;:>:::.:-:-.::::i>:://`)?:?||)))SSSS\&%H&1S&&&&S$|!/);:\::\\/:\((
-ZZZ?/?<?/?/?//)::.::>:\||?\<:>:,::/>\|???SS$$$%Fk6MHDM9M&11S|Z%\?|\:>://i?S$
-H&&S47$&&bk&\\\\::((?????!:<::://>?\\:???[&&$&H&RM&RM9D6H&SFS4%%\\%}\&H&MH&M
-6H&H&H&HH&RM&$//|:iS\\???(<\/;:|S/|/))||JS6&H1HRMHRMH6RH9Z$?S$1///Z6H&HH&R6M
-M9M1FkR6RR&&Z$$J||\?\?\\\:::>::/>\\\\Z/$&M&RHM9HDMHHH1$&&&H&H9HM9HHHHRM9RH6M
-6MHHHkDR&&Z((k&1$Z$):i>:: -.::::::i(:($&MHMH&RH6M9HH6HHZP/$&6H&6MHRHRMH6M9MH
-MH9&$SS(((?<??SS?/?!/::::.'.-:-.'::?:||D&1HM9RMM&6M&9&9\SSS?$9&HH&RMHDM&6M&M
-HRM%[(r??)\%!:<:-S::?:-:-:..`..'::<:||[&&&HRMH&RHH9R&]4|>$$$$Z6RMR6M&H6M9H6M
-HH$}}$%%\//:\:<:::>:::`:.- ':.:i:S>S&&HDMHH6MHRM9MHSk\S$H&HRM9H9H9&H&RHH9H6M
-M9Fk%Z<:S://'::>::::.::.-::-..\\\\\$Z&49RM&HH&H6HH9&&$H6HHDM&9&DRHR6H6M6HH9H
-RMZ/%%?i::.::-;i::.:-.-.-.-:.-:\?<////)Z$&&RM9RM96MH66HHRHM9H&M&&&4S6&96M96M
-M&&$&&$S\\:\\:::: : . . . -:\:ii|||$($S&&&&1&R6HHHH&D9HHRHH9RM&Sc&S$k6&96HH9
-M96F&HH%[(/>\: -::- . .-:::S/)$SHHHH9HHH9H96H&M&1$&11&&%6RRFR&6HHHH&1&&1196M
-M&R6HH&S|?\\::::.-:-.:.`-i(<S&&HRHRMHDM9R6M&M&H6M9HHHH6M&6M&kMHM&M9HH&6HHDMH
-M96M&6R&|\\\/:::!::\:.:\\<\$HMHHH6MH6M96H6MHHRMH&MHHRHM&RMHHH&M&RMHH6M9&6M6M
-MH&RMH&&$&>$))):>\::/\</||{1H&HH9HH&HH96MHHRHRM9RMRHM9HMH&RM9MHH6M&RMHRHM&DM
-MHRMHRMHH6M&S///S;//??$S$FRHHRMHHRM9H6MH&M96MH6MH&RMH9DMHRH6M&6M9HMHHHHRM9RM
-HH6MHH&RHH&6&<SS/S:\|||}7/&ZFHHRHM9HRMHHH6HH&HH9HMHHHHRMH9M9HRM&RHHH9R&H6H6M
+HRMHM&RRPRZ%?|}??\\::?\\\<>\\&RMRMRM9RM9HRM9RMHM9M9RMRMHM9RMRMHHR&9\\\4Z&&HH
+&&1&SM%$%>):/(/:<::-::<::<:)\%%%FkHZF6&M9MHHH&&MH6MH&H6HH&S$&S[$/$)?\\\\:T7&
+?S\$&/S(/:::\::::--- '.'.\/:>:??|kFkM9RMH&6&H&&&&&&M9RM9RH$$)?????/;:/;:|>))
+Z$%\</:%:/\\::--:`. :-.::/;,://S<SS&\$)S4S/$$9\91SH&HFHH&S&|\%%%\//\\::>:%|?
+Z?//S:i|?/i|>::'::`.::.-.:S:)::\::/|)\\\\\\4||?$S$&H4S6H&>\%\\/|<:::\:S::\%%
+$$$?S>\?SS($?\\|:\::\\?i:>:/>::/:>?:\\\??$$%|F$SH9HHHHHHH&6$//<S/:??|?/?:/Z$
+M$k&S$H$11&\}Z\\\<||\???<:?<;->;\:?\(<T||S&&$ZHH9HH6M9R6kRFF$)$)?}\|[$&H&6MH
+6M&&DH1RM9H9Rk??i|<\\|||%|!:/:::?|\\????S&&&kHH9HHHHHH&&kk\\S$1{J?$k6M6MHH6M
+6MHM&&&1R6&$}}\?\??|\?<SS:::\:\>:SSS%S$$6HHR6MHHH6M9R6&$DFFkMHHRMHH6M&HH&H6M
+M&HHH&H&&$S|$S$&/Z$??:::-: .:\:<:\:/SSS&M9HMHHRHHH9H6H6&Z7&&SM&RMRHM&RMRMHH9
+M9Rk&&Z%\\\\$%SS\||S<:::.- --.-:.:/\%>$719HHRHH6M6M&9&&S|||/?FHH&RMHMH&RMHRM
+6M&Z}$))>\<?::<:\::S:.:::: :.-:::::S//J]$&RHH6M9&H96&&Z?}$$$$ZRHMH&9&MHH&H6M
+6kR&?/??/|>:::\<.-//::`:.-: .-::||||&&HHHRMHH6MH9RM&Z\?L6HHRMHHRM&6kM99RM9HH
+6M&&???:::/:::::!>:::.-.::.-:.:/???$Z&49H6M&RHH96HH1&9&&6M&FRH&HDRDRHMH6MHRM
+M&$SSSS/;-:.-::::::/.-:. - -::::>\\?SS\$&$99RMHH6M9H&6MH&RM9RM&H&Z&&$kMH&H6M
+M&kH{1$SS:::>:::::.-    -:.::.S;SSSSS(b$F&DkRH9DM&H&FkHM9MH6M&6F&H$&Z&H9H9HH
+M9HSkH&S\\\\<:: -'--  ':.:?|??$1&H6M&6MHH&M&HRHSR&Z&&kk$9&H9&FHHH&66F&H&&SM9
+6M&kM&R/(/>\:.::::::.'.-:>:>$&&H6MHHRHM&6M&M9HHMHRHM&MH6HRHk666M6HHDM&H9H&6M
+MHH6HM&S??:::::>-!\:i.:::|/$&M9HHHRHM&RHM&H6MH&HH9HRM&HH&RMH&RHM&RM96M&M9RMH
+M&RM9RR&dJ//?SS/:::|>\%:\|6&M&MHRHHDMHHRM9RMHHRM6M&6M9M9H6MHH6MHH6H6HH9RMH&M
+M9R6MHMH&MHH%L|\:\\\|||\&&1HHRHH6M9RM9HMHHH&RHHHHHRHRMH9RM&6M9H9H6M9H6H6MHRM
+MH6M&HHHRHRFk$|\|(:>??\?\T4\&H6M9H6H6HH9HRM9R6M9M&H6HH9H6M9&RMH9RM&M9FRHH&RM

@@ -5,6 +5,5 @@ $ dvijep story.dvi
 [Output on file story.dvi_jep]
 [1 pages]
 [1{1}]  [OK]
-$ ls -l story.dvi_*
--rw-------   1 7        1           12689 Sep 24 02:06 story.dvi_alw
--rw-------   1 7        1            6155 Sep 24 02:06 story.dvi_jep
+$ ls -l story.dvi_jep
+-rw-------   1 7        1            6155 Sep 26 12:02 story.dvi_jep

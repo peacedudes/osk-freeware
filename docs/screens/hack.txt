@@ -1,4 +1,14 @@
-Unknown command '^M'
+Hello tester, welcome to hack!--More--
+
+
+
+
+
+                                                               ---------
+                                                               |.../d@.|
+                                                               +.......|
+                                                               |...$...|
+                                                               ---+-----
 
 
 
@@ -7,18 +17,8 @@ Unknown command '^M'
 
 
 
-                                                                     -------
-                                                                     |.....|
-                                                                     |.....|
-                                                                     +..<.d|
-                                                                     |...@.|
-                                                                     -------
 
 
 
 
-
-
-
-
-Level 1    Hp  10(15)   Ac 9    Str 16      Exp  1
+Level 1    Hp  10(10)   Ac 10   Str 9       Exp  1

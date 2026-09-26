@@ -1,0 +1,2 @@
+$ sputoppm nr.ppm > s.ppm; pnmfile s.ppm
+s.ppm:  PPM raw, 320 by 200  maxval 7

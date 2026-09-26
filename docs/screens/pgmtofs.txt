@@ -1,5 +1,4 @@
-$ pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
-$ cat tmp/NPMB/o.fs | head -8
+$ pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs; head -n 14 tmp/NPMB/o.fs
 FirstName:
 LastName:
 E-mail:
@@ -8,3 +7,9 @@ Company:
 Address1:
 Address2:
 CityStateZip:
+Date:
+PicData: 48 24 8
+Image: 48 24 8
+
+00050a10151b20252b30363b41464b51565c61676c71777c82878d92979d
+a2a8adb3b8bdc3c8ced3d9dee3e9eef4f9ff00050a10151b20252b30363b

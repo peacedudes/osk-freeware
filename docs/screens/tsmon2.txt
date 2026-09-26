@@ -1,17 +1,2 @@
-$ tsmon2 -?
-**** TSMON2: de-luxe version of the timesharing monitor (c) 1989 by L.Zeller
-Syntax:   tsmon2 [<options>] <device name>
-Function: Monitor terminal device to initiate the login procedure when
-          CR is typed (default case)
-Options:  -i         : initiate login program as soon as DCD goes active
-                       (no CR required to start login)
-          -t[=]<sec> : close and re-open path after specified number of
-                       seconds of inactivity on port while waiting for CR
-          -k         : kill login process and all it's child processes
-                       as soon as DCD goes inactive
-          -p=<prog>  : Start <prog> instead of 'login'
-          -a         : accept any character to initiate instead of CR only
-Note:     Some device drivers can't detect the inactive-to-active
-          transition of the DCD signal and some others don't support
-          DCD monitoring at all. Therefore, the -i and -k options may
-          not work as expected on some systems.
+$ tsmon2 /t1
+tsmon2: Can't open device "/t1" -

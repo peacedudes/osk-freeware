@@ -1,11 +1,8 @@
 # The help system and the pagers.
 
 shot    help
-cap     The help system on a topic.  Each subject is a .hlp file with an
-cap     index beside it in SYS/HELP; the article is paged, and at the
-cap     end it offers the subtopics.  bash has a help builtin of its own
-cap     that answers first, so type `enable -n help' once to let this one
-cap     answer.
+cap     The article on dinfo, paged from its .hlp file in SYS/HELP; at the end
+cap     it offers the subtopics.  At bash, type `enable -n help' once first.
 try     help dinfo
 run     enable -n help
 wait    1
@@ -34,14 +31,12 @@ wait    4
 
 shot    man
 size    30 80
-cap     About 300 manual pages ship on this disk, one or two to a package
-cap     directory under DOC, and `man' is how you read one: it looks the name
-cap     up in DOC/MANPAGES, formats the page with nroff and shows it a screen
-cap     at a time with less; the md5 page is shown.  `man -k <word>' lists
-cap     the pages whose name contains a word, and `man -w <name>' says where
-cap     a page is.
-cap     It is a shell script, so you can read it as well as run it.  Written
-cap     for this collection; anyone who wants it can have it.
+cap     The md5 page: `man' looks the name up in DOC/MANPAGES, formats the
+cap     page with nroff and shows it a screen at a time with less.  `man -k
+cap     <word>' lists the pages whose name contains a word, and `man -w
+cap     <name>' says where a page is.  It is a shell script, so you can read
+cap     it as well as run it.  Written for this collection; anyone who wants
+cap     it can have it.
 try     man md5
 run     clear
 wait    1
@@ -52,10 +47,8 @@ send    q
 wait    3
 
 shot    less
-cap     less, paging a file a screen at a time: space or f for the next
-cap     page, b for the one before, / to search, h for its help screen
-cap     and q to leave.  It reads the terminal's size and codes from
-cap     TERM and TERMCAP.
+cap     The first page of the TILE Forth manual, with the file's name on the
+cap     prompt line at the foot.
 try     less DOC/forth/tile.doc
 run     builtin cd /dd
 wait    1

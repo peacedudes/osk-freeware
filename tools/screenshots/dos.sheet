@@ -238,8 +238,8 @@ wait    8
 snap
 
 shot    msread
-cap     msread is mscopy under another name, the same program: here it
-cap     copies a file off the DOS disk, byte for byte, into a file on OS-9.
+cap     A file copied off the DOS disk into a file on OS-9, then shown: the
+cap     message of the day, byte for byte as it went on.
 try     msread a:RAW.TXT raw.out; cat raw.out
 run     rm -rf /dd/tmp/DOSB > /nil 2>/nil; mkdir -p /dd/tmp/DOSB
 wait    4
@@ -279,10 +279,10 @@ wait    10
 snap
 
 shot    mtools
-cap     mtools is the suite's own front end: called bare, or under any
-cap     name it does not recognise, it lists every sub-command that
-cap     ships with it. Each of those is also its own separate program on
-cap     this disk.
+cap     mtools is the suite's own front end: called bare, or under any name it
+cap     does not recognise, it lists every sub-command that ships with it.
+cap     Each is also on this disk as a program of its own, named with ms-
+cap     rather than m-: mscopy, msdir, mstype and the rest.
 try     mtools
 run     mtools
 wait    10

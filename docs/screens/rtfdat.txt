@@ -1,0 +1,16 @@
+$ modinfo CMDS/rtfdat
+--------------------------------- CMDS/rtfdat  - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - -
+Module name           = rtfdat
+System revision       = 1
+Module size           = 47360
+Owner Id              = 0.0
+Offset to module name = 00000034H
+Access permission     = e-re-re-r
+Type/Language          = 0400H  Data Module            not a programm
+Attribute/Revision    = 8000H   reentrant
+Edition               = 1
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = ffff8d62H

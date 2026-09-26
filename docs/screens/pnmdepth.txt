@@ -1,4 +1,24 @@
-$ pnmdepth 15 tmp/NEAB/r.pgm > tmp/NEAB/d.pgm
-$ pnmfile tmp/NEAB/r.pgm tmp/NEAB/d.pgm
-tmp/NEAB/r.pgm: PGM raw, 64 by 16  maxval 255
-tmp/NEAB/d.pgm: PGM raw, 64 by 16  maxval 15
+$ pgmtopbm ramp.pgm | pbmtoascii -2x4
+MMMMMMMHM9RRRMSHH&19&1&%R$S$ZZ$Z/$SS???:%%\|%|:S::>:/;-:::-::-:.-. . ..
+MMMMHHMH6M&6D6&FkR&&&&]%k&ST&/)$]|?SS???<>??|:iS:::/::::/::/-:.:`.: . . .
+MMMHMMHHHH96HH&FkR&FF&&Z&Z$S$/%T$$?///////|S|:iS://:::::::::-:: :.-.-  .
+MMMMM6MMHHD6M&6&k&&&&&&Sk&/$$4)?|[$?SSSSS|;S/\:?:>::<:::\.-\:-:.- : -`  .
+MMMHHMHM9HHH&HH&1&&&$&&$&Z$S1%&|$\?\\\\\??|\?/i(/\<:\:<:::-::.:`:..` '` .
+MMMMMHHM9H996H&FDFRH&S&S&$S$S$4)?$$|%%%%%\|>/:?:\\:S:::\\::--:.-.-'.'` .
+MMMRMHHH9HHH&M&H&SkkR&&S$F1%$Z$Z/$SSS??\\\S?!<\\>/::/::-/:::-.'-.': :`  .
+MMMMMMH6MHRHkHH9&11111&Sk&S[$/$\T????????):?\(<:?<;:>::::\::`\:`.:.` .'.
+MMMH6MRMH&9H&RHH&11111&Sk&$S&%\\$|$|))):?i|?)|:S:\<:\\:/::::-.:: ..'. -  .
+MMMMHMHM&RH&M&6H&1$&&&&$$S14??[$??Z%%%%%%%//S>\/>::>::\\::::-:.:: :- . '
+MMM9MMHHMH9RH&HH&&&$&&&$&S1%$S|}$7||)))))||i:|>\/<\::S.-:::/:..-.:. :.` .
+$ pnmdepth 3 ramp.pgm | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMMMMMZ$&Z$&S&&%F&Z$S$&&$S&&S[&::|>:\\:<::>:///::/:://:>'
+MMMMMMMMMMMMM/1%F1%F1%F1%F1%F$1%F1%F1&::>::\::\::/::/::\:::\:):-
+MMMMMMMMMMMMMS$$S$$S$$S$$S$$S$$S$$S$$S:/::/::/::/::/::/::/:::/::
+MMMMMMMMMMMMM1%F1%F1%F1%F1%F1%F1%F1%F1::S::S::S::S::S::S::>:/::.
+MMMMMMMMMMMMM$Z&$Z&$Z&$Z&$Z&$Z&$Z&$Z&$:%::%::%::%::%::%::%::%:::
+MMMMMMMMMMMMMF1%F1%F1%F1%F1%F1%F1%F1%F:%::%::%::%::%::%::%::%:::
+MMMMMMMMMMMMM1%F1%F1%F1%F1%F1%F1%F1%F1;::S::S::S::S::S::S::S::>-
+MMMMMMMMMMMMM$Z&$Z&$Z&$Z&$Z&$Z&$Z&$Z&$:\<:\<:\<:\<:\<:\<:\<:\<::
+MMMMMMMMMMMMMS$$S$$S$$S$$S$$S$$S$$S$$S\\:>\:>\:>\:>\:>\:>\:>\:>'
+MMMMMMMMMMMMM&Z$&Z$&Z$&Z$&Z$&Z$&Z$&Z$&\:S::S::S::S::S::S::S::S:-
+MMMMMMMMMMMMM$$Z$$Z$$Z$&Z$&Z$&Z$&Z$&Z$:%::%::%::%::%::%::%::%!::

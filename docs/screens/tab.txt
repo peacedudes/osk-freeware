@@ -1,6 +1,6 @@
 $ cat tmp/DEV/t.a
  nam test
- start ldx #buf
+start ldx #buf
 loop lda ,x+
  beq done
  bsr putc
@@ -11,7 +11,7 @@ buf fcc /hello/
  end
 $ tab -b < tmp/DEV/t.a
             nam test
-            start     ldx                      #buf
+start       ldx       #buf
 loop        lda       ,x+
             beq       done
             bsr       putc

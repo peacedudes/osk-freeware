@@ -1,2 +1,5 @@
-$ uux seabass\!rnews
-uux: Unknown Host 'seabass'
+$ uux uunet\!date
+$ ls uunet
+B.htsmm1A0001  C.uunetA0001
+$ cat uunet/C.*
+S B.htsmm1A0001 X.htsmm1A0001 root - B.htsmm1A0001 0666

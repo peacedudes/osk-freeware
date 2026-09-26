@@ -1,6 +1,4 @@
-Option table size                = 1
-Device type                      = 1 RBF
-
+$ modinfo lfcrman
 ----------------------------------- lfcrman  - - - - - - - - - - - - - - - - - -
  - - - - - - - - - - - - - - - - - -
 Module name           = lfcrman

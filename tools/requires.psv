@@ -51,12 +51,12 @@ hist|Microware's shell, which runs each command typed at it|SRC/hist/h_main.c, s
 hist|a history file it can write, named as an argument; the default is /r0/history, on a RAM disk|DOC/hist/hist.doc; measured 2026-09-14: E$MNF opening /r0/history._
 hexed|Microware's shell: it hands system() the line `chd <dir> ; <editor> <file>.hd', and only that shell parses it|SRC/eff_hexed/hexed.c line 482; measured 2026-09-18 -- the editor opens with Microware's shell resident and SHELL naming it, and not otherwise
 hexed|a directory for the dump, named with -t; without it the dump goes to /r0, a RAM disk you must mount|DOC/INDEX; hexed.c EDITOR/tempdir defaults
-hexed|the termcap ENTRY in TERMCAP, not a filename -- `. /dd/SYS/termcap.entry'|measured 2026-09-18 with -e=vi
+hexed|the termcap ENTRY in TERMCAP, not a filename -- `. SYS/termcap.entry'|measured 2026-09-18 with -e=vi
 cron|Microware's shell, which runs each crontab command|strings: "shell", "/dd/usr/lib/crontab"; DOC/cron/cron.txt: "The command field is a command line to be passed to the shell"
 tplot|an Atari ST: it draws through the ST's A-line graphics traps|measured 2026-09-14: after the three answers it sends ESC f and stops at instruction $A000 (E_PRCABT); its usage line names it hiplot
 dm|Microware's pd, which it runs through SHELL to learn its current directory|strings: "pd >/pipe/getcwdpipe"; measured 2026-09-14: no pd under CMDS, and dm reports "ERROR 216: Can't open /pipe/getcwdpipe"
 uuxqt|Microware's procs, which it loads to see whether another uuxqt is already running|strings: "procs", "isuuxqtrunning() can't load '%s'"; its card captures that stop
-fact|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits
+fact|the RTF run-time library resident: `load os9lib' from CMDS|DOC/README-FORTRAN; measured 2026-09-18 -- without it the program prints nothing and exits
 man|nroff and less, and TMACDIR set to /dd/LIB so nroff finds the man macros|/dd/startup and SYS/login both set TMACDIR; measured 2026-09-18
 utree|HOME, for its startup file, tag list and command history (SYS/login sets it)|measured 2026-09-19: without it, "utree: Can't get your home directory"
 utree|TERM and a termcap to look it up in -- SYS/login sets TERM and TERMCAP|measured 2026-09-19: without TERM, "utree: Unknown terminal type"
@@ -67,7 +67,7 @@ m4|a module named `shell' for its syscmd -- SYS/login loads yours from /h1|DOC/R
 utree|room for the whole tree it is given -- open it on a subdirectory, or give `-q' for two levels, on a disk this size|measured 2026-09-19: `utree DOC' (303 dirs, 1553 files) reads whole
 ff|a module named `shell' -- SYS/login loads yours from /h1|measured 2026-09-22: it forks shell with `dir -ausr ! grep -e=<name>'; with none resident it prints nothing
 ff|your own OS-9's grep, loaded: `load /h1/CMDS/grep'|measured 2026-09-22: this disk's GNU grep reads -e=<name> as the pattern `=<name>' and matches nothing
-lgrep|your own OS-9's grep, loaded: `load /h1/CMDS/grep'|measured 2026-09-22: it runs `grep -l' and prints nothing from this disk's GNU grep, and names the files from Microware's
+lgrep|your own OS-9's grep, loaded: `load grep' from your own CMDS|measured 2026-09-22: it runs `grep -l' and prints nothing from this disk's GNU grep, and names the files from Microware's
 mshell|a module named `shell' for each menu command -- SYS/login loads yours from /h1|SRC forum9 mshell.c, os9fork("shell"); measured 2026-09-22
 xc|a module named `shell' for each marked command -- SYS/login loads yours from /h1|measured 2026-09-22: with none resident it stops with exit status 216
 clock|a module named `shell' to run banner for each line -- SYS/login loads yours from /h1|SRC/misc/clock.c; measured 2026-09-22: with none it stops on the pipe with error 216
@@ -76,7 +76,7 @@ rayshade|a module named `cccp', resident: `load /dd/CMDS/GCC139/gcc_cccp'|measur
 dback|your own OS-9's copy, for -e -- SYS/login loads it from /h1|SRC/dback/dback.c, os9exec of "copy"; measured 2026-09-22
 hist|your own OS-9's tmode -- SYS/login loads it from /h1|measured 2026-09-22: `shell: can't execute "tmode"' without it
 subber|room up front, `#1000k', which your own OS-9's shell gives it: `shell subber #1000k words file' from bash|measured 2026-09-22
-for|a module named `shell', and your own OS-9's r68 and del -- SYS/login loads all three from /h1|measured 2026-09-22: `for fact' compiles, assembles and deletes the assembly
+for|a module named `shell', and your own OS-9's r68, l68 and del -- SYS/login loads them from /h1|measured 2026-09-22: `for fact' compiles, assembles and deletes the assembly
 for|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN
 lnk|your own OS-9's shell and l68 (SYS/login loads both from /h1), with Microware's sys.l and rtfstart.r, assembled from SRC/rtf/rtfstart.a, in LIB on /h0|measured 2026-09-22: it links /h0/LIB/sys.l and /h0/LIB/rtfstart.r and writes /h0/CMDS/<name>
 lnk|the RTF run-time library resident: `load /dd/CMDS/os9lib'|DOC/README-FORTRAN
@@ -89,7 +89,7 @@ screen_nocio|a module named `shell' to run the greeting -- SYS/login loads yours
 yagi|answers to be typed: run it from a terminal, not with input from /nil|measured 2026-09-22: at EOF its conversion overflows and the program's own TRAPV ends it (rc=107); with 430, 15 and the rest it runs to its tubing table
 textb|answers to be typed: run it from a terminal, not with input from /nil|measured 2026-09-22: same overflow at EOF; given -2.3, -2.0, 4.0 and 32 it draws the set
 v7make|a module named `shell' to run each command -- SYS/login loads yours from /h1|measured 2026-09-23: without one it prints the command and stops with a junk error code; with it, the rule runs
-yahtzee|TERMCAP holding the terminal DESCRIPTION, not a filename: `. /dd/SYS/termcap.entry' -- /dd/.bashrc does it for you at the login shell|measured 2026-09-23: with TERMCAP as SYS/login sets it, `'xterm-256color': Unknown terminal type.'
+yahtzee|TERMCAP holding the terminal DESCRIPTION, not a filename: `. SYS/termcap.entry' -- the login shell's .bashrc does it for you|measured 2026-09-23: with TERMCAP as SYS/login sets it, `'xterm-256color': Unknown terminal type.'
 nnmaster|a module named `shell', and your own `qsort' to sort the GROUPS file when -I makes one -- SYS/login loads both from /h1|measured 2026-09-23: without qsort, -I repeats `shell: can't execute "qsort"' for ever
 bru|the super-user: anyone else is refused with status 214|SRC/bru/README.OSK
 drawpoker|less, in the execution directory or resident, to page the rules it offers first|SRC/poker/README.OSK
@@ -103,7 +103,7 @@ inews|the super-user (the owner of the inews module) for control messages such a
 nnmaster|the super-user to initialise nn's database, and then `attr -pr /h0/SPOOL/NN/GROUPS' so other users' nn can read it|DOC/README-NEWS; tools/datatests/superuser.cases
 uupoll|the super-user to see its queue: it runs as uucp and makes each site's spool directory private|SRC/uucp_blars/uupoll.c; tools/datatests/superuser.cases
 tass|MNews "pre 2" on your system: SysInfo MNEWS.LIB and MNEWS.DIR naming its library and spool; it does not read this disk's 1990 MNews|SRC/tass/README.OSK
-gcc137|your own OS-9's r68 and l68, cstart.r, clibn.l, math.l, sys.l and headers; after GCC139 has run, `unlink cc1 cccp'|SOURCES.txt, GNU C 1.37.1
+gcc137|your own OS-9's r68 and l68, cstart.r, clibn.l, math.l, sys.l and headers; if GCC139's passes are resident (they load as cc1 and cccp), `unlink cc1 cccp' first|SOURCES.txt, GNU C 1.37.1
 gcc272|your own OS-9's r68, l68 and del, cstart.r, clibn.l, math.l and sys.l; GCC2_OPTS naming its passes|SOURCES.txt, GNU C 2.7.2; DOC/gcc272/readme.osk
 ptyman|a real OS-9 kernel to load it into, with ptydrv, pty and tty; os9exec loads no file managers|SRC/ptyman/README.OSK
 lfcrman|a real OS-9 kernel to load it into, and a descriptor naming the device it translates; os9exec loads no file managers|SRC/lfcrman/README.OSK
@@ -113,7 +113,7 @@ vt100|an MM/1 with K-Windows and a serial port|SRC/vt100/README.OSK
 x9eyes|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
 setbgptn|a Sharp X68000 with OS-9/X68000's personal window (/win)|DOC/README-X68K
 logon|a password file, users and terminal lines; DOC/SYSADMIN/logon.prf|DOC/SYSADMIN
-mmon|the super-user; two SysInfo locks per line, `t1,l' and `mmon.t1,l' for /t1, entered with `setup'; a block per line in SYS/mmon.config, with `logon_path = /dd/CMDS/SYSADMIN/logon' or logon loaded; a module named `shell' for the user's login|DOC/SYSADMIN/mmon.prf; measured 2026-09-25 on /t1 from os9exec's iterm: without the locks it exits in silence, without logon found it retries the fork in silence
+mmon|the super-user; two SysInfo locks per line, `t1,l' and `mmon.t1,l' for /t1, entered with `setup'; a block per line in SYS/mmon.config, with `logon_path' naming CMDS/SYSADMIN/logon, or logon loaded; a module named `shell' for the user's login|DOC/SYSADMIN/mmon.prf; measured 2026-09-25 on /t1 from os9exec's iterm: without the locks it exits in silence, without logon found it retries the fork in silence
 watch|the super-user, and a modem line|DOC/SYSADMIN/watch.prf
 vcron|membership of group Cron in SYS/group, and crontabs under SPOOL/VCRON on /h0|SRC/vcron/README.OSK
 rex|OS-9/Net, with prexd running on the node named|SRC/rex/README.OSK
@@ -147,3 +147,19 @@ disable|the port's descriptor module resident -- the card loads this disk's tty 
 enable|the port's descriptor module resident -- the card loads this disk's tty with your own OS-9's load; and MTSMon, your own OS-9's, running on that port|SRC/bnu_uucp/turnport.c, the same source as disable; measured 2026-09-25
 smail|to deliver, its mailers where it forks them: lmail (CMDS/UUCP here) and uux in /dd/ETC/CMDS, and a host name, from HOSTNAME or /dd/SYS/hostname. Without the mailer it retries the fork every minute, ten times, before it says so|DOC/uucp-blars/Readme; SRC/smail/BNU/SMAIL_2.5/SRC/deliver.c; measured 2026-09-25
 fastmail|your own OS-9's list, resident -- SYS/login loads it from /h1 -- and a smail set up to deliver|SRC/infoxpress/BNU/ELM_2.4/UTILS/fastmail.c pipes `list' into smail; measured 2026-09-25
+suspend|the super-user|measured 2026-09-26 as tester: "SUSPEND can be run only by SYSTEM-SUPERUSERS !", status 164; its card is shot as su
+passwd|your own OS-9's `shell' and `copy', loaded -- it rewrites SYS/password with system("copy -r ...")|SRC/passwd/passwd.c; the card loads both from /h1
+fastcc|your own OS-9's C compiler -- cpp, c68, o68, r68 and l68 loaded or in the execution directory -- with CDEF and CLIB naming your DEFS and LIB|measured 2026-09-26: with those five loaded from /h1 and CDEF=/h1/DEFS CLIB=/h1/LIB, `fastcc -bp -fd=hello hello.c' builds hello
+launch|a SYS/config of your own (port=termtype lines) and PORT set to your terminal's port|measured 2026-09-26: without PORT, "launch: can't find PORT environment value"; DOC/launch/launch
+ynad|a terminal that takes Datamedia 1520 codes (^L clear, ^Y home, RS column row), whatever TERM says|measured 2026-09-26 with tools/pty_probe.py; infocmp dm1520 matches
+names|a terminal that takes Datamedia 1520 codes (^L clear, ^Y home, RS column row), whatever TERM says|measured 2026-09-26 with tools/pty_probe.py; same codes as ynad
+postnews|UUCP's rnews resident (`load CMDS/UUCP/rnews'): it starts rnews by bare name, and MNews's rnews answers with its usage and files nothing|SRC/cnews/README.OSK
+listalias|sort resident (`load CMDS/sort'): it hands an `egrep ... | sort' pipeline to a shell, and without it prints the list unsorted under `sort: nowhere found'|SRC/infoxpress/BNU/ELM_2.4/UTILS
+who|your OS-9's shell, procs and sleep, and a join that takes -f=<file>.<field> (this disk's join does not)|measured 2026-09-26: `join: unrecognized option -f=2.3'
+errlog|a SysInfo lock `lck.errlog,l', entered with `setup'; it writes SYS/errorlog on /h0|measured 2026-09-26: without the lock it answers `errlog is yet running'
+crontab|the directory SPOOL/VCRON on /h0; vcron running, and the SysInfo lock `lck.cron', for it to be told of a new table|measured 2026-09-26: without the directory -r answers 216 on /h0/SPOOL/VCRON/tester
+dedit|your OS-9's runb, loaded; it writes to the disk it is given|DOC/dedit/dedit.1
+gcc|GCC139's gcc_cccp and gcc_cc1 loaded (they load as cccp and cc1), and your own OS-9's r68, to compile with -c|measured 2026-09-26: `./gcc -v -c hello.c' in CMDS/GCC2 makes hello.r
+gcc2|your own OS-9's r68, loaded, to go past -S; l68 and cstart.r to link|measured 2026-09-26: `./gcc2 -c hello.c' makes hello.r; -o stops at `l68: can't open cstart.r'
+gpp|your own OS-9's r68, loaded, for -c|measured 2026-09-26
+gcc272_collect|the whole link it is given: cstart.r, greet.r, libgcc000.l, clibn.l and sys.l|measured 2026-09-26: with the object alone it answers `Unresolved reference _stkcheck'

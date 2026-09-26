@@ -1,3 +1,9 @@
+$ scsiutil -?
+SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan
+         (gduncan@philips.oz.au) and Heiko Rath (hr@brewhr.swb.de)
+           OS-9 port by Andrzej Kotanski (kotanski@if.uj.edu.pl)
+Usage: SCSIutil [/scsi_dev@] <command>
+ -c[r]                 : Read capacity [raw]
  -d<l|r|s> sec blks    : Read 16 bit digital audio(start sector/# blocks)(2)
  -D<l|r|s> sec blks    : Read  8 bit digital audio(left or right channel)(3)
  -e <0|1>              : Change medium (0=eject, 1=load)

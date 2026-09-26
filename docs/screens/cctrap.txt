@@ -1,0 +1,24 @@
+$ modinfo cctrap
+------------------------------------ cctrap  - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - -
+Module name           = cctrap
+System revision       = 1
+Module size           = 288
+Owner Id              = 0.0
+Offset to module name = 00000104H
+Access permission     = e-re-re-r
+Type/Language          = 0b01H  Trap handler library   68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 7
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 1b75H
+
+
+Offset to execution entry point   = 00000068H
+Offset to exception entry point   = 00000000H
+Data storage requirement          = 24 Bytes
+Stack size                        = 4196 Bytes
+Offset to initialized data        = 0000010cH
+Offset to data reference lists    = 00000114H

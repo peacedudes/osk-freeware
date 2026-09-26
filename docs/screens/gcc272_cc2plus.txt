@@ -1,3 +1,21 @@
+$ cat hello.ii
+class G { public: int f() { return 42; } };
+int main() { G g; return g.f(); }
+$ ./gcc272_cc2plus hello.ii -o hello.a -quiet; cat hello.a
+        psect hello_gp,0,0,0,0,0
+        align
+main:
+        move.l d0,-(a7)
+        moveq.l #-84,d0 :2
+        bsr _stkcheck
+        move.l (a7)+,d0 :2
+        link.w a5,#-4
+        bsr =__main *b3
+        lea -2(a5),a0 *l9b
+        move.l a0,d0 *m6c
+        bsr =f__1G *b6
+        move.l d0,d1 *m6c
+        move.l d1,d0 *m6c
         bra L3.
         moveq.l #0,d0
         bra L3.

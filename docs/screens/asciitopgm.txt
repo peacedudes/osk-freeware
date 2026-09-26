@@ -1,4 +1,5 @@
-$ cat tmp/NPIB/art.txt
+$ pbmtext "npbm" | pbmtoascii > art.txt
+$ cat art.txt
 
 
 
@@ -14,6 +15,6 @@ $ cat tmp/NPIB/art.txt
 
 
 
-$ asciitopgm 8 40 < tmp/NPIB/art.txt > tmp/NPIB/a.pgm
-$ pnmfile tmp/NPIB/a.pgm
-tmp/NPIB/a.pgm: PGM raw, 40 by 8  maxval 127
+$ asciitopgm 8 40 < art.txt > a.pgm
+$ pnmfile a.pgm
+a.pgm:  PGM raw, 40 by 8  maxval 127

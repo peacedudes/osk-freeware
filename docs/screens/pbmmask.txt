@@ -1,9 +1,26 @@
-$ pbmmask noise.pbm | pbmtoascii -2x4
-HR"d\MMMMMMH?>?~:9D\?MHpi?6:d/,,
-:#'\~MMMMMMMMM:>MbMb/?-ddM?,|$,|
-$?]o#MMMMMMMMMMMMM|?:{MH6?:-? :,
-?:`HMMMMMMMMMMMMMM#H-:?dMbddH-./
-?:i/MMMMMMMMMMMM\?|*|'HMMMMMM-?b
-MbMMMMMMMMMMMPMMbH~-\`::*MMMMdMH
-HMMMMMMPHMM#Mb&$`|:HM|>D??T$*MH\
-\R"#H"7:JH.v-i?6:`HM?"H}~|&:\/"'
+$ pbmtoascii os9.pbm; pbmmask os9.pbm | pbmtoascii
+
+
+
+
+
+               oM""Mo  o"""oM         o""Mo
+              o"    "o "oo  "         M   M
+              M      M   ""Mo  ooooo  "MooM
+               Mo  oM  Mo  oM           oM
+                """"   " """          ""
+
+
+
+
+
+
+
+
+
+
+               oMMMMo  o"""oM         oMMMo
+              oMMMMMMo "oo  "         MMMMM
+              MMMMMMMM   ""Mo  ooooo  "MMMM
+               MMMMMM  Mo  oM           oM
+                """"   " """          ""

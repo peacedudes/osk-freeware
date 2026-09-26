@@ -6,8 +6,8 @@
 # through an unthrottled path elsewhere; they are not here.
 
 shot    worms
-cap     Worms crawl about the screen at random, each leaving a trail, until
-cap     you stop them.  A screen toy.  Control-C ends it.
+cap     Three worms, drawn in O, * and #, crawling about the screen at random.
+cap     Control-C ends it.
 try     worms
 run     worms
 wait    4
@@ -18,8 +18,8 @@ send    \003
 wait    2
 
 shot    rain
-cap     Raindrops land on the screen and spread in rings.  A screen toy.
-cap     Control-C ends it.
+cap     Drops at several stages at once: a fresh one a dot, others opening out
+cap     into rings of dashes and slashes.  Control-C ends it.
 try     rain
 run     rain
 wait    6
@@ -46,15 +46,10 @@ send    \003
 wait    2
 
 shot    sonnet
-cap     Writes a sonnet: fourteen numbered lines of iambic pentameter, the
-cap     words drawn at random from a vocabulary compiled into the program,
-cap     each word carrying its rhythm and its rhyme.  At the prompt, m and
-cap     u mark and unmark a line by number, r recomposes the unmarked
-cap     lines around the ones you kept, w appends the poem to a file
-cap     (sonnet.out unless -f names another), q quits.  The file -l takes
-cap     is a poem sonnet wrote that way, fourteen lines, loaded to go on
-cap     marking and rewriting it; it refuses a poem it did not compose.
-cap     Escape also ends it.
+cap     Fourteen numbered lines of iambic pentameter, the words drawn at
+cap     random from a vocabulary compiled into the program, and the prompt: m
+cap     and u mark and unmark a line by number, r recomposes the unmarked
+cap     lines around the ones you kept, w appends the poem to a file, q quits.
 try     sonnet
 run     sonnet
 wait    4
@@ -86,16 +81,15 @@ send    y
 wait    2
 
 shot    banner
-cap     Prints its argument as tall letters made of `@', for a banner or a
-cap     sign.
+cap     OS-9 in seven-row letters.
 try     banner OS-9
 run     banner OS-9
 wait    5
 
 shot    banner1
-cap     The first banner program written on OS-9, back from Unix with its
-cap     OS-9 arms intact.  `-s' builds each letter out of that letter; -d
-cap     doubles the size, -i slants it and -c= picks the character.
+cap     With `-s' each letter is built out of itself: OS-9 in letters made of
+cap     O, S and 9. -d doubles the size, -i slants it and -c= picks the
+cap     character.
 try     banner1 -s OS-9
 run     banner1 -s OS-9
 wait    5
@@ -158,9 +152,9 @@ send    q
 wait    2
 
 shot    life
-cap     Conway's Game of Life on a pattern from GAMES/LIFE -- here the
-cap     glider, which walks across the board.  It detects a repeating
-cap     pattern's period and prints it.  Control-C ends it.
+cap     Conway's Game of Life on `glider' from GAMES/LIFE, which is a glider
+cap     gun, with a glider already loose below it; generation 8. Control-C
+cap     ends it.
 try     life glider
 run     builtin cd /dd/GAMES/LIFE
 wait    1
@@ -174,11 +168,9 @@ wait    2
 
 shot    tess
 size    30 80
-cap     Beyond the Tesseract, a text adventure whose puzzles draw on physics
-cap     and mathematics.  Two-word commands -- get all, use stack, look at
-cap     a thing by name, n, s -- and about two hundred words are understood;
-cap     a bare `look' is not one of them, it wants an object.  `-f' skips
-cap     the title and scenario.
+cap     The researcher's office where it starts, the stack you carry, and
+cap     north into a green house.  Commands are two words, `look at' and a
+cap     thing's name among them; `-f' skips the title and scenario.
 try     tess -f
 run     tess -f
 wait    5
@@ -192,13 +184,16 @@ wait    2
 
 shot    world
 size    30 80
-cap     A text adventure set on an alien world where your landing party is
-cap     stranded.  The usual verbs -- inventory, take, n, s -- move you and
-cap     act; `quit' leaves.  A bare `look' it rejects as an illegal
-cap     character; it reads its text from GAMES/world.
+pages
+cap     The opening, on a trail near the top of a pass, then `inventory' and
+cap     `n', which climbs almost to the top.  The usual verbs move you and
+cap     act; `quit' leaves.  It reads its text from GAMES/world.
 try     world
+run     clear
+wait    1
 run     world
-wait    5
+wait    6
+snap
 send    inventory\r
 wait    3
 send    n\r
@@ -211,15 +206,17 @@ wait    2
 
 shot    wish
 size    24 80
-cap     WiSH, a windowing shell over the OS-9 shell: the current directory in
-cap     a window, its files listed, the one under the cursor described along
-cap     the foot.  Type a command on the top line and Enter runs it.  The
-cap     labels along the bottom are function keys a vt100 does not send, so
-cap     use the control keys: Ctrl-P/N/B/F move the cursor, Ctrl-A marks a
-cap     file and Ctrl-W puts its name on the command line, Ctrl-D leaves.
-cap     German-made, English at the keyboard.  (hackwish, in GAMES, is the
-cap     unrelated hack cheat.)
+cap     Started in GAMES: the directory in a window, its files listed, the one
+cap     under the cursor described along the foot.  Type a command on the top
+cap     line and Enter runs it.  The labels along the bottom are function keys
+cap     a vt100 does not send, so use the control keys: Ctrl-P/N/B/F move the
+cap     cursor, Ctrl-A marks a file and Ctrl-W puts its name on the command
+cap     line, Ctrl-D leaves.
 try     wish
+run     builtin cd /dd/GAMES
+wait    1
+run     clear
+wait    1
 run     wish
 wait    8
 snap
@@ -227,23 +224,58 @@ send    q
 wait    2
 
 shot    cam
-cap     Camshaft design.  It asks the rocker ratio, then the valve lift at
-cap     each crank angle of an intake lobe, and draws the lift curve.  The
-cap     curve is drawn in Tektronix vectors, so on a character terminal the
-cap     dialogue is the readable part.
+size    30 80
+cap     Camshaft design: the dialogue for an intake lobe -- the rocker
+cap     ratio, the valve lift at every twenty degrees of crank from -180 to
+cap     180, and the base circle.  RETURN then plots the lift curve in
+cap     Tektronix vectors, for a Tektronix graphics terminal.
 try     cam
+run     clear
+wait    1
 run     cam
-wait    5
+wait    3
 send    1.5\r
-wait    2
-send    0.4\r
-wait    2
-send    0.9\r
-wait    2
-send    1.4\r
-wait    2
-send    1.8\r
-wait    2
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    .02\r
+wait    1
+send    .08\r
+wait    1
+send    .18\r
+wait    1
+send    .30\r
+wait    1
+send    .40\r
+wait    1
+send    .45\r
+wait    1
+send    .40\r
+wait    1
+send    .30\r
+wait    1
+send    .18\r
+wait    1
+send    .08\r
+wait    1
+send    .02\r
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    0\r
+wait    1
+send    1.2\r
+wait    3
 snap
 send    \003
 wait    2
@@ -275,7 +307,8 @@ burst
 cap     Backgammon against the computer.  It asks whether you want the rules
 cap     and the instructions, then which colour to take, and draws the board
 cap     -- the points numbered 1 to 24, the bar down the middle, your men as
-cap     `w' and the computer's as `r' -- then prompts for each move.
+cap     `w' and the computer's as `r' -- then prompts for each move.  Here
+cap     White's first roll and the Move: prompt; `q' and `y' leave the game.
 try     backgammon
 run     export TERM=vt100
 run     clear
@@ -283,17 +316,40 @@ run     backgammon
 send    n\r
 send    n\r
 send    w\r
+send    q\r
+send    y\r
 
 shot    teachgammon
 size    40 80
 burst
-cap     A backgammon tutor: it sets out the rules a screen at a time, then
-cap     plays a practice game with you, a move at a time, explaining as it
-cap     goes.  RETURN steps through the lessons.
+cap     A backgammon tutor: it sets out the rules a screen at a time, and `t'
+cap     goes straight to the tutorial, a practice game against the computer
+cap     explained a move at a time.  Here its opening roll and first move, and
+cap     the prompt for yours.  The `Error: 000:000 - readc' beside it is this
+cap     card's typed input running out; at a keyboard it waits for your move.
 try     teachgammon
 run     export TERM=vt100
 run     clear
 run     teachgammon
-send    \r
-send    \r
-send    \r
+send    \s\r
+send    t\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r
+send    \s\r

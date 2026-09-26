@@ -426,7 +426,7 @@ rstory|none|it takes no options: run it and it tells a tale
 scales|scales -h|
 textb|none|it asks its four questions itself; there is no help flag
 cal|cal -?|
-calen|calen -?|
+calen|calen -?|after the flag list it prompts for its specs and reads the empty input as month 0, year 0 -- the two `not in range' lines are that
 calender|none|it asks `Fuer welches Jahr?' itself; there is no help flag
 digclk|digclk -?|
 gcl|gcl -?|
@@ -460,7 +460,7 @@ xlharc|xlharc -?|
 zoo|zoo h|
 zoo_2.1|zoo_2.1 h|
 booz|booz -?|
-fiz|none|it takes the archive to repair and nothing else
+fiz|none|it takes the archive to examine and nothing else
 zip|zip -h|
 unzip|unzip -?|
 zipinfo|zipinfo -?|
@@ -626,14 +626,14 @@ make|make -?|
 makeinfo|makeinfo -?|
 p2c|p2c -?|
 yacc|yacc -?|
-rtf|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+rtf|none|`load os9lib' from CMDS first; then it takes the source file and nothing else
 for|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
-lnk|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
+lnk|none|`load os9lib' from CMDS first; then it takes the name of the object to link (the .r without its suffix)
 lnk.org|none|`load /dd/CMDS/os9lib' first; then it takes the source file and nothing else
 creadoc|none|`load /dd/CMDS/os9lib' first; it takes no options and works on the .f files in the data directory
 sieve|none|it takes no options: run it and it reports when the passes are done
 savage|none|it takes no options: run it and it reports the drift
-dhry|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhry'
+dhry|none|it reads the number of runs from standard input and takes no options: echo the count into it, `echo 500000 ! dhry' at your OS-9's shell
 whetstone|none|it takes no options; run it and it prints the time and the rating
 dhryO2|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryO2'
 dhryGcc|none|it reads the number of runs from standard input and takes no options: `echo 500000 | dhryGcc'
@@ -663,7 +663,7 @@ rdoc|none|it takes the source file and nothing else
 xrf|none|it takes the source file and nothing else, with C.XRF in the data directory
 ref|ref -?|
 libsplit|libsplit -?|
-sdb|none|it takes the program to debug and nothing else; its commands are typed at its own prompt
+sdb|none|it takes no options; `help' at its prompt lists the commands
 trap|none|an example trap handler that takes no options; run it by path
 tab|tab -?|
 xlate|xlate -?|
@@ -705,7 +705,7 @@ tttt|none|it takes no options; q quits
 bincheckr|none|it takes the book file and nothing else
 checkgame|none|it takes the game listing and nothing else
 game|none|it takes the game listing and the page numbers and nothing else
-postprint|none|it takes the hash file and nothing else
+postprint|none|it takes no arguments: the hash file's name is compiled in
 hack|none|it has no help flag; `?' inside the game lists the commands
 larn|none|it has no help flag; `?' inside the game is the help
 ularn|ularn -h|
@@ -723,8 +723,8 @@ tt|tt -?|
 zot|zot -?|
 convert|none|it takes no options: run it and the adventure begins
 vtxtcn|none|it takes no options and reads the .dat files in the data directory
-mkindex|none|it takes no options; run it where the dictionary is
-mkdict|none|it takes no options; run it where the word list is
+mkindex|none|a filter with no options: the dictionary on standard input, the index on standard output
+mkdict|none|a filter with no options: the word list on standard input, the dictionary on standard output
 ask|none|it takes no options
 cyberwar|none|it needs G-Windows; there is no help flag
 puzzle|none|it needs G-Windows; there is no help flag
@@ -865,7 +865,7 @@ launch|launch -?|
 makecrc|none|it takes no options and writes its six files in the data directory
 map|map -?|
 modinfo|modinfo -?|
-names|none|it takes the file to list; given a flag it prints garbage and waits
+names|none|an address book with no options; it opens its own file under SYS and asks for a letter
 ob68kdemo|ob68kdemo -?|
 oskversion|oskversion -?|
 passwd|passwd -?|
@@ -873,7 +873,7 @@ phone|phone -?|
 scsiutil|scsiutil -?|
 sddemo|sddemo -?|
 shdev|none|it takes no options
-spline|none|it takes a file of points and writes PostScript whatever it is given; there is no help flag
+spline|none|it reads no input and has no help flag: it draws a fixed mesh in Tektronix graphics codes and waits for a key
 sqrtx|none|it takes no options
 ssl|none|it takes the file and nothing else
 top|top -?|
@@ -923,13 +923,13 @@ fpu|none|Microware's floating-point emulation module, not a program: it goes in 
 csl020|none|Microware's C standard library trap handler built for the 68020, not a program
 math|none|Microware's maths trap handler, not a program
 math881|none|Microware's maths trap handler for the 68881, not a program
-os9lib|none|the RTF Fortran run-time library, a trap module: `load /dd/CMDS/os9lib' before rtf, for, lnk or biory
+os9lib|none|the RTF Fortran run-time library, not a program: `load CMDS/os9lib' from /dd before rtf, for, lnk or biory
 rtfdat|none|a data module for the RTF Fortran set, not a program
 keydrv.mm1|none|a device driver for the MM/1, not a program
 msdrv.901_340|none|a device driver for the MM/1, not a program
-msdrv_340.901.ms|none|a device descriptor for the MM/1, not a program
+msdrv_340.901.ms|none|a mouse driver for the MM/1 (module msdrv, a second build), not a program
 rb37c65|none|a device driver for the MM/1, not a program
-scsi_mm1a|none|a device driver for the MM/1, not a program
+scsi_mm1a|none|the MM/1's low-level SCSI subroutine module, not a program
 snddrv|none|a device driver for the MM/1, not a program
 windio.52|none|a device driver for the MM/1, not a program
 dedit|none|it edits raw disk sectors at its own prompts and has no help flag; it writes what it is told

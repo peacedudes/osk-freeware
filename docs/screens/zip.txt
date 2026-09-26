@@ -7,6 +7,6 @@ $ mv _Z* test.zip
 $ unzip -l test.zip
  Length    Date    Time    Name ("^" ==> case
  ------    ----    ----    ----   conversion)
-    963  09-23-26  23:36   motd
+    963  09-26-26  08:46   motd
  ------                    -------
     963                    1

@@ -1,0 +1,19 @@
+$ liborder.os9 make.r parse.r stat.r
+make.r
+stat.r
+parse.r
+$ liborder.os9 -modinfo stat.r
+
+MODULE NAME: stat.r
+Public Names Count = 2
+Public stat
+Public fstat
+External Names Count = 7
+External open
+External mktime
+External memcpy
+External close
+External _stkcheck
+External _gs_opt
+External _gs_gfd
+stat.r

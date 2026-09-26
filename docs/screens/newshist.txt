@@ -1,3 +1,6 @@
-$ dbz history
-$ newshist "<one@site.uucp>"
-newshist: no history entry for <one@site.uucp> nor <<one@site.uucp>>
+$ cat history
+<one@site.uucp> 999999999~-     comp.os.os9/1
+<two@site.uucp> 999999999~-     comp.os.os9/2
+$ newshist "<one@site.uucp>" "<three@site.uucp>"
+<one@site.uucp> 999999999~-     comp.os.os9/1
+newshist: no history entry for <three@site.uucp> nor <<three@site.uucp>>

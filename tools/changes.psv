@@ -3,9 +3,9 @@
 # CMDS) picks one of two files that share a name.  Ports with ORIG/ and
 # README.OSK get a pointer to that README automatically.
 argproc_demo|Rebuilt from its source with 64K of memory; the build shipped before stopped with a stack overflow whatever it was given.
-ascii|Built here from Roland McGrath's source. It took the name when an install error overwrote an earlier ascii binary whose origin was never recorded.
+ascii|Built here from Roland McGrath's source.
 atc|The `!' shell escape is left out; that key only redraws the screen.
-bash|One byte of its version string changed: bash wrote 13 bytes into a 12-byte buffer, which crashed it at start-up on a system with more than 16 MB of memory. BASH_VERSION now reads 1.12.12. And one byte so a command it runs is handed paths 0 to 2 only, as Microware's shell hands them: bash passed every path it had open, so in `cat file | head -n 1' the writer held the pipe twice and waited for ever.
+bash|Two one-byte fixes: a start-up crash on systems with more than 16 MB of memory (BASH_VERSION now reads 1.12.12), and a pipe that waited for ever in `cat file | head -n 1', because every open path was handed to the command rather than paths 0 to 2.
 bc|Its scanner now accepts CR as a line end as well as LF, so scripts written on this disk, piped input and its own maths library (bc -l) are no longer refused.
 bks|Named bks, the posting's archive name, because this disk's `bs' is Battleships. Its ESC shell escape does nothing here, since OS-9 reads ESC as end of file.
 blackjak|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
@@ -26,7 +26,7 @@ ctags.elvis|Elvis's ctags, renamed from ctags because the disk already has one; 
 cwasm|Renamed from assem, its name in the posting.
 cwdis|Renamed from disassem, its name in the posting.
 devprc|Rebuilt from its source, replacing the archive module, which had a bad CRC and a damaged data descriptor and would not load. The copy on the EFFO disk is damaged the same way.
-diff|This is GNU diff 1.4, built here from source. It took the name when an install error overwrote the GNU diff 1.1 binary that held it; an archive GNU diff 1.1 ships in REBUILT as diff_1.1.
+diff|GNU diff 1.4, built here from SRC/diff (the recipe in tools/rebuild/recipes.psv); the archive's GNU diff 1.1 is REBUILT/diff_1.1.
 diff_1.1|Module name changed from diff to diff_1.1 to match its file, so loading it no longer answers for the diff in CMDS. Otherwise identical to the archive's.
 dir|One instruction patched in the binary: it asked to write a line of 128 bytes, which the processor read as minus 128, so it could not list a directory. It now writes at most 127 characters a line and lists directories.
 djpeg.070|Module name changed from djpeg to djpeg.070 to match its file, so loading it no longer answers for the djpeg in CMDS.
@@ -122,7 +122,7 @@ NETWORK/net|Now K5JB's k37, built here from its own source, in place of the k35c
 NETWORK/bm|The year in its Date: header is written as two digits; as K5JB left it, it read 126 after 1999.
 NETWORK/prexd|Built as prexd, not rexd, its author's name: OS-9/Net has a rexd of its own, and this one starts its server by name.
 NETWORK/prexdc|Built as prexdc, not rexdc, its author's name, for the reason given on prexd's card.
-GAMES/canfield|Two fixes to this collection's port: it opened its score file write-only, so the read that follows failed and no game was ever recorded; and it filed each player by the whole group.user word, which put a non-super player's record 2 MB into the file. It now opens it read-write and files by user number.
+GAMES/canfield|Fixed here: it opened its score file write-only, so no game was ever recorded, and it filed each player by the whole group.user word.  It now opens the file read-write and files players by user number.
 GAMES/cfscores|Finds a player by user number, as canfield now files them; it used the whole group.user word.
 argproc_demo|Rebuilt 2026-09-24 with the author's own vsprintf (the os9 build option): the collection's first build borrowed one that copies twelve words and cannot print %f, so its usage line lost its name and its pi, and a second -help could crash it.
 discord|A bug in the program as posted, fixed here: both calls to chase() passed a word number counted from zero where chase() counts from one, so a draw of 0 returned an uninitialised pointer and crashed it -- one run in four on a four-word input.
@@ -136,8 +136,8 @@ newmail|One byte changed, the same as frm's: it looked for a line feed to end ea
 smail|One instruction changed so that a letter is signed with its sender's name: it compared the user number alone with getuid()'s whole group.user word, and signed everyone but the super-user `nobody'.
 crontab|One constant changed: -u, which acts on another user's crontab, tested the high byte of the user number rather than the group, so any user numbered below 256 could use it. It now requires group 0.
 mw|The module's owner in its header is 0.0 instead of 30.95, left from the machine it was linked on; the kernel lets a program take on another user only if the program's owner allows it, so everyone but the super-user got `Can't setuid'. No code changed.
-collect|One byte changed: the entry test of its scan loop compared the end of the object file with a pointer not yet set, so wherever the heap landed below its static data it skipped the file and wrote an empty constructor table (`dc.l 0') with no error. It now compares with the start of the file, as the later collect2 source does.
-gcc_collect|One byte changed: the entry test of its scan loop compared the end of the object file with a pointer not yet set, so wherever the heap landed below its static data it skipped the file and wrote an empty constructor table (`dc.l 0') with no error. It now compares with the start of the file, as the later collect2 source does.
-gpp_collect|One byte changed: the entry test of its scan loop compared the end of the object file with a pointer not yet set, so wherever the heap landed below its static data it skipped the file and wrote an empty constructor table (`dc.l 0') with no error. It now compares with the start of the file, as the later collect2 source does.
+collect|One byte changed: its scan loop tested a pointer not yet set, so it could skip the object and write an empty constructor table without a word. It now tests the start of the file, as later collect2 does.
+gcc_collect|One byte changed: its scan loop tested a pointer not yet set, so it could skip the object and write an empty constructor table without a word. It now tests the start of the file, as later collect2 does.
+gpp_collect|One byte changed: its scan loop tested a pointer not yet set, so it could skip the object and write an empty constructor table without a word. It now tests the start of the file, as later collect2 does.
 lpq|Rebuilt from its source with one change: its job table compared the printer's name with a single character of it (queue->printer[n][0], where the name belonged), so it said `No Spooljobs' under a count of the jobs waiting. The [0] is gone.
 top|Rebuilt from its source with one more change: it lists your own processes, busy or idle, and -a everyone's. It used to list only those that had used a tick since its last screen, so with nothing else running it showed its headings and little or nothing else.

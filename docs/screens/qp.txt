@@ -11,4 +11,3 @@ no Options
   so on.
   If quotes of two levels are at the same place, they
   have to be separated by at least one blank.
-$ qp echo `whoami`

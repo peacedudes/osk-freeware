@@ -6,19 +6,19 @@ Directory : .
    !  exit Menue       .  change directory   a..z  file with parameter
 
 ===== Execute what Command ?                                            =====
-A  ADL                             B  CMDS
-C  DEFS                            D  DEMO
-E  DOC                             F  DOS
-G  ETC                             H  GAMES
-I  GNUCHESS4.0                     J  GNULIB
-K  LIB                             L  LOG
-M  MAIL                            N  News
-O  SBPROLOG                        P  SOURCES.txt
-Q  SPL                             R  SPOOL
-S  SRC                             T  SYS
-U  UAC                             V  USR
-W  VH                              X  a1.arc
-Y  a2.arc                          Z  alarm.r
+A  ATERM                           B  HELP
+C  PEP                             D  README-bootlog
+E  TERM                            F  TEX
+G  UTREE                           H  UUCP
+I  birthdays                       J  bootlog
+K  browse.hlp                      L  cal.holidays
+M  cal.init                        N  dm.hlp
+O  emacs.hlp                       P  ephem.cfg
+Q  ephem.db                        R  errmsg
+S  gnuplot.gih                     T  holidays
+U  ksh                             V  less.hlp
+W  login                           X  magic
+Y  motd                            Z  mtools.conf
 
 
 Select file :

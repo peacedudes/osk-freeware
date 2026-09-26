@@ -21,7 +21,5 @@ Font file [cmr10 [240 dpi]] could not be opened.
 d.
 Current TeX page counters: [0]
 [1{1}]  [OK]
-$ ls -l story.dvi_*
--rw-------   1 7        1           12689 Sep 24 02:03 story.dvi_alw
--rw-------   1 7        1           52622 Sep 24 02:04 story.dvi_eps
--rw-------   1 7        1             496 Sep 24 02:04 story.dvi_err
+$ ls -l story.dvi_eps
+-rw-------   1 7        1           52622 Sep 26 11:59 story.dvi_eps

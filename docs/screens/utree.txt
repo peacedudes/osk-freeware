@@ -1,7 +1,8 @@
-/dd/DOC: 561 dir(s) 2131 file(s)
+/dd/DOC: 568 dir(s) 2190 file(s)
 TREE: Help Backup Chdir Find Grep Info List Mkdir Out Rmdir Stat Tag Untag Quit
 + +------- DOC                                                                 -
-+ |        |------- X11R6shl                                                   -
++ |        |------- SYSADMIN                                                   -
+  |        |------- X11R6shl                                                   -
   |        |------- about                                                      -
   |        |------- adl                                                        -
   |        |------- advent                                                     -
@@ -17,8 +18,7 @@ TREE: Help Backup Chdir Find Grep Info List Mkdir Out Rmdir Stat Tag Untag Quit
   |        |------- ar                                                         -
   |        |------- ar2                                                        -
   |        |------- arc                                                        -
-  |        |------- areacode                                                   -
-./*: 617 file(s) 554 dir(s)
+./*: 624 file(s) 560 dir(s)
  *CATEGORIES         *DEPENDS            *EFFO-INFO          *INDEX
  *MANPAGES           *NEEDCIO-INDEX      *ORIGINS            *README
  *README-ARCHIVERS   *README-BUSERR      *README-CIO         *README-DOCS

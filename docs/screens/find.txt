@@ -1,7 +1,8 @@
-$ find SYS "-n=cal*" -o
-SYS/TEX/MFINPUTS/CM/calu.mf
-Cannot open 'sequence.mail'
-Cannot open 'sequence.news'
-Cannot open 'sequence.spool'
-SYS/cal.holidays
-SYS/cal.init
+$ find DOC "-n=cal*" -o
+DOC/cal
+DOC/calcdate
+DOC/calcdate/calcdate.1
+DOC/calen
+DOC/calen/calen.1
+DOC/calender
+DOC/calender/calender.1

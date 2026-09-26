@@ -1,17 +1,18 @@
-$ every 2 oskversion
-OSK level : 1
-OSK version : 4
-Revision : 16
-Edition : 0
-CPU type (from init module) : 68040
-CPU type (real CPU, from system globals) : 68040
-Mainframe : macOS arm64
-OS9 revision string : OS-9/68k Emu UAE
-OSK level : 1
-OSK version : 4
-Revision : 16
-Edition : 0
-CPU type (from init module) : 68040
-CPU type (real CPU, from system globals) : 68040
-Mainframe : macOS arm64
-OS9 revision string : OS-9/68k Emu UAE
+$ every 2 today
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is twenty-seven minutes and twenty-nine seconds
+after eight AM, Daylight Savings Time. The moon is waxing gibbous.
+
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is twenty-seven minutes and thirty-one seconds
+after eight AM, Daylight Savings Time. The moon is waxing gibbous.
+
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is twenty-seven minutes and thirty-three seconds
+after eight AM, Daylight Savings Time. The moon is waxing gibbous.
+
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is twenty-seven minutes and thirty-five seconds
+after eight AM, Daylight Savings Time. The moon is waxing gibbous.
+
+Today

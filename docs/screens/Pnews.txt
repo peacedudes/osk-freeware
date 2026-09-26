@@ -1,11 +1,8 @@
-$ Pnews -h post -s
-I see you've never used this version of Pnews before.  I will give you extra
-help this first time through, but then you must remember what you learned.
-If you don't understand any question, type h and a CR (carriage return) for
-help.
+$ cat post
+Newsgroups: junk
+Subject: posted with Pnews
 
-If you've never posted an article to the net before, it is HIGHLY recommended
-that you read the netiquette document found in news.announce.newusers so
-that you'll know to avoid the commonest blunders.  To do that, interrupt
-Pnews, and get to the top-level prompt of rn.  Type "g news.announce.newusers"
-and you are on your way.
+read back with rn
+$ Pnews -h post -s
+$ ls in.coming
+0local1

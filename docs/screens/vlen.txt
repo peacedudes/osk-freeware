@@ -1,4 +1,6 @@
-$ deleted bytes in store == 2000, store size == 7081
+$ vlen > vl.out
+$ tail -l=16 vl.out
+deleted bytes in store == 2000, store size == 7081
 
 Read record #91; length==50
 Read record #92; length==100

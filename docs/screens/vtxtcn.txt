@@ -1,8 +1,9 @@
-$ vtxtcn; ls -l
+$ vtxtcn
  packed:    33490 unpacked:     5049
+$ ls -l
 total 221184
--rw-------   1 7        1              56 Sep 24 01:30 gtext.inc
--rw-------   1 7        1            1893 Sep 24 01:30 objdes.inc
--rw-------   1 7        1           77824 Sep 24 01:30 q1text.dat
--rw-------   1 7        1           11460 Sep 24 01:30 qtext.inc
--rw-rw-rw-   1 7        1          128686 Sep 24 01:30 vtext.dat
+-rw-------   1 7        1              56 Sep 26 10:39 gtext.inc
+-rw-------   1 7        1            1893 Sep 26 10:39 objdes.inc
+-rw-------   1 7        1           77824 Sep 26 10:39 q1text.dat
+-rw-------   1 7        1           11460 Sep 26 10:39 qtext.inc
+-rw-rw-rw-   1 7        1          128686 Sep 26 10:38 vtext.dat

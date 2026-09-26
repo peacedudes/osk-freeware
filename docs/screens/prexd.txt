@@ -1,0 +1,4 @@
+$ prexd -?
+Syntax: rexd
+Function: remote execute daemon
+Options: none

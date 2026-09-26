@@ -1,7 +1,6 @@
 $ printf "int main()\r{\r  return 0;\r}\r" > hello.c
 $ ./gcc137 -B$PWD/gcc137_ -S hello.c
-$ ls hello.*; cat hello.a
-hello.a  hello.c
+$ cat hello.a
         psect   hello_gc,0,0,0,0,0
         align
 main:
@@ -16,4 +15,3 @@ L1.
         unlk a5
         rts
         ends
-$ rm -f hello.c hello.a hello.s

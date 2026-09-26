@@ -1,0 +1,3 @@
+$ speak tester
+
+speak: Unable to call tester.

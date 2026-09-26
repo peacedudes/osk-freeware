@@ -1,8 +1,30 @@
-$ cam
-~>
 Rocker Ratio (1.00) for measure @lobe ->1.5
-Lift @ -180 crank degrees ->0.4
-Lift @ -160 crank degrees ->0.9
-Lift @ -140 crank degrees ->1.4
-Lift @ -120 crank degrees ->1.8
-Lift @ -100 crank degrees ->
+Lift @ -180 crank degrees ->0
+Lift @ -160 crank degrees ->0
+Lift @ -140 crank degrees ->0
+Lift @ -120 crank degrees ->0
+Lift @ -100 crank degrees ->.02
+Lift @ -80 crank degrees ->.08
+Lift @ -60 crank degrees ->.18
+Lift @ -40 crank degrees ->.30
+Lift @ -20 crank degrees ->.40
+Lift @ 0 crank degrees ->.45
+Lift @ 20 crank degrees ->.40
+Lift @ 40 crank degrees ->.30
+Lift @ 60 crank degrees ->.18
+Lift @ 80 crank degrees ->.08
+Lift @ 100 crank degrees ->.02
+Lift @ 120 crank degrees ->0
+Lift @ 140 crank degrees ->0
+Lift @ 160 crank degrees ->0
+Lift @ 180 crank degrees ->0
+
+
+Base Circle ->1.2
+Lift Curve for intake lobe:
+ j @m ` @ j!Um `!U j#Jm `#J j$_m `$_ j&Tm `&T j(Im `(I j)^m `)^ j+Sm `+S j-Hm `-
+H j.]m `.] j0Rm `0R j2Gm `2G j3\m `3\ j5Qm `5Q j7Fm `7F j8[m `8[ j:Pm `:P j<Em `
+<E j=Zm `=Z ` @m `?_#f @m#f?_&l @m&l?_)s @m)s?_,y @m,y?_0` @m0`?_ `.]m0r.] `?_m
+` @0` @m ` @m ` @m `!Um `#Jm `$_m m&Tm!v(Im#z)^m&l+Sm(q-Hm)s.]m(q0Rm&l2Gm#z3\m!v
+5Qm m7Fm `8[m `:Pm `<Em `=Z
+[CR] to continue:

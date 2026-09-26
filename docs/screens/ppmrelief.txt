@@ -1,24 +1,21 @@
-o"o"o"oM M M"o"o"o"o"o"o"o"o"o""o"o"o"o" M "o" M o"o"o"o" M o"o"o"oMMM
-MMMo"o"oM Mo"Mo"oM"M"oM"oMoM"Mo"M"o"M M"oM Mo"Mo"oM M"oM"oM"o"M M"oM"o"M Mo"oM M
-"oM Mo"o"o"o"o"o"oM M M M M M M M M M M M M" M M M o"o" M M M o"o"oMMM
-MMMM M"o"M M"oM"oM"oM"oMoMo"oMo"M"oM"M MoM"o"oMo"M M"oM Mo"oM"oM Mo"o"M Mo"o"o"o
-M M M M M"o"M M"o"o"o"oM M M M M M M M M M M" M M M M M M M o"o"oo"MMM
-MMMoM M M"o"Mo"Mo"Mo"Mo"ooM"oMo"M"o"Mo"M M"oMoMo"M"oM M"o"oM Mo"M M"oM"o"o"M M"o
-"o"M M"oM Mo"o"o"o"M M M M"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"o"oo"oMMM
-MMMo"o"M M"o"oM"oM"oM"oM"oM"oMo"M"oMo"Mo"Mo"ooMo"oMo"Mo"Mo"oM Mo"M Mo"oM"o"M Mo"
-M Mo"oM M M M"o"M M Mo"o"o"oM Mo"o"o"o"o"o"o"o"o"o"o" M o"o"o"o M MMMM
-MMMo"o"o"o"o"oM Mo"Mo"Mo"M MoMoM"Mo"oM"oM"oMoM M"o"oMo"M M"o"M M"oM Mo"oM"oM"o"o
-"M Mo"o"M M"o"oM Mo"o"o"M M M M M Mo"o"o"o"o"o"o"o"o""o"o"o"o"o"o"oMMM
-MMM"o"o"o"oM M M M"o"Mo"M"M Mo"oMoM"oM"oM"oM M"oM"M Mo"M"oM"Mo"M Mo"M Mo"oM M"oM
-"o"o"M Mo"oM Mo"oM M"o"oM Mo"o"oM M M Mo"o"o"o"o"o"o"o"o"o"o"o"o"o"MMM
-MMM"o"o"o"o"o"o"M M"o"oM""M"o"Mo"oM"oM"oM"oM"oM"o"Mo"oM"oMo"oM"oM"o"Mo"oMo"M Mo"
-oM"o"oMo"M M Mo"o"oM M"o"o"o"oM M Mo"o"o"o"oM M M M M M M M M M M"oMMM
-MMMMo"o"oM M M M M M Mo"M"o"M"oM"oM"oM"oM"oM"oM"M"oM"oM"oM MoM"o"Mo"oM"o"oM"o"oM
- M"oMo"o"oM"oM M"o"oM Mo"M M"o"o"o"o"oM M"o"o"o"o"o"o"o"o"o"o"o"o"oMMM
-MMM M M M M M M M M M M M M"o"oM"oM"oM"oM"oM"oM"oMo"Mo"oMo"M M"oMoM"o"Mo"oM"oM"o
-M"o"o"M Mo"oM Mo"M M Mo"o"oM M"o"M Mo"o"o"o"o"oM M"o"M M M"o"M M M"MMM
-MMMMo"oM M M Mo"o"oM M M M M"o"o"o"M M"oM"o"Mo"M MoM"oM"oM"oM"oM Mo"Mo"oMoMo"oM
-M"oM"oM"o"oM Mo"M M"oM M"oM Mo"oM M M M"o"o"o"o"o"o"o"o"o"o"o"o"o"oMMM
-MMM M M M Mo"o"oM M Mo"oM Mo"o"oM Mo"oM M"oMoM"M"oMoM"oMo"Mo"Mo"Mo"Mo"Mo"ooM"oM"
-oMo"oMo"Mo"oMoMoM"oMo"oMo"oM Mo"oM Mo"o"o"oM Mo"oM Mo"oM Mo"o"oM M"MMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+$ pgmtoppm white DEMO/sphere.pgm | ppmrelief | ppmtopgm > tmp/r.pgm
+$ pnmscale -xysize 152 88 tmp/r.pgm | pgmtopbm | pbmtoascii -2x4
+MMHHHHHMHHHHHHHHHMHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHMHHMHHMHHHHMHHMM
+MR///|||$))?$)))))))))))):??):?\|>i|%//S;?|:?|::|%:>:\\/;/S:~?%%%%%%%%????HM
+Mk%%%%||||||||T||||||SS>??\?:(??/?)|!://?\\<S!:?!/)\\;:\\:?://\\\%%%%%%%%?HM
+MR?%%%?Z%%%Z??///////////||SS?\\?!|??):?:/||/S>\:i?:i(?:%!<\;\\/::/))|||||&M
+M6SS???\\S?$)??SSSS?????????????:(??\\|\%%|\\|/i|S?i</:?|::?:/:?::?><//(/|HM
+Mk?$)7/($S?S?(|$$?SS||||||||||>))))):?):?SS|;>\\/|\\|!:\\:(/)!/iiS:S//|::(&M
+Mk|$%T$$/$]|?(|}$))?\\?(((((((((((SS????<%??:(?<S|//??|\\/>!|%:|<:|<:>\%:S1M
+MP$$Z$$$/$S\$7//J|7//??ZZ?%$|%%%%%SSS:??)))||||||;S\\?):?:??:|?\\\/>\\\/):&M
+MR$$%ZFS/$)\$$\$$\|}$)?ZZ/|$S?S$|||||||||||||||||||||/)|i?|i:(?/)::?)\\\\\&M
+M6$$Z$(FS$Z?$\$]?/$${|%|\\SS?S|$$|SSSSSSSSSSSSSSSSSS>?S?<>??:\|???:|??|!/)]M
+MRZ$%&?[$/SL$$]?$4?|$&|?}$)?|}$)$\\?(((((((((((((((SS????:((?:(\|\\|(?/i??&M
+Mk$&%}F1%$&$?[$$$\$$\%$$$$Z??}S$|/Z%|$$??SSSSSSSSS:?????%%%|\%%?:(?<>/|//)]M
+MR?F$$Z{7$$]S}$S$$]?Z&S1%$7/$$$Z/$S\\$|)?ZZ/|$$??//???????????<%%|||||;S|;1M
+M}|T/Z$$Z$&%FS$$1%\$\$&?%}S4%&|/$\\($/Z|}$))\\|$%%?$)??????????i|||???///|HM
+MR((|\\$$S$$S$Z&(F$$$]$Z$Z/$?T&%}S1|?S?$|S\SS4|)]|??//?($????????????|||||&M
+MR??//?{|?$S&$$&$S&$Z$Tk&S/$$]?$?FS|FS\S4?%?L&?($S||}?\\|%%|||||||||||||||HM
+MR?????????%%$$F$S$$$S$$]Z$SS$\$&/&{?S??T&$T?/$%$7/$)7//($4||T|???????%%%|HM
+M6S|$SS$|||))??$7|]|S1%F1%F1SF$\$/&%}}$S$1|S1|S$S\\$/|}\\|\\?\\\\\|T|?????&M
+MHHHHMHHMHHMHHHMHMHHMHHMHHMHMHMHMHHMHMMMHHMHHMHMMHHMHMHHHMHHMHHMHMHHHMHHMHMM

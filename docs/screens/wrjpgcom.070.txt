@@ -1,3 +1,3 @@
-< "IJG 0.70 build" tmp/GFXA/j.jpg > tmp/GFXA/jc7.jpg
-$ rdjpgcom.070 tmp/GFXA/jc7.jpg; echo ""
-IJG 0.70 build
+$ wrjpgcom.070 -comment "68000 build" j.jpg > jc7.jpg
+$ rdjpgcom.070 jc7.jpg; echo ""
+68000 build

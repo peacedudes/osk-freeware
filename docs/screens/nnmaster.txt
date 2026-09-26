@@ -1,4 +1,3 @@
 $ nnmaster -I < ok
 Confirm initialization by typing 'OK': Initializing master data base...
 A GROUPS file already exist -- reuse it? (y)done
-$ nnmaster < /nil

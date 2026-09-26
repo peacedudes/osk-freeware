@@ -1,4 +1,10 @@
->From  Thu, 24 Sep 26 13:40:19 -0500
+$ mailx
+
+OS-9 Mailx v2.1    1 messages    1 new
+
+hit <ENTER> to continue...
+------------------------------------------------------------------------------
+>From  Sat, 26 Sep 26 10:51:20 -0500
 Subject: hello
 Status: NEW
 

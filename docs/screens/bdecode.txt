@@ -1,2 +1,8 @@
-$ bdecode msg.txt
-bdecode: msg.txt: Missing header
+$ cat batch.txt
+Decode the following with bdecode
+SGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N
+/00
+42 baa8
+$ bdecode batch.txt
+Hello from the news spool.
+A second line.

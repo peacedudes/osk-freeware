@@ -2,5 +2,3 @@ $ newalias
 Updating your personal alias file...processed 2 aliases.
 $ newalias -g
 Updating the system alias file...processed 6 aliases.
-$ newalias -g
-Updating the system alias file...processed 6 aliases.

@@ -1,23 +1,26 @@
+$ giftopnm DEMO/gulls.gif | ppmtopgm > tmp/g.pgm
+$ pnmscale -xysize 152 88 tmp/g.pgm > tmp/gs.pgm
+$ pgmnorm tmp/gs.pgm | pnminvert | pgmtopbm | pbmtoascii -2x4
 pgmnorm: remapping 57..224 to 0..255
-\$$4?$Z{?|F1|S1%&4S}&\$]>Z[&&]$S$4)S$\Z{|S$&4S&Z/]>?[\\S1$%$&)Z$7$?[&4:
-S4%Z$4?%T&?$\$$$$\Z?$?6HMMMMMMMHM&Z/S&Z$Z?$$$S$1?(F$$\?T&{|$]%\\Z/$\Z?|
-??$S4%&$Z{|?&%T&$TS}SM&M&SF9&99HMMM1]?$7$\&%T&$4)S($Z&S&%$/$1|S|k?kZ$1:
-7/$4)\$$7S|F$/$\$}S$R&R&&1%k$::'/&HM$1?$Z{|S$$TS/$&4?$1%&$Z/S}S$$S}$$?|
-?+)%\4|?\4?(}Z$4%?k&$$$S$?F$1%cc$d&&M$$S$?FS&ZZ$&$\Z$$/$4S}S1%F$]%Z$S$i
-??/J?/J?/J?/J?/$%&J$S$Z/$4?|&{{??$<<RR/$S$\%/$$Z$Z$%T&$?FS&Z$$S[$?}S$$:
-\$/$$/$$S1%$?}Z$Z$&FkR&$[}&%\\\|??$:;\\?/ZF$S$/$&ZZ$&/$S$S(/$S14)S$Z$F:
-%Z&S&Z$\$S$S$&$%$&H&kH&6&9&SLL($4%&$>\\:'``+Z$Z$4%$S(F$S$$S$SZ{|S$&?}Z|
-%$?[$4)S$4?$/S\ZZH6HHH99FHFM$&S&Z$$S$%FS\. `$$%&%&/$\$&$4%Z$S$S$$S}SS$:
-%$]?$?FS1%&4?(k$SH6RHR6HH&M9H1$S<$$$7?FSS4S>S$&4%Z$|}}&Z$\&%T&$4$\Z/SF:
-%?}$?FS$$4%Z$$$&&M9&H&DRMH&6MHHHMMMMMMH/$\Z/S$%F$/$%$/$&4)\$Z{|S1%&(F1:
-?S(}S4?$]%&$%$H9H&6M&6H6D6HHMMMMMMMMMHMMMH&Z/$S|k$\$?FS|}FS$4)S$4)$?[$i
-%|}$$\(//$4?$H$kH9&HH&RMH9MHRM6M&&kkR&17`<H&Z}S1|S$$$\(/$$S4)S($$7S$$\|
-%$)S4?$+S$%%FkRH&&&&M9H&RMH9FkR&FDZ&%R$(::\%Z&[$?T&%}Z$4)S4%&J%$S4SL&4:
-\\<;::/:S-\/?&&1H6RMHHHM&&$kH$&&Z&$&$?F$\$H$&&&\[&$$]??k&?$\$Z&$4)S(k&:
-::\:\:::::::%%&&HH6DM9HRFM&&RH$Z$$Z$&$7&&S<$::<<$?\?k&?$%}&%}&%&4S}&%F!
- '-::.::::::.<%$&9H96HHSFkRH$&6&&1$S$$\:%\)??$;.::\:\`>>$%$Z&?S1%&4%&(|
- `  - - -`-::?#HHHHH6RM$FkDF6&6HH1FkF&$)Z&4S$$&]?</:.   `%\\Z$)1|S&Z$}!
-     ...   -:?4&&&H9&&&&FkRM&9H9H&R6R6kF$?}T&$%$Z%FS(r+\\||S1%&?$Z/S$S|
-         . -::(/}&$FHH9H1DH19&H&&RH&R&HS$S$]??[$/)\$%FS1%Z$7/Z&<\$$?[$i
-  .-:- :-.- -:.-:<S6RH9$kRH&1&1H&RH&FH&F$S4S}S4%7$\$}SZ?$>7$Z?$S1?$\%F:
-               .,$S&&$&6kDH&1&&H&&9&SkH$\%$S$$$$\$/$$$\%T&%}&Z{%%FS$?F:
+%$$?&Z?[$\$]%&/$$]SFS}S$?kHJS&Zk&|S$$?ZZ&4%&S}Z$\ZZ&S/$S$4)S(k$\Z$7$$?|
+%$$$S1?|k%[$4?Z$/$$$Z{SHMMMMMMMMH[&%F$S$$$S$$]??[$/$4)S($?FS${)Z{?S$S1:
+?L$/Z{?$\$ZZZ\\Z{|S}S6M9&S&&&9&RMMHFSS1)S<$$$\%$/$ZZ$1?S$$$)S$//Z$/Z&4:
+4?$]??FS}$?k%T&Z$?[&&$RH%k$k$::`&>HMbS$$S$$S$$&$&?$?}ZF$$S$S(/&J4)S(k&:
+%>|}?T$S$%&|%$$?}Z$&Sk$\Z/$7Z$c+k&]HHZ$S(F$$&$%}ZF$S$$/]?$1?\S14|S$\&Zi
+>$%{||J??$)Z$%?[$4?&S$ZFS$/Z\\$$?S+4&k&SL$Z$Z$/$\$&/Z$4S&{?$?[$$L&4S$$:
+\\Z?[$$]%&)?F$$$S&&1&F&&$1$))?\|\?/:::??\Z/Z$\$?k$\$?[\S$&%&4)S$4%&4$S|
+?$?FS|}ZT&$\$SS1?&&H&&kM9$k&1J|S14SF><::':'+?FSS1%FS$Z$&?&ZZ&4%Z%[$&S$i
+$)7/$$S$S$$S$$S}S66HH6M&&M&H11%F$$S1?&%$\. `$\$&?$$S$S$Z$%\\Z$?k&?ZF$\|
+/&J4|?}S($$S&Z?[&&HRM&HH9H9H&&}F$ZZ$\$&$S1%\}$7$?[$$S|k$S1%F$S$$\$Z$$?|
+%\\%$$\\7$\Z/$4$M&DRH9H9H9HH9MHHMMMMHHH&1%$/$S$S14|S1?$ST&?$\$%FS${)S$i
+?Z$/$$\Z{?|$?[&HH&HH&HH9&M&6MMMMMHMMMMMMHMZZ$S47/Z$4%&/$S(}&%$}$?[\S$\!
+4?(/$%$S1|S\$HFR6H&6H1D6HHMHH6H6RM1&&&Z|$?&&Z$&?&|$]?$4%$\$?[\\$$\%$/$:
+?Z\\$)?$$?S4Z&FkM&&H6HH6M9&RHH&$R&$&Sk&S:\\%Z6$4?$?}Z$\Z?[$/$?F$$$]%Z$!
+!:<::/\:S::||$FkM&RHRMDM1H&1SkFF1$Z$F1%F\\S&&19&&$S14)S$4%$\\S$$Z&?$?S|
+::\<::i::::\\SFk6H6HH6M9&M&SH$S&$Z$$&$\Sk$pS://Z(+7S$//$&%$&%F|k$S&ZZ&:
+ : :-::::::::?\41H9H&H9&&&&&&SkR&D&$&Z$|\\S/??::::-:\'?/$$\$$\Z/ST&$%F:
+    '  - : ::vDM&6MHHR6RH&SM&1kHH&H1$$Z$%$\S$$$/Z}S:.   `$/Z%F$S$$ZF$S|
+     ...   -\<$9&&H&9&H&191&HS6RM&kM9H&ZZF$SS$?F$S$$S?>,,?$4%$S($/$$S$!
+     .   . .-|?%\$H&1&H&1&DFRH&9&M&1kRFk$$SS(/Z$$?}&J%Z$$/Z&S1?Z$]?$S$i
+  .--.` :.- :. -:<$HH9&RH1&FkH&&H&FkR6Fk$\$$\$$\$$S$$/$\S$?&Z/$\%\\%}S|
+              ` ,$Sk&&&&&H&Sk66&9FM&1&&Z}&%$$1?(}ZT&$Z/$Z/]?/$4%&)&|S$i

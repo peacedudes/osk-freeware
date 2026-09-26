@@ -7,9 +7,9 @@ $ cat DOC/samples/cat.txt | head -n 4
 "B0002" #C( :type Book :author "Kelly and Pohl" :title "A Book on C" :publisher
 "Benjamin-Cummings" :city "Menlo Park" :description "A teaching text." :volume 0
  :year 1984 )
-<mp/cat2.libr < DOC/samples/cat.txt; ls -l tmp/cat2.libr
-tmp/cat2.libr already exists!
--rw-------   1 7        1           17677 Sep 24 02:55 tmp/cat2.libr
+$ Ascii2Libr -outfile tmp/cat2.libr < DOC/samples/cat.txt
+$ ls -l tmp/cat2.libr
+-rw-------   1 7        1           17677 Sep 26 11:27 tmp/cat2.libr
 $ Libr2Ascii -infile tmp/cat2.libr | head -n 6
 4
 2

@@ -2,7 +2,16 @@ $ answer
 
 -------------------------------------------------------------------------------
 
-Message to: tester
-Sorry, could not find 'tester' [tester] in list!
+Message to: self
+address 'tester (Me)'
 
-Message to:
+
+Enter message for self ending with a blank line.
+
+> Mary called about the disk.
+> She will ring back at four.
+>
+
+-------------------------------------------------------------------------------
+
+Message to: bye

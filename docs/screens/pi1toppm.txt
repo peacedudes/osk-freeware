@@ -1,0 +1,7 @@
+$ ppmtopi1 tmp/base.ppm > tmp/t.pi1
+ppmtopi1: computing colormap...
+ppmtopi1: 6 colors found
+ppmtopi1: maxval is not 7 - automatically rescaling colors
+$ pi1toppm tmp/t.pi1 > tmp/b.ppm
+$ pnmfile tmp/b.ppm
+tmp/b.ppm:      PPM raw, 320 by 200  maxval 7

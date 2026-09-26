@@ -1,7 +1,6 @@
-$ hipstopgm x.hips > out.pgm
-$ pnmfile out.pgm
-out.pgm:        PGM raw, 8 by 2  maxval 255
-$ pnmnoraw out.pgm
+$ printf "osk\rstrip\r1\rtoday\r2\r8\r8\r0\r0\r.\r" > x.hips
+$ printf "0123456789abcdef" >> x.hips
+$ hipstopgm x.hips | pnmnoraw
 P2
 8 2
 255

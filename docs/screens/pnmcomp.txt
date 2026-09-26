@@ -1,0 +1,23 @@
+$ pnmcomp -xoff 48 -yoff 30 os9.pbm ramp.pgm | pgmtopbm | pbmtoascii -2x4
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMHMHMMMMMMMMMHMHMMMMMMHMHMHMMHMMMMMHMHMHMHMMHMHMMHMMHMMHMMHMMMHMMHMMMMHMM
+HH9HH6M9H&RHHH&RM9RM&HH&6M9RM9HHRHM&DRM9RM9RMHHH6MH&M9HHHHHHHRHM&MHHRHHH9HDM
+RM&DRH9&6R6DM&R6666DRM&RH9D6HH9kM&RMH96D6HH&H9&M&RHH9H&6HH9H9H&H&6H1M&H9HHH9
+&&6H&19H$k6H&H$kH&&&kHH$k6FkR&9$kR&k&91FkRM&1&9&&9H$RH&&H&1&9$6H&SRH1&&kRH9&
+&$RH&$$6&&&9S&&$RH&Z&6$Rk6&$HZ&6&&1&&11S&&1&$$kR&11&&9&19&$k&FkH&111SFD&11&&
+FF11&&%D&S/&&ZH%}k&$1$Z}k$R&Sk$&&$&&Z&$&&$H&Z$&SF11%k$F}&SFS&&SFF14$1Z&Z$SF&
+F1$%&$Z&$Z&$7Zk&Sk&4%F14`'^`'^``^`''^^`^``^``'^`''^`?$7Z$S$&$S$&S$&S$&S$&S&4
+\\%$}S$\$$\$/Z$?FS<?}&J%                            .TFS$$$%&J%&|?[$$Z/)S4)S
+?Z{|)SS|$S|//$S$/$7|?Z|$                            :$)7/$|%?|}S$|S\\%%$$4|?
+SSSSSS??$)%Z???((((|||$(       /'`\|?`|    |`|      !?((((<SSSS$|)))))7|||))
+SSSSSSSSSS))))))))))))))       \../,:?|--- `>'      :%%%%%:SSSSSSSSSSSSSSSSS
+|!://:?|:S||:?://:?|;?|\        "" ``"     "        .\\\|?):/|;?!:(//(//S|i<
+S:>:\:i(/;:|?i<//S!:?|::                            `\\:!(/i(/:i(/:\(/;//:i?
+:/:/:\/<\<:\:/:/<::/::/\. . . . . . . . . . . . . ..:\:/:/::/::/:\!//:::\:/:
+::::::/:::\<.'<:-\:::://::':::::<:':::::<:'::::::>:::>:\\\:-:::%::\:/:::/\<:
+-//`:://::.<::.::.::::::/:::\::: /:\-//:.:::::-//:::.::\:\:\:::::.:::::;.`::
+-:::: :::'/::.::: :`:.-::.--:-:::-::: :::::.-: :::-: :/:.:-.-:.:::.-:-.::::-
+.-:.-.-:`.-:`.-.`-.-:`..'-::-: :.`: :':.-.-:`.':`.':-:.-`.:-:.-..-:.-.-.-.-:
+ .. -.'.'.. `.'-: .-.'.'.- .`.`. ..'.. .- '--`..'.' - -:. .- .'-. .`. -` .-
+ .  -   - .`   -   . .  - - ` . .   . -  '- -    .` `  . - .  - -. ' .`-  `
+     `       -   '                            `      '

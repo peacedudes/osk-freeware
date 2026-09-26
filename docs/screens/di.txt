@@ -1,0 +1,28 @@
+$ modinfo di
+-------------------------------------- di  - - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - - -
+Module name           = di
+System revision       = 1
+Module size           = 144
+Owner Id              = 0.0
+Offset to module name = 00000088H
+Access permission     = ewrewrewr
+Type/Language          = 0f00H  Device Descriptor      not a programm
+Attribute/Revision    = 8000H   reentrant
+Edition               = 3
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 3d6eH
+
+
+Device controller adress         = fec30000H
+Trap Vector number               = 0
+Hardware IRQ level               = 0
+IRQ Polling Priority             = 0
+Mode                             = 23H
+Offset to file manager name      = 007cH Scf
+Offset to device Driver name     = 0080H disp
+Offset to Device Configuration   = 0064H
+Option table size                = 28
+Device type                      = 0 SCF

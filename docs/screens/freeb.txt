@@ -1,13 +1,11 @@
-1359872 total sectors (4 sector clusters)
-Total free: 728376
+$ freeb
+Disk "OSK-Freeware" Created  9/26/2026  8:23
+1687552 total sectors (4 sector clusters)
+Total free: 904484
 $ freeb -t
-Disk "OSK-Freeware" Created  9/23/2026 23:12
-1359872 total sectors (4 sector clusters)
-   4       3
-   8       2
-  20       2
-  24       1
-  28       1
-1836       1
-726420     1
-Total free: 728376
+Disk "OSK-Freeware" Created  9/26/2026  8:23
+1687552 total sectors (4 sector clusters)
+   8       1
+  16       1
+904460     1
+Total free: 904484

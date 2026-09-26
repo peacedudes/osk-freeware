@@ -1,0 +1,16 @@
+       IEEE test program.   B & K  Denmark           17/4-89  JS
+
+         I)fc            Interface Clear.       (bus command)
+         R)emote         Remote Enable.         (bus command)
+         L)lo            Local lockout          (bus command)
+         G)oto local     Go to Local.           (bus command)
+         C)lear          Device Clear.          (bus command)
+
+         S)end           Send string to 1 or more listeners.
+         E)nter          Receive string from one talker.
+
+         D)ev-clear      Selected device clear. (addressed command)
+         T)ime           Set timeout time.      (system command)
+         Q)uit           Exit 'testibc'-program.
+
+Command?

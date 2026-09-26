@@ -1,6 +1,6 @@
-$ echo 500000 | dhryGcc | tail -l=6
-Measred Time: 1
-Start Time: 1790229137
-End Time: 1790229138
-Measured time too small to obtain meaningful results
-Please increase number of runs
+$ echo 5000000 | dhryGcc | tail -l=6
+Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
+        should be:   DHRYSTONE PROGRAM, 2'ND STRING
+
+Microseconds for one run through Dhrystone:    3.0
+Dhrystones per Second:                      333333.3

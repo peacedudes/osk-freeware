@@ -1,24 +1,25 @@
-          lea       V16(a6),a1
-          clr.w     d0
-          os9       F$Time
-          move.l    d0,(a1)+
+$ unc setime 2>/nil | head -n 24
+Ed        equ       29
+Typ_Lang  equ       $101
+Attr_Rev  equ       $8000
+stk       equ       $3e8
+
+          psect     disas,Typ_Lang,Attr_Rev,Ed,stk,start
+
+LB1:      moveq.l   #$1,d0
+          move.l    #$e,d1
+          lea       -24(pc),a0
+          os9       I$WritLn
+          moveq.l   #$0,d0
+          move.l    #$d,d1
+          lea       V9(a6),a0
+          os9       I$ReadLn
+          cmp.b     #$7,d1
+          blt.s     LB1                      ($5e)
+          beq       LB2                      ($178)
+          lea       V10(a6),a1
           move.l    d1,(a1)
-          bra       LB3                      ($8e)
-
-LB5:      moveq.l   #$0,d1
-          os9       F$Exit
-
-
-          vsect
-vstart:   ds.b      0                        $8000(a6)
-V11       ds.b      2                        $8000(a6)
-V12       ds.b      2                        $8002(a6)
-V14       ds.b      2                        $8004(a6)
-V15       ds.b      2                        $8006(a6)
-V16       ds.b      8                        $8008(a6)
-V10       ds.b      4                        $8010(a6)
-V13       ds.b      1                        $8014(a6)
-V9        ds.b      13                       $8015(a6)
-          ends
-
-          ends
+LB3:      lea       V9(a6),a0
+          lea       V11(a6),a1
+          moveq.l   #$0,d2
+          moveq.l   #$a,d1

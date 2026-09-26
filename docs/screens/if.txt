@@ -1,6 +1,6 @@
 $ command if def TERM whoami endif
 tester
 $ command if loaded nosuch whoami else today endif
-Today is Thursday, the twenty-fourth day of September, two thousand and
-twenty-six. The time is twenty-four minutes and thirty-six seconds after
-two AM, Daylight Savings Time. The moon is waxing gibbous.
+Today is Saturday, the twenty-sixth day of September, two thousand and
+twenty-six. The time is one minute and thirty-nine seconds after eight
+AM, Daylight Savings Time. The moon is waxing gibbous.

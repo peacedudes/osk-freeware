@@ -1,4 +1,2 @@
-$ dpark -?
-Syntax:   dpark [/device]
-Function: restore RBF device head to TRK00
-Options:  none
+$ dpark /dd; echo "status $?"
+status 0

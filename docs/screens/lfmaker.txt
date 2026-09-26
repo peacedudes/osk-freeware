@@ -1,0 +1,2 @@
+$ lfmaker readme; echo "status $?"
+status 208

@@ -16,18 +16,18 @@ size    26 80
 cap     charcnt counts how often each character occurs in the files named,
 cap     control characters included -- CR is the line ending here -- and
 cap     totals the bytes read.
-try     charcnt holidays motd
-run     builtin cd /dd/SYS
+try     charcnt SYS/holidays SYS/motd
+run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     charcnt holidays motd
+run     charcnt SYS/holidays SYS/motd
 wait    6
 
 shot    dump
-cap     dump, the hex dump, showing the head of an OS-9 program module.  The
-cap     first two bytes are the sync pattern $4AFC that marks every module,
-cap     and the module's own name sits in clear at $0044.
+cap     The head of an OS-9 program module: the sync bytes $4AFC that start
+cap     every module, and at $000C the offset of the module's name, $48 --
+cap     where `today' sits in clear.
 try     dump CMDS/today | head -n 16
 run     builtin cd /dd
 wait    1
@@ -109,8 +109,8 @@ wait    5
 snap
 
 shot    wc
-cap     wc counts lines, words and bytes for each file named, and totals
-cap     them.
+cap     Lines, words and characters for four of the disk's own documents,
+cap     and the total.
 try     wc DOC/INDEX DOC/ORIGINS DOC/DEPENDS SOURCES.txt
 run     builtin cd /dd
 wait    1
@@ -120,9 +120,7 @@ run     wc DOC/INDEX DOC/ORIGINS DOC/DEPENDS SOURCES.txt
 wait    6
 
 shot    sepwords
-cap     sepwords splits text into one word a line -- the first step towards a
-cap     word list or an index.  Two lines become nine words, put in order by
-cap     `sort'.
+cap     Two lines become nine words, put in order by `sort'.
 try     cat tmp/TEXTA/fox.txt; sepwords < tmp/TEXTA/fox.txt | sort
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
 wait    3
@@ -172,9 +170,7 @@ wait    4
 snap
 
 shot    casefix
-cap     casefix normalises capitals: every letter goes to lower case except
-cap     the first of each sentence.  It reads standard input only -- named
-cap     as an argument, a file is ignored.
+cap     A line of mixed-up capitals comes out sentence-cased.
 try     echo "tHE qUICK bROWN fOX. jUMPS oVER the LAZY dog." | casefix
 run     echo "tHE qUICK bROWN fOX. jUMPS oVER the LAZY dog." | casefix
 wait    5
@@ -199,22 +195,20 @@ run     cut -c1-4 password
 wait    4
 
 shot    cuts
-cap     cuts encodes binaries as text for electronic mail, the way uuencode
-cap     does, in a form that survives gateways between ASCII and EBCDIC
-cap     machines; `-d' decodes.  Its encoder does not work: asked for a
-cap     20-byte file it demands billions of bytes of memory, is refused, and
-cap     goes on writing empty data lines until it is stopped.
-try     cuts -e tmp/TEXTA/fox.txt | head -n 4
-run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/fox.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/fox.txt
+cap     cuts, the Coco Usenet Transfer Utility, given a two-line text file
+cap     in its form: an identifier line naming the file, the data, and the
+cap     identifier again. `-d' reads the identifier and writes fox.txt, but
+cap     dump shows only the two line ends in it -- every other character is
+cap     lost. Its encoder, `-e', runs away writing empty data lines.
+try     cat fox.cut; cuts -d fox.cut; dump fox.txt
+run     set +H; rm -rf /dd/tmp/CUTS > /nil 2>/nil; mkdir -p /dd/tmp/CUTS; builtin cd /dd/tmp/CUTS
+wait    2
+run     printf '.0000.I.A.260926.ASC."fox.txt"................................................=\r.0001.Dthe quick brown fox!=jumps over the lazy dog!=#........................9\r.0000.I.A.260926.ASC."fox.txt"................................................=\r' > fox.cut
 wait    3
-run     builtin cd /dd
-wait    1
 run     clear
 wait    1
-run     cuts -e tmp/TEXTA/fox.txt | head -n 4
-wait    10
-snap
-kill
+run     cat fox.cut; cuts -d fox.cut; dump fox.txt
+wait    8
 
 shot    detab
 size    30 80
@@ -243,12 +237,8 @@ snap
 shot    eo
 cap     eo runs one command for every line of a file, with `@' standing for
 cap     the line: here `wc' over the three files named in list.txt, each
-cap     command echoed before its output.  eo hands each command to the shell
-cap     SHELL names, and this disk's `sh' can only fork a module it finds by
-cap     name -- so `sh' and `wc' are loaded into memory first, and that is
-cap     what the two `load' commands are for.  SHELL=CMDS/sh does not work:
-cap     a relative fork is resolved against the execution directory, not the
-cap     one you are in.
+cap     command echoed before its output. sh forks only resident modules, so
+cap     sh and wc are loaded first.
 try     load sh; load wc; SHELL=sh eo list.txt wc @
 run     mkdir -p /dd/tmp/TEXTA; echo /dd/SYS/motd > /dd/tmp/TEXTA/list.txt; echo /dd/SYS/holidays >> /dd/tmp/TEXTA/list.txt; echo /dd/SYS/birthdays >> /dd/tmp/TEXTA/list.txt
 wait    3
@@ -266,7 +256,8 @@ wait    1
 
 shot    field
 cap     field prints the words you pick from each line by their position:
-cap     the 2nd, 4th and 1st here, then fields 1 and 3 from a comma list.
+cap     the 2nd, 4th and 1st here, then fields 1 and 3 of pw, a copy of
+cap     SYS/password, whose fields are separated by commas.
 try     cat fox; field 2 4 1 < fox; field -i=, 1 3 < pw
 run     rm -rf /dd/tmp/fld > /nil 2>/nil; mkdir -p /dd/tmp/fld; echo "the quick brown fox" > /dd/tmp/fld/fox; echo "jumps over the lazy dog" >> /dd/tmp/fld/fox; cp /dd/SYS/password /dd/tmp/fld/pw
 wait    3
@@ -283,9 +274,9 @@ wait    3
 
 shot    fillup
 size    30 80
-cap     fillup pads a file out to a given length with one byte value:
-cap     `-n=64' the length, `-i=46' the byte, a full stop.  It reports what
-cap     it added, and dump shows the 2E bytes after the original text.
+cap     `-n=64' the length, `-i=46' the byte, a full stop: 20 of them take
+cap     the file from 44 bytes to 64, and dump shows the 2E bytes after the
+cap     text.
 try     ls -l tmp/TEXTA/pad.txt; fillup -n=64 -i=46 tmp/TEXTA/pad.txt; ls -l tmp/TEXTA/pad.txt; dump tmp/TEXTA/pad.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/pad.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/pad.txt
 wait    3
@@ -364,8 +355,7 @@ wait    5
 snap
 
 shot    psc
-cap     psc turns a table of numbers into commands for `sc', the spreadsheet:
-cap     one `let' per cell, A0 at top left, then a `format' line per column.
+cap     One `let' per cell, A0 at top left, then a `format' line per column.
 cap     It reads standard input.
 try     cat tmp/TEXTA/table.txt; psc < tmp/TEXTA/table.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "1 2 3" > /dd/tmp/TEXTA/table.txt; echo "4 5 6" >> /dd/tmp/TEXTA/table.txt; echo "7 8 9" >> /dd/tmp/TEXTA/table.txt
@@ -382,8 +372,9 @@ snap
 
 shot    rot
 size    30 80
-cap     rot turns text on its side: the first line becomes the first column,
-cap     read downwards.  It refuses tabs, so expand them first.
+cap     Turned on its side a quarter-turn clockwise: the last line becomes
+cap     the first column, read downwards, and the first line the last. It
+cap     refuses tabs, so expand them first.
 try     cat tmp/TEXTA/r.txt; rot tmp/TEXTA/r.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/r.txt; echo "jumps over the" >> /dd/tmp/TEXTA/r.txt; echo "lazy dog" >> /dd/tmp/TEXTA/r.txt
 wait    3
@@ -399,9 +390,8 @@ snap
 
 shot    tabs
 size    30 80
-cap     tabs re-spaces a file.  `-i8' says the input's tab stops are every 8
-cap     columns; `-o0' asks for no tabs on output, spaces instead; `-o4' for
-cap     stops every 4.  dump shows a line of the holidays file each way.
+cap     dump shows one line of the holidays file three ways: with its tabs,
+cap     with spaces instead (-o0), and with tabs every 4 (-o4).
 try     dump tmp/TEXTA/tab.txt; tabs -i8 -o0 < tmp/TEXTA/tab.txt > tmp/TEXTA/sp.txt; dump tmp/TEXTA/sp.txt; tabs -i8 -o4 < tmp/TEXTA/tab.txt > tmp/TEXTA/t4.txt; dump tmp/TEXTA/t4.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 3 | tail -l=1 > /dd/tmp/TEXTA/tab.txt
 wait    4
@@ -525,10 +515,10 @@ wait    4
 snap
 
 shot    slice
-cap     slice cutting a document into one file per section: each line in
-cap     capitals starts a new file, named by the format -- part1, part2
-cap     and on.  The lines before the first heading go to /nil unless
-cap     -r names a file for them.
+cap     In a directory holding a copy of DOC/README-SHELLS: each line in
+cap     capitals starts a new file, named by the format -- part1, part2 and
+cap     on. The lines before the first heading go to /nil unless -r names a
+cap     file for them.
 try     slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
 run     rm -rf /dd/tmp/SLK > /nil 2>/nil; mkdir -p /dd/tmp/SLK
 run     cp /dd/DOC/README-SHELLS /dd/tmp/SLK
@@ -615,13 +605,9 @@ snap
 
 shot    more
 size    24 80
-cap     The plain pager: a file 24 lines at a time, and Enter for the next.
-cap     It is stuck at 24 -- the number is built in, and neither the
-cap     terminal's page length nor its description changes it.  It reads
-cap     Enter from standard input, so it cannot page a pipe: fed one, it
-cap     takes the next line as the answer and that line is lost.  `less'
-cap     does better: it sizes itself from the terminal's description
-cap     (termcap's li#), pages a pipe, searches and goes back.
+cap     The first page of DOC/INDEX: 24 lines, and Enter for the next. The
+cap     page length is built in, and it reads Enter from standard input, so
+cap     it pages a file rather than a pipe.
 try     more DOC/INDEX
 run     builtin cd /dd
 wait    1
@@ -635,11 +621,9 @@ wait    3
 
 shot    diff3
 size    24 80
-cap     Compares THREE files at once -- yours, the one you both started from,
-cap     and theirs -- and says which of the three each difference belongs to.
-cap     `====' opens a difference; `1:', `2:' and `3:' are the files.  Here
-cap     the first file changed the middle line and the third changed the
-cap     last.  GNU diff3 1.4; the source is in SRC/gnudiff.
+cap     Three files -- yours, the one you both started from, and theirs:
+cap     `====' opens a difference, and `1:', `2:' and `3:' are the files.
+cap     The first changed the middle line and the third changed the last.
 try     diff3 mine older theirs
 run     rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C
 wait    3
@@ -679,9 +663,7 @@ run     shell subber #1000k words in
 wait    6
 
 shot    tcmp
-cap     tcmp compares two text files line by line and prints each line that
-cap     differs, both versions one under the other, with the line number in
-cap     each file.  Here two three-line files that differ in the middle.
+cap     Two three-line files that differ in the middle line.
 try     cat tmp/TEXTA/c1.txt; cat tmp/TEXTA/c2.txt; tcmp tmp/TEXTA/c1.txt tmp/TEXTA/c2.txt
 run     mkdir -p /dd/tmp/TEXTA; echo "the quick brown fox" > /dd/tmp/TEXTA/c1.txt; echo "jumps over the lazy dog" >> /dd/tmp/TEXTA/c1.txt; echo "and lands in the river" >> /dd/tmp/TEXTA/c1.txt
 wait    3
@@ -721,7 +703,7 @@ snap
 
 shot    fold
 size    24 80
-cap     fold wraps long lines to a width -- 80 columns unless -w says otherwise.
+cap     Wrapped to 24 columns: it cuts at exactly the width, mid-word.
 try     fold -w 24 tmp/B3C/fox.txt
 run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo "The quick brown fox jumps over the lazy dog, and then over the lazy dog again." > /dd/tmp/B3C/fox.txt
 wait    3
@@ -748,7 +730,7 @@ run     comm tmp/B3C/a tmp/B3C/b
 wait    5
 
 shot    column
-size    24 80
+size    32 80
 cap     column sets a list out in columns as wide as the screen -- here the
 cap     names in the games directory.
 try     ls CMDS/GAMES | column
@@ -786,11 +768,12 @@ wait    4
 
 shot    col
 size    24 80
-cap     col cleans up text meant for a printer.  The file above was underlined
-cap     by striking each letter and then an underscore over it; col -b keeps
-cap     the last character struck in each column.
+cap     col cleans up text meant for a printer. The file above underlines
+cap     `important' the way nroff does, an underscore struck and then each
+cap     letter over it; col -b keeps the last character struck in each
+cap     column, so the word comes out plain.
 try     col -b < tmp/B3C/over.txt
-run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "b\b_o\b_l\b_d type" > /dd/tmp/B3C/over.txt
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "an _\bi_\bm_\bp_\bo_\br_\bt_\ba_\bn_\bt word" > /dd/tmp/B3C/over.txt
 wait    3
 run     builtin cd /dd
 wait    1
@@ -803,11 +786,12 @@ wait    5
 
 shot    ul
 size    24 80
-cap     ul reads underlining made with backspaces -- each letter struck, then
-cap     an underscore over it -- and shows it the way the terminal can.  With
-cap     -i the underline is drawn on a line of its own.
+cap     ul reads underlining made with backspaces -- an underscore struck,
+cap     then the letter over it -- and shows it the way the terminal can.
+cap     With -i the underline is drawn on a line of its own, under
+cap     `important'.
 try     ul -i tmp/B3C/over.txt
-run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "b\b_o\b_l\b_d type" > /dd/tmp/B3C/over.txt
+run     rm -rf /dd/tmp/B3C; mkdir -p /dd/tmp/B3C; echo -e "an _\bi_\bm_\bp_\bo_\br_\bt_\ba_\bn_\bt word" > /dd/tmp/B3C/over.txt
 wait    3
 run     builtin cd /dd
 wait    1
@@ -891,10 +875,11 @@ run     xd -d motd
 wait    4
 
 shot    hdump
-size    18 80
-cap     A hex dump with the characters beside the bytes, a period standing
-cap     for each one that will not print.  -h is hexadecimal, -o octal, -d
-cap     decimal and -b binary; run bare it dumps in octal.
+size    42 80
+cap     The same 40-byte file in hexadecimal and in binary, with the
+cap     characters beside the bytes and a period standing for each one that
+cap     will not print. -o is octal and -d decimal; run bare it dumps in
+cap     octal.
 try     hdump -h motd; hdump -b motd
 run     builtin cd /dd/SYS
 wait    1
@@ -928,29 +913,32 @@ run     wc -c m.hex back
 wait    3
 
 shot    dvi2tty
-size    18 80
+size    24 80
 cap     Prints a TeX .DVI file as text, so a typeset document can be read on
 cap     a terminal.  The disk's other DVI programs drive printers; this one
 cap     is for the screen.  Here it reads the MG manual that ships in DOC.
 cap     -q keeps it from paging: left alone it pipes to a pager when its
 cap     output is a terminal.
-try     dvi2tty -q mg_doc.dvi
+try     dvi2tty -q -w79 mg_doc.dvi | head -n 20
+os9     dvi2tty -q -w79 mg_doc.dvi ! head -n 20
 run     builtin cd /dd/DOC/mg
 wait    1
 run     clear
 wait    1
-run     dvi2tty -q mg_doc.dvi
-wait    6
+run     dvi2tty -q -w79 mg_doc.dvi | head -n 20
+wait    8
 
 shot    disdvi
-size    18 80
-cap     Dumps a .DVI file's structure instead of its text: the preamble, the
-cap     numerator and denominator that set its units, the magnification, and
-cap     then every command in the file, one to a line.
-try     disdvi mg_doc.dvi
+size    24 80
+cap     Dumps a .DVI file's structure instead of its text: the preamble --
+cap     version, the numerator and denominator that set its units, the
+cap     magnification, the job name -- and then every command in the file,
+cap     one to a line.
+try     disdvi mg_doc.dvi | head -n 20
+os9     disdvi mg_doc.dvi ! head -n 20
 run     builtin cd /dd/DOC/mg
 wait    1
 run     clear
 wait    1
-run     disdvi mg_doc.dvi
-wait    6
+run     disdvi mg_doc.dvi | head -n 20
+wait    8

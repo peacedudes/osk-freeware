@@ -1,23 +1,23 @@
-MoM"oMo"M"oM"MoM"Mo"Mo"Mo"Mo"Mo"Mo"M"oM"oM"MoMoM"oM"o"M"oMoMoM"oM"oM M
-MMMMMM"M"M"M"oM"MMMMM"M"MoM"MM"MMM"MoMM"MoM"MoMM"MoM"MoMM"MoMMMMMoMoMoM"MoMMMMMM
-MoM"Mo"MM"M"MMM"MMoM"M"MoM"M"MoM"M"M"MoMM"MMoMMM"MoMM"MMMoMMoM"MoM"M"M
-MoMoM"Mo"M"M"oM"oMoM"M"oMo"M"M"MoM"oMo"M MoMM Mo"Mo"Mo"oM"oM"oMoMo"o"oM"oM MoMoM
-oMo"Mo"Mo"M"Mo"MM M"Mo"Mo"M"oMo"M"Mo"M Mo"MoMo"Mo"oMo"MoM"oMoM"oM"Mo"M
-MoMoMMoM"Mo"MoM"MoM"MM"oMoMM"MMoM"MoMoM"MoMo"MoMMo"MoMMo"MoMMMoMoMM"Mo"MoM"MoMoM
-oMoMMo"MoMM"MM"MoMMoMoMMoM"MoMoMMoM"M"MoM"MoMMMMo"MoM"MoMMMoMoM"oMoMMo
-M"M"MoM"M"M"Mo"M"M"MM"M"oMo"M"M"M"Mo"Mo"Mo"M"M MoM"M MoM"Mo"MoM"Mo"M"oM"oM"M"M"M
-o"oMoM"M MoM"MM"Mo"oMo"oM"Mo"oMoMo"M"Mo"M"Mo"MoMM"Mo"M"Mo"MoM"oM"oMoM"
-"M"MoMoM"oM"o"M"M"Mo"MoMo"oMM"M"M"oM"oM"oM"oM"Mo"oM"Mo"oM"oMMoM"Mo"M"o"Mo"M"M"M"
-M"oM M"M"o"M"MoMMo"Mo"Mo"Mo"M Mo"oM"oMoM"oMM"MoM MoM"oM"M"Mo"Mo"Mo"o"M
-M"MoMoMo"Mo"M"oM"M"M"M Mo"M MM"M"Mo"Mo"Mo"Mo"oMoM"oMoM"oM"oMoM"M"oM"M"oMoM"M"M"M
-"oMo"Mo"M"oMM"oMo"Mo"Mo"Mo"M"Mo"Mo"Mo"oM"oMoMMo"Mo"oM"M"M"Mo"Mo"Mo"M"o
-M"MoMoMo"MoM"Mo"MM"MM"MoM"MoMMM"MMo"Mo"Mo"MoM"oMoMoMo"Mo"MoMoMMMMoMo"Mo"oMoM"MM"
-MoMo"Mo"MoMoMMMoMMo"Mo"Mo"MoMo"Mo"Mo"Mo"MoMoMoMMMo"Mo"MM"MM"Mo"MoMM"Mo
-MMM"M"oMM"oM"M"M"MM"M"Mo"M"o"M"M"M"M"M"M"M"oM"M MoM"M"M"M"oM"MoM"oM"M"M"Mo"M"MM"
-Mo"M"M"M"o"MoMM"MoM"M"M"M"Mo"M"M"M"M"M"M"oM"M"MoM"M"M"M"M"M"M"M"oMo"Mo
-MoM"MMoMo"MoMMo"MMoMMMoMM"M"M"MM"MoMMo"MoMMoM"M"oMoMoMMo"MoMMMoMM"oMoMoMoMM"MMoM
-M"Mo"MoMM"MoMoMMoMoMMo"MoMoM"Mo"MoMMo"MoM"M"MMoMoM"oMM"MM"MMo"MoMo"MoM
-M"MM"Mo"M"M MoM"M"MoM"oMo"M"M"MM"Mo"oMM"oMo"M"M"Mo"oMo"M"Mo"MoM"M"M MoMo"oMM"M"M
-"M"M"oMo"M"oM"Mo"Mo"oMM"oM"oM"M"Mo"oMM"oMM"MM"M"oM"Mo"M"MM"M"M"oM"M"oM
-"M"oMMo"M"oM"o"M"MoMM"oMo"M"M"MoM"M"oM MoMo"Mo"Mo"M MoM"oMoMMoMMM"oM"o"oM"oM"M"M
-"oMo"M M"oM"M"M"Mo"Mo"oM"oM"oM"oMo"M M"o"oMMoM"MoM"o"M"MoM"M"oM"oM"oMo
+$ ppmpat -madras 152 88 | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+RH&S//)S&FM|??H&H?Z/$Z/$%Z$/Z$FRH???($&H&SS?SSR&H??&Z/)?}&|?}SF6&?\\&&1S|&4|
+////:/S;SS?::/???:\/</:::/://:$)):>;::$|%:/\::%$?\:\><;:::i/|>??Z\::|L|\>::i
+{$&|)?><d{{//?&/$?S?>%????>?>\\}k?>S//&$&|i\?\\}k?\%?S<?S>(/J:$&d;>S/d{/?S??
+&$Z?????$9Z</?&$&?%%\?%>/S??Z/Z$$%>%>?$&\??///Z$&???????>????SS&9|/SS$&4!(4!
+H{S(\|$(&$&(<iH$S(/)J<?\S>\?$?/Z6\%??\&1$/|<?:$&&$|/$|?|)?S>?S&{$)?\\&$S<%?S
+77/S<?<??P7S::$&Z<?%>7\Z/:???>$$&/?|//7/Z<?|!\<$$%>S<<?):S<??<S&7/?!Z$&/S\?>
+/?Z\:?::$||'/:$)7;\\!:>:?:\>:iT|$\::S:%?Z\::\/Z??/:S!:\\:?::?:?SS:>-}SSS:\:?
+($?:S:?i?($::\%Z?::/<\:i\>::!S?4|:::::??\\::::%Z?:\/>:/\?:>:><?%%:S:($?:</:/
+$\6?<??/$&$:>|$&{?:???S<?S//?S$\H\%<:(d$Z\\??/&&{/$:$??<?S??S?}}k/?>}k&?%?S?
+944\??SSS&9:/SS&7/?????S??>S?/Z$$\!$?<$S9!<S<:$99|S??>S?????>?&S$%>)\$&(4|?/
+$$Z?|\//$\$::\|}&;:/<|!:(<>)\>?FS?::(:$?&\\:S:$$]!:(<>)://:/|i4?$:i/}S((<>i?
+FkM?$)S(FkH/7/H$R/S4%?[$/$$/Z$6Fk|$(|&&Sk|}SS?R&H/$$/Z?$$S1?S?M&&||%FkR&?Z{|
+?}???</\Z/$:::S$)/|?)//)//%//:$S||:?::k$%::\:/$S$:(//\\:?</:/|J%&::|&?>>\\!|
+$SH|<?Z%&\&:i|bF&?>\?S<%/?\|L(H{S\?/?>}kH/???|$\&??SS?/?\%/<Z?d$&?\?$&&?\?\(
+&$4\?Z|:$S9!</$&]\>/):??>??>|\]T?!?^)\<$&!\>)`FS&|\>??:???/)\:9T4:<\&ZZ?%T|!
+??%:S::SSS?::/%%?i%\::?|:<:)!:||L\::::$SS:>\::||$?|:<:)::i%!:>??$:::L$%?|:):
+%Z?/;::\\\\:::$$|:<\/;\://:?::($?;:<::ZZ?::\\:$$?/:/S;::\/>\:S?%%/::$|%\?::?
+$&d|?<?>&1{//:&$$>%?S?/?//?<??$&dv\|i\\}k?\\(<&$\|+S>(+:??S<%?}k&<:/&$&?<???
+94Z?????Z/9:/?$&&???>?S???S?%%&\9!?\:?&7ZS</|\9Z/??S??>S?%%>/SS&9!%\$F$S?%>/
+&&S(\L(+&H{/\|&&&%??S>\$<%?\?>DZ&>?:\($b&iS?<:}kH|)??S?SS\?Z??&$H|:\b&&:|+\\
+$?P?>??>$&Z:\|$9??>???>????<!SS?}!|?/S\\9\\>\?$$$|?>S:|S:|?%?>&77/(<$&ZS?:??
+/?Z:?:\///?/::\?(|?\:>\<//<:S:Z?(\:://7//:/\::|$%S:\:|?<:%\\/\|T$\::<$|:/:\/

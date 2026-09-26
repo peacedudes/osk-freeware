@@ -1,7 +1,12 @@
-<-sOutputFile=tmp/PRT/old.out tmp/PRT/old.ps -c quit
+$ gs33 -dNOPAUSE -sDEVICE=epson -r48 -g200x60 -sOutputFile=o a.ps -c quit
+Aladdin Ghostscript 3.33 (4/10/1995)
+Copyright (C) 1995 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
+This software comes with NO WARRANTY: see the file PUBLIC for details.
+Loading Helvetica-Bold font from /dd/etc/lib/gs33/phvb.gsf... 1709976 420401 130
+0076 12109 0 done.
 xmode: can't link "p". Error #000:221 (E_MNF) Module Not Found
 %1       6 Error  221           /h1/CMDS/xmode /p lf tabc=09
-$ dump tmp/PRT/old.out | head -n 8
+$ dump o | head -n 8
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------

@@ -4,9 +4,8 @@ A closed mouth gathers no feet.
 The second mouse gets the cheese.
 %%
 Never test for an error you do not know how to handle.
-%%
 $ strfile tmp/TXT/say
 "tmp/TXT/say" converted to "tmp/TXT/say.dat"
-There were 4 strings
+There were 3 strings
 Longest string: 55 bytes
-Shortest string: 0 bytes
+Shortest string: 32 bytes

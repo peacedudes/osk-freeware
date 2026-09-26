@@ -1,24 +1,24 @@
 HeaderLine
 
 ================================================================================
-Current Directory: /dd                                             Entries: 046
+Current Directory: /dd/GAMES                                       Entries: 048
 
-Dirs:   ..               .ELM             .nn              ADL
-        CMDS             DEFS             DEMO             DOC
-        DOS              ETC              GAMES            GNUCHESS4.0
-        GNULIB           LIB              LOG              MAIL
-        News             SBPROLOG         SPL              SPOOL
-        SRC              SYS              UAC              USR
-        VH               c                local            tmp
+Dirs:   ..              ADV             ADVSYS          ATC
+        BKS             BOG             CASTLE          COOKIE
+        COREWARS        CRAPS           CRIB            CRYPT
+        CYBERWAR        FORTUNE         HACK            HEXA
+        INFORM          JOTTO           JUMBLE2         LARN
+        LETTERS         LIB             LIFE            MISC
+        MONOP           PACMAN          PERP            ROB
+        ROGUE           SNOBOL          SOKOBAN         SPEW
+        THRICKEN        TORUS           ULARN           WAND
+        WORLD           YAHTZEE         YIDSLOTS        rayshade
+        snake
 
-Files:  .article         .bashrc          .newsrc          .pnewsexpert
-        .rnlast          .rnsoft          SOURCES.txt      a1.arc
-        a2.arc           alarm.r          art.txt          atan2.r
-        batch.txt        rdoc.err         readme           startup
-        xytransfer.log
-
+Files:  cfscores        dict            gnuchess.book   lander.hs
+        tet.hs          words
 
 
 ================================================================================
-Siz:     1504 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 24-09-126 01:17
+Siz:     1120 Atr: d-ewrewr Usr:   0 Grp:   0 CrD: 00-00-00 WrD: 26-09-126 10:50
  #echo#  #mark#  unmark  ######  ######  ######  ######  ######  ######  #exit#

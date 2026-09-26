@@ -1,3 +1,5 @@
+$ finger tester
+
 No gecos info for tester
 Exec dir: /dd/CMDS
 Directory: /dd/USR/TESTER                     Shell: shell

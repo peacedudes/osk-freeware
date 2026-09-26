@@ -1,3 +1,5 @@
+$ modinfo CMDS/today
+---------------------------------- CMDS/today  - - - - - - - - - - - - - - - - -
  - - - - - - - - - - - - - - - - -
 Module name           = today
 System revision       = 1

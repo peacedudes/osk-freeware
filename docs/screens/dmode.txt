@@ -1,3 +1,4 @@
+$ dmode /r0
 Parameters for                      /r0
 Drive number           (drv) =      0
 Step rate              (stp) =      0

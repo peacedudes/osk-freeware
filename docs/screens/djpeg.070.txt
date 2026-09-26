@@ -1,6 +1,5 @@
-$ djpeg.070 -pnm tmp/GFXA/j.jpg > tmp/GFXA/d70.ppm
+$ djpeg.070 -pnm j.jpg > d70.ppm; ls -l j.jpg d70.ppm
   95%
 
-$ ls -l tmp/GFXA/j.jpg tmp/GFXA/d70.ppm
--rw-rw-rw-   1 7        1            3469 Sep 24 01:42 tmp/GFXA/d70.ppm
--rw-rw-rw-   1 7        1             778 Sep 24 01:42 tmp/GFXA/j.jpg
+-rw-rw-rw-   1 7        1            3469 Sep 26 08:57 d70.ppm
+-rw-rw-rw-   1 7        1             785 Sep 26 08:57 j.jpg

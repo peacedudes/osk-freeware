@@ -1,2 +1,30 @@
-$ makeinfo +version
-Makeinfo verison 1.0.
+$ cat hi.texi
+\input texinfo
+@setfilename hi.info
+@settitle Hi
+@node Top
+@chapter Hi
+
+A small manual.
+@bye
+$ makeinfo hi.texi
+Making info file `hi.info' from `hi.texi'.
+$ cat hi.info
+Info file hi.info, produced by Makeinfo, -*- Text -*- from input file
+hi.texi.
+
+
+
+File: hi.info,  Node: Top
+
+Hi
+**
+
+   A small manual.
+
+
+
+Tag Table:
+Node: Top.81
+
+End Tag Table

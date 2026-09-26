@@ -1,8 +1,19 @@
 $ bibtex
-Please type input file name (no extension)--small
+Please type input file name (no extension)--cite
 This is BibTeX, C Version 0.99c
-The top-level auxiliary file: small.aux
-I found no \citation commands---while reading file small.aux
-I found no \bibdata command---while reading file small.aux
-I found no \bibstyle command---while reading file small.aux
-(There were 3 error messages)
+The top-level auxiliary file: cite.aux
+The style file: plain.bst
+Database file #1: xampl.bib
+$ head -n 12 cite.bbl
+\newcommand{\noopsort}[1]{} \newcommand{\printfirst}[2]{#1}
+  \newcommand{\singleletter}[1]{#1} \newcommand{\switchargs}[2]{#2#1}
+\begin{thebibliography}{1}
+
+\bibitem{article-full}
+L[eslie]~A. Aamport.
+\newblock The gnats and gnus document preparation system.
+\newblock {\em \mbox{G-Animal's} Journal}, 41(7):73+, July 1986.
+\newblock This is a full ARTICLE entry.
+
+\bibitem{book-full}
+Donald~E. Knuth.

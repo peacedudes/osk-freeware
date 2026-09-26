@@ -1,0 +1,10 @@
+$ pbmto10x tmp/base.pbm > tmp/10x.out
+$ dump tmp/10x.out | head -n 8
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  1B41 081B 4B30 0055 AA55 AA55 AA55 AA55 .A..K0.U.U.U.U.U
+0010  AA55 AA55 AA55 AA55 AA55 AA55 AA55 AA55 .U.U.U.U.U.U.U.U
+        ********  1 duplicate lines  ********
+0030  AA55 AA55 AA55 AA0D 1B4B 3000 55AA 55AA .U.U.U...K0.U.U.
+0040  55AA 55AA 55AA 55AA 55AA 55AA 55AA 55AA U.U.U.U.U.U.U.U.

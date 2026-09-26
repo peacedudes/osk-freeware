@@ -1,4 +1,4 @@
-$ modinfo CMDS/ptxm | head -n 12
+$ modinfo CMDS/ptxm
 ---------------------------------- CMDS/ptxm  - - - - - - - - - - - - - - - - -
 - - - - - - - - - - - - - - - - - -
 Module name           = Ptxm
@@ -12,9 +12,8 @@ Attribute/Revision    = a000H   reentrant  execute in supervisor state
 Edition               = 3
 Comment string offset = 00000000H
 Symbol table offset   = 00000000H
-$ modinfo CMDS/WN/wn.stb | head -n 4
--------------------------------- CMDS/WN/wn.stb  - - - - - - - - - - - - - - - -
- - - - - - - - - - - - - - - - -
-Module name           = wn.stb
-System revision       = 1
-Module size           = 7968
+Ident code            = 0000H
+Header parity         = 1c2fH
+
+
+This is a very special module

@@ -1,3 +1,7 @@
+$ head -n 20 gs.out
+System global variables (OS-9/680x0 V2.3):
+------------------------------------------
+
 set to modsync code after coldstart ......... $4afc
 prevent sysproc from sleeping if 1 .......... $0
 initialization module ptr ('init') .......... $47e80
@@ -5,11 +9,11 @@ address of system tick routine .............. $0
 number of ticks per second .................. 100
 year ........................................ 2026
 month ....................................... 9
-day ......................................... 24
+day ......................................... 26
 compatability flags ......................... $0
 0 = no FPU, 1 = 68881, 2 = 68882 ............ 1
-julian day number ........................... 2461307
-system time seconds left until midnight ..... 83016
+julian day number ........................... 2461309
+system time seconds left until midnight ..... 48370
 IRQ flag .................................... $0
 number of unknown IRQs ...................... 0
 module directory (start ptr) ................ $1080

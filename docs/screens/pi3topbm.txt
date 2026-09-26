@@ -1,0 +1,4 @@
+$ pbmtopi3 tmp/base.pbm > tmp/t.pi3
+$ pi3topbm tmp/t.pi3 > tmp/b.pbm
+$ pnmfile tmp/b.pbm
+tmp/b.pbm:      PBM raw, 640 by 400

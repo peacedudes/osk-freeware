@@ -1,5 +1,4 @@
-$ dfiles SYS
-cmp -s  SYS/.LOCKS/MAIL.LOCKS/.keep SYS/.LOCKS/MAIL/.keep
+$ dfiles SYS/TEX
 cmp -s  SYS/TEX/FONTS/PK144/Makefile SYS/TEX/FONTS/EPSON/Makefile
 cmp -s  SYS/TEX/FONTS/PK300/Makefile SYS/TEX/FONTS/EPSON/Makefile
 cmp -s  SYS/TEX/FONTS/read.me SYS/TEX/BIB/read.me
@@ -14,7 +13,3 @@ cmp -s  SYS/TEX/MFINPUTS/MFCONTRIB/pandora/README SYS/TEX/MFINPUTS/MFCONTRIB/REA
 DME
 cmp -s  SYS/TEX/MFINPUTS/MFCONTRIB/ransom/ransom10.tfm SYS/TEX/FONTS/TFM/ransom1
 0.tfm
-cannot open sequence.mail,errno=214
-cannot open sequence.news,errno=214
-cannot open sequence.spool,errno=214
-cmp -s  SYS/profile.ksh SYS/ksh/profile.ksh

@@ -1,3 +1,8 @@
+Operator time= 0
+
+ R N B Q K B N R
+ P P P P P P P P
+ - - - - - - - -
  - - - - - - - -
  - - - - - - - -
  - - - - - - - -
@@ -5,8 +10,9 @@
  r n b q k b n r
 
 
-Your move is?
-Move# 1    Target= 1    Clock: 0
+Your move is? e2e4
+
+Move# 1    Target= 8    Clock: 300
  1.      7    0      21    g8f6
  2.     -6    0     116    g8f6  b1c3
  3&      0    0     229    g8f6  b1c3  b8c6
@@ -16,7 +22,13 @@ Move# 1    Target= 1    Clock: 0
  5&    -19    0    8175    g8f6  e4e5  f6e4  d2d3  e4c5
  5&     -3    0   17693    d7d5  e4d5  d8d5  b1c3  d5e5  g1e2  c8g4
  5.     -3    1   29080    d7d5  e4d5  d8d5  b1c3  d5e5  g1e2  c8g4
-Nodes= 29080  Eval= 13063  Hash= 0  Rate= 29080  CPU= 0:1.0
+ 6&     -3    3   95366    d7d5  e4d5  d8d5  b1c3  d5e5  f1e2  c8g4  d2d4
+ 6.     -3    5  146178    d7d5  e4d5  d8d5  b1c3  d5e5  f1e2  c8g4  d2d4
+ 7&    -10   14  503987    d7d5  e4d5  d8d5  b1c3  d5e5  f1e2  e5g5  c3b5
+                           c7c6
+ 7.    -10   15  511673    d7d5  e4d5  d8d5  b1c3  d5e5  f1e2  e5g5  c3b5
+                           c7c6
+Nodes= 511673  Eval= 99489  Hash= 0  Rate= 34111  CPU= 0:15.0
 
 My move is: d7d5
 

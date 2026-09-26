@@ -1,10 +1,10 @@
 $ config | head -20
 /* Char = 8 bits, signed */
 /* Maximum short = 32767 (= 2**15-1) */
+# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
 /* Maximum int = 2147483647 (= 2**31-1) */
 /* Maximum long = 2147483647 (= 2**31-1) */
 /* Alignments for char=1 short=2 int=2 long=2 */
-# os9exec: the 32 MB 68k memory arena is full; -M <size> makes it larger
 /* Char pointers = 32 bits */
 /* Int pointers = 32 bits */
 

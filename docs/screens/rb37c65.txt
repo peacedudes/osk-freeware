@@ -1,0 +1,21 @@
+$ modinfo CMDS/MM1/rb37c65
+------------------------------- CMDS/MM1/rb37c65  - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - -
+Module name           = rb37c65
+System revision       = 1
+Module size           = 2592
+Owner Id              = 0.2
+Offset to module name = 00000a14H
+Access permission     = e-re-re-r
+Type/Language          = 0e01H  Device Driver          68000 Object Code Module
+Attribute/Revision    = a000H   reentrant  execute in supervisor state
+Edition               = 7
+Comment string offset = 00000000H
+Symbol table offset   = 00000000H
+Ident code            = 0000H
+Header parity         = 1e67H
+
+
+Offset to execution entry point  = 0000003cH
+Offset to excecution entry point = 00000000H
+Data storage requirement         = 1458 Bytes

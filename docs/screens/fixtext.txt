@@ -1,3 +1,12 @@
+$ dump ft.in
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  6C69 6E65 206F 6E65 0A6C 696E 6520 7477 line one.line tw
+0010  6F0A                                    o.
+$ fixtext ft.in ft.out
+$ dump ft.out
+
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
 0000  6C69 6E65 206F 6E65 0D6C 696E 6520 7477 line one.line tw

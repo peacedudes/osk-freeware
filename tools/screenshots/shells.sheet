@@ -14,7 +14,7 @@ try     bash -c "echo bash $BASH_VERSION, running a one-line script"
 
 shot    sh
 cap     An sh-like shell, version 2.1 edition 75, running as a program under
-cap     bash: its own # prompt, and a real chd that moves the data
+cap     bash: its own `%' prompt, and a real chd that moves the data
 cap     directory, as pwd shows.
 run     sh
 wait    4
@@ -27,8 +27,8 @@ wait    3
 try     sh
 
 shot    ksh
-cap     pd-ksh, the Korn shell, running a three-line script and a one-line
-cap     command.  It is the shell programs on this disk shell out through.
+cap     pd-ksh, the Korn shell, running a three-line script from its
+cap     standard input, then a one-line command given with -c.
 run     mkdir -p /dd/tmp/SHL > /nil 2>/nil; printf "print hello from a ksh script\rfor f in a b c; do print item \$f; done\r" > /dd/tmp/SHL/script.ksh
 wait    2
 run     builtin cd /dd
@@ -45,9 +45,13 @@ try     ksh < tmp/SHL/script.ksh
 os9     ksh <tmp/SHL/script.ksh
 
 shot    gshell
-cap     GSHELL, a menu in place of a command line: the directory as a
-cap     lettered list, + and - to page, . to change directory, a letter
-cap     to run that file.
+cap     GSHELL, a menu in place of a command line, started in SYS: the
+cap     directory as a lettered list, + and - to page, . to change
+cap     directory, a letter to run that file.
+run     builtin cd /dd/SYS
+wait    1
+run     clear
+wait    1
 run     gshell
 wait    6
 snap
@@ -85,7 +89,8 @@ try     env FOO=bar printenv | grep FOO
 os9     env FOO=bar printenv ! grep FOO
 
 shot    printenv
-cap     The environment a login on this disk arrives with.
+cap     The environment SYS/login sets up: HOME, PATH, TERM, TERMCAP, USER
+cap     and the rest, with what bash adds of its own.
 run     printenv
 wait    5
 try     printenv
@@ -101,11 +106,10 @@ wait    3
 try     getenv -p TERM
 
 shot    checkenv
-cap     Compares an environment variable with a value, for a script to
-cap     branch on, and answers only in its exit status: 0 when they match,
-cap     1 when they differ.  Named alone, it answers 0 when the variable
-cap     is NOT set.  The comma in its own syntax line is not typed -- given
-cap     one, it prints that line and returns 0.
+cap     TERM against its own value, then against another: status 0 for the
+cap     match, 1 for the difference.  Named alone, it answers 0 when the
+cap     variable is not set.  The comma in its own syntax line is not
+cap     typed -- given one, it prints that line and returns 0.
 run     checkenv TERM xterm-256color; echo "status $?"
 wait    4
 run     checkenv TERM vt100; echo "status $?"
@@ -114,8 +118,8 @@ try     checkenv TERM xterm-256color; echo "status $?"
 os9     checkenv TERM xterm-256color
 
 shot    exist
-cap     Tests whether a file exists and answers in its exit status, 0 for
-cap     yes and 1 for no, which is what a script wants.
+cap     One name that exists and one that does not: 0 for the first, 1 for
+cap     the second.
 run     builtin cd /dd
 wait    1
 run     clear
@@ -128,11 +132,8 @@ try     exist SYS/motd; echo "exist says $?"
 os9     exist SYS/motd
 
 shot    strcmp
-cap     Compares two strings and answers in its exit status, the way a shell
-cap     `if' reads it -- 0 for true.  Besides eq lt gt le ge ne it has `ct'
-cap     for contains and `bw' for begins with, and `-c' ignores case; those
-cap     are the comparisons a shell's own test has no operator for.  `-p'
-cap     prints the answer as well as returning it.
+cap     Mississippi contains ssiss (0, true) and does not begin with sipp
+cap     (1, false); `-p' prints the answer as well as returning it.
 try     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
 os9     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
 run     builtin cd /dd
@@ -143,7 +144,8 @@ run     strcmp -p Mississippi ct ssiss; strcmp -p Mississippi bw sipp
 wait    4
 
 shot    expr
-cap     GNU expr, evaluating an expression for a script.
+cap     Division that truncates (355/113 is 3), a `*' escaped from the
+cap     shell, and `length' counting the characters of a string.
 run     expr 355 / 113
 wait    3
 run     expr 6 \* 7 + 1
@@ -153,11 +155,10 @@ wait    3
 try     expr 355 / 113
 
 shot    if
-cap     Conditional execution for a script: `if def <var>', `if loaded
-cap     <module>' or `if varval <var> <value>', then the commands to run,
-cap     `else' and `endif'.  It hands the chosen commands to your own
-cap     OS-9's `shell'.  bash has an `if' of its own, a reserved word;
-cap     `command if' reaches this one.
+cap     TERM is defined, so the first runs whoami; no module `nosuch' is
+cap     loaded, so the second runs its `else', today.  It hands the chosen
+cap     commands to your own OS-9's `shell'.  bash has an `if' of its own,
+cap     a reserved word; `command if' reaches this one.
 run     load /h1/CMDS/shell
 wait    3
 run     clear
@@ -170,15 +171,12 @@ try     command if def TERM whoami endif
 os9     if def TERM whoami endif
 
 shot    qp
-cap     Expands back-quotes in a command line for a shell that cannot:
-cap     the output of the quoted command replaces it.  It hands both halves
-cap     to $SHELL with the options `-ny -nl', which belong to the EFFO shell
-cap     it was written for; no shell here takes them, Microware's included,
-cap     so the second line runs and nothing comes back.
+cap     Its usage: the output of a back-quoted command replaces it in the
+cap     command line. It hands its work to $SHELL with the options `-ny
+cap     -nl', which only the EFFO shell (zsh) it was written for takes; with
+cap     any other shell it runs nothing.
 run     qp -?
 wait    4
-run     qp echo `whoami`
-wait    5
 try     qp -?
 
 shot    xc
@@ -224,7 +222,10 @@ cap     Microware's shell: cursor movement, word and line deletion, and
 cap     command recall; `h' lists what you typed and `logout' leaves.
 cap     It runs every command through your own OS-9's `shell' and sets the
 cap     line up with its `tmode', both loaded from /h1, and keeps its
-cap     history on the RAM disk /r0 unless you name a file.
+cap     history on the RAM disk /r0 unless you name a file.  Each answer
+cap     starts on the line it was typed on: hist's own line feed after
+cap     RETURN is a printf to an unbuffered stdout, which this C library
+cap     does not write.
 try     hist
 run     load /h1/CMDS/shell /h1/CMDS/tmode
 wait    3
@@ -243,19 +244,16 @@ send    logout\r
 wait    2
 
 shot    printf
-cap     printf for the shell: widths, numbers, floating point.
+cap     A string left-justified in 8 columns, a number right-justified in 5,
+cap     and pi rounded to two places in 6.
 run     printf "%-8s|%5d|%6.2f\n" apples 12 3.14159
 wait    4
-run     printf "hello, %s\n" world
-wait    3
-run     printf "plain text, no conversion\n"
-wait    3
 try     printf "%-8s|%5d|%6.2f\n" apples 12 3.14159
 
 shot    whoami
-cap     Who you are, by user number in SYS/password.  Everything on this
-cap     disk is owned 0.0, whose name there is su, while $USER, which the
-cap     login set, says tester.
+cap     Who you are: the user number the process runs as, looked up in
+cap     SYS/password -- tester here. $USER agrees, but it is only what the
+cap     login set.
 run     whoami
 wait    3
 run     echo "USER is $USER"
@@ -284,11 +282,8 @@ try     su tester whoami
 
 shot    submit
 size    20 80
-cap     Runs the commands in a .sub file, one after another, printing each
-cap     before it runs it -- a batch job.  It hands every line to `shell',
-cap     so your own OS-9's shell has to be resident: SYS/login loads it
-cap     from /h1 already, and without it the lines are printed and nothing
-cap     runs.  The file must be named .sub and is given without the suffix.
+cap     demo.sub holds three commands; each is printed, then its output.
+cap     Your own OS-9's shell has to be resident, as SYS/login leaves it.
 try     submit demo
 run     rm -rf /dd/tmp/SUBA > /nil 2>/nil; mkdir -p /dd/tmp/SUBA
 wait    2

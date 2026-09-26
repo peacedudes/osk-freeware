@@ -1,6 +1,6 @@
-$ echo 500000 | dhryGcc2 | tail -l=6
+$ echo 5000000 | dhryGcc2 | tail -l=6
 Str_2_Loc:           DHRYSTONE PROGRAM, 2'ND STRING
         should be:   DHRYSTONE PROGRAM, 2'ND STRING
 
-Microseconds for one run through Dhrystone:    4.0
-Dhrystones per Second:                      250000.0
+Microseconds for one run through Dhrystone:    2.8
+Dhrystones per Second:                      357142.8

@@ -1,0 +1,2 @@
+$ shell "echo before; timeout; echo after"
+before

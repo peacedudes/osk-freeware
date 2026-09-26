@@ -1,0 +1,2 @@
+$ newgrp staff
+Groupchange successfull, new group: staff, new groupid: 5.

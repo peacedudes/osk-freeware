@@ -9,9 +9,9 @@
 # are rendered back to characters with pbmtoascii so the effect is visible.
 
 shot    pbmmake
-cap     Makes a blank bitmap of a given size and fill -- the starting point
-cap     most of the PBM tools build on.  `-g' lays down a grey checkerboard,
-cap     `-w' all white, `-b' all black; pbmtoascii renders it back to text.
+cap     Makes a blank bitmap of a given size and fill.  `-g' lays down a
+cap     grey checkerboard, `-w' all white, `-b' all black; pbmtoascii renders
+cap     it back to text.
 try     pbmmake -g 48 16 | pbmtoascii
 os9     pbmmake -g 48 16 ! pbmtoascii
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
@@ -20,9 +20,9 @@ run     pbmmake -g 48 16 | pbmtoascii
 wait    5
 
 shot    ppmmake
-cap     Fills an image with a single colour -- the blank canvas the PPM
-cap     tools start from.  The colour is hex r/g/b; ppmhist reads it straight
-cap     back off the result, one colour over all 800 pixels.
+cap     Fills an image with a single colour, given as hex r/g/b; ppmhist
+cap     reads it straight back off the result, one colour over all 800
+cap     pixels.
 try     ppmmake rgb:ff/80/00 40 20 > tmp/NEAB/a.ppm; pnmfile tmp/NEAB/a.ppm; ppmhist tmp/NEAB/a.ppm
 os9     ppmmake rgb:ff/80/00 40 20 >-tmp/NEAB/a.ppm; pnmfile tmp/NEAB/a.ppm; ppmhist tmp/NEAB/a.ppm
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
@@ -37,19 +37,22 @@ run     ppmhist tmp/NEAB/a.ppm
 wait    3
 
 shot    ppmforge
+size    36 80
 cap     Invents a whole world from a random seed: fractal terrain, sea,
-cap     polar ice and a star field, none of it drawn by hand.  `-mesh' sets
-cap     how finely the land is subdivided and the seed makes it repeatable.
-try     ppmforge -mesh 8 -width 72 -height 44 -seed 7 > tmp/NEAB/pl.ppm; ppmtopgm tmp/NEAB/pl.ppm | pgmtopbm | pbmtoascii -2x4
-os9     ppmforge -mesh 8 -width 72 -height 44 -seed 7 >-tmp/NEAB/pl.ppm; ppmtopgm tmp/NEAB/pl.ppm ! pgmtopbm ! pbmtoascii -2x4
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     builtin cd /dd
+cap     polar ice and a star field.  `-mesh' sets how finely the land is
+cap     subdivided and the seed makes it repeatable.
+try     ppmforge -mesh 8 -width 152 -height 88 -seed 7 > pl.ppm; ppmtopgm pl.ppm | pgmtopbm | pbmtoascii -2x4
+os9     ppmforge -mesh 8 -width 152 -height 88 -seed 7 >-pl.ppm; ppmtopgm pl.ppm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/FRGB > /nil 2>/nil; mkdir -p /dd/tmp/FRGB
+wait    3
+run     builtin cd /dd/tmp/FRGB
 wait    1
 run     clear
-run     ppmforge -mesh 8 -width 72 -height 44 -seed 7 > tmp/NEAB/pl.ppm
-wait    40
-run     ppmtopgm tmp/NEAB/pl.ppm | pgmtopbm | pbmtoascii -2x4
-wait    6
+wait    1
+run     ppmforge -mesh 8 -width 152 -height 88 -seed 7 > pl.ppm
+wait    240
+run     ppmtopgm pl.ppm | pgmtopbm | pbmtoascii -2x4
+wait    15
 
 shot    pnmscale
 cap     Scales an image.  One number is a factor -- 2 doubles each side --
@@ -175,9 +178,9 @@ run     pnmflip -lr tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
 wait    5
 
 shot    pnmrotate
-cap     Rotates an image by any angle.  The result is the smallest upright
-cap     rectangle that holds the turned picture, so its size grows -- a 48x24
-cap     ramp turned 20 degrees needs 55x41.
+cap     Rotates an image by an angle between -90 and 90 degrees.  The result
+cap     is the smallest upright rectangle that holds the turned picture, so
+cap     its size grows -- a 48x24 ramp turned 20 degrees needs 55x41.
 try     pnmrotate 20 tmp/NEAB/r.pgm > tmp/NEAB/o.pgm
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NEAB/r.pgm
@@ -209,25 +212,29 @@ run     pgmtopbm tmp/NEAB/s.pgm | pbmtoascii -2x4
 wait    4
 
 shot    pnmdepth
-cap     Changes the number of grey levels -- the maxval.  Taking a smooth
-cap     255-level ramp down to 15 levels posterises it into visible bands,
-cap     and pnmfile shows the new maxval.
-try     pnmdepth 15 tmp/NEAB/r.pgm > tmp/NEAB/d.pgm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
+size    30 80
+cap     Changes the number of grey levels -- the maxval.  A smooth ramp
+cap     above; below, the same ramp taken down to maxval 3, four greys,
+cap     which the dither shows as bands.
+try     pgmtopbm ramp.pgm | pbmtoascii -2x4; pnmdepth 3 ramp.pgm | pgmtopbm | pbmtoascii -2x4
+os9     pgmtopbm ramp.pgm ! pbmtoascii -2x4; pnmdepth 3 ramp.pgm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/DEPB > /nil 2>/nil; mkdir -p /dd/tmp/DEPB
 wait    3
-run     builtin cd /dd
+run     builtin cd /dd/tmp/DEPB
 wait    1
+run     pgmramp -lr 152 44 > ramp.pgm
+wait    6
 run     clear
-run     pnmdepth 15 tmp/NEAB/r.pgm > tmp/NEAB/d.pgm
-wait    4
-run     pnmfile tmp/NEAB/r.pgm tmp/NEAB/d.pgm
-wait    4
+wait    1
+run     pgmtopbm ramp.pgm | pbmtoascii -2x4
+wait    20
+run     pnmdepth 3 ramp.pgm | pgmtopbm | pbmtoascii -2x4
+wait    20
 
 shot    pnmgamma
 cap     Applies gamma correction: it bends the midtones brighter or darker
-cap     while leaving black and white fixed.  A linear ramp at gamma 0.5
-cap     redistributes its greys, which the dither below shows as denser mid.
+cap     while leaving black and white fixed.  A linear ramp above, and the
+cap     same ramp at gamma 0.5 below, its midtones darker.
 try     pnmgamma 0.5 tmp/NEAB/r.pgm | pgmtopbm | pbmtoascii -2x4
 run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
 run     pgmramp -lr 64 16 > /dd/tmp/NEAB/r.pgm
@@ -257,20 +264,22 @@ run     pgmtopbm mn.pgm | pbmtoascii -2x4
 wait    5
 
 shot    pgmedge
+size    26 80
 cap     An edge detector: it keeps the places where brightness changes and
-cap     darkens the flat areas, turning a greyscale image into a map of its
-cap     edges.  Here it reads a greyed gingham weave and writes a new
-cap     greymap of the same size; pnmfile confirms the edge image it made.
-try     pgmedge gg.pgm > eg.pgm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     ppmpat -gingham3 40 20 | ppmtopgm > /dd/tmp/NEAB/gg.pgm
-wait    5
-run     builtin cd /dd/tmp/NEAB
+cap     darkens the flat areas.  A gingham weave from ppmpat, greyed, comes
+cap     back dark, with light lines where its checks meet.
+try     ppmpat -gingham2 152 88 | ppmtopgm > gg.pgm; pgmedge gg.pgm | pgmtopbm | pbmtoascii -2x4
+os9     ppmpat -gingham2 152 88 ! ppmtopgm >-gg.pgm; pgmedge gg.pgm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/EDGB > /nil 2>/nil; mkdir -p /dd/tmp/EDGB
+wait    3
+run     builtin cd /dd/tmp/EDGB
+wait    1
 run     clear
-run     pgmedge gg.pgm > eg.pgm
-wait    20
-run     pnmfile gg.pgm eg.pgm
-wait    5
+wait    1
+run     ppmpat -gingham2 152 88 | ppmtopgm > gg.pgm
+wait    45
+run     pgmedge gg.pgm | pgmtopbm | pbmtoascii -2x4
+wait    45
 
 shot    pgmkernel
 cap     Generates a convolution matrix -- the weights pnmconvol multiplies
@@ -283,54 +292,69 @@ run     pgmkernel 5
 wait    4
 
 shot    pnmconvol
+size    26 80
 cap     Convolves an image with a weighting matrix -- the operation behind
-cap     blurring, sharpening and edge filters.  Here the matrix from pgmkernel
-cap     averages each pixel with its neighbours, smoothing a field of noise.
-try     pnmconvol tmp/NEAB/k.pgm tmp/NEAB/n.pgm > tmp/NEAB/cv.pgm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     pgmnoise 48 24 > /dd/tmp/NEAB/n.pgm
-wait    5
-run     pgmkernel 3 > /dd/tmp/NEAB/k.pgm
-wait    4
-run     builtin cd /dd
+cap     blurring, sharpening and edge filters.  The matrix from pgmkernel
+cap     averages each pixel with its neighbours, smoothing a field of noise
+cap     into cloud.  Its weights do not add up to exactly one, and
+cap     pnmconvol warns that the matrix is biased: the overall brightness
+cap     shifts a little.
+try     pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
+os9     pnmconvol k.pgm n.pgm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/CNVB > /nil 2>/nil; mkdir -p /dd/tmp/CNVB
+wait    3
+run     builtin cd /dd/tmp/CNVB
 wait    1
+run     pgmnoise 152 88 > n.pgm; pgmkernel 3 > k.pgm
+wait    12
 run     clear
-run     pnmconvol tmp/NEAB/k.pgm tmp/NEAB/n.pgm > tmp/NEAB/cv.pgm
-wait    18
-run     pgmtopbm tmp/NEAB/cv.pgm | pbmtoascii -2x4
-wait    6
+wait    1
+run     pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
+wait    60
 
 shot    pnmsmooth
-cap     Averages each pixel with its neighbours to smooth an image, and it
-cap     builds the averaging matrix -- shown here by its -dump option -- in a
-cap     temporary file on the RAM disk /r0.  With no such disk mounted the
-cap     smoothing step writes nothing; pnmconvol does the same averaging.
-try     pnmsmooth -size 5 5 -dump tmp/NEAB/mk.pgm > /nil 2>/nil
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     builtin cd /dd
+size    30 80
+cap     Builds a mean kernel -- every weight equal, here 5 by 5 -- and hands
+cap     it to pnmconvol to smooth an image.  This build cannot hand it on:
+cap     it fills in pnmconvol's arguments before it knows the file names, so
+cap     pnmconvol is given an empty one.  -dump writes the kernel to a file
+cap     instead, and pnmconvol smooths a field of noise with it.
+try     pnmsmooth -size 5 5 -dump k.pgm; pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
+os9     pnmsmooth -size 5 5 -dump k.pgm; pnmconvol k.pgm n.pgm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/SMOB > /nil 2>/nil; mkdir -p /dd/tmp/SMOB
+wait    3
+run     builtin cd /dd/tmp/SMOB
 wait    1
+run     pgmnoise 152 88 > n.pgm
+wait    8
 run     clear
-run     pnmsmooth -size 5 5 -dump tmp/NEAB/mk.pgm > /nil 2>/nil
-wait    4
-run     cat tmp/NEAB/mk.pgm
-wait    4
+wait    1
+run     pnmsmooth -size 5 5 -dump k.pgm
+wait    5
+run     pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
+wait    90
 
 shot    pnmhistmap
-cap     Draws the image's histogram AS an image -- a bar for every grey
-cap     level, its height the count of pixels at that level.  Fed a cratered
-cap     moon it plots that image's distribution into a fresh 256x200 picture,
-cap     which pnmfile identifies.
-try     pnmhistmap tmp/NEAB/mo.pgm > tmp/NEAB/hm.pgm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     pgmcrater -number 40 -xsize 64 -ysize 40 > /dd/tmp/NEAB/mo.pgm
-wait    12
-run     builtin cd /dd
+size    26 80
+cap     Draws the image's histogram as an image: a white bar for every grey
+cap     level, as tall as the count of pixels at that level.  In the gulls
+cap     picture from DEMO, greyed, one grey is far the commonest and the
+cap     rest spread beside it; pnmscale fits the 256x200 picture to the
+cap     screen.
+try     pnmhistmap g.pgm > hm.pbm; pnmscale -xysize 152 88 hm.pbm | pgmtopbm | pbmtoascii -2x4
+os9     pnmhistmap g.pgm >-hm.pbm; pnmscale -xysize 152 88 hm.pbm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/HMAB > /nil 2>/nil; mkdir -p /dd/tmp/HMAB
+wait    3
+run     builtin cd /dd/tmp/HMAB
 wait    1
+run     giftopnm /dd/DEMO/gulls.gif | ppmtopgm > g.pgm
+wait    30
 run     clear
-run     pnmhistmap tmp/NEAB/mo.pgm > tmp/NEAB/hm.pgm
-wait    6
-run     pnmfile tmp/NEAB/mo.pgm tmp/NEAB/hm.pgm
-wait    4
+wait    1
+run     pnmhistmap g.pgm > hm.pbm
+wait    8
+run     pnmscale -xysize 152 88 hm.pbm | pgmtopbm | pbmtoascii -2x4
+wait    20
 
 shot    ppmmix
 cap     Blends two images by a fraction -- 0.5 is an even average.  A red
@@ -417,15 +441,21 @@ wait    5
 
 shot    pnmhisteq
 cap     Equalises an image's tones so its brightness levels spread evenly.
-cap     -verbose prints the mapping it applied, each old value to its new
-cap     one and the pixel count at that level.
-try     pnmhisteq -verbose DEMO/sphere.pgm > tmp/hqe.pgm
-run     mkdir -p /dd/tmp > /nil 2>/nil
-run     builtin cd /dd
+cap     -verbose writes the mapping it applied to standard error, each old
+cap     value to its new one; here that goes to a file, and head shows the
+cap     start of it for the sphere from DEMO.
+try     pnmhisteq -verbose sphere.pgm > eq.pgm 2> map.txt; head -n 16 map.txt
+os9     pnmhisteq -verbose sphere.pgm >-eq.pgm >>-map.txt; head -n 16 map.txt
+run     rm -rf /dd/tmp/HEQB > /nil 2>/nil; mkdir -p /dd/tmp/HEQB
+wait    3
+run     builtin cd /dd/tmp/HEQB
 wait    1
+run     cp /dd/DEMO/sphere.pgm sphere.pgm
+wait    3
 run     clear
-run     pnmhisteq -verbose DEMO/sphere.pgm > tmp/hqe.pgm
-wait    5
+wait    1
+run     pnmhisteq -verbose sphere.pgm > eq.pgm 2> map.txt; head -n 16 map.txt
+wait    12
 
 shot    ppmchange
 cap     Replaces one colour with another throughout an image.  A solid red
@@ -479,22 +509,25 @@ run     ppmhist tmp/NEAB/brr.ppm
 wait    3
 
 shot    ppmnorm
+size    30 80
 cap     Stretches an image's contrast so its darkest and lightest pixels
-cap     reach full black and white.  A flat grey remapped to white, ppmnorm
-cap     reporting the range it moved.
-try     ppmnorm tmp/NEAB/nd.ppm > tmp/NEAB/nn.ppm
-run     mkdir -p /dd/tmp/NEAB > /nil 2>/nil
-run     ppmmake rgb:ff/ff/ff 40 20 > /dd/tmp/NEAB/nw.ppm
-run     ppmdim 0.4 /dd/tmp/NEAB/nw.ppm > /dd/tmp/NEAB/nd.ppm
-run     builtin cd /dd
+cap     reach full black and white.  A ramp squeezed into the dim greys
+cap     between 64 and 128, above, and the same ramp after ppmnorm has
+cap     spread it across the whole range, below.
+try     ppmtopgm dim.ppm | pgmtopbm | pbmtoascii -2x4; ppmnorm dim.ppm | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+os9     ppmtopgm dim.ppm ! pgmtopbm ! pbmtoascii -2x4; ppmnorm dim.ppm ! ppmtopgm ! pgmtopbm ! pbmtoascii -2x4
+run     rm -rf /dd/tmp/NRMB > /nil 2>/nil; mkdir -p /dd/tmp/NRMB
+wait    3
+run     builtin cd /dd/tmp/NRMB
 wait    1
+run     pgmramp -lr 152 44 | pgmtoppm rgb:40/40/40-rgb:80/80/80 > dim.ppm
+wait    10
 run     clear
-run     ppmhist tmp/NEAB/nd.ppm
-wait    3
-run     ppmnorm tmp/NEAB/nd.ppm > tmp/NEAB/nn.ppm
-wait    3
-run     ppmhist tmp/NEAB/nn.ppm
-wait    3
+wait    1
+run     ppmtopgm dim.ppm | pgmtopbm | pbmtoascii -2x4
+wait    25
+run     ppmnorm dim.ppm | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+wait    25
 
 shot    ppmspread
 cap     Displaces each pixel by a random amount up to the number given,

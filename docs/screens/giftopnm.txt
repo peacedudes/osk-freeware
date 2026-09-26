@@ -1,23 +1,25 @@
-o"o" M M "o" "o "o" o" M Mo"oM"oMo"Mo"MoM M "o" o"o M o"o "o" "o"o "o o"
-M"Mo"M"Mo"MoM"Mo"MoM"oM"oM"oM M  o "   o "  "o "   o" " " o o o " " " o " o " M
-" o"o" o"o "o" "o "o M o" o""o"oM"MM"M"M"Mo" o"o "o o" o M o"o" o" "o o"
-"MM"M"MoMMMoMMMM"MoM"MoM"oMo o o o " o o " o o " "  o" " o o o "o " o o " o "  o
-" o" "o o" "o M o" o" o" "o M "o""M"MMMMM"Mo"o M "o "o" o "o o"o M "o o"
-MM"MM"MoMMoMMoMMM"MoMMoMMooo"o o o "    o o  o " " "o " "  o  o o "   o "   "o o
- "  "o "o" "o o"o" o"o M "o o" o"o"""o"MM"Mo"o o" o"o M "o" o "o o"o "o
-M"MMoMMM"MoMoM M"M"MoMMoMooM M o" o" "o o o "  " " o o" " o " o o " " o " "o  o
-o" " o"o M "o oo M o" o" "o "o" o M "o o"o""o M "o "o o"o M "o" o o" " o
-MMMMM"M"M"oMo"M"M"M"MoMoMo"o"oM M o"o"  o o" " " "  o " "o " o o o"  o o"  o "
-o " " o "o M o o"o "o" M "o" o"o" o" o"o o" o" o"o" o"o o" o"o M "o" M o
-"MoM"MM"M"MoMM"M"MoM"oMoMoMo"oo"o M o" " o o" " " "  o"  o "o  o o " o o " o " o
- " " "o" o" o"o o"o" o" o"o M o M "o" o M "o" "o o"o "o M "o o" o" o"o o
-MMoM"MoM"MoMo"M"Mo"M"oMoM MoM"oM"M M "o" o o " " " "  o"  o o "  o " o o " o " o
- " "o o" o"o o"o o M o"o o" o" o" "o M o" "o M o"o "o" o M o" "o M o "o
-MoM"Mo"M"oMoM"M"oM"M"oMo"MoMo"MoM"oM M o"  o " " " " "  "o o " " o "o  o " o " o
- " o "o" o" o" o"o o"o "o M o"o" M o" o" M o" o" o" o"o" o" M "o o"o" o"
-MoMMoM"M"oMoMM"MoM"M"oMoMMo"M"Mo"Mo"Mo"o " o " " " " " " o o" " o o o "  " o " o
- " o " o"o" o"o o" o" "o "o o" o" o" M " o" "o M "o" o M o" o" o"o o" o"
-MoM"M"MM"MoMoM"MoMMM"MoMoM"MM"M"M"M"o "o "o o" " " " " "  o o" " o o " " o o "
-o" o M o" o" o" o"o" "o" "o M "o" o" o"o" M "o "o" "o" o" "o" "o o"o" o"
-"""""""""""""""" "" """ """"""""" "  "  "    " " " " " " "    "      "  "    " "
-  "   "  " "  "  " " " " "   "  " " "   "  "  "  " "  " " " " "     "  "
+$ giftopnm DEMO/gulls.gif | ppmtopgm > tmp/g.pgm
+$ pnmscale -xysize 152 88 tmp/g.pgm > tmp/gs.pgm
+$ pgmtopbm tmp/gs.pgm | pbmtoascii -2x4
+:|?:/\:\?::?::/:?:S:\>:\\/:<|:<i:\/<\/):\\\!iSi\\/:/\>:><:\?|/:/i%|:\S
+):?|/<\<\\//:\<;::?|:\:--.:..-.-`\:i/S;<:i%:>:ii?\?:\!|>?:%:%!/:?|:/S::
+/:iS:<\<\<\?|::/;:/?`::::::/\.::.-.<;://\>::|S/!:\>:S/:/>\>/\:S!/<\;:/:
+?\//<\:\\/i\\/S!:S!/;.->\:>\:$$d\:.-::?\:/S/::|:%\\>/:!(:S;:<\\>:\:<;:.
+SS;:|S/\<;:?:?:S://::>:S::S:i%:/:<;.'<i:>:S:>:\S::S!:\S:>/\\/\|?\\://\-
+</S/S/S:?<!:?!:?!/:<:/><!:|%!<\//?:i\::<;:/<\\>:?://\\<:?<:i%\<;:/<\>::
+iS::|/S;:\\/:<\/i%:::./:S:/\\>??S/?$>$|\<:%\\:|:<\:>\:S::?:\\/\/<\:S;::
+S!:S;:</;\:\>:Si:::./.:\::/::%>%\<:i%>Z{)Z$:>:</::?:i%!:S:\/\>:/|>:><i
+://>/|%!:?::?\S::::-:::.-::::://:\?::S:/|&H1;:|/S:><:)://S:>:</::?></<'
+\%:></:S::\<;:/):.:'::/:.\::-!:/:>\:</::/>:%/;<;:%!:>\%:>:i%!:>\/<:Si::
+:\>:\/S;:?|:/S;-:\::.\:.'::::-:`..'.`.`::/:<:S:<\/\>///):\?::iS:?:?i\\.
+:|?i<;:/>::|<:/:-::::::-:.::.- ...`.:. :.:\/\<><:>\>:S!:\\/\|/>/>\\|?\.
+)!/:i(?!:>!|<::::.:/.:::: :-::`.:::::S:<?<,:\:/S<;:\\/\>/:\>\><:(/\:?::
+|//>\%|\\?\(/;-::.::.-:.:-::::::::\:<::<7%+?\/:/(:S/:/\\>:?i:|%!/)::<\.
+>\($4|?SS?%?iS:.:-:::':-::.:/::>:/<:////<\://:::\'|:;:/i/(/<:%\<//?i\\.
+$)?$$\$]?$%||/S:::.:-:::;::::::>\|:S:/::/:?!%&|/;S/::?i:\\<:?\/:/:i>\>.
+&%F14)\&Z$Z$?\:S.-::: :/:::::.:::\<::(/i|||$\?Z<$?}\\>?S/::/S:>:>\//\?
+RH$kF&bD&Z$F$:'\'::.`.:::\:::/.::\::`:%\;:/<\//:\Z!${&Dkk?S:\>:!|<:?:<'
+H&HHRP&&HH&1$\:.:>:::.-::::::\::-::\:-::>\\>:?:/\:|S;:<Pb%!/\<:(/\:|S::
+RM$&H&$&&&&S(///|S:;:::.':::::;.:::::-:Si\://;::|%\<;:/:/;:?\%!<:?::?::
+kDZ}&SF&&]Z&S&&Z??S.:;:::.:::::::-::::::>\\\:?|:\>/\/;<:%:>\><:>!(/\>/'
+H&DFkH9H&1&$6&&&>::/:::::::::/::-:::`:S::/:%|::/>\>\>\>\>|:?::?Si:>::?

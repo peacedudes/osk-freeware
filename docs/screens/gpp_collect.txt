@@ -1,3 +1,14 @@
+$ cat greet.cc
+class Greeter {
+public:
+  Greeter() { n = 1; }
+  int n;
+};
+Greeter hello;
+int main()
+{
+  return hello.n;
+}
 $ gpp_collect -o ctors.a greet.r
 $ cat ctors.a
         psect collect_gc,0,0,0,0,0

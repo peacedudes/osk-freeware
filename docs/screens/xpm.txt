@@ -1,26 +1,14 @@
-$ ppmpat -gingham3 48 24 > tmp/xp.ppm
-$ ppmquant 16 tmp/xp.ppm > tmp/qx.ppm
-ppmquant: making histogram...
-ppmquant: 6 colors found
-ppmquant: choosing 16 colors...
-ppmquant: mapping image to new colors...
-$ ppmtoxpm tmp/qx.ppm > tmp/t.xpm
+$ ppmtoxpm tmp/base.ppm | head -n 12
 (Computing colormap...  Done.  6 colors found.)
-$ head -n 10 tmp/t.xpm
 /* XPM */
-static char *tmp/qx[] = {
+static char *tmp/base[] = {
 /* width height ncolors chars_per_pixel */
 "48 24 6 1",
 /* colors */
-"  c #9F8BC7",
-". c #9A666F",
-"X c #65528A",
-"o c #964218",
-"O c #612E33",
-$ xpmtoppm tmp/t.xpm | pnmfile
-stdin:  PPM raw, 48 by 24  maxval 255
-$ ppmtopuzz tmp/qx.ppm > tmp/t.puzz
-ppmtopuzz: computing colormap...
-ppmtopuzz: 6 colors found
-$ wc -c tmp/t.puzz
-   1179 tmp/t.puzz
+"  c #D8CE95",
+". c #6F3E93",
+"X c #A38694",
+"o c #071935",
+"O c #3B2B64",
+"+ c #6F7365",
+/* pixels */

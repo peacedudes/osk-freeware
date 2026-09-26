@@ -2,65 +2,146 @@
 # drivers and file managers, the MM/1 and X68000, multi-user and modem
 # lines, OS-9/Net.  Each card shows what can be shown here -- a module's
 # header, a usage line, the refusal -- and says plainly it is untested.
+# One card per module: a borrowed screen shows the reader someone else's
+# module, and modinfo prints several in an order of its own.
 
 shot    ptyman
-for     ptyman ptydrv pty
+size    26 80
 cap     PtyMan is a file manager: pairs of pseudo-terminals, /pty/<name>
 cap     for the program that plays the terminal and /tty/<name> for the
-cap     one that thinks it has one.  We cannot test it -- the emulator
-cap     loads no file managers -- so each module's header is what there is
-cap     to show: the file manager, its driver, and its two descriptors.
-try     modinfo ptyman ptydrv pty tty
+cap     one that thinks it has one.  It loads with its driver ptydrv and
+cap     its descriptors pty and tty; shown here is its module header.
+cap     Not tested here.
+try     modinfo ptyman
 run     builtin cd /dd/CMDS/DRIVERS
 wait    1
 run     clear
 wait    1
-run     modinfo ptyman ptydrv pty tty
+run     modinfo ptyman
+wait    4
+
+shot    ptydrv
+size    26 80
+cap     PtyMan's driver: pty and tty name it as theirs, and PtyMan does
+cap     the work.  Shown here is its module header.  Not tested here.
+try     modinfo ptydrv
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo ptydrv
+wait    4
+
+shot    pty
+size    32 80
+cap     The descriptor for PtyMan's server side, /pty: at its foot it
+cap     names PtyMan as the file manager and PtyDrv as the driver.
+cap     Not tested here.
+try     modinfo pty
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo pty
 wait    4
 
 shot    lfcrman
-for     lfcrman h0t thlpct
+size    26 80
 cap     A file manager that shows another device with LF and CR swapped,
 cap     for text shared with Unix over NFS; h0t and thlpct are its example
-cap     descriptors.  Untested here: the emulator loads no file managers.
-try     modinfo lfcrman h0t thlpct
+cap     descriptors.  Shown here is its module header.  Not tested here.
+try     modinfo lfcrman
 run     builtin cd /dd/CMDS/DRIVERS
 wait    1
 run     clear
 wait    1
-run     modinfo lfcrman h0t thlpct
+run     modinfo lfcrman
+wait    4
+
+shot    h0t
+size    32 80
+cap     An lfcrman descriptor: /h0t is /h0 with LF and CR swapped.  At
+cap     its foot it names lfcrman as the file manager.  Not tested here.
+try     modinfo h0t
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo h0t
+wait    4
+
+shot    thlpct
+size    32 80
+cap     An lfcrman descriptor: /thlpct is /thlpc with LF and CR swapped.
+cap     Not tested here.
+try     modinfo thlpct
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo thlpct
 wait    4
 
 shot    disp
-for     disp di
-cap     The C device driver from OS-9 International 1/93, with its
-cap     descriptor di: a worked example of writing a driver in C, four
-cap     bits to a display port.  Untested: it wants the port.
-try     modinfo disp di
+size    26 80
+cap     The C device driver from OS-9 International 1/93, a worked example
+cap     of writing a driver in C: four bits to a display port, named by
+cap     its descriptor di.  Shown here is its module header.  Untested:
+cap     it wants the port.
+try     modinfo disp
 run     builtin cd /dd/CMDS/DRIVERS
 wait    1
 run     clear
 wait    1
-run     modinfo disp di
+run     modinfo disp
+wait    4
+
+shot    di
+size    32 80
+cap     The descriptor for the disp example driver: the display port is
+cap     at $FEC30000, and SCF is its file manager.  Untested: it wants
+cap     the port.
+try     modinfo di
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo di
 wait    4
 
 shot    cpucache
-for     cpucache cctrap
-cap     cpucache shows and switches a 68020, 68030 or 68040's on-chip
-cap     caches, through its trap handler cctrap, which ships in
-cap     CMDS/DRIVERS.  The emulator has no caches to switch -- with cctrap
-cap     loaded it stops at a privilege violation -- so its usage is what
-cap     is shown here.
+cap     Its usage.  cpucache needs a 68020, 68030 or 68040 with caches
+cap     and its trap handler cctrap loaded; its report needs a
+cap     cache-control device of your own as well, while `cpucache -q on'
+cap     and `-q off' switch the caches silently without one.  Not tested
+cap     here.
 try     cpucache -?
 run     clear
 run     cpucache -?
 wait    3
 
+shot    cctrap
+size    26 80
+cap     The trap handler cpucache calls to read and switch the 68020,
+cap     68030 and 68040 caches: it runs in system state, where the cache
+cap     register can be reached.  Shown here is its module header.  Not
+cap     tested here.
+try     modinfo cctrap
+run     builtin cd /dd/CMDS/DRIVERS
+wait    1
+run     clear
+wait    1
+run     modinfo cctrap
+wait    4
+
 shot    vt100
+size    30 80
 cap     A terminal program for the MM/1: VT-100 and VT-52 emulation in a
 cap     K-Windows window, talking on the serial line it is given.  Given
 cap     the console as that line it opens it and shows its title screen,
 cap     then waits for a key; past that it wants the MM/1's K-Windows.
+cap     The stray characters at its edges are K-Windows codes that an
+cap     ordinary terminal does not know.
 try     vt100 /term
 run     clear
 run     vt100 /term
@@ -68,27 +149,29 @@ wait    5
 snap
 
 shot    x9eyes
-for     x9eyes setbgptn
-cap     Two programs for the Sharp X68000's personal window: x9eyes, eyes
-cap     that follow the pointer, and setbgptn, the window system's
-cap     background pattern.  Without the X68000's /win each stops before
-cap     drawing anything, and says why.
+cap     Eyes that follow the pointer, for the Sharp X68000's personal
+cap     window.  Without the X68000 it stops before drawing anything, at
+cap     the window map it cannot create.
 try     x9eyes
 run     clear
 run     x9eyes
 wait    3
+
+shot    setbgptn
+cap     Sets the Sharp X68000 window system's background pattern from a
+cap     file.  Without the X68000 it stops at the window device, /win,
+cap     and says so.
+try     setbgptn SYS/motd
+run     builtin cd /dd
+run     clear
 run     setbgptn SYS/motd
 wait    3
 
 shot    logon
-for     logon timeout
-cap     logon logs a user into a multi-user OS-9: it checks the name
-cap     against SYS/password, sets the user's ids, directories and
-cap     environment, and chains to the program that line names -- here
-cap     your own OS-9's shell, which must be resident, in tester's home
-cap     directory.  Its manual is DOC/SYSADMIN/logon.prf.  timeout is its
-cap     idle timer, and started by hand it ends the shell that started it:
-cap     Microware's shell never reaches the `echo after'.
+cap     logon checks the name against SYS/password, sets the user's ids,
+cap     directories and environment, and chains to the program that line
+cap     names -- here your own OS-9's shell, which must be resident, in
+cap     tester's home directory.  Its manual is DOC/SYSADMIN/logon.prf.
 try     logon tester
 run     load /h1/CMDS/shell
 wait    1
@@ -97,65 +180,134 @@ run     logon tester
 wait    5
 send    dir\r
 wait    3
-send    \033
-wait    2
+snap
+quit    \033
+
+shot    timeout
+cap     logon's idle timer: logon runs it for a user whose line in
+cap     SYS/password limits the time, and it ends the session when the
+cap     time is up.  Started by hand it ends the shell that started it,
+cap     so your OS-9's shell never reaches `echo after'.
+try     shell "echo before; timeout; echo after"
+run     load /h1/CMDS/shell
+wait    1
+run     clear
 run     shell "echo before; timeout; echo after"
 wait    3
 
 shot    mmon
 super
-for     mmon watch
-size    48 80
-cap     mmon is TOP's timesharing monitor, the job Microware's tsmon does,
-cap     configured per line: on a direct line it starts logon at once, on a
-cap     modem line it initialises the modem and starts logon when a call
-cap     connects, setting the speed from the modem's CONNECT message.  Each
-cap     line gets a block in SYS/mmon.config, as in the sample shown, and
-cap     two lock entries in SYS/sysinfo -- `t1,l' and `mmon.t1,l' for
-cap     /t1, then `setup' -- and without them it exits in silence.  logon
-cap     lives in CMDS/SYSADMIN, so name it with `logon_path' in the line's
-cap     block or `load' it.  Started by the super-user as `mmon /t1 &' it
-cap     offers `login:' on /t1, and again after each logout.  watch waits
-cap     for a modem to ring and starts a command -- also the super-user's.
+size    36 80
+cap     Each line mmon looks after gets a block in SYS/mmon.config, as in
+cap     the sample shown: a direct line starts logon at once, a modem line
+cap     is initialised and starts logon when a call connects, at the speed
+cap     of the modem's CONNECT message.  Each line also needs two lock
+cap     entries in SYS/sysinfo -- `t1,l' and `mmon.t1,l' for /t1, then
+cap     `setup' -- or mmon exits in silence.  Started by the super-user
+cap     as `mmon /t1 &' it offers `login:' on /t1, and again after each
+cap     logout.
 try     tail -l=26 DOC/SYSADMIN/mmon.config.sample
 run     builtin cd /dd
 run     clear
 run     tail -l=26 DOC/SYSADMIN/mmon.config.sample
 wait    3
+
+shot    watch
+super
+cap     Its usage, which it shows only to the super-user.  watch waits on
+cap     a modem line for the modem to ring, then starts mmon, or the
+cap     command given with -c, for one login; it needs the modem.
+try     watch -?
+run     clear
 run     watch -?
 wait    3
 
 shot    errlog
-for     errlog erradm
-cap     errlog gathers error messages from other programs into one log;
-cap     erradm starts, stops, flushes and prints it.
-try     erradm -?
-run     clear
-run     errlog -?
+super
+fresh
+cap     errlog runs in the background, as procs shows, and gathers the
+cap     error messages other programs send it into one log, SYS/errorlog
+cap     on /h0; erradm controls it.  It needs a lock entry,
+cap     `lck.errlog,l', in SYS/sysinfo, entered with `setup'.
+try     errlog &
+run     printf 'lck.errlog,l\r' > /dd/tmp/errlog.si; setup /dd/tmp/errlog.si
 wait    2
-run     erradm -?
+run     clear
+run     errlog &
 wait    3
+run     procs
+wait    3
+snap
+run     erradm -e
+wait    2
+
+shot    erradm
+super
+fresh
+cap     erradm controls errlog: -s starts the logging, -f flushes what
+cap     errlog holds into its log, -p prints the log, -e stops the daemon.
+cap     No program on this disk sends errlog a message, so here the log
+cap     is never written and -p finds no file to print.
+try     erradm -p
+run     printf 'lck.errlog,l\r' > /dd/tmp/errlog.si; setup /dd/tmp/errlog.si
+wait    2
+run     errlog &
+wait    3
+run     clear
+run     erradm -s
+wait    2
+run     erradm -f
+wait    2
+run     erradm -p
+wait    3
+run     erradm -e
+wait    2
 
 shot    vcron
 super
-for     vcron crontab
-cap     Vixie's cron: vcron is the daemon, started by the super-user, that
-cap     runs each user's table at its times.  It goes into the background
-cap     and stays there, asleep between runs -- it prints `Already locked:
-cap     lck.cron!' as it starts and runs regardless.  crontab lists,
-cap     installs, edits and removes a user's own table.
-try     crontab -l
+fresh
+cap     The cron daemon, started by the super-user: it goes into the
+cap     background, as procs shows, and runs each user's crontab at its
+cap     times.  It takes a SysInfo lock, `lck.cron,l' entered with
+cap     `setup'; without it, it says `Already locked' and runs regardless.
+try     vcron &
+run     printf 'lck.cron,l\r' > /dd/tmp/vcron.si; setup /dd/tmp/vcron.si
+wait    2
 run     clear
-run     vcron
+run     vcron &
 wait    3
-run     crontab -l
+run     procs
 wait    3
 
+shot    crontab
+fresh
+cap     A user's own table: crontab -r installs one from a file, -l lists
+cap     it, -d deletes it.  Each line is minute, hour, day of the month,
+cap     month and day of the week, then the command.  The tables live in
+cap     SPOOL/VCRON on /h0, which must exist; vcron runs them.  The two
+cap     lines after -r are crontab failing to wake vcron through its lock,
+cap     lck.cron, since vcron is not running here; the table is installed.
+try     crontab -r=mytab
+run     printf 'lck.cron,l\r' > /dd/tmp/crontab.si; setup /dd/tmp/crontab.si
+run     mkdir -p /h0/SPOOL/VCRON; rm -rf /dd/tmp/CRT; mkdir -p /dd/tmp/CRT
+run     builtin cd /dd/tmp/CRT
+run     echo "30 6 * * 1-5 date >>weekdays" > mytab
+wait    2
+run     clear
+run     cat mytab
+run     crontab -r=mytab
+wait    2
+run     crontab -l
+wait    3
+snap
+run     crontab -d
+wait    2
+
 shot    rex
-for     rex chp remdate prexd prexdc
-cap     rex runs a command on another OS-9/Net node; chp logs in to one;
-cap     remdate takes its clock from one; prexd and prexdc are the daemon
-cap     and server on the node that answers.  Without a network each asks
+for     rex prexdc
+cap     rex runs a command on another OS-9/Net node, where the daemon
+cap     prexd starts prexdc to serve each request.  Without a network it
+cap     shows its usage; remdate, which takes its clock from a node, asks
 cap     for /n0 and stops.
 try     rex -?
 run     clear
@@ -164,30 +316,118 @@ wait    3
 run     remdate
 wait    3
 
+shot    remdate
+cap     Takes the date and time from another OS-9/Net node's clock.
+cap     Without a network it asks for /n0 and stops.
+try     remdate
+run     clear
+run     remdate
+wait    3
+
+shot    prexd
+cap     The rex daemon for OS-9/Net: started with & from the startup file
+cap     of the node that answers, it starts prexdc for each request.
+cap     Shown here is its usage.
+try     prexd -?
+run     clear
+run     prexd -?
+wait    3
+
+shot    chp
+cap     A remote login over OS-9/Net: `chp /n0/<node>' is `rex <node>
+cap     login'.  With no network there is no node to answer, and it
+cap     returns in silence.
+try     chp /n0/other
+run     clear
+run     chp /n0/other
+wait    3
+
 shot    uid
-for     uid newgrp
 cap     uid prints a user's ids from the password file -- here the tester
 cap     account this disk carries; the group shows as UNKNOWN because there
-cap     is no SYS/group.  newgrp changes your group, as SYS/group allows.
+cap     is no SYS/group.
 try     uid tester
 run     clear
 run     uid tester
 wait    2
-run     newgrp -?
+
+shot    newgrp
+cap     newgrp starts a shell in another group that SYS/group lists you
+cap     in, asking for the group's password if it has one.  This disk
+cap     carries no SYS/group; here a two-line one names tester in staff.
+try     newgrp staff
+run     printf 'users::1:tester\rstaff::5:tester\r' > /dd/SYS/group
+wait    1
+run     clear
+run     newgrp staff
 wait    3
+snap
+send    \033
+wait    1
+run     rm -f /dd/SYS/group
 
 shot    mesg
-for     mesg msg speak
-cap     Messages between users logged in at once, whom logon records in
-cap     SYS/utmp: mesg sets whether you take them, msg sends a line, speak
-cap     opens a split-screen chat.  Here nobody else is logged in, so
-cap     their usage and speak's refusal are what can be shown.
-try     speak tester
+cap     Its usage.  mesg sets your flags in SYS/utmp, the record logon
+cap     keeps of who is logged in: a capital letter turns a flag on, a
+cap     small one off.  M takes messages, V lets other users see you.
+try     mesg -?
 run     clear
 run     mesg -?
-wait    2
+wait    3
+
+shot    msg
+cap     msg sends a line to a user logged in through logon, whose mmenu
+cap     takes the message: `msg <user> <message>'.  It prints no usage,
+cap     only a blank line, and mmenu runs it for you.
+try     msg
+run     clear
+run     msg
+wait    3
+
+shot    speak
+cap     A chat between two users logged in through logon, on a split
+cap     screen: you type in the upper half and read the other in the
+cap     lower.  Here nobody else is logged in, and it says so.
+try     speak tester
+run     clear
 run     speak tester
 wait    3
+
+shot    dedit
+cap     A disk sector editor written in BASIC09, so it runs under runb.
+cap     Given a device, here /dd@, it shows a sector as hex and characters
+cap     with a menu of single-letter commands along the bottom.  It writes
+cap     to the disk you give it, so try it on a copy.
+try     runb dedit
+run     load /h1/CMDS/runb
+wait    2
+run     clear
+wait    1
+run     runb dedit
+wait    4
+send    /dd@\r
+wait    5
+snap
+quit    \033
+
+shot    fixyear
+super
+cap     fixyear adds a century to a file's modification year when it is
+cap     below 70, the dates an RBF without the Y2K fix writes.  old.txt
+cap     had its year byte set to 05 by hand, with pbyte on the raw disk;
+cap     fixyear makes it 105, which is 2005.
+try     fixyear -l old.txt
+run     rm -rf /dd/tmp/FIXY; mkdir -p /dd/tmp/FIXY; builtin cd /dd/tmp/FIXY
+run     echo hello > old.txt
+run     set -- $(dir -e | grep ' old.txt$'); [ "$7" = old.txt ] && pbyte /dd@ ${5}03 05
+wait    2
+run     clear
+run     dir -e
+wait    2
+run     fixyear -l old.txt
+wait    2
+run     dir -e
+wait    2
 
 shot    mmenu
 cap     mmenu gives a user a menu instead of a shell, as on a BBS.  Each

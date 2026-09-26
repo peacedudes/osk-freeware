@@ -1,8 +1,8 @@
-$ newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
-status 1
-$ ls -l tmp/MAILA
+$ newslock tmplock reallock; echo "status $?"
+status 0
+$ ls -l
 total 1024
--rw-rw-rw-   2 7        1               2 Sep 24 01:04 reallock
--rw-rw-rw-   2 7        1               2 Sep 24 01:04 tmplock
-$ newslock tmp/MAILA/tmplock tmp/MAILA/reallock; echo "status $?"
+-rw-rw-rw-   2 7        1               2 Sep 26 08:33 reallock
+-rw-rw-rw-   2 7        1               2 Sep 26 08:33 tmplock
+$ newslock tmplock reallock; echo "status $?"
 status 1

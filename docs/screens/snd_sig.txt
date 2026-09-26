@@ -1,7 +1,7 @@
 $ cron &
-<3>
-$ snd_sig 3
+<4>
+$ snd_sig 4
 $ snd_sig 99
 snd_sig: can't wake 99
-$ snd_sig -2 3; echo "status $?"
+$ snd_sig -2 4; echo "status $?"
 status 0

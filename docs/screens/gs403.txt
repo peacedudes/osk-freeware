@@ -1,20 +1,24 @@
-         ooMMMMMMMMoo        oMMMMMMMMMoo               oMMMMMMo         MM   ooMMMMMMo      oMMMMMM
-Mo      oMMMMMMoo     oMMMMMMoo      oMMMMMMoo
-        MMMMM""""MMMMMo    oMMMM"""""MMMMM            oMMMM"""MMMo      oM"  MMMM"""MMMMo  oMMMM"""M
-MMMo   MMMM"""MMMM   MMMM"""MMMM    MMMM"""MMMM
-       MMMM"       "MMMM   MMMM       "MMMo           MMMM    "MMMo     MM  MMMM     """   MMMM
-MMMM  MMMM    "MMMM MMMM    "MMMM  MMMM    "MMMM
-      MMMM"         "MMMM  MMMMMoooo                  MMMM     MMMM    MM"  MMMMoooooo     "MMMMoooM
-MMM   MMMM     MMMM MMMM     MMMM  MMMM     MMMM
-      MMMM           MMMM   "MMMMMMMMMMMo             MMMMo  oMMMMM    MM   MMMMMMMMMMMo    oMMMMMMM
-MMo   MMMM     MMMM MMMM     MMMM  MMMM     MMMM
-      MMMM           MMMM       """""MMMMMo MMMMMMMM   "MMMMMMMMMMM   MM    MMMM"   "MMMM oMMMM"   "
-MMMo  MMMM     MMMM MMMM     MMMM  MMMM     MMMM
-      "MMMM         MMMM"  oooo        MMMM """"""""     """"" MMMM  oMM    MMMM     MMMM MMMM
-MMMM  MMMM     MMMM MMMM     MMMM  MMMM     MMMM
-       "MMMMo    ooMMMM"   MMMMoo     oMMMM           oMMo    MMMM   MM     MMMMo   oMMMM MMMMo    o
-MMMM  MMMMo   MMMM" MMMMo   MMMM"  MMMMo   MMMM"
-        "MMMMMMMMMMMM"      "MMMMMMMMMMMM"             MMMMooMMMM   oM"      "MMMMMMMMM"   "MMMMMMMM
-MM"    "MMMMMMMMM"   "MMMMMMMMM"    "MMMMMMMMM"
-           """""""""          """""""""                 "MMMMM""    ""         """""""        """"""
-"        """""""       """""""        """""""
+$ cat hello.ps
+/Helvetica-Bold findfont 40 scalefont setfont
+8 14 moveto (OS-9/68000) show
+showpage
+$ gs403 -dNOPAUSE -sDEVICE=pbm -r48 -g200x60 -sOutputFile=h - <hello.ps
+Aladdin Ghostscript 4.03 (1996-9-23)
+Copyright (C) 1996 Aladdin Enterprises, Menlo Park, CA.  All rights reserved.
+This software comes with NO WARRANTY: see the file PUBLIC for details.
+Loading NimbusSanL-Bold font from /dd/LIB/gs403/n019004l.pfb... 1783040 480062 1
+300084 11674 0 done.
+$ pbmtoascii -2x4 h
+
+
+
+
+
+
+
+
+    dHH#HHb. .dM##HHb      ,HH#H\   J|,#H#Mb..dM#HH\ ,HH#Hb ,HH#Hb  dM#H#,
+   dM?   `HM,|Mb__ `"-     MM  TM| ,H MM__:" |Mb_,MP MM  TM|MM  TM||M| `MM
+   MM     |M| `"##HMb.oooo *MbdMM| d' MM*"HH,,HH"*M? MM  |M|MM  |M||M|  MM
+   ?Mb. .,MH'|#?.  JM|"""" ,?""dM'|P  MM. JM|MM. .MM MM. dM|MM. dM||ML ,MH
+    `*####'   `####*'      `HHH#' d'  `*###' `"###*' `*###' `*###'  `###*'

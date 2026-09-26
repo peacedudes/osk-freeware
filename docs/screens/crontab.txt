@@ -1,0 +1,7 @@
+$ cat mytab
+30 6 * * 1-5 date >>weekdays
+$ crontab -r=mytab
+crontab: lck.cron
+000:216 file not found
+$ crontab -l
+30 6 * * 1-5 date >>weekdays

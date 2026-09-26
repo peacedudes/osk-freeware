@@ -1,10 +1,25 @@
-$ ppmhist tmp/NEAB/nd.ppm
- r   g   b      lum     count
---- --- ---     ---     -----
-101 101 101     101     800
-$ ppmnorm tmp/NEAB/nd.ppm > tmp/NEAB/nn.ppm
-ppmnorm: remapping 101..101 to 0..255
-$ ppmhist tmp/NEAB/nn.ppm
- r   g   b      lum     count
---- --- ---     ---     -----
-255 255 255     255     800
+$ ppmtopgm dim.ppm | pgmtopbm | pbmtoascii -2x4
+&&&&&&&1&&%R&&&$&Z&S$F&$$&S$&S$S$$$7S14%&/$S4%Z$Z/$$)?T$S|//?|}\\?\\????%%%%
+&&&&&S&&ZH%kD&Z&&&%k&$$&&%k&%&$$]$7Z{|S|k&?$\$?Z$T?(\\($%7/%7/|J|||||SSSSSSS
+RH$&&S&S$k&1$Z&$D&Z&Z$F1%F1ZZ$F$$S14)S4%$?FS|FS$$%$$?&T?($S|$S$|J|?%%|$(((((
+k&Skk6$FF&&S&1Sk&1$Sk&Sk&S}&\S$S$$/%[$?k$\$/$$//(/$)7/|S4|?($??$))??Z%?$)%%%
+&&&&&&&Z&Z&S$k&$Z&$Sk&$&&SF1%F1$7?k&?%[$$?[$?FS4)?T$?S($?$$T|SS$|SS$|||||)))
+6$&$&&&$F&&1S&&$ZF&S&$&S$&Z$&$S$$S(k&%?k%FS|FS4)?T/$7//$|%%$)]|?4|||%%?Z%%%%
+kR&6$&H&$$F&$1S&$S$&SF1%F1SF14%}Z$\$&?/Z\\%\\%&Z{|\($($??|}Z%|\\|\\|%%%%%%%%
+$&&&91$&S&&S$DZ&$&Z&1Sk&S$&?k&$]S$$Z$?FS$7$\$?|[$$T??T$\\S|$S\\||$%?Z%?Z%%%%
+R$&&&$Fk&&ZF&S$F1S&$$S$&$S/Z$1%$Z&?}[$Z\\$$\S4%Z$$$|7/$S|$$|SS4||%%%%%%%%%%%
+kHZkkR&1&%kR$Sk&Z&&&Sk&S$&]S$$Z$%}F$S\\Z$]?$%&J??[$\|$%$$4|)?|}SSS??$)??Z%%%
+D&1111&$F&&&Z$k&&&Sk&1Sk&S\$&/&$\Z$S$$$\%$Z$$/$S4?(}S|}S$J|)??|T||T$SSSSSSSS
+$ ppmnorm dim.ppm | ppmtopgm | pgmtopbm | pbmtoascii -2x4
+ppmnorm: remapping 65..127 to 0..255
+MMMMMMMMRMMH&6R6HH&&&Z&F&&%F\$Z$$$|)??7///?):):?:\::\\:\:::-.::.-: ...
+MMMMMMHHM&RM9&9&6&9&Z&&$k&Z&4)\\)S??\\\\\?:\\<;>\\:\::\:::::.-.:-.-. . -
+MMMMMHMHMRMH6RH9H&1&$&&&1Sk&)S$$%|\\??????):i|(:\<:\/:/:::::::.-.-- . . -
+MMMMMMHMH9HR&kM&&H1&&$&&SF1%F|&/$\\|)7||//?)//|%|:i|%::::::.::.:`.'.-- .
+MMMMM9MH6HH9HHF6FkM&1H$S&$$$S$/S\|$$|||||||!:\\>\|S:://:::.-.:-:.:- -- . '
+MMMMMMH6MH6MH&9kM&&$kkR&SF1Z/S$$\S|//????%?://i?\/;/:::/:::: ::.-..:- -
+MMMMMHMRHMM&H6&9&H&S&&&Z$$$S$S4S\|$%||||||(?|:\/S;::\:?:::`::.-:.-.. - '.
+MMMMMM9MHHHHH&R&FkR&&&&Z&Z&$S$?[$??$)?????)://:i\?::\:<;::.-::.- : -: -
+MMMMRMM9M&RM9HFM&&H$&&&Z$$Z$|F1??L$|/////?/|:?:?::S::<:::\:`:.':. :-. - -
+MMMMMM9M9MH6H6HH&&&Sk6&1S&$S&{4|S1||SS???:(//S/\:S:\<:;-:/::-::.:`.. . -
+MMMMRMRM9HH&H9&kRM&11$&&&Z&$$]>?T$S?(((((?<S//\\\/\:S.:>:::-:.:-.-. :.`  -

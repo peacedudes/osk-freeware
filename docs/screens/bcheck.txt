@@ -1,23 +1,9 @@
-00001: 00  /* about -- everything this collection knows about one program, on on
-e screen.
-00002: 00   *
-00003: 00   * Written for the OS-9 freeware collection, 2026-08-22. Microware C
-(K&R).
-00004: 00   *
-00005: 00   * WHY
-00006: 00   *
-00007: 00   * The disk already knows, for every program, what it is (DOC/INDEX),
- what it
-00008: 00   * is FOR (DOC/CATEGORIES), where it came from (DOC/ORIGINS), what fi
-les it
-00009: 00   * opens (DOC/DEPENDS), whether its source survived (SRC/) and whethe
-r anyone
-00010: 00   * documented it (DOC/<name>/). All of that is here, on the disk, in
-plain
-00011: 00   * text -- and to use it you had to know those five places existed an
-d go and
-00012: 00   * read each one.
-00013: 00   *
-00014: 00   * That is a card catalogue with no cards. This prints the card:
-00015: 00   *
-00016: 00   *     $ about fortune
+$ bcheck max.c
+00001: 00  int max(a, b)
+00002: 00  int a, b;
+00003: 01  {
+00004: 02  if (a > b) {
+00005: 02  return a;
+00006: 01  }
+00007: 01  else { return b; }
+00008: 00  }

@@ -1,6 +1,2 @@
-$ sbreak -?
-Syntax:   sbreak [/device]
-Function: send break on SCF device
-Options:  none
 $ sbreak
 sbreak: Must specify device!

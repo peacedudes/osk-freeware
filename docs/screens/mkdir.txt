@@ -1,3 +1,3 @@
 $ mkdir -p tmp/FILESA/mk/notes/june; ls -l tmp/FILESA/mk/notes
 total 512
-drwxrwxrwx   1 7        1              64 Sep 24 02:39 june
+drwxrwxrwx   1 7        1              64 Sep 26 11:09 june

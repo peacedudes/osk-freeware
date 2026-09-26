@@ -82,22 +82,26 @@ run     texidx sample.idx
 wait    10
 
 shot    bibtex
-size    24 80
-cap     BibTeX, the bibliography processor.  It reads the job name from
-cap     standard input -- the prompt is that -- then reads the .aux file
-cap     a LaTeX run left, looking for citations, a bibliography style and
-cap     a bibliography database.  This LaTeX run named none, so it
-cap     reports all three missing rather than formatting anything.
+size    30 80
+cap     BibTeX, the bibliography formatter.  It asks for the job name, then
+cap     reads the .aux file LaTeX left: cite.tex cites two entries of the
+cap     sample database xampl.bib and asks for the plain style.  BibTeX
+cap     writes cite.bbl, the formatted bibliography LaTeX reads on its next
+cap     run; its head is shown.
 try     bibtex
-run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/small.dvi /dd/tmp/TEX/small.aux; cp /dd/SYS/TEX/SAMPLES/small.tex /dd/tmp/TEX/small.tex; builtin cd /dd/tmp/TEX; latex small.tex > /nil
+run     rm -rf /dd/tmp/BIBT; mkdir -p /dd/tmp/BIBT; cp /dd/SYS/TEX/SAMPLES/xampl.bib /dd/tmp/BIBT; builtin cd /dd/tmp/BIBT
+run     printf '\\documentstyle{article}\r\\begin{document}\rSee \\cite{book-full} and \\cite{article-full}.\r\\bibliographystyle{plain}\r\\bibliography{xampl}\r\\end{document}\r' > cite.tex
+run     latex cite.tex > /nil
 wait    60
-run     builtin cd /dd/tmp/TEX
+run     builtin cd /dd/tmp/BIBT
 run     clear
 wait    1
 run     bibtex
 wait    5
-send    small\r
-wait    8
+send    cite\r
+wait    10
+run     head -n 12 cite.bbl
+wait    3
 
 shot    afm2tfm
 cap     Turns a PostScript font's metrics -- an .afm -- into the .tfm file
@@ -117,12 +121,11 @@ run     ls -l n019003l.afm n019003l.tfm
 wait    10
 
 shot    maketexpk
-cap     Meant to build a packed bitmap font at a size TeX asks for, by
-cap     running Metafont and packing the result in one step; its usage,
-cap     there being no font it can finish here.  Given real arguments its
-cap     own recipe does not preload the Computer Modern base Metafont
-cap     needs, so rendering a real font by hand -- see virmf and gftopk --
-cap     does the same job.
+cap     Its answer to no arguments.  It takes a font name, a resolution
+cap     and a magnification, runs Metafont and packs the result; given
+cap     them here it stops, because its recipe does not preload the
+cap     Computer Modern base Metafont needs.  virmf then gftopk does the
+cap     same job by hand.
 try     maketexpk
 run     maketexpk
 wait    6
@@ -159,18 +162,19 @@ run     cat sample.tex | head -n 8
 wait    5
 
 shot    dvitype
-size    36 80
+size    44 80
 cap     Reads a DVI file back and prints what is in it: the fonts and, at
-cap     the level chosen, every character and the position TeX gave it.
-cap     It asks five questions and takes the default for each.
-try     dvitype story.dvi < /nil > dt.out; cat dt.out | head -n 30
+cap     the level chosen, every command and the position TeX gave it.  It
+cap     asks five questions, which run together on the first lines, and
+cap     takes the default for each; the listing goes to dt.out.
+try     dvitype story.dvi < /nil > dt.out; head -n 30 dt.out
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     clear
 wait    1
 run     dvitype story.dvi < /nil > dt.out
 wait    20
-run     cat dt.out | head -n 30
+run     head -n 30 dt.out
 wait    4
 
 shot    dvialw
@@ -195,7 +199,7 @@ size    36 80
 cap     The DVI driver for the HP DeskJet, on the same story: at 300 dpi
 cap     it finds the shipped Computer Modern fonts and renders the page,
 cap     the output growing from the DVI by the size of the glyph rasters.
-try     dvidjp story.dvi; ls -l story.dvi_*
+try     dvidjp story.dvi; ls -l story.dvi_djc
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -203,7 +207,7 @@ run     clear
 wait    1
 run     dvidjp story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_djc
 wait    5
 
 shot    dvieps
@@ -211,7 +215,7 @@ size    36 80
 cap     The DVI driver for Epson dot-matrix printers (240 dpi).  There is
 cap     no 240 dpi font here, so it scales the shipped 300 dpi ones by
 cap     nearest neighbor -- which it announces per font -- and renders.
-try     dvieps story.dvi; ls -l story.dvi_*
+try     dvieps story.dvi; ls -l story.dvi_eps
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -219,14 +223,14 @@ run     clear
 wait    1
 run     dvieps story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_eps
 wait    5
 
 shot    dviimp
 size    36 80
 cap     The DVI driver for the Imagen laser printer (300 dpi), on the same
 cap     story: it finds the shipped 300 dpi fonts and renders the page.
-try     dviimp story.dvi; ls -l story.dvi_*
+try     dviimp story.dvi; ls -l story.dvi_imp
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -234,14 +238,14 @@ run     clear
 wait    1
 run     dviimp story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_imp
 wait    5
 
 shot    dvijep
 size    36 80
 cap     The DVI driver for the HP LaserJet Plus (300 dpi), on the same
 cap     story: it finds the shipped 300 dpi fonts and renders the page.
-try     dvijep story.dvi; ls -l story.dvi_*
+try     dvijep story.dvi; ls -l story.dvi_jep
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -249,14 +253,14 @@ run     clear
 wait    1
 run     dvijep story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_jep
 wait    5
 
 shot    dvijet
 size    36 80
 cap     The DVI driver for the HP LaserJet (120 dpi default): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-try     dvijet story.dvi; ls -l story.dvi_*
+try     dvijet story.dvi; ls -l story.dvi_jet
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -264,7 +268,7 @@ run     clear
 wait    1
 run     dvijet story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_jet
 wait    5
 
 shot    dvilj2
@@ -272,7 +276,7 @@ size    36 80
 cap     The DVI driver for the HP LaserJet II (300 dpi), on the same story:
 cap     it finds the shipped 300 dpi Computer Modern fonts, reports [OK],
 cap     and the PCL it writes carries the real glyph rasters.
-try     dvilj2 story.dvi; ls -l story.dvi_*
+try     dvilj2 story.dvi; ls -l story.dvi_lj2
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -280,14 +284,15 @@ run     clear
 wait    1
 run     dvilj2 story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_lj2
 wait    5
 
 shot    dvimac
 size    36 80
 cap     The DVI driver for the Apple ImageWriter (144 dpi): it asks for 120
-cap     dpi fonts and scales the shipped 300 dpi ones by nearest neighbor and renders the page.
-try     dvimac story.dvi; ls -l story.dvi_*
+cap     dpi fonts, finds none, takes the shipped 300 dpi ones nearest in
+cap     size instead, and renders the page.
+try     dvimac story.dvi; ls -l story.dvi_mac
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -295,14 +300,14 @@ run     clear
 wait    1
 run     dvimac story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_mac
 wait    5
 
 shot    dvioki
 size    36 80
 cap     The DVI driver for Okidata printers (144 dpi): it scales the
 cap     shipped 300 dpi fonts by nearest neighbor and renders the page.
-try     dvioki story.dvi; ls -l story.dvi_*
+try     dvioki story.dvi; ls -l story.dvi_oki
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -310,14 +315,14 @@ run     clear
 wait    1
 run     dvioki story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_oki
 wait    5
 
 shot    dvitos
 size    36 80
 cap     The DVI driver for the Toshiba P-1351 (180 dpi): it asks for 166
 cap     dpi fonts and scales the shipped 300 dpi ones by nearest neighbor and renders the page.
-try     dvitos story.dvi; ls -l story.dvi_*
+try     dvitos story.dvi; ls -l story.dvi_tos
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; rm -f /dd/tmp/TEX/story.dvi /dd/tmp/TEX/story.dvi_*; cat /dd/SYS/TEX/SAMPLES/story.tex > /dd/tmp/TEX/story.tex; printf '\\end\r' >> /dd/tmp/TEX/story.tex; builtin cd /dd/tmp/TEX; tex story.tex > /nil
 wait    40
 run     builtin cd /dd/tmp/TEX
@@ -325,7 +330,7 @@ run     clear
 wait    1
 run     dvitos story.dvi
 wait    25
-run     ls -l story.dvi_*
+run     ls -l story.dvi_tos
 wait    5
 
 shot    dvips
@@ -357,8 +362,10 @@ run     tftopl cmr10.tfm | head -n 20
 wait    20
 
 shot    pltotf
-cap     The other way: a property list back into a binary .tfm, and the
-cap     round trip gives a file of the same size.
+size    24 90
+cap     Turns a property list back into a binary .tfm: cmr10.pl, made
+cap     from the shipped cmr10.tfm with tftopl, goes back to a file of the
+cap     same size.
 try     pltotf tmp/TEX/cmr10.pl tmp/TEX/cmr10.tfm; ls -l SYS/TEX/FONTS/TFM/cmr10.tfm tmp/TEX/cmr10.tfm
 run     mkdir -p /dd/tmp/TEX > /nil 2>/nil; tftopl /dd/SYS/TEX/FONTS/TFM/cmr10.tfm > /dd/tmp/TEX/cmr10.pl
 wait    20
@@ -406,13 +413,16 @@ wait    5
 shot    virmf
 size    36 80
 cap     Metafont rendering the seven-character METAFONT logo font at a
-cap     low resolution, from its source in MFINPUTS, and writing the
-cap     bitmap font, its metrics and a log beside it.
+cap     low resolution, from its source in MFINPUTS: run.mf sets the mode
+cap     and inputs logo10, and Metafont writes the bitmap font, its
+cap     metrics and a log beside it.
 try     virmf < run.mf; ls -l
-run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf
+run     rm -rf /dd/tmp/MFV; mkdir -p /dd/tmp/MFV; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MFV/run.mf
 wait    3
-run     builtin cd /dd/tmp/MF
+run     builtin cd /dd/tmp/MFV
 run     clear
+wait    1
+run     cat run.mf
 wait    1
 run     virmf < run.mf
 wait    50
@@ -431,8 +441,8 @@ wait    5
 shot    gftype
 size    36 80
 cap     Draws a bitmap font's characters as text: the M of the METAFONT
-cap     logo font, from the GF file Metafont wrote.  GFFONTS names the
-cap     directory.
+cap     logo font, from the GF file virmf wrote from the font's source,
+cap     run first.
 try     gftype -i logo10.120gf > gt.out; cat gt.out | head -n 22
 run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF
 wait    50
@@ -445,7 +455,8 @@ wait    4
 
 shot    gftopk
 cap     Packs a GF bitmap font into the smaller PK form the DVI drivers
-cap     read; the two sizes side by side.
+cap     read; the two sizes side by side.  logo10.120gf is the METAFONT
+cap     logo font, rendered first by virmf from its source in MFINPUTS.
 try     gftopk logo10.120gf logo10.120pk; ls -l logo10.120gf logo10.120pk
 run     mkdir -p /dd/tmp/MF > /nil 2>/nil; rm -f /dd/tmp/MF/logo10.*; echo "\\mode=epsonlo; mode_setup; input logo10" > /dd/tmp/MF/run.mf; builtin cd /dd/tmp/MF; virmf < run.mf > /nil; export GFFONTS=/dd/tmp/MF; export PKFONTS=/dd/tmp/MF
 wait    50

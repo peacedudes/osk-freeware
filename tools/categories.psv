@@ -53,7 +53,7 @@ jaw|Archives & compression|Compress a file
 gzip|Archives & compression|Compress a file
 ar|Archives & compression|Create & extract
 arc|Archives & compression|Create & extract
-cat|Archives & compression|Create & extract
+cat|Files & directories|Browse & inspect
 lha|Archives & compression|Create & extract
 bru|Archives & compression|Create & extract
 lharc|Archives & compression|Create & extract
@@ -293,9 +293,9 @@ banner|Text tools|Banners & text art
 banner1|Text tools|Banners & text art
 cursive|Text tools|Banners & text art
 draw|Graphics & images|Drawing & display
-loadmem|Graphics & images|Drawing & display
+loadmem|System & modules|Processes & memory
 pdraw|Graphics & images|Drawing & display
-savemem|Graphics & images|Drawing & display
+savemem|System & modules|Processes & memory
 snap|Graphics & images|Drawing & display
 cjpeg|Graphics & images|JPEG
 cjpeg.070|Graphics & images|JPEG
@@ -474,7 +474,7 @@ ppmtouil|Graphics & images|NETPBM: out of PNM
 ppmtoxpm|Graphics & images|NETPBM: out of PNM
 ppmtoyuv|Graphics & images|NETPBM: out of PNM
 ppmtoyuvsplit|Graphics & images|NETPBM: out of PNM
-mtst|Graphics & images|Ray tracing & 3D
+mtst|Developer tools|Libraries
 rayshade|Graphics & images|Ray tracing & 3D
 rsconvert|Graphics & images|Ray tracing & 3D
 basicwin|Graphics & images|X11
@@ -777,7 +777,7 @@ scsi_mm1a|System & modules|MM/1 drivers
 snddrv|System & modules|MM/1 drivers
 windio.52|System & modules|MM/1 drivers
 mgif|Graphics & images|Viewers
-tplot|Graphics & images|Plotting
+tplot|Needs hardware|Display
 elvis|Editors|vi clones
 view|Editors|vi clones
 ref|Developer tools|Tags
@@ -875,7 +875,7 @@ phone|System & modules|Utilities
 trunc|System & modules|Utilities
 getsys|System & modules|Utilities
 mvolformat|System & modules|Utilities
-vc|System & modules|Utilities
+vc|Maths & calculators|Spreadsheets
 ynad|System & modules|Utilities
 xlharc|System & modules|Utilities
 fixyear|System & modules|Utilities
@@ -919,7 +919,7 @@ newshist|Communications|News
 newslock|Communications|News
 atp|Communications|Mail
 finger|Communications|TCP/IP
-infoxpress|Communications|TCP/IP
+infoxpress|Communications|Terminal & session
 msntp|Communications|TCP/IP
 net|Communications|TCP/IP
 bm|Communications|TCP/IP
@@ -947,8 +947,8 @@ dvips|Text tools|TeX
 afm2tfm|Text tools|TeX
 every|System & modules|Scheduling
 greg|Time & calendar|Calendars
-lgrep|System & modules|Utilities
-liborder.os9|System & modules|Utilities
+lgrep|Text tools|Search & match
+liborder.os9|Archives & compression|OS-9 module libraries
 lmargin|Printing|Printers
 lunisolar|Time & calendar|Astronomy
 map|System & modules|Utilities
@@ -966,7 +966,7 @@ testibc|System & modules|Utilities
 transfer|System & modules|Utilities
 tty|System & modules|Utilities
 vlen|System & modules|Utilities
-what|System & modules|Utilities
+what|Needs hardware|<a sub-category for machine-specific tools>
 yagi|System & modules|Utilities
 unpacklib.os9|System & modules|Utilities
 bcheck|Developer tools|Source checking
@@ -981,7 +981,7 @@ demo|System & modules|Utilities
 lpsched|Needs hardware|Printers
 dload|System & modules|Utilities
 snd_sig|System & modules|Utilities
-hinterhalt|System & modules|Utilities
+hinterhalt|Games|Puzzles
 i_am_i|System & modules|Utilities
 lfmaker|G-Windows|G-Windows
 puzzle|G-Windows|G-Windows

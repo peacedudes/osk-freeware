@@ -2,24 +2,24 @@
 +----------------------------------------------+-------------------------------+
 | ==PARENT==                                   |       File Information        |
 | .ELM                                         |                               |
-| .bashrc                                      |           Filename            |
-| .newsrc                                      |           .bashrc             |
-| ADL                                          |          Attributes           |
-| CMDS                                         |           ---wr-wr            |
-| DEFS                                         |      Length: 3557 bytes       |
-| DEMO                                         |        Creation date          |
-| DOC                                          |           126/09/26           |
-| DOS                                          |        Last modified          |
-| ETC                                          |        126/08/03 19:00        |
-| GAMES                                        |                               |
-| GCCDEFS                                      +-------------------------------+
-| GCCLIB                                       |                               |
-| GNUCHESS4.0                                  |       Current disk info       |
-| GNULIB                                       |                               |
-| LIB                                          |      Can't get size of /dd    |
+| .bash_history                                |           Filename            |
+| .bashrc                                      |        .bash_history          |
+| .newsrc                                      |          Attributes           |
+| ADL                                          |           ---wr-wr            |
+| CMDS                                         |      Length: 153 bytes        |
+| DEFS                                         |        Creation date          |
+| DEMO                                         |           126/09/26           |
+| DOC                                          |        Last modified          |
+| DOS                                          |        126/09/26 08:25        |
+| ETC                                          |                               |
+| GAMES                                        +-------------------------------+
+| GCCDEFS                                      |                               |
+| GCCLIB                                       |       Current disk info       |
+| GNUCHESS4.0                                  |                               |
+| GNULIB                                       |      Can't get size of /dd    |
+| LIB                                          |                               |
 | LOG                                          |                               |
 | MAIL                                         |                               |
-| SBPROLOG                                     |                               |
 +-  -------------------------------------------+-------------------------------+
  Attr Copy Rename Del Newdir Makdir mOve Tag/untag List Unarc Help Quit Shell
 ------------------------------------------------------------------------------

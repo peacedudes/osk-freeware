@@ -145,18 +145,18 @@ wait    4
 shot    pgmtofs
 cap     Writes a FaceSaver file -- the format of the Usenix face database, a
 cap     text header of contact fields followed by hex pixel rows.  The
-cap     greyscale ramp fills in below the blank header.
-try     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
+cap     header's fields are blank here, and the greyscale ramp's rows of hex
+cap     follow them.
+try     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs; head -n 14 tmp/NPMB/o.fs
+os9     pgmtofs tmp/NPMB/g.pgm >-tmp/NPMB/o.fs; head -n 14 tmp/NPMB/o.fs
 run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
 run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
 wait    4
 run     builtin cd /dd
 wait    1
 run     clear
-run     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs
-wait    5
-run     cat tmp/NPMB/o.fs | head -8
-wait    4
+run     pgmtofs tmp/NPMB/g.pgm > tmp/NPMB/o.fs; head -n 14 tmp/NPMB/o.fs
+wait    8
 
 shot    pgmtolispm
 cap     Writes a Lisp Machine bitmap, the screen format of Symbolics and TI
@@ -175,20 +175,15 @@ run     ls -l tmp/NPMB/o.lispm
 wait    4
 
 shot    pgmtoppm
-cap     Colours a greyscale image.  Given a colour or a pair -- `red-blue'
-cap     ramps between them -- it maps grey levels to colour; the ramp comes
-cap     back a 48x24 PPM, which pnmfile confirms.
-try     pgmtoppm red-blue tmp/NPMB/g.pgm > tmp/NPMB/o.ppm
-run     mkdir -p /dd/tmp/NPMB > /nil 2>/nil
-run     pgmramp -lr 48 24 > /dd/tmp/NPMB/g.pgm
-wait    4
-run     builtin cd /dd
-wait    1
+cap     Colours a greyscale image: given two colours it runs from the first
+cap     at black to the second at white.  A four-step grey ramp from red to
+cap     blue, spelled out by pnmnoraw.
+try     pgmramp -lr 4 1 | pgmtoppm red-blue | pnmnoraw
+os9     pgmramp -lr 4 1 ! pgmtoppm red-blue ! pnmnoraw
 run     clear
-run     pgmtoppm red-blue tmp/NPMB/g.pgm > tmp/NPMB/o.ppm
-wait    5
-run     pnmfile tmp/NPMB/o.ppm
-wait    4
+wait    1
+run     pgmramp -lr 4 1 | pgmtoppm red-blue | pnmnoraw
+wait    8
 
 shot    pnmtofits
 cap     Writes a FITS file -- the Flexible Image Transport System

@@ -1,3 +1,7 @@
-$ rawtoppm 48 24 < tmp/NPIB/c.ppm > tmp/NPIB/r.ppm
-$ pnmfile tmp/NPIB/r.ppm
-tmp/NPIB/r.ppm: PPM raw, 48 by 24  maxval 255
+$ printf "ABCDEFGHIJKLabcdefghijkl" > r.raw
+$ rawtoppm 4 2 r.raw | pnmnoraw
+P3
+4 2
+255
+65 66 67  68 69 70  71 72 73  74 75 76
+97 98 99  100 101 102  103 104 105  106 107 108
