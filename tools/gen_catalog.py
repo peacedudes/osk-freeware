@@ -323,7 +323,9 @@ def from_effo(root, progs):
             if key and l.strip():
                 info.setdefault(key, []).append(l.strip())
         if info:
-            progs[d]["info"] = {k: " ".join(v)[:400] for k, v in info.items()}
+            # Whole, not clipped: help's terms were cut at 400 characters,
+            # mid-sentence, with nothing to say so (2026-09-26).
+            progs[d]["info"] = {k: " ".join(v) for k, v in info.items()}
 
 
 def from_tree(root, progs, starred):

@@ -446,6 +446,18 @@ function lead(d){
     from = at + m[0].length;
   }
 }
+// A card's headline is the WHOLE entry from DOC/INDEX, as a sentence.
+// It used to be lead() -- the first sentence only -- so everything after
+// the first full stop was on no card at all, and the INDEX style (lower
+// case, no full stop) made even a whole entry read as cut off: `more' said
+// "the plain pager: a screenful at a time, Enter for the next" and stopped
+// (2026-09-26).  The list keeps brief(), whose ellipsis shows the cut.
+function sentence(d){
+  let s = (d || "").trim();
+  if(!s) return s;
+  if(/^[a-z]/.test(s)) s = s[0].toUpperCase() + s.slice(1);
+  return /[.!?]$/.test(s) ? s : s + ".";
+}
 function brief(d){
   const s = lead(d);
   return s.length > 68 ? s.slice(0,66).replace(/\s+\S*$/,"") + "\u2026" : s;
@@ -639,7 +651,7 @@ function renderPanel(){
     col.innerHTML = `<div class="panel out">`+
       `<button class="back" id="back">&larr; Back to the list</button>`+
       `<h2 class="pn">${esc(p.name)}</h2>`+
-      `<p class="pd">${esc(p.desc)}</p>`+
+      `<p class="pd">${esc(sentence(p.desc))}</p>`+
       `<div class="whynot"><span class="k">not on this disk</span> ${keys(esc(p.why))}</div>`+
       `<div class="more"><span class="k">details and provenance</span><dl>`+
       `<dt>Would be under</dt><dd>${esc(p.sub)}</dd>`+
@@ -664,6 +676,7 @@ function renderPanel(){
   add("Kind", esc(p.cat)+" &middot; "+esc(p.sub));
   add("On the disk", `<code>/dd/${esc(p.dir)}/${esc(p.name)}</code>`+(p.size?` &middot; ${kb(p.size)}`:""));
   const i=p.info||{};
+  add("Its own summary", i.purpose ? esc(sentence(i.purpose)) : "");
   add("Version",   esc(i.version));
   add("Author",    esc(i.author));
   add("Copyright", esc(i.copyright));
@@ -702,7 +715,7 @@ function renderPanel(){
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
     `<h2 class="pn">${esc(p.name)}</h2>`+
-    `<p class="pd">${esc(i.purpose||lead(p.desc))}</p>`+
+    `<p class="pd">${esc(sentence(p.desc))}</p>`+
     `<div class="try"><code class="copycmd" tabindex="0" title="tap to copy"><span class="pr">${esc(PROMPT[shell])}</span><span class="ct">${esc(tryCmd)}</span></code></div>`+
     runItHTML(shot)+
     (p.shadows?`<p class="shadow"><b>Your OS-9 has a <code>${esc(p.name)}</code> of its own.</b> `+
