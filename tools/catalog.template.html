@@ -163,6 +163,7 @@
   .try code .pr{color:var(--faint)}
   .runit{margin:8px 0 0;font-size:13.5px}
   .runit.none{color:var(--faint)}
+  .runit .rneed{color:var(--faint)}
   .try code.copycmd{cursor:pointer;position:relative;transition:background .15s}
   .try code.copycmd:hover{background:var(--rule)}
   .try code.copycmd:focus-visible{outline:2px solid var(--faint);outline-offset:2px}
@@ -390,8 +391,11 @@ function runItHTML(shot){
   // of sight (docs/try/setup.json): the directory it ran in, what it loaded.
   const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"")+
               (shot.n?"&card="+encodeURIComponent(shot.n):"");
-  return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener">Try it in your browser</a> &mdash; the command is typed for you; press Enter to run it`+
-    (h1?` &mdash; needs your own OS-9 attached as /h1`:"")+`</p>`;
+  // The link is the whole offer; how it works is for the first visit only,
+  // so it goes in the tooltip (2026-09-26).  What it NEEDS stays in view.
+  return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener" `+
+    `title="Opens the disk in your browser with this command typed; press Enter to run it">Try it in your browser</a>`+
+    (h1?` <span class="rneed">(needs your own OS-9 as /h1)</span>`:"")+`</p>`;
 }
 function tryFor(shot){
   if(!shot) return null;
@@ -699,7 +703,7 @@ function renderPanel(){
     `<button class="back" id="back">&larr; Back to the list</button>`+
     `<h2 class="pn">${esc(p.name)}</h2>`+
     `<p class="pd">${esc(i.purpose||lead(p.desc))}</p>`+
-    `<div class="try"><span class="k">try it</span><code class="copycmd" tabindex="0" title="tap to copy"><span class="pr">${esc(PROMPT[shell])}</span><span class="ct">${esc(tryCmd)}</span></code></div>`+
+    `<div class="try"><code class="copycmd" tabindex="0" title="tap to copy"><span class="pr">${esc(PROMPT[shell])}</span><span class="ct">${esc(tryCmd)}</span></code></div>`+
     runItHTML(shot)+
     (p.shadows?`<p class="shadow"><b>Your OS-9 has a <code>${esc(p.name)}</code> of its own.</b> `+
       `This is a different program under the same name. Nothing is overwritten by reading this disk `+
