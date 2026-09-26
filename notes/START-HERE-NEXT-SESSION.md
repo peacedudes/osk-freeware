@@ -13,14 +13,15 @@ session's narrative goes into the history file, not here.
 - **Harnesses run as `tester`**, not the super-user.  A data-test family
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
-- **Emulator: os9exec `289d55e`** (fix/scf-pd-eor) is the checkpoint last
-  verified -- suite 1017/1017 twice on 2026-09-25 (after the list and
-  mmon changes; nn's fix after it was checked by its own families),
-  play-tests 151/151 on 2026-09-24, as tester on a fresh image.  docs/try runs it.  The os9exec
-  release commit is still to come (CPU/FPU review, console restructure):
-  when it is named, pin it, rebuild docs/try from it (tools/wasm-web.sh in
-  a `git archive' export; keep our page's own edits), and re-run.
-  `lesspipe' needs 2a95c75 or later; mmon's cases need 289d55e or later.
+- **Emulator: os9exec `8d7d870`** (fix/scf-pd-eor), named by the os9exec
+  session as the release candidate on 2026-09-25 and not yet pushed there.
+  Verified on it: suite 1019/1019 twice on a fresh image as it ships
+  (modules publicly writable), play-tests 151/151, as tester.  docs/try
+  runs it.  Still to do when os9exec pushes its final commit: freeze
+  .github/workflows/build-image.yml's OS9EXEC_REF to that commit (it tracks
+  the branch until then, as its own comments say), and re-run if the final
+  commit is not 8d7d870.  `lesspipe' needs 2a95c75 or later; mmon's cases
+  need 289d55e or later.
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
   Never make it public.
@@ -46,9 +47,9 @@ entry test patched, collect.cases asserts it.
 
 ## Work, in order -- take the top one not done, never ask which
 
-1. **os9exec's release commit**: when the os9exec session names it, pin it,
-   rebuild docs/try, run the suite twice and the play-tests as tester, and
-   drive pagers and pipelines on a real terminal (tools/playtests/lesspipe).
+1. **os9exec's final commit**: when it is pushed, freeze CI's
+   OS9EXEC_REF to it; if it is not 8d7d870, rebuild docs/try from it and
+   run the suite twice and the play-tests again.
 2. **Defects still open** (each needs a measurement first): none known.
    nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
    so nn would not save twice to its own file for tester; global.c now
