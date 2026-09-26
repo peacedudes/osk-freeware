@@ -106,8 +106,10 @@ def split_command(cmd):
     parts = [p.strip() for p in cmd.split(";")]
     setup, command = parts[:-1], parts[-1]
     for s in setup:
-        if not re.match(r"^(load|chd|chx)\s+\S", s):
-            sys.exit("only `load X', `chd X' or `chx X' may precede the command: %s" % cmd)
+        # `setenv NAME VALUE' too: robots, shuffle and gnuchess answer
+        # `Unknown terminal type' until TERM and TERMCAP are set (2026-09-26).
+        if not re.match(r"^(load|chd|chx)\s+\S|^setenv\s+\S+\s+\S", s):
+            sys.exit("only `load X', `chd X', `chx X' or `setenv N V' may precede the command: %s" % cmd)
     return setup, command, stdin
 
 

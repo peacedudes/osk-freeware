@@ -16,7 +16,7 @@ Other options:
 -b, +block-size N	block size of Nx512 bytes (default N=4)
 -B, +read-full-blocks	reblock as we read (for reading 4.2BSD pipes)
 -C, +directory DIR	change to directory DIR
--f, +file [HOSTNAME:]F	use archive file or device F (default /mt0)
+-f, +file [HOSTNAME:]F	use archive file or device F (default tar.out)
 -F, +info-script F	run script at end of each tape (implies -M)
 -G, +incremental	create/list/extract old GNU-format incremental backup
 -g, +listed-incremental F create/list/extract new GNU-format incremental backup
