@@ -84,7 +84,6 @@ initvdu|Communications|Terminal & session
 input|Communications|Terminal & session
 sbreak|Communications|Terminal & session
 screen|System & modules|Utilities
-screen_nocio|System & modules|Utilities
 setterm|Communications|Terminal & session
 tsmon2|Communications|Terminal & session
 

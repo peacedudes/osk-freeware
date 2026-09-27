@@ -4304,15 +4304,6 @@
 "builtin cd /dd/tmp/SCRN"
 ]
 },
-"screen_nocio": {
-"setup": [
-"load /h1/CMDS/shell",
-"rm -rf /dd/tmp/UTILA/home > /nil 2>/nil",
-"mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil",
-"printf 'today\\r' > /dd/tmp/UTILA/home/.screens/hi",
-"export HOME=/dd/tmp/UTILA/home"
-]
-},
 "scsi_mm1a": {
 "setup": [
 "builtin cd /dd"

@@ -911,7 +911,6 @@ umusek|none|it takes no options; it wants a hardware screen
 unpacklib.os9|unpacklib.os9 -?|
 ynad|none|it takes no options; its commands are inside
 bootlogger|none|it takes no options and prints nothing
-screen_nocio|none|-v prints its version; it wants a $HOME/.screens directory
 transfer|transfer -?|
 preset|none|it takes no options and ignores any given
 vlen|none|it takes no options and ignores any given

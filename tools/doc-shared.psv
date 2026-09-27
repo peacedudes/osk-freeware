@@ -17,7 +17,6 @@ kept|README-KEEP|see keep
 unkeep|README-KEEP|see keep
 vi_1.0|vi|PVIC 1.0; DOC/vi is PVIC 1.0a's manual and the two differ only in fixes
 m4_0.5|m4|the same GNU m4 0.50 as CMDS/m4, eight bytes longer for its name
-screen_nocio|screen|a trap-free build of CMDS/screen, from the same source
 vi.elvis|elvis|elvis 1.7 under the name vi; elvis.doc documents every name it answers to
 elvis_input|elvis|elvis 1.7 under the name input; elvis.doc documents every name it answers to
 ctags.elvis|ctags.doc|elvis 1.7's own ctags, documented in DOC/elvis/ctags.doc

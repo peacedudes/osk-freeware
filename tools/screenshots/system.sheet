@@ -1345,23 +1345,6 @@ run     bootlogger; echo "status $?"
 wait    4
 run     cat SYS/bootlog
 wait    3
-shot    screen_nocio
-cap     screen_nocio is the trap-free build of `screen', a login greeting:
-cap     it picks a file at random from $HOME/.screens and runs it through
-cap     `shell' -- your own OS-9's, which SYS/login loads from /h1.  Here
-cap     the one file holds `today', so the greeting is the date in words.
-try     screen_nocio
-run     load /h1/CMDS/shell
-wait    3
-run     rm -rf /dd/tmp/UTILA/home > /nil 2>/nil
-run     mkdir -p /dd/tmp/UTILA/home/.screens > /nil 2>/nil
-run     printf 'today\r' > /dd/tmp/UTILA/home/.screens/hi
-run     export HOME=/dd/tmp/UTILA/home
-run     clear
-wait    1
-run     screen_nocio
-wait    6
-
 shot    transfer
 cap     transfer copies files from GDOS disks to OS-9 and takes no options.
 cap     It wants the GDOS device DGDOS0, which is not present, and says so.

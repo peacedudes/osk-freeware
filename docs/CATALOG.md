@@ -1,6 +1,6 @@
 # What is on this disk
 
-1118 programs of OS-9/68000 community software, by what each is for.  A star marks a program that uses Microware's `cio`, which is on the disk too.
+1117 programs of OS-9/68000 community software, by what each is for.  A star marks a program that uses Microware's `cio`, which is on the disk too.
 
 `docs/index.html` has a card for each, with a screen of it running.  On the disk, `man <name>` reads its documents.
 
@@ -20,7 +20,7 @@
 | [Games](#games) | 117 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 142 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 141 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 20 | Calculators, plotting, orbits and number theory. |
@@ -1475,7 +1475,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>142 programs</summary>
+<details><summary>141 programs</summary>
 
 **Devices & disks**
 
@@ -1655,7 +1655,6 @@
 | `ptxminst` | installs Ptxm, the path-table kernel extension; load ptxm first |
 | `rndir` | &#9733; renames the subdirectories of the current directory to upper case, or lower with `-l'; `-q' works silently.  It needs your own OS-9's dir, rename and del loaded<br>`Syntax: rndir [<opt>]` |
 | `screen` | `screens': runs a random file from $HOME/.screens as a login greeting, through system(), so your OS-9's `shell' must be on your execution path. Not the terminal multiplexer. Source in SRC/screen, man page DOC/screen/screens.6 |
-| `screen_nocio` | a login greeting: runs a file picked at random from $HOME/.screens -- the trap-free build of CMDS/screen |
 | `scsiutil` | talks to a SCSI device: inquiry, capacity, read sectors, eject, and audio CD control -- table of contents, play, volume<br>`SCSIutil V2.02 [Jan 28 1997 : 15:59:35] - written by Gary Duncan` |
 | `setime2` | Y2K: set the system time with the year counted from 1900 -- `setime2 126 9 3 14 30 0' is 3 September 2026<br>`Syntax:    setime2 [<opt>] [<yyy mm dd hh mm ss [am/pm]>] [<opt>]` |
 | `setyear` | sets the system year, and only the year -- `setyear 2026' -- leaving the month, day and time alone. It takes 1970 to 2050 and prints the date it ends up with<br>`Syntax:    setyear <YYYY>` |

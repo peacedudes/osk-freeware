@@ -87,7 +87,6 @@ rsconvert|Memory size in its header raised from about 11K to 32K; its parser ove
 rsdsk|Rebuilt from its source rather than shipped as the author's binary; nothing was changed.
 rstory|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
 sbatch|Built with MNews's spool and command directories changed from the package's defaults, as its install notes ask, so it does not share UUCPbb's news spool.
-screen_nocio|Renamed from screen, and its module from screen, so it no longer answers for the screen in CMDS. One line fixed in scandir.c: a file counter was never set, and it died with a bus error on the first file it accepted.
 sed|This is the archive's GNU sed 1.06 binary, unchanged. It took the name because the build from source that held it answered every script with No more memory.
 sed_1.06|Module name changed from sed to sed_1.06 to match its file, so loading it no longer answers for the sed in CMDS. Otherwise identical to the archive's.
 NETPBM/sirtopnm|Rebuilt with one loop bound corrected: it skipped two bytes too few of the SIR header, so every colour plane came back shifted and a SIR file did not convert back to the picture it came from.
@@ -153,7 +152,7 @@ qp|Rebuilt from its source with one change: it hands the expanded command to $SH
 cuts|Rebuilt from its source, trap-free, with one change: the date in the header it writes has two year digits again -- from 2000 on it wrote three, and the decoder then lost the file's name and type. The archive build could not encode at all (it filled memory) and decoded only line ends.
 crypto|Rebuilt from its source, trap-free. The archive build ended the whole session when used as a filter; this one encodes and writes its output.
 unpacklib|Rebuilt from its source, trap-free. The archive build stopped at `Wrong SYNC long word' after the first module of every library; this one takes a library apart whole.
-screen|Rebuilt from its source, trap-free, with one line fixed in scandir.c: a file counter was never set, and the archive build died with a bus error on the first file it picked. It is the same build as REBUILT/screen_nocio, under its own name.
+screen|Rebuilt from its source, trap-free, with one line fixed in scandir.c: a file counter was never set, and the archive build died with a bus error on the first file it picked.
 lispmtopgm|Rebuilt from its source with two changes: its maxval is one less than 2 to the depth, so an 8-bit image is no longer refused, and it skips each row's padding, so an image whose width is not a multiple of 32 comes back row for row.
 dm|Rebuilt from its source for an ANSI or vt100 terminal: the arrow keys move the bar as Ctrl-N and Ctrl-P do, the bar shows in reverse video where there is no colour, and it no longer needs cio.
 editor|Rebuilt from its source; at the end of its input it now leaves as `!' does, where it redrew its menu for ever.
