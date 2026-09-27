@@ -465,13 +465,20 @@ def check_src_screened(root):
     if not os.path.isdir(src):
         return True, ""
     files = [os.path.join(r, f) for r, _, fs in os.walk(src) for f in fs]
-    done = subprocess.run([sys.executable, screen, "-q"] + files,
-                          capture_output=True, text=True)
+    # In batches: every file on one command line passes under `disk' and
+    # overflows ARG_MAX once the tree sits under a long temporary path --
+    # which is where check_the_checks puts its copy, so the crash here
+    # stopped the run and reported every later check BLIND (2026-09-26).
+    report = ""
+    for i in range(0, len(files), 1000):
+        report += subprocess.run(
+            [sys.executable, screen, "-q"] + files[i:i + 1000],
+            capture_output=True, text=True).stdout
 
     STRONG = ("SYSTEM SOURCE", "IDENTICAL to", "Microware copyright",
               "proprietary", "% of its lines")
     bad, path = [], None
-    for line in done.stdout.splitlines():
+    for line in report.splitlines():
         if line.startswith("FLAG"):
             path = line.split(None, 1)[1].strip()
         elif path and any(s in line for s in STRONG):
@@ -1240,7 +1247,7 @@ def check_cio_macro_population(root):
     for n in ("autolf", "cat", "detab"):
         if n in listed:
             problems.append("%s is listed and must not be (it never calls the stub)" % n)
-    for n in ("liborder", "unpacklib"):
+    for n in ("liborder", "loan"):
         if n not in listed:
             problems.append("%s is NOT listed and must be -- it is one of the "
                             "two holders of the most call sites, so a scan "
