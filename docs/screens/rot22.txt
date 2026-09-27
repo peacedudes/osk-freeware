@@ -1,23 +1,23 @@
 README-CIO -- the starred programs, and the five modules that serve
 
+=
+  = ==                 ====
+A=s=ar=  =     ==in== =/IND X=  ==   =  ==   =    =   ==       =
+runtime      =oe=le=D=Ccio = ===      ==pr   a    e   on=  =  ic     h
+`math88=nra =slduors` ` 0   f m  n = heall= anm    ===    =ft   =  =t= e
+Allt   =  a=n   CM   O l 2'E.o e  = =y    o=  d=    so ee o  h  r= a= e
+rec fiv  ,rp in'  DS, s c 0'edrwnea=Microw,ge's=perdssmio=maSO',Co=.re
+su ordsothe`cxch nge : nhludtarrithrrog amarrun=he  iwsth;`othURgEwotx'
+  p ly.1'Thee tar t .ciTyeuswhatedp rogram d pe=dsrme, no`nwhain tSla
+Theplisetwaseseasure lsbyoru ningaeperyrpr geam onrondisknwithttietfic  m
+modules  ak  maway.elA,`cio'n tri  vinsid sarbinaryaisinotg ide:h`vi'vts
+containttitennd doesdnot nee sthe g  ule,    l   c   r a   u`gn   es  k .
+and `g' lack it and do.     d    nm d    eohi e ` y e w r ,    u h  s  s
+       s    a                      o      w    n   b     '
 
-==        = ==       ===   = =    =
-Som==o====e=na=======DOC====EX====r==a===a            ===         ==
-one==ffM crowamessinunti/INDrapcardy= sst` =      =r==ean         g
-foreoomeh`m thre'`mrth 8me,t`cslmooruec:l0c ====         =   =     a
-THEYsR    EaE.  Allafi8e `odules`are ` s        =  n   ly =   == th  =ne
-Microw Nt'sRpe` issionv- mSOURCES.tx      i0o`Afst     M  t =eop  edam n   s
-nothina    ppl r othing 1 nd fetch  tor co   .iso ainaC DS=tl cf=d   , ae d
-progr giesu n y n , no , a t it la not e  r `dth ke  c ng  l n lr ee w=  e
-     am, epe dsmon    t -ha       cks.h ng.ssT er  xr ael , i o unatm  in
-This fild expla ns whatwthe star means,ianddw h ert  h i e . Yuu    dat  d
-where yo emightiwant a different arrangement   t , ad t n s y   w ca  dth
-        u                                   . a s o  o   l h ot  h  s  o
-Why so many programs need it                 h   t        t e  wo    es
-----------------------------
+WHY SO MANY
+-----------
 
-`cc -qixm` -- the C library in a shared trap handler rather than linked into
-every binary -- was the normal way to build for OS-9, and it is why a starred
-program is often a fraction of the size of a trap-free one.  Much of this
-collection was rebuilt trap-free (`-qm`) so it would run with nothing loaded
-at all; most of the programs under CMDS need no module whatever.  The rest
+`cc -qixm' -- the C library in a shared trap handler rather than linked
+into every binary -- was the normal way to build for OS-9, and it is why
+a starred program is often a fraction of the size of a trap-free one.

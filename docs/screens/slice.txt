@@ -1,22 +1,20 @@
-$ slice -f README-SHELLS '^[A-Z][A-Z ,-]*$' part#n
-slice: 14 lines rejected to /nil
-$ ls -l
-total 24064
--rw-rw-rw-   1 7        1           11332 Sep 26 08:32 README-SHELLS
--rw-------   1 7        1            8746 Sep 26 08:32 part1
--rw-------   1 7        1             541 Sep 26 08:32 part2
--rw-------   1 7        1             599 Sep 26 08:32 part3
--rw-------   1 7        1             780 Sep 26 08:32 part4
-$ cat part2
-CHOOSING
---------
+  Costs: it needs `cio', which ships here by Microware's permission and
+  which your own system may or may not carry.  At start-up os9exec prints
+  four `F$SetSys: unimplemented 03D8' lines; they are the emulator's
+  noise, not an error.
 
-  You want a shell to work in                            bash
-  You want $SHELL to name a shell that can parse         ksh
-  You want the smallest real Bourne shell                sh
-  You want a real `chd' that moves the data directory    sh
-  You have no cio and cannot get one                     bash or sh
-  You want a menu for somebody else to use               gshell
 
-  If you take exactly one file: `bash'.  If you take two, `bash' and `ksh',
-  and set SHELL to the ksh -- SYS/login on this disk shows the line.
+gshell and mshell -- menus
+--------------------------
+
+  `gshell' draws a full-screen file browser: a lettered list of the
+  current directory, `+' and `-' to page, `.' to change directory, a
+  letter to run a file and its lower-case twin to run it with parameters.
+  `assembler', `compiler' and `editor' on this disk are the same engine
+  pointed at one job each.  Help text in DOC/gshell.
+
+  `mshell' reads a menu file named on its command line, and says
+  `Could not open <name> (menufile)' without one.
+
+  Both want TERM set.  Take one to hand somebody a machine that runs four
+  things and nothing else, not to type at.

@@ -1,13 +1,13 @@
 $ sepwords < DOC/README-CIO | sort | uniq -c | sort -nr | head -n 12
-109 the
-64 and
-58 a
-52 is
-37 of
-33 it
-27 --
-23 to
-20 that
-19 in
-17 on
-17 program
+71 the
+48 a
+38 and
+32 is
+16 program
+15 The
+15 it
+15 of
+13 in
+13 to
+13 with
+12 --
