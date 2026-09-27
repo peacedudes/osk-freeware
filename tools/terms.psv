@@ -891,7 +891,7 @@ sonnet|No copyright or licence statement in the sonnet sources or README (Chris 
 sort|No licence text travels with it: the binary names itself "GNU textutils version 1.3" and came from Kei Thomsen's binary-only GNU archive, which carries no COPYING.|CMDS/sort (strings); GNU/gnu.bin.t.gz member sort (same module, same size); SOURCES.txt lines 241-247
 soundex|Public domain: "released to the public domain: anyone may use it for any purpose." N. Dean Pentcheff, 1989.|SRC/soundex/soundex.c lines 3-6
 sox|No licence text accompanied the OS-9 archive. The manual's only notice covers the echoplex effect: Copyright (C) 1989 Jef Poskanzer, "Permission to use, copy, modify, and distribute this software ... without fee".|APPS/sox_osk.lzh member sox (identical); DOC/sox/sox.man lines 289-298; SOURCES.txt lines 183-187
-space|(c) 1990 by L.Zeller. Public, with condition.; May only be used under the conditions listed in the documentation (help file).|DOC/space/info_space
+space|(c) 1990 by L.Zeller. Public, with condition.; May only be used under the conditions listed in the documentation (help file), which prohibit use for military purposes.|DOC/space/info_space
 spctoppm|Each netpbm author granted the right to use and distribute their code without charge, on a non-commercial basis; many allow more -- see each file's notice.|DOC/netpbm/COPYRIGHT
 speech|No copyright or licence statement in SRC/speech or its documentation. Its rules are derived from Naval Research Laboratory Report 7948 (1976).|SRC/speech/english.c lines 1-16
 spew|Copyright 1987 Greg Smith. "Permission is granted to freely use and distribute this software."|SOURCES.txt line 1054

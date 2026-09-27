@@ -624,6 +624,10 @@ def gather(root, catfile):
             p["help"] = helps[p["name"]]
         if p["name"] in terms:
             p["terms"] = terms[p["name"]]
+            # The author's own condition, from the terms rather than the
+            # INDEX line, which names it for two of the eight (2026-09-27).
+            if re.search(r"military|peaceful", str(p["terms"]), re.I):
+                p["military"] = True
         if p["name"] in requires:
             p["requires"] = requires[p["name"]]
         sub = (p.get("dir") or "").replace("CMDS/", "", 1)

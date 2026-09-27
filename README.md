@@ -131,8 +131,8 @@ each program; `LICENSE` says how to read them. They include:
 - GPL and BSD packages, with their `COPYING` files in `disk/DOC/`
 - public domain and author-distributed usenet postings
 - SB-Prolog under SUNY Stony Brook's licence, which travels with it
-- eight whose authors asked for no military use, or peaceful use only
-  (`DOC/EFFO-INFO`)
+- some whose authors asked for no military use, or peaceful use only;
+  `SOURCES.txt` lists them
 - a few with no stated terms, recorded as such
 
 If you hold rights in something here and want it removed, say so and it
