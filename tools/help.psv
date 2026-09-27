@@ -1085,7 +1085,7 @@ dds|none|it has no options; it prompts with Ok and takes BASIC -- RUN, LIST, NEW
 theorem|none|it takes five arguments: the expression, the interval, the step and the initial value; `-r 0 0 0 0' reverses standard input instead
 westley|none|it takes one argument, the number of petals
 fact|none|its output is its whole behaviour; it takes no options
-man|none|a shell script -- run it with no arguments and it prints its own syntax, but the SDK shell the help capture runs at cannot fork a script, so the card carries the syntax from the script itself
+man|chd /dd/CMDS; ksh man|a shell script, so at Microware's shell it is run through ksh; from bash, plain `man'
 resize|resize -?|
 ltb|none|it takes the word list and the name for the table it writes
 stevie|none|it takes the file to edit; `:q' leaves and `:wq' saves

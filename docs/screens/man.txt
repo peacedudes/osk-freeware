@@ -1,23 +1,24 @@
-MD5 (1)                   Feb 14, 1994                    MD5 (1)
+elm            - the Elm mail reader itself -- full-screen, menu-driven
 
+Its documents, in the order they follow this page:
 
+  1  /dd/SRC/infoxpress/BNU/ELM_2.4/DOC/elm.1   (its manual page)
+  2  /dd/DOC/elm/Overview
+  3  /dd/DOC/elm/Readme
+  4  /dd/DOC/elm/Changes
+  5  /dd/DOC/elm/Instruct
+  6  /dd/DOC/elm/Notice
 
-NAME
-     md5 - calculate a message-digest fingerprint (checksum) for a file
+Space pages on, :n goes to the next and :p comes back, q leaves.
 
-SYNOPSIS
-     md5  [ -t | -x | -sstring | filename(s) ]
-
-DESCRIPTION
-     md5    takes  as  input  a message of arbitrary length and produces as
-     output a 128-bit "fingerprint" or "message digest" of the input.    It
-     is  conjectured  that  it is computationally infeasible to produce two
-     messages having the same message digest, or  to  produce  any  message
-     having a  given prespecified target message digest.  The MD5 algorithm
-     is intended for digital signature applications,  where  a  large  file
-:
-     private (secret) key under a public-key cryptosystem such as RSA.
-
-OPTIONS
-     The following four options may be used in any combination, except that
-          filename(s)  must be the last objects on the command line.
+Its source is here too: man -s elm
+~
+~
+~
+~
+~
+~
+~
+~
+~
+/dd/tmp/man.4/about-elm#(file#1#of#7)#(END)#-#Next:#/dd/tmp/man.4/elm.1

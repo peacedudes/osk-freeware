@@ -1,0 +1,59 @@
+family  man
+# The disk's own `man' -- the librarian (CMDS/man, a ksh script), reading
+# DOC/WHATIS and DOC/DOCS, which tools/gen_docmap.py writes.  Each case is
+# one thing a reader asks it.  TERM and TMACDIR as SYS/login sets them;
+# PATH as well, since a case's own pipe runs at bash.
+setup   export TERM=vt100 TMACDIR=/dd/LIB PATH=/dd/CMDS
+
+# Its temporary directory goes when it is done.  (Not `> /nil' here: /nil is
+# a character device, so less takes it for a terminal and waits.)  First,
+# because a piped `man' is still tidying up after its pipe has returned.
+case    man-leaves-nothing-in-tmp
+run     A=$(ls /dd/tmp | grep -c '^man\.'); man -w hp > /nil; man hp < /nil > /dd/tmp/man-out; B=$(ls /dd/tmp | grep -c '^man\.'); [ "$A" = "$B" ] && echo "tmp as it was"
+expect  tmp as it was
+
+# What a program is, in a line.
+case    man-f-says-what-a-program-is
+run     man -f hp
+expect  hp             - a reverse Polish calculator in floating point
+
+# Where everything is: the manual page and the source file, by pathlist.
+case    man-w-lists-documents-and-source
+run     man -w westley
+expect  manual page  /dd/DOC/westley/westley.6
+expect  source       /dd/SRC/ioccc/westley.c
+
+# Programs found by what they do, not by name.
+case    man-k-finds-programs-by-what-they-do
+run     man -k chess
+expect  gnuchess       - GNU Chess
+expect  fuddle         - chess against the computer
+
+# A roff page is formatted: its NAME heading comes out overstruck bold.
+case    man-formats-a-manual-page
+run     man hp < /nil | head -n 12
+expect  Reverse Polish Notation calculator
+
+# More than one document: a cover page lists them in the order they follow.
+case    man-lists-several-documents-on-a-cover-page
+run     man dm < /nil | head -n 8
+expect  Its documents, in the order they follow this page:
+expect  1  /dd/DOC/dm/dm.doc
+
+# The source, read the same way.
+case    man-s-reads-the-source
+run     man -s westley < /nil | head -n 12
+expect  Its source, a file at a time:
+expect  #define putchar(x) fputc((x),stdout)
+
+# A name nothing is called: what the catalogue says about the word instead.
+case    man-offers-what-mentions-an-unknown-name
+run     man calcul
+expect  man: nothing on this disk is called 'calcul'
+expect  rpn            - reverse-Polish calculator
+
+# A program with no document: what it says when asked for help.
+case    man-falls-back-to-its-own-help
+run     man biff < /nil | head -n 8
+expect  It has no manual here.  Asked for help, it says:
+expect  pipe English text through it

@@ -180,6 +180,14 @@
      the reader should not have to open anything to see the options.  The
      header line is the command that asked for it, at the reader's prompt. */
   .help{margin:16px 0 2px}
+  .docs{margin:16px 0 2px}
+  .docs .k{display:block;margin:0 0 6px}
+  .docs ul.dl{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.6}
+  .docs .dk{color:var(--faint);font-size:12px}
+  .docs button.readman{font-family:var(--mono);font-size:13px;cursor:pointer;padding:3px 10px;
+    border:1px solid var(--rule);border-radius:6px;background:transparent;color:inherit}
+  .docs .manpanel iframe{display:block;width:100%;height:34em;margin-top:8px;border:1px solid var(--rule);
+    border-radius:6px;background:#101418}
   .help .k{display:block;margin:0 0 6px}
   .help pre.usage{font-family:var(--mono);font-size:12px;line-height:1.45;margin:0;
     white-space:pre-wrap;overflow-wrap:anywhere;background:var(--paper);
@@ -719,6 +727,18 @@ function renderPanel(){
       `<pre class="usage"><span class="pr">${esc(PROMPT[shell])}</span>${esc(h.cmd)}\n${esc(h.text)}</pre></div>`
     : `<div class="help"><div class="k">its own help</div><span class="none">${esc(h.note)}</span></div>`;
 
+  // ITS DOCUMENTS: what the disk's own `man' has for it (DOC/DOCS), and a
+  // button that runs `man <name>' in the browser, in a panel right here.
+  const dl=p.dl||[];
+  const KIND={man:"manual page",src:"source"};
+  const docsHTML=`<div class="docs"><div class="k">its documents</div>`+
+    (dl.length
+      ? `<ul class="dl">${dl.map(([k,f])=>`<li><code>${esc(f)}</code>${KIND[k]?` <span class="dk">${KIND[k]}</span>`:""}</li>`).join("")}</ul>`
+      : `<span class="none">None but its line in DOC/INDEX and its own help.</span>`)+
+    (TRY_PAGE?`<p class="runit"><button class="readman" data-n="${esc(p.name)}">man ${esc(p.name)}</button>`+
+      ` <span class="rneed">reads them here, on the disk, in your browser</span></p><div class="manpanel"></div>`:"")+
+    `</div>`;
+
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
     `<h2 class="pn">${esc(p.name)}</h2>`+
@@ -734,6 +754,7 @@ function renderPanel(){
     (needs.length?`<div class="needs"><span class="k">needs</span><span>${needs.join(" &middot; ")}${data.length?` <span class="okk">&middot; ${data.length>1?"all ":""}on the disk</span>`:""}</span></div>`:"")+
     seeHTML+
     helpHTML+
+    docsHTML+
     bringsHTML(p)+
     (D.length?`<div class="more"><span class="k">details and provenance</span><dl>${D.join("")}</dl></div>`:"")+
     `</div>`;
@@ -880,6 +901,16 @@ function copyCmd(code){
 document.addEventListener("click", e=>{
   const code=e.target.closest && e.target.closest(".copycmd");
   if(code) copyCmd(code);
+});
+// `man <name>' in a panel: the whole disk, booted in an iframe, runs the
+// disk's own man on that name.  A second press closes it.
+document.addEventListener("click", e=>{
+  const b=e.target.closest && e.target.closest(".readman");
+  if(!b) return;
+  const panel=b.closest(".docs").querySelector(".manpanel");
+  if(panel.firstChild){ panel.innerHTML=""; return; }
+  panel.innerHTML=`<iframe title="man ${esc(b.dataset.n)}" src="${esc(TRY_PAGE+"?man="+encodeURIComponent(b.dataset.n)+"&embed=1")}"></iframe>`;
+  panel.querySelector("iframe").focus();
 });
 document.addEventListener("keydown", e=>{
   if(e.key!=="Enter" && e.key!==" ") return;

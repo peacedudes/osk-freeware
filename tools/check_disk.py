@@ -427,6 +427,21 @@ def check_manpages(root):
     return done.returncode == 0, "DOC/MANPAGES is stale"
 
 
+def check_docmap(root):
+    """DOC/DOCS and DOC/WHATIS must be what tools/gen_docmap.py makes now.
+
+    The disk's `man' answers from these two, so a stale pair is the same
+    silent failure as a stale MANPAGES: the document is there and `man'
+    does not offer it, or offers a file that has gone.
+    """
+    gen = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gen_docmap.py")
+    done = subprocess.run([sys.executable, gen, root, "--check"],
+                          capture_output=True, text=True)
+    if done.returncode:
+        print("    " + done.stdout.strip())
+    return done.returncode == 0, "DOC/DOCS or DOC/WHATIS is stale"
+
+
 def check_src_screened(root):
     """No unreviewed Microware material in the shipped source trees.
 
@@ -2001,6 +2016,7 @@ CHECKS = [
     ("every recipe names a real tree", check_recipes),
     ("every program has a category", check_categories),
     ("DOC/DEPENDS is up to date", check_depends),
+    ("DOC/DOCS is up to date", check_docmap),
     ("the manual index is up to date", check_manpages),
     ("DOC/USAGE is up to date", check_usage_is_current),
     ("no unscreened Microware source", check_src_screened),

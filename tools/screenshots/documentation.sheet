@@ -30,21 +30,17 @@ run     ls -l
 wait    4
 
 shot    man
-size    30 80
-cap     The md5 page: `man' looks the name up in DOC/MANPAGES, formats the
-cap     page with nroff and shows it a screen at a time with less.  `man -k
-cap     <word>' lists the pages whose name contains a word, and `man -w
-cap     <name>' says where a page is.  It is a shell script, so you can read
-cap     it as well as run it.  Written for this collection; anyone who wants
-cap     it can have it.
-try     man md5
+cap     The collection's librarian.  `man <name>' shows everything the disk
+cap     has about a program: here elm's documents, listed on a cover page
+cap     and then read one after another in less (:n for the next).
+cap     `man -k <word>' finds programs by what they do; `man -s <name>'
+cap     reads the source.  Written for this collection; it is a shell
+cap     script, so you can read it too.
+try     man elm
 run     clear
 wait    1
-run     man md5
+run     man elm
 wait    16
-snap
-send    q
-wait    3
 
 shot    less
 cap     The first page of the TILE Forth manual, with the file's name on the

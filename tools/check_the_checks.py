@@ -139,6 +139,16 @@ def break_depends(root):
     return "DOC/DEPENDS given an extra line"
 
 
+def break_docmap(root):
+    """A document dropped from DOC/DOCS -- `man' would stop offering it."""
+    p = os.path.join(root, "DOC", "DOCS")
+    lines = open(p, "rb").read().split(b"\r")
+    i = next(i for i, l in enumerate(lines) if l.startswith(b"hp "))
+    del lines[i]
+    open(p, "wb").write(b"\r".join(lines))
+    return "hp's manual page dropped from DOC/DOCS"
+
+
 def break_manpages(root):
     """Drop a page out of the index -- what happens by itself when a manual
     page is added to DOC and the generator is not run."""
@@ -834,6 +844,7 @@ BREAKS = [
     ("categories", "every program has a category", break_categories),
     ("depends", "DOC/DEPENDS is up to date", break_depends),
     ("manual index", "the manual index is up to date", break_manpages),
+    ("document map", "DOC/DOCS is up to date", break_docmap),
     ("usage stale", "DOC/USAGE is up to date", break_usage_stale),
     ("binary magic", "binaries start with their magic", break_binary_magic),
     ("module magic", "every command is a real module", break_module_magic),

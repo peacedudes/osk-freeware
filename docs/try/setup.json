@@ -529,6 +529,7 @@
 },
 "browse": {
 "setup": [
+"/h1/CMDS/load /h1/CMDS/shell",
 "builtin cd /dd"
 ]
 },

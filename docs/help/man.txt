@@ -1,2 +1,11 @@
-$ man
-shell: can't execute "man"  - Error #000:214 (E_FNA) File Not Accessible
+$ chd /dd/CMDS; ksh man
+man -- the librarian for this disk
+
+  man <name>       everything about a program, a document at a time
+  man -k <word>    which programs are about <word>   (man -k chess)
+  man -f <name>    what a program is, in one line
+  man -w <name>    where its documents and source are
+  man -s <name>    read its source
+
+Reading, space pages on, b pages back, /word searches, :n goes to
+the next document and :p comes back.  q leaves.

@@ -603,10 +603,21 @@ def gather(root, catfile):
                                           "requires.psv"))
     changes = load_changes(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                         "changes.psv"))
+    # DOC/DOCS, written by tools/gen_docmap.py for the disk's `man': each
+    # program's documents and source, which the card lists as `man' shows
+    # them (2026-09-27).
+    doclist = {}
+    if os.path.exists(os.path.join(root, "DOC", "DOCS")):
+        for line in read(root, "DOC/DOCS").split("\n"):
+            f = line.split()
+            if len(f) == 3 and f[1] in ("man", "doc", "src"):
+                doclist.setdefault(f[0], []).append([f[1], f[2]])
     out, uncategorised = [], []
     for p in sorted(progs.values(), key=lambda x: x["name"].lower()):
         if not p.get("dir"):
             continue                      # named in INDEX but not on the disk
+        if p["name"] in doclist:
+            p["dl"] = doclist[p["name"]]
         if p["name"] in howto:
             p["howto"] = howto[p["name"]]
         if p["name"] in helps:
@@ -674,7 +685,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src","shadows",
         "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
-        "lang","langnote","changed","changedsrc","out","why")
+        "lang","langnote","changed","changedsrc","out","why","dl")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.

@@ -23,6 +23,8 @@
   #term::after { content: ""; position: absolute; inset: 0; pointer-events: none;
                  background: #fff; opacity: 0; }
   #term.bell::after { opacity: 0.125; }
+  body.embed header { display: none; }
+  body.embed #term { padding: 4px; }
 </style>
 </head>
 <body>
@@ -174,7 +176,16 @@
   // attached as /h1; until then, say so. Attaching reloads this same address,
   // so the command is then typed.
   const params = new URLSearchParams(location.search);
-  const runCmd = params.get('run')?.replace(/[\x00-\x1f\x7f]/g, '') || null;
+  // ?man=<name>: READ A PROGRAM'S DOCUMENTS -- the catalogue's `Read about
+  // it' opens this page in a panel on the card.  Unlike ?run=, this one is
+  // ENTERED for the reader: the page writes the command itself, and the
+  // name is held to letters, digits and . _ + -, so all a link can ever
+  // make it do is `man' on one name (2026-09-27).
+  const manName = /^[\w.+-]{1,40}$/.test(params.get('man') || '') ? params.get('man') : null;
+  const runCmd = manName ? 'man ' + manName
+                         : params.get('run')?.replace(/[\x00-\x1f\x7f]/g, '') || null;
+  // &embed=1: inside a card's panel -- no buttons, no margin, just the terminal.
+  if (params.get('embed')) document.body.classList.add('embed');
   // ?newdisk=1: MAKE A DISK OF YOUR OWN.  A fresh empty 16 MB disk
   // (blank.dd.gz, made with os9exec's `mount -k') is attached as /h1 and the
   // page restarts with it; the link's command -- a `keep' the catalogue's
@@ -291,6 +302,7 @@
     }
     typedRun = true;
     typeText(wantShell ? runCmd : wrapForBash(runCmd));
+    if (manName) typeText('\n');     // text this page chose; see ?man= above
     // Say what the card typed next: a program like forth waits in silence,
     // and nothing on the screen tells a reader it is their turn.
     if (cardKeys.length)
@@ -305,6 +317,7 @@
     // takes the surprise out of the next reload.
     try {
       params.delete('run');
+      params.delete('man');
       const q = params.toString();
       history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
     } catch (e) { /* a browser that refuses replaceState loses nothing else */ }
