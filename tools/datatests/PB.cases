@@ -7,8 +7,9 @@ family  PB
 # SRC/gnuchess/GNUCHESS4.0/SRC) and in tools/patch_uuencode.py.
 #
 # lpsched (tools/patch_lpsched.py) has no case: its fix is in the mail it
-# sends when a job is done, and under os9exec the job never reports done --
-# prjob exits and lpsched stays waiting on its event (2026-09-26).
+# sends when a job is done, through a shell, and a case would race the
+# printing job.  The job itself completes (measured 2026-09-27; an earlier
+# note here said it never did -- that was a probe reading too early).
 load    /h1/CMDS/shell
 setup   export TERM=vt100
 setup   export TERMCAP=/dd/SYS/termcap

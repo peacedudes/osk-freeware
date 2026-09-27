@@ -174,25 +174,26 @@ run     fastmail -d msg.txt tester
 wait    6
 
 shot    filter
-cap     Its usage, then a message handed to it with no rules file: it says
-cap     it could not read .elm/filter_rules in tester's home directory and
-cap     mails the message through unsorted.  It wants a scratch device at /r0
-cap     (a RAM disk; `mount -r=256k /r0' makes one under os9exec), and it
-cap     leaves the terminal without its automatic line feed -- `tmode -lf'
-cap     or a fresh login puts that back.
-try     filter -v <msg.txt
+cap     A message whose subject matches a rule in `rules' is saved into
+cap     `folder', which cat then shows.  It wants a scratch device at /r0
+cap     (a RAM disk; `mount -r=256k /r0' makes one under os9exec).
+try     filter -v -f rules <msg.txt
 run     mount -r=256k /r0
 wait    2
-run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "From tester\rSubject: test\r\rbody\r" > /dd/tmp/EC/msg.txt
+run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf "From tester\rSubject: lunch\r\rNoon at the usual place.\r" > /dd/tmp/EC/msg.txt
 wait    3
+run     echo 'if (subject = "lunch") then save "/dd/tmp/EC/folder"' > /dd/tmp/EC/rules; echo -n > /dd/tmp/EC/folder
+wait    2
 run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
 wait    1
-run     filter -?
-wait    4
-run     filter -v <msg.txt
+run     cat rules
+wait    2
+run     filter -v -f rules <msg.txt
 wait    6
+run     cat folder
+wait    3
 
 shot    frm
 cap     Lists who your mail is from, one line each, with the subject:

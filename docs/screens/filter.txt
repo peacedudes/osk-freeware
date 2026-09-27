@@ -1,7 +1,10 @@
-$ filter -?
-Usage: | filter [-nrvlq] [-f rules] [-o file]
-        or: filter [-c] -[s|S]
-$ filter -v <msg.txt
-filter (Sat Sep 26 11:12:20 2026 tester): Couldn't read filter rules file "/dd/U
-SR/TESTER/.elm/filter_rules"!
-filter (Sat Sep 26 11:12:20 2026 tester): Mailing message to tester
+$ cat rules
+if (subject = "lunch") then save "/dd/tmp/EC/folder"
+$ filter -v -f rules <msg.txt
+filter (Sun Sep 27 13:21:03 2026 tester): Message saved in folder /dd/tmp/EC/fol
+der
+$ cat folder
+From tester
+Subject: lunch
+
+Noon at the usual place.
