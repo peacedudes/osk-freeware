@@ -72,14 +72,19 @@ session's narrative goes into the history file, not here.
 
 ## Work, in order -- take the top one not done, never ask which
 
-1. **The README rewrite** (rdoggett, 2026-09-27): README.md, docs/CATALOG.md
-   and the reader-facing guides, top to bottom, by the rules in memory
-   `os9-write-like-a-librarian' -- short speed-read sentences, each thought
-   once, no filler, no selling; one small glad paragraph that OS-9 still
-   lives, a separate one that this is community software Microware neither
-   endorses nor is part of; highlight `man' and keep/kept/unkeep.
-   Evaluate docs/CATALOG.md against what the page does now.
-2. **Defects still open** (each needs a measurement first): none known.
+1. **The reader-facing rewrite** (rdoggett, 2026-09-27), by the rules in
+   memory `os9-write-like-a-librarian'.  DONE: README.md, disk/readme,
+   the catalogue intro and category blurbs, DOC/README-DOCS.  NEXT, the
+   same way: DOC/README-RUNNING, DOC/README-KEEP, DOC/START-HERE, DOC/STATUS'
+   opening, and the choosers (README-VI and the rest) -- each thought once,
+   no counts in prose, nothing that sells.
+2. **ksh's `read'** (measured 2026-09-27, confirmed by os9exec's trace): a
+   second `while read ... done < file' in a script gets end-of-file at once
+   (c_read in SRC/pdksh/sh/c_sh.c never clears stdin's EOF), and a run of
+   IFS spaces splits into empty fields.  Both are a few lines in c_read,
+   but ksh has no recipe: a -qm build needs pdksh's OSK library (C and .a)
+   and os9lib.  Documented in DOC/README-SHELLS until then.
+3. **Defects still open** (each needs a measurement first): none known.
    nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
    so nn would not save twice to its own file for tester; global.c now
    reads the owner from the descriptor (README.OSK).  (ELM `fastmail' is CLEARED,
@@ -100,15 +105,15 @@ session's narrative goes into the history file, not here.
    mmon is CLEARED (2026-09-25): it wanted its two SysInfo locks and
    logon's path in SYS/mmon.config, and then offers login: on /t1;
    superuser.cases asserts it.
-3. **`tools/panel-exceptions.psv`**: re-test the reasons.  The shapes that
+4. **`tools/panel-exceptions.psv`**: re-test the reasons.  The shapes that
    keep recurring: the disk ships what the reason says is missing; nobody
    started the provider; the card filtered the content away; the program
    was given the wrong invocation.
-4. **A card's command needs the card's setup** -- docs/try/setup.json
+5. **A card's command needs the card's setup** -- docs/try/setup.json
    carries it for the browser.  A card whose hidden setup does something a
    reader could not repeat (staging from /h1, removing a shipped file) is
    worth a second look.
-5. **Housekeeping** (PLAN section 5): notes stay small.
+6. **Housekeeping** (PLAN section 5): notes stay small.
 
 ## The routine
 
