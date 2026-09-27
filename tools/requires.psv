@@ -163,3 +163,4 @@ gcc|GCC139's gcc_cccp and gcc_cc1 loaded (they load as cccp and cc1), and your o
 gcc2|your own OS-9's r68, loaded, to go past -S; l68 and cstart.r to link|measured 2026-09-26: `./gcc2 -c hello.c' makes hello.r; -o stops at `l68: can't open cstart.r'
 gpp|your own OS-9's r68, loaded, for -c|measured 2026-09-26
 gcc272_collect|the whole link it is given: cstart.r, greet.r, libgcc000.l, clibn.l and sys.l|measured 2026-09-26: with the object alone it answers `Unresolved reference _stkcheck'
+pnmsmooth|pnmconvol, resident (`load CMDS/NETPBM/pnmconvol') or in the execution directory: it starts pnmconvol by name|SRC/netpbm/PNM/pnmsmooth.c; measured 2026-09-26

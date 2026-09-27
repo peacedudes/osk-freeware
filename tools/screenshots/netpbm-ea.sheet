@@ -314,24 +314,23 @@ wait    60
 
 shot    pnmsmooth
 size    30 80
-cap     Builds a mean kernel -- every weight equal, here 5 by 5 -- and hands
-cap     it to pnmconvol to smooth an image.  This build cannot hand it on:
-cap     it fills in pnmconvol's arguments before it knows the file names, so
-cap     pnmconvol is given an empty one.  -dump writes the kernel to a file
-cap     instead, and pnmconvol smooths a field of noise with it.
-try     pnmsmooth -size 5 5 -dump k.pgm; pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
-os9     pnmsmooth -size 5 5 -dump k.pgm; pnmconvol k.pgm n.pgm ! pgmtopbm ! pbmtoascii -2x4
+cap     Smooths an image by averaging each pixel with its neighbours: it
+cap     builds a mean kernel -- here 5 by 5, every weight equal -- and hands
+cap     it to pnmconvol, which it starts by name, so pnmconvol is loaded
+cap     first.  A field of noise goes in and comes out softened.
+try     pnmsmooth -size 5 5 n.pgm | pgmtopbm | pbmtoascii -2x4
+os9     pnmsmooth -size 5 5 n.pgm ! pgmtopbm ! pbmtoascii -2x4
 run     rm -rf /dd/tmp/SMOB > /nil 2>/nil; mkdir -p /dd/tmp/SMOB
 wait    3
+run     /h1/CMDS/load /dd/CMDS/NETPBM/pnmconvol
+wait    2
 run     builtin cd /dd/tmp/SMOB
 wait    1
 run     pgmnoise 152 88 > n.pgm
 wait    8
 run     clear
 wait    1
-run     pnmsmooth -size 5 5 -dump k.pgm
-wait    5
-run     pnmconvol k.pgm n.pgm | pgmtopbm | pbmtoascii -2x4
+run     pnmsmooth -size 5 5 n.pgm | pgmtopbm | pbmtoascii -2x4
 wait    90
 
 shot    pnmhistmap

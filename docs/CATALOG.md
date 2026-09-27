@@ -1055,7 +1055,7 @@
 | `pnmrotate` | rotates an image by an angle between -90 and 90 degrees, anti-aliased<br>`usage:  pnmrotate [-noantialias] <angle> [pnmfile]` |
 | `pnmscale` | scales an image by a factor, to a width or height, or into a box (-xysize)<br>**How:** Scales an image: `pnmscale 0.5 file'. Given only a filename it takes that as the scale factor and then waits on empty input, reporting "bad magic number" -- which means you left out the factor, not that your file is bad. The same trap catches pnmdepth, pnmcut, pnmrotate and others. |
 | `pnmshear` | shears an image by an angle, anti-aliased<br>`usage:  pnmshear [-noantialias] <angle> [pnmfile]` |
-| `pnmsmooth` | builds a mean kernel of the size given for pnmconvol.  This build only writes it (-dump): its hand-off to pnmconvol passes an empty file name.  Run `pnmconvol' on the dumped kernel<br>`usage:  pnmsmooth [-size width height] [-dump dumpfile] [pnmfile]` |
+| `pnmsmooth` | smooths an image by averaging each pixel with its neighbours, through a mean kernel of the size given (-size, 3 by 3 by default) that it hands to pnmconvol; -dump writes the kernel<br>`usage:  pnmsmooth [-size width height] [-dump dumpfile] [pnmfile]` |
 | `pnmtile` | repeats an image to fill a width and height<br>`usage:  pnmtile width height [pnmfile]` |
 | `ppm3d` | makes a red-blue stereo anaglyph from a left and a right image<br>`usage:  ppm3d leftppmfile rightppmfile horizontal offset` |
 | `ppmbrighten` | changes the brightness and saturation of an image, or normalises it<br>`usage:  ppmbrighten [-saturation <+-s>] [-value <+-v>] [-normalize] [<ppmfile>]` |

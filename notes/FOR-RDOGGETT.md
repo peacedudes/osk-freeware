@@ -29,14 +29,6 @@ SYS/kept, and /h1/CMDS/fortune ran.  So the button is the whole job: fetch
 that 16 KB, inflate it, hand it to the page's existing attach; `Save /h1'
 already downloads the result.
 
-**54. Rebuild pnmsmooth?**  The shipped binary (archive build) hands
-pnmconvol empty file names: SRC/netpbm/PNM/pnmsmooth.c line 50 fills
-argblk[] at its declaration, before tempfn and pnmfn are set, so the fork
-passes nothing useful -- only `-dump' works.  Moving those two assignments
-to just before the fork, and a recipe to build it, would make it smooth.
-It replaces an archive binary, so it is your call; the card now shows
--dump and pnmconvol and says why.
-
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created

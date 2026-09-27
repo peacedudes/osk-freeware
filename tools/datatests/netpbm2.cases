@@ -1,4 +1,5 @@
 family  netpbm2
+load    /dd/CMDS/NETPBM/pnmconvol
 # The rest of the netpbm set: the filters that alter an image, the converters
 # OUT of PNM into a printer or workstation format, and the ones that read
 # them back. `netpbm.cases' covers the generators, the geometry and the
@@ -323,11 +324,20 @@ run     $P/lispmtopgm /dd/tmp/o.lispm > /dd/tmp/bk.pgm
 expect  293 /dd/tmp/o.lispm
 expect  depth is too large - try reconfiguring with PGM_BIGGRAYS
 
-# KNOWN DEFECT. pnmsmooth is a WRAPPER: it builds a convolution matrix in a
-# temporary file and hands it to pnmconvol. The temporary file's path is
-# baked in as `/r0/smoothXXXXXX' -- a RAM disk this system does not have --
-# so it writes nothing and reports the path it could not open. `pnmconvol'
-# with a `pgmkernel' matrix does the same job and is asserted above.
-case    pnmsmooth-wants-a-ram-disk-at-slash-r0
-run     $P/pnmsmooth /dd/tmp/s.pgm > /dd/tmp/o.pgm
-expect  /r0/smooth
+# pnmsmooth builds a mean kernel in a temporary file and hands it to
+# pnmconvol, started by bare name -- hence the family's `load'.  The archive
+# binary filled pnmconvol's argument list before it had the names, and put
+# the file on /r0; rebuilt from SRC/netpbm/PNM with both fixed (2026-09-26).
+# It must agree with pnmconvol run by hand on the kernel -dump writes, and
+# differ from its input: s.pgm is a ramp, which a mean leaves alone, so the
+# test image here is patterned.
+case    pnmsmooth-smooths-as-pnmconvol-does-by-hand
+run     $P/ppmpat -gingham3 32 8 | $P/ppmtopgm > /dd/tmp/sm.pgm
+run     $P/pnmsmooth /dd/tmp/sm.pgm > /dd/tmp/sm1.pgm; echo "rc=$?"
+run     $P/pnmsmooth -dump /dd/tmp/smk.pgm
+run     $P/pnmconvol /dd/tmp/smk.pgm /dd/tmp/sm.pgm > /dd/tmp/sm2.pgm
+run     A=$(/dd/CMDS/md5 < /dd/tmp/sm1.pgm); B=$(/dd/CMDS/md5 < /dd/tmp/sm2.pgm); C=$(/dd/CMDS/md5 < /dd/tmp/sm.pgm)
+run     [ "$A" = "$B" ] && echo "smooth equals by-hand"; [ "$A" != "$C" ] && echo "smooth differs from input"
+expect  rc=0
+expect  smooth equals by-hand
+expect  smooth differs from input

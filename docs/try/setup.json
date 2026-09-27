@@ -3655,6 +3655,7 @@
 "pnmsmooth": {
 "setup": [
 "rm -rf /dd/tmp/SMOB > /nil 2>/nil; mkdir -p /dd/tmp/SMOB",
+"/h1/CMDS/load /dd/CMDS/NETPBM/pnmconvol",
 "builtin cd /dd/tmp/SMOB",
 "pgmnoise 152 88 > n.pgm"
 ]
