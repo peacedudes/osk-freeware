@@ -1,9 +1,9 @@
 : 4 files
 Attr   Lnk User     Group       Size      Modify Time File name
-d-ewrewr 1 root     0            ---  26 Sep 126 11:15 ./
-d-ewrewr 1 root     0            ---  26 Sep 126 11:11 ../
----wr-wr 1 root     0           2650   3 Aug 126 19:00 unshar.doc
----wr-wr 1 root     0          11416   3 Aug 126 19:00 which6.shar
+d-ewrewr 1 root     0            ---  27 Sep 26  0:42 ./
+d-ewrewr 1 root     0            ---  27 Sep 26  0:41 ../
+---wr-wr 1 root     0           2650   3 Aug 26 19:00 unshar.doc
+---wr-wr 1 root     0          11416   3 Aug 26 19:00 which6.shar
 ~
 ~
 ~
@@ -21,3 +21,78 @@ d-ewrewr 1 root     0            ---  26 Sep 126 11:11 ../
 ~
 ~
 ~
+------------------------------------------------------------------------------
+Browse is a screen-oriented directory browser, based on the metaphor of using
+'VI' to edit an 'ls -l' listing.
+
+Commands:
+        SPACE   Change directory (if cursor points to a directory).
+        SPACE   Page file through 'more' (if cursor points to a file).
+        x               Hex dump of current file or directory.
+        &               Run a program that won't clobber the screen.
+        $               Run a program.
+        =               Enter a directory name.
+        ?               Page this help file through 'less'.
+        [               Define a macro.
+        H               Go to the top of the page.
+        J               Go to the bottom of the directory.
+        K               Go to the top of the directory.
+        L               Go to the bottom of the page.
+        ^L              Repaint screen.
+        M               Display macros.
+        S               Save macros.
+        I               Install macros from current file.
+        .               Go down 20 lines.
+        o               Go up 20 lines.
+        R               Rename a file.
+/dd/sys/browse.hlp
+------------------------------------------------------------------------------
+        dd              Delete file(s). (ask for verification)
+        DD              Delete file(s).
+        h               Place cursor at beginning of line.
+        l               Move cursor to end of line.
+        <               Display file names only.
+        >               Display long directory listing.
+        ,               Go down a line.
+        i,^K    Go up a line.
+        n,^D    Go down 11 lines.
+        p,^U    Go up 11 lines.
+
+        qq,QQ,ZZ        Exit.
+
+        r               Re-read directory.
+
+        t               Toggle tag on current file or directory.
+        T               Tag all files.
+        U               Untag all files or directories.
+
+Macros:
+        [xtext] Define x as text.
+
+Within text:
+:
+------------------------------------------------------------------------------
+        %               Current filename(s).
+        #               Current directory.
+        !               Previous command.
+        $x              Macro for key x
+        $$              Current process ID
+        ~               Home directory.
+        ^K              One character from previous command.
+        @x              Execute macro for key x
+        \x              Enter special character x
+        \nnn    nnn, octal
+        \^x             Control-x
+
+Default macros:
+        b               =..<CR>
+        ~               =~<CR>
+        %               $%<CR>
+        SPACE   $more %<CR>
+        c               $copy %
+        s               $scred %<CR>
+
+When a command is executed (using '$<prog>'), the environment in the form
+present at start of 'browse' will automatically be passed to <prog>. In
+addition, the environment variable FILE will be set to the current file name.
+(END)

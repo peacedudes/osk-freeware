@@ -12,7 +12,7 @@ blackjak|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAM
 bmgtest|Opens a named file with OS-9's read mode: the Unix mode 0 grants no access here, so a search of a named file found nothing.
 bmgtest2|Opens a named file with OS-9's read mode: the Unix mode 0 grants no access here, so a search of a named file found nothing.
 boa|The binary is the porter's own, unchanged; its configuration file was changed to listen on port 8080, run as user 0, name a server and use this disk's directories.
-browse|The `?' help key pages through less instead of more, which this disk does not have.
+browse|The `?' help key pages through less instead of more. And its help file names i, not k, for going up a line -- the OS-9 port moved that key and left the old letter in the help.
 cfscores|The -a option and naming another player are gone, since OS-9 has no password database; it reports the player named by USER.
 chemtab|The log of who ran the program is not kept.
 cjpeg.070|Rebuilt from the jpeg-5a source on this disk, trap-free, named cjpeg.070 as before. The archive's gcc build answered `Premature end of input file' for every image and wrote nothing. This one also reads a netpbm file as written, CR between the header fields.

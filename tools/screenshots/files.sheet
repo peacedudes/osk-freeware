@@ -728,20 +728,35 @@ wait    12
 snap
 
 shot    browse
-cap     browse shows a directory the way vi shows a file: an `ls -l' listing
-cap     with a cursor in it.  j and k step down and up, the space bar opens the
-cap     directory under the cursor or pages the file, `x' dumps that file in
-cap     hex and `?' brings up the help.  The `~' rows are the empty screen
-cap     below the last entry, exactly as vi draws them.  To leave, press `q'
-cap     twice -- one on its own does nothing.
+pages
+cap     An `ls -l' listing with a cursor in it: i and , move up and down a
+cap     line (the OS-9 port moved them from vi's k and j), space opens the
+cap     directory under the cursor or pages the file, and `?' pages its own
+cap     help through less, shown here.  `qq' leaves.
 try     browse DOC/unshar
+run     /h1/CMDS/load /h1/CMDS/shell
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
 run     browse DOC/unshar
 wait    6
+send    ,
+wait    1
+send    ,
+wait    1
 snap
+send    ?
+wait    6
+snap
+send    \s
+wait    3
+snap
+send    \s
+wait    3
+snap
+send    q
+wait    3
 send    q
 wait    1
 send    q
