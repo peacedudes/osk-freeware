@@ -14,21 +14,6 @@ left is yours: merging this branch to main (a push to main publishes the
 catalogue to Pages) and making anything public.  When os9exec sends its
 merge commit, I pin CI to it.
 
-**53. A new, empty /h1 in the browser, to keep things onto?**  Your idea
-(2026-09-26): with no OS-9 of your own, pick programs from the collection
-and save them as a disk of their own.  The parts exist -- `keep' copies a
-program with what it needs; the page already attaches, keeps and saves an
-/h1 image; os9exec's `mount -k' makes a blank RBF image.  Missing: one
-"New empty disk as /h1" button (size, volume name, the standard CMDS/SYS
-directories), and the catalogue's picks producing one `keep' line.  Say
-yes and I build it; it adds a feature to the public page.
-MEASURED 2026-09-26: os9exec `mount -k=16M' makes a blank 16 MB RBF disk
-that gzips to 16 KB.  Mounted as /h1, `keep fortune' made CMDS, GAMES and
-SYS on it itself, wrote the program and its fortunes.dat, recorded both in
-SYS/kept, and /h1/CMDS/fortune ran.  So the button is the whole job: fetch
-that 16 KB, inflate it, hand it to the page's existing attach; `Save /h1'
-already downloads the result.
-
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created
@@ -75,6 +60,8 @@ and nothing is lost either way.
 
 **19.** The stray `GAMES/HACK/PLAYGROUND/save/0tester` stays, per your
 "don't overdo it".
+
+**Done 2026-09-26:** 53 -- `Make a disk of these' on the catalogue's pick tray (an empty 16 MB /h1 in the browser, the keep typed); 54 -- pnmsmooth rebuilt and working.
 
 **Done 2026-09-25:** 52 -- collect2's entry test patched in all three
 1991 builds (tools/patch_collect_entry.py; SOURCES "PATCHED"); collect.cases
