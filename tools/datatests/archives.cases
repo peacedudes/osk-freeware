@@ -170,25 +170,22 @@ expect  archive merger
 # ported from Unix, where finishing an archive means renaming or linking the
 # temporary over the target.  DOC/STATUS has the measurement, including the
 # way it first came out wrong.
-# ONE BROKEN CHECK is all that stops `shar'. Its read-access test rejects
-# every file that EXISTS; hand it a name that is not there and the check
-# passes vacuously and out comes the whole preamble. Both halves are asserted
-# so that the day the check is fixed, the first of these fails.
-#
-# This case used to be a FALSE PASS worth keeping the story of: it asserted
-# that `motd' appeared in the output, and it does -- inside `No read access
-# for file: /dd/SYS/motd'. Corrected 2026-08-29.
-case    shar-refuses-every-file-that-exists
+# shar's read-access test was inverted until 2026-09-26: it refused every
+# file that existed and wrote its preamble for one that did not.  Both
+# halves are asserted the right way round now.  (A false pass worth
+# remembering: `motd' appears inside `No read access for file:
+# /dd/SYS/motd' too, so the case asserts the file's TEXT.)
+case    shar-wraps-a-file-that-exists
 run     /dd/CMDS/shar /dd/SYS/motd > /dd/tmp/a.shar
 run     /dd/CMDS/cat /dd/tmp/a.shar
-expect  No read access for file
-absent  Shell Archiver
+expect  Shell Archiver
+expect  Welcome to the OS-9 freeware collection
+absent  No read access for file
 
-case    shar-writes-its-preamble-for-a-file-that-is-not-there
-run     /dd/CMDS/shar not-a-file-here > /dd/tmp/b.shar 2>/nil
+case    shar-refuses-a-file-that-is-not-there
+run     /dd/CMDS/shar not-a-file-here > /dd/tmp/b.shar
 run     /dd/CMDS/cat /dd/tmp/b.shar
-expect  This is a shell archive
-expect  cut here
+expect  No read access for file: not-a-file-here
 
 case    zoo-2.1-reads-what-zoo-wrote
 run     /dd/CMDS/REBUILT/zoo_2.1 l /dd/tmp/a.zoo

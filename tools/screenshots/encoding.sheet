@@ -68,14 +68,14 @@ wait    2
 
 shot    uuencode
 cap     A begin line with the file's mode and name, the data, an end line.
-try     uuencode tmp/ENC/j.txt
+try     uuencode tmp/ENC/j.txt j.txt
 run     mkdir -p /dd/tmp/ENC > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r" > /dd/tmp/ENC/j.txt
 wait    2
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     uuencode tmp/ENC/j.txt
+run     uuencode tmp/ENC/j.txt j.txt
 wait    5
 
 shot    uudecode
@@ -229,12 +229,10 @@ wait    4
 
 shot    xcrypt
 cap     Scrambles a file against a key typed at its `Key:' prompt, ten
-cap     characters or more. The output file must exist already: it creates
-cap     one with a Unix permission word, which OS-9 refuses. The direction
-cap     comes from its module name -- one starting with `e' encrypts -- so
-cap     as `xcrypt' it always takes the decrypt path, which is what dump
-cap     shows here.
-try     xcrypt a.txt a.enc
+cap     characters or more: -e encrypts and -d, given the same key,
+cap     brings the text back.  The first four bytes dump shows are the
+cap     seed.
+try     xcrypt -e a.txt a.enc
 run     rm -rf /dd/tmp/XCA > /nil 2>/nil; mkdir -p /dd/tmp/XCA
 wait    2
 run     cat /dd/SYS/motd > /dd/tmp/XCA/a.txt
@@ -243,16 +241,18 @@ run     builtin cd /dd/tmp/XCA
 wait    1
 run     clear
 wait    1
-run     cat a.txt
-wait    2
-run     echo x > a.enc
-wait    2
-run     xcrypt a.txt a.enc
+run     xcrypt -e a.txt a.enc
 wait    3
 send    thiskeyisplentylongenough\r
-wait    4
+wait    8
 run     dump a.enc
 wait    3
+run     xcrypt -d a.enc b.txt
+wait    3
+send    thiskeyisplentylongenough\r
+wait    8
+run     cat b.txt
+wait    2
 
 shot    todos
 cap     Every CR becomes CR LF, with one LF more at the end. The result is

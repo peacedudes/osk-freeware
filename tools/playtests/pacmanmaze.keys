@@ -1,0 +1,27 @@
+name    pacmanmaze
+prog    pacman
+# pacman's maze at an ANSI terminal.  It addressed the cursor with the
+# ADM-3A/TeleVideo ESC = row col, forked Microware's tmode to turn echo
+# and pause off, and printed to an unbuffered stdout that this C library
+# fills with control bytes -- so what reached a vt100 was a row of `+'.
+# Since 2026-09-26 it takes `cm' and `cl' from termcap, sets the two
+# options itself, and the whole board draws: the walls, the dots, the
+# spare men along the top, and the score line under the maze.
+rate    0.6
+size    26 80
+wait    5
+keys    Tester
+key     \r
+wait    3
+key     n
+wait    5
+snap    maze
+keys    6666
+wait    3
+snap    moved
+key     q
+wait    4
+expect  | * | | * ------| * ------- * ---------- * ------ * ------ * ----- * |
+expect  OS9 OS9 OS9
+expect  Your final score was
+absent  +++

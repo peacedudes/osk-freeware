@@ -56,16 +56,16 @@ wait    5
 
 shot    lispmtopgm
 cap     Reads a Lisp Machine bitmap -- the screen format of Symbolics and TI
-cap     Lisp machines -- back into a greyscale image.  pgmtolispm handles at
-cap     most 16 grey levels, so pnmdepth 15 first; the ramp round-trips.
+cap     Lisp machines -- back into a greyscale image.  A ramp of 256 grey
+cap     levels goes out through pgmtolispm and comes back whole.
 try     lispmtopgm tmp/NPIB/l.lispm > tmp/NPIB/back.pgm
 run     mkdir -p /dd/tmp/NPIB > /nil 2>/nil
-run     pgmramp -lr 48 24 | pnmdepth 15 > /dd/tmp/NPIB/g15.pgm
+run     pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm
 wait    6
 run     builtin cd /dd
 wait    1
 run     clear
-run     pgmtolispm tmp/NPIB/g15.pgm > tmp/NPIB/l.lispm
+run     pgmtolispm tmp/NPIB/g.pgm > tmp/NPIB/l.lispm
 wait    5
 run     lispmtopgm tmp/NPIB/l.lispm > tmp/NPIB/back.pgm
 wait    5

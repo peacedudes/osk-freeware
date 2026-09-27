@@ -81,10 +81,6 @@ run     /dd/CMDS/gnuplot $W/g.gp
 expect  gnuplot> set terminal dumb
 expect  unknown terminal type; type just 'set terminal' fo
 
-# `uuencode' IS NOT A CASE HERE. DOC/INDEX already records that its usage
-# line is wrong and that it wants ONE argument -- and four further forms
-# were tried on 2026-09-01, all producing nothing: an absolute path, a bare
-# name under `ksh -c "cd ..."', a name with the data on standard input, and
-# two arguments (which earns the usage line). Only a bare call reading
-# standard input ever emitted a `begin' line. It has a test elsewhere;
-# `uuexpand', its partner, is still untested and needs a session of its own.
+# `uuencode' IS NOT A CASE HERE; its cases are in encoding.cases,
+# untested.cases and PB.cases.  `uuexpand', its partner, is still untested
+# and needs a session of its own.

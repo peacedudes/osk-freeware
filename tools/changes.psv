@@ -15,7 +15,7 @@ boa|The binary is the porter's own, unchanged; its configuration file was change
 browse|The `?' help key pages through less instead of more, which this disk does not have.
 cfscores|The -a option and naming another player are gone, since OS-9 has no password database; it reports the player named by USER.
 chemtab|The log of who ran the program is not kept.
-cjpeg.070|Module name changed from cjpeg to cjpeg.070 to match its file, so loading it no longer answers for the cjpeg in CMDS.
+cjpeg.070|Rebuilt from the jpeg-5a source on this disk, trap-free, named cjpeg.070 as before. The archive's gcc build answered `Premature end of input file' for every image and wrote nothing. This one also reads a netpbm file as written, CR between the header fields.
 compress|The period binary was replaced by a rebuild of the same source with one fix: Microware's putchar read its argument twice on a pipe or terminal, so piped output was corrupt. Output to a file is byte-for-byte the same as before.
 compress_4.0|Module name changed from compress to compress_4.0 to match its file, so loading it no longer answers for the compress in CMDS. Otherwise identical to the archive's.
 corewar|Renamed from interp, its name in the posting.
@@ -26,7 +26,7 @@ ctags.elvis|Elvis's ctags, renamed from ctags because the disk already has one; 
 cwasm|Renamed from assem, its name in the posting.
 cwdis|Renamed from disassem, its name in the posting.
 devprc|Rebuilt from its source, replacing the archive module, which had a bad CRC and a damaged data descriptor and would not load. The copy on the EFFO disk is damaged the same way.
-diff|GNU diff 1.4, built here from SRC/diff (the recipe in tools/rebuild/recipes.psv); the archive's GNU diff 1.1 is REBUILT/diff_1.1.
+diff|GNU diff 1.4, built here from SRC/diff (the recipe in tools/rebuild/recipes.psv); the archive's GNU diff 1.1 is REBUILT/diff_1.1. The OS-9 port's date for the -c header is fixed: it had no line end, so the two header lines ran together and patch could not read them, and it showed the year as 126.
 diff_1.1|Module name changed from diff to diff_1.1 to match its file, so loading it no longer answers for the diff in CMDS. Otherwise identical to the archive's.
 dir|One instruction patched in the binary: it asked to write a line of 128 bytes, which the processor read as minus 128, so it could not list a directory. It now writes at most 127 characters a line and lists directories.
 djpeg.070|Module name changed from djpeg to djpeg.070 to match its file, so loading it no longer answers for the djpeg in CMDS.
@@ -129,7 +129,7 @@ discord|A bug in the program as posted, fixed here: both calls to chase() passed
 perl|Two ownership fixes to this collection's port: -o, -O and the owner checks compared a 16-bit user number with getuid()'s whole group.user word, so they failed for everyone but the super-user; and the stat it linked had a file's group and user bytes swapped.
 REBUILT/gtar|Two ownership fixes to this collection's port: a listing or extract took a file's group only from the group name, which OS-9 never has, so tvf showed group 0 and the super-user restored 1.7 as 31.7; and a rebuild's stat left the owner at 0, so the owner is now read from the file descriptor.
 elm|One instruction changed so that it finds its user in the password file: it compared the file's user number with getuid(), which on OS-9 is the whole group.user word, so everyone but the super-user was told `You have no password entry!'.
-filter|One instruction changed: it masked getuid() to the user number before a lookup that compares the whole group.user word, so for anyone outside group 0 it exited silently.
+filter|Two changes in place. It masked getuid() to the user number before a lookup that compares the whole group.user word, so for anyone outside group 0 it exited silently. And `save' now works: it wrote the message to a temp file named with its process id and read it back under a number never set, so every save ended in "can't open temp file".
 logname|One instruction changed: it masked getuid() to the user number before a lookup that compares the whole group.user word, so it named only the super-user and told everyone else `no login name'.
 frm|One byte changed: a header ended at a line starting with a line feed, where an OS-9 folder's blank line is a carriage return, so it counted no mail in a folder that had some.
 newmail|One byte changed, the same as frm's: it looked for a line feed to end each header, where an OS-9 folder's blank line is a carriage return.
@@ -142,3 +142,23 @@ gpp_collect|One byte changed: its scan loop tested a pointer not yet set, so it 
 lpq|Rebuilt from its source with one change: its job table compared the printer's name with a single character of it (queue->printer[n][0], where the name belonged), so it said `No Spooljobs' under a count of the jobs waiting. The [0] is gone.
 top|Rebuilt from its source with one more change: it lists your own processes, busy or idle, and -a everyone's. It used to list only those that had used a tick since its last screen, so with nothing else running it showed its headings and little or nothing else.
 pnmsmooth|Rebuilt from its source with two fixes: it filled pnmconvol's argument list before it knew the file names, so pnmconvol was handed nothing, and it wrote its kernel to a RAM disk at /r0; the names are filled in just before the fork, and the kernel goes to /dd/tmp.
+shar|Rebuilt from its source with one change: its read-access test was inverted, so it answered `No read access' for every file it could read. It now wraps a readable file and refuses only one it cannot read.
+xcrypt|Rebuilt from its source with two changes: it creates its output file (it asked open() to, which OS-9's open() cannot, so it stopped unless the file existed), and -e or -d names the direction -- the original took it from the name it was run by, so as `xcrypt' it could only decrypt.
+tsmon2|Rebuilt from its source with one change: when it cannot open the line it prints the reason after its message; it used to leave that to Microware's shell.
+uuencode|Changed in place, a few instructions: it takes the input file and the name to record, as its usage line says -- before, two arguments earned only the usage line. One argument still encodes that file under its own pathlist, and none prints the usage.
+checkgame|Rebuilt from its source with two changes: it replays the last move of the list (it stopped one short), and a list that ends on white's move no longer makes it read past the end of the line.
+game|Rebuilt from its source with the same two changes as checkgame -- it draws the last move, which it left out -- and each board line ends in one `]', where every board after the first carried two.
+lpsched|One instruction changed: when a job queued with `lp -m' was done, it looked up whom to mail with a logical AND in place of a mask, so the mail went to user number 1 whoever queued the job. It now goes to the job's owner.
+qp|Rebuilt from its source with one change: it hands the expanded command to $SHELL as the shell's one argument, the way ksh and Microware's shell take it. It passed the options `-ny -nl' of the EFFO zsh it was written for, which no shell here has, so it expanded nothing.
+cuts|Rebuilt from its source, trap-free, with one change: the date in the header it writes has two year digits again -- from 2000 on it wrote three, and the decoder then lost the file's name and type. The archive build could not encode at all (it filled memory) and decoded only line ends.
+crypto|Rebuilt from its source, trap-free. The archive build ended the whole session when used as a filter; this one encodes and writes its output.
+unpacklib|Rebuilt from its source, trap-free. The archive build stopped at `Wrong SYNC long word' after the first module of every library; this one takes a library apart whole.
+screen|Rebuilt from its source, trap-free, with one line fixed in scandir.c: a file counter was never set, and the archive build died with a bus error on the first file it picked. It is the same build as REBUILT/screen_nocio, under its own name.
+lispmtopgm|Rebuilt from its source with two changes: its maxval is one less than 2 to the depth, so an 8-bit image is no longer refused, and it skips each row's padding, so an image whose width is not a multiple of 32 comes back row for row.
+dm|Rebuilt from its source for an ANSI or vt100 terminal: the arrow keys move the bar as Ctrl-N and Ctrl-P do, the bar shows in reverse video where there is no colour, and it no longer needs cio.
+editor|Rebuilt from its source; at the end of its input it now leaves as `!' does, where it redrew its menu for ever.
+mkdict|Rebuilt from its source; a line longer than a word no longer overruns its buffer and stops it with a bus error.
+bincheckr|Rebuilt from its source: it reads the book gnuchess 4.0 writes, where it read only an older layout, says so rather than dividing by zero when a book has no entries, and its odd and even counts are no longer swapped.
+pacman|Rebuilt from its source: it takes its cursor motion from termcap, sets the terminal itself where it forked Microware's tmode, and no longer prints through an unbuffered stdout -- so its maze draws at an ANSI terminal.
+hexedit|Rebuilt from its source against the disk's ncurses; the archive's build sent every cursor move to the same place and read TERMCAP only as the entry itself.
+fuddle|Its TeleVideo screen codes are changed to their ANSI equivalents -- cursor addressing, clear, home, clear to end of line and the reverse video of its pieces (tools/patch_fuddle.py); there is no source.

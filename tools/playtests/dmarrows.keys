@@ -1,0 +1,50 @@
+name    dmarrows
+prog    dm -d /dd/tmp/dmarrows
+# dm's arrow keys at an ANSI terminal.  It was written for a keyboard whose
+# arrows send Ctrl-N and Ctrl-P; a vt100 or xterm sends ESC [ A and ESC [ B
+# (ESC O A and ESC O B in application mode), and dm used to read the ESC
+# and throw the rest away, so the bar never moved.  Since 2026-09-26 both
+# forms move it, and Ctrl-N and Ctrl-P still do.
+#
+# Four files of four lengths, so the length in the information panel says
+# which one the bar is on.  Each length below is reached ONLY by the key
+# named beside it -- Ctrl-E jumps to the last file, skipping f2 and f3 --
+# so every expect is one arrow key working.
+#
+# The three bytes of an arrow key have to arrive together, as a terminal
+# sends them, so the rate is fast and the waits between keys are explicit.
+rate    0.02
+size    24 80
+setup   export SHELL=/dd/CMDS/sh
+setup   rm -rf /dd/tmp/dmarrows > /nil 2>/nil; mkdir -p /dd/tmp/dmarrows
+setup   echo "ab" > /dd/tmp/dmarrows/f1
+setup   echo "0123456789abcdef" > /dd/tmp/dmarrows/f2
+setup   echo "0123456789abcdef0123456789ab" > /dd/tmp/dmarrows/f3
+setup   echo "0123456789abcdef0123456789abcdef0123456" > /dd/tmp/dmarrows/f4
+wait    10
+snap    start
+# ESC [ B: down from ==PARENT== to f1
+esc
+key     [B
+wait    3
+snap    down
+# Ctrl-E: to the last file, f4
+key     \005
+wait    3
+snap    end
+# ESC O A: up from f4 to f3
+esc
+key     OA
+wait    3
+snap    up-application
+# ESC [ A: up again, to f2
+esc
+key     [A
+wait    3
+snap    up
+key     q
+wait    4
+expect  Length: 3 bytes
+expect  Length: 40 bytes
+expect  Length: 29 bytes
+expect  Length: 17 bytes

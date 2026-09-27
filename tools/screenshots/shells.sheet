@@ -171,13 +171,20 @@ try     command if def TERM whoami endif
 os9     if def TERM whoami endif
 
 shot    qp
-cap     Its usage: the output of a back-quoted command replaces it in the
-cap     command line. It hands its work to $SHELL with the options `-ny
-cap     -nl', which only the EFFO shell (zsh) it was written for takes; with
-cap     any other shell it runs nothing.
-run     qp -?
+cap     The output of the back-quoted command takes its place in the
+cap     command line: here `cat list' names a file and wc counts it.
+cap     Quoted, so that the shell leaves the back-quotes to qp.
+try     qp wc -c '`cat list`'
+run     rm -rf /dd/tmp/QPC > /nil 2>/nil; mkdir -p /dd/tmp/QPC; echo "/dd/SYS/motd" > /dd/tmp/QPC/list
+wait    2
+run     builtin cd /dd/tmp/QPC
+wait    1
+run     clear
+wait    1
+run     cat list
+wait    2
+run     qp wc -c '`cat list`'
 wait    4
-try     qp -?
 
 shot    xc
 cap     Runs the commands marked in a file and leaves the rest alone, so

@@ -1,22 +1,23 @@
 $ cat chess.lst
 gnuchess 4p62 game
        score  depth   nodes  time                score  depth   nodes  time
- e2e4      0      0       0     0 c7c5    -10    Book      0     0
- d2d4      0      0       0     0 c5d4    -50    Book      0     0
+ e2e4      0      0       0     0 e7e5    -10    Book      0     0
+ d2d4      0      0       0     0 e5d4    -36    Book      0     0
 
 
 $ checkgame chess.lst
-1. e2e4  c7c5
-2. d2d4
+1. e2e4  e7e5
+2. d2d4  e5d4
+
 
 Final board:
 
 
  R N B Q K B N R
- P P - P P P P P
+ P P P P - P P P
  - - - - - - - -
- - - P - - - - -
- - - - p p - - -
+ - - - - - - - -
+ - - - P p - - -
  - - - - - - - -
  p p p - - p p p
  r n b q k b n r

@@ -1,0 +1,17 @@
+name    hexeditview
+prog    hexedit /dd/SYS/motd
+# hexedit (HEXPERT 2.4) viewing a file at a vt100, with TERMCAP naming the
+# termcap FILE as SYS/login sets it.  The archive's build was linked with
+# a curses that read TERMCAP as the entry itself and sent every cursor
+# move as ESC [ ; H, so the whole view piled onto the top lines.  Rebuilt
+# on 2026-09-26 against LIB/ncurses.l with moria's tcentry.c -- which
+# reads SYS/termcap as it stands -- the view draws where it belongs: the
+# hex on the left, the same bytes as text on the right.  The arrow keys
+# are sent in the keypad form the program switches the terminal to.
+rate    0.6
+wait    6
+snap    view
+key     q
+wait    3
+expect  Status-  Position: 00000000   Mode: View   File: /dd/SYS/motd
+expect  57 65 6C 63 6F 6D 65 20 74 6F 20 74 68 65 20 4F     Welcome to the O

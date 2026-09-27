@@ -1930,11 +1930,12 @@ wait    4
 
 shot    screen
 cap     A login greeting: it runs a file picked at random from
-cap     $HOME/.screens, and without that directory it says so, as here.
-cap     This build, the archive's own, stops with a bus error at the first
-cap     file it picks; screen_nocio is the same program with that fixed.
+cap     $HOME/.screens -- here the only one there, which shows the
+cap     message of the day.
 try     screen
-run     rm -rf /dd/tmp/SCRN; mkdir -p /dd/tmp/SCRN
+run     rm -rf /dd/tmp/SCRN; mkdir -p /dd/tmp/SCRN/.screens
+run     echo "cat /dd/SYS/motd" > /dd/tmp/SCRN/.screens/hi
+run     /h1/CMDS/load /h1/CMDS/shell
 run     export HOME=/dd/tmp/SCRN
 run     builtin cd /dd/tmp/SCRN
 wait    2

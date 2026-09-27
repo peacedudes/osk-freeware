@@ -1,0 +1,102 @@
+family  PA
+# Programs fixed on 2026-09-26, each asserted doing its job.  Every case
+# below but `screen-is-still-called-screen' (a guard on the module name)
+# was run once against an image holding the programs as they were before,
+# and failed there; the old behaviour is noted above each case.
+#
+# The shell is loaded for `screen', which runs the file it picks through
+# system(), and so through the reader's own `shell'.
+load    /h1/CMDS/shell
+setup   P=/dd/CMDS/NETPBM
+setup   W=/dd/tmp/PAW
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# cuts: the archive build was a cio build caught by the selector mismatch.
+# `-e' wrote `!0!0!0' lines and then filled os9exec's 68k memory arena,
+# taking the session with it; this is the `-qm' rebuild from SRC/cuts.
+case    cuts-encodes-a-file
+run     /dd/CMDS/cuts -e -o $W/m.cut -a /dd/SYS/motd
+run     /dd/CMDS/cat $W/m.cut
+expect  .I.A.
+expect  .0001.DWelcome to the OS-9 freeware collection
+absent  arena is full
+
+# And reads it back: -d recreates the file under its own name in the
+# current directory, byte for byte.
+case    cuts-decodes-what-it-encoded
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/cuts -d m.cut"
+expect  'motd' Encoded as 'ASC'
+run     /dd/CMDS/tcmp /dd/SYS/motd $W/motd
+expect  are identical
+
+# crypto: as a filter the archive build ended the emulator session.
+case    crypto-encodes-with-a-given-cypher
+run     /dd/CMDS/crypto -czyxwvutsrqponmlkjihgfedcba -n /dd/SYS/motd > $W/c.out
+run     /dd/CMDS/cat $W/c.out
+expect  Dvoxlnv gl gsv LH-9 uivvdziv xloovxgrlm
+
+case    crypto-rot13-encodes-as-a-filter
+run     /dd/CMDS/crypto -r13 -n < /dd/SYS/motd > $W/r.out
+run     /dd/CMDS/cat $W/r.out
+expect  Jrypbzr gb gur BF-9 serrjner pbyyrpgvba
+
+# unpacklib: the archive build stopped at `Wrong SYNC long word' after the
+# first module of every library.  pbm.l holds five.
+case    unpacklib-takes-a-library-apart-whole
+run     /dd/CMDS/ksh -c "cd $W; /dd/CMDS/unpacklib -verbose /dd/LIB/pbm.l"
+run     /dd/CMDS/ls $W
+expect  libpbm1.r
+expect  libpbm5.r
+absent  Wrong SYNC
+
+# screen: the archive build took a bus error at the first file it accepted
+# from $HOME/.SCREENS -- its scandir never set its count.  This is the
+# fixed source rebuilt `-qm', still named `screen'.  It runs the file.
+case    screen-runs-a-file-from-its-directory
+run     /dd/CMDS/mkdir -p $W/H/.SCREENS
+run     echo "/dd/CMDS/cat /dd/SYS/motd" > $W/H/.SCREENS/hi
+run     HOME=$W/H /dd/CMDS/screen
+expect  Welcome to the OS-9 freeware collection
+absent  Exception
+
+case    screen-is-still-called-screen
+run     /dd/CMDS/modinfo /dd/CMDS/screen
+expect  Module name           = screen
+
+# cjpeg.070, the jpeg-5a encoder for the 68000.  The archive's gcc build
+# answered `Premature end of input file' for every input tried -- PPM or
+# GIF, named or on standard input -- and wrote nothing.  This is the 5a
+# source rebuilt `-qm'; built with -DOSK, rdppm.c takes CR or LF between
+# header fields, so a netpbm file goes straight in.  (djpeg.070,
+# rdjpgcom.070 and wrjpgcom.070 worked as shipped and are unchanged.)
+case    cjpeg.070-compresses-a-netpbm-ppm-as-written
+run     $P/ppmmake blue 32 24 > $W/j.ppm
+run     /dd/CMDS/cjpeg.070 $W/j.ppm > $W/j.jpg
+run     /dd/CMDS/rdjpgcom.070 -verbose $W/j.jpg
+expect  JPEG image is 32w * 24h, 3 color components, 8 bits per sample
+absent  Premature end
+
+# What it wrote is a JPEG the rest of the set reads: a comment goes in and
+# comes back out, and djpeg.070 decodes it to a PPM netpbm reads.
+case    cjpeg.070-output-takes-a-comment-and-decodes
+run     /dd/CMDS/wrjpgcom.070 -comment "made on OS-9" $W/j.jpg > $W/jc.jpg
+run     /dd/CMDS/rdjpgcom.070 $W/jc.jpg
+run     /dd/CMDS/djpeg.070 -pnm $W/jc.jpg > $W/jd.ppm
+run     $P/pnmfile $W/jd.ppm
+expect  made on OS-9
+expect  PPM raw, 32 by 24  maxval 255
+
+# ELM's filter: save_message passed save_to_folder an uninitialised pid, so
+# every `save' wrote /r0/filter.<pid> and then failed to open
+# /r0/filter.<rubbish>.  Patched by tools/patch_filter_pid.py.
+case    filter-saves-a-matching-message-to-a-folder
+run     mount -r=256k /r0
+run     echo 'if (subject = "pa test") then save "/dd/tmp/PAW/folder"' > $W/rules
+run     echo -n > $W/folder
+run     /dd/CMDS/printf "From tester\rSubject: pa test\r\rthe body line\r" > $W/msg
+run     /dd/CMDS/ELM/filter -v -f $W/rules < $W/msg
+run     /dd/CMDS/cat $W/folder
+expect  Message saved in folder
+expect  the body line
+absent  can't open temp file

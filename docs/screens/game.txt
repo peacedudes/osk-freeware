@@ -1,21 +1,23 @@
-$ game chess.lst
-/V 11 72 mul def /L 60 def
-L V moveto
-R (1 e2e4 score 0 time 0) show
 L  V 100 sub moveto
 C ('#[rnbqkbnr;pppppppp;        ;        ;    P   ;        ;PPPP PPP;RNBQKBNR;]'
 ) show
 /L 160 L add def
 L V moveto
-R (1  ... e7e5 score -10 time 0) show
+R (1  ... c7c5 score -10 time 0) show
 L  V 100 sub moveto
-C ('#[rnbqkbnr;pppp ppp;        ;    p   ;    P   ;        ;PPPP PPP;RNBQKBNR;]]
-') show
+C ('#[rnbqkbnr;pp ppppp;        ;  p     ;    P   ;        ;PPPP PPP;RNBQKBNR;]'
+) show
 /L 160 L add def
 L V moveto
 R (2 d2d4 score 0 time 0) show
 L  V 100 sub moveto
-C ('#[rnbqkbnr;pppp ppp;        ;    p   ;   PP   ;        ;PPP  PPP;RNBQKBNR;]]
-') show
+C ('#[rnbqkbnr;pp ppppp;        ;  p     ;   PP   ;        ;PPP  PPP;RNBQKBNR;]'
+) show
 /V V 120 sub def /L 60 def
+L V moveto
+R (2  ... c5d4 score -50 time 0) show
+L  V 100 sub moveto
+C ('#[rnbqkbnr;pp ppppp;        ;        ;   pP   ;        ;PPP  PPP;RNBQKBNR;]'
+) show
+/L 160 L add def
 showpage

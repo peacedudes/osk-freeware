@@ -394,7 +394,7 @@
 },
 "bincheckr": {
 "setup": [
-"builtin cd /dd/GAMES"
+"builtin cd /dd/SRC/gnuchess/GNUCHESS4.0/MISC"
 ]
 },
 "binhex": {
@@ -778,10 +778,7 @@
 "setup": [
 "rm -rf /dd/tmp/GFXF > /nil 2>/nil; mkdir -p /dd/tmp/GFXF",
 "builtin cd /dd/tmp/GFXF",
-"ppmpat -gingham3 48 24 > j.ppm",
-"pbyte j.ppm 2 0a",
-"pbyte j.ppm 8 0a",
-"pbyte j.ppm c 0a"
+"ppmpat -gingham3 48 24 > j.ppm"
 ]
 },
 "ckermit": {
@@ -2034,7 +2031,6 @@
 },
 "hexedit": {
 "setup": [
-". /dd/SYS/termcap.entry",
 "builtin cd /dd"
 ]
 },
@@ -2322,7 +2318,7 @@
 "lispmtopgm": {
 "setup": [
 "mkdir -p /dd/tmp/NPIB > /nil 2>/nil",
-"pgmramp -lr 48 24 | pnmdepth 15 > /dd/tmp/NPIB/g15.pgm",
+"pgmramp -lr 48 24 > /dd/tmp/NPIB/g.pgm",
 "builtin cd /dd"
 ]
 },
@@ -3146,9 +3142,6 @@
 "pacman": {
 "keys": [
 "Tester"
-],
-"setup": [
-"load /h1/CMDS/tmode"
 ]
 },
 "pagefraz": {
@@ -3985,6 +3978,12 @@
 "builtin cd /dd/SYS"
 ]
 },
+"qp": {
+"setup": [
+"rm -rf /dd/tmp/QPC > /nil 2>/nil; mkdir -p /dd/tmp/QPC; echo \"/dd/SYS/motd\" > /dd/tmp/QPC/list",
+"builtin cd /dd/tmp/QPC"
+]
+},
 "qrttoppm": {
 "setup": [
 "rm -rf /dd/tmp/QRTB > /nil 2>/nil; mkdir -p /dd/tmp/QRTB",
@@ -4297,7 +4296,9 @@
 },
 "screen": {
 "setup": [
-"rm -rf /dd/tmp/SCRN; mkdir -p /dd/tmp/SCRN",
+"rm -rf /dd/tmp/SCRN; mkdir -p /dd/tmp/SCRN/.screens",
+"echo \"cat /dd/SYS/motd\" > /dd/tmp/SCRN/.screens/hi",
+"/h1/CMDS/load /h1/CMDS/shell",
 "export HOME=/dd/tmp/SCRN",
 "builtin cd /dd/tmp/SCRN"
 ]
@@ -4390,10 +4391,9 @@
 },
 "shar": {
 "setup": [
-"rm -f /dd/tmp/ARC/readme",
-"mkdir -p /dd/tmp/ARC > /nil 2>/nil",
-"cp /dd/readme /dd/tmp/ARC/readme",
-"builtin cd /dd"
+"rm -rf /dd/tmp/SHA > /nil 2>/nil; mkdir -p /dd/tmp/SHA",
+"echo \"Two lines of text,\" > /dd/tmp/SHA/note; echo \"wrapped for the mail.\" >> /dd/tmp/SHA/note",
+"builtin cd /dd/tmp/SHA"
 ]
 },
 "showpic": {
@@ -4941,7 +4941,10 @@
 },
 "unpacklib": {
 "setup": [
-"builtin cd /dd"
+"rm -rf /dd/tmp/UPL > /nil 2>/nil",
+"mkdir -p /dd/tmp/UPL",
+"cp /dd/LIB/pbm.l /dd/tmp/UPL/pbm.l",
+"builtin cd /dd/tmp/UPL"
 ]
 },
 "unpacklib.os9": {
@@ -5331,6 +5334,7 @@
 },
 "xcrypt": {
 "keys": [
+"thiskeyisplentylongenough",
 "thiskeyisplentylongenough"
 ],
 "setup": [

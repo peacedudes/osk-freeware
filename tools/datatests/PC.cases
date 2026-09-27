@@ -1,0 +1,63 @@
+family  PC
+# Seven screen programs fixed on 2026-09-26: each case asserts the program
+# now does its job, and each was run once against the old binary to see it
+# fail.
+
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   W=/dd/tmp/PCfix
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+
+# editor lists a directory by letter and waits for one.  At the end of its
+# input it used to take the unchanged key as a wrong letter, beep and redraw
+# the menu -- forever.  Now the end of input leaves it, as `!' does.
+case    editor-lists-a-directory-and-leaves-at-end-of-input
+run     /dd/CMDS/editor /dd/SYS < /nil
+run     echo editor-returned
+expect  UMACS-SHELL  V1.0
+expect  Directory : /dd/SYS
+expect  motd
+expect  editor-returned
+
+# mkdict read each line with gets() into a buffer one word long, so any
+# longer line ran over it and the program died with a bus error.  It now
+# reads a word's worth at a time and passes over a line too long to be a
+# word, as it passes over any other line it cannot use.
+case    mkdict-makes-bogs-own-dictionary-from-the-word-list
+run     /dd/CMDS/GAMES/mkdict < /dd/GAMES/words > $W/dict
+run     /dd/CMDS/wc -c $W/dict
+run     /dd/CMDS/diff $W/dict /dd/GAMES/BOG/dict > /nil && echo dict-is-identical
+expect  80520
+expect  dict-is-identical
+
+case    mkdict-passes-over-a-line-longer-than-any-word
+run     echo "zebra" > $W/long.txt
+run     echo "abcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrstabcdefghijklmnopqrst" >> $W/long.txt
+run     echo "zebras" >> $W/long.txt
+run     /dd/CMDS/GAMES/mkdict < $W/long.txt > $W/long.dict
+run     echo mkdict-rc=$?
+run     /dd/CMDS/dump $W/long.dict
+expect  mkdict-rc=0
+expect  0000  007A 6562 7261 0573
+absent  abcdefghij
+
+# bincheckr checks the run lengths in gnuchess's binary opening book.  It
+# read an older layout than gnuchess 4.0 writes, so on the book here it
+# printed zeroes and then divided by the zero entries it had counted.  It now
+# reads the 4.0 book, and says so rather than dividing when there is nothing
+# to average.
+case    bincheckr-reads-the-gnuchess-4-binary-book
+run     /dd/CMDS/GAMES/bincheckr /dd/SRC/gnuchess/GNUCHESS4.0/MISC/gnuchess.data
+expect  entrysize 12
+expect  booksize 12000
+expect  bookcount 9585
+expect  avg
+absent  booksize 0
+
+case    bincheckr-says-so-when-a-book-has-no-entries
+run     echo "0" > $W/empty.bk
+run     /dd/CMDS/GAMES/bincheckr $W/empty.bk
+run     echo bincheckr-rc=$?
+expect  no entries in use
+expect  bincheckr-rc=0

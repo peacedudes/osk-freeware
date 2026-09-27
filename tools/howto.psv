@@ -42,7 +42,7 @@ pnmscale|Scales an image: `pnmscale 0.5 file'. Given only a filename it takes th
 pcxtoppm|Cannot read a pipe -- it seeks backwards in its input and stops with "error seeking past header". Write the PCX to a file and pass the filename. sgitopnm has the same limitation.
 sgitopnm|Cannot read a pipe -- same as pcxtoppm. Give it a filename or it reports "premature EOF".
 yuvtoppm|yuvtoppm <width> <height>. The dimensions are not stored in a YUV file, so you must supply the ones ppmtoyuv started from.
-lispmtopgm|This build handles at most 16 grey levels and says "depth is too large" otherwise. Run the image through `pnmdepth 15' before pgmtolispm.
+lispmtopgm|Reads a Lisp Machine bitmap back into a PGM; pgmtolispm's output round-trips at any depth up to 8 bits.
 pbmtopk|A TeX font tool: it wants a pkfile, a .tfm metric file and a resolution. Point it at a .tfm.
 nroff|Formats a text with nroff requests: `nroff file.ms'. Its macro sets are in LIB (tmac.*). Point TMACDIR at LIB if a macro package is not found.
 lua|`lua cf.lua' in DOC/lua/examples prints a temperature table; `lua hello.lua' says hello. Eight example scripts are there; -v prints the version.
@@ -146,7 +146,7 @@ torus|Full-screen. You are @; + robots step toward you each turn and # robots tw
 spiff|Compares two files while ignoring differences that do not matter (whitespace, number formatting). Takes two filenames.
 infocom.tcap|The termcap build of the Z-machine, and the one to use at a terminal: `infocom.tcap /dd/GAMES/INFORM/dejavu.z3' keeps a status line (room and score) across the top. Three Inform story files ship in GAMES/INFORM: dejavu, hellow, shell.
 EditLibr|Part of the HL10 librarian set. Wants an edit file as a parameter; `EditLibr' alone prints its syntax.
-crypto|`crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. As a filter it ends the emulator session here, so read the help rather than piping through it.
+crypto|`crypto -h' is the real option list and `-i' the interactive commands; its bare answer is two lines naming those. With its output redirected it is a filter: `crypto -r13 -n < file > out'. A cypher given with -c is joined to it: `-czyx...a', all 26 letters.
 launch|Says "nothing to launch" until it is configured -- see its documentation.
 initvdu|It sets up specific VDU hardware. On a terminal it is not defined for, it answers "is not defined for this terminal".
 hack|run it by its full path: `/dd/CMDS/GAMES/hack', not `hack'. It chdirs into its playground and then stats argv[0] to date-check saved levels, so a bare name cannot resolve and it stops with "Cannot get status of hack." Invoked in full it starts: "Are you an experienced player?". Its playground -- record, bones, rumors, help -- is in GAMES/HACK/PLAYGROUND.
@@ -251,7 +251,7 @@ yidslots|Full-screen slot machine. Three windows spin through parts of names -- 
 casefix|It is a filter and reads standard input: `casefix < file' sentence-cases it.
 bibtex|It reads the job name from standard input -- `Please type input file name (no extension)--' is a prompt, not silence. The .bst styles are in SYS/TEX/INPUTS (plain, unsrt, abbrv, alpha), not SYS/TEX/BIB, which holds one read.me. A backslash cannot be TYPED at this shell -- bash's echo eats `\c' -- so patch one in with `pbyte <file> <hex offset> 5c'.
 makecrc|It generates C SOURCE and takes no arguments. Run it somewhere writable (`ksh -c "cd /dd/tmp; makecrc"') and it writes six files -- arc.c, binhex.c, ccitt.c, ccitt32.c, kermit.c, zip.c -- each a crctab[256] and an updcrc(). It writes them without a message, so list the directory afterwards.
-uuencode|One argument, the file: `uuencode /dd/SYS/motd > out.uu'. Its usage line reads as though it wants two and with two it prints that line and stops. `uudecode' is what undoes it.
+uuencode|The file and the name to record it by: `uuencode /dd/SYS/motd motd > out.uu'. With the file alone it records the pathlist you gave. `uudecode' is what undoes it.
 uuexpand|Expands a file into a string of 0s and 1s, one character per bit; despite the name it is unrelated to uuencode or uudecode. `uuexpand -u' (or `uuunexpand') reverses it. The -8/-16/-7 options choose the assumed character width, for portability across machines.
 bincheckr|It is in CMDS/GAMES, not CMDS. `bincheckr /dd/GAMES/gnuchess.book' prints the book's entrysize and counts and then faults at close.
 mkdict|Run it in /dd/GAMES/BOG, where bog's word list is; it is in CMDS/GAMES.
@@ -284,7 +284,7 @@ forth|Type `2 3 + . cr' and it answers 5; `: squares 11 1 do i dup * . loop cr ;
 ed|Needs a /r0 RAM disk for its scratch file; `mount -r=256k /r0' provides one. Then `ed <file>', with ed's usual commands: 1,4p prints, s/a/b/ substitutes, w writes, q quits.
 mshell|`mshell <menufile>': one `label| command' per line, up to ten. A number picks an entry; it hands the command to Microware's `shell', which must be loaded, then waits for RETURN. Control-C leaves it.
 if|bash's own `if' is a reserved word; `command if' reaches the one on this disk.
-qp|Hands its expanded command to $SHELL with the options `-ny -nl', which belong to the EFFO shell it was written for; no shell here takes them, your own OS-9's included, so here it expands nothing.
+qp|Put the command in back-quotes where its output belongs: `qp wc -c `cat list`'. From bash or ksh, quote the back-quoted part -- '`cat list`' -- or the shell expands it before qp sees it. Each piece runs under $SHELL (ksh after SYS/login).
 xc|`xc <file>': lines beginning `% ' are commands, shown and run; `$ ' runs them quietly; the rest is notes. It forks them through Microware's `shell', which must be loaded (`load /h1/CMDS/shell').
 checkenv|`checkenv <name> <value>', no comma: status 0 when they match, 1 when they differ. Typed with the comma from its syntax line, it prints that line and returns 0.
 chemtab|Full-screen. Space passes the title page; answer n (or y) to extra explanations and to keeping a transcript. On the main menu 1 looks up one element -- 3, then a symbol such as Fe and Return, shows its melting and boiling points, density, radius, electronegativity and discovery year; 2 selects elements by up to three properties, 3 lists them, 4 marks them on the periodic table, 5 graphs one property against another, 6 quits. Names are typed in lower case. The data is in LIB/chemtab and the manual pages in DOC/chemtab.
@@ -292,14 +292,14 @@ hist|A command-line editor with C-shell-style history in front of Microware's sh
 hp|A reverse Polish calculator in floating point. Given an expression on the command line it prints the result: `hp 2 3 +' prints 5.000 and `hp 2 10 :' 1024.000. Read from standard input it prints only when asked: p prints the top of the stack and P the values below it. + - / and % work as usual, x (or *) multiplies, : or ^ raises to a power, d drops the top value and D empties the stack; < = > & | and ! compare and combine, leaving 1 or 0; q quits. Dividing by zero stops it.
 run|`run '<program> <args>'' with PORT naming a terminal: the program runs with its input and output on that terminal.
 gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video.
-cuts|Coco Usenet Transfer Utility: it encodes a binary as mail-safe text and `-d' decodes a cuts file. Use `-d' for the half worth having; the encoder (`-e') asks for gigabytes of memory and is refused.
+cuts|Coco Usenet Transfer Utility: `cuts -e -o f.cut -a file' encodes a text file (-b for a binary, -9 for an OS-9 module) as mail-safe text, and `cuts -d f.cut' writes it back under its original name in the current directory.
 subber|Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- `#1000k' is the shell's directive, not subber's, so only Microware's shell acts on it: bash hands it straight to subber, which answers `cannot open #1000k', and without it subber's own growth is refused -- `No more memory: 256-byte request refused'. Run it at your OS-9 shell or through it. Both halves measured 2026-09-19. Tested: `,fox,cat' turns `a fox' into `a cat'.
 tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.
 back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits.
 blackjack|BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand.
 checkgame|It reads the `chess.lst' that gnuchess writes when you type `list'. Play in a directory of your own -- `ksh -c "cd /dd/tmp/mine; gnuchess"' -- type `list' then `quit', and then `checkgame /dd/tmp/mine/chess.lst'.
 chess|It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN.
-game|Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript on standard output: `game chess.lst > out.ps'. Here it gets as far as the page setup and stops.
+game|Same input as checkgame, a gnuchess `chess.lst', and it writes PostScript on standard output, a board for each move: `game chess.lst > out.ps'.
 gnuan|Give it a file of moves like `e2e4 e7e5 g1f3', then a search depth and a minutes-per-move limit, and it annotates the game move by move. At the end of the file it prints the position and stops with `Bad move'.
 gnuchessc|Its board display reads files from a compiled-in path; supply them there for a board. It still takes a move as `e2e4' and answers with its own.
 maze|Reads the number of rows on standard input: `echo 11 | maze' draws a maze eleven rows deep.

@@ -392,19 +392,18 @@ wait    8
 
 shot    shar
 cap     shar wraps files as a shell archive, the way source once
-cap     travelled over usenet.  One faulty check stops it here: its
-cap     read-access test rejects every file, even one that `cat' and
-cap     `ls' both show as world-readable.
-try     shar tmp/ARC/readme
-run     rm -f /dd/tmp/ARC/readme; mkdir -p /dd/tmp/ARC > /nil 2>/nil; cp /dd/readme /dd/tmp/ARC/readme
-wait    3
-run     builtin cd /dd
+cap     travelled over usenet: a header naming the files, then each
+cap     one as a here-document for sh to write back out.
+try     shar note
+run     rm -rf /dd/tmp/SHA > /nil 2>/nil; mkdir -p /dd/tmp/SHA
+wait    2
+run     echo "Two lines of text," > /dd/tmp/SHA/note; echo "wrapped for the mail." >> /dd/tmp/SHA/note
+wait    2
+run     builtin cd /dd/tmp/SHA
 wait    1
 run     clear
 wait    1
-run     ls -l tmp/ARC/readme
-wait    4
-run     shar tmp/ARC/readme
+run     shar note
 wait    6
 
 shot    unshar
@@ -467,16 +466,18 @@ run     liborder -modinfo stat.r
 wait    5
 
 shot    unpacklib
-cap     Splits an OS-9 library into its member modules. This build names the
-cap     first two and then stops at a sync word it does not expect -- on
-cap     this library and on every other in LIB tried; unpacklib.os9 takes
-cap     the same library apart whole.
-try     unpacklib -verbose LIB/blarslib.l
-run     builtin cd /dd
+cap     Splits an OS-9 library into its member modules, writing each as its
+cap     own file; -verbose names each one and its size as it goes.
+try     unpacklib -verbose pbm.l
+run     rm -rf /dd/tmp/UPL > /nil 2>/nil; mkdir -p /dd/tmp/UPL; cp /dd/LIB/pbm.l /dd/tmp/UPL/pbm.l
+wait    3
+run     builtin cd /dd/tmp/UPL
 wait    1
 run     clear
 wait    1
-run     unpacklib -verbose LIB/blarslib.l
+run     unpacklib -verbose pbm.l
+wait    6
+run     ls
 wait    10
 
 shot    jaw

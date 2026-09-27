@@ -1,12 +1,13 @@
-$ cat a.txt
-Welcome to the OS-9 freeware collection
-$ echo x > a.enc
-$ xcrypt a.txt a.enc
+$ xcrypt -e a.txt a.enc
 Key:thiskeyisplentylongenough
 $ dump a.enc
 
 Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
 ----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
-0000  BCAA 26A2 3993 8681 89E0 F1C3 9206 3A38 ..&.9.........:8
-0010  1504 A2C7 FD7B 03D3 FAD4 13D2 9A0C A5A3 .....{..........
-0020  C4BF 3FA6                               ..?.
+0000  CD83 B86A D909 DFC0 124C 1267 92BF D8D8 ...j.....L.g....
+0010  46BE FD20 11DD 1F92 6DB6 5BE6 A6D0 4E1D F.. ....m.[...N.
+0020  E708 7CA1 43D1 129B E9BE 3DCF           ..|.C.....=.
+$ xcrypt -d a.enc b.txt
+Key:thiskeyisplentylongenough
+$ cat b.txt
+Welcome to the OS-9 freeware collection

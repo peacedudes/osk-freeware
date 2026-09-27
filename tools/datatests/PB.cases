@@ -1,0 +1,135 @@
+family  PB
+# Programs that did not do what they say, fixed 2026-09-26 -- each case
+# here asserts the part that was broken, and each was run once against an
+# image holding the old binary and failed there.  What changed, program
+# by program, is in the README.OSK beside each source (SRC/shar, SRC/xrand,
+# SRC/eff_tsmon, SRC/diff, SRC/eff_lp, SRC/eff_qp,
+# SRC/gnuchess/GNUCHESS4.0/SRC) and in tools/patch_uuencode.py.
+#
+# lpsched (tools/patch_lpsched.py) has no case: its fix is in the mail it
+# sends when a job is done, and under os9exec the job never reports done --
+# prjob exits and lpsched stays waiting on its event (2026-09-26).
+load    /h1/CMDS/shell
+setup   export TERM=vt100
+setup   export TERMCAP=/dd/SYS/termcap
+setup   /dd/CMDS/rm -rf /dd/tmp/PBT > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p /dd/tmp/PBT
+setup   echo "abcdefghijKLMNOPqrst" > /dd/tmp/PBT/key
+# a gnuchess `list' of two moves each, the form checkgame and game read
+setup   echo "gnuchess 4p62 game" > /dd/tmp/PBT/chess.lst
+setup   echo "       score  depth   nodes  time         score  depth   nodes  time" >> /dd/tmp/PBT/chess.lst
+setup   echo " e2e4      0     0       0     0  c7c5    -10     0       0     0" >> /dd/tmp/PBT/chess.lst
+setup   echo " d2d4      0     0       0     0  c5d4    -50     0       0     0" >> /dd/tmp/PBT/chess.lst
+setup   echo "" >> /dd/tmp/PBT/chess.lst
+
+# shar refused every file it could read -- `No read access' -- because
+# its access() test was inverted.  A file that is not there still refuses.
+case    shar-wraps-a-file-it-can-read
+run     /dd/CMDS/shar /dd/SYS/motd
+run     /dd/CMDS/shar /dd/tmp/PBT/nosuch
+expect  Welcome to the OS-9 freeware collection
+expect  No read access for file: /dd/tmp/PBT/nosuch
+absent  No read access for file: /dd/SYS/motd
+
+# Its delimiter line lost its line end, so `SHAR_EOF' ran into the next
+# line and sh would never have seen the end of the here-document.
+case    shar-ends-each-file-on-a-line-of-its-own
+run     /dd/CMDS/shar /dd/SYS/motd > /dd/tmp/PBT/d.shar
+run     /dd/CMDS/cat /dd/tmp/PBT/d.shar
+expect  End of shell archive
+absent  SHAR_EOF#
+
+# xcrypt could not create its output file, and as `xcrypt' it could only
+# decrypt.  -e and -d now name the direction.  The seed is four bytes.
+case    xcrypt-encrypts-to-a-new-file
+run     /dd/CMDS/xcrypt -e /dd/SYS/motd /dd/tmp/PBT/x.enc < /dd/tmp/PBT/key
+run     /dd/CMDS/wc -c /dd/tmp/PBT/x.enc
+run     /dd/CMDS/cat /dd/tmp/PBT/x.enc
+expect  44 /dd/tmp/PBT/x.enc
+absent  Welcome to the OS-9
+
+case    xcrypt-decrypts-what-it-encrypted
+run     /dd/CMDS/xcrypt -d /dd/tmp/PBT/x.enc /dd/tmp/PBT/x.dec < /dd/tmp/PBT/key
+run     /dd/CMDS/cat /dd/tmp/PBT/x.dec
+expect  Welcome to the OS-9 freeware collection
+
+# tsmon2 said `Can't open device "/t9" - ' and stopped there, leaving the
+# reason for Microware's shell to print; now it prints it itself.
+case    tsmon2-says-why-it-cannot-open-the-line
+run     /dd/CMDS/tsmon2 /t9
+expect  Can't open device "/t9" - Error #000:2
+
+# diff -c ran both header lines together, with the year as 126 and no
+# zero padding.  Each header is its own line now, and patch reads it.
+case    diff-c-writes-a-header-patch-can-read
+run     echo "one" > /dd/tmp/PBT/a
+run     echo "two" > /dd/tmp/PBT/b
+run     /dd/CMDS/diff -c /dd/tmp/PBT/a /dd/tmp/PBT/b > /dd/tmp/PBT/ab.diff
+run     /dd/CMDS/grep "^--- /dd" /dd/tmp/PBT/ab.diff
+run     /dd/CMDS/grep "^\*\*\* /dd" /dd/tmp/PBT/ab.diff
+run     /dd/CMDS/patch /dd/tmp/PBT/a /dd/tmp/PBT/ab.diff
+run     /dd/CMDS/cat /dd/tmp/PBT/a
+expect  --- /dd/tmp/PBT/b	20
+expect  *** /dd/tmp/PBT/a	20
+expect  two
+absent  PM---
+
+# uuencode printed `uuencode >outfile [infile] name' and refused exactly
+# that.  The one-argument form still takes the file and names it by it.
+case    uuencode-takes-infile-and-name
+run     /dd/CMDS/mkdir -p /dd/tmp/PBT/uu
+run     /dd/CMDS/uuencode /dd/SYS/motd welcome.txt > /dd/tmp/PBT/uu/m.uu
+run     /dd/CMDS/cat /dd/tmp/PBT/uu/m.uu
+run     /dd/CMDS/ksh -c "cd /dd/tmp/PBT/uu; /dd/CMDS/uudecode m.uu"
+run     /dd/CMDS/cat /dd/tmp/PBT/uu/welcome.txt
+expect  begin 644 welcome.txt
+expect  Welcome to the OS-9 freeware collection
+
+case    uuencode-one-argument-and-none
+run     /dd/CMDS/uuencode /dd/SYS/motd
+run     /dd/CMDS/uuencode < /nil
+expect  begin 644 /dd/SYS/motd
+expect  USAGE: uuencode >outfile [infile] name
+
+# qp handed its expanded line to $SHELL with `-ny -nl', options of a zsh
+# nobody has; now the line goes as the one argument ksh and Microware's
+# shell both take.  The back-quotes are quoted so bash leaves them to qp.
+case    qp-expands-a-back-quoted-command
+run     echo "/dd/SYS/motd" > /dd/tmp/PBT/list
+run     export SHELL=/dd/CMDS/ksh
+run     /dd/CMDS/qp /dd/CMDS/wc -c '`/dd/CMDS/cat /dd/tmp/PBT/list`'
+expect  40 /dd/SYS/motd
+
+# The same with Microware's shell as $SHELL -- the reader's, loaded from /h1.
+case    qp-works-with-microware-shell
+run     echo "/dd/SYS/motd" > /dd/tmp/PBT/list
+run     export SHELL=shell
+run     /dd/CMDS/qp /dd/CMDS/wc -c '`/h1/CMDS/list /dd/tmp/PBT/list`'
+expect  40 /dd/SYS/motd
+
+# checkgame and game both stopped one move short of the list.  A list
+# that ends on black's move shows it now; one that ends on white's move
+# (the second file) still reads to the end without inventing a move.
+case    checkgame-replays-the-last-move
+run     /dd/CMDS/GAMES/checkgame /dd/tmp/PBT/chess.lst
+expect  2. d2d4  c5d4
+expect  Final board
+absent  Illegal
+
+case    checkgame-reads-a-list-that-ends-on-white
+run     echo "gnuchess 4p62 game" > /dd/tmp/PBT/odd.lst
+run     echo "       score  depth   nodes  time         score  depth   nodes  time" >> /dd/tmp/PBT/odd.lst
+run     echo " e2e4      0     0       0     0  c7c5    -10     0       0     0" >> /dd/tmp/PBT/odd.lst
+run     echo " d2d4      0     0       0     0  c5d4    -50     0       0     0" >> /dd/tmp/PBT/odd.lst
+run     echo " g1f3      0     0       0     0" >> /dd/tmp/PBT/odd.lst
+run     echo "" >> /dd/tmp/PBT/odd.lst
+run     /dd/CMDS/GAMES/checkgame /dd/tmp/PBT/odd.lst
+expect  3. g1f3
+expect  Final board
+absent  Illegal
+
+case    game-draws-the-last-move
+run     /dd/CMDS/GAMES/game /dd/tmp/PBT/chess.lst
+expect  R (2  ... c5d4 score -50
+expect  ;RNBQKBNR;]') show
+absent  ]]'

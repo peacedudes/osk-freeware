@@ -314,15 +314,18 @@ run     $P/pbmtopk /dd/tmp/r.pbm
 expect  This is PBMtoPK, version 2.4
 expect  usage:  pbmtopk pkfile[.pk] tfmfile[.tfm] dpi
 
-# KNOWN DEFECT, measured 2026-08-31. pgmtolispm writes its 293 bytes happily;
-# lispmtopgm will not read them back, and says why -- this build has
-# PGM_BIGGRAYS off, so the grey depth in the file is more than it can hold.
-case    lispm-round-trip-fails-in-this-build
+# lispmtopgm refused every 8-bit image (its maxval was 2 to the depth, one
+# too many) and read each row's padding as pixels; rebuilt with both fixed
+# (2026-09-26), pgmtolispm's 293 bytes come back as the image that went in.
+case    lispm-round-trips
 run     $P/pgmtolispm /dd/tmp/s.pgm > /dd/tmp/o.lispm 2>/nil
 run     /dd/CMDS/wc -c /dd/tmp/o.lispm
 run     $P/lispmtopgm /dd/tmp/o.lispm > /dd/tmp/bk.pgm
+run     A=$($P/pnmnoraw /dd/tmp/s.pgm | /dd/CMDS/md5); B=$($P/pnmnoraw /dd/tmp/bk.pgm | /dd/CMDS/md5)
+run     [ "$A" = "$B" ] && echo "round trip identical"
 expect  293 /dd/tmp/o.lispm
-expect  depth is too large - try reconfiguring with PGM_BIGGRAYS
+expect  round trip identical
+absent  depth is too large
 
 # pnmsmooth builds a mean kernel in a temporary file and hands it to
 # pnmconvol, started by bare name -- hence the family's `load'.  The archive

@@ -170,6 +170,8 @@ savage|eff_bench|savage.c|||
 scales|hc_loose|scales.c|||
 scrabble|scrabble|scrabble.c util.c board.c dict.c move.c player.c savegame.c tty.c user.c|KNR MEM=64k|/dd/LIB/curses.l /dd/LIB/termlib.l /dd/LIB/rand.r /dd/LIB/strings.r|
 screen_nocio|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
+# CMDS/screen, the same source and fix as screen_nocio, module named screen (SRC/screen/README.OSK).
+screen|screen|scandir.c screens.c||/dd/LIB/rand.r /dd/LIB/strings.r /dd/LIB/math.l|
 sdb|effo_sdb|cmd.c com.c cre.c err.c iex.c int.c io.c mth.c pcjunk.c scn.c sdb.c sel.c srt.c tbl.c|||
 # sed was built from eff_sed (GNU sed 1.02) until 2026-09-24; the shipped
 # binary is 1.06, whose own source is SRC/sed_1.06.
@@ -679,6 +681,9 @@ perr|bix|perr.c|||
 qsort9|bix|qsort9.c|||
 rdjpgcom|jpeglib/JPEG_5A|rdjpgcom.c|KNR||
 wrjpgcom|jpeglib/JPEG_5A|wrjpgcom.c|KNR||
+# cjpeg.070: jpeg-5a for the 68000, the cjpeg recipe under the archive's
+# .070 name (2026-09-26).  The archive's gcc build wrote nothing.
+cjpeg.070|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c jcparam.c jdatadst.c jcmaster.c jcmarker.c jcmainct.c jcprepct.c jccoefct.c jccolor.c jcsample.c jchuff.c jcdctmgr.c jfdctfst.c jfdctflt.c jfdctint.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR||
 lessecho|less/less_332|lessecho.c version.c|_OSK_MWC32=1 _OSK=1||
 # lesskey builds and works, and is NOT identical to the shipped one: given no
 # key file, ours says "Cannot open /dd/.lesskey" and prints its usage, while
@@ -1172,3 +1177,16 @@ chp|rex|chp.c|||
 remdate|rex|remdate.c||/dd/LIB/net.l /dd/LIB/os9lib.l|
 prexd|rex|rexd.c|REXDC="prexdc"||
 prexdc|rex|rexdc.c||/dd/LIB/net.l /dd/LIB/os9lib.l|
+shar|shar|shar.c|||
+# checkgame and game are ANSI C (the port's Makefile uses gcc), so GCC.
+# NONDSP keeps gnuchess.h off <ncurses.h>; -mremote is the Makefile's own
+# flag and checkgame needs it -- its move tables are 86k of data, past
+# what l68 places without it ("non-remote data allocation ... exceeds 64k").
+checkgame|gnuchess/GNUCHESS4.0/SRC|checkgame.c|GCC NONDSP -mremote||
+game|gnuchess/GNUCHESS4.0/SRC|game.c|GCC NONDSP||
+bincheckr|gnuchess|GNUCHESS4.0/SRC/bincheckr.c|||
+# hexedit -- HEXPERT 2.4.  Microware's cc against LIB/ncurses.l, with moria's
+# tcentry.c ahead of the library so it reads SYS/termcap as it stands (see
+# the moria recipe).  The archive's gcc 1.4.2 + TOP ncurses build sent every
+# cursor move as ESC [ ; H.  OS9 selects the port's -d (directory) option.
+hexedit|hexedit|hex.c ../moria/tcentry.c|OS9 MEM=32k|/dd/LIB/ncurses.l /dd/LIB/os9lib.l|-V=/dd/DEFS/ncurses

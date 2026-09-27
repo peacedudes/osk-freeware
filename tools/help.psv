@@ -689,7 +689,7 @@ chess|chess -?|
 crib|crib -?|
 cribbage|cribbage -?|
 gnuan|gnuan -?|
-gnuchess|gnuchess -?|
+gnuchess|setenv TERM vt100; gnuchess -?|asked for help it prints its usage line and then starts the game, which stops at once: it reads TERMCAP as the entry itself (SYS/termcap.entry), so it names the terminal it could not describe
 gnuchessc|gnuchessc -?|
 gnuchessn|gnuchessn -?|
 gnuchessr|none|it takes -a, -h and -x xwndw; asked for help it prints the usage line and starts the game anyway
@@ -702,7 +702,7 @@ bjack|none|it takes one argument, the starting stake, and no options
 jaw|none|it takes no arguments: compressed data on standard input, the original on standard output
 trigraph|none|it takes no arguments and prints its own source
 tttt|none|it takes no options; q quits
-bincheckr|none|it takes the book file and nothing else
+bincheckr|bincheckr|
 checkgame|none|it takes the game listing and nothing else
 game|none|it takes the game listing and the page numbers and nothing else
 postprint|none|it takes no arguments: the hash file's name is compiled in

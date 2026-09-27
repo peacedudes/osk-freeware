@@ -137,15 +137,12 @@ run     /dd/CMDS/wc -c /dd/tmp/N3/j.back
 expect  junk in file where an integer should be
 absent  0 /dd/tmp/N3/j.back
 
-# KNOWN DEFECT, measured 2026-08-31. The 68070 build will not read the very
-# file the ordinary build has just encoded from -- same bytes, same run.
-# `cjpeg' produces a JPEG from it; `cjpeg.070' answers "Premature end of
-# input file" and writes nothing. The 070 builds are alternates for another
-# processor and this is the evidence that they are not drop-in equivalents.
-case    the-68070-cjpeg-refuses-what-the-68000-cjpeg-accepts
+# The .070 build was rebuilt from SRC/jpeglib on 2026-09-26 (the archive's
+# answered "Premature end of input file" and wrote nothing).  It reads the
+# same LF-patched file cjpeg does.
+case    the-68000-cjpeg.070-reads-what-cjpeg-reads
 run     /dd/CMDS/rm /dd/tmp/N3/j70.jpg
 run     /dd/CMDS/cjpeg.070 /dd/tmp/N3/j.ppm > /dd/tmp/N3/j70.jpg
-run     /dd/CMDS/wc -c /dd/tmp/N3/j.jpg /dd/tmp/N3/j70.jpg
-expect  Premature end of input file
-expect  0 /dd/tmp/N3/j70.jpg
-absent  0 /dd/tmp/N3/j.jpg
+run     /dd/CMDS/rdjpgcom.070 -verbose /dd/tmp/N3/j70.jpg
+expect  JPEG image is 32w * 24h
+absent  Premature end of input file

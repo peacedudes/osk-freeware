@@ -215,15 +215,10 @@ run     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
 wait    10
 
 shot    hexedit
-cap     HEXPERT, a hex viewer and editor, on a module from the disk.  Its
-cap     display does not draw here: every cursor move this build sends names
-cap     the same place, so the menu, the status line and the rows of hex all
-cap     land on the top two lines, the last row written on top.  It reads
-cap     TERMCAP as the terminal description itself, so the leading `.' line
-cap     sources the entry into your shell first.  `q' leaves.
-try     . SYS/termcap.entry; hexedit CMDS/today
-run     . /dd/SYS/termcap.entry
-wait    3
+cap     HEXPERT, a hex viewer and editor, on a module from the disk: the
+cap     bytes in hex on the left and as text on the right, sixteen to a
+cap     row.  The arrow keys page, `e' edits, `q' leaves.
+try     hexedit CMDS/today
 run     builtin cd /dd
 wait    1
 run     clear

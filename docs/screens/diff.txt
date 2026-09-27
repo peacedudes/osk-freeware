@@ -1,7 +1,9 @@
 $ head -n 12 SYS/motd > tmp/a.txt 2>/nil
 $ sed -e "s/OS-9/OS-Nine/" tmp/a.txt > tmp/b.txt
 $ diff -c tmp/a.txt tmp/b.txt
-*** tmp/a.txt   126/9/26 8:14 AM--- tmp/b.txt   126/9/26 8:14 AM***************
+*** tmp/a.txt   2026/09/26 21:49
+--- tmp/b.txt   2026/09/26 21:49
+***************
 *** 1,1 ****
 ! Welcome to the OS-9 freeware collection
 --- 1,1 ----

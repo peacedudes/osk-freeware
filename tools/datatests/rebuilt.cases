@@ -76,10 +76,8 @@ expect  1 file
 run     $R/lharcs l /dd/tmp/l1.lzh
 expect  1 file
 
-# REBUILT/screen_nocio is the trap-free build of the same program and stops at
-# the same place -- there is no $HOME/.SCREENS on this disk. Nothing to swap;
-# the name records the one real difference, which is that CMDS/screen wants
-# cio and this does not.
+# REBUILT/screen_nocio and CMDS/screen are the same trap-free build since
+# 2026-09-26, and both stop here -- there is no $HOME/.SCREENS on this disk.
 case    both-screens-want-a-.SCREENS-directory
 run     /dd/CMDS/screen
 expect  .screens directory

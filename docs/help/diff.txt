@@ -1,2 +1,3 @@
 $ diff -?
-diff: illegal option -- diff: requires two file names.  Usage: diff [-options] file1 file2
+diff: illegal option -- ?
+diff: requires two file names.  Usage: diff [-options] file1 file2

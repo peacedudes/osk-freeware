@@ -1,4 +1,15 @@
-$ ls -l tmp/ARC/readme
--rw-rw-rw-   1 7        1            7231 Sep 23 23:39 tmp/ARC/readme
-$ shar tmp/ARC/readme
-No read access for file: tmp/ARC/readme
+$ shar note
+#       This is a shell archive.
+#       Remove everything above and including the cut line.
+#       Then run the rest of the file through sh.
+#----cut here-----cut here-----cut here-----cut here----#
+#!/bin/sh
+# shar:    Shell Archiver
+#       Run the following text with /bin/sh to create:
+#       note
+# By:   Jim Omura ()
+cat << \SHAR_EOF > note
+Two lines of text,
+wrapped for the mail.
+SHAR_EOF#       End of shell archive
+exit 0

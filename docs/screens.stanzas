@@ -75,7 +75,7 @@ beav 5c4c9333df878ea7
 bibtex 2f5c69fc71e4f506
 biff 5974699784b4d2fc
 bigsetter 227177ac889a49f9
-bincheckr 2b7703edb5412078
+bincheckr d35dfd53b12df508
 binhex abe31b8b77dfffa3
 bio 74e8cec2e9c4ab9e
 bioradtopgm 7d078ae50624b6a3
@@ -147,7 +147,7 @@ choose af28169a3d9f98fb
 chown 71bbf6730fd291c9
 cio 0466cfdfe9f7fe6f
 cjpeg 99433cc277ac4842
-cjpeg.070 f5f3bd59941eb99a
+cjpeg.070 3f6ef56ab9996837
 ckermit e8743d91259abcdf
 clear a45512bf7a197623
 clock cd545a63f99cd365
@@ -408,7 +408,7 @@ helpindex 6e05b7ef5cb8238e
 hexa 29982684642f4ecc
 hexbin 06949c54d9627202
 hexed 55bb24889ae6eefa
-hexedit c122913c6b09dc0a
+hexedit a918f126c1f8efdd
 hinterhalt 26c3b4402931fe1e
 hipstopgm 2d5e8d316e657909
 hist d8104eb37275a856
@@ -472,7 +472,7 @@ liborder f6e8a5f90d444254
 liborder.os9 0876d2c4107407df
 libsplit d91101c22b790347
 life cb3cef72829ef40d
-lispmtopgm 4b27b981a050464f
+lispmtopgm 0c7400dbc37e6afa
 lissaj d7853d340da26d5f
 listalias 505f544d04c0d606
 lmail 08bb61c454bd4d16
@@ -614,7 +614,7 @@ oskversion bcfc0f072c369d14
 othello 686eca6f5013aaa0
 owner e7c0b8d6328ad1a4
 p2c ad2cc748d21b5b6a
-pacman d32c75db96b8ffc6
+pacman 5a9fd2cf5ea65f3a
 pagefraz b7df03a6ec1e2269
 pagekwic 8ef2906c3b060d59
 pageline 13c7f481a68a01c9
@@ -770,7 +770,7 @@ ptydrv 4948716360664755
 ptyman c3ceb0dc1e399458
 pwgen b533b0b4fe951869
 pwparse 53ca2a07a5edd842
-qp 791ef7e766e0c805
+qp d13d570b7f80f011
 qrttoppm 317b49255142285a
 qsort9 60b79e4fd20080c9
 qt 6e09112db03ccdd9
@@ -830,7 +830,7 @@ scales d22cb38358ab8626
 scpp 58194f225ad06216
 scqref 9e7c1dd532948631
 scrabble 80414d1dca9ed3e4
-screen 0af37f791edf5408
+screen 4783a491cba97838
 screen_nocio 76b736aae3fa2773
 scriptmaster c2480f44f645d209
 scsi_mm1a ff0c9e0969acf8de
@@ -850,7 +850,7 @@ setyear f1b6ef80d36a4746
 sgitopnm 7d7ac09f2b12c79f
 sgrep 63636bbc5818b85b
 sh 1050ea4d5b07cd6b
-shar a6676333f58d6a6b
+shar abd29048eb9a3673
 shdev a36d8781cdeb18ab
 shire 73eb937ead616c9c
 showpic b9909472fe55231e
@@ -982,7 +982,7 @@ unip 55fb35284e3a617e
 uniq 108bc2ae2b459d9a
 unkeep ba31f02f8c55d43c
 unp d9954af1d0edb570
-unpacklib 8bb1d3a69ebb675e
+unpacklib 319f3b8785ef776d
 unpacklib.os9 5f7d671d280f441e
 unshar fbb8d1b66d8174cb
 unsit d313249b66cb4a1a
@@ -996,7 +996,7 @@ uucp 9ddc5a7f3db4ecf1
 uud 4a82bba53adf681d
 uudecode 9d17dbb5520dbcd3
 uue 1cb8cec92d306d44
-uuencode ef2f6199e6f7181d
+uuencode bb7ff96e7eb41e40
 uuexpand af2741af1d85b8ce
 uulog afef405322d3ee03
 uuname 09fb7cd620814579
@@ -1060,7 +1060,7 @@ wysetime d137e243fb250c47
 xargs 7c5ffd5e9d0881c4
 xbmtopbm 699141463bda5b4d
 xc 9dc10694f0a5376d
-xcrypt 3777b93cf87757e6
+xcrypt 827833dcac87038a
 xd 7ffede9c9392ffe8
 xengine 5722aee171787384
 xfmt 508fe645a3b9f449

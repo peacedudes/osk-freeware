@@ -1,2 +1,8 @@
 $ cjpeg.070 -quality 50 j.ppm > x.jpg
-$ Premature end of input file
+  95%
+
+$ dump x.jpg | head -n 4
+
+Addr   0 1  2 3  4 5  6 7  8 9  A B  C D  E F 0 2 4 6 8 A C E
+----  ---- ---- ---- ---- ---- ---- ---- ---- ----------------
+0000  FFD8 FFE0 0010 4A46 4946 0001 0100 0001 ......JFIF......

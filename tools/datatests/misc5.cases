@@ -42,7 +42,7 @@ expect  plain.txt.Z
 
 case    xcrypt-states-the-two-files-it-wants
 run     /dd/CMDS/xcrypt
-expect  en/decrypt <input-file> <output-file>
+expect  xcrypt [-e|-d] <input-file> <output-file>
 
 # modbuster splits a file holding SEVERAL modules into one file each, and
 # `cyberwar' is a real module group: two programs and two window

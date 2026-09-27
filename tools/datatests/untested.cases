@@ -11,9 +11,9 @@
 # Not assertable here, and why: `config' prints a genuine table of this
 # machine's C type properties and then takes an ILLEGAL instruction in its
 # floating-point section; `bincheckr' reads the book header and then faults
-# at close; `crypto' as a FILTER ends the session even with its output
-# redirected.  datatest fails any case whose session took an exception, which
-# is right, so those three live on gallery cards instead.
+# at close.  datatest fails any case whose session took an exception, which
+# is right, so those two live on gallery cards instead.  (`crypto' was the
+# third until its 2026-09-26 rebuild; PA.cases has it as a filter.)
 
 family  untested
 
@@ -85,16 +85,17 @@ run     echo "hELLo THERE. this IS a TEST." > $W/case.txt
 run     /dd/CMDS/casefix < $W/case.txt
 expect  Hello there. This is a test.
 
-case    uuencode-takes-ONE-argument-and-uuexpand-is-not-its-inverse
-# `USAGE: uuencode >outfile [infile] name' reads as though it wants two, and
-# with two it prints that line and stops.  One argument -- the file -- works.
-# `uuexpand' is NOT a uudecoder whatever DOC/INDEX said: its own usage is
-# `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for byte
-# portability.  `uudecode' is the inverse, and it is on the disk.
+case    uuencode-takes-infile-and-name-and-uuexpand-is-not-its-inverse
+# uuencode takes the file and the name to record, as its usage line says
+# (tools/patch_uuencode.py, 2026-09-26); with the file alone it records the
+# pathlist.  `uuexpand' is NOT a uudecoder whatever DOC/INDEX said: its own
+# usage is `uuexpand [opts] / or: uuunexpand [opts]' with -8 and -16 for
+# byte portability.  `uudecode' is the inverse, and it is on the disk.
 run     /dd/CMDS/uuencode /dd/SYS/motd
 run     /dd/CMDS/uuencode /dd/SYS/motd motd.out
 expect  begin 644 /dd/SYS/motd
-expect  USAGE: uuencode >outfile [infile] name
+expect  begin 644 motd.out
+absent  USAGE: uuencode
 
 case    bibtex-formats-a-bibliography
 # It reads the job name from STANDARD INPUT -- `Please type input file name

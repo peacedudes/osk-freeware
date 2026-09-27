@@ -197,9 +197,8 @@ wait    4
 shot    cuts
 cap     cuts, the Coco Usenet Transfer Utility, given a two-line text file
 cap     in its form: an identifier line naming the file, the data, and the
-cap     identifier again. `-d' reads the identifier and writes fox.txt, but
-cap     dump shows only the two line ends in it -- every other character is
-cap     lost. Its encoder, `-e', runs away writing empty data lines.
+cap     identifier again. `-d' reads the identifier and writes fox.txt,
+cap     and dump shows the two lines back.
 try     cat fox.cut; cuts -d fox.cut; dump fox.txt
 run     set +H; rm -rf /dd/tmp/CUTS > /nil 2>/nil; mkdir -p /dd/tmp/CUTS; builtin cd /dd/tmp/CUTS
 wait    2
@@ -565,8 +564,8 @@ run     sum SYS/motd SYS/holidays SYS/birthdays DOC/INDEX
 wait    6
 
 shot    tac
-cap     tac prints a file last line first -- cat backwards.  Name the file:
-cap     read from a pipe it stops with an error.
+cap     tac prints a file last line first -- cat backwards -- a named file
+cap     or what comes through a pipe.
 try     cat tmp/TEXTA/hol.txt; tac tmp/TEXTA/hol.txt
 run     mkdir -p /dd/tmp/TEXTA; cat /dd/SYS/holidays | head -n 8 > /dd/tmp/TEXTA/hol.txt
 wait    3

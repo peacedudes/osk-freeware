@@ -1,0 +1,2 @@
+$ bincheckr
+usage: bincheckr bookfile

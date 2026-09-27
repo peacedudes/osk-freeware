@@ -46,9 +46,9 @@ run     cursive Freeware
 wait    6
 
 shot    diff
-cap     GNU diff 1.4 on two versions of the same file, in context form: the
-cap     changed line marked with `!' in each. The two header lines run
-cap     together because the OS-9 port's date string has no line end.
+cap     GNU diff 1.4 on two versions of the same file, in context form: a
+cap     header line for each file with its date, then the changed line
+cap     marked with `!' in each.
 try     diff -c tmp/a.txt tmp/b.txt
 run     builtin cd /dd
 wait    1

@@ -1,2 +1,2 @@
 $ screen
-mode: You must have a $HOME/.screens directory.
+Welcome to the OS-9 freeware collection

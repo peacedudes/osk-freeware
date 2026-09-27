@@ -411,9 +411,8 @@ size    24 80
 pages
 cap     dm, Disk Master 1.4: the directory on the left, a panel on the right
 cap     for the file the bar is on, and its commands along the foot, typed
-cap     in lower case.  Written for the MM/1: Ctrl-N moves the bar down and
-cap     Ctrl-P up -- an arrow key does nothing -- and the bar is drawn in
-cap     the MM/1's colour codes, which other terminals do not show.  It
+cap     in lower case.  The arrow keys move the bar, as Ctrl-N and Ctrl-P
+cap     do on the MM/1 it was written for.  It
 cap     runs its commands through system(), so SHELL names `sh', and it
 cap     lists the directory you are in.  Below the panes, its help page by
 cap     page as `h' shows it, the last page, the author's credit, left off.

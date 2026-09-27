@@ -4,11 +4,12 @@ family  tex
 # Everything here hangs off one artefact -- a real .dvi -- and getting one
 # took finding two things out:
 #
-#   * `tex' and `latex' ARE BROKEN, and they are the two everybody types.
-#     Each is a one-line wrapper that asks a shell to run `virtex "&plain"'
-#     or `virtex "&lplain"'; the quoted format name is never unquoted, so
-#     the shell gets one long path name and answers E$PNNF. Call `virtex'
-#     with the format yourself and the whole system works.
+#   * `tex' and `latex' are one-line wrappers that ask $SHELL to run
+#     `virtex "&plain"' or `virtex "&lplain"'.  Under SYS/login -- SHELL=ksh
+#     and CMDS/TEXCMDS on PATH -- they work: `latex small.tex' writes
+#     small.dvi.  With SHELL=bash the line is taken as one path name
+#     (E$PNNF), and without TEXCMDS on PATH ksh says `virtex: not found'.
+#     This file calls `virtex' itself so it needs neither.
 #   * SAMPLES/small.tex is a LaTeX document and SAMPLES/story.tex is plain
 #     TeX with no \end. Running the wrong engine on the first gives
 #     "! Undefined control sequence \documentstyle"; running the second
@@ -133,7 +134,7 @@ run     $T/tangle
 expect  Usage: weave webfile[.web] [changefile[.ch]] [-x].
 expect  Usage: tangle webfile[.web] [changefile[.ch]].
 
-# KNOWN DEFECT. dvips wants its PostScript header files and none is here.
+# dvips finds its prologues in SYS/TEX/DVIPS and writes pages.
 case    dvips-writes-postscript-with-its-prologue
 run     $T/dvips -o /dd/tmp/x.ps /dd/small.dvi
 expect  This is dvipsk 5.495b

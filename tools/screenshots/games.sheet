@@ -198,22 +198,18 @@ wait    3
 
 shot    pacman
 size    26 80
-cap     Pac-Man in an ASCII maze, with your system's tmode loaded, which it
-cap     forks to set the terminal.  It asks your name and whether you want
-cap     instructions, then draws the maze by moving the cursor with single
-cap     control characters that an ANSI terminal like this one does not
-cap     follow, so only the maze's top wall reaches the screen: the board does
-cap     not draw here.  Its maze, help and score files are in GAMES/pacman.
+cap     Pac-Man in an ASCII maze: you are OS9, the ghosts are CPM, MPM, RAM
+cap     and ROM, and the keypad keys 8, 2, 4 and 6 move you.  It asks your
+cap     name and whether you want instructions first.  Its maze, help and
+cap     score files are in GAMES/pacman.
 try     pacman
-run     load /h1/CMDS/tmode
-wait    2
 run     clear
 wait    1
 run     pacman
 send    Tester\r
 wait    3
-send    y
-wait    4
+send    n
+wait    6
 snap
 send    \s
 wait    2
@@ -616,24 +612,22 @@ wait    2
 shot    bincheckr
 size    34 80
 cap     Checks a GNU Chess binary opening book for how well it is packed:
-cap     entry size, book size, pocket and count.  It reads a binary book
-cap     layout older than anything on this disk -- GAMES/gnuchess.book is the
-cap     text library -- so given that file it reports the entry size and
-cap     zeroes, and then stops on a math trap as it averages over no entries:
-cap     the register dump is the system reporting the trap.
-try     bincheckr gnuchess.book
-run     builtin cd /dd/GAMES
+cap     the book gnuchess 4.0 ships, 12,000 slots holding 9,585 entries,
+cap     and the runs of filled slots in its hash table -- the longest,
+cap     the shortest and the average.
+try     bincheckr gnuchess.data
+run     builtin cd /dd/SRC/gnuchess/GNUCHESS4.0/MISC
 wait    1
 run     clear
 wait    1
-run     bincheckr gnuchess.book
+run     bincheckr gnuchess.data
 wait    10
 
 shot    checkgame
 size    30 80
 cap     A two-move game listed by gnuchessc's `list' command, replayed and
 cap     checked move by move: the moves it accepted, and the board it
-cap     reaches.  It stops one move short of the end of the list.
+cap     reaches.
 try     checkgame chess.lst
 run     rm -rf /dd/tmp/G4CHK > /nil 2>/nil; mkdir -p /dd/tmp/G4CHK
 run     builtin cd /dd/tmp/G4CHK
@@ -656,8 +650,7 @@ cap     A two-move game, listed by gnuchessc's `list' command, drawn as
 cap     PostScript: for each move, its number and score and then the board
 cap     as a line of ChessFont characters, one rank to a `;'.  Put the
 cap     ChessFont file from SRC/gnuchess/GNUCHESS4.0/MISC in front of it
-cap     and send it to a PostScript printer.  Like checkgame it stops one
-cap     move short of the end of the list.
+cap     and send it to a PostScript printer.
 try     game chess.lst
 run     rm -rf /dd/tmp/G4GAME > /nil 2>/nil; mkdir -p /dd/tmp/G4GAME
 run     builtin cd /dd/tmp/G4GAME
@@ -1094,12 +1087,9 @@ wait    2
 
 shot    fuddle
 size    24 80
-cap     Chess against the computer, written for a TeleVideo terminal: it
-cap     clears the screen and moves the cursor with TeleVideo codes, which an
-cap     ANSI terminal like this one does not follow, so the pieces and the
-cap     board land in the wrong places.  The moves still read: at the top
-cap     right, after `fuddling...', its word for thinking, it answers e2e4
-cap     with d7 to d5.
+cap     Chess against the computer: the black pieces in reverse video, moves
+cap     typed as two squares.  At the top right, after `fuddling...', its
+cap     word for thinking, it answers e2e4 with d7 to d5.
 try     fuddle
 run     fuddle
 wait    6

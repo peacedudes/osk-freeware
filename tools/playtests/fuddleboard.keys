@@ -1,0 +1,23 @@
+name    fuddleboard
+prog    fuddle
+# fuddle's board at a vt100.  It was built for a TeleVideo terminal --
+# ESC = row col to place the cursor, ^Z to clear, ESC G4 for the reverse
+# video its black pieces are drawn in -- and at an ANSI terminal the board
+# never assembled.  tools/patch_fuddle.py (2026-09-26) gives each code its
+# ANSI equivalent; the board then draws square by square, takes e2e4, and
+# answers while `fuddling...' counts its search.
+rate    0.3
+wait    5
+key     y
+key     \r
+wait    5
+snap    board
+keys    e2e4
+key     \r
+wait    25
+snap    reply
+key     \003
+wait    3
+expect   8  |  R  |||N|||  B  |||Q|||  K  |||B|||  N  |||R|||
+expect   1  |||R|||  N  |||B|||  Q  |||K|||  B  |||N|||  R  |
+expect  fuddling...

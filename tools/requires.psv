@@ -164,3 +164,4 @@ gcc2|your own OS-9's r68, loaded, to go past -S; l68 and cstart.r to link|measur
 gpp|your own OS-9's r68, loaded, for -c|measured 2026-09-26
 gcc272_collect|the whole link it is given: cstart.r, greet.r, libgcc000.l, clibn.l and sys.l|measured 2026-09-26: with the object alone it answers `Unresolved reference _stkcheck'
 pnmsmooth|pnmconvol, resident (`load CMDS/NETPBM/pnmconvol') or in the execution directory: it starts pnmconvol by name|SRC/netpbm/PNM/pnmsmooth.c; measured 2026-09-26
+screen|a module named `shell' to run the greeting -- SYS/login loads yours from /h1|measured 2026-09-26

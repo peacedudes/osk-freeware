@@ -1596,22 +1596,22 @@ wait    16
 
 
 shot    cjpeg.070
-cap     cjpeg.070 is cjpeg built for the 68000, 68010 and 68070.  Handed the
-cap     patched PNM its twin compresses, it stops at `Premature end of input
-cap     file' and writes nothing; the library's own test images go the
-cap     same way.  Use cjpeg.
+cap     cjpeg.070 is jpeg-5a's cjpeg built for any 68000.  It compresses a
+cap     PNM as netpbm writes it -- no separators to patch.
 try     cjpeg.070 -quality 50 j.ppm > x.jpg
 os9     cjpeg.070 -quality 50 j.ppm >-x.jpg
 run     rm -rf /dd/tmp/GFXF > /nil 2>/nil; mkdir -p /dd/tmp/GFXF
 wait    3
 run     builtin cd /dd/tmp/GFXF
 wait    1
-run     ppmpat -gingham3 48 24 > j.ppm; pbyte j.ppm 2 0a; pbyte j.ppm 8 0a; pbyte j.ppm c 0a
+run     ppmpat -gingham3 48 24 > j.ppm
 wait    8
 run     clear
 wait    1
 run     cjpeg.070 -quality 50 j.ppm > x.jpg
 wait    10
+run     dump x.jpg | head -n 4
+wait    3
 
 
 shot    rdjpgcom

@@ -26,9 +26,8 @@ case    btoa-really-encodes
 run     /dd/CMDS/md5 /dd/tmp/t.btoa
 absent  ee2c20fa226fe6fc78feec7f123c7a99
 
-# uuencode's own USAGE line reads `uuencode >outfile [infile] name' and is
-# MISLEADING: with two arguments it prints that usage and does nothing, and
-# with one it encodes that file. Measured 2026-08-27. 963 bytes in, 1393 out.
+# uuencode with one argument encodes that file under its pathlist; two,
+# `infile name', work since 2026-09-26. 963 bytes in, 1393 out.
 case    uuencode-uudecode-round-trip
 run     /dd/CMDS/cp $T /dd/tmp/enc.src
 run     /dd/CMDS/uuencode /dd/tmp/enc.src > /dd/tmp/t.uu

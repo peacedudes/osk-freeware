@@ -42,10 +42,10 @@ expect  between a switch and its arguments (i.e. -x3 is okay, -x 3 is not allowe
 expect      -piFLOAT Set double pi [default: 3.144500]
 absent  vector=
 
-# `oleo' IS NOT A CASE. It stops with `Illegal instruction: 0009 at
-# 000465d2' -- not a missing terminal and not a missing file, a genuinely
-# bad instruction -- and an illegal instruction raises vector $04, which
-# fails any case by the harness's own rule. DOC/INDEX carries it.
+# `oleo' IS NOT A CASE, because it is full-screen and waits for keys: it
+# draws its grid and then reads the terminal for ever.  It used to stop
+# with `Illegal instruction: 0009 at 000465d2'; it has run since the
+# os9exec trap fixes of 2026-09-11 (re-measured 2026-09-26).
 
 # `sysmon' IS NOT A CASE ANY MORE, and the reason is worth keeping.
 #
