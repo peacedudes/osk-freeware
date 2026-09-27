@@ -1,11 +1,9 @@
 # dvifont -- a DVI driver given a font it can actually use.
 #
-# Every DVI driver here warns that it cannot open a font file and sets the
-# text at zero size, and the gallery card said so for months.  That was true
-# because SYS/TEX/FONTS carried .tfm METRICS and no bitmaps -- and it stayed
-# true because Metafont had no base and could not make one.  Both bases ship
-# now, so the claim is testable, and it comes apart: render cmr10 at the
-# resolution the driver asks for and the driver uses it.
+# SYS/TEX/FONTS ships 300 dpi bitmaps now, which the 300 dpi drivers use
+# and the others fall back to.  This family renders cmr10 at the resolution
+# a driver asks for, with the Metafont bases that ship, and the driver uses
+# that font exactly.
 #
 # `dvips' reads its fonts from its own path, not this family's: pointed at
 # $W it finds its `tex.pro' prologue in SYS/TEX/DVIPS, writes the page, and
