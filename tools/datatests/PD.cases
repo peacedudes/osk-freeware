@@ -1,0 +1,67 @@
+family  PD
+# Four programs byte-patched on 2026-09-26, none with source anywhere:
+# tools/patch_todos.py (todos, toos9), tools/patch_head_close.py (head),
+# tools/patch_cp_usage.py (cp).  Each case here failed against the binary
+# as it shipped before the patch, and passes after it -- measured both ways.
+#
+# todos and toos9 hand `del' and `rename' to system(), which forks $SHELL;
+# SYS/login makes that ksh.  This harness has no `del' or `rename' (they are
+# the reader's, from /h1), so the rename is not asserted here -- the
+# temporary each leaves is, and that is where both defects lived: its name
+# carried `$$$', which ksh reads as its own process id, and its last byte
+# was one too many.
+
+setup   W=/dd/tmp/PDC
+setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
+setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
+setup   export SHELL=/dd/CMDS/ksh
+
+# 18 bytes of OS-9 text, two lines, in; the same two lines ending CR LF
+# out -- 20 bytes, and no stray line feed after the last.
+case    todos-writes-dos-text-to-a-temporary-a-shell-can-name
+run     builtin cd $W
+run     echo 'line one' > m.txt
+run     echo 'line two' >> m.txt
+run     /dd/CMDS/todos m.txt
+run     /dd/CMDS/wc -c todos.___.*
+run     /dd/CMDS/dump todos.___.*
+expect  Dest: 'todos.___.
+expect  20 todos.___.
+expect  0010  776F 0D0A                               wo..
+absent  $$$
+
+# And back: CR LF in, CR out, 18 bytes, with no $FF after the last line.
+case    toos9-writes-os9-text-back-with-no-byte-after-it
+run     builtin cd $W
+run     /dd/CMDS/cat todos.___.* > d.txt
+run     /dd/CMDS/toos9 d.txt
+run     /dd/CMDS/wc -c toos9.___.*
+run     /dd/CMDS/dump toos9.___.*
+expect  Dest: 'toos9.___.
+expect  18 toos9.___.
+expect  0010  6F0D                                    o.
+absent  $$$
+
+case    head-prints-the-lines-and-nothing-on-its-error-path
+run     /dd/CMDS/head -n 1 /dd/SYS/motd 2>&1; echo "head status $?"
+expect  Welcome to the OS-9 freeware collection
+expect  head status 0
+absent  head: /dd/SYS/motd
+
+# A file that is not there still earns the message, with its reason.
+case    head-still-reports-a-file-it-cannot-open
+run     /dd/CMDS/head -n 1 /dd/SYS/nosuchfile 2>&1; echo "head status $?"
+expect  /dd/SYS/nosuchfile: 000:216
+expect  head status 1
+
+case    cp-with-no-arguments-prints-its-usage-and-stops
+run     /dd/CMDS/cp 2>&1; echo "cp status $?"
+expect  Usage: cp file1 file2
+expect  cp status 1
+absent  vector=
+
+case    cp-still-copies
+run     /dd/CMDS/cp /dd/SYS/motd $W/motd.copy; echo "cp status $?"
+run     /dd/CMDS/diff /dd/SYS/motd $W/motd.copy; echo "diff status $?"
+expect  cp status 0
+expect  diff status 0

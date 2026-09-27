@@ -9,4 +9,3 @@ Usage: cp file1 file2
     -u    upcase before compare
     -v    verify the data written
   file spec can include meta chars, but not dir
-cp: cp is not directory

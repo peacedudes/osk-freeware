@@ -14,16 +14,6 @@ left is yours: merging this branch to main (a push to main publishes the
 catalogue to Pages) and making anything public.  When os9exec sends its
 merge commit, I pin CI to it.
 
-**2. Three byte patches are waiting for you to run.**  todos/toos9 (the
-rename that lost your file under ksh, and the stray last byte), head (it
-reported every file as an error) and cp (bare `cp' took a bus error):
-`python3 tools/patch_todos.py disk --apply', then the same for
-`patch_head_close.py' and `patch_cp_usage.py'.  The permission layer
-refused them on disk/ for the agent that wrote them, so I have not run
-them for it; each checks its bytes first, and the tests and doc text that
-go with them are staged in the session scratchpad (`inv/PD.cases.pending',
-`inv/PD-proposals.txt').
-
 ## No action, just so you know
 
 **GitHub:** https://github.com/peacedudes/osk-freeware -- PRIVATE, created

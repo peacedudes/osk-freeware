@@ -255,10 +255,9 @@ run     cat b.txt
 wait    2
 
 shot    todos
-cap     Every CR becomes CR LF, with one LF more at the end. The result is
-cap     written to todos.$$$.<n>, and the rename onto the original fails:
-cap     the shell reads the `$$' in that name as its own process number.
-cap     Rename it yourself, as here.
+cap     Every CR becomes CR LF, in place: the result goes to a temporary,
+cap     todos.___.<n>, which your own OS-9's del and rename put over the
+cap     file named.
 try     todos le.txt
 run     rm -rf /dd/tmp/TDOS > /nil 2>/nil; mkdir -p /dd/tmp/TDOS; printf "one\rtwo\r" > /dd/tmp/TDOS/le.txt
 wait    2
@@ -270,14 +269,12 @@ run     dump le.txt
 wait    3
 run     todos le.txt
 wait    5
-run     mv todos.* dos.txt
-wait    3
-run     dump dos.txt
+run     dump le.txt
 wait    4
 
 shot    toos9
-cap     CR LF back to CR, with one $FF byte at the end. As with todos, the
-cap     result is left in toos9.$$$.<n> for you to rename.
+cap     CR LF back to CR, in place, through toos9.___.<n> and your own
+cap     OS-9's del and rename, as todos does.
 try     toos9 dos.txt
 run     rm -rf /dd/tmp/TOS9 > /nil 2>/nil; mkdir -p /dd/tmp/TOS9; printf "one\rtwo\r" > /dd/tmp/TOS9/le.txt
 wait    2
@@ -291,9 +288,7 @@ run     dump dos.txt
 wait    3
 run     toos9 dos.txt
 wait    5
-run     mv toos9.* os9.txt
-wait    3
-run     dump os9.txt
+run     dump dos.txt
 wait    4
 
 shot    macbin

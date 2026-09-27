@@ -47,7 +47,7 @@ expect  1393
 #   TODOS  Version UTIL 2.80 by DESIGNA VLT 03.08.98
 #   Converts TEXT-File from OS9-Format to DOS-Format
 #
-# Each writes `todos.$$$.<n>' / `toos9.$$$.<n>' IN THE DATA DIRECTORY -- not
+# Each writes `todos.___.<n>' / `toos9.___.<n>' IN THE DATA DIRECTORY -- not
 # beside the file it was given -- and then forks two OS-9 utilities to move
 # it into place. `del' is not on this disk, and OS-9's `rename' takes a NAME
 # and not a pathname, so with an absolute target it answers E_BPNAM (215):
@@ -61,12 +61,10 @@ expect  1393
 # it is on this disk.
 #
 # THE CONVERSIONS THEMSELVES, on /dd/SYS/termcap (963 bytes, 21 lines):
-# todos turns every CR into CR LF and appends ONE STRAY LF at the end, 985
-# bytes; toos9 takes CR LF back to CR and appends ONE 0xFF BYTE, so the
-# return trip is 964 bytes -- the original plus that byte. Each writes its
-# end-of-file marker into the file, in other words, and they do not even
-# agree on what it is. Both numbers are asserted, so a build that stops
-# adding the stray byte will say so here.
+# todos turns every CR into CR LF, 984 bytes, and toos9 takes it back to
+# exactly 963.  Until tools/patch_todos.py (2026-09-26) todos added a stray
+# LF and toos9 a 0xFF, 985 and 964; both numbers are asserted.  With no
+# `del' resident, as in this family, the result stays in its temporary.
 case    todos-leaves-the-file-it-was-given-untouched
 run     /dd/CMDS/rm -rf /dd/tmp/TDOS > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/TDOS
@@ -78,16 +76,16 @@ expect  rename todos.
 
 case    the-dos-file-todos-could-not-name-is-in-the-data-directory
 run     /dd/CMDS/ls /dd/tmp/TDOS
-expect  todos.$
+expect  todos.___.
 run     /dd/CMDS/mv /dd/tmp/TDOS/todos.* /dd/tmp/TDOS/dos.txt
 run     /dd/CMDS/wc -c /dd/tmp/TDOS/dos.txt
-expect  985
+expect  984
 
 case    toos9-brings-it-back-the-same-way
 run     /dd/CMDS/ksh -c "cd /dd/tmp/TDOS; /dd/CMDS/toos9 dos.txt"
 run     /dd/CMDS/mv /dd/tmp/TDOS/toos9.* /dd/tmp/TDOS/back.txt
-run     /dd/CMDS/wc -c /dd/tmp/TDOS/back.txt
-expect  964
+run     /dd/CMDS/md5 /dd/tmp/TDOS/back.txt
+expect  ee2c20fa226fe6fc78feec7f123c7a99
 
 case    binhex-produces-hqx
 run     /dd/CMDS/binhex $T > /dd/tmp/t.hqx
@@ -121,7 +119,7 @@ absent  No more memory
 # CR at the end of an OS-9 line into CRLF: 40 bytes in, 41 out. Given a
 # FILENAME it converts through a temporary and cannot rename it back, which
 # is the same missing rename() that stops zip, arc and todos itself -- and
-# todos now says so on screen: `rename todos.$$$.3 ... (E$PNNF)'.
+# todos now says so on screen: `rename todos.___.3 ... (E$PNNF)'.
 case    autolf-converts-cr-to-crlf-as-a-filter
 run     /dd/CMDS/autolf -c -C -L < /dd/SYS/motd > /dd/tmp/al.out
 run     /dd/CMDS/wc -c /dd/tmp/al.out
@@ -138,7 +136,7 @@ run     /dd/CMDS/cp /dd/SYS/motd /dd/tmp/td.txt
 # stderr -- OS-9 reports its own errors there -- so only this line survives
 # a pipe.  It is enough: it names the temporary todos could not rename.
 run     /dd/CMDS/todos /dd/tmp/td.txt 2>&1
-expect  todos.$$$
+expect  todos.___
 
 # btop AND ptob ARE A PAIR, and DOC/INDEX described neither correctly until
 # 2026-08-31 ("bitmap to Gepard fat-font"). What they do is characters to bit

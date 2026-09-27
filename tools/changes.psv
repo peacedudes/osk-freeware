@@ -162,3 +162,7 @@ bincheckr|Rebuilt from its source: it reads the book gnuchess 4.0 writes, where 
 pacman|Rebuilt from its source: it takes its cursor motion from termcap, sets the terminal itself where it forked Microware's tmode, and no longer prints through an unbuffered stdout -- so its maze draws at an ANSI terminal.
 hexedit|Rebuilt from its source against the disk's ncurses; the archive's build sent every cursor move to the same place and read TERMCAP only as the entry itself.
 fuddle|Its TeleVideo screen codes are changed to their ANSI equivalents -- cursor addressing, clear, home, clear to end of line and the reverse video of its pieces (tools/patch_fuddle.py); there is no source.
+cp|Eight bytes changed: run with too few names it printed its usage and then carried on into a bus error; it now stops after the usage, as it does for -?.
+head|One byte changed: its close() handed back the path number where 0 means success, so every file it read was reported on standard error as an error and it exited 1.
+todos|Its temporary is named todos.___.<n>, not todos.$$$.<n>, so the shell that renames it no longer reads `$$' as its process number; and the stray line feed it wrote after the last line is gone.
+toos9|Its temporary is named toos9.___.<n>, not toos9.$$$.<n>, for the same reason as todos; and it no longer writes the $FF of end-of-file as the last byte.
