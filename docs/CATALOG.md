@@ -1,13 +1,8 @@
 # What is on this disk
 
-1118 programs of OS-9/68K community software, gathered from the archives that kept it and made to run again. **788 of them need nothing but this disk**; the rest want Microware's `cio`, marked below with a star.
+1118 programs of OS-9/68000 community software, by what each is for.  A star marks a program that uses Microware's `cio`, which is on the disk too.
 
-`DOC/INDEX` on the disk lists everything alphabetically. This is the same collection sorted by what each program is *for*, which is the more useful order when you do not yet know what you are looking for.
-
-> Open a program in `docs/index.html` for its **sample output** --
-> captured from that program running on the disk image.
->
-> Prefer to click around? `docs/index.html` is a searchable version with per-program detail — what it needs, where it came from, on what terms. GitHub will not render it here; download the repository and open it, or enable Pages.
+`docs/index.html` has a card for each, with a screen of it running.  On the disk, `man <name>` reads its documents.
 
 | Category | Programs | |
 |---|--:|---|
@@ -31,8 +26,8 @@
 | [Maths & calculators](#maths--calculators) | 20 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 8 | Pagers, readers and the help system. |
-| [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it. |
-| [Needs hardware](#needs-hardware) | 16 | Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware. |
+| [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so. |
+| [Needs hardware](#needs-hardware) | 16 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code. |
 
 ## Shells
 
@@ -1866,7 +1861,7 @@
 
 ## G-Windows
 
-*Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access "/win" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it.*
+*Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so.*
 
 <details><summary>6 programs</summary>
 
@@ -1883,7 +1878,7 @@
 
 ## Needs hardware
 
-*Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware.*
+*Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code.*
 
 <details><summary>16 programs</summary>
 

@@ -673,8 +673,8 @@ BLURB = {
  "Maths & calculators":"Calculators, plotting, orbits and number theory.",
  "Printing":"Spoolers, page formatting and PostScript.",
  "Documentation":"Pagers, readers and the help system.",
- "G-Windows":"Programs for G-Windows, OS-9's graphical display.  There is no G-Windows here, so what their cards show is each one declining in its own words -- `Unable to access \"/win\" device', `dclock only runs under G-Windows', a status of 208 or 221.  None of them can be exercised without the display; they are listed for a real OS-9 workstation that has it.",
- "Needs hardware":"Programs that drive hardware this collection has no way to reach -- a graphics display of the kind a GEPARD or an MM/1 carries, or a printer on its own SCF device.  WE CANNOT TEST ANY OF THESE, at all: what is written about them comes from their own text and their code, not from watching them work.  They are here for a real machine that has the hardware.",
+ "G-Windows":"Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so.",
+ "Needs hardware":"Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code.",
 }
 ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools",
  "Compilers & build","Languages","Archives & compression","Encoding & conversion",
@@ -696,29 +696,18 @@ def render_markdown(progs):
     page opens short and expands to the part you want.
     """
     total = len(progs)
-    free  = sum(1 for p in progs if not p.get("star") and not p.get("basic09"))
     by = {}
     for p in progs:
         by.setdefault(p["cat"], {}).setdefault(p["sub"], []).append(p)
 
     L = ["# What is on this disk",
          "",
-         "%d programs of OS-9/68K community software, gathered from the archives that "
-         "kept it and made to run again. **%d of them need nothing but this disk**; the "
-         "rest want Microware's `cio`, marked below with a star."
-         % (total, free),
+         "%d programs of OS-9/68000 community software, by what each is for.  "
+         "A star marks a program that uses Microware's `cio`, which is on the "
+         "disk too." % total,
          "",
-         "`DOC/INDEX` on the disk lists everything alphabetically. This is the same "
-         "collection sorted by what each program is *for*, which is the more useful "
-         "order when you do not yet know what you are looking for.",
-         "",
-         "> Open a program in `docs/index.html` for its **sample output** --\n"
-         "> captured from that program running on the disk image.\n"
-         ">\n"
-         "> Prefer to click around? `docs/index.html` is a searchable version with "
-         "per-program detail — what it needs, where it came from, on what terms. "
-         "GitHub will not render it here; download the repository and open it, "
-         "or enable Pages.",
+         "`docs/index.html` has a card for each, with a screen of it running.  "
+         "On the disk, `man <name>` reads its documents.",
          ""]
 
     L.append("| Category | Programs | |")
@@ -801,15 +790,12 @@ def render_disk_index(progs):
     by = {}
     for p in progs:
         by.setdefault(p["cat"], {}).setdefault(p["sub"], []).append(p)
-    free = sum(1 for p in progs if not p.get("star") and not p.get("basic09"))
-
     L = ["CATEGORIES -- what is here, grouped by what it is for",
          "=====================================================",
          "",
-         "DOC/INDEX lists every program alphabetically and says what each one is.",
-         "This is the same set in the order you want when you do not yet know the",
-         "name: %d programs, of which %d need nothing but this disk.  A star means" % (len(progs), free),
-         "the program wants Microware's cio -- see DOC/README-CIO.",
+         "%d programs, by what each is for.  DOC/INDEX has them A to Z, and" % len(progs),
+         "`man -k <word>' finds them by what they do.  A star marks a program",
+         "that uses Microware's cio, which is on the disk (DOC/README-CIO).",
          ""]
     for cat in ORDER:
         if cat not in by:
