@@ -75,9 +75,9 @@ session's narrative goes into the history file, not here.
 1. **The reader-facing rewrite** (rdoggett, 2026-09-27), by the rules in
    memory `os9-write-like-a-librarian'.  DONE 2026-09-27: README.md,
    disk/readme, the catalogue intro and blurbs, README-DOCS, README-RUNNING,
-   README-KEEP, START-HERE, STATUS' opening, and the seven choosers.  LEFT:
-   the rest of DOC/STATUS (dated logs; keep the findings, cut the
-   narrative), README-NAMES, README-NEWS, the other README-* files.
+   README-KEEP, START-HERE, STATUS' opening, the seven choosers and the
+   other fifteen README-* guides.  LEFT: the body of DOC/STATUS (dated
+   logs; keep the findings, cut the narrative), DOC/INDEX's long entries.
 2. **ksh's `read'** (measured 2026-09-27, confirmed by os9exec's trace): a
    second `while read ... done < file' in a script gets end-of-file at once
    (c_read in SRC/pdksh/sh/c_sh.c never clears stdin's EOF), and a run of
