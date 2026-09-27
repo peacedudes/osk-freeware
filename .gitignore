@@ -68,3 +68,4 @@ notes/datatests/
 # tools/drives/, which are the source and ARE committed -- same arrangement
 # as the data tests and the play-test captures above.
 notes/drives/
+!docs/try/blank.dd.gz

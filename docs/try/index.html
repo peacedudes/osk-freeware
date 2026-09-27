@@ -175,6 +175,32 @@
   // so the command is then typed.
   const params = new URLSearchParams(location.search);
   const runCmd = params.get('run')?.replace(/[\x00-\x1f\x7f]/g, '') || null;
+  // ?newdisk=1: MAKE A DISK OF YOUR OWN.  A fresh empty 16 MB disk
+  // (blank.dd.gz, made with os9exec's `mount -k') is attached as /h1 and the
+  // page restarts with it; the link's command -- a `keep' the catalogue's
+  // tray wrote -- is then typed as always, and `Save /h1' downloads the disk.
+  // For a reader with no OS-9 of their own, or one whose disk is smaller than
+  // this collection (2026-09-26).  Typing waits until the disk is attached.
+  let newDiskPending = !!params.get('newdisk');
+  if (newDiskPending) window.addEventListener('load', async () => {
+    params.delete('newdisk');
+    const q = params.toString();
+    try { history.replaceState(null, '', location.pathname + (q ? '?' + q : '')); } catch (e) {}
+    const old = Module.os9h1.name();
+    if (old && !confirm('Make a new empty disk as /h1?\n\nIt replaces the /h1 here now (' + old
+                        + '); save that first if you want to keep it.')) {
+      newDiskPending = false; return;
+    }
+    Module.os9status('making an empty disk as /h1 ...');
+    try {
+      const r = await fetch('blank.dd.gz');
+      const buf = await new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      Module.os9h1.attach('mydisk.dd', new Uint8Array(buf), () => location.reload());
+    } catch (e) {
+      newDiskPending = false;
+      Module.os9status('could not make an empty disk: ' + e);
+    }
+  });
   const READY_QUIET_MS = 800;
   let quietTimer = null, typedRun = false, runWaiting = false;
   function armRun() {
@@ -243,7 +269,7 @@
       }).catch(() => { setupLines = []; })
     : Promise.resolve().then(() => { setupLines = []; });
   function typeRun() {
-    if (typedRun) return;
+    if (typedRun || newDiskPending) return;
     if ((wantShell || params.get('needs') === 'h1') && !Module.os9h1.name()) {
       typedRun = true;
       Module.os9status('"' + runCmd + '" needs your own OS-9 system attached as /h1. ' +

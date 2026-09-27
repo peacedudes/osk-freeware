@@ -171,6 +171,7 @@
   .runit{margin:8px 0 0;font-size:13.5px}
   .runit.none{color:var(--faint)}
   .runit .rneed{color:var(--faint)}
+  .tray .traynote{color:var(--faint);font-size:12.5px}
   .see .k .su{color:var(--accent)}
   .try code.copycmd{cursor:pointer;position:relative;transition:background .15s}
   .try code.copycmd:hover{background:var(--rule)}
@@ -306,6 +307,11 @@
     <span class="k">then</span><code id="traycmd">keep</code>
     <button class="chip" id="traycopy">Copy</button>
     <button class="chip" id="trayclear">Clear</button>
+  </div>
+  <div class="row2" id="traydiskrow" hidden>
+    <span class="k">no OS-9 here?</span>
+    <button class="chip" id="traydisk">Make a disk of these</button>
+    <span class="traynote">opens an empty disk in your browser with this keep typed: press Enter, then <b>Save /h1</b> downloads your disk</span>
   </div>
   <p class="meta" id="traysize"></p>
   <details><summary id="traysum">every file it would write</summary><ul id="trayfiles"></ul></details>
@@ -786,6 +792,13 @@ function tray(){
   document.getElementById("tray").classList.toggle("on", names.length>0);
   document.getElementById("traycmd").textContent = names.length ? "keep " + names.join(" ") : "keep";
   document.getElementById("traydry").textContent = names.length ? "keep -n " + names.join(" ") : "keep -n";
+  // MAKE A DISK OF THESE: for a reader with no OS-9 of their own, or whose
+  // disk is smaller than this collection -- an empty 16 MB disk opens as /h1
+  // in the browser with the keep typed; Save /h1 downloads it (2026-09-26).
+  const dr=document.getElementById("traydiskrow");
+  if(dr){ dr.hidden = !(TRY_PAGE && names.length);
+    document.getElementById("traydisk").onclick = () =>
+      window.open(TRY_PAGE+"?newdisk=1&run="+encodeURIComponent("keep "+names.join(" ")), "_blank", "noopener"); }
   const all=[], notes=[], seen=new Set();
   for(const x of names){
     if(!BY[x]) continue;
