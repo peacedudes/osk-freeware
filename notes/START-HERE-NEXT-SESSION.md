@@ -6,25 +6,20 @@ One page.  The plan is `notes/PLAN.md`; what needs rdoggett is
 to a page: a finding goes in the file it belongs to, and a finished
 session's narrative goes into the history file, not here.
 
-## Where it stands, 2026-09-25
+## Where it stands, 2026-09-27
 
 - **Every program on the image has a card taken by running it**, and
   `tools/check_disk.py disk` is the gate -- read its list, not a count.
 - **Harnesses run as `tester`**, not the super-user.  A data-test family
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
-- **Emulator: os9exec `8d7d870`** (branch release-v4.1.0, pushed as
-  f2954f3 on 2026-09-26 with the same emulator source; CI follows that
-  branch until it is frozen to the merge commit), named by the os9exec
-  session as the release candidate on 2026-09-25 and not yet pushed there.
-  Verified on it: suite 1019/1019 twice on a fresh image as it ships
-  (modules publicly writable), play-tests 151/151, as tester.  docs/try
-  runs it.  Still to do when os9exec pushes its final commit: freeze
-  .github/workflows/build-image.yml's OS9EXEC_REF to that commit (it tracks
-  the branch until then, as its own comments say), and re-run if the final
-  commit is not 8d7d870.  os9exec says the final commit may add only CI
-  workflows and README text, which change nothing the emulator runs.  `lesspipe' needs 2a95c75 or later; mmon's cases
-  need 289d55e or later.
+- **Emulator: os9exec `a1d433e`** (branch release-v4.1.0, pushed
+  2026-09-26): pipe progress per reader, an orphan's exit no longer ends
+  the emulator, and one image named as /dd and /h0 is one RBF device.
+  Verified 2026-09-27, built from `git archive a1d433e`, fresh image, as
+  tester: suite 1048/1048 twice, play-tests 156/156.  docs/try runs it.
+  CI tracks the branch; freeze OS9EXEC_REF to os9exec's merge commit when
+  it sends one.
 - **CI has run** (first time, 2026-09-26, manual run on this branch):
   green end to end on Linux -- gate, catalogue, os9exec from
   release-v4.1.0, image built and read back.  Its first runs found three
@@ -44,6 +39,15 @@ session's narrative goes into the history file, not here.
   a stanza can publish several screens (`pages', dm's help).  SYS/motd and
   the welcome letter no longer talk about an emulator.  The review tooling
   is scratch-only: review bundles, apply.py and apply_index.py.
+- **2026-09-27: `man' is the librarian.**  `man <name>' reads everything
+  the disk has about a program (DOC/DOCS), `man -k' searches what programs
+  do (DOC/WHATIS), `-f', `-w', `-s' (source); both files come from
+  tools/gen_docmap.py and the gate checks them.  Each card lists its
+  documents and has a `man <name>' button that boots the disk in a panel
+  and runs it (docs/try `?man=<name>&embed=1', entered by the page, name
+  held to [\w.+-]).  The panel is NOT yet tested in a browser.  23
+  programs fixed on 2026-09-26 (SOURCES.txt, changes.psv); three byte
+  patches wait on rdoggett (FOR-RDOGGETT 2).
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
   Never make it public.
@@ -68,9 +72,13 @@ session's narrative goes into the history file, not here.
 
 ## Work, in order -- take the top one not done, never ask which
 
-1. **os9exec's final commit**: when it is pushed, freeze CI's
-   OS9EXEC_REF to it; if it is not 8d7d870, rebuild docs/try from it and
-   run the suite twice and the play-tests again.
+1. **The README rewrite** (rdoggett, 2026-09-27): README.md, docs/CATALOG.md
+   and the reader-facing guides, top to bottom, by the rules in memory
+   `os9-write-like-a-librarian' -- short speed-read sentences, each thought
+   once, no filler, no selling; one small glad paragraph that OS-9 still
+   lives, a separate one that this is community software Microware neither
+   endorses nor is part of; highlight `man' and keep/kept/unkeep.
+   Evaluate docs/CATALOG.md against what the page does now.
 2. **Defects still open** (each needs a measurement first): none known.
    nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
    so nn would not save twice to its own file for tester; global.c now
