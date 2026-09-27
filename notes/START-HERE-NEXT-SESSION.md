@@ -17,7 +17,8 @@ session's narrative goes into the history file, not here.
   2026-09-26): pipe progress per reader, an orphan's exit no longer ends
   the emulator, and one image named as /dd and /h0 is one RBF device.
   Verified 2026-09-27, built from `git archive a1d433e`, fresh image, as
-  tester: suite 1048/1048 twice, play-tests 156/156.  docs/try runs it.
+  tester: suite 1048/1048 twice, play-tests 156/156; after the man and
+  documentation work, 1057/1057 (man.cases added).  check_the_checks 43/43.  docs/try runs it.
   CI tracks the branch; freeze OS9EXEC_REF to os9exec's merge commit when
   it sends one.
 - **CI has run** (first time, 2026-09-26, manual run on this branch):
@@ -77,8 +78,9 @@ session's narrative goes into the history file, not here.
    disk/readme, the catalogue intro and blurbs, README-DOCS, README-RUNNING,
    README-KEEP, START-HERE, STATUS' opening, the seven choosers and the
    other fifteen README-* guides, and DOC/STATUS whole (one entry a
-   program, every failure claim re-run; KEY_DOCS floor now 15000).  LEFT:
-   DOC/INDEX's long entries, the same way.
+   program, every failure claim re-run; KEY_DOCS floor now 15000), and
+   DOC/INDEX's 190 longest entries (tools/fix_index.py).  Done unless a
+   reader-facing file turns up that was missed.
 2. **ksh's `read'** (measured 2026-09-27, confirmed by os9exec's trace): a
    second `while read ... done < file' in a script gets end-of-file at once
    (c_read in SRC/pdksh/sh/c_sh.c never clears stdin's EOF), and a run of
