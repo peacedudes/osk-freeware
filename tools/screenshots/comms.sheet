@@ -260,9 +260,9 @@ wait    2
 shot    mail
 size    24 80
 cap     The message waiting for tester, shown by its number, sender, date
-cap     and first line, and the prompt with the current message's number.  `?' lists its commands; x leaves.  mail wants a scratch
-cap     device at /r0 (a RAM disk; `mount -r=256k /r0' makes one under
-cap     os9exec).
+cap     and first line, and the prompt with the current message's number.
+cap     `?' lists its commands; x leaves.  mail wants a scratch device at
+cap     /r0 (a RAM disk; `mount -r=256k /r0' makes one under os9exec).
 try     mail
 run     mount -r=256k /r0
 wait    2

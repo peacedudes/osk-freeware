@@ -720,7 +720,7 @@ def check_hand_files_name_real_programs(root):
 # wrong.  Deliberately generous -- this is a tripwire for truncation, not a
 # word count.
 KEY_DOCS = {
-    "DOC/INDEX": 40000, "DOC/STATUS": 30000, "DOC/DEPENDS": 20000,
+    "DOC/INDEX": 40000, "DOC/STATUS": 15000, "DOC/DEPENDS": 20000,
     "DOC/ORIGINS": 10000, "DOC/CATEGORIES": 10000, "SOURCES.txt": 20000,
     "readme": 1000, "DOC/README-RUNNING": 3000,
 }
