@@ -76,8 +76,9 @@ session's narrative goes into the history file, not here.
    memory `os9-write-like-a-librarian'.  DONE 2026-09-27: README.md,
    disk/readme, the catalogue intro and blurbs, README-DOCS, README-RUNNING,
    README-KEEP, START-HERE, STATUS' opening, the seven choosers and the
-   other fifteen README-* guides.  LEFT: the body of DOC/STATUS (dated
-   logs; keep the findings, cut the narrative), DOC/INDEX's long entries.
+   other fifteen README-* guides, and DOC/STATUS whole (one entry a
+   program, every failure claim re-run; KEY_DOCS floor now 15000).  LEFT:
+   DOC/INDEX's long entries, the same way.
 2. **ksh's `read'** (measured 2026-09-27, confirmed by os9exec's trace): a
    second `while read ... done < file' in a script gets end-of-file at once
    (c_read in SRC/pdksh/sh/c_sh.c never clears stdin's EOF), and a run of
