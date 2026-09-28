@@ -16,7 +16,7 @@
   header button { font: inherit; color: var(--fg); background: #1f262d; border: 1px solid #30363d;
                   border-radius: 6px; padding: 4px 10px; cursor: pointer; }
   header button:disabled { opacity: 0.4; cursor: default; }
-  #term { flex: 1; padding: 0 16px 16px; min-height: 0; }
+  #term { flex: 1; padding: 0 16px 16px; min-height: 0; overflow: auto; }
   /* Visual bell, like Terminal's "flash screen": an even wash over the whole
      terminal, the same however much text is showing. */
   #term { position: relative; }
@@ -48,8 +48,19 @@
   const fit = new FitAddon.FitAddon();
   term.loadAddon(fit);
   term.open(document.getElementById('term'));
-  fit.fit();
-  window.addEventListener('resize', () => fit.fit());
+  // Fit the window, but never smaller than 80x24: every program on the disk
+  // draws for that screen and none can ask how big the window is, so a
+  // narrower terminal wraps their lines.  A small window scrolls instead.
+  // (A wider one is fine now that nothing writes column 80, 2026-09-28.)
+  const MIN_COLS = 80, MIN_ROWS = 24;
+  function fitTerm() {
+    const d = fit.proposeDimensions();
+    if (!d || !isFinite(d.cols) || !isFinite(d.rows)) return;
+    const cols = Math.max(MIN_COLS, d.cols), rows = Math.max(MIN_ROWS, d.rows);
+    if (cols !== term.cols || rows !== term.rows) term.resize(cols, rows);
+  }
+  fitTerm();
+  window.addEventListener('resize', fitTerm);
   term.focus();
 
   // BEL (Ctrl-G, and what OS-9 sends on a backspace at column zero): flash.
