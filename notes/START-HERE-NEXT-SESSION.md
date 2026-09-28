@@ -30,9 +30,7 @@ you need from it:
   locally `gzip -9 -c osk-freeware.dd > docs/try/disk.gz`.  To look at it:
   `cd docs && python3 -m http.server 8765`, then http://localhost:8765/.
 
-Open, in order: rdoggett's Safari check of a card's `man <name>' panel
-(docs/try `?man=<name>&embed=1'; never tried in a real browser); then the
-work list below.  Nothing is half-done.
+Open: the work list below.  Nothing is half-done.
 
 ## Where it stands, 2026-09-27
 
@@ -74,9 +72,9 @@ work list below.  Nothing is half-done.
   tools/gen_docmap.py and the gate checks them.  Each card lists its
   documents and has a `man <name>' button that boots the disk in a panel
   and runs it (docs/try `?man=<name>&embed=1', entered by the page, name
-  held to [\w.+-]).  The panel is NOT yet tested in a browser.  23
-  programs fixed on 2026-09-26 (SOURCES.txt, changes.psv); three byte
-  patches wait on rdoggett (FOR-RDOGGETT 2).
+  held to [\w.+-]; `?src=' runs `man -s').  rdoggett tried it in Safari
+  2026-09-28.  23 programs fixed on 2026-09-26 (SOURCES.txt,
+  changes.psv); the byte patches landed 2026-09-27 (d756a28b).
 - **GitHub: PRIVATE**, https://github.com/peacedudes/osk-freeware.  Push
   the working branch `release-pass-2026-08-21` only; never `main` or a tag.
   Never make it public.
