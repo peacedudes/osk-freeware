@@ -42,11 +42,26 @@ Open: the work list below.  Nothing is half-done.
 - **Emulator: os9exec `a1d433e`** (branch release-v4.1.0, pushed
   2026-09-26): pipe progress per reader, an orphan's exit no longer ends
   the emulator, and one image named as /dd and /h0 is one RBF device.
-  Verified 2026-09-27, built from `git archive a1d433e`, fresh image, as
-  tester: suite 1048/1048 twice, play-tests 156/156; after the man and
-  documentation work, 1057/1057 (man.cases added).  check_the_checks 43/43.  docs/try runs it.
+  Verified 2026-09-28, built from `git archive a1d433e`, fresh image, as
+  tester: suite 1068/1068 twice, play-tests 156/156 (sod's chance-dependent
+  `>0<' expectation removed), check_the_checks 43/43.  docs/try runs it.
   CI tracks the branch; freeze OS9EXEC_REF to os9exec's merge commit when
-  it sends one.
+  it sends one.  os9exec b31f713 (not pushed at time of writing) adds a
+  system tick for wasm: rebuild docs/try's os9exec.{js,wasm} from it once
+  pushed and drop "-q" from Module.arguments in docs/try/index.html --
+  with "-q" a busy program freezes the tab.  They also asked rdoggett
+  about a quieter banner for the embedded man panel.
+- **2026-09-28: WIDER THAN 80.**  The browser terminal fits the window,
+  so it is usually wider than 80, and every harness here shoots at exactly
+  80 -- which hid this.  Nine programs wrote column 80 and relied on the
+  wrap: life, xmas, perp, mz, torus, robots, moria, animal, draw.  All now
+  never write column 80 (changes.psv says how, per program; xmas and
+  robots were wrong even at 80).  Removing `am' from termcap does NOT fix
+  it -- tried.  A sweep of every interactive sheet at 100 columns found no
+  more; the tool is a 25-line script (copy a stanza, rename it zzw_<name>,
+  `size <rows> <cols+20>'), and ink past column 80 is the signal --
+  except for plain text streams (spline, weather, game logs), which flow.
+  animal and draw were archive binaries and are now our -qm builds.
 - **CI has run** (first time, 2026-09-26, manual run on this branch):
   green end to end on Linux -- gate, catalogue, os9exec from
   release-v4.1.0, image built and read back.  Its first runs found three
