@@ -12,10 +12,11 @@ The tree is clean and pushed (branch release-pass-2026-08-21).  The
 session scratchpad under /private/tmp is gone after a reboot; rebuild what
 you need from it:
 
-- **The emulator the suite runs on**, os9exec a1d433e (tip 1318f5b only
+- **The emulator the suite runs on**, os9exec 4d9efef8 (release-v4.1.0 tip; its merge
+  will be a fast-forward to exactly this; was a1d433e, whose tip 1318f5b only
   adds a test):
       mkdir -p $SCR/pa1/src
-      (cd ~/Developer/os9/os9exec && git archive a1d433e) | tar -x -C $SCR/pa1/src
+      (cd ~/Developer/os9/os9exec && git archive 4d9efef8) | tar -x -C $SCR/pa1/src
       (cd $SCR/pa1/src && make OBJDIR=$SCR/pa1/obj EXE=$SCR/pa1/os9exec prod)
   Harness runs: `export OS9SDK=~/Developer/os9/play/oskBoot OS9EXEC=$SCR/pa1/os9exec`,
   images with `SKIP_CHECKS=1 OS9EXEC_DIR=$SCR/pa1 tools/mkimage.sh disk <img>`.
@@ -33,22 +34,21 @@ you need from it:
 
 Open: the work list below.  Nothing is half-done.
 
-## Where it stands, 2026-09-27
+## Where it stands, 2026-09-28
 
 - **Every program on the image has a card taken by running it**, and
   `tools/check_disk.py disk` is the gate -- read its list, not a count.
 - **Harnesses run as `tester`**, not the super-user.  A data-test family
   that needs the super-user says `user su`; a card stanza says `super`; a
   play-test says `user su`.  Play-tests mount no /h1.
-- **Emulator: os9exec `a1d433e`** (branch release-v4.1.0, pushed
-  2026-09-26): pipe progress per reader, an orphan's exit no longer ends
-  the emulator, and one image named as /dd and /h0 is one RBF device.
-  Verified 2026-09-28, built from `git archive a1d433e`, fresh image, as
-  tester: suite 1068/1068 twice, play-tests 156/156 (sod's chance-dependent
-  `>0<' expectation removed), check_the_checks 43/43.  docs/try runs it.
-  CI tracks the branch; freeze OS9EXEC_REF to os9exec's merge commit when
-  it sends one.  The browser page runs os9exec 4d9efef8 (release tip on
-  2026-09-28, which has b31f713's wasm system tick) and passes no "-q";
+- **Emulator: os9exec `4d9efef8`** (release-v4.1.0 tip, 2026-09-28; the
+  merge to its main will be a fast-forward to exactly this).  Verified on
+  it, fresh image, as tester: suite 1068/1068 (two cases moved to the
+  68020 it now reports -- c461e5df; they said 68040), play-tests 156/156.
+  On a1d433e the same day: suite 1068/1068 twice, play-tests 156/156
+  (sod's chance-dependent `>0<' expectation removed), check_the_checks
+  43/43.  CI builds the branch tip.  The browser page runs 4d9efef8 too
+  (it has b31f713's wasm system tick) and passes no "-q";
   with "-q" a busy program froze the tab.  os9exec asked rdoggett about a
   quieter banner for the embedded man panel.
 - **2026-09-28: WIDER THAN 80.**  The browser terminal fits the window,

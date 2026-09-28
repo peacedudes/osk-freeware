@@ -8,8 +8,8 @@ Updated 2026-09-28.
 ## Needs you
 
 **1. Merge and publish -- your call, when you are ready.**  os9exec is
-pushed (release-v4.1.0, a1d433e) and this collection is verified on it:
-suite 1067/1067 twice, play-tests 156/156 (2026-09-27).  What is
+pushed (release-v4.1.0, 4d9efef8) and this collection is verified on it:
+suite 1068/1068, play-tests 156/156 (2026-09-28).  What is
 left is yours: merging this branch to main (a push to main publishes the
 catalogue to Pages) and making anything public.  When os9exec sends its
 merge commit, I pin CI to it.
