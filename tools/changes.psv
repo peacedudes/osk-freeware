@@ -2,6 +2,7 @@
 # on its card under Changed here.  name|note.  A key DIR/name (DIR under
 # CMDS) picks one of two files that share a name.  Ports with ORIG/ and
 # README.OSK get a pointer to that README automatically.
+animal|Rebuilt from its source with one change: the frame is one column narrower than the screen, so column 80 is never written and the frames keep their shape in any window 80 or wider.
 argproc_demo|Rebuilt from its source with 64K of memory; the build shipped before stopped with a stack overflow whatever it was given.
 ascii|Built here from Roland McGrath's source.
 atc|The `!' shell escape is left out; that key only redraws the screen.
@@ -30,6 +31,7 @@ diff|GNU diff 1.4, built here from SRC/diff (the recipe in tools/rebuild/recipes
 diff_1.1|Module name changed from diff to diff_1.1 to match its file, so loading it no longer answers for the diff in CMDS. Otherwise identical to the archive's.
 dir|One instruction patched in the binary: it asked to write a line of 128 bytes, which the processor read as minus 128, so it could not list a directory. It now writes at most 127 characters a line and lists directories.
 djpeg.070|Module name changed from djpeg to djpeg.070 to match its file, so loading it no longer answers for the djpeg in CMDS.
+draw|Rebuilt from its source with one change: the canvas is 77 columns rather than 78 and the status line stops at column 79, so column 80 is never written and the frame keeps its shape in any window 80 or wider.
 drawpoker|Named drawpoker because this disk's `poker' is a different game. The rules are paged with less, message pauses sleep instead of counting, the deal is seeded from the clock and it exits with status 0.
 elvis_input|Elvis's input command. It was renamed input.elvis to avoid a clash, then elvis_input: elvis picks insert mode from the last letter of the name it is run by, and input.elvis ends in s, so it never opened in insert mode.
 ephem881|Module name changed from ephem to ephem881 to match its file, so loading it no longer answers for the ephem in CMDS.
@@ -58,8 +60,8 @@ m4_0.5|Module name changed from m4 to m4_0.5 to match its file, so loading it no
 macunpack|Renamed from macunpac, the archive's file name, to match the module name inside it.
 make|Rebuilt with a utime() written for this collection: the original carried a copyright with no grant, and it wrote a zero over the file's link count on every touch.
 monop|Two features that depend on a Unix process are disabled: the shell escape and saving or restoring a game.
-moria|Rebuilt from TOP's source with a terminal-entry reader of its own, replacing TOP's binary, which could not find the terminal in this disk's termcap. The game code is unchanged.
-mz|A timer that wrapped when the room was drawn within one clock tick is fixed (the game froze for ever), and the author's usage log is left out.
+moria|Rebuilt from TOP's source with a terminal-entry reader of its own, replacing TOP's binary, which could not find the terminal in this disk's termcap. The game code is unchanged. The map sits one column further left, the author's own BUGGY_CURSES layout, so column 80 is never written and the town keeps its shape in any window 80 or wider.
+mz|A timer that wrapped when the room was drawn within one clock tick is fixed (the game froze for ever), and the author's usage log is left out. The room is drawn with the cursor placed at the start of each row rather than left to the terminal's wrap after column 80, so it keeps its shape in any window 80 or wider.
 newsetup|Built with its news directories changed to this disk's C News layout, and the site name changed from the porter's own to osk.UUCP.
 newsrun|Built with its news-library directory names changed to this disk's C News layout; link() and rename() are versions written for this collection that copy the file, since RBF has no hard links.
 nn|Built with MNews's spool and command directories changed from the package's defaults, and one #endif added to term.c, which the distributed file never closed.
@@ -70,6 +72,7 @@ nnmaster|Built with the directories nn looks in changed from the package's defau
 os9dsk|Rebuilt from its source rather than shipped as the author's binary, with coco_direct.h written for this collection in place of the release's header derived from Microware's direct.h.
 patch|Every open() and creat() given OS-9 access modes: the Unix mode 0 grants nothing here, so patch fell back to Plan B and stopped with "Error reading tmp file", leaving the file untouched.
 pbmtext|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
+perp|The frame is 79 columns rather than 80, so it keeps its shape in any window 80 or wider; its bottom-right corner, which the original could not draw, is drawn, and the score, level and moves sit one column left inside it.
 Pnews|Built with its news directories changed to this disk's C News layout, and the site name it signs articles with changed from the porter's own to osk.UUCP.
 pnmtosir|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
 poker|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
@@ -80,7 +83,7 @@ rdjpgcom.070|Module name changed from rdjpgcom to rdjpgcom.070 to match its file
 relaynews|Built with its news-library directory names changed to this disk's C News layout, and with a link() written for this collection that copies the file, since RBF has no hard links and the original raw-sector link() corrupted the lock.
 rn|Built with its news directories changed to this disk's C News layout, and the site name it signs articles with changed from the porter's own to osk.UUCP.
 MNEWS/rnews|Built with MNews's own spool and command directories, and it mails through UUCPbb's rmail where the package named another directory.
-robots|Rebuilt from its source, which stopped it writing a stray control-K that scrolled the board, and it records scores under your USER name; the port's getlogin() answered "your name" for everyone.
+robots|Rebuilt from its source, which stopped it writing a stray control-K that scrolled the board, and it records scores under your USER name; the port's getlogin() answered "your name" for everyone. The version number sits one column further left, so column 80 is never written: the board keeps its shape, and its top-left border, in any window 80 or wider.
 rot22|Named rot22, the archive's name, because this disk's `rot' is a different program. It also strips the falling-letter bit it printed as stray symbols on an 8-bit terminal.
 rpoem|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
 rsconvert|Memory size in its header raised from about 11K to 32K; its parser overflowed the stack converting a rayshade 3 scene.
@@ -96,6 +99,7 @@ soelim|One token fixed in its usage message, which printed an empty name where t
 stone|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
 tet|Replaced by a rebuild from its source with the keyboard compiled in (the build first shipped took no keys), then fixed so it really pauses between moves, turns echo off and keeps a score file.
 top|Rebuilt from its source with its process-table walk bounded: it read past the end of its own table and died with a bus error just after printing its headings. The rebuild needs no cio.
+torus|The field is one column narrower than the screen, so column 80 is never written and it keeps its shape in any window 80 or wider.
 trek73|Saving and restoring a game are disabled: a save dumps the whole data segment, which OS-9 does not lay out that way.
 trlf|Written for this collection: newsrun calls a trlf that exists in no archive, so this one turns LF into CR, in place or as a filter, and nothing more.
 UnMacpack|Renamed from unmacpack, the archive's file name, to match the module name in its header.
@@ -110,6 +114,7 @@ vmod_trap|Module name changed from vmod_trap to VMod_trap, the name rxmod asks f
 wam.sbprolog|Built here from the SB-Prolog sources with their own OS-9 makefiles, replacing the prebuilt binary the archive carried; both gave identical output on the same queries.
 wrjpgcom.070|Module name changed from wrjpgcom to wrjpgcom.070 to match its file, so loading it no longer answers for the wrjpgcom in CMDS.
 xargs|The command is forked directly instead of through system() and the "exec " prefix is gone, so a redirection or pipe written in the command is not interpreted.
+xmas|The two underscore rules are 79 columns rather than 80, so curses never relies on the terminal wrapping and the bottom rule stays on its own line -- it did not, even at 80 wide.
 xpmtoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
 xvminitoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
 yahtzee2|The ! shell escape is removed.
