@@ -181,8 +181,10 @@
   // ENTERED for the reader: the page writes the command itself, and the
   // name is held to letters, digits and . _ + -, so all a link can ever
   // make it do is `man' on one name (2026-09-27).
-  const manName = /^[\w.+-]{1,40}$/.test(params.get('man') || '') ? params.get('man') : null;
-  const runCmd = manName ? 'man ' + manName
+  // ?src=<name> is the same for its source: `man -s <name>'.
+  const nameIn = key => /^[\w.+-]{1,40}$/.test(params.get(key) || '') ? params.get(key) : null;
+  const manName = nameIn('man') || nameIn('src');
+  const runCmd = manName ? (nameIn('man') ? 'man ' : 'man -s ') + manName
                          : params.get('run')?.replace(/[\x00-\x1f\x7f]/g, '') || null;
   // &embed=1: inside a card's panel -- no buttons, no margin, just the terminal.
   if (params.get('embed')) document.body.classList.add('embed');
@@ -318,6 +320,7 @@
     try {
       params.delete('run');
       params.delete('man');
+      params.delete('src');
       const q = params.toString();
       history.replaceState(null, '', location.pathname + (q ? '?' + q : ''));
     } catch (e) { /* a browser that refuses replaceState loses nothing else */ }

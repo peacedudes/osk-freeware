@@ -4,7 +4,7 @@
     --paper:#F4F5F3; --card:#FFF; --ink:#191D21; --dim:#454E55; --faint:#6E787F;
     --rule:#DDE1DE; --hair:#EBEEEB; --accent:#B26A00; --soft:#F7E8D2;
     --warn:#8C2F1E; --ok:#2E6A4F; --screen:#0E1113; --phosphor:#CFE3CF;
-    --de:#2F5A78; --typed:#F2C46D;
+    --de:#2F5A78; --typed:#F2C46D; --link:#6A3FA6;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --serif:ui-serif,Charter,"Iowan Old Style",Georgia,serif;
@@ -12,11 +12,11 @@
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#B1BCC3; --faint:#8A959C;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4;}}
+    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4; --link:#B99BEA;}}
   :root[data-theme="dark"]{
     --paper:#131619; --card:#1A1E22; --ink:#E3E7EA; --dim:#B1BCC3; --faint:#8A959C;
     --rule:#282E34; --hair:#20252A; --accent:#F0A93C; --soft:#372B16;
-    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4;}
+    --warn:#E08064; --ok:#6FBF97; --de:#8DB6D4; --link:#B99BEA;}
 
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -184,10 +184,11 @@
   .docs .k{display:block;margin:0 0 6px}
   .docs ul.dl{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.6}
   .docs .dk{color:var(--faint);font-size:12px}
+  .docs .readit{display:flex;align-items:baseline;gap:14px}
+  .docs code.mancmd{font-family:var(--mono);font-size:13px;color:var(--accent)}
   .docs button.readman{font:inherit;font-size:13.5px;cursor:pointer;padding:0;border:0;
-    background:transparent;color:var(--accent)}
+    background:transparent;color:var(--link)}
   .docs button.readman:hover{text-decoration:underline}
-  .docs button.readman code{font-family:var(--mono);font-size:13px}
   .docs .manpanel iframe{display:block;width:100%;height:34em;margin-top:8px;border:1px solid var(--rule);
     border-radius:6px;background:#101418}
   .help .k{display:block;margin:0 0 6px}
@@ -729,17 +730,27 @@ function renderPanel(){
       `<pre class="usage"><span class="pr">${esc(PROMPT[shell])}</span>${esc(h.cmd)}\n${esc(h.text)}</pre></div>`
     : `<div class="help"><div class="k">its own help</div><span class="none">${esc(h.note)}</span></div>`;
 
-  // ITS DOCUMENTS: what the disk's own `man' has for it (DOC/DOCS), and a
-  // button that runs `man <name>' in the browser, in a panel right here.
-  const dl=p.dl||[];
-  const KIND={man:"manual page",src:"source"};
+  // ITS DOCUMENTS and ITS SOURCE: what the disk's own `man' has for it
+  // (DOC/DOCS), each with a link that runs `man <name>' or `man -s <name>'
+  // in the browser, in a panel right here.  The command is shown in the
+  // typed colour; only the link beside it is clickable.
+  const dl=(p.dl||[]).filter(([k])=>k!=="src");
+  const sl=(p.dl||[]).filter(([k])=>k==="src");
+  // The IOCCC tree keeps each contest original beside its OS-9 port in OSK/.
+  const ported=new Set(sl.filter(([,f])=>f.includes("/OSK/")).map(([,f])=>f.replace("/OSK/","/")));
+  const srcNote=f=>f.includes("/OSK/")?"as built for OS-9":ported.has(f)?"the original":"";
+  const readIt=(cmd,q)=>TRY_PAGE?`<p class="runit readit"><code class="mancmd">${esc(cmd)}</code>`+
+    `<button class="readman" aria-expanded="false" data-q="${q}" data-n="${esc(p.name)}">See it now</button></p>`+
+    `<div class="manpanel"></div>`:"";
   const docsHTML=`<div class="docs"><div class="k">its documents</div>`+
     (dl.length
-      ? `<ul class="dl">${dl.map(([k,f])=>`<li><code>${esc(f)}</code>${KIND[k]?` <span class="dk">${KIND[k]}</span>`:""}</li>`).join("")}</ul>`
+      ? `<ul class="dl">${dl.map(([k,f])=>`<li><code>${esc(f)}</code>${k==="man"?` <span class="dk">manual page</span>`:""}</li>`).join("")}</ul>`+
+        readIt(`man ${p.name}`,"man")
       : `<span class="none">None but its line in DOC/INDEX and its own help.</span>`)+
-    (TRY_PAGE && dl.length?`<p class="runit"><button class="readman" aria-expanded="false" data-n="${esc(p.name)}">`+
-      `&#9656; read them here: <code>man ${esc(p.name)}</code></button></p><div class="manpanel"></div>`:"")+
-    `</div>`;
+    `</div>`+
+    (sl.length?`<div class="docs"><div class="k">its source</div>`+
+      `<ul class="dl">${sl.map(([,f])=>`<li><code>${esc(f)}</code>${srcNote(f)?` <span class="dk">${srcNote(f)}</span>`:""}</li>`).join("")}</ul>`+
+      readIt(`man -s ${p.name}`,"src")+`</div>`:"");
 
   col.innerHTML = `<div class="panel">`+
     `<button class="back" id="back">&larr; Back to the list</button>`+
@@ -912,9 +923,10 @@ document.addEventListener("click", e=>{
   const panel=b.closest(".docs").querySelector(".manpanel");
   const open=!panel.firstChild;
   b.setAttribute("aria-expanded", open);
-  b.innerHTML=(open?"&#9662; close":"&#9656; read them here:")+` <code>man ${esc(b.dataset.n)}</code>`;
+  b.textContent=open?"Close":"See it now";
   if(!open){ panel.innerHTML=""; return; }
-  panel.innerHTML=`<iframe title="man ${esc(b.dataset.n)}" src="${esc(TRY_PAGE+"?man="+encodeURIComponent(b.dataset.n)+"&embed=1")}"></iframe>`;
+  const q=b.dataset.q, n=b.dataset.n;
+  panel.innerHTML=`<iframe title="man ${q==="src"?"-s ":""}${esc(n)}" src="${esc(TRY_PAGE+"?"+q+"="+encodeURIComponent(n)+"&embed=1")}"></iframe>`;
   panel.querySelector("iframe").focus();
 });
 document.addEventListener("keydown", e=>{
