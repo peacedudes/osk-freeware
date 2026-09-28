@@ -184,8 +184,10 @@
   .docs .k{display:block;margin:0 0 6px}
   .docs ul.dl{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.6}
   .docs .dk{color:var(--faint);font-size:12px}
-  .docs button.readman{font-family:var(--mono);font-size:13px;cursor:pointer;padding:3px 10px;
-    border:1px solid var(--rule);border-radius:6px;background:transparent;color:inherit}
+  .docs button.readman{font:inherit;font-size:13.5px;cursor:pointer;padding:0;border:0;
+    background:transparent;color:var(--accent)}
+  .docs button.readman:hover{text-decoration:underline}
+  .docs button.readman code{font-family:var(--mono);font-size:13px}
   .docs .manpanel iframe{display:block;width:100%;height:34em;margin-top:8px;border:1px solid var(--rule);
     border-radius:6px;background:#101418}
   .help .k{display:block;margin:0 0 6px}
@@ -735,8 +737,8 @@ function renderPanel(){
     (dl.length
       ? `<ul class="dl">${dl.map(([k,f])=>`<li><code>${esc(f)}</code>${KIND[k]?` <span class="dk">${KIND[k]}</span>`:""}</li>`).join("")}</ul>`
       : `<span class="none">None but its line in DOC/INDEX and its own help.</span>`)+
-    (TRY_PAGE?`<p class="runit"><button class="readman" data-n="${esc(p.name)}">man ${esc(p.name)}</button>`+
-      ` <span class="rneed">reads them here, on the disk, in your browser</span></p><div class="manpanel"></div>`:"")+
+    (TRY_PAGE && dl.length?`<p class="runit"><button class="readman" aria-expanded="false" data-n="${esc(p.name)}">`+
+      `&#9656; read them here: <code>man ${esc(p.name)}</code></button></p><div class="manpanel"></div>`:"")+
     `</div>`;
 
   col.innerHTML = `<div class="panel">`+
@@ -908,7 +910,10 @@ document.addEventListener("click", e=>{
   const b=e.target.closest && e.target.closest(".readman");
   if(!b) return;
   const panel=b.closest(".docs").querySelector(".manpanel");
-  if(panel.firstChild){ panel.innerHTML=""; return; }
+  const open=!panel.firstChild;
+  b.setAttribute("aria-expanded", open);
+  b.innerHTML=(open?"&#9662; close":"&#9656; read them here:")+` <code>man ${esc(b.dataset.n)}</code>`;
+  if(!open){ panel.innerHTML=""; return; }
   panel.innerHTML=`<iframe title="man ${esc(b.dataset.n)}" src="${esc(TRY_PAGE+"?man="+encodeURIComponent(b.dataset.n)+"&embed=1")}"></iframe>`;
   panel.querySelector("iframe").focus();
 });
