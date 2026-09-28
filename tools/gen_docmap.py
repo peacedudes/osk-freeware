@@ -130,8 +130,8 @@ def sources(root, prog, tree):
                  and is_text(p)]
         if named:
             return order(prog, named)[:8]
-        osk = os.path.join(d, "README.OSK")
-        return [osk] if os.path.isfile(osk) else []
+        osk = doc_census.osk_readme(d)
+        return [osk] if osk else []
     return []
 
 
@@ -180,7 +180,7 @@ def build(root):
         docs, srcs, kept = list(documents(root, prog, verdict, where)), [], set()
         for p in sources(root, prog, origins.get(prog)):
             if is_roff(p, manpages) or doc_census.DOC_SUFFIX.search(p) \
-               or p.endswith("README.OSK"):
+               or os.path.basename(p).lower() == "readme.osk":
                 docs.append(p)
             else:
                 srcs.append(p)

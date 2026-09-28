@@ -60,6 +60,18 @@ DOC_SUFFIX = re.compile(
     r"\.(txt|doc|man|hlp|help|me|ms|1|l|dok|nr|prf|readme|md)$", re.I)
 
 
+def osk_readme(d):
+    """The port's README.OSK in directory d, however its archive spelt it --
+    Readme.OSK, readme.osk, ReadMe.OSK all occur -- or None.  Asking for
+    the exact name answered on this Mac and not on Linux, and DOC/DOCS came
+    out different in CI (2026-09-28)."""
+    try:
+        hits = sorted(f for f in os.listdir(d) if f.lower() == "readme.osk")
+    except OSError:
+        return None
+    return os.path.join(d, hits[0]) if hits else None
+
+
 def cr_text(path):
     """Read an OS-9 text file. They are CR-terminated, so splitlines() on the
     raw bytes gives one enormous line and every grep over it lies."""
@@ -99,6 +111,11 @@ def programs(root):
     out = []
     cmds = os.path.join(root, "CMDS")
     for dirpath, dirs, files in os.walk(cmds):
+        # Sorted, or the order is the filesystem's: Linux walked CMDS's
+        # subdirectories differently from this Mac, and DOC/DOCS -- which
+        # keeps the first of two identical documents -- came out different
+        # in CI (2026-09-28).
+        dirs.sort()
         if "archives" in dirpath.split(os.sep):
             continue
         rel = os.path.relpath(dirpath, root)

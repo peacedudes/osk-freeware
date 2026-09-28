@@ -27,6 +27,8 @@ at run time, matching how the rest of this repo builds things.
 """
 import json, os, re, sys
 
+import doc_census
+
 # ---------------------------------------------------------------- reading
 
 def read(root, rel):
@@ -635,9 +637,9 @@ def gather(root, catfile):
         if note:
             p["changed"] = note
         s = p.get("src") or p["name"]
-        if os.path.isdir(os.path.join(root, "SRC", s, "ORIG")) and \
-           os.path.isfile(os.path.join(root, "SRC", s, "README.OSK")):
-            p["changedsrc"] = "SRC/%s/README.OSK" % s
+        osk = doc_census.osk_readme(os.path.join(root, "SRC", s))
+        if os.path.isdir(os.path.join(root, "SRC", s, "ORIG")) and osk:
+            p["changedsrc"] = "SRC/%s/%s" % (s, os.path.basename(osk))
         if p["name"] in shadowed:
             p["shadows"] = shadowed[p["name"]]
         if p["name"] in cats:
