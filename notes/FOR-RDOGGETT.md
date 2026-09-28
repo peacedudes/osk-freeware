@@ -20,7 +20,8 @@ The man panel now has a purple `See it now' beside `man <name>' and
 `man -s <name>'.  The terminal no longer shrinks below 80x24 -- narrow the
 window and it should scroll, not wrap; widen it and life, perp, torus,
 moria and the rest keep their shape.  None of this has been seen in a
-real browser.
+real browser.  The page also runs a newer os9exec now (4d9efef8, with
+the system tick that stops a busy program freezing the tab).
 
 **3a. Before public: the working papers go with the repo.**  `disk/' and
 `docs/' are clean (checked 2026-09-28), but `notes/' and `tools/' name you

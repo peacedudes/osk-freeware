@@ -24,7 +24,8 @@ you need from it:
   tools/rebuild/make_overlay.sh makes.
 - **The commit gate** was a scratch script: run `python3 tools/check_disk.py
   disk`, commit only on exit 0, stage only the paths the change is about.
-- **The browser page**: docs/try/os9exec.{js,wasm} are a1d433e's
+- **The browser page**: docs/try/os9exec.{js,wasm} are 4d9efef8's (2026-09-28, the
+  wasm system tick; the page no longer passes -q)
   (tools/wasm-web.sh in its tree, run on osk-freeware.dd with
   `bash /dd/SYS/login`).  docs/try/disk.gz is gitignored; CI makes it, and
   locally `gzip -9 -c osk-freeware.dd > docs/try/disk.gz`.  To look at it:
@@ -46,11 +47,10 @@ Open: the work list below.  Nothing is half-done.
   tester: suite 1068/1068 twice, play-tests 156/156 (sod's chance-dependent
   `>0<' expectation removed), check_the_checks 43/43.  docs/try runs it.
   CI tracks the branch; freeze OS9EXEC_REF to os9exec's merge commit when
-  it sends one.  os9exec b31f713 (not pushed at time of writing) adds a
-  system tick for wasm: rebuild docs/try's os9exec.{js,wasm} from it once
-  pushed and drop "-q" from Module.arguments in docs/try/index.html --
-  with "-q" a busy program freezes the tab.  They also asked rdoggett
-  about a quieter banner for the embedded man panel.
+  it sends one.  The browser page runs os9exec 4d9efef8 (release tip on
+  2026-09-28, which has b31f713's wasm system tick) and passes no "-q";
+  with "-q" a busy program froze the tab.  os9exec asked rdoggett about a
+  quieter banner for the embedded man panel.
 - **2026-09-28: WIDER THAN 80.**  The browser terminal fits the window,
   so it is usually wider than 80, and every harness here shoots at exactly
   80 -- which hid this.  Nine programs wrote column 80 and relied on the
