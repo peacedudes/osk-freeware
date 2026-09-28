@@ -3,7 +3,7 @@
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
 the same number.
-Updated 2026-09-27.
+Updated 2026-09-28.
 
 ## Needs you
 
@@ -18,6 +18,12 @@ merge commit, I pin CI to it.
 documents and has a `man <name>' button that boots the disk in a panel and
 runs it there.  It has not been tried in a real browser.
 (`cd docs && python3 -m http.server 8765', then a card.)
+
+**3a. Before public: the working papers go with the repo.**  `disk/' and
+`docs/' are clean (checked 2026-09-28), but `notes/' and `tools/' name you
+in 82 files and carry /Users/rdoggett, ~/Developer/os9/Scraped and ~/mine
+paths, and git history holds all of it.  Publish as they are, or should
+`notes/' leave the public repo (a fresh history, the full one kept private)?
 
 ## No action, just so you know
 
