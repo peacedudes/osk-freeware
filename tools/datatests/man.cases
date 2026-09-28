@@ -57,3 +57,11 @@ case    man-falls-back-to-its-own-help
 run     man biff < /nil | head -n 8
 expect  It has no manual here.  Asked for help, it says:
 expect  pipe English text through it
+
+# A name that begins a line of DOC/DOCS' own header prose -- "for a roff
+# page, ..." -- is still read from its entries alone.  `man for' once took
+# that line for a document and asked less for /dd/roff.
+case    man-reads-entries-not-the-header
+run     man for < /nil | head -n 4
+expect  for            - the RTF/68K Fortran driver
+expect  It has no manual here.  Asked for help, it says:
