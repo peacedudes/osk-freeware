@@ -62,6 +62,10 @@ Open: the work list below.  Nothing is half-done.
   `size <rows> <cols+20>'), and ink past column 80 is the signal --
   except for plain text streams (spline, weather, game logs), which flow.
   animal and draw were archive binaries and are now our -qm builds.
+  The same sweep 10 rows TALLER (245 stanzas) found nothing broken: a
+  program that scrolls at row 24 just carries on downward, which reads.
+  The browser terminal now never goes below 80x24 (docs/try); narrower
+  windows scroll the terminal instead of wrapping every program.
 - **CI green again 2026-09-28** (run 36453267550) after failing on Linux
   only: DOC/DOCS depended on directory order (two unsorted walks, first
   name wins) and on `Readme.OSK' answering to `README.OSK'.  Both fixed in
