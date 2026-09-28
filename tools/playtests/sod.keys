@@ -17,6 +17,8 @@ wait    3
 key     \r
 wait    3
 snap    quit
-expect  >0<
+# Not `>0<': the board is dealt at random and there is no seed, so the
+# count under you is whatever the deal gives, and a walk can end in the
+# swamp.  It failed on that alone, now and then (2026-09-28).
 expect  X
 expect  Scoretable for level 1
