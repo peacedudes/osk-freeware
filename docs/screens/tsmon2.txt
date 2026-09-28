@@ -1,2 +1,2 @@
-$ tsmon2 /t1
-tsmon2: Can't open device "/t1" -
+$ tsmon2 -p=logon /term
+login:

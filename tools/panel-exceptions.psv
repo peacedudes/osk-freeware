@@ -45,4 +45,3 @@ watch|waits on a serial line for a modem to ring and then starts a command; ther
 ppmtopgm|writes the grey image to a file in silence; the steps that follow on its card -- pnmscale, pgmnorm, pbmtoascii -- show the picture it made
 ppmtorgb3|writes three plane files in silence; the ls that follows on its card lists them, and rgb3toppm puts them back together
 remove|a before-and-after: readmsg answers by name, `remove readmsg' takes it out of memory, and the same command then answers `nowhere found' -- which is the proof
-tsmon2|a timesharing monitor for a serial line; it opens the line it is given, and with no /t1 here its refusal to open it is what it can say

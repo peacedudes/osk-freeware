@@ -298,7 +298,11 @@ SPARSE_OK = {"rain",
              "postprint",
              # hackwish runs hack out of sight and prints two lines at the
              # end: the goodbye and the game number the wish was found in.
-             "hackwish"}
+             "hackwish",
+             # tsmon2 watches a line in silence and, at RETURN, starts the
+             # login program on it: logon's `login:' is the whole of what
+             # a reader sees it do (2026-09-28).
+             "tsmon2"}
 SPARSE_FLOOR = 12
 
 def ink_floor(name):

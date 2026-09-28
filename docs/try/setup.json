@@ -4811,6 +4811,11 @@
 "builtin cd /dd/tmp/UTILA/tr"
 ]
 },
+"tsmon2": {
+"setup": [
+"load /dd/CMDS/SYSADMIN/logon"
+]
+},
 "tsort": {
 "setup": [
 "builtin cd /dd"

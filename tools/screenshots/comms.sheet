@@ -1287,15 +1287,20 @@ run     setfont
 wait    4
 
 shot    tsmon2
-cap     A terminal monitor: it watches a serial device and starts the login
-cap     program when someone types RETURN on it, or with -i as soon as
-cap     carrier appears.  Pointed at /t1, which is not configured here, it
-cap     cannot open the device.
-try     tsmon2 /t1
+cap     A terminal monitor: it watches a terminal line and starts the login
+cap     program when someone presses RETURN on it, or with -i as soon as
+cap     carrier appears.  Here it watches this terminal, with the disk's
+cap     own logon, loaded first, named by -p: it waits in silence until
+cap     RETURN, then logon asks who you are.
+try     tsmon2 -p=logon /term
+run     load /dd/CMDS/SYSADMIN/logon
+wait    2
 run     clear
 wait    1
-run     tsmon2 /t1
-wait    10
+run     tsmon2 -p=logon /term
+wait    4
+send    \r
+wait    5
 
 shot    connect
 cap     Joins two serial paths so you can talk through one to the other,
