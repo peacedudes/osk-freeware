@@ -84,8 +84,8 @@ session's narrative goes into the history file, not here.
 2. **ksh DONE 2026-09-27**: rebuilt from SRC/pdksh, trap-free (no cio),
    `read' fixed (second loop over a file; runs of spaces).  Suite 1067/1067
    twice and play-tests 156/156 on it.  SRC/pdksh/README.OSK; ksh.cases.
-   The driver names a .a source's object `x.a.r' and compile_long can
-   report `clean' after a failed merge -- worth fixing in rebuild.sh.
+   The driver faults it found are fixed (fe09d496): a .a source's object
+   is x.r, and the verdict counts every object the merge list names.
 3. **Defects still open** (each needs a measurement first): none known.
    nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
    so nn would not save twice to its own file for tester; global.c now
