@@ -62,6 +62,15 @@ Open: the work list below.  Nothing is half-done.
   `size <rows> <cols+20>'), and ink past column 80 is the signal --
   except for plain text streams (spline, weather, game logs), which flow.
   animal and draw were archive binaries and are now our -qm builds.
+- **CI green again 2026-09-28** (run 36453267550) after failing on Linux
+  only: DOC/DOCS depended on directory order (two unsorted walks, first
+  name wins) and on `Readme.OSK' answering to `README.OSK'.  Both fixed in
+  doc_census.py; the test that proves it runs a generator with every
+  listing reversed (a 15-line os.walk/listdir wrapper) and requires the
+  same bytes -- APFS always lists sorted, so this Mac cannot show it.
+  CI runs only when started by hand (`gh workflow run build-image'), so
+  start it after a push.  It warns that checkout@v4/upload-artifact@v4
+  are Node 20 actions and ubuntu-latest moves to 26 on 2026-10-19.
 - **CI has run** (first time, 2026-09-26, manual run on this branch):
   green end to end on Linux -- gate, catalogue, os9exec from
   release-v4.1.0, image built and read back.  Its first runs found three
