@@ -1,1 +1,0 @@
-#define M0(x) { a = (x); }#define M1(x) { M0(x) M0(x) }#define M2(x) { M1(x) M1(x) }#define M3(x) { M2(x) M2(x) }#define M4(x) { M3(x) M3(x) }#define M5(x) { M4(x) M4(x) }int a;main(){   M5(1)}

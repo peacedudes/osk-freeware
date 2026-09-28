@@ -1,1 +1,0 @@
-r68 ireadt.a -o=ireadt.rl68 ireadt.r -o=/h6/ireadt
