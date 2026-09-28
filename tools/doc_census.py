@@ -82,9 +82,12 @@ def doc_names(docroot):
     """Every name under DOC that could stand for a program, lowercased."""
     names = {}
     for dirpath, dirs, files in os.walk(docroot):
+        # Sorted: the first of two names wins, so the filesystem's order
+        # would decide it -- and Linux's is not this Mac's.
+        dirs.sort()
         for d in dirs:
             names.setdefault(d.lower(), os.path.join(dirpath, d))
-        for f in files:
+        for f in sorted(files):
             p = os.path.join(dirpath, f)
             names.setdefault(f.lower(), p)
             stem = DOC_SUFFIX.sub("", f).lower()
