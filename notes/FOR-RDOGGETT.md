@@ -14,10 +14,9 @@ left is yours: merging this branch to main (a push to main publishes the
 catalogue to Pages) and making anything public.  When os9exec sends its
 merge commit, I pin CI to it.
 
-**2. Try a card's `man' button in Safari.**  Each card lists its
-documents and has a `man <name>' button that boots the disk in a panel and
-runs it there.  It has not been tried in a real browser.
-(`cd docs && python3 -m http.server 8765', then a card.)
+**2. Done 2026-09-28:** you tried the `man' panel; it works.  Now a purple
+`See it now' beside `man <name>' (and `man -s <name>' for source), shown
+only where there is something to read; `man for' no longer errors.
 
 **3a. Before public: the working papers go with the repo.**  `disk/' and
 `docs/' are clean (checked 2026-09-28), but `notes/' and `tools/' name you
