@@ -1511,7 +1511,8 @@
 "filter": {
 "setup": [
 "mount -r=256k /r0",
-"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"From tester\\rSubject: test\\r\\rbody\\r\" > /dd/tmp/EC/msg.txt",
+"rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC; printf \"From tester\\rSubject: lunch\\r\\rNoon at the usual place.\\r\" > /dd/tmp/EC/msg.txt",
+"echo 'if (subject = \"lunch\") then save \"/dd/tmp/EC/folder\"' > /dd/tmp/EC/rules; echo -n > /dd/tmp/EC/folder",
 "builtin cd /dd/tmp/EC"
 ]
 },

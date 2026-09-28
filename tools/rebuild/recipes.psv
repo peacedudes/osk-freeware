@@ -1189,3 +1189,11 @@ bincheckr|gnuchess|GNUCHESS4.0/SRC/bincheckr.c|||
 # the moria recipe).  The archive's gcc 1.4.2 + TOP ncurses build sent every
 # cursor move as ESC [ ; H.  OS9 selects the port's -d (directory) option.
 hexedit|hexedit|hex.c ../moria/tcentry.c|OS9 MEM=32k|/dd/LIB/ncurses.l /dd/LIB/os9lib.l|-V=/dd/DEFS/ncurses
+# ksh -- pdksh 4.3, OS-9 port edition 11.  osklib.l is the port's own
+# OS-9 library (OSK/SRC/dmakefile) and must be built before ksh, which
+# links it by path.  ssmpermit.a/ssmprotect.a ride in the extra-flags field
+# because compile_long names a source's object `basename .c`.r, which is
+# wrong for a .a.  SRC/pdksh/README.OSK explains every define and the two
+# headers in OSK/SDKDEFS.
+osklib.l|pdksh/OSK/SRC|stat.c times.c signal.c fcntl.c execve.c laccess.c getcwd.c getgid.c ioctl.c osk.c getppid.c fputc.c tempnam.c _x_open.c _x_opendir.c strnicmp.c _x_access.c _x_creat.c|KSH DT_INET=9 NOCOMPAT||-V=/h6/pdksh/OSK/DEFS -V=/h6/pdksh/OSK/SDKDEFS -V=/h6/COMPAT
+ksh|pdksh/sh|version.c main.c misc.c syn.c lex.c edit.c emacs.c vi.c tree.c exec.c jobs.c trap.c c_sh.c c_ksh.c c_test.c do_ulimit.c getopts.c expr.c history.c var.c table.c alloc.c io.c eval.c mail.c trace.c ../std/stdc/memmove.c ../std/stdc/vprintf.c ../std/stdc/strchr.c ../std/stdc/strrchr.c|_SYSV BIT8 strchr=index strrchr=rindex const= NULL=0 opendir=_x_opendir open=_x_open access=_x_access creat=_x_creat USE_SIGNAL NSIG=255 SHELL="ksh" SHELLENV="SHELL=ksh" NOCOMPAT|/dd/LIB/os9lib.l|-V=/h6/pdksh/OSK/DEFS -V=/h6/pdksh/OSK/SDKDEFS -V=/h6/COMPAT -l=/h6/pdksh/OSK/SRC/R_osklib.l -e=11 ../OSK/SRC/ssmpermit.a ../OSK/SRC/ssmprotect.a

@@ -81,12 +81,11 @@ session's narrative goes into the history file, not here.
    program, every failure claim re-run; KEY_DOCS floor now 15000), and
    DOC/INDEX's 190 longest entries (tools/fix_index.py).  Done unless a
    reader-facing file turns up that was missed.
-2. **ksh's `read'** (measured 2026-09-27, confirmed by os9exec's trace): a
-   second `while read ... done < file' in a script gets end-of-file at once
-   (c_read in SRC/pdksh/sh/c_sh.c never clears stdin's EOF), and a run of
-   IFS spaces splits into empty fields.  Both are a few lines in c_read,
-   but ksh has no recipe: a -qm build needs pdksh's OSK library (C and .a)
-   and os9lib.  Documented in DOC/README-SHELLS until then.
+2. **ksh DONE 2026-09-27**: rebuilt from SRC/pdksh, trap-free (no cio),
+   `read' fixed (second loop over a file; runs of spaces).  Suite 1067/1067
+   twice and play-tests 156/156 on it.  SRC/pdksh/README.OSK; ksh.cases.
+   The driver names a .a source's object `x.a.r' and compile_long can
+   report `clean' after a failed merge -- worth fixing in rebuild.sh.
 3. **Defects still open** (each needs a measurement first): none known.
    nn's `st_gid' is FIXED (2026-09-25): os9lib's stat() leaves it unset,
    so nn would not save twice to its own file for tester; global.c now

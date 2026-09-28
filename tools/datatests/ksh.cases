@@ -1,0 +1,65 @@
+# ksh -- pdksh 4.3, the shell SYS/login names as $SHELL.
+#
+# Rebuilt 2026-09-27 from SRC/pdksh with two fixes to its `read'
+# (sh/c_sh.c, c_read; SRC/pdksh/README.OSK says what and why).  Each of the
+# first two cases FAILS on the binary that shipped before:
+#
+# 1. A SECOND `while read ...; done < file' READ NOTHING.  read took its
+#    characters with getc(stdin), and stdin kept the end-of-file flag the
+#    first loop left on it, so every later loop ended at once.
+#
+# 2. A RUN OF SPACES WAS SEVERAL SEPARATORS.  `read x y z' on `a    b  c'
+#    gave x=a, y empty and z="   b  c".  Leading IFS white space is now
+#    skipped before each field, as sh does.
+#
+# The rest hold what the rebuild must not have lost: a script, a pipe, a
+# for loop, and a whole command line handed over as ONE argument, which is
+# the property SYS/login relies on in setting SHELL to ksh
+# (DOC/README-SHELLS).
+
+family  ksh
+
+setup   /dd/CMDS/rm -rf /dd/tmp/kshc
+setup   /dd/CMDS/mkdir -p /dd/tmp/kshc
+setup   echo alpha > /dd/tmp/kshc/f
+setup   echo beta >> /dd/tmp/kshc/f
+
+case    ksh-read-a-second-while-read-loop-reads-its-file
+run     /dd/CMDS/ksh -c "while read l; do echo one:\$l; done < /dd/tmp/kshc/f; while read l; do echo two:\$l; done < /dd/tmp/kshc/f"
+expect  one:alpha
+expect  one:beta
+expect  two:alpha
+expect  two:beta
+
+case    ksh-read-folds-a-run-of-spaces-into-one-separator
+run     /dd/CMDS/ksh -c "echo 'a    b  c' | while read x y z; do echo \"x=\$x. y=\$y. z=\$z.\"; done"
+expect  x=a. y=b. z=c.
+
+case    ksh-read-skips-leading-spaces-and-leaves-the-rest-to-the-last-name
+run     /dd/CMDS/ksh -c "echo '   lead  two three  four' | while read x y; do echo \"x=\$x. y=\$y.\"; done"
+expect  x=lead. y=two three  four.
+
+case    ksh-read-with-fewer-words-than-names-leaves-the-rest-empty
+run     /dd/CMDS/ksh -c "echo 'only' | while read x y; do echo \"x=\$x. y=\$y.\"; done"
+expect  x=only. y=.
+
+case    ksh-runs-a-script-with-a-for-loop
+# Fed on standard input.  `ksh <file>' answers `cannot execute' unless the
+# file has its execute attribute, in this build and the one before it.
+run     echo 'for i in 1 2 3; do echo item-$i; done' > /dd/tmp/kshc/s.ksh
+run     /dd/CMDS/ksh < /dd/tmp/kshc/s.ksh
+expect  item-1
+expect  item-2
+expect  item-3
+
+case    ksh-pipes-one-command-into-another
+run     /dd/CMDS/ksh -c "echo pipe-ok | /dd/CMDS/sed s/ok/works/"
+expect  pipe-works
+absent  pipe-ok
+
+case    ksh-parses-a-whole-command-line-given-as-one-argument
+# SYS/login sets SHELL=$ROOT/CMDS/ksh because a C library system() hands
+# $SHELL the command line as one argument; of the five shells only ksh
+# parses it (DOC/README-SHELLS, `How a single-argument command line fares').
+run     /dd/CMDS/ksh -c "/dd/CMDS/wc -c /dd/tmp/kshc/f"
+expect  11 /dd/tmp/kshc/f

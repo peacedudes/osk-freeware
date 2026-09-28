@@ -50,7 +50,7 @@ expect  #define putchar(x) fputc((x),stdout)
 case    man-offers-what-mentions-an-unknown-name
 run     man calcul
 expect  man: nothing on this disk is called 'calcul'
-expect  rpn            - reverse-Polish calculator
+expect  rpn            - a reverse-Polish calculator
 
 # A program with no document: what it says when asked for help.
 case    man-falls-back-to-its-own-help
