@@ -84,10 +84,15 @@ compile() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 extra  $
 # nothing to link.  SRC/unixlib is the one that wants this: its own makefile
 # ends `merge -b99 -z=lib_list', and the result is what somebody would put in
 # their own LIB rather than name source-by-source in every recipe.
+# A source's object: x.c and x.a both compile to x.r.  `basename $s .c' left
+# a .a source as `x.a.r', and merge stopped at a file that was never made
+# (pdksh's ssmpermit.a, 2026-09-27).
+objr() { local b; b=$(basename "$1"); b=${b%.c}; b=${b%.a}; printf '%s.r' "$b"; }
+
 compile_lib() {    # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 name  $6 dir  $7 extra
   : > "$6/ctmp.list"
   for s in $2; do
-    printf '%s\r' "$(basename "$s" .c).r" >> "$6/ctmp.list"
+    printf '%s\r' "$(objr "$s")" >> "$6/ctmp.list"
   done
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
   for s in $2; do
@@ -682,7 +687,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
   : > "$8/ctmp.list"
   for s in $2; do
     [ "$s" = "$mainsrc" ] && continue
-    printf '%s\r' "$(basename "$s" .c).r" >> "$8/ctmp.list"
+    printf '%s\r' "$(objr "$s")" >> "$8/ctmp.list"
   done
 
   printf 'setenv CLIB /dd/LIB\nsetenv CDEF /dd/DEFS\nchx /dd/CMDS\nchd /h6/%s\n' "$1"
@@ -738,7 +743,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
 
   if [ -d "$POOL1/$arch" ]; then POOL=$POOL1; else POOL=$POOL2; fi
   d=$POOL/$arch
-  rm -f "$d/R_$prog"
+  rm -f "$d/R_$prog" "$d/ctmp.list"
 
   # -DOSK is right for most of this corpus but not all of it: name.c takes the
   # SYSV arm when both are set and then skips its "#ifndef OSK" fallback, so
@@ -1013,10 +1018,24 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # had died on a missing <unistd.h> and the driver said the build was clean.
   # This is the "make every check fail once" rule in CLAUDE.md, and this check
   # had only ever succeeded.
+  # COUNTED HERE, NOT IN attempt().  attempt runs inside $( ), a subshell, so
+  # the LIBWANT/LIBGOT that count_lib_objects set there never reached this
+  # test.  A library with a missing object was still caught -- merge stops
+  # at the missing file and writes nothing, which the zero-byte test below
+  # sees -- but a long-path program linked from the partial ctmp.parts.l and
+  # was reported clean (2026-09-27, building ksh).  The merge list the build
+  # wrote names every object it needed; each must exist and have bytes.
+  LIBWANT=0; LIBGOT=0
+  if [ -f "$d/ctmp.list" ]; then
+    for o in $(/usr/bin/tr '\r' ' ' < "$d/ctmp.list"); do
+      LIBWANT=$((LIBWANT+1))
+      [ -s "$d/$o" ] && LIBGOT=$((LIBGOT+1))
+    done
+  fi
   if [ "$LIBWANT" -gt 0 ] && [ "$LIBGOT" -ne "$LIBWANT" ]; then
     rm -f "$d/R_$prog"
     printf '%s\t%s\tFAIL\t%s\n' "$prog" "$arch" \
-      "only $LIBGOT of $LIBWANT sources compiled -- incomplete library" >> "$OUT"
+      "only $LIBGOT of $LIBWANT objects were made -- the merge was incomplete" >> "$OUT"
   elif [ -s "$d/R_$prog" ]; then
     st=$(/usr/bin/grep -qa 'from the disk of' "$d/R_$prog" && echo STAMPED || echo clean)
     printf '%s\t%s\t%s\t%s\n' "$prog" "$arch" "$st" "$d/R_$prog" >> "$OUT"

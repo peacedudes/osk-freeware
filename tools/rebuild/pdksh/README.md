@@ -1,5 +1,15 @@
 # Rebuilding pdksh (ksh) from source
 
+> **2026-09-27: DONE, and this directory is history.**  disk/CMDS/ksh is
+> now built from SRC/pdksh by the ordinary driver -- two lines in
+> tools/rebuild/recipes.psv, `osklib.l` then `ksh` -- trap-free, with
+> `read' fixed.  The output that the August rebuild below lost was
+> io.c's fopenshf: on OSK it left stdio's own FILE on paths 0-2, so
+> exit() closed path 1 under ksh's second FILE (SRC/pdksh/README.OSK).
+> `strchr(s,0)' is handled by linking pdksh's own std/stdc strchr as
+> `index'.  build_ksh.sh and the patches here are not used any more.
+
+
 Everything here exists because `notes/HANDOFF.md` recorded the pdksh rebuild as
 **blocked on material that does not exist here** — `osklib.r`, which its
 `dmakefile` links, was said to be "not on the disk, in the SDK, or in the
