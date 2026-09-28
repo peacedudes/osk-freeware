@@ -3,7 +3,7 @@ format /r0 "-v=Data Vol 1" -r
 Hit RETURN when drive ready:
 
                 Disk Formatter
-OS-9/68k Emu UAE   macOS arm64 - 68040
+OS-9/68k Emu UAE   macOS arm64 - 68020
 ------------  Format Data  ------------
 
 Fixed values:
@@ -37,7 +37,7 @@ format /r0 "-v=Data Vol 2" -r
 Hit RETURN when drive ready:
 
                 Disk Formatter
-OS-9/68k Emu UAE   macOS arm64 - 68040
+OS-9/68k Emu UAE   macOS arm64 - 68020
 ------------  Format Data  ------------
 
 Fixed values:
@@ -68,7 +68,7 @@ quantity unusable $00000000           0  (         0 bytes)
  sectors verified $00000400        1024  (    262144 bytes)
 writing root directory structure
 $ free /r0
-"Data Vol 2" created on: Sep 25, 2026
+"Data Vol 2" created on: Sep 28, 2026
 Capacity: 1024 sectors (256-byte sectors, 1-sector clusters)
 989 free sectors, largest block 989 sectors
 253184 of 262144 bytes (247.25 of 256.00 Kb) free on media (96%)

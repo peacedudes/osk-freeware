@@ -3,7 +3,7 @@ OSK level : 1
 OSK version : 4
 Revision : 16
 Edition : 0
-CPU type (from init module) : 68040
-CPU type (real CPU, from system globals) : 68040
+CPU type (from init module) : 68020
+CPU type (real CPU, from system globals) : 68020
 Mainframe : macOS arm64
 OS9 revision string : OS-9/68k Emu UAE

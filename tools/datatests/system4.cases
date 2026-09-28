@@ -26,12 +26,13 @@ setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
 # oskversion asks the kernel what it is. Under os9exec the answers are the
 # emulator's own, and that is the useful thing about the card: it is how you
-# find out what your programs think they are running on.
+# find out what your programs think they are running on.  The CPU is the
+# 68020 os9exec emulates; before its c461e5df it said 68040.
 case    oskversion-reports-what-the-kernel-says-it-is
 run     /dd/CMDS/oskversion
 expect  OSK level : 1
 expect  OSK version : 4
-expect  CPU type (from init module) : 68040
+expect  CPU type (from init module) : 68020
 expect  OS9 revision string : OS-9/68k Emu UAE
 
 # getsys walks the System Globals. Under os9exec many of them are not
@@ -41,7 +42,7 @@ case    getsys-walks-the-system-globals-and-os9exec-answers-what-it-has
 run     /dd/CMDS/getsys
 expect  System global variables (OS-9/680x0 V2.3):
 expect  number of ticks per second .................. 100
-expect  MPU type (68000/10/20/30/70) ................ 68040
+expect  MPU type (68000/10/20/30/70) ................ 68020
 expect  system minimum allocatable block size ....... 2048
 expect  F$SetSys: unimplemented
 
