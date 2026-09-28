@@ -135,14 +135,15 @@ work list below.  Nothing is half-done.
    mmon is CLEARED (2026-09-25): it wanted its two SysInfo locks and
    logon's path in SYS/mmon.config, and then offers login: on /t1;
    superuser.cases asserts it.
-4. **`tools/panel-exceptions.psv`**: re-test the reasons.  The shapes that
-   keep recurring: the disk ships what the reason says is missing; nobody
-   started the provider; the card filtered the content away; the program
-   was given the wrong invocation.
-5. **A card's command needs the card's setup** -- docs/try/setup.json
-   carries it for the browser.  A card whose hidden setup does something a
-   reader could not repeat (staging from /h1, removing a shipped file) is
-   worth a second look.
+4. **`tools/panel-exceptions.psv`** -- re-tested 2026-09-28.  tsmon2 is
+   off it: pointed at /term with `-p=logon' it waits and starts logon at
+   RETURN, which is its card now.  mesg stays (usage): it writes a utmp
+   record for tester on /term, but later flags did not change it; no
+   source to say why.  The rest -- network, X, modem, receivers waiting,
+   daemons run bare -- still hold.
+5. **Hidden setups** -- checked 2026-09-28: every card whose setup stages
+   from /h1 or replaces a shipped file (fact, for, lnk, lnk.org,
+   gcc272_collect, pri, fileserv, newgrp) says so in its caption.
 6. **Housekeeping** (PLAN section 5): notes stay small.
 
 ## The routine
