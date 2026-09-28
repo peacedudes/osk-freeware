@@ -124,11 +124,11 @@ work list below.  Nothing is half-done.
    ten minutes, by design.)  mw's `-1[%dX' is mw sending
    termcap's `ec' without a count -- its bug; the termcap is right.
    `browse' printing the year as 126 is period behaviour and stays.
-   NEW 2026-09-26: the cio selector mismatch reaches past $41/$42 --
-   `cuts' calls $43 (fputc) and $44 (fgetc), which our cio also answers
-   with memory routines, so it writes only CRs.  tools/cio_macro_scan.py
-   looks at $41/$42 only; extend it to $43/$44, confirm the mapping against
-   the cio module, and update DOC/README-CIO's list and count.
+   DONE 2026-09-28: the cio mismatch reaches $43 (fputc) and $44 (fgetc)
+   too -- read off LIB/cio.l's C$ equates, measured on the archive cuts
+   (30 MB from 24 bytes).  cio_macro_scan.py counts all four; nothing
+   shipped calls $43/$44 (cuts was rebuilt -qm on 2026-09-26); README-CIO
+   says so.
    Reported to os9exec 2026-09-26, their call: the pipe byte counter shared
    by readers (ppmtopict | wc), an orphan's F$Exit ending the emulator
    (vcron), and one image as /dd and /h0 being two RBF instances.
