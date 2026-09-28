@@ -745,9 +745,11 @@ function renderPanel(){
   // typed colour; only the link beside it is clickable.
   const dl=(p.dl||[]).filter(([k])=>k!=="src");
   const sl=(p.dl||[]).filter(([k])=>k==="src");
-  // The IOCCC tree keeps each contest original beside its OS-9 port in OSK/.
-  const ported=new Set(sl.filter(([,f])=>f.includes("/OSK/")).map(([,f])=>f.replace("/OSK/","/")));
-  const srcNote=f=>f.includes("/OSK/")?"as built for OS-9":ported.has(f)?"the original":"";
+  // The IOCCC tree keeps each contest original beside its OS-9 port in OSK/;
+  // only such a pair is labelled -- boa's whole tree is OSK/, with nothing beside it.
+  const listed=new Set(sl.map(([,f])=>f));
+  const srcNote=f=>f.includes("/OSK/") ? (listed.has(f.replace("/OSK/","/"))?"as built for OS-9":"")
+                   : listed.has(f.replace(/\/([^/]*)$/,"/OSK/$1"))?"the original":"";
   const readIt=(cmd,q)=>TRY_PAGE?`<p class="runit readit"><code class="mancmd">${esc(cmd)}</code>`+
     `<button class="readman" aria-expanded="false" data-q="${q}" data-n="${esc(p.name)}">See it now</button></p>`+
     `<div class="manpanel"></div>`:"";
