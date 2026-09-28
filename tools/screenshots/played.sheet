@@ -153,8 +153,9 @@ wait    2
 
 shot    life
 cap     Conway's Game of Life on `glider' from GAMES/LIFE, which is a glider
-cap     gun, with a glider already loose below it; generation 8. Control-C
-cap     ends it.
+cap     gun, with a glider already loose below it, a few generations in.
+cap     The board is 79 by 23; any window at least 80 by 24 shows it whole.
+cap     Control-C ends it.
 try     life glider
 run     builtin cd /dd/GAMES/LIFE
 wait    1

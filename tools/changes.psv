@@ -49,7 +49,7 @@ inews|Built with MNews's spool and command directories changed from the package'
 infocom.tcap|Module name changed from infocom to infocom.tcap to match its file, so loading it no longer answers for the infocom in CMDS.
 jumble2|Named jumble2, the posting's archive name, because this disk's `jumble' is a different program.
 kermit2|Module name changed from kermit to kermit2 to match its file, so loading it no longer answers for the kermit in CMDS.
-life|Built with 64K of memory instead of 16K; it recurses over the board and died of stack overflow after one generation.
+life|Built with 64K of memory instead of 16K; it recurses over the board and died of stack overflow after one generation. The board is 79 columns rather than 80, so it keeps its shape in a window wider than 80: curses relied on the terminal wrapping after the 80th column, and every row ran on into the next.
 lnk.org|Module name changed from lnk to lnk.org to match its file, so loading it no longer answers for the lnk in CMDS.
 lotto|At end of input it now exits; the posted program asked "Do you believe?" for ever.
 ls|Built here from GNU fileutils 3.13 source, repaired for OS-9 so it shows real file modes, dates, owners and inode numbers.
