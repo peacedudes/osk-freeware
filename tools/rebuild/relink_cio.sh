@@ -66,7 +66,7 @@ mkdir -p "$out"
 # `case' below matches on " $prog ", and against a newline-separated list that
 # pattern never matches and the gate is silently open. It was, first time.
 unsafe=$("$here/tools/cio_macro_scan.py" "$here/disk" 2>/dev/null \
-         | awk '/_flshbuf=/ {n=split($1,p,"/"); print p[n]}' | tr '\n' ' ')
+         | awk '/ write=/ {n=split($1,p,"/"); print p[n]}' | tr '\n' ' ')
 [ -n "$unsafe" ] || { echo "cio_macro_scan.py named nothing -- the gate would" \
                            "be open; refusing to relink anything" >&2; exit 2; }
 

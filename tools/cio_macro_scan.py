@@ -13,6 +13,14 @@ the program leaks one chunk per character until the 68k arena is exhausted.
 Programs that use printf/fprintf/fwrite/read/write are unaffected: those run
 inside the module and never cross the broken selectors.
 
+$43 AND $44 AS WELL (2026-09-28).  The same library puts fputc at $43 and
+fgetc at $44 -- read off the C$fputc and C$fgetc equates in the SDK's
+LIB/cio.l, which is that library -- and the modules answer those with
+memory routines too.  The archive `cuts' called them: its header, written
+with fprintf, came out right, then fgetc never returned EOF and a 24-byte
+file encoded to 30 MB of nothing until the arena was full.  A write site is
+therefore a call to $41 or $43, a read site to $42 or $44.
+
 WHAT COUNTS.  Presence of the $41/$42 STUB is NOT the criterion -- the linker
 pulls in the whole 69-stub cio.l psect, so clean programs (autolf) carry stubs
 they never call.  The criterion is a BSR/BRA from the program's own code TO
@@ -36,6 +44,10 @@ import struct
 import sys
 
 
+WRITES = (0x41, 0x43)                                          # _flshbuf, fputc
+READS = (0x42, 0x44)                                           # _filbuf, fgetc
+
+
 def u16(d, i):
     return struct.unpack('>H', d[i:i + 2])[0]
 
@@ -56,7 +68,8 @@ def branch_target(d, i):
 
 
 def scan(path):
-    """-> (is_cio_program, sites_calling_$41, sites_calling_$42) or None."""
+    """-> (is_cio_program, write_sites, read_sites) or None: calls to the
+    $41/$43 stubs (_flshbuf, fputc) and to the $42/$44 stubs (_filbuf, fgetc)."""
     try:
         d = open(path, 'rb').read()
     except OSError:
@@ -73,14 +86,14 @@ def scan(path):
     stub = {}
     for m in re.finditer(b'\x4E\x4D', d[:code_end]):           # TRAP #13
         i = m.start()
-        if i + 4 <= code_end and u16(d, i + 2) in (0x41, 0x42):
+        if i + 4 <= code_end and u16(d, i + 2) in WRITES + READS:
             stub[i] = u16(d, i + 2)
-    n = {0x41: 0, 0x42: 0}
+    n = {s: 0 for s in WRITES + READS}
     if stub:
         for i in range(0, code_end - 3, 2):
             if branch_target(d, i) in stub:
                 n[stub[branch_target(d, i)]] += 1
-    return (True, n[0x41], n[0x42])
+    return (True, sum(n[s] for s in WRITES), sum(n[s] for s in READS))
 
 
 def survey(roots):
@@ -103,9 +116,9 @@ def survey(roots):
 def main(roots):
     total, rows = survey(roots or ['.'])
     print("cio-linked program modules: %d" % total)
-    print("with a putc/getc macro call site: %d" % len(rows))
+    print("with a call to a mismatched selector: %d" % len(rows))
     for name, a, b in sorted(rows, key=lambda x: -(x[1] + x[2])):
-        print("  %-28s _flshbuf=%-3d _filbuf=%d" % (name, a, b))
+        print("  %-28s write=%-3d read=%d" % (name, a, b))
     return 0
 
 
