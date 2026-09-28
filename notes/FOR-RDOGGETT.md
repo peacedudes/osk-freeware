@@ -3,16 +3,21 @@
 Open questions only, two sentences each. Ask and I will explain any of them;
 the detail of items before 45 lives in `notes/HISTORY-2026-09.md` under
 the same number.
-Updated 2026-09-26.
+Updated 2026-09-27.
 
 ## Needs you
 
 **1. Merge and publish -- your call, when you are ready.**  os9exec is
-pushed (release-v4.1.0, f2954f3) and this collection is verified on it:
-suite 1019/1019 twice, play-tests 151/151, CI green on Linux.  What is
+pushed (release-v4.1.0, a1d433e) and this collection is verified on it:
+suite 1067/1067 twice, play-tests 156/156 (2026-09-27).  What is
 left is yours: merging this branch to main (a push to main publishes the
 catalogue to Pages) and making anything public.  When os9exec sends its
 merge commit, I pin CI to it.
+
+**2. Try a card's `man' button in Safari.**  Each card lists its
+documents and has a `man <name>' button that boots the disk in a panel and
+runs it there.  It has not been tried in a real browser.
+(`cd docs && python3 -m http.server 8765', then a card.)
 
 ## No action, just so you know
 

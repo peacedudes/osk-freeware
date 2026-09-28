@@ -6,6 +6,34 @@ One page.  The plan is `notes/PLAN.md`; what needs rdoggett is
 to a page: a finding goes in the file it belongs to, and a finished
 session's narrative goes into the history file, not here.
 
+## Resuming after a reboot (2026-09-27)
+
+The tree is clean and pushed (branch release-pass-2026-08-21).  The
+session scratchpad under /private/tmp is gone after a reboot; rebuild what
+you need from it:
+
+- **The emulator the suite runs on**, os9exec a1d433e (tip 1318f5b only
+  adds a test):
+      mkdir -p $SCR/pa1/src
+      (cd ~/Developer/os9/os9exec && git archive a1d433e) | tar -x -C $SCR/pa1/src
+      (cd $SCR/pa1/src && make OBJDIR=$SCR/pa1/obj EXE=$SCR/pa1/os9exec prod)
+  Harness runs: `export OS9SDK=~/Developer/os9/play/oskBoot OS9EXEC=$SCR/pa1/os9exec`,
+  images with `SKIP_CHECKS=1 OS9EXEC_DIR=$SCR/pa1 tools/mkimage.sh disk <img>`.
+- **Rebuilding programs** (tools/rebuild/rebuild.sh) used OS9EXEC=an os9exec
+  built the same way from d992145, and OS9CLEAN=the overlay that
+  tools/rebuild/make_overlay.sh makes.
+- **The commit gate** was a scratch script: run `python3 tools/check_disk.py
+  disk`, commit only on exit 0, stage only the paths the change is about.
+- **The browser page**: docs/try/os9exec.{js,wasm} are a1d433e's
+  (tools/wasm-web.sh in its tree, run on osk-freeware.dd with
+  `bash /dd/SYS/login`).  docs/try/disk.gz is gitignored; CI makes it, and
+  locally `gzip -9 -c osk-freeware.dd > docs/try/disk.gz`.  To look at it:
+  `cd docs && python3 -m http.server 8765`, then http://localhost:8765/.
+
+Open, in order: rdoggett's Safari check of a card's `man <name>' panel
+(docs/try `?man=<name>&embed=1'; never tried in a real browser); then the
+work list below.  Nothing is half-done.
+
 ## Where it stands, 2026-09-27
 
 - **Every program on the image has a card taken by running it**, and
