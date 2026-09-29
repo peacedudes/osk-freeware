@@ -499,6 +499,20 @@ def load_excluded(path):
     return out
 
 
+def load_options(path):
+    """name -> [[option, meaning], ...] from tools/options.psv, in file order."""
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="utf-8"):
+        line = line.rstrip("\n")
+        if not line.strip() or line.startswith("#"):
+            continue
+        name, opt, meaning = (line.split("|", 2) + ["", ""])[:3]
+        out.setdefault(name.strip(), []).append([opt.strip(), meaning.strip()])
+    return out
+
+
 def load_howto(path):
     """Hand-written "how do I run this" notes, from tools/howto.psv.
 
@@ -598,6 +612,8 @@ def gather(root, catfile):
     howto = load_howto(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "howto.psv"))
     helps = load_help(root)
+    options = load_options(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                        "options.psv"))
     terms = load_terms(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "terms.psv"))
     requires = load_requires(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -623,6 +639,8 @@ def gather(root, catfile):
             p["howto"] = howto[p["name"]]
         if p["name"] in helps:
             p["help"] = helps[p["name"]]
+        if p["name"] in options:
+            p["opts"] = options[p["name"]]
         if p["name"] in terms:
             p["terms"] = terms[p["name"]]
             # The author's own condition, from the terms rather than the
@@ -690,7 +708,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src","shadows",
         "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
-        "lang","langnote","changed","changedsrc","out","why","dl")
+        "lang","langnote","changed","changedsrc","out","why","dl","opts")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.

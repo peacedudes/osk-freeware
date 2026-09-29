@@ -192,6 +192,11 @@
   .docs .manpanel iframe{display:block;width:100%;height:34em;margin-top:8px;border:1px solid var(--rule);
     border-radius:6px;background:#101418}
   .help .k{display:block;margin:0 0 6px}
+  .help dl.opts{display:grid;grid-template-columns:max-content 1fr;gap:2px 14px;
+    margin:8px 0 0;font-size:13px;line-height:1.45}
+  .help dl.opts dt{margin:0}
+  .help dl.opts dt code{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+  .help dl.opts dd{margin:0;color:var(--dim)}
   .help pre.usage{font-family:var(--mono);font-size:12px;line-height:1.45;margin:0;
     white-space:pre-wrap;overflow-wrap:anywhere;background:var(--paper);
     border:1px solid var(--rule);border-radius:6px;padding:9px 11px;color:var(--ink)}
@@ -725,9 +730,14 @@ function renderPanel(){
   // (tools/help.psv says how each one is asked; docs/help/ holds the
   // answers).  A program with no help of its own says so in a line.
   const h=p.help;
+  // Where the help is a bare usage line, tools/options.psv says what each
+  // option does, one line apiece, the way an OS-9 -? would have.
+  const optsHTML=(p.opts||[]).length
+    ? `<dl class="opts">${p.opts.map(([o,m])=>`<dt><code>${esc(o)}</code></dt><dd>${esc(m)}</dd>`).join("")}</dl>`
+    : "";
   const helpHTML=!h ? "" : h.cmd
     ? `<div class="help"><div class="k">its own help</div>`+
-      `<pre class="usage"><span class="pr">${esc(PROMPT[shell])}</span>${esc(h.cmd)}\n${esc(h.text)}</pre></div>`
+      `<pre class="usage"><span class="pr">${esc(PROMPT[shell])}</span>${esc(h.cmd)}\n${esc(h.text)}</pre>${optsHTML}</div>`
     : `<div class="help"><div class="k">its own help</div><span class="none">${esc(h.note)}</span></div>`;
 
   // ITS DOCUMENTS and ITS SOURCE: what the disk's own `man' has for it

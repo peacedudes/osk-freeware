@@ -1,0 +1,14 @@
+# options.psv -- what each option means, for programs whose own help is a
+# bare usage line.  name | option | what it does, one option to a line.
+#
+# The card shows these right under the program's captured help, the way an
+# OS-9 utility's own -? would have given them.  Every line comes from the
+# program's manual or source, never from a guess.
+jargon|-b key|print the entry for key to standard output and exit
+jargon|-r|print one entry at random and exit
+jargon|-i|incremental lookup: each letter typed moves on to the next matching key
+jargon|-m|monochrome: do not use colour
+jargon|-g|build the index for a document of your own
+jargon|-c|check a document and its index for format errors and staleness
+jargon|srcname|a document other than the Jargon File (default: jargon, in VH)
+jargon|indexname|its index, if not srcname.idx

@@ -657,7 +657,7 @@ def check_hand_files_name_real_programs(root):
     here = os.path.dirname(os.path.abspath(__file__))
     bad = []
     for fname in ("howto.psv", "categories.psv", "requires.psv",
-                  "shadowed-names.txt", "try-no.psv"):
+                  "shadowed-names.txt", "try-no.psv", "options.psv"):
         path = os.path.join(here, fname)
         if not os.path.exists(path):
             continue

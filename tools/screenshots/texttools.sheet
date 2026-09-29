@@ -160,14 +160,14 @@ run     sgrep arr < src
 wait    4
 
 shot    jargon
-cap     The Jargon File browser, opened at the entry for kluge: its first 20
-cap     lines. It reads jargon.txt and jargon.idx from the VH directory on
-cap     its own; give it a document by name and it looks for that instead.
-try     jargon -b kluge jargon | head -n 20
-os9     jargon -b kluge jargon ! head -n 20
+cap     The Jargon File browser, asked for one entry: -b prints it and
+cap     exits.  Run with no options it browses the whole file full-screen,
+cap     following the cross-references in braces.  It finds the Jargon File
+cap     and its index in VH by itself.
+try     jargon -b grok
 run     clear
 wait    1
-run     jargon -b kluge jargon | head -n 20
+run     jargon -b grok
 wait    10
 
 shot    lout
