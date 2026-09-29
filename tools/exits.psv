@@ -223,3 +223,6 @@ xy|no key stops it; it gives up by itself after about three minutes
 yagi|`Control-C'
 ynad|Return at the first question; `Q' once a file is open
 z|`Control-X' five times
+connect|none with no paths named: it turns off its own quit key on the terminal it is watching; close the tab
+k|none: in host mode the keyboard is its serial line, so every key is data; close the tab
+tsmon2|none: it watches the line for good, as a monitor does; close the tab
