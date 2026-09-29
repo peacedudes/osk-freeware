@@ -98,6 +98,17 @@ licensed OS-9, a disk image or a directory. Leave OS9H1 out and most of the
 collection still runs. Run the image, not a copy unpacked into a directory:
 permissions and record locking work only on the image.
 
+## Its siblings
+
+[os9exec](https://github.com/peacedudes/os9exec) is the community 68000
+emulator the collection runs under in the browser and on the desktop; this
+collection's programs found most of the fixes in its release 4.1.
+
+Writing or porting OS-9 software? The
+[OS-9 development skills](https://github.com/peacedudes/os9-dev-skill) give
+an AI coding assistant a checked reference to the system: its calls, its C,
+BASIC09 and assembly, and its tools.
+
 ## Finding your way on the disk
 
 `DOC/START-HERE` names some programs that run with nothing set up.
