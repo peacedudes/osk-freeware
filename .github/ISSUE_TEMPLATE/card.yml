@@ -1,0 +1,16 @@
+name: A card is wrong or unclear
+description: The description, help, options or screen on a program's card.
+labels: ["card"]
+body:
+  - type: input
+    id: program
+    attributes:
+      label: Program
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What the card says, and what it should say
+    validations:
+      required: true

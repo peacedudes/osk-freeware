@@ -184,6 +184,9 @@
   .docs .k{display:block;margin:0 0 6px}
   .docs ul.dl{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.6}
   .docs .dk{color:var(--faint);font-size:12px}
+  .report{margin:22px 0 0;font-size:12.5px}
+  .report a{color:var(--link);text-decoration:none}
+  .report a:hover{text-decoration:underline}
   .docs .readit{display:flex;align-items:baseline;gap:14px}
   .docs code.mancmd{font-family:var(--mono);font-size:13px;color:var(--accent)}
   .docs button.readman{font:inherit;font-size:13.5px;cursor:pointer;padding:0;border:0;
@@ -395,6 +398,8 @@ function shotHTML(shot){
 // one), `no' is something no browser tab has, and the card says what.  The
 // link is left out altogether until docs/try exists, so there is never a dead one.
 const TRY_PAGE = __TRY_PAGE__;
+// Where feedback goes: a new issue on the collection's repository.
+const ISSUES = "https://github.com/peacedudes/osk-freeware/issues/new";
 function runItHTML(shot){
   if(!TRY_PAGE || !shot || !shot.try) return "";
   if(shot.tc==="no")
@@ -801,6 +806,10 @@ function renderPanel(){
     docsHTML+
     bringsHTML(p)+
     (D.length?`<div class="more"><span class="k">details and provenance</span><dl>${D.join("")}</dl></div>`:"")+
+    // A new issue with the program already named in it (GitHub fills a
+    // form field from the address when the query names its id).
+    `<p class="report"><a href="${esc(ISSUES+"?template=card.yml&program="+encodeURIComponent(p.name)+"&title="+encodeURIComponent(p.name+": "))}" `+
+    `target="_blank" rel="noopener">Report a problem with this card</a></p>`+
     `</div>`;
   col.scrollTop = 0;
 }

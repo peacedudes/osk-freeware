@@ -1,0 +1,33 @@
+name: A program does not work
+description: It stops, prints an error, or does something other than its card says.
+labels: ["program"]
+body:
+  - type: input
+    id: program
+    attributes:
+      label: Program
+      description: Its name, as on its card.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What you typed, and what happened
+      description: The command, what it printed, and what you expected instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where it ran
+      options:
+        - In the browser
+        - os9exec on my computer
+        - A real OS-9 system
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Your OS-9 on /h1, if any
+      description: For example "OS-9/68000 v3.0", or "none".

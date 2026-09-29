@@ -1839,13 +1839,16 @@ def check_no_maintainer_identifiers(root):
 
     ALLOWED, with its reason: the os9exec URL in `SOURCES.txt'.  A reader
     has to be told where the emulator comes from, and that is where it is.
+    And the collection's own issues address, on every card: a reader has to
+    be told where to report a problem, and that is where it goes.
 
     `tools/' is not checked -- except `catalog.template.html', which is
     the published page with the data not yet poured in, so it is read
     here as though it were under `docs/'.
     """
     pat = re.compile(rb"rdoggett|peacedudes|Robert\s+Doggett", re.I)
-    allowed = (b"https://github.com/peacedudes/os9exec",)
+    allowed = (b"https://github.com/peacedudes/os9exec",
+               b"https://github.com/peacedudes/osk-freeware/issues")
     # The archive's OWN files say who ported them, in 1988, in the author's
     # words.  What the archive carried stays; nothing adds the name.  So
     # these five are allowed and everything else is not -- which is what

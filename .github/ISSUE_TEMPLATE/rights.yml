@@ -1,0 +1,17 @@
+name: I hold rights in something here
+description: Ask for a program to be credited differently, or removed.
+labels: ["rights"]
+body:
+  - type: input
+    id: program
+    attributes:
+      label: Program or file
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What you would like done
+      description: Removal, a corrected credit, or different terms. It will be done.
+    validations:
+      required: true

@@ -1,0 +1,21 @@
+name: Please add a program
+description: Community software for OS-9/68000 that belongs in the collection.
+labels: ["addition"]
+body:
+  - type: input
+    id: program
+    attributes:
+      label: Program
+    validations:
+      required: true
+  - type: textarea
+    id: where
+    attributes:
+      label: Where it can be found
+      description: An archive, a posting, a disk. Source if it survives.
+    validations:
+      required: true
+  - type: textarea
+    id: terms
+    attributes:
+      label: Its terms, if you know them
