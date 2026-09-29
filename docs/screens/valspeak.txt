@@ -1,6 +1,7 @@
 $ cat tmp/TEXTA/val.txt
-I think this operating system is really good.
-The manual is excellent and the games are enjoyable.
+This is the best day ever and we are all going to the beach.
+The sun is out and the ice cream is free.
 $ valspeak < tmp/TEXTA/val.txt
-I think this operatin' system is like wow! really bitchin'.
-The manual is like wow! excellent and thuh games are enjoyable.
+Like, ya know, this is like wow! the best day ever and we are all goin' to thuh
+beach.
+The sun is out and thuh ice cream is like wow! free.

@@ -1,7 +1,6 @@
-$ morse -s sos
- ...,
- ---,
- ...,
+$ morse -s 73
+ --...,
+ ...--,
 $ morse hi
  dit dit dit dit,
  dit dit,

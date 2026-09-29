@@ -504,25 +504,27 @@ size    24 80
 cap     caesar breaks a Caesar cipher without being told the shift: it tries
 cap     all 25 and keeps the one whose letters look most like English.  Given
 cap     a number, as in `caesar 13', it simply shifts by that much.
-try     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" | caesar
-os9     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" ! caesar
+cap     Here it cracks the answer to why the chicken crossed the road.
+try     echo "gb trg gb gur bgure fvqr" | caesar
+os9     echo "gb trg gb gur bgure fvqr" ! caesar
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" | caesar
+run     echo "gb trg gb gur bgure fvqr" | caesar
 wait    5
 
 shot    morse
 size    24 80
 cap     morse writes text as Morse code: dit and daw, or with -s dots and
-cap     dashes, a comma after each letter.
-try     morse -s sos
+cap     dashes, a comma after each letter.  73 is the radio amateur's
+cap     sign-off, best regards.
+try     morse -s 73
 run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     morse -s sos
+run     morse -s 73
 wait    5
 run     morse hi
 wait    5

@@ -1,2 +1,2 @@
-$ echo "gur dhvpx oebja sbk whzcf bire gur ynml qbt" | caesar
-the quick brown fox jumps over the lazy dog
+$ echo "gb trg gb gur bgure fvqr" | caesar
+to get to the other side

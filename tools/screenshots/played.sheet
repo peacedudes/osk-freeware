@@ -81,17 +81,17 @@ send    y
 wait    2
 
 shot    banner
-cap     OS-9 in seven-row letters.
-try     banner OS-9
-run     banner OS-9
+cap     A cheerful Howdy in seven-row letters.
+try     banner Howdy
+run     banner Howdy
 wait    5
 
 shot    banner1
-cap     With `-s' each letter is built out of itself: OS-9 in letters made of
-cap     O, S and 9. -d doubles the size, -i slants it and -c= picks the
+cap     With `-s' each letter is built out of itself: Cheers in letters made of
+cap     its own letters. -d doubles the size, -i slants it and -c= picks the
 cap     character.
-try     banner1 -s OS-9
-run     banner1 -s OS-9
+try     banner1 -s Cheers
+run     banner1 -s Cheers
 wait    5
 
 

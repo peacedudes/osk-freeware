@@ -437,9 +437,9 @@ cap     valspeak rewrites plain English the way a Californian valley girl of
 cap     the 1980s would say it.  It is a filter: standard input in, the
 cap     rewritten text out.  The file it was given is above the result.
 try     cat tmp/TEXTA/val.txt; valspeak < tmp/TEXTA/val.txt
-run     mkdir -p /dd/tmp/TEXTA; echo "I think this operating system is really good." > /dd/tmp/TEXTA/val.txt
+run     mkdir -p /dd/tmp/TEXTA; echo "This is the best day ever and we are all going to the beach." > /dd/tmp/TEXTA/val.txt
 wait    3
-run     echo "The manual is excellent and the games are enjoyable." >> /dd/tmp/TEXTA/val.txt
+run     echo "The sun is out and the ice cream is free." >> /dd/tmp/TEXTA/val.txt
 wait    3
 run     builtin cd /dd
 wait    1

@@ -1,42 +1,42 @@
-<OS-9/68000 -- the freeware collection, 1987 to 1996"
-_________ __________ __ ___ ________ __________, ____ __ ____
-_________ __-_______ -- ___ ________ __________, ____ __ ____
-_________ __-_/__000 -- ___ ________ __________, ____ __ ____
-_________ __-_/__000 -- ___ ________ __________, 1___ __ 1___
-_________ __-_/6_000 -- ___ ________ __________, 1___ __ 1__6
-_________ __-_/68000 -- ___ ________ __________, 1_87 __ 1__6
-_________ __-9/68000 -- ___ ________ __________, 1987 __ 1996
-M________ O_-9/68000 -- ___ ________ __________, 1987 __ 1996
-M________ OS-9/68000 -- ___ ________ __________, 1987 __ 1996
-M_____a__ OS-9/68000 -- ___ _____a__ __________, 1987 __ 1996
-M_c___a_e OS-9/68000 -- __e __ee_a_e c___ec____, 1987 __ 1996
-M_c___a_e OS-9/68000 -- __e f_ee_a_e c___ec____, 1987 __ 1996
-Mic___a_e OS-9/68000 -- _he f_ee_a_e c___ec_i__, 1987 __ 1996
-Mic___a_e OS-9/68000 -- _he f_ee_a_e c_llec_i__, 1987 __ 1996
-Mic___a_e OS-9/68000 -- _he f_ee_a_e c_llec_i_n, 1987 __ 1996
-Micro_are OS-9/68000 -- _he free_are collec_ion, 1987 _o 1996
-Micro_are OS-9/68000 -- the free_are collection, 1987 to 1996
-$ zot -s=5 "Microware OS-9/68000 -- the freeware collection, 1987 to 1996
-<S-9/68000 -- the freeware collection, 1987 to 1996"
-                              M6
-                            Mic996
-                           Micr1996
-                          Micro 1996
-                        Microwato 1996
-                       Microwar to 1996
-                     Microware 87 to 1996
-                    Microware O987 to 1996
-                   Microware OS1987 to 1996
-                 Microware OS-9, 1987 to 1996
-                Microware OS-9/n, 1987 to 1996
-              Microware OS-9/68ion, 1987 to 1996
-             Microware OS-9/680tion, 1987 to 1996
-            Microware OS-9/6800ction, 1987 to 1996
-          Microware OS-9/68000 lection, 1987 to 1996
-         Microware OS-9/68000 -llection, 1987 to 1996
-       Microware OS-9/68000 -- collection, 1987 to 1996
-      Microware OS-9/68000 -- t collection, 1987 to 1996
-     Microware OS-9/68000 -- the collection, 1987 to 1996
-   Microware OS-9/68000 -- the are collection, 1987 to 1996
-  Microware OS-9/68000 -- the fware collection, 1987 to 1996
-Microware OS-9/68000 -- the freeware collection, 1987 to 1996
+_ _______ __ _ ________ _____ ______ ____ _ ______ _____
+_ _______ __ _ ________ _____ ______ ____ _ ______ ____.
+A _______ __ _ ________ _____ ______ ____ _ ______ ____.
+A _______ __ a _____a__ _____ b_____ ____ a ______ ____.
+A _______ __ a _____a_d _____ b_____ ____ a ______ ____.
+A _____e_ __ a _____a_d ___e_ be____ ____ a _____e __e_.
+A _____e_ _f a _____a_d ___e_ be____ ____ a _____e __e_.
+A _____e_ _f a _h___a_d ___e_ beg___ ___h a ___g_e __e_.
+A _____e_ _f a _h___a_d _i_e_ begi__ _i_h a _i_g_e __e_.
+A j____e_ _f a _h___a_d _i_e_ begi__ _i_h a _i_g_e __e_.
+A j____e_ _f a _h___a_d _ile_ begi__ _i_h a _i_gle __e_.
+A j___ne_ _f a _h___and mile_ begin_ _i_h a _ingle __e_.
+A jo__ne_ of a _ho__and mile_ begin_ _i_h a _ingle __e_.
+A jo__ne_ of a _ho__and mile_ begin_ _i_h a _ingle __ep.
+A jo_rne_ of a _ho__and mile_ begin_ _i_h a _ingle __ep.
+A jo_rne_ of a tho_sand miles begins _ith a single step.
+A journe_ of a thousand miles begins _ith a single step.
+A journe_ of a thousand miles begins with a single step.
+A journey of a thousand miles begins with a single step.
+$ zot -s=5 "A journey of a thousand miles begins with a single step."
+                          A ep.
+                         A jtep.
+                        A jostep.
+                       A jou step.
+                     A journle step.
+                    A journegle step.
+                   A journeyngle step.
+                  A journey ingle step.
+                A journey of single step.
+               A journey of a single step.
+              A journey of a a single step.
+             A journey of a h a single step.
+           A journey of a thith a single step.
+          A journey of a thowith a single step.
+         A journey of a thou with a single step.
+        A journey of a thouss with a single step.
+      A journey of a thousanins with a single step.
+     A journey of a thousandgins with a single step.
+    A journey of a thousand egins with a single step.
+   A journey of a thousand mbegins with a single step.
+ A journey of a thousand mils begins with a single step.
+A journey of a thousand miles begins with a single step.

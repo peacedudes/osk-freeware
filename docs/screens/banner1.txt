@@ -1,9 +1,9 @@
-$ banner1 -s OS-9
+$ banner1 -s Cheers
 
-  OOO    SSSS            9999
- OO OO  SS  SS          99  99
-OO   OO SSS             99  99
-OO   OO  SSS    ------   99999
-OO   OO    SSS              99
- OO OO  SS  SS             99
-  OOO    SSSS            999
+  CCCC  hhh
+ CC  CC  hh
+CC       hh hh   eeee    eeee   rr rrr   sssss
+CC       hhh hh ee  ee  ee  ee   rrr rr ss
+CC       hh  hh eeeeee  eeeeee   rr  rr  ssss
+ CC  CC  hh  hh ee      ee       rr         ss
+  CCCC  hhh  hh  eeee    eeee   rrrr    sssss

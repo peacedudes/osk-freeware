@@ -1625,7 +1625,7 @@ run     builtin cd /dd/tmp/GFXG
 wait    1
 run     ppmpat -gingham3 48 24 > j.ppm; pbyte j.ppm 2 0a; pbyte j.ppm 8 0a; pbyte j.ppm c 0a
 wait    8
-run     cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom -comment "OS-9 freeware disk" j.jpg > jc.jpg
+run     cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom -comment "A picture is worth a thousand words." j.jpg > jc.jpg
 wait    14
 run     clear
 wait    1
@@ -1637,8 +1637,8 @@ snap
 shot    wrjpgcom
 cap     Writes a comment into a JPEG.  The comment is written into a copy,
 cap     then rdjpgcom reads it back to show it is there.
-try     wrjpgcom -comment "OS-9 freeware disk" j.jpg > jc.jpg; rdjpgcom jc.jpg; echo ""
-os9     wrjpgcom -comment "OS-9 freeware disk" j.jpg >-jc.jpg; rdjpgcom jc.jpg
+try     wrjpgcom -comment "A picture is worth a thousand words." j.jpg > jc.jpg; rdjpgcom jc.jpg; echo ""
+os9     wrjpgcom -comment "A picture is worth a thousand words." j.jpg >-jc.jpg; rdjpgcom jc.jpg
 run     rm -rf /dd/tmp/GFXH > /nil 2>/nil; mkdir -p /dd/tmp/GFXH
 wait    3
 run     builtin cd /dd/tmp/GFXH
@@ -1649,7 +1649,7 @@ run     cjpeg -quality 50 j.ppm > j.jpg
 wait    12
 run     clear
 wait    1
-run     wrjpgcom -comment "OS-9 freeware disk" j.jpg > jc.jpg
+run     wrjpgcom -comment "A picture is worth a thousand words." j.jpg > jc.jpg
 wait    10
 run     rdjpgcom jc.jpg; echo ""
 wait    10

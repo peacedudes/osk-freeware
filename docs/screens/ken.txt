@@ -1,2 +1,2 @@
-$ echo "What are you doing with my computer and your mother" | ken
-Wotcher doin' wiv me French Tutor and yer muvver
+$ echo "Would you like a nice cup of tea while I fix your computer" | ken
+Would yer like a nice cup of tea wile I fix yer French Tutor

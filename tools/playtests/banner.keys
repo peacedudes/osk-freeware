@@ -1,5 +1,5 @@
 name    banner
-prog    banner OS-9
+prog    banner Howdy
 rate    0.6
 wait    5
 snap    output

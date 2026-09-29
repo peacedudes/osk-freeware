@@ -1,2 +1,2 @@
-$ echo "Please mend the computer program, thanks, you are cool" | biff
-PLEEZ MEND THE C-64 WAREZ!1!!, THANX, U R C00L!!!
+$ echo "Thanks for the new computer program, you are so cool" | biff
+THANX!! FER THE NEW C-64 WAREZ!1!!, U R S0 C00L!!!

@@ -1,2 +1,2 @@
-$ echo "I am going to the store to buy some food." | drawl
-I am gunna thuh store tuh buy some food.
+$ echo "I think there is nothing like a good dinner and a dance." | drawl
+I think there is nuthun lahk uh good dinner and a dance.

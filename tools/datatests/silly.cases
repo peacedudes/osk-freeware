@@ -10,12 +10,12 @@ setup   /dd/CMDS/rm -rf $W > /nil 2>/nil
 setup   /dd/CMDS/mkdir -p $W > /nil 2>/nil
 
 case    ken-speaks-cockney
-run     echo "What are you doing with my computer and your mother" | /dd/CMDS/ken
-expect  Wotcher doin' wiv me French Tutor and yer muvver
+run     echo "Would you like a nice cup of tea while I fix your computer" | /dd/CMDS/ken
+expect  Would yer like a nice cup of tea wile I fix yer French Tutor
 
 case    biff-speaks-b1ff
-run     echo "Please mend the computer program, thanks, you are cool" | /dd/CMDS/biff
-expect  PLEEZ MEND THE C-64 WAREZ!1!!, THANX, U R C00L!!!
+run     echo "Thanks for the new computer program, you are so cool" | /dd/CMDS/biff
+expect  THANX!! FER THE NEW C-64 WAREZ!1!!, U R S0 C00L!!!
 
 # The chain it walks is random, so only the shape is asserted: a paragraph,
 # and no word that was not in its input.
