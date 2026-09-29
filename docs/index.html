@@ -425,7 +425,12 @@ function runItHTML(shot){
               (shot.n?"&card="+encodeURIComponent(shot.n):"");
   // The link is the whole offer; how it works is for the first visit only,
   // so it goes in the tooltip (2026-09-26).  What it NEEDS stays in view.
-  return `<p class="runit"><a href="${esc(url)}" target="_blank" rel="noopener" `+
+  // ONE TAB FOR EVERY TRY.  Each tab boots its own emulator with the whole
+  // disk in memory -- some 420 MB -- so a tab per card soon costs a reader
+  // gigabytes.  A named target reuses the tab: a new try replaces the last.
+  // /h1 lives in the browser's storage and survives.  (No noopener: the page
+  // is our own, and noopener makes some browsers ignore the name.)
+  return `<p class="runit"><a href="${esc(url)}" target="os9exec" `+
     `title="Opens the disk in your browser with this command typed; press Enter to run it">Try it in your browser</a>`+
     (h1?` <span class="rneed">(needs your own OS-9 as /h1)</span>`:"")+`</p>`;
 }
@@ -844,7 +849,7 @@ function tray(){
   const dr=document.getElementById("traydiskrow");
   if(dr){ dr.hidden = !(TRY_PAGE && names.length);
     document.getElementById("traydisk").onclick = () =>
-      window.open(TRY_PAGE+"?newdisk=1&run="+encodeURIComponent("keep "+names.join(" ")), "_blank", "noopener"); }
+      window.open(TRY_PAGE+"?newdisk=1&run="+encodeURIComponent("keep "+names.join(" ")), "os9exec"); }
   const all=[], notes=[], seen=new Set();
   for(const x of names){
     if(!BY[x]) continue;
