@@ -101,7 +101,11 @@
     // shorter than a browser timer can give.  No "-q": that turns off the
     // system tick, and since os9exec b31f713 the tick is what lets a busy
     // program give the page a turn -- without it, it froze the tab.
-    arguments: (new URLSearchParams(location.search).get('r') ? ['-r'] : []).concat(["bash", "/dd/SYS/login"]),
+    // &embed=1 (a card's man panel) signs on with one line, not the whole
+    // banner: in a panel that small the banner was most of what showed.
+    arguments: (new URLSearchParams(location.search).get('r') ? ['-r'] : [])
+      .concat(new URLSearchParams(location.search).get('embed') ? ['-l'] : [])
+      .concat(["bash", "/dd/SYS/login"]),
     os9keys: [],
     // Collected and drawn once per frame: one terminal write per byte made
     // output arrive in visible stutters.
