@@ -106,8 +106,8 @@ collection's programs found most of the fixes in its release 4.1.
 
 Writing or porting OS-9 software? The
 [OS-9 development skills](https://github.com/peacedudes/os9-dev-skill) give
-an AI coding assistant a checked reference to the system: its calls, its C,
-BASIC09 and assembly, and its tools.
+a person or an AI coding assistant a checked reference to the system: its
+calls, its C, BASIC09 and assembly, and its tools.
 
 ## Finding your way on the disk
 
