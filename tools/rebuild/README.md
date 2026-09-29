@@ -100,9 +100,10 @@ trade to weigh.
 
 **It is not this collection's version skew, either.** That run used the SDK's
 own `csl`, not the older edition this disk ships, and it failed the same way.
-Whether the fault is os9exec's `F$SRqMem` handling or `cio`'s ABI is
-**unsettled** -- `notes/os9exec-bugs/` has the reproduction and the trace.
-Either way `-qixm` cannot be the default for anything installed.
+It is `cio`'s ABI: the SDK's `cio.l` numbers `putc`/`getc`'s slow path
+(`$41`-`$44`) differently from every `cio` module, which answers those with
+memory routines -- `disk/DOC/README-CIO` has the whole of it.  Either way
+`-qixm` cannot be the default for anything installed.
 
 The 367 starred ARCHIVE binaries are unaffected and `cio` keeps shipping for
 them: their authors linked them against their own runtime, and 621 programs

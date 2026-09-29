@@ -8,8 +8,8 @@
 #     tools/build.sh --list       what can be built, and from which tree
 #     tools/build.sh --missing    programs with no recipe yet
 #
-# rdoggett, 2026-08-22: "You are to build everything, and make it easily
-# buildable on demand."  This is the on-demand part.  Everything it needs it
+# Everything that has source should build, on demand.  This is the
+# on-demand part.  Everything it needs it
 # works out or makes:
 #
 #   * the clean /dd overlay, via tools/rebuild/make_overlay.sh, cached in
@@ -26,8 +26,8 @@
 # Roughly a third of the collection has source here at all; most programs
 # arrived as binaries with nothing behind them and can only be preserved.  Of
 # the trees that DO have source, the ones with a recipe are known to compile,
-# because that is what a recipe means.  `--missing' lists the rest.  See
-# notes/COMPILE-VERIFY.md, and tools/try_compile.sh for settling one of them.
+# because that is what a recipe means.  `--missing' lists the rest, and
+# tools/try_compile.sh settles one of them.
 set -u
 
 here=$(cd "$(dirname "$0")/.." && pwd)
@@ -62,8 +62,7 @@ print(f"{len(trees)} source trees, {len(trees) - len(missing)} with a recipe, "
 for i in range(0, len(missing), 5):
     print("   " + "".join(f"{n:<17}" for n in missing[i:i+5]))
 print("\ntools/try_compile.sh <tree> <program> tries one and says what stopped it.")
-print("notes/COMPILE-AUDIT.md says why each of these has none -- read it first,")
-print("because most of them are accounted for and only some are work.")
+print("Most of these are accounted for -- no source that builds here -- and only some are work.")
 PY
     exit 0;;
 esac

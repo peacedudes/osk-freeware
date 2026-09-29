@@ -6,8 +6,8 @@ prog    life
 # shorter than the 24 lines its termcap promises, the status lands INSIDE the
 # board and both are destroyed.  Measured 2026-08-27 at 40x12: the board read
 # `Gene@..@@@: 3' where the status crossed it.  This `expect' is what fails
-# when that happens; it is the only check here that can see the class of bug
-# rdoggett found by hand.
+# when that happens; it is the only check here that can see that class of
+# bug.
 rate    0.7
 wait    4
 snap    opening

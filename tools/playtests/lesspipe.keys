@@ -1,7 +1,7 @@
 name    lesspipe
 prog    dir -e /dd/CMDS | less
 # A pager fed through a PIPE, on a terminal -- the shape no data test and no
-# other play-test had.  rdoggett found by hand (2026-09-24) that less stopped
+# other play-test had.  Found by hand (2026-09-24): less stopped
 # about 4 KB in: it takes a file's size from SS_Size, and os9exec answered a
 # pipe's SS_Size with the pipe's capacity.  Real OS-9 must answer with an
 # error, which is what os9exec does from 2a95c75.  G goes to the end; the

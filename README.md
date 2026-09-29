@@ -157,4 +157,4 @@ It takes seconds. `tools/check_disk.py disk` is the gate every change passes.
 Programs are rebuilt from source with `tools/rebuild/` (see its README);
 some have no source anywhere, which is why the binaries are committed.
 
-Working on the collection starts at `notes/PLAN.md`.
+`tools/README.md` describes the tools.

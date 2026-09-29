@@ -263,7 +263,7 @@ absent  Stack Overflow
 #
 # The loop was as the 1991 original has it, so this was an upstream defect
 # and fixing it means shipping a netpbm that differs from the archive.
-# rdoggett ruled on 2026-09-20: patch it.  `i < 1532' is the whole change,
+# It was patched (2026-09-20).  `i < 1532' is the whole change,
 # SRC/netpbm/PNM/sirtopnm.c carries the reasoning, and SOURCES.txt records
 # the departure.  These cases now pin the round trip instead of the bug.
 case    sir-round-trips-a-red-image-unchanged

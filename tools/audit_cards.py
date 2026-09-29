@@ -5,16 +5,16 @@
     tools/audit_cards.py --all          # every card and its score
     tools/audit_cards.py --show <name>  # one card's capture, in full
 
-WHY THIS EXISTS, and why `audit_screens.py' is not enough
---------------------------------------------------------
-`audit_screens.py' flags a card whose EVERY line is an error.  On a real
+WHY THIS EXISTS
+---------------
+An earlier screen audit flagged a card whose EVERY line is an error.  On a real
 capture the typed command line is one of those lines and is not an error, so
 the rule almost never fires: it reported 2 of 407 on 2026-08-31.  That is a
 check that cannot fail, which is this collection's oldest recurring defect.
 
-rdoggett, 2026-08-31: *"Sample output that does nothing more than show the
-help is only valuable if the help isn't shown some other way, and there is no
-more interesting output from the program to show."*  And, of `hc': a card
+Sample output that does nothing more than show the help is only valuable if
+the help is not shown some other way and there is no more interesting output
+from the program to show.  And a card
 that shows a FAILED invocation, captioned as though the program were at
 fault, is worse than no card.
 
@@ -195,8 +195,8 @@ def main(argv):
                      "pointing at a DIRECTORY, with every program answering "
                      "`cat: is a directory' until the image was rebuilt.  Its "
                      "usage line is the only card it can ever safely have, "
-                     "and the caption says why.  See CLAUDE.md, which forbids "
-                     "running it in a test at all",
+                     "and the caption says why.  It is never run in a test "
+                     "at all",
             # READ 2026-09-24, when the harnesses began running as tester and
             # this table was checked entry by entry: 25 came out because their
             # cards now show work -- the spooler, the event pair, snd_sig and
@@ -319,7 +319,7 @@ def main(argv):
                "MOSTLY-ERROR" if err > work else
                "MOSTLY-HELP" if usage > work else
                # A usage line plus two or three lines of anything is still a
-               # card whose subject is the help text.  rdoggett's test is
+               # card whose subject is the help text.  The test is
                # whether there is MORE INTERESTING OUTPUT to show, and a
                # near-empty screen carrying a syntax line says there is not.
                "THIN-HELP" if usage and work <= 3 else "")

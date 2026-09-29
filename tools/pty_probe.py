@@ -26,8 +26,8 @@ WHY THIS EXISTS.  Every other harness here -- `screenshots.py',
 A fault that only appears when a path is an SCF TERMINAL is invisible to
 all of them, which means invisible to 956 published cards and 868 cases.
 
-On 2026-09-19 rdoggett reported that `load nosuchmodule' repeats its error
-for ever.  Piped, it printed once, and the first two attempts to reproduce
+On 2026-09-19 `load nosuchmodule' was reported to repeat its error for ever
+at a real terminal.  Piped, it printed once, and the first two attempts to reproduce
 it both said the report was wrong.  Under a pty it reproduced immediately
 -- about 850 repeats in twenty seconds.  The cause was os9exec's F$PErr
 SEARCHING the path it was handed, which for `prerr(2, ...)' is standard

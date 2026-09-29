@@ -20,9 +20,8 @@ ten bytes -- so BASH_VERSION reads "    1.12.12" and fits, and re-seals
 the module CRC.  The header is untouched, so its parity stands.  No source
 for this bash is on the disk, so a byte patch is the only way to fix it.
 
-It writes a COPY and never touches its input: disk/ is hard-linked to a
-tree outside this repository, and replacing the shipped file is a decision
-for the maintainer (notes/FOR-RDOGGETT.md, item 33).
+It writes a COPY and never touches its input: replacing the shipped file
+is a separate, deliberate step.
 """
 import os
 import sys

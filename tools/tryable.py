@@ -4,9 +4,9 @@
     tools/tryable.py            counts, and the cards in the two smaller classes
     tools/tryable.py <name>     one card's class and why
 
-rdoggett, 2026-09-22: the collection will be hosted whole in a browser page
-(os9exec built to WebAssembly), with the reader's own OS-9 attachable as /h1,
-and a card should offer Try It "only on cards that can actually be run".
+The collection is hosted whole in a browser page (os9exec built to
+WebAssembly), with the reader's own OS-9 attachable as /h1, and a card offers
+Try It only when it can actually be run.
 
 Every card was captured running, under the same emulator the page runs, so
 the question is not what fails.  Three classes:

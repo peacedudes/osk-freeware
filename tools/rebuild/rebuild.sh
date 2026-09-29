@@ -178,7 +178,7 @@ obj() {            # $1 source file
 
 # THE GNU PREPROCESSOR PATH.  A recipe asks for this with the CPP2
 # pseudo-define, and it is the way round Microware `cpp\'s bus error on nested
-# macro expansion (notes/CPP-MACRO-CRASH.md), which is what stops flex, gtar,
+# macro expansion, which is what stops flex, gtar,
 # djpeg and inform.
 #
 # `cccp2\' is GNU cpp 2.5.6 and it is in the SDK.  cc\'s phases are
@@ -250,7 +250,7 @@ compile_cpp2_pre() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 extra
 #   * Microware `cpp\' bus-errors on a source line of 513 characters or more.
 #     512 is fine.  That single 512-byte line buffer -- not "nested macro
 #     expansion" -- is what stops flex, gtar, djpeg and inform; nesting is just
-#     the usual way a line gets that long.  See notes/CPP-MACRO-CRASH.md.
+#     the usual way a line gets that long.
 #   * c68 reads at most 1022 characters in a line and says `input line too
 #     long\' at 1023.
 #
@@ -718,7 +718,7 @@ compile_long() {   # $1 arch  $2 sources  $3 oskdef  $4 defines  $5 prog  $6 ext
 # 45 both ran past it and were recorded FAIL with no output at all.
 LIMIT=240
 # /h0 IS THE OVERLAY TOO -- the arrangement the finished disk ships under,
-# mounted as /dd and again as /h0 (notes/DECISION-placement.md).  Headers
+# mounted as /dd and again as /h0.  Headers
 # here carry /h0-absolute includes because the people who wrote them kept their
 # tools there: DEFS/os9lib/time.h asks for </h0/defs/setsys.h>, and no -V or -I
 # can redirect an absolute path.  Without an /h0 the whole os9lib DEFS set is
@@ -829,7 +829,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # clibn.l's 38523, so it still has printf and time.  Whether that collides
   # depends on which members l68 happens to pull: `banner' links, `joke' stops
   # with `Symbol printf from psect cio_a ... caused name clashes'.  Thirteen of
-  # 290 broke that way.  CLAUDE.md already said "never -qixm"; this is why.
+  # 290 broke that way.  Never -qixm; this is why.
   #
   # THE DEFAULT IS -qm, AND IT IS NOT A SIZE PREFERENCE.  MEASURED 2026-08-27,
   # against the SDK OVERLAY -- its own matched csl (48366 bytes), not the older
@@ -845,8 +845,8 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   #
   # AND IT IS NOT OUR VERSION SKEW.  The run above used the SDK's own csl, so
   # the shipped edition-16 csl is not what breaks it.  Whether the fault is
-  # os9exec's F$SRqMem handling or cio's ABI is UNSETTLED and is not this
-  # script's problem -- see notes/os9exec-bugs/.  Either way -qixm cannot be
+  # os9exec's F$SRqMem handling or cio's ABI was settled as the latter: the
+  # cio selector mismatch (disk/DOC/README-CIO).  Either way -qixm cannot be
   # the default for anything we install.
   #
   # The 367 starred ARCHIVE binaries are unaffected: their authors linked them
@@ -1016,7 +1016,7 @@ while IFS='|' read -r prog arch srcs defs libs extra; do
   # every source failed to compile was recorded `built 1/1, clean=1' with
   # nothing in it.  Found 2026-08-27 on netpbm's pbm.l, where all five sources
   # had died on a missing <unistd.h> and the driver said the build was clean.
-  # This is the "make every check fail once" rule in CLAUDE.md, and this check
+  # This is the "make every check fail once" rule, and this check
   # had only ever succeeded.
   # COUNTED HERE, NOT IN attempt().  attempt runs inside $( ), a subshell, so
   # the LIBWANT/LIBGOT that count_lib_objects set there never reached this

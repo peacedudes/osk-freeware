@@ -29,9 +29,8 @@ works and the disk looks fine. Log in as yourself and sokoban stops with
 "cannot open score file". That is the bug this mode fixes, and it is why
 testing as 0.0 could not find it.
 
-MODULES ARE PUBLICLY WRITABLE TOO (rdoggett, 2026-09-25).  The image is a
-scratch copy anyone mints fresh from the master, not a system to protect:
-"let the kids draw on the walls, it's kind of a whiteboard."  With modules
+MODULES ARE PUBLICLY WRITABLE TOO.  The image is a scratch copy anyone mints
+fresh from the master, not a system to protect -- a whiteboard.  With modules
 0555 nobody but the super-user could replace or delete a program in CMDS,
 so a compiler that writes its output to the execution directory -- l68, the
 Fortran and C++ drivers -- failed for everyone else.  A reader who keeps a
@@ -75,8 +74,7 @@ def is_command(path):
     all and check_disk.py enforces it -- but two of them are shell PROCEDURE
     FILES rather than modules: `who' and `mscheck'. The module test alone gave
     those 0666, no execute bit, so they shipped as data and could not be run
-    at all. rdoggett found it from the outside on 2026-08-27: "/h0/cmds/who
-    isn't even executable".
+    at all -- found from the outside, by a `who' that would not run.
 
     Keyed off the directory, not the content: a procedure file has no magic
     number to test for, and guessing from the first bytes would be the same

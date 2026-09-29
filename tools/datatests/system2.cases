@@ -51,8 +51,8 @@ expect  0 /dd/tmp/pt1
 
 # lfmaker: silent bare, and a refused allocation the moment it is given an
 # argument. It carries NO trap-13 stubs at all, so this is NOT the cio
-# selector mismatch that produces the same symptom in 41 other programs --
-# see notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md, addendum.
+# selector mismatch that produces the same symptom in 41 other programs
+# (disk/DOC/README-CIO).
 #
 # 208 IS THE PROGRAM'S OWN ANSWER AND IS STABLE.  lfmaker asks its terminal
 # for setstat $4749 -- a graphics-window call -- is told E$UnkSvc, and exits

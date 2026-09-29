@@ -5,7 +5,7 @@ Answers, by counting rather than by reading anybody's notes, the question that
 decides how this collection should be arranged: **should the collection be
 `/dd`, or `/h0`?**
 
-Every count in `DOC/README-RUNNING`, `DOC/INDEX` and `CLAUDE.md` about `/h0`
+Every count in `DOC/README-RUNNING`, `DOC/INDEX` and the working notes about `/h0`
 paths, termcap and `/dd` data has been hand-maintained and every one of them
 had drifted by 2026-08-21 -- README-RUNNING said 444 programs and 94 `/h0`
 paths when the real figures were 597 and 111. Hand-edited counts rot. This

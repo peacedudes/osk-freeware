@@ -196,7 +196,7 @@ python3 "$HERE/fixattrs.py" "$WORK" || exit 1
 
 mv "$WORK" "$OUT"
 # The image is the one thing this writes.  A tar of the tree used to be left
-# beside it as a second download for real OS-9 systems; rdoggett withdrew it
+# beside it as a second download for real OS-9 systems; it was withdrawn
 # on 2026-09-13 -- one download is cleaner, and it can come back if someone
 # with a real system needs it.  $TMP/collection.tar above is still how the
 # image gets filled.

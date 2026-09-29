@@ -7,9 +7,8 @@ r"""RUN programs with real arguments and keep everything they said.
 
 Why this exists beside the other three harnesses
 ------------------------------------------------
-`verify_all.sh' asks "did it print anything".  `screenshots.py' takes a
-picture.  `datatest.py' asserts a fact you already know.  None of them is the
-thing rdoggett asked for on 2026-08-31: **run the program the way its own
+`screenshots.py' takes a picture.  `datatest.py' asserts a fact you already
+know.  Neither is the first step: **run the program the way its own
 usage line says, with real arguments, and look at what came back** -- which
 is how you find out that `hc' is a text filter and not a hex calculator.
 

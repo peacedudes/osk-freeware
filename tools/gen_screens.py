@@ -233,8 +233,8 @@ def trim(text, first=""):
     # prints `F$SetSys: unimplemented 03D8' to the console when a program
     # reads a system global it does not model, and the C run-time of
     # several programs here reads that one four times at start-up.  It is
-    # noise about os9exec on a card about the program; recorded in
-    # notes/os9exec-bugs, and left off the picture.
+    # noise about os9exec on a card about the program, and left off the
+    # picture.
     # os9exec 8d7d870 and later print their notices behind `# ' -- the old
     # filter matched only the bare form, and five getsys lines came back
     # (2026-09-26).
@@ -316,13 +316,12 @@ def collapse(text, keep=3):
     A program that floods -- `No more memory !!!' filling the grid -- is
     worth showing ONCE with the number beside it. Twenty-four copies is not
     sample output, it is a wall, and it pushes the command that caused it off
-    the top of the card. rdoggett, 2026-08-28, looking at cvtbase: "I asked
-    you to capture an interesting screen shot, this is what you saved".
+    the top of the card -- cvtbase's card was once exactly that.
 
     OPT-IN PER STANZA (`fold'), never the default.  Applied to every card it
     cut the middle out of gothic's blackletter -- a stroke of a letter IS a
     run of identical lines -- and published "... the same line 6 times over"
-    in the middle of a picture (rdoggett, 2026-09-07).  A flood is rare and
+    in the middle of a picture.  A flood is rare and
     a repeated line is ordinary.
     """
     out, lines = [], text.split("\n")

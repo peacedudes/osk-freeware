@@ -68,7 +68,7 @@ cvtbase|misc|cvtbase.c|||
 dam|effo_wolk|dam.c|||
 des|des|des.c|||
 # devprc UNTESTED: its makefile also wants getsys.a, which is 68k assembly.
-# The shipped binary has a bad CRC and will not load -- see notes/SECOND-PASS.md.
+# The shipped binary has a bad CRC and will not load.
 devprc|devprc|devprc.c getopt.c getsys.a|||
 dfiles|dfiles|dfiles.c|||
 diff|diff|alloca.c analyze.c context.c diff.c dir.c ed.c io.c normal.c os9.c regex.c util.c ../unixlib/getopt.c|||
@@ -226,7 +226,7 @@ yacc|effo_yacc|closure.c error.c lalr.c lr0.c main.c mkpar.c output.c reader.c s
 zot|zot|zot.c|||
 
 # Added 2026-08-22 by tools/try_compile.sh -- trees that had no recipe and
-# turned out to build. See notes/COMPILE-AUDIT.md for the ones that did not.
+# turned out to build.
 robots|rob|AppendNode.c ClrBoard.c DeleteNode.c GameBoard.c InsertNode.c Main.c TopTen.c deleterbts.c dmpscore.c dress.c dumpstats.c getargs.c getdate.c gettops.c loadtops.c moverbts.c moveyou.c os9stuff.c rand.c showrbts.c showscore.c showyou.c writetop.c|||
 today|today|datetx.c localtime.c moontx.c nbrtxt.c timetx.c today.c|||
 xlisp|xlisp|os9stuff.c xlbfun.c xlcont.c xldbug.c xldmem.c xleval.c xlfio.c xlftab.c xlglob.c xlimage.c xlinit.c xlio.c xlisp.c xljump.c xllist.c xlmath.c xlobj.c xlpp.c xlprin.c xlread.c xlstr.c xlstruct.c xlsubr.c xlsym.c xlsys.c|||
@@ -306,8 +306,8 @@ lwf|lwf|lwf.c range.c|OS9 R_OK=1|/dd/LIB/math.l|
 dm|dm|diskmaster.c screen.c dirread.c showfiles.c misc.c error.c unarc.c mouse.c multicopy.c multidel.c multimove.c multiattr.c shellsort.c multitag.c listarc.c ../unixlib/getopt.c|VER=1 REV=3||
 # Daniel J. Bernstein's Markov travesty generator.  TRAPFREE is a WORKAROUND,
 # not a preference: built -qixm it hangs forever on end-of-file reading stdin,
-# because cio's read path never returns EOF under os9exec.  See
-# notes/os9exec-bugs/STDIN-EOF.md.  Remove the flag when that is fixed.
+# because cio's read path never returns EOF under os9exec.  Every build is
+# trap-free now, so the flag no longer changes anything.
 # The collection's own. One source builds three programs; `about' is separate.
 keep|keep|keep.c|||
 unkeep|keep|keep.c|MODE_UNKEEP||
@@ -362,7 +362,6 @@ pvic|pvic/SRCE|alloc.c main.c cmdline.c edit.c enveval.c fileio.c help.c hexchar
 #   gethostname.c  its makefile passes -DHOSTNAME="name", quotes and all,
 #              and the OS-9 shell will not carry an embedded quote.  The
 #              collection's own shim supplies gethostname anyway.
-# See notes/BLARSLIB.md.
 blarslib.l|blarslib|alarm.c atan2.c bstring.c ctermid.c exec.c fsync.c getcwd.c getgid.c getopt.c getpw.c getwd.c isatty.c mkdir.c perror.c popen.c rand.c signal.c strchr.c strcspn.c strpbrk.c strrchr.c strspn.c strtok.c times.c ttyname.c umask.c usleep.c utime.c vfprintf.c vsprintf.c alloca.c ln.c|STACKDIR=-1 link=link|| -V=/dd/DEFS/blarsdefs
 # Bob Larson's uucp.  Its own Makefile links blarslib, which is why these could
 # not build before it was here.  gethostname comes from a shim: OS-9 has no
@@ -407,8 +406,8 @@ uuxqt|uucpbb|uuxqt.c findxwork.c getline.c parse.c docmd.c gtime.c filemove.c mf
 whoami|uucpbb|whoami.c osk.c pwent.c parse.c|TERMCAP _OSK|/dd/LIB/termlib.l|
 # gtar's testpad reports whether tar's header struct needs a pad byte; every
 # object in that tree includes its output, and nobody had run it.  gtar itself
-# still does not build -- cpp bus-errors on tar.c, the same defect as flex.
-# See notes/CPP-MACRO-CRASH.md.
+# still does not build -- cpp bus-errors on tar.c, the same defect as flex
+# (rebuild/README.md, `E_BUSERR from cpp').
 testpad|gtar/GNUTAR|testpad.c|||
 # smail 2.5, from its own Makefile.osk.  It wants blarslib for getopt and the
 # passwd functions, and two things OS-9 has no answer for at all -- gethostname
@@ -448,7 +447,7 @@ ansi2knr|jpeglib/JPEG_5A|ansi2knr.c|TRAPFREE||
 cjpeg|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c jcparam.c jdatadst.c jcmaster.c jcmarker.c jcmainct.c jcprepct.c jccoefct.c jccolor.c jcsample.c jchuff.c jcdctmgr.c jfdctfst.c jfdctflt.c jfdctint.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR||
 # The JPEG decompressor.  It needs BOTH flags and neither alone will do it:
 # it is the same ANSI tree as cjpeg, and one of its thirty sources --
-# jdmarker.c -- is a victim of the cpp bus error (notes/CPP-MACRO-CRASH.md).
+# jdmarker.c -- is a victim of the cpp bus error on a long joined line.
 # KNR alone dies in cpp on that file; CPP2 alone hands c68 a prototype.  With
 # both, ansi2knr runs first and cccp2 reads its output.
 #
@@ -457,7 +456,7 @@ cjpeg|jpeglib/JPEG_5A|cjpeg.c rdppm.c rdgif.c rdtarga.c rdrle.c rdbmp.c jcapi.c 
 # directory (that would pull cjpeg's main in as well).
 djpeg|jpeglib/JPEG_5A|djpeg.c wrppm.c wrgif.c wrtarga.c wrrle.c wrbmp.c rdcolmap.c jdapi.c jdatasrc.c jdmaster.c jdmarker.c jdmainct.c jdcoefct.c jdpostct.c jddctmgr.c jidctfst.c jidctflt.c jidctint.c jidctred.c jdhuff.c jdsample.c jdcolor.c jquant1.c jquant2.c jdmerge.c jcomapi.c jutils.c jerror.c jmemmgr.c jmemnobs.c|KNR CPP2||
 # flex, through GNU's preprocessor (the CPP2 flag).  Microware's cpp bus-errors
-# on dfa.c's nested macros -- notes/CPP-MACRO-CRASH.md -- and this is the way
+# on dfa.c's nested macros -- a joined line past its 512 -- and this is the way
 # round it: cccp2 in cpp's place, then c68/o68/r68 by hand.  Two further things
 # were in the way and neither is about the preprocessor: misc.c wants time_t
 # from <sys/types.h>, which is System V behaviour the SDK does not have, and
@@ -484,7 +483,7 @@ inform|inform|informosk.c|CPP2 LONGREF||
 # throughout, and ansi2knr WRECKS it -- `get_sbuf_line (lp)' becomes
 # `get_sbuf_line (lp)  lp;'.  No KNR here.  What actually stopped it was
 # ed.h's REALLOC macro, whose continuation lines join into ~1400 characters,
-# well past cpp's 512 (notes/CPP-MACRO-CRASH.md).  CPP2 clears it.
+# well past cpp's 512.  CPP2 clears it.
 #
 # The rest is ordinary:
 #   ERANGE     the SDK's <errno.h> is OS-9's own numbers and has no ERANGE;
@@ -555,7 +554,7 @@ rayshade|rayshade|libray/LIBCOMMON/expr.c libray/LIBCOMMON/memory.c libray/LIBCO
 # lost the first.  See tmpbase() in rebuild.sh.
 #
 # `mcvert' is not here: it wants ftime(), which blarslib has and blarslib's
-# ftime.c is one of the four objects NOT taken (see notes/BLARSLIB.md).
+# ftime.c is one of the four objects NOT taken.
 # `macsave' and `macunpack' are not here either; neither has been run down.
 binhex|macutils/BINHEX|binhex.c dofile.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
 unsit|macutils/UNSIT|unsit.c getopt.c updcrc.c ../UTIL/transname.c ../UTIL/backtrans.c ../UTIL/util.c ../FILEIO/rdfile.c ../FILEIO/wrfile.c ../FILEIO/fileglob.c ../CRC/binhex.c ../CRC/ccitt.c|CPP2 NODOT|/dd/LIB/blarslib.l|-V=/dd/DEFS/blarsdefs -V=/h6/macutils/UTIL -V=/h6/macutils/FILEIO -V=/h6/macutils/CRC
@@ -595,7 +594,7 @@ unsit|macutils/UNSIT|unsit.c getopt.c updcrc.c ../UTIL/transname.c ../UTIL/backt
 mtools|mtools/MTOOLS_3.6|mtools.c buffer.c codepage.c codepages.c config.c copyfile.c devices.c directory.c expand.c fat.c fat_free.c file.c file_name.c file_read.c filter.c force_io.c hash.c init.c match.c mattrib.c mbadblocks.c mcd.c mcopy.c mdel.c mdir.c mformat.c misc.c missing_functions.c mk_direntry.c mlabel.c mmd.c mmove.c mainloop.c minfo.c precmd.c privileges.c parse.c plain_io.c signal.c stream.c streamcache.c subdir.c toupper.c tty.c vfat.c xdf_io.c|GCC HAVE_CONFIG_H HAVE_STRSPN HAVE_STRCSPN _OSK_COMPAT_OFF_T|/dd/LIB/blarslib.l /dd/LIB/unix.l|-V=/h7 -M=64k
 # GNU tar 1.11, through the GCC flag.  It has had no recipe since the tree
 # arrived; the cpp bus error was blamed, and that was only the first of six
-# walls.  READ notes/SESSION-2026-08-23.md BEFORE CHANGING ANY FLAG BELOW.
+# walls.  Every flag below was measured; build and test before changing one.
 #
 # WHAT IT CAN AND CANNOT DO -- verified by running it, not by linking:
 #   READING and EXTRACTING work, and are the point.  Given a ustar archive
@@ -750,7 +749,7 @@ pnm.l|netpbm/PNM|libpnm1.c libpnm2.c libpnm3.c libpnm4.c|_OSK SYSV CPP2|| -V=/h6
 # only implemented on the CPP2 and GCC paths, not the plain one.
 # pbm.l is named three times because l68 makes ONE pass per -l= and
 # libpbm5 calls libpbm2's pbm_readpbm.
-# The 16 that do not build are in notes/COMPILE-AUDIT.md with their causes.
+# 16 do not build here, each for a cause of its own.
 atktopbm|netpbm/PBM|atktopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
 brushtopbm|netpbm/PBM|brushtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm
 cmuwmtopbm|netpbm/PBM|cmuwmtopbm.c|_OSK SYSV|/dd/LIB/pbm.l /dd/LIB/pbm.l /dd/LIB/pbm.l| -V=/h6/netpbm

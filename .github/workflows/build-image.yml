@@ -2,7 +2,7 @@
 #
 # The build needs no Microware utility and no OS-9 system disk -- only the
 # os9exec binary, which this workflow compiles from source. That is the whole
-# reason CI is possible at all; see notes/ROADMAP-freeware.md.
+# reason CI is possible at all.
 name: build-image
 
 on:

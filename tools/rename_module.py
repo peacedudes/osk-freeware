@@ -44,8 +44,8 @@ HEADER_WORDS = 48          # the universal header, $00..$2F -- what parity cover
 M_SIZE = 0x04
 M_NAME = 0x0C
 CRC_BYTES = 3
-# HOW LONG A NAME MAY BE IS NOT SETTLED.  CLAUDE.md records 29 measured
-# 2026-08-23 (29 works, 30 does not); the os9-dev skill records 27 measured
+# HOW LONG A NAME MAY BE IS NOT SETTLED.  One measurement, 2026-08-23, gave
+# 29 (29 works, 30 does not); the os9-dev skill records 27 measured
 # under os9exec, boundary tested, with 28 accepted at creation but only the
 # 27-character prefix addressable afterwards.  Both are about FILEnames; what a
 # MODULE name may be is a third question nobody here has measured.  The lower

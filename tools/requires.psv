@@ -3,8 +3,8 @@
 # program, or a shell.  name|requirement|where it is stated.  The card lists
 # each requirement under Needs; a name may have several lines.  Every line
 # comes from a document on the disk or a measurement -- never from a guess.
-# The trap-module lines were measured with tools/probe_trap_needs.sh, which
-# runs each program with the module withheld and reads the module it asks for.
+# The trap-module lines were measured by running each program with the
+# module withheld and reading the module it asks for.
 # That sees what a program needs AT STARTUP: bm names math inside it and
 # starts without it, so a program may still want a module later.
 a2p|perl, to run the script it writes|SRC/perl4/README-OSK; tools/datatests/perl.cases

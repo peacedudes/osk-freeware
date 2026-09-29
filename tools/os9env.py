@@ -90,7 +90,7 @@ def stage_reader_load(h1):
     """Put the reader's own load and the commands SYS/login loads in <h1>/CMDS, from $OS9SDK.
 
     The collection ships no `load': the clean-room one written for it was
-    withheld on 2026-09-22 and then deleted on rdoggett's word, because a
+    withheld on 2026-09-22 and then deleted, because a
     program named after a Microware utility is Microware's to ship.  A
     harness that makes a module resident therefore needs the reader's own,
     on the /h1 it mounts -- exactly the arrangement SYS/login describes.

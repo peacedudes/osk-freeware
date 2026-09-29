@@ -6,8 +6,7 @@
 
 WHY.  DOC holds hundreds of files, and a reader who wants to know whether
 `hp' has any documentation had to go looking -- or type `man hp' and hope.
-rdoggett, 2026-09-27: "We are the librarians, how do we make this more
-accessible?"  These two files are the answer the disk carries, and the
+A library should be easy to look things up in.  These two files are the answer the disk carries, and the
 disk's own `man' reads them: every program, every document that belongs to
 it, and where its source is.
 

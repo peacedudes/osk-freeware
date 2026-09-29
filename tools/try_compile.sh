@@ -5,8 +5,8 @@
 #   tools/try_compile.sh <tree> <program> [<extra cc args>...]
 #   tools/try_compile.sh --all              every un-recipe'd single-program tree
 #
-# The question this answers is rdoggett's: "if it's source, it should compile,
-# right?"  `tools/rebuild/recipes.psv` holds 194 programs that are KNOWN to
+# The question this answers: if it's source, it should compile.
+# `tools/rebuild/recipes.psv` holds 194 programs that are KNOWN to
 # build.  71 trees on the disk have no recipe at all, so nobody has ever
 # established whether their source is complete.  This is how a tree gets from
 # "unknown" to either a recipe or a documented reason.

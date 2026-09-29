@@ -25,9 +25,7 @@
     rebuild/            rebuild programs from source (see rebuild/README.md)
     rebuild/make_overlay.sh
                         build the clean /dd overlay those rebuilds need. It
-                        was an undocumented local directory until 2026-08-21,
-                        when it turned out to be gone
-    gen_freeware_index.py
+
 
     worklist.py         one row per program: what DOC/INDEX claims, what its
                         captured help says, whether a card
@@ -40,12 +38,6 @@
                         it asserts nothing, it shows you what happened
     drives/             the sheets drive.py reads. Committed; the transcripts
                         they produce are not
-    probe_sheet.py      run a scratch sheet through the capture harness and
-                        PRINT the screens, saving nothing -- the step before
-                        a stanza goes into a real sheet
-    audit_craft.py      reader-facing text -- captions, INDEX entries, howto
-                        notes -- that carries dates, "measured", "used to",
-                        "this collection" or os9exec: craft, not content
     audit_panels.py     what each PROGRAM's panel shows OF THAT PROGRAM --
                         the per-program audit; its --gate is the ratchet
                         check_disk runs against tools/panel-backlog.txt
@@ -65,31 +57,11 @@ something that can fail again. `worklist.py` says which programs still have
 nothing; `drive.py` runs a batch of them and shows what came back; a
 `datatests/*.cases` case is what turns that into a fact that can fail.
 
-## Reports that are not gates
+## Probes
 
-    tools/stale_notes.py                       # DOC/STATUS notes the cards contradict
-    tools/ghost_names.py                       # shipped text naming what is not here
-    tools/absence_phrasing.py                  # text telling the reader they lack what they own
-    tools/sdk_overlap.py <sdk-tree>            # disk files byte-identical to Microware's
     tools/pty_probe.py "<command>"             # one command on a REAL terminal
 
-Three sweeps whose answer needs a person. `stale_notes` finds rows in
-`DOC/STATUS` that call a program broken when its published panel shows it
-working -- a note recording a failure outlives the fix, and thirteen of
-them did. `ghost_names` finds a name the shipped prose points at that the
-disk has not got, which is what happens when a program leaves and the
-sentences naming it stay. `absence_phrasing` asks the same question the
-gate `text names what the reader has` asks, but in the words the gate's
-narrow pattern does not carry -- it found `dback`'s card saying "There is
-no `copy` program on this disk" when `copy` is Microware's and issuing
-copies through it is what dback is FOR. Run both after a removal: a
-program leaving on terms is what turns a sentence into either kind of
-mistake. `sdk_overlap` hashes every file on the disk
-against Microware's SDK tree, because the only thing that can tell you a
-binary is theirs is its bytes; it needs the SDK tree, which is not in this
-repository, so it can never be a gate.
-
-`pty_probe` is the odd one out: it is not a sweep but a single command run
+`pty_probe` is not a sweep but a single command run
 on a pseudo-terminal. Every other harness here gives os9exec a PIPE, so a
 fault that needs an SCF terminal is invisible to all 956 cards and 868
 cases -- which is how `load` came to repeat its error for ever on a
@@ -119,12 +91,9 @@ read the list the tool prints rather than trusting this one:
 - `DOC/INDEX`'s star grid is self-consistent: it says "All N", lists N
   distinct names, and every one is a real file under `CMDS`.
   **This replaced a check on the counts quoted in `readme` and `DOC/INDEX`.**
-  Those counts are gone: rdoggett's instruction, 2026-08-22, was to keep
-  numbers out of the prose entirely -- *"Suppose we release the collection,
-  and somebody writes sometime later offering us a new trove? It's a
-  constant update nightmare, just so we can say 99 million sold."* He is
-  right, and the old check was the proof: every removal cost an edit in five
-  files. `DOC/CATEGORIES` and the catalogue are GENERATED and can carry
+  Those counts are gone: hand-written prose carries no numbers, because a
+  collection that grows would need every one rewritten -- the old check was
+  the proof: every removal cost an edit in five files. `DOC/CATEGORIES` and the catalogue are GENERATED and can carry
   numbers safely; hand-written prose cannot
 - every program has a category in `categories.psv`
 - `DOC/DEPENDS` is up to date
@@ -269,7 +238,7 @@ latter from the archive.
 
 **Mount it as `/dd`.** That is settled and measured -- 258 programs want the
 collection at `/dd` because their own data is here, against 53 that want data
-at `/h0`. `notes/DECISION-placement.md` has the reasoning;
+at `/h0`.
 `tools/measure_layout.py disk` prints the numbers rather than asking you to
 believe them.
 
@@ -357,14 +326,6 @@ emulator down with it (`cpu` does, every time), and a program that will not
 let go of the terminal (SEDT survived a Ctrl-E and ate the next three
 stanzas of its sheet). After every stanza the shell is asked to echo a
 marker; if it does not come back the session is replaced.
-
-**Then LOOK at what was captured.** `tools/audit_screens.py` reads every
-capture and flags what is not worth showing -- a screen that is one line
-repeated, one with almost nothing on it, one that is nothing but the command
-that was typed. It is a prompt to go and look, not a verdict: a chess board
-repeats its rank lines and that is fine. It exists because a card once
-carried twenty-four copies of `No more memory !!!` under a caption about
-converting number bases, and every check there was had passed it.
 
 **Correcting a DOC/INDEX entry means checking `tools/categories.psv`.** The
 category is assigned by hand from the description, so a wrong description

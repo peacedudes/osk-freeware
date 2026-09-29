@@ -16,8 +16,8 @@ credit 932 programs; 539 of those programs borrow another program's card.
 A capture is one final screen, so on a card that runs five programs the
 first three have scrolled off before the picture is taken -- and
 `audit_cards' scores the card as a whole, so a program rides on its
-neighbour's output and the tool said 0 of 408 flagged on the day
-rdoggett opened `lessecho' and found `helpindex's help text, `lesskey's
+neighbour's output and the tool said 0 of 408 flagged on a day when
+`lessecho''s panel showed `helpindex's help text, `lesskey's
 usage line and a bare `lessecho < /nil'.  A check that cannot fail, again.
 
 So this scores what the reader actually sees: the panel published for THIS

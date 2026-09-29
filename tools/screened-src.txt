@@ -26,7 +26,7 @@ disk/SRC/lua/CLIENTS/LIB/OSK/stat.h
 # Heike C. Zimmerer's, from the pd-ksh edition 11 OSK port. German comments
 # throughout, and they call the documented F$Permit/F$Protect calls the SSM
 # manual describes -- third-party code using a published interface. Read in
-# full 2026-08-21. See tools/rebuild/pdksh/README.md.
+# full 2026-08-21.  SRC/pdksh/README.OSK has the port.
 disk/SRC/pdksh/OSK/SRC/ssmpermit.a
 disk/SRC/pdksh/OSK/SRC/ssmprotect.a
 
@@ -55,7 +55,7 @@ disk/SRC/infoxpress/BNU/ELM_2.4/HDRS/osk.h
 # The pd-ksh port's own UNIX-compatibility headers, restored 2026-08-21 after
 # being refused earlier the same day on weaker evidence than it looked.
 #
-# Both matched a file under `play/oskBoot`, which is rdoggett's WORKING build
+# Both matched a file under the SDK (`play/oskBoot`), which is a WORKING build
 # overlay, not a pristine SDK. Neither `ioctl.h` nor `termio.h` exists in the
 # pristine tree at all, and no copy in the overlay carries a Microware
 # copyright or any ownership claim. They are the standard System V ioctl and
@@ -86,8 +86,8 @@ disk/SRC/unc/ORIG/os9traps.c
 # of DEFS/os9lib on the include path drags in its <stat.h> and collides.
 disk/SRC/uustat/info.h
 
-# ADDED 2026-09-12 with the gawk, bison and dvips trees (rdoggett's answer to
-# Q2: ship the source for binaries we already ship).  Thirteen files flagged
+# ADDED 2026-09-12 with the gawk, bison and dvips trees (ship the source for
+# binaries we already ship).  Thirteen files flagged
 # and every one read.  NOT ONE is Microware's, and the pattern is the blind
 # spot this file already records for SRC/ed/getopt.h: the screen compares
 # against the SDK, and the SDK carries third-party GNU code of its own.
@@ -164,7 +164,7 @@ disk/SRC/gcc-1.37.1-osk/math_68881.h
 # port wrote for itself -- "UNIX signal.h", SIG_CATCH/SIG_HOLD, job-control
 # numbers -- which includes Microware's own only under _UCC.  The screen
 # matched it against the build overlay's UNIX headers, which are community
-# work; Scraped/sdk-copyrighted has no signal.h to match.
+# work; the pristine SDK has no signal.h to match.
 disk/SRC/infoxpress/BNU/ELM_2.4/OSK/DEFS/signal.h
 
 # Same FSF getopt.h as SRC/ed, from GNU makeinfo's own source (restored

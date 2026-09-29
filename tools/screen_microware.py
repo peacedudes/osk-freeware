@@ -73,7 +73,7 @@ MICROWARE_MODULES = {
 # SOURCE is the category that actually matters, and this is why: Microware's
 # concern is not lost licence revenue, it is that infrastructure in Japan and
 # Germany runs OS-9/68k TODAY and published source could expose vulnerabilities
-# nobody has found yet (rdoggett, 2026-08-19). That is also why permission for
+# nobody has found yet. That is also why permission for
 # cio/csl/math was straightforward -- those are runtime BINARIES and expose
 # nothing. So a Microware binary in an archive is merely their property; a
 # Microware SOURCE file, especially system internals, is the one that could
@@ -135,8 +135,8 @@ def sdk_index():
     roots = [os.path.join(paths.SDK, d) for d in ("CMDS", "DEFS", "LIB")]
     roots.append(paths.SDK_FULL)
     # ...minus the per-account directories this project made INSIDE the SDK's
-    # CMDS. CLAUDE/ and SHARE/ are ours (CLAUDE.md's "personal execution
-    # directory inside the shared CMDS"), and indexing them reported our own
+    # CMDS. CLAUDE/ and SHARE/ are ours (a personal execution directory
+    # inside the shared CMDS), and indexing them reported our own
     # files as Microware's.
     # oskBoot/SYS is excluded outright for the same reason: its HELP directory
     # holds 33 .hlp files named for FREEWARE programs (effo, gshell, tar, the
@@ -170,7 +170,7 @@ def sdk_index():
 def provenance(sdk_path):
     """Say which SDK a match came from, because they are not equal evidence.
 
-    `paths.SDK` is rdoggett's WORKING build overlay. Beside Microware's own
+    `paths.SDK` is a WORKING build overlay. Beside Microware's own
     files it carries libraries this collection built or collected --
     `ncurses.l`, `libgcc.l`, `libgpp.l`, `unet.l` and the `os9unix/` headers
     are in it and in NEITHER pristine SDK. A file matching one of those is

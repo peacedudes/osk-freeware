@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """How many programs on this disk have source here, and which do not.
 
-The companion to doc_census.py, and it exists for the same reason. The figure
-in CLAUDE.md -- "390 of 938 distinct programs have source identifiable here,
-42%" -- was taken by hand on 2026-08-21 and could not be re-derived, and a
+The companion to doc_census.py, and it exists for the same reason. An earlier
+figure -- "390 of 938 distinct programs have source identifiable here, 42%" --
+was taken by hand on 2026-08-21 and could not be re-derived, and a
 number nobody can re-derive is a number nobody should quote.
 
 A program counts as having source by one of four routes, tried in order. The

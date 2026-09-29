@@ -1,6 +1,6 @@
 # try-no.psv -- programs whose card gets NO "Try it" button.  name | why
 #
-# rdoggett, 2026-09-22: Try It "only on cards that can actually be run".
+# Try It appears only on cards that can actually be run.
 # Every card here WAS captured running, under the same emulator the browser
 # page runs -- so this list is not about what fails.  It is the programs
 # whose job needs something no browser tab has: a serial line, a modem, a

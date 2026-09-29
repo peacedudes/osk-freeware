@@ -8,7 +8,7 @@ family  cio11
 # case that only checked "it started" would have passed against the binaries
 # these replaced, and that is exactly how the fault survived for months.
 #
-# Root cause: notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md. What was done:
+# Root cause: the cio selector mismatch (disk/DOC/README-CIO). What was done:
 # `cc <src> -qm=16k -DOSK -n=<name>' from tools/rebuild/recipes.psv, sources
 # already on the disk under SRC.
 

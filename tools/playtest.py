@@ -6,7 +6,7 @@
 
 Why this exists
 ---------------
-`tools/verify_all.sh' asks "did it print anything". That is not the same
+A bare sweep asks "did it print anything". That is not the same
 question as "does it work", and the difference is not academic: it scored
 `tet' as OK BARE while `tet' ignored every keypress, and scored it OK again
 when `tet' ran so fast it was unplayable. Anything whose value is in its

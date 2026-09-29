@@ -127,14 +127,14 @@ def check_no_utf8(root):
 
 
 AUTHOR_STAMP   = b"from the disk of"
-STAMPED_KNOWN = 0   # was 15; rdoggett's name was taken out 2026-08-20
+STAMPED_KNOWN = 0   # was 15 until the last stamped modules were cleaned
 
 
 def check_author_stamps(root):
     """Fail if ANY module carries the SDK author stamp.
 
-    Was "no more than the known 15" until 2026-08-20, when rdoggett asked for
-    his name taken out of the binaries. Five were rebuilt or removed; the other
+    Was "no more than the known 15" until those were cleaned too: no
+    builder's name belongs in a shipped binary. Five were rebuilt or removed; the other
     eleven could not be rebuilt (no source, or source that will not build here)
     and were edited instead -- the Author psect is DATA and the replacement is
     the same length, so nothing in the module moved and only the CRC changed.
@@ -146,8 +146,8 @@ def check_author_stamps(root):
     The SDK copy these were built with has a 64-byte `Author` psect added to
     its `cstart.r`, so every binary built through it is stamped with whoever
     owns that copy. Removing them was the point of the rebake: 224 down to 15,
-    and those 15 are listed in notes/FREEWARE-REBAKE.md with a reason each --
-    no source, or rebuilding would regress a working program.
+    each of those 15 with no source, or rebuilding would have regressed a
+    working program.
 
     The count is asserted rather than the names, so rebuilding one of the 15
     is not a failure but reintroducing a stamp is. Note the file must be read
@@ -333,11 +333,9 @@ def check_recipes(root):
 def check_star_grid(root):
     """DOC/INDEX's star grid must say how many names it holds, and be right.
 
-    THIS REPLACED `documented counts match the tree`, 2026-08-22, on rdoggett's
-    instruction: "avoid putting actual numbers of anything in the docs ...
-    Suppose we release the collection, and somebody writes sometime later
-    offering us a new trove? It's a constant update nightmare, just so we can
-    say 99 million sold."
+    THIS REPLACED `documented counts match the tree`.  The documents avoid
+    counting anything: a collection that grows would need every count
+    rewritten each time, for nothing a reader needs.
 
     He is right, and the old check was the evidence: it existed only because
     hand-written counts in `readme` and `DOC/INDEX` drifted every time the tree
@@ -836,7 +834,7 @@ def check_modules_start_with_4afc(root):
 def check_no_absence_phrasing(root):
     """Reader-facing text names what the reader HAS, never what this disk lacks.
 
-    CLAUDE.md's rule, and it had no enforcement until 2026-09-12, when a
+    A house rule, and it had no enforcement until 2026-09-12, when a
     sweep found six violations that had been shipping: `version' said "there
     is no `ident' here", `map' said of mfree and free "neither is on this
     disk", `listalias' said "`egrep', which is not on this disk", and the
@@ -863,8 +861,7 @@ def check_no_absence_phrasing(root):
     pats = [re.compile(r"\b(?:not|neither)\b[^.]{0,40}?on this disk"),
             re.compile(r"there is no `[^']+' here")]
     targets = [os.path.join(root, "DOC", "INDEX")]
-    # The shipped READMEs too (FOR-RDOGGETT item 28, 2026-09-23): five of
-    # them said it, and DOC/README's was false as well as unkind -- it
+    # The shipped READMEs too: five of them said it, and DOC/README's was false as well as unkind -- it
     # called elvis's binary absent while CMDS/elvis shipped.
     doc = os.path.join(root, "DOC")
     targets += [os.path.join(doc, f) for f in sorted(os.listdir(doc))
@@ -899,19 +896,18 @@ def check_no_chained_parent_paths(root):
     required."  So two levels up is `...' and three is `....'.
 
     THIS DOES NOT MAKE `../..' INVALID, and an earlier version of this
-    docstring said it did.  rdoggett, who has run the real hardware, states
-    the opposite: a component made only of dots climbs (dots - 1) levels and
-    components ADD UP, so `../..' is two one-level components and reaches the
-    same place as `...'.  His example is `../......./.././file'.  p. 4-9
+    docstring said it did.  On real hardware a component made only of dots
+    climbs (dots - 1) levels and components ADD UP, so `../..' is two
+    one-level components and reaches the same place as `...' -- as does
+    `../......./.././file'.  p. 4-9
     teaches the dotted form without excluding chaining, and no Microware line
     settling chaining either way has been found, so treat `../..' as legal
     OS-9 that this collection simply does not use.
 
     THE GATE IS ABOUT HOUSE STYLE FIRST, AND PORTABILITY SECOND.  NEITHER
-    IS ABOUT VALIDITY.  rdoggett settled both halves on 2026-09-13: real
-    OS-9 accepts the chained form -- "yes real os-9 accepts ../../../.. no
-    problem" -- and the gate should stay anyway, because the cards should
-    use the dotted form "because it's uniquely os9".  That is the reason:
+    IS ABOUT VALIDITY.  Real OS-9 accepts the chained form, and the gate
+    stays anyway, because the cards use the dotted form: it is uniquely
+    OS-9's.  That is the reason:
     `...' is the spelling this system has and Unix does not, and a
     collection teaching OS-9 should show it.  `../..' is legal and simply
     is not how we write it here.
@@ -1059,9 +1055,8 @@ def check_cards_do_not_depend_on_each_other(root):
 def check_cards_have_no_pathlists(root):
     """A card's caption or `try' line must never carry a full absolute path.
 
-    rdoggett, told many times and finally angrily (2026-09-05): `DO NOT USE
-    FULL PATHLISTS in explanation on cards.  Arrange to not need them.'  A
-    reader browsing hundreds of programs does not benefit from
+    Full pathlists do not belong in explanation on cards; arrange not to
+    need them.  A reader browsing hundreds of programs does not benefit from
     `/dd/CMDS/subber /dd/tmp/SUB/words' where `subber words in' would do.
     Name a file by its bare or short-relative name, or arrange the demo with
     a `chd' so the shown command reads short.  A bare device (`mount as /h0')
@@ -1105,7 +1100,7 @@ def check_cards_have_a_try_line(root):
     it falls back to the bare program name.  On 2026-09-07 one card in 906
     had a `try' line, so `gothic' -- whose picture was made with `gothic -h
     OS-9' -- told the reader to type `gothic', which prompts for a file
-    name and waits.  rdoggett: "notice: no argument, wtf?".
+    name and waits.
 
     `tools/try-backlog.txt' names the stanzas still without one.  A stanza
     that has neither a `try' line nor a backlog entry fails; so does a
@@ -1219,8 +1214,8 @@ def check_cio_macro_population(root):
     EMULATOR's `No more memory !!!' and do their work not at all, because they
     were linked against a `cio.l' whose trap-13 selector $41 is `_flshbuf'
     where every `cio' module here has a memory routine -- so `putc' hands the
-    raw allocator a FILE pointer as a byte count.  Root cause and mechanism:
-    notes/os9exec-bugs/CIO-SELECTOR-MISMATCH.md.
+    raw allocator a FILE pointer as a byte count.  disk/DOC/README-CIO has
+    the mechanism.
 
     README-CIO tells a reader how many programs can do this.  That number is
     the sort this collection has watched drift over and over, so it is checked
@@ -1313,8 +1308,8 @@ def check_cio_macro_population(root):
 def check_cards_state_their_terms(root):
     """Every program's card states its terms -- ratcheted.
 
-    rdoggett, 2026-09-14: "You must note on each card it's requirements,
-    copyrights, whatever."  On that day 19 of 997 cards carried a copyright
+    Each card states its requirements and its terms.  When this was added
+    19 of 997 cards carried a copyright
     or conditions line, all from EFFO info files; what SOURCES.txt records
     never reached a card.  `tools/terms.psv' holds what the card says,
     and `tools/terms-backlog.txt' names the programs not looked up yet.  A
@@ -1578,7 +1573,7 @@ def check_libraries_are_recorded(root):
 
     A library is the one thing here a reader links into their OWN program,
     so "what is this and may I use it" is a fair question to be able to
-    answer for each. Matching a file on rdoggett's build overlay does NOT
+    answer for each. Matching a file on the build overlay does NOT
     answer it -- that overlay carries this collection's own libraries, and
     reading a match there as evidence is what turned this into a false
     alarm about Microware for an hour. The pristine SDK under
@@ -1771,11 +1766,11 @@ def check_captures_match_their_stanzas(root):
 def check_captions_do_not_shout(root):
     """A caption carries its emphasis in the sentence, not in capitals.
 
-    rdoggett's card rules, 2026-09-08: no ALL CAPS.  It went unenforced and
-    on 2026-09-19 one session broke it NINE times in a day -- "USE THE ID
-    YOU SEE" on three cards, "THE TEMPORARY IS THE ARCHIVE", "IT READS
-    STANDARD INPUT", "MUST ALREADY EXIST" and more.  Every one of them read
-    as a good sentence with the capitals taken out, which is the point.
+    No ALL CAPS on a card.  Before this check it was broken nine times in a
+    day -- "USE THE ID YOU SEE" on three cards, "THE TEMPORARY IS THE
+    ARCHIVE", "IT READS STANDARD INPUT", "MUST ALREADY EXIST" and more --
+    and every one read as a good sentence with the capitals taken out,
+    which is the point.
 
     NARROW, like `text names what the reader has' and for the same reason:
     a phrase of TWO OR MORE capitalised words in a row.  A single capital
@@ -1818,17 +1813,14 @@ def check_captions_do_not_shout(root):
 def check_no_maintainer_identifiers(root):
     """The artefact does not carry the maintainer's username or home path.
 
-    A HARD RULE in CLAUDE.md -- the disk is what people receive and
-    `docs/' is published, and neither may carry his name, username, home
-    path or machine -- and until 2026-09-19 nothing enforced it.  The
-    sweep that day found NINE: six gallery cards published "Written for
-    this collection and given away ... rdoggett, 2026-09-18: `anything we
-    write is anybody who wants it can have it'" out of `tools/terms.psv',
-    two more sat in HTML and JavaScript comments that the template copies
-    verbatim into `docs/index.html', and four decision attributions had
-    reached `disk/SOURCES.txt', one `disk/DOC/STATUS' and one port note.
-    Every one of them was working-paper voice: the sentence before it
-    already said the thing, and who settled it means nothing to a reader.
+    The disk is what people receive and `docs/' is published, and neither
+    carries the maintainer's name, username, home path or machine.  Before
+    this check a sweep found nine: gallery cards quoting a decision out of
+    `tools/terms.psv', HTML and JavaScript comments the template copies
+    into `docs/index.html', and attributions that had reached
+    `disk/SOURCES.txt', `disk/DOC/STATUS' and a port note.  Every one was
+    working-paper voice: the sentence before it already said the thing,
+    and who settled it means nothing to a reader.
 
     IT LOOKS FOR THE USERNAME, NOT THE NAME.  `Robert Doggett' appears in
     `DOC/zot/zot.1', `SRC/zot/zot.c', `SRC/misc/qt.c', `SRC/snap/main.c'
@@ -1836,9 +1828,8 @@ def check_no_maintainer_identifiers(root):
     1988 and 1989 -- "heavily mucked with for OSK", in the file's own
     words -- and that is a line the archive's own header carries, so it
     stays as history.  **It is not an authorship credit and must not be
-    written up as one** (rdoggett, 2026-09-19: "I did not write zot or qt
-    or snap or any of the others.  I just did trivial porting work to get
-    them running.  Credit should go to the original author").  The
+    written up as one** -- it was porting work, and credit belongs to the
+    original authors.  The
     original authors are named where credit belongs -- `tools/terms.psv'
     and `SOURCES.txt': zot is Roger Murray's and Marc Kriguer's, qt is
     Mike Cowlishaw's by way of Mark Dapoz's C conversion, snap is David
@@ -1849,18 +1840,16 @@ def check_no_maintainer_identifiers(root):
     ALLOWED, with its reason: the os9exec URL in `SOURCES.txt'.  A reader
     has to be told where the emulator comes from, and that is where it is.
 
-    `tools/' and `notes/' are working papers and may name him -- except
-    `catalog.template.html', which is not a working paper at all: it is
+    `tools/' is not checked -- except `catalog.template.html', which is
     the published page with the data not yet poured in, so it is read
     here as though it were under `docs/'.
     """
     pat = re.compile(rb"rdoggett|peacedudes|Robert\s+Doggett", re.I)
     allowed = (b"https://github.com/peacedudes/os9exec",)
     # The archive's OWN files say who ported them, in 1988, in the author's
-    # words.  rdoggett, 2026-09-22: "If I put it in the source file way back
-    # then, you can leave it.  Don't add my name yourself to anything."  So
+    # words.  What the archive carried stays; nothing adds the name.  So
     # these five are allowed and everything else is not -- which is what
-    # caught SOURCES.txt naming him as the one who asked Microware.
+    # caught SOURCES.txt naming the maintainer as the one who asked Microware.
     allowed_files = ("DOC/zot/zot.1", "SRC/zot/zot.c", "SRC/misc/qt.c",
                      "SRC/snap/main.c", "SRC/hc_utils/fgrep.c",
                      # a period disk image, with the same 1988 stamp inside

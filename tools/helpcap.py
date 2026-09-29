@@ -72,7 +72,7 @@ NO_ANSWER = "[no answer in "
 
 # Programs never to probe blind: each one damages the disk or the session
 # in a way a `-?' does not necessarily avoid.  flink aliases a file's FD in
-# the current directory (CLAUDE.md); dedit writes raw sectors; disktest
+# the current directory, corrupting it; dedit writes raw sectors; disktest
 # measures the disk it is run on and ends the session.
 NEVER_PROBE = {"flink", "dedit", "disktest"}
 

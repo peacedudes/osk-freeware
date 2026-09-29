@@ -1,10 +1,9 @@
 # shadowed-names.txt -- programs here that carry the name of a utility the
 # reader already owns.  One `name|where' per line.
 #
-# WHY IT EXISTS.  rdoggett, 2026-09-18: "if we are shipping replacements for
-# Microware components (like dir), we need to put a clear warning about that.
-# It's ok, I might prefer the freeware version (as a user) and want to
-# overwrite Microware's, but... I want to do it with informed consent."
+# WHY IT EXISTS.  Where this collection ships a program under the name of a
+# Microware component (like dir), the reader is warned.  They may prefer the
+# freeware version and let it answer for Microware's -- with informed consent.
 #
 # So the card for each of these says so, in the reader's face rather than in
 # a document they have to go and find.  gen_catalog reads this file;

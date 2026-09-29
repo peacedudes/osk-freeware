@@ -32,8 +32,8 @@
 #
 # `cc` links Microware's `cstart.r` into every C program it builds, and that
 # cstart carries a 64-byte Author psect.  Whoever owns the SDK copy gets their
-# name written into every binary built through it -- the SDK here is stamped
-# `from the disk of Robert Doggett`.  Blanking the psect BEFORE linking is the
+# name written into every binary built through it -- `from the disk of
+# <owner>'.  Blanking the psect BEFORE linking is the
 # only way to get a clean binary out of a fresh build; `tools/blank_author.py`
 # does the same edit after the fact, for modules that cannot be rebuilt.
 # `check_disk.py` fails on a new stamp, so a build made without this overlay

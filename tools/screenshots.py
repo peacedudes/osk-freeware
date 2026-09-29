@@ -89,7 +89,7 @@ Sheet format (blank lines and `#' comments ignored):
     send    \023                   Ctrl-S: XOFF, the terminal stops where it
                                    is; `snap' then takes a still page of a
                                    program that scrolls, and `send \021'
-                                   (Ctrl-Q) lets it go on.  rdoggett's tip.
+                                   (Ctrl-Q) lets it go on.
     run     clear                  a `clear' inside the stanza starts the
                                    picture over -- setup lines typed before
                                    it are left out of it
@@ -514,7 +514,7 @@ def _drive(sess, shot):
     # back in one word: `normal' is "return to default values" (measured
     # 2026-09-24: nolf, noecho, pause, eof=04 and pag=40 all restored).  Then
     # the page length is set to this card's own window.  Unconditional, no
-    # checking first -- rdoggett's suggestion, and cheaper than detecting.
+    # checking first -- cheaper than detecting.
     # alf_off() stays as the backstop for a session with no /h1.
     if os.environ.get("OS9SDK"):
         sess.write("/h1/CMDS/tmode normal pag=%d\r" % shot["size"][0])

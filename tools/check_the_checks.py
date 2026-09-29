@@ -7,8 +7,7 @@
 Why this exists
 ---------------
 `check_disk.py' is the gate on every commit in this collection, and this
-collection's own rule -- written down in CLAUDE.md after it was learnt the
-hard way several times -- is MAKE EVERY CHECK FAIL ONCE BEFORE BELIEVING IT.
+collection's own rule -- learnt the hard way several times -- is MAKE EVERY CHECK FAIL ONCE BEFORE BELIEVING IT.
 That had never been done for the gate itself.
 
 The tree has produced a remarkable number of checks that could not fail: a
@@ -418,8 +417,7 @@ def break_card_pathlist(root):
     """A caption in a COPY of the sheets carrying a full pathlist.
 
     Cards name things the short way -- `chd' first, then the program --
-    because a full `/dd/...' in a shown command is the thing rdoggett
-    ruled out by name.
+    because a full `/dd/...' in a shown command is ruled out by name.
     """
     copy = _tools_copy(root, "toolspath")
     w(os.path.join(copy, "screenshots", "zzzpath.sheet"),
@@ -636,7 +634,7 @@ def break_published_page(root):
 def break_absence_phrasing(root):
     """A DOC/INDEX entry that says what this disk lacks instead of what you have.
 
-    The house rule is CLAUDE.md's: the reader HAS OS-9, so `ident' and
+    The house rule: the reader HAS OS-9, so `ident' and
     `mfree' are on their machine and telling them the utility does not exist
     is false from where they stand. Six entries broke it and shipped until
     2026-09-12.

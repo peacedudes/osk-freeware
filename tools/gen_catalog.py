@@ -216,8 +216,8 @@ def from_origins(root, progs):
         if m and m.group(1) in progs:
             arch = m.group(4).strip()
             # A bare archive FILENAME (toys.ar, zot.ar, foo.lzh) is not on the
-            # disk and means nothing to a reader -- rdoggett, 2026-09-11: "the
-            # toys.ar part is worse than noise".  Drop it; keep descriptive
+            # disk and means nothing to a reader; it is worse than noise.
+            # Drop it; keep descriptive
             # provenance (a person, a forum, a disk).
             if re.match(r"^[\w.+-]+\.(ar|lzh|lha|zoo|arc|tar|Z|gz)$", arch):
                 arch = ""
@@ -400,9 +400,8 @@ def load_categories(path):
 def load_shadowed(path):
     """Programs whose NAME is also the name of a utility the reader owns.
 
-    rdoggett, 2026-09-18, on shipping a `dir' beside theirs: "I might prefer
-    the freeware version (as a user) and want to overwrite Microware's,
-    but... I want to do it with informed consent."  So the card says so.
+    A reader may well prefer the freeware version and choose to let it answer
+    for Microware's -- but with informed consent.  So the card says so.
     `tools/shadowed-names.txt' is the measured list and DOC/README-NAMES the
     explanation; this only decides which cards carry the line.
     """
@@ -459,8 +458,8 @@ def load_requires(path):
 def load_changes(path):
     """What this collection changed in a program, from tools/changes.psv.
 
-    rdoggett, 2026-09-24: "Anything we do alter or rename, we should scribble
-    notes on the card if we have that information still."  One line per
+    Anything this collection altered or renamed gets a note on its card,
+    where the information survives.  One line per
     program, `name|note'.  A program ported here with ORIG/ and README.OSK
     beside its source gets a pointer to that README without a line here.
     """
@@ -541,10 +540,10 @@ def shared_names(root):
     rather than copies: `gcc' and `gpp' (GCC139 and GCC2 are different
     compilers), `gnuchess' (CMDS and CMDS/GAMES), and `wish' (the shipped
     build and the one in GAMES).
-    CLAUDE.md already says a checker over this collection must compare per
-    FILE and not per name; the catalogue does not, and fixing that means
-    keying it by path, which changes the guide's shape and is a decision for
-    rdoggett rather than a tidy-up.  Reported so it is not forgotten.
+    A checker over this collection must compare per FILE and not per name;
+    the catalogue does not, and fixing that means keying it by path, which
+    changes the guide's shape -- a design decision, not a tidy-up.  Recorded
+    so it is not forgotten.
     """
     where = {}
     for d in PROGRAM_DIRS:
@@ -904,7 +903,7 @@ def render(progs, template, standalone=True):
     # card offers to run anything there.
     docs = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs")
     # `try/index.html', not `try/': opened from the Finder over file://, a
-    # directory link just opens another Finder window (rdoggett hit this).
+    # directory link just opens another Finder window.
     # Naming the file at least opens the page, which then says it needs to be
     # served -- fetch() and WebAssembly both refuse a file:// origin.
     html = html.replace("__TRY_PAGE__", json.dumps(

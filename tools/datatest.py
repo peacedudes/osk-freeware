@@ -6,7 +6,7 @@
 
 Why this exists
 ---------------
-`tools/verify_all.sh' asks "did it print anything" and `tools/playtest.py'
+A bare sweep asks "did it print anything" and `tools/playtest.py'
 asks "what did the screen look like". Neither is the right question for the
 390 programs on this disk that take data in and put data out. A netpbm
 converter that writes a corrupt image prints nothing at all and passes both.
@@ -221,8 +221,7 @@ def run_family(path, image, workdir):
         print("  no `load' staged: set OS9SDK to your OS-9 system, "
               "or the cases that load a module will fail")
     # /h0 IS THIS DISK TOO, and that is not a convenience -- it is the
-    # arrangement notes/DECISION-placement.md settles on and DOC/README-CIO
-    # documents: mount the collection as /dd and again as /h0, so the
+    # arrangement the guides give and DOC/README-CIO documents: mount the collection as /dd and again as /h0, so the
     # 139 programs carrying a hardcoded /h0 path find what they are looking
     # for. `drive.py' has always done this and the other three harnesses did
     # not, which meant a program could pass under one and fail under another
@@ -246,7 +245,7 @@ def run_family(path, image, workdir):
         # RUN AS `tester', NOT AS THE SUPER-USER.  RBF lets 0.0 past every
         # permission check, so as su a file a reader cannot read or write
         # still passes -- nn's owner-only GROUPS file hid that way until
-        # 2026-09-23.  rdoggett chose tester the same day.  The disk's GNU su
+        # 2026-09-23.  The disk's GNU su
         # hands the script to bash.  A family marked `user su' keeps the
         # super-user; HARNESS_USER=su runs everything the old way.
         user = fam["user"] or os.environ.get("HARNESS_USER", "tester")

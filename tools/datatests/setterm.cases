@@ -3,8 +3,8 @@
 # `/dd/sys/setterm' is the file setterm falls back on when TERM names a
 # terminal it does not know.  DOC/DEPENDS has listed it as absent since the
 # day DEPENDS was generated, and it was in setterm2.lzh all along, four
-# files away from the binary somebody extracted.  `tools/archive_gaps.py'
-# is what found it.
+# files away from the binary somebody extracted.  A scan of what each origin
+# archive holds that the disk does not is what found it.
 
 family  setterm
 

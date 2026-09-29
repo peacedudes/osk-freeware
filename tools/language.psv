@@ -6,7 +6,7 @@
 # German at the terminal.  The catalogue marks these on the card ("in German")
 # and offers them as a filter, because they are hard to use without the
 # language -- and because a good many OS-9 installations are in Germany, for
-# whom that is the point.  rdoggett, 2026-09-10.
+# whom that is the point.
 ask|German|what it prints: the slogans wisecrack serves
 biory|German|every prompt: name, date of birth, the chart's headings
 calender|German|the year it prints, holidays and all, and its one question
