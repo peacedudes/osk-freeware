@@ -1,5 +1,21 @@
 # osk-freeware
 
+    $ banner1 -d -s OS-9
+        OOOOOO        SSSSSSSS                        99999999
+        OOOOOO        SSSSSSSS                        99999999
+      OOOO  OOOO    SSSS    SSSS                    9999    9999
+      OOOO  OOOO    SSSS    SSSS                    9999    9999
+    OOOO      OOOO  SSSSSS                          9999    9999
+    OOOO      OOOO  SSSSSS                          9999    9999
+    OOOO      OOOO    SSSSSS        ------------      9999999999
+    OOOO      OOOO    SSSSSS        ------------      9999999999
+    OOOO      OOOO        SSSSSS                            9999
+    OOOO      OOOO        SSSSSS                            9999
+      OOOO  OOOO    SSSS    SSSS                          9999
+      OOOO  OOOO    SSSS    SSSS                          9999
+        OOOOOO        SSSSSSSS                        999999
+        OOOOOO        SSSSSSSS                        999999
+
 Over a thousand programs written for **OS-9/68000** by the people who ran
 it, gathered on one disk image. Every one has been run. Most come with their
 source and their documentation.
@@ -31,14 +47,6 @@ screen of it running. Press "Try it in your browser" on any card and the
 program will start running in the page. Your own licensed OS-9, if you have
 one, can come along: "Open disk as /h1" attaches it, and the programs that
 want your `runb`, shell or compiler find them there.
-
-    $ cursive To the stars
-      ______
-        /       _/_ /             _/_
-     --/ __     /  /_  _      _   /  __.  __  _
-    (_/ (_)    <__/ /_</_    /_)_<__(_/|_/ (_/_)_
-
-That is `cursive`, on the disk, captured as it ran.
 
 **What is here.** bash, ksh and vi. Several C compilers, with yacc, bison,
 flex and make. TeX, LaTeX and METAFONT. netpbm, JPEG and a ray tracer. elm,
