@@ -1,37 +1,24 @@
-$ gothic -h Ahoy
+$ gothic -h Love
 
-             OO
-              OOO
-               OOO
-               OOO                O
-              OOOOOOO              OO
-             OOOO      OOOO         OOO
-             OOOO            OOOO   OOOO
-             OOOO             OOOOOOOOOOO        O
-             OOOO             OOOO     OOOOO      OO
-                OO            OOOO           OOOOOOOO
-                              OOOO            OOOOOOO
-                              OOOO     OOOOOOOOOOOOO
-                              OOOOOOOOOOOOOOOOOOO
-                         OOOOOOOOOOOOOOOOOO
-                  OOOOOOOOOOOOOOOOOO
-               OOOOOOOOOOOOOO
-             OOOOOOOOO
+                                           OO
+             OO                               OOO
+              OO              O                OOO
+               OOO             OOO             OOOO
+               OOOO            OOOO            OOOO
+                OOOO           OOOOO           OOOO
+                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+               OOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+               OOOOO   OOOOOOOOOOOOOOOOOOOOOOOOOO  O
+              OOOOOO                           OOOOOO
+              OOOOO                           OOOOO
+             OOOOOO                            OOO
+             OOOOO                              OO
+             OOOO                                 O
              OOOO
-             OOO
               OOO
-
-
-                                             O
-              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-             OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-              OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                O            O
-                                OO
-                               OOOO
-              OOOOOOOOOOOOOOOOOOOO
-             OOOOOOOOOOOOOOOOOOOO
-              OOOOOOOOOOOOOOOOOO
+              OOO
+               OO
+                 O
 
 
                  OOOOOOOOOOOOO
@@ -47,11 +34,24 @@ $ gothic -h Ahoy
 
 
 
-    OOOO       OOOOOOOOOOOOOOOOOOOO
-   OOOOO      OOOOOOOOOOOOOOOOOOOO
-  OOOOOO     OOOOOOOOOOOOOOOOOOOO
- OOO          O
- OO            O
-  O             O               OO
-   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+                 OOOOOOOOOOOOOOOOOO
+                OOOOOOOOOOOOOOOOOO
+               OOOOOOOOOOOOOOOOOO
+              OOOO
+             OOOO                OO
+              OO                OOOO
+               OO              OOOOOO
+                 OOO       OOOOOOOOO
+                    OOOOOOOOOOOOOO
+
+
+                   OOOOOOOOOO
+                  OOOOOOOOOOOO
+                 OOOOOOOOOOOOOO
+                OOOO    O      O
+               OOOO      O      O
+              OOOO        O     OO
+             OOOO          O   OOOO
+              OOOO          O OOOO
+               OOOO          OOOO
+                OO            OO

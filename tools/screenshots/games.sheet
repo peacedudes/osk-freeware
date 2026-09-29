@@ -1209,11 +1209,11 @@ cap     one at a time like a game-show board, and settle as the line.  Shown
 cap     as a strip, one line per frame, top to bottom: Wheel of Fortune
 cap     (style 14), then Expand text outward (style 5).  zot -s names all
 cap     fourteen.
-try     zot -s=14 "A journey of a thousand miles begins with a single step."
+try     zot -s=14 "That's one small step for man, one giant leap for mankind."
 frames
-run     zot -s=14 "A journey of a thousand miles begins with a single step."
+run     zot -s=14 "That's one small step for man, one giant leap for mankind."
 wait    6
-run     zot -s=5 "A journey of a thousand miles begins with a single step."
+run     zot -s=5 "That's one small step for man, one giant leap for mankind."
 wait    6
 
 shot    convert

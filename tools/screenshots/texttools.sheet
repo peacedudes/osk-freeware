@@ -41,8 +41,8 @@ shot    cursive
 cap     cursive writes the word you give it as a single line of joined,
 cap     sloping script, the kind of flourish people once signed email
 cap     with.
-try     cursive Carpe diem
-run     cursive Carpe diem
+try     cursive Ad astra
+run     cursive Ad astra
 wait    6
 
 shot    diff
@@ -98,10 +98,10 @@ size    62 80
 cap     Sets a word in fraktur capitals, each letter drawn large down the
 cap     screen, for a title page or a poster.  This is `-h', half size,
 cap     which fits 80 columns; without it the letters are over 100 wide.
-try     gothic -h Ahoy
+try     gothic -h Love
 run     clear
 wait    1
-run     gothic -h Ahoy
+run     gothic -h Love
 wait    6
 snap
 

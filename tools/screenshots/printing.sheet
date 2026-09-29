@@ -109,7 +109,7 @@ cap     job -- and answers with the job's number.  The spooler here -- started w
 cap     -- prints into a pipe nobody reads, so the jobs wait in the queue
 cap     for lpq and lprm to find.  Name your own printer to print.
 try     lp tmp/PRT/letter.txt tmp/PRT/listing
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rWish you were here.\r" > /dd/tmp/PRT/letter.txt
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rGo outside tonight and look at the stars.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
 run     builtin cd /dd
 run     lpsched /pipe/prt &
@@ -124,7 +124,7 @@ cap     The spooler's queue: the default printer, how many files wait,
 cap     and a line for each -- here two listings, behind a printer that is
 cap     a pipe nobody reads, so they stay in the queue.
 try     lpq
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rWish you were here.\r" > /dd/tmp/PRT/letter.txt
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rGo outside tonight and look at the stars.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
 run     builtin cd /dd
 run     lpsched /pipe/prt &
@@ -140,7 +140,7 @@ fresh
 cap     Takes a job out of the spooler's queue by its number, or all of
 cap     them with `-'.  Two listings wait; after `lprm 2', lpq counts one.
 try     lprm 2; lpq
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rWish you were here.\r" > /dd/tmp/PRT/letter.txt
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rGo outside tonight and look at the stars.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
 run     builtin cd /dd
 run     lpsched /pipe/prt &
@@ -156,7 +156,7 @@ fresh
 cap     Stops the print spooler, saying nothing.  `Spooler is not active'
 cap     is lpq's line afterwards, reporting that it has stopped.
 try     lpshut; lpq
-run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rWish you were here.\r" > /dd/tmp/PRT/letter.txt
+run     mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf "Dear reader,\rGo outside tonight and look at the stars.\r" > /dd/tmp/PRT/letter.txt
 run     ls -l /dd/CMDS > /dd/tmp/PRT/listing
 run     builtin cd /dd
 run     lpsched /pipe/prt &

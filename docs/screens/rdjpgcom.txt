@@ -1,2 +1,2 @@
 $ rdjpgcom jc.jpg; echo ""
-A picture is worth a thousand words.
+We choose to go to the Moon.

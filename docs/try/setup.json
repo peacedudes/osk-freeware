@@ -2405,7 +2405,7 @@
 },
 "lp": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rWish you were here.\\r\" > /dd/tmp/PRT/letter.txt",
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rGo outside tonight and look at the stars.\\r\" > /dd/tmp/PRT/letter.txt",
 "ls -l /dd/CMDS > /dd/tmp/PRT/listing",
 "builtin cd /dd",
 "lpsched /pipe/prt &"
@@ -2413,7 +2413,7 @@
 },
 "lpq": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rWish you were here.\\r\" > /dd/tmp/PRT/letter.txt",
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rGo outside tonight and look at the stars.\\r\" > /dd/tmp/PRT/letter.txt",
 "ls -l /dd/CMDS > /dd/tmp/PRT/listing",
 "builtin cd /dd",
 "lpsched /pipe/prt &",
@@ -2422,7 +2422,7 @@
 },
 "lprm": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rWish you were here.\\r\" > /dd/tmp/PRT/letter.txt",
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rGo outside tonight and look at the stars.\\r\" > /dd/tmp/PRT/letter.txt",
 "ls -l /dd/CMDS > /dd/tmp/PRT/listing",
 "builtin cd /dd",
 "lpsched /pipe/prt &",
@@ -2431,7 +2431,7 @@
 },
 "lpshut": {
 "setup": [
-"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rWish you were here.\\r\" > /dd/tmp/PRT/letter.txt",
+"mkdir -p /dd/tmp/PRT > /nil 2>/nil; printf \"Dear reader,\\rGo outside tonight and look at the stars.\\r\" > /dd/tmp/PRT/letter.txt",
 "ls -l /dd/CMDS > /dd/tmp/PRT/listing",
 "builtin cd /dd",
 "lpsched /pipe/prt &"
@@ -4041,7 +4041,7 @@
 "pbyte j.ppm 2 0a",
 "pbyte j.ppm 8 0a",
 "pbyte j.ppm c 0a",
-"cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom -comment \"A picture is worth a thousand words.\" j.jpg > jc.jpg"
+"cjpeg -quality 50 j.ppm > j.jpg; wrjpgcom -comment \"We choose to go to the Moon.\" j.jpg > jc.jpg"
 ]
 },
 "rdjpgcom.070": {

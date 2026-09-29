@@ -1,9 +1,10 @@
-$ banner1 -s Cheers
+$ banner1 -s Groovy
 
-  CCCC  hhh
- CC  CC  hh
-CC       hh hh   eeee    eeee   rr rrr   sssss
-CC       hhh hh ee  ee  ee  ee   rrr rr ss
-CC       hh  hh eeeeee  eeeeee   rr  rr  ssss
- CC  CC  hh  hh ee      ee       rr         ss
-  CCCC  hhh  hh  eeee    eeee   rrrr    sssss
+  GGGG
+ GG  GG
+GG      rr rrr   oooo    oooo   vv  vv  yy  yy
+GG       rrr rr oo  oo  oo  oo  vv  vv  yy  yy
+GG  GGG  rr  rr oo  oo  oo  oo  vv  vv  yy  yy
+ GG  GG  rr     oo  oo  oo  oo   vvvv    yyyyy
+  GGGGG rrrr     oooo    oooo     vv        yy
+                                        yyyyy

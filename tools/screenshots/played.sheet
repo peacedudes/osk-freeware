@@ -81,17 +81,17 @@ send    y
 wait    2
 
 shot    banner
-cap     A cheerful Howdy in seven-row letters.
-try     banner Howdy
-run     banner Howdy
+cap     Peace, in seven-row letters.
+try     banner Peace
+run     banner Peace
 wait    5
 
 shot    banner1
-cap     With `-s' each letter is built out of itself: Cheers in letters made of
+cap     With `-s' each letter is built out of itself: Groovy in letters made of
 cap     its own letters. -d doubles the size, -i slants it and -c= picks the
 cap     character.
-try     banner1 -s Cheers
-run     banner1 -s Cheers
+try     banner1 -s Groovy
+run     banner1 -s Groovy
 wait    5
 
 

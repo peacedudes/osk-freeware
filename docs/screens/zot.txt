@@ -1,42 +1,42 @@
-_ _______ __ _ ________ _____ ______ ____ _ ______ _____
-_ _______ __ _ ________ _____ ______ ____ _ ______ ____.
-A _______ __ _ ________ _____ ______ ____ _ ______ ____.
-A _______ __ a _____a__ _____ b_____ ____ a ______ ____.
-A _______ __ a _____a_d _____ b_____ ____ a ______ ____.
-A _____e_ __ a _____a_d ___e_ be____ ____ a _____e __e_.
-A _____e_ _f a _____a_d ___e_ be____ ____ a _____e __e_.
-A _____e_ _f a _h___a_d ___e_ beg___ ___h a ___g_e __e_.
-A _____e_ _f a _h___a_d _i_e_ begi__ _i_h a _i_g_e __e_.
-A j____e_ _f a _h___a_d _i_e_ begi__ _i_h a _i_g_e __e_.
-A j____e_ _f a _h___a_d _ile_ begi__ _i_h a _i_gle __e_.
-A j___ne_ _f a _h___and mile_ begin_ _i_h a _ingle __e_.
-A jo__ne_ of a _ho__and mile_ begin_ _i_h a _ingle __e_.
-A jo__ne_ of a _ho__and mile_ begin_ _i_h a _ingle __ep.
-A jo_rne_ of a _ho__and mile_ begin_ _i_h a _ingle __ep.
-A jo_rne_ of a tho_sand miles begins _ith a single step.
-A journe_ of a thousand miles begins _ith a single step.
-A journe_ of a thousand miles begins with a single step.
-A journey of a thousand miles begins with a single step.
-$ zot -s=5 "A journey of a thousand miles begins with a single step."
-                          A ep.
-                         A jtep.
-                        A jostep.
-                       A jou step.
-                     A journle step.
-                    A journegle step.
-                   A journeyngle step.
-                  A journey ingle step.
-                A journey of single step.
-               A journey of a single step.
-              A journey of a a single step.
-             A journey of a h a single step.
-           A journey of a thith a single step.
-          A journey of a thowith a single step.
-         A journey of a thou with a single step.
-        A journey of a thouss with a single step.
-      A journey of a thousanins with a single step.
-     A journey of a thousandgins with a single step.
-    A journey of a thousand egins with a single step.
-   A journey of a thousand mbegins with a single step.
- A journey of a thousand mils begins with a single step.
-A journey of a thousand miles begins with a single step.
+______ ___ _____ ____ ___ ____ ___ _____ ____ ___ ________
+____'_ ___ _____ ____ ___ ____ ___ _____ ____ ___ ________
+____'_ ___ _____ ____ ___ ___, ___ _____ ____ ___ ________
+T___'_ ___ _____ ____ ___ ___, ___ _____ ____ ___ _______.
+T_a_'_ ___ __a__ ____ ___ _a_, ___ __a__ __a_ ___ _a_____.
+T_a_'_ ___ __a__ ____ ___ _a_, ___ __a__ __a_ ___ _a____d.
+T_a_'_ __e __a__ __e_ ___ _a_, __e __a__ _ea_ ___ _a____d.
+T_a_'_ __e __a__ __e_ f__ _a_, __e g_a__ _ea_ f__ _a____d.
+Tha_'_ __e __a__ __e_ f__ _a_, __e g_a__ _ea_ f__ _a____d.
+Tha_'_ __e __a__ __e_ f__ _a_, __e gia__ _ea_ f__ _a__i_d.
+Tha_'_ __e __a__ __e_ f__ _a_, __e gia__ _ea_ f__ _a_ki_d.
+Tha_'_ __e __all __e_ f__ _a_, __e gia__ lea_ f__ _a_ki_d.
+Tha_'_ _ne _mall __e_ f__ man, _ne gian_ lea_ f__ mankind.
+Tha_'_ one _mall __e_ fo_ man, one gian_ lea_ fo_ mankind.
+Tha_'_ one _mall __ep fo_ man, one gian_ leap fo_ mankind.
+Tha_'_ one _mall __ep for man, one gian_ leap for mankind.
+That's one small step for man, one giant leap for mankind.
+$ zot -s=5 "That's one small step for man, one giant leap for mankind."
+                            Td.
+                           Thnd.
+                          Thaind.
+                         Thatkind.
+                       That'sankind.
+                      That's mankind.
+                     That's o mankind.
+                    That's onr mankind.
+                   That's oneor mankind.
+                 That's one s for mankind.
+                That's one smp for mankind.
+               That's one smaap for mankind.
+              That's one smaleap for mankind.
+            That's one small  leap for mankind.
+           That's one small st leap for mankind.
+          That's one small stnt leap for mankind.
+         That's one small steant leap for mankind.
+        That's one small stepiant leap for mankind.
+      That's one small step f giant leap for mankind.
+     That's one small step foe giant leap for mankind.
+    That's one small step forne giant leap for mankind.
+   That's one small step for one giant leap for mankind.
+ That's one small step for ma, one giant leap for mankind.
+That's one small step for man, one giant leap for mankind.
