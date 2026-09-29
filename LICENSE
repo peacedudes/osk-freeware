@@ -46,17 +46,20 @@ THE TOOLING
 -----------
 
 The part that was written for this repository -- `tools/`, `.github/`,
-`README.md`, `notes/` -- is offered under the MIT licence, in
-`tools/LICENSE`. It is a build script, an archive packer, a generator for
-`DOC/DEPENDS` and a checker for the disk's invariants. They are kept
+`README.md` -- is offered under the MIT licence, in `tools/LICENSE`: the
+image builder, the generators for the catalogue and the disk's indexes,
+the test harnesses, and a checker for the disk's invariants. They are kept
 deliberately separate from the above so that nothing about them reads as a
 claim over the collection.
 
 
-NO MICROWARE PRODUCT IS HERE
-----------------------------
+MICROWARE'S SIX MODULES, BY PERMISSION
+--------------------------------------
 
-No Microware utilities, headers, libraries or `cio`. OS-9 is Microware's and
-is still a current product; this collection is for people running it. The
-programs were compiled with Microware's `cc`, which links its `cstart` and C
-library -- that is what a compiler is for.
+OS-9 is Microware's and is still a current product; this collection is for
+people running it.  Six of Microware's runtime modules ship on the disk by
+permission: `cio`, `csl`, `csl020`, `math` and `math881` on Microware's
+word, and `fpu` on the grant in `DOC/fpu.doc`, which ships beside it.
+`disk/SOURCES.txt` records both.  No other Microware utility, header or
+library is here.  Programs compiled with Microware's `cc` link its
+`cstart` and C library -- that is what a compiler is for.
