@@ -4,3 +4,155 @@
 # The card shows this on a line of its own, highlighted, right under "Try it":
 # the lifejacket that makes it safe to just try something.  Every line was
 # confirmed by leaving the program that way under the emulator, not assumed.
+accordian|`x', then `n' at `Play again?'
+advent|`quit' Return, then `y' Return
+advint|`quit' Return, then `y' Return
+animal|`Control-C'
+arithmetic|`Control-C'
+atc|`Control-C', then `y'
+back|`Control-C'
+backgammon|`q' Return, then `y' Return
+bandit|`q' Return at the bet prompt
+bjack|`0' Return at `Wager?'
+blackjack|`0' Return at `Wager?', then `n' Return
+blackjak|`Control-C'
+bks|`q', then `q' again at the menu
+bog|`Control-C'
+bs|no key leaves mid-game: play it out, then `n' at `[yn]?'
+bugs|`q'
+c4|`q'
+canfield|`q' Return, then `n' Return
+castle|`q' then `y'
+chess|`Control-E'
+convert|`quit' Return, then `y' Return
+corewar|any key at `Hit any key to continue'
+craps|`q'
+crib|`Control-C'
+cribbage|`Control-C'
+drawpoker|`F' then `y'
+fish|`quit' Return
+fuddle|`Control-C'
+gnuchess|`quit' Return
+gnuchessc|`quit' Return
+gnuchessn|`quit' Return
+gnuchessr|`quit' Return
+gnugo|`stop' Return, then `n' Return
+hack|`Q' then `y'
+hang|`Control-C'
+hexa|`q'
+hinterhalt|`Control-C'
+hotel|`Q' then `y'
+infocom|`quit' Return, then `y' Return -- Space first at any `[MORE]'
+infocom.tcap|`quit' Return, then `y' Return
+jotto|`Control-C'
+jumble2|`q' Return, then `q' Return again
+kalah|`-1' Return twice, then `q' Return
+knight|`q'
+lander|`q' at the title; in flight, land or crash, then `n' and Space
+larn|`Q' then `y'
+letters|stop typing: the words reach the bottom and the game ends
+mastrm|`Control-C'
+mille|`q' then `y'
+mines|`q'
+monop|`quit' Return, then `yes' Return
+moria|`Control-K', `Q', then any key twice
+mw|`Q'
+mz|`Control-C'
+napoleon|`quit' Return, then `q' Return
+nchess|`quit' Return
+nethack3|`Q', `y', then `n'
+nobs|`Control-C'
+othello|`Q'
+pacman|`q'
+paranoia|`Control-C'
+perp|`Control-C'
+poker|`Control-C'
+reversi|`Control-E'
+robots|`Control-C'
+rogue|`Q' then `y', then Space twice
+saa|`q', then `n'
+scrabble|`Q', `y', then `n'
+shuffle|`q'
+ski|`Control-C'
+snake|`x'
+sod|`q', then Return
+sokoban|`q'
+sol|`q' Return
+solx|`q' Return
+stone|`Control-C'
+teachgammon|`Control-C'
+tess|`quit' Return, then `n' Return
+tet|`q', then `q' again at the menu
+thricken|`q'
+torus|`q'
+trek|`terminate' Return, then `n' Return
+trek73|`Control-C', then `yes' Return
+tt|`q'
+tttt|`q'
+typefast|`Control-C'
+ularn|`Q' then `y'
+vcraps|`X'
+wanderer|`q'
+world|`quit' Return, then `y' Return
+worm|`Control-C'
+wump|`q' Return
+yahtzee|`q'
+yahtzee2|`q' then `y'
+yidslots|`0' Return
+bio|`Control-C'
+biory|Return at `Name Vorname'
+bite|`q'
+cam|`Control-C'
+card|`Control-C'
+checkfile|`Q'
+chemtab|`6' on the main menu
+cvtbase|`Escape'
+dc|`Q'
+help|`q', then Return twice
+juggle|`Control-C'
+less|`q'
+life|`Control-C'
+loan|`Control-C'
+logisim|`Escape' then `y'
+lotto|`Control-C'
+man|`q'
+more|`q' then Return
+mwb|`j' down to `Exit session', then Return
+oleo|`Escape' `x', then `kill-oleo' and Return
+rain|`Control-C'
+rot22|`Control-C'
+rpn|`q' then Return
+sc|`q' then `y'
+scqref|`q'
+textb|`Control-C'
+vc|`Control-C'
+worms|`Control-C'
+wysecrack|`Control-C', once its first line is out a minute in
+xmas|`Control-C'
+adldebug|`q' and Return
+adlrun|`quit' and Return
+beav|`Control-C', then `y' and Return, leaving without saving
+ed|`Q' and Return, leaving without writing
+editor|`!'
+elvis|`Escape', then `:q!' and Return, leaving without saving
+elvis_input|`Escape', then `:q!' and Return, leaving without saving
+em|`Control-X' `Control-C', then `y' if it asks about changes
+emacs|`Control-X' `Control-C', then `y' if it asks about changes
+forth|`bye' and Return
+gshell|`!'
+hexedit|`q'
+hist|`logout' and Return
+me|`Control-X' `Control-C', then `j' if it asks about changes
+mg|`Control-X' `Control-C', then `n' and `yes' Return if it asks about changes
+mshell|`Control-C'
+sh|`exit' and Return
+stevie|`Escape', then `:q!' and Return, leaving without saving
+umacs|`Control-X' `Control-C', then `y' if it asks about changes
+vi|`Escape', then `:q!' and Return, leaving without saving
+vi.elvis|`Escape', then `:q!' and Return, leaving without saving
+vi_1.0|`Escape', then `:q!' and Return, leaving without saving
+view|`Escape', then `:q!' and Return, leaving without saving
+wam.sbprolog|`halt.' and Return
+wish|`Control-D'
+xlisp|`(exit)' and Return
+bc|`quit' then Return
