@@ -12,3 +12,709 @@ jargon|-g|build the index for a document of your own
 jargon|-c|check a document and its index for format errors and staleness
 jargon|srcname|a document other than the Jargon File (default: jargon, in VH)
 jargon|indexname|its index, if not srcname.idx
+fitstopnm|-image N|for a FITS file holding several images, the one to convert
+fitstopnm|-noraw|write a plain (ASCII) anymap instead of a raw one
+fitstopnm|-scanmax|scan the data for its range even when the header gives one
+fitstopnm|-printmax|print the minimum and maximum values and stop
+fitstopnm|-min f|take f as the lowest value, overriding the file's own
+fitstopnm|-max f|take f as the highest value, overriding the file's own
+g3topbm|-kludge|skip the first few lines, where some fax files carry junk
+g3topbm|-reversebits|read bits least significant first; try it on `bad code word'
+g3topbm|-stretch|double every row, for faxes sent in low-quality mode
+gemtopbm|-debug|report each run and row of the .img file as it is decoded
+giftopnm|-verbose|describe the GIF file as it is read
+giftopnm|-comments|print only the file's GIF89 comment fields
+giftopnm|-image N|which picture to convert when the file holds more than one
+ilbmtoppm|-verbose|describe the ILBM file and its chunks as it is read
+ilbmtoppm|-ignore <chunkID>|skip the chunk with this four-letter IFF name
+ilbmtoppm|-isham, -isehb|treat the picture as HAM or Extra_Halfbrite whatever its header says
+ilbmtoppm|-adjustcolors|scale a 4-bit colour map up to 8 bits
+pbmmask|-expand|grow the mask by one pixel, leaving a white border round the figure
+pbmtoepsi|-bbonly|write only the bounding box, without the bitmap inside it
+pbmtog3|-reversebits|write bits least significant first, for fax modems that want it
+pcxtoppm|-stdpalette|use the standard 16-colour palette instead of the file's own
+pgmenhance|-N|strength of the edge enhancement, a digit from 1 (least) to 9 (most, the default)
+pi3topbm|-debug|report the resolution recorded in the file
+picttoppm|-verbose|print a great deal about the PICT file as it is read
+picttoppm|-fullres|keep every image at full resolution; draw nothing but images
+picttoppm|-noheader|do not skip the 512-byte header; for PICT data without one
+picttoppm|-quickdraw|obey only QuickDraw operations, not PostScript printer ones
+picttoppm|-fontdir file|a list of BDF fonts to draw the picture's text in
+pnmalias|-bgcolor <color>|the background colour to smooth against (default black)
+pnmalias|-fgcolor <color>|the foreground colour to smooth (default white)
+pnmalias|-bonly|smooth only background pixels
+pnmalias|-fonly|smooth only foreground pixels
+pnmalias|-balias|smooth every pixel next to a background pixel
+pnmalias|-falias|smooth every pixel next to a foreground pixel
+pnmalias|-weight <w>|the filter's central weight, between 0 and 1; lower is blurrier (default 1/3)
+pnmcomp|-invert|swap the alpha mask's opaque and transparent ends
+pnmcomp|-xoff N|how far right to place the overlay; may be negative
+pnmcomp|-yoff N|how far down to place the overlay; may be negative
+pnmcomp|-alpha file|a greymap, the overlay's size, saying how opaque each pixel is
+pnmcomp|overlay|the image laid on top
+pnmcomp|image|the image underneath (default standard input)
+pnmcomp|output|where to write the result (default standard output)
+pnmcrop|-white|take the background to be white instead of guessing
+pnmcrop|-black|take the background to be black instead of guessing
+pnmcrop|-left|crop the left edge (with none of these four, all edges are cropped)
+pnmcrop|-right|crop the right edge
+pnmcrop|-top|crop the top edge
+pnmcrop|-bottom|crop the bottom edge
+pnmhisteq|-gray|in a colour image, equalise only the grey pixels and leave colours alone
+pnmhisteq|-verbose|print the histogram and the luminosity map on standard error
+pnmhisteq|-rmap pgmfile|use the luminosity map in pgmfile instead of computing one
+pnmhisteq|-wmap pgmfile|save the luminosity map computed to pgmfile, for later -rmap runs
+pnmhistmap|-white|leave the count of white pixels out of the scaling
+pnmhistmap|-black|leave the count of black pixels out of the scaling
+pnmhistmap|-max maxvalue|scale the bars as if maxvalue were the largest count
+pnmhistmap|-verbose|report progress, and the largest count used for scaling
+pnmrotate|-noantialias|move pixels without blending them, so no new colours appear
+pnmrotate|<angle>|degrees counter-clockwise, -90 to 90; negative turns clockwise
+pnmshear|-noantialias|move pixels without blending them, so no new colours appear
+pnmshear|<angle>|degrees of slant; negative slants the other way; keep well short of 90
+pnmtoxwd|-pseudodepth n|bits per pixel for a PseudoColor dump (default 8)
+pnmtoxwd|-directcolor|write a DirectColor dump whatever the number of colours
+ppmbrighten|-saturation <+-s>|change the colour saturation by this percentage
+ppmbrighten|-value <+-v>|change the brightness by this percentage; +100 doubles it
+ppmbrighten|-normalize|stretch the brightness to fill the whole range
+ppmforge|-width, -xsize <x>|width of the picture in pixels (default 256; at least the height)
+ppmforge|-height, -ysize <y>|height of the picture in pixels (default 256)
+ppmforge|-mesh <n>|size of the fractal mesh; finer looks better, costs n squared (default 256)
+ppmforge|-clouds|make clouds instead of a planet
+ppmforge|-dimension <f>|fractal dimension, 0 to 3; higher is rougher (default 2.4, clouds 2.15)
+ppmforge|-power <f>|power applied to the elevations; above 1 rougher (default 1.2, clouds 0.75)
+ppmforge|-seed <n>|seed for the random numbers; the same seed makes the same picture
+ppmforge|-hour <f>|hour at the centre of the planet, 0 to 24; 12 lights it fully
+ppmforge|-inclination, -tilt <f>|the planet's season: latitude where the star is overhead, -90 to 90
+ppmforge|-ice <f>|size of the polar ice caps (default 0.4, like Earth)
+ppmforge|-glaciers <f>|how far high ground carries ice toward the equator (default 0.75)
+ppmforge|-night|make a starry sky and nothing else
+ppmforge|-stars <n>|how many pixels are stars, in tenths of a percent (default 100)
+ppmforge|-saturation <n>|colour saturation of the stars (default 125; over 250 is science fiction)
+ppmhist|-map|write the histogram as a PPM colour-map file instead of a table
+ppmqvga|-dither|apply Floyd-Steinberg dithering
+ppmqvga|-verbose|report the colours found and the mapping made; twice for more
+ppmtoacad|-poly|draw pixels as filled polygons instead of lines, so they scale up solid
+ppmtoacad|-dxb|write an AutoCAD binary database import (.dxb) file instead of a slide
+ppmtoacad|-white|assume a white screen background; the same as -background 7
+ppmtoacad|-background <col>|AutoCAD colour number of the screen background; its pixels are dropped
+ppmtoacad|-aspect <f>|pixel width over height of the source, to make pixels square
+ppmtoacad|-8|use only the 8 pure RGB colours
+ppmtobmp|-windows|write a Microsoft Windows BMP
+ppmtobmp|-os2|write an OS/2 BMP (the default)
+ppmtogif|-interlace|write an interlaced GIF
+ppmtogif|-sort|write the colour map in sorted order
+ppmtogif|-map mapfile|take the colour map from mapfile, matching each colour to its nearest
+ppmtogif|-transparent color|mark this colour transparent; writes a GIF89a file
+ppmtoicr|-windowname windowname|title of the window it opens (default the file's name, or untitled)
+ppmtoicr|-expand expand|magnify the picture on display by this factor
+ppmtoicr|-display display|number of the screen to show it on
+ppmtoicr|-rle|send the picture run-length encoded; faster, may skew the colours
+ppmtoilbm|-ecs, -aga|Amiga chip set: ECS is 6 HAM and 5 normal planes, AGA 8 and 8
+ppmtoilbm|-ham6, -ham8|write a HAM picture with 6 or 8 planes
+ppmtoilbm|-maxplanes, -mp n|most planes for a normal ILBM, 1 to 16 (default 5)
+ppmtoilbm|-fixplanes, -fp n|give a normal ILBM exactly n planes
+ppmtoilbm|-normal|write a normal ILBM, compressed; cancels the options after it
+ppmtoilbm|-hamif, -24if, -dcif|write HAM, 24-bit or direct colour if the picture needs too many planes
+ppmtoilbm|-hamforce, -24force, -dcforce|write HAM, 24-bit or direct colour always
+ppmtoilbm|-cmaponly|write only the colour map, with no picture
+ppmtoilbm|-hambits, -hamplanes n|planes in a HAM picture, 3 to 16 (default 6)
+ppmtoilbm|-dcbits, -dcplanes r g b|bits of red, green and blue in a direct-colour picture (default 5)
+ppmtoilbm|-hires|mark the picture for the Amiga's high-resolution mode
+ppmtoilbm|-lace|mark the picture for the Amiga's interlaced mode
+ppmtoilbm|-floyd, -fs|Floyd-Steinberg dithering when the colours must be reduced
+ppmtoilbm|-compress, -nocompress|compress the picture data or not (default compress)
+ppmtoilbm|-cmethod <method>|the compression method, none or byterun1 (default byterun1)
+ppmtoilbm|-map ppmfile|use the colours in ppmfile as the colour map; it sets the planes too
+ppmtoilbm|-savemem|compress using little memory, very slowly
+ppmtomap|-sort|put the colours in sorted order
+ppmtomap|-square|make the map roughly square instead of one row
+ppmtomitsu|-sharpness <1-4>|the printer's sharpness setting (default: as the printer is set)
+ppmtomitsu|-enlarge <1-3>|enlarge the print by this factor (default 1)
+ppmtomitsu|-media <a,a4,as,a4s>|the paper loaded; the printer waits if it is not the one named
+ppmtomitsu|-copy <1-9>|number of copies (default 1)
+ppmtomitsu|-tiny|send the picture a line at a time, saving memory but slowly
+ppmtomitsu|-dpi300|allow twice the pixels, for a 300 dpi S3600-30
+ppmtopcx|-24bit|write a 24-bit PCX even when 256 colours would do
+ppmtopcx|-packed|for 16 colours or fewer, pack pixels into one plane instead of four
+ppmtopj|-center|centre the picture on an 8.5 by 11 inch page
+ppmtopj|-xpos <pos>|move the picture pos pixels across
+ppmtopj|-ypos <pos>|move the picture pos pixels down
+ppmtopj|-gamma <val>|gamma correction, a whole number (default 0)
+ppmtopj|-back <dark,lite>|whether the background is darker or lighter than the foreground
+ppmtopj|-rle|run-length encode the picture (it can come out larger)
+ppmtopj|-render <mode>|the rendering method, one of the nine names the usage line lists
+ppmtopjxl|-nopack|do not compress, which a PaintJet that is not an XL may accept
+ppmtopjxl|-gamma <n>|gamma correction; about 0.6 to 1.5 suits the PaintJet XL
+ppmtopjxl|-presentation|print in two passes for denser ink
+ppmtopjxl|-dark|enhance pictures with a dark background when they are reduced
+ppmtopjxl|-diffuse|render by error diffusion
+ppmtopjxl|-cluster|render by clustered ordered dithering
+ppmtopjxl|-dither|render by ordered dithering
+ppmtopjxl|-xshift <s>|move the picture right by s
+ppmtopjxl|-yshift <s>|move the picture down by s
+ppmtopjxl|-xsize, -width <s>|width in dots, or with pt, dp, in or cm after the number
+ppmtopjxl|-ysize, -height <s>|height in dots, or with pt, dp, in or cm after the number
+ppmtopjxl|-xscale <s>|scale the width by the factor s
+ppmtopjxl|-yscale <s>|scale the height by the factor s
+ppmtosixel|-raw|describe every pixel, with no repeat commands; far larger and slower
+ppmtosixel|-margin|leave a 1.5 inch left margin
+ppmtotga|-name <tganame>|a name to record inside the Targa file
+ppmtotga|-mono|write 8-bit monochrome; the input must be a bitmap or greymap
+ppmtotga|-cmap|write colour-mapped; the input must have 256 colours or fewer
+ppmtotga|-rgb|write 24-bit unmapped colour
+ppmtotga|-norle|do not run-length encode, for readers that cannot decode it
+sgitopnm|-verbose|describe the SGI image file as it is read
+sldtoppm|-verbose|list the header and every vector and polygon on standard error
+sldtoppm|-info|print the slide's header on standard error: screen size, aspect ratio
+sldtoppm|-adjust|widen the picture so pixels are square when the source screen's were not
+sldtoppm|-scale <s>|scale the drawing by the factor s before it is rasterised
+sldtoppm|-dir|list the slides in a slide library on standard error
+sldtoppm|-lib <name>|take the slide with this name from a library, upper-casing the name
+sldtoppm|-Lib <name>|the same, using the name exactly as given
+sldtoppm|-xsize, -width <x>|scale to this many pixels wide, keeping the aspect ratio
+sldtoppm|-ysize, -height <y>|scale to this many pixels high, keeping the aspect ratio
+tgatoppm|-debug|print the file's header on standard error
+yuvsplittoppm|<basename>|the three files read are basename.Y, basename.U and basename.V
+yuvsplittoppm|<width> <height>|the picture's size, which raw YUV files do not record
+yuvsplittoppm|-ccir601|the values are in the CCIR 601 (MPEG) range, not JFIF (JPEG)
+msattrib|-a or +a|clear or set the archive bit, which backup programs use to mark a new file
+msattrib|-h or +h|clear or set the hidden bit, which keeps the file out of DOS's DIR
+msattrib|-r or +r|clear or set the read-only bit
+msattrib|-s or +s|clear or set the system bit
+msattrib|msdosfile|a file on the MS-DOS disk (a:name); with no bit given, lists its bits
+mscopy|-t|text file: convert line ends between DOS and OS-9 as it copies
+mscopy|-n|do not ask before overwriting an OS-9 file
+mscopy|-m|keep the file's modification time
+mscopy|-v|say so when a source is a directory and is passed over
+mscopy|-V|print the mtools version and exit; it must be the first argument
+mscopy|-o|if the name is already taken on the MS-DOS disk, overwrite that file
+mscopy|-a|if the name is already taken, pick a new name without asking
+mscopy|-r|if the name is already taken, ask for a new name
+mscopy|-s|if the name is already taken, skip the file
+mscopy|-Q|with several files, stop at the first one that fails
+mscopy|sourcefile|a name with a drive letter (a:file) is on the DOS disk; one without, OS-9's
+msdir|-V|print the mtools version and exit; it must be the first argument
+msdir|-w|wide: names across the page, without sizes or dates
+msdir|-a|also list hidden and system files
+msdir|-f|fast: do not work out the free space
+msdir|-X|bare list: no volume label, headings or totals
+msformat|-V|print the mtools version and exit; it must be the first argument
+msformat|-t tracks|number of cylinders
+msformat|-h heads|number of heads (sides)
+msformat|-s sectors|number of sectors per track
+msformat|-l label|volume label to write
+msformat|-n serialnumber|serial number to write
+msformat|-S hardsectorsize|physical sector size, given as a code n: the sector is 2^(n+7) bytes
+msformat|-M softsectorsize|sector size the DOS filesystem uses, in bytes; default the physical one
+msformat|-1|do not use a 2m format, even on a disk with 2m geometry
+msformat|-2 track0sectors|2m format, with this many sectors on track 0, head 0
+msformat|-a|make an Atari-style serial number
+msformat|-c sectors|cluster size in sectors (raised by itself if the FAT would be too big)
+msformat|-r sectors|size of the root directory in sectors
+msformat|-H hidden|number of hidden sectors, for a partition not starting on a track
+msformat|-C|create the disk image file first; of no use on a real drive
+msformat|-F|format as FAT32 (experimental)
+msformat|drive:|the drive, as a: -- this writes a DOS filesystem, not a low-level format
+msinfo|-v|also print a hex dump of the boot sector
+msinfo|drive|the drive letter, as a:
+mslabel|-v|show the label as corrected when the one given is not a valid DOS label
+mslabel|-s|show the existing label and change nothing
+mslabel|-c|clear the existing label without asking
+mslabel|-V|print the mtools version and exit; it must be the first argument
+mslabel|drive:|the drive, any new label right after the colon (a:MYDISK); else it asks
+msmd|-V|print the mtools version and exit; it must be the first argument
+msmd|-X|print nothing when a directory cannot be made
+msmd|file|the MS-DOS directory to make, as a:newdir; name several to make several
+msmove|-v|print a remark when a whole directory has been moved
+msmove|-V|print the mtools version and exit; it must be the first argument
+msmove|-m|if the name is already taken, ask what to do (the default)
+msmove|-o|if the name is already taken, overwrite that file
+msmove|-a|if the name is already taken, pick a new name without asking
+msmove|-r|if the name is already taken, ask for a new name
+msmove|-s|if the name is already taken, skip the file
+msread|-t|text file: convert line ends between DOS and OS-9 as it copies
+msread|-n|do not ask before overwriting an OS-9 file
+msread|-m|keep the file's modification time
+msread|-v|say so when a source is a directory and is passed over
+msread|-V|print the mtools version and exit; it must be the first argument
+msread|-o|if the name is already taken on the MS-DOS disk, overwrite that file
+msread|-a|if the name is already taken, pick a new name without asking
+msread|-r|if the name is already taken, ask for a new name
+msread|-s|if the name is already taken, skip the file
+msread|-Q|with several files, stop at the first one that fails
+msread|sourcefile|a name with a drive letter (a:file) is on the DOS disk; one without, OS-9's
+msren|-v|print a remark when a whole directory has been moved
+msren|-V|print the mtools version and exit; it must be the first argument
+msren|-m|if the new name is already taken, ask what to do (the default)
+msren|-o|if the new name is already taken, overwrite that file
+msren|-a|if the new name is already taken, pick another without asking
+msren|-r|if the new name is already taken, ask for another
+msren|-s|if the new name is already taken, skip the file
+msren|targetfile|a plain new name renames in place; one with a / or : moves it
+mstype|-t|text file: drop DOS's line feeds and stop at the ^Z end mark
+mstype|-V|print the mtools version and exit; it must be the first argument
+mstype|sourcefile|MS-DOS files, as a:readme.txt, written one after another to standard output
+mswrite|-t|text file: convert line ends between DOS and OS-9 as it copies
+mswrite|-n|do not ask before overwriting an OS-9 file
+mswrite|-m|keep the file's modification time
+mswrite|-v|say so when a source is a directory and is passed over
+mswrite|-V|print the mtools version and exit; it must be the first argument
+mswrite|-o|if the name is already taken on the MS-DOS disk, overwrite that file
+mswrite|-a|if the name is already taken, pick a new name without asking
+mswrite|-r|if the name is already taken, ask for a new name
+mswrite|-s|if the name is already taken, skip the file
+mswrite|-Q|with several files, stop at the first one that fails
+mswrite|sourcefile|a name with a drive letter (a:file) is on the DOS disk; one without, OS-9's
+afm2tfm|foo[.afm]|the Adobe font metrics file to read; the options come after it
+afm2tfm|-O|in the .vpl, write every character code in octal, never as a letter
+afm2tfm|-v bar|also write bar.vpl, a virtual font keeping every kern and ligature
+afm2tfm|-V bar|the same, made up as a small-caps font
+afm2tfm|-p encodingfile|re-encode the PostScript font by this encoding file
+afm2tfm|-t encodingfile|encoding for the TeX side of the virtual font
+afm2tfm|-T encodingfile|use this encoding for both the font and the TeX side
+afm2tfm|-e ratio|stretch the characters horizontally by this factor
+afm2tfm|-s slant|slant the characters by this amount
+afm2tfm|foo[.tfm]|name for the TFM file written (default: the .afm file's name)
+bison|-d|also write name.h, the token codes and YYSTYPE for a separate yylex
+bison|-l|put no #line commands in the parser
+bison|-t|define YYDEBUG in the parser, so its debugging is compiled in
+bison|-v|also write name.output, describing every state and conflict
+bison|-y|name the output files as yacc does: y.tab.c, y.tab.h, y.output
+bison|-V|print the version number
+bison|-b file-prefix|start every output file name with this, as if the input were prefix.c
+bison|-o outfile|name of the parser file; the other outputs are named after it
+bison|-p name-prefix|start the parser's external names with this in place of yy
+bison|--debug|the same as -t
+bison|--defines|the same as -d
+bison|--fixed-output-files|the same as -y
+bison|--no-lines|the same as -l
+bison|--verbose|the same as -v
+bison|--version|the same as -V
+bison|--yacc|the same as -y
+bison|--file-prefix=prefix|the same as -b
+bison|--name-prefix=prefix|the same as -p
+bison|--output-file=outfile|the same as -o
+bison|grammar-file|the grammar, usually name.y; the parser goes to name.tab.c
+dmake|-A|allow AUGMAKE-style inference rule transformations
+dmake|-e|take the environment as macros, the makefile overriding them
+dmake|-E|the same, but the environment overrides the makefile
+dmake|-h|print the command summary
+dmake|-i|ignore errors and go on making other targets
+dmake|-k|after a failed command, go on making what does not depend on it
+dmake|-n|print the commands it would run, without running them
+dmake|-p|print the makefile as digested, for debugging
+dmake|-q|make nothing: exit 0 if the target is up to date, 1 if not
+dmake|-r|do not read the startup makefile
+dmake|-s|silent: do not echo commands, and suppress warnings
+dmake|-S|run recipes one after another, never concurrently
+dmake|-t|touch the targets, bringing them up to date without running anything
+dmake|-T|do not perform transitive closure on the inference graph
+dmake|-u|make everything, as though every prerequisite were out of date
+dmake|-V|print the version and the built-in macros
+dmake|-x|export the command-line and makefile macros to the environment
+dmake|-v{dfimt}|say what it makes: d directory changes, f file I/O, i inference, m updates
+dmake|-vt|keep the temporary files it would otherwise delete
+dmake|-P#|run up to # recipes at once, where the system allows it
+dmake|-f file|read this makefile; - is standard input
+dmake|-K file|track state in this file (.KEEP_STATE)
+dmake|macro=value|set a macro, overriding the makefile's value
+dmake|macro*=value|set it only if it has no value yet
+dmake|macro:=value|expand the value once, when it is set
+dmake|macro+=value|add to the macro's existing value
+dmake|target|what to make (default: the first target in the makefile)
+gftopk|-v|report the files, the font's comment and the size before and after
+gftype|-m|show the GF commands beside the glyphs
+gftype|-i|print each glyph as a picture in asterisks
+lout|-i<filename>|include this file from the include path first
+lout|-s|do not read or write the cross-reference database
+lout|-e<filename>|send error messages to this file
+lout|-o<filename>|send the PostScript to this file, not standard output
+lout|-I<dirname>|also search this directory for @Include and -i files
+lout|-C<dirname>|also search this directory for character encoding (.CEV) files
+lout|-F<dirname>|also search this directory for font metrics (.AFM) files
+lout|-D<dirname>|also search this directory for databases
+lout|-EPS|write Encapsulated PostScript, for including in another document
+lout|-V|print the version
+pktogf|-v|report the files, the font's comment and the size before and after
+pltotf|-verbose|print the banner and each character code as it is converted
+weave|changefile[.ch]|changes to apply; name one always -- DOC/tex/none.ch is an empty one
+weave|-x|leave out the index and the list of section names
+adlrun|filename|the compiled world to play (default: adlcomp.out)
+adlrun|-d|trace each instruction as it runs, for debugging a world
+adlrun|-h|print a header line of room name, score and moves, if the world allows it
+adlrun|-r savefile|start from a game saved earlier in savefile
+anagram|-d dictionary|search this word list instead of GAMES/words
+anagram|-m number|ignore dictionary words shorter than this (default 2)
+anagram|-l|also list partial matches, with the leftover letters in brackets
+anagram|-r|use the leftover letters again, to unscramble a whole phrase (slow)
+arithmetic|-o +-x/|the operations to drill, any of + - x / (default + and -)
+arithmetic|-r range|the largest operand (default 10)
+bm|-u user|read this user's mailbox instead of the one bm.rc names
+bm|-f file|read the mail in this file instead of a mailbox
+bm|-r rcfile|use this configuration file instead of bm.rc
+bm|-s subject|the subject of the letter being sent
+bm|-q|do not print the opening banner
+bm|addr|send a letter to this address instead of reading mail
+bmgtest|-i|ignore case
+bmgtest|-n|put each matching line's byte offset in the file in front of it
+bmgtest2|-i|ignore case
+bmgtest2|-n|put each matching line's byte offset in the file in front of it
+calcdate|mmddyy|the date to start from: month, day and year, two digits each
+calcdate|-o [-]offset|print the date this many days later, or earlier with a minus
+calcdate|-d mmddyy|print the number of days from the first date to this one
+chgrp|-z|read the file names from standard input, one to a line
+chown|-z|read the file names from standard input, one to a line
+col|-b|print no backspaces, only the last character struck in each column
+col|-f|keep half-line forward feeds instead of moving the text to the next line
+col|-x|write spaces, never tabs
+col|-l nline|keep at least nline lines in memory (default 128)
+col|-h|put tabs in place of runs of spaces (the default)
+column|-t|work out the columns the input has and line them up as a table
+column|-x|fill columns before rows
+column|-c columns|the width of the display to fill
+column|-s sep|the characters that separate columns for -t (default white space)
+comm|-1|leave out column 1, the lines only in file1
+comm|-2|leave out column 2, the lines only in file2
+comm|-3|leave out column 3, the lines in both
+comm|-|in place of file1 or file2, read standard input
+compr|-d|decompress instead
+compr|-f|write the output even if nothing is saved
+compr|-v|report how much each file shrank
+compr|-c|write to standard output and keep the original file
+compr|-V|print the version and how it was built
+compr|-b maxbits|the most bits per code; more usually packs tighter
+compress|-d|decompress instead
+compress|-f|write the output even if it is no smaller, or a file is in the way
+compress|-v|report how much each file shrank
+compress|-o|write a file the old compress 2.0 can read
+compress|-V|print the version
+compress|-b MaxBits|the most bits per code, 9 to 16 (default 16)
+compress|-c|write to standard output and keep the original file
+compress|-n|no header: for unpacking files from an old compress that wrote none
+cpr|-c|look for functions only in files whose names end in .c
+cpr|-C|print only the table of contents
+cpr|-n|number each line with its line number in the file
+cpr|-N|start the page numbers again at 1 for each file
+cpr|-s|sort the table of contents by function name within each file
+cpr|-S|the same, ignoring case
+cpr|-T title|print the file named title before the table of contents
+cpr|-t tabwidth|tab stops this far apart (default 8); 0 writes spaces only
+cpr|-p[num]|start a function on a new page unless it begins in the top num/16 (default 12)
+cpr|-r[num]|blank lines to leave after each closing }, none without a number
+cpr|-l pagelength|lines to a page (default 66)
+cpr|-f file|file holds a list of the files to print
+cpr|file|a file to print; - is standard input
+cursive|-tn|how long the tail at the end of each word is (default 1)
+cursive|-in|the least space between letters (default 1)
+cursive|message|the text to write; without it, cursive reads standard input
+cut|-d char|the field separator (default tab)
+cut|-s|leave out lines that have no separator
+cut|-c list|cut these character positions, such as 1-5,8
+cut|-f list|cut these fields, such as 3,5-7
+dbz|-a|add the lines of each file (or standard input) to the database and index
+dbz|-x|read keys from each file (or standard input) and print their lines
+dbz|-c|check the database and its index for consistency
+dbz|database|a text file keyed on each line's first field; alone, dbz builds its index
+dbz|-t c|the field separator (default tab)
+dbz|-l length|allow lines this long (default 1023 bytes)
+dbz|-q|with -c, a quicker, less thorough check
+dbz|-i|keep the index on disk, not in memory: slower, but always current
+dbz|-u|add lines without checking whether their key is already there
+dbz|-f old|size and set up a new index like the one for database old
+dbz|-p parms|the expected number of records, or records, case mapping and tag mask
+dbz|-e|with -p, take the number as the exact table size
+diff|-c|context form: the lines around each change as well
+diff|-e|output an ed script that turns file1 into file2
+diff|-f|like -e, but with the changes in the order they come in the file
+diff|-n|RCS form: like -f, with the number of lines each change affects
+diff|-number|lines of context for -c and -C (default 3)
+diff|-C|context form, naming the C function each change is in
+diff|-F regexp|in context form, show the last line before each change that matches regexp
+diff|-a|treat both files as text, even if they look binary
+diff|-b|ignore changes in the amount of white space
+diff|-w|ignore all white space
+diff|-B|ignore changes that only add or delete blank lines
+diff|-i|ignore changes of case
+diff|-I regexp|ignore changes that only add or delete lines matching regexp
+diff|-s|say so when the files are the same
+diff|-t|expand tabs in the output so the lines keep their alignment
+diff|-T|put a tab, not a space, before each line of text
+diff|-d|find the smallest set of changes, however long it takes
+diff|-H|go faster on large files with many small scattered changes
+expand|-n|the same as -t n
+expand|-t n|a tab stop every n columns instead of every eight
+expand|-t n1,n2,...|tab stops at exactly those columns, counting from zero
+expand|-i|expand only the tabs at the start of a line
+expand|+tabs=list|long form of -t
+expand|+initial|long form of -i
+filter|-n|say what would be done with the message on standard input, but do nothing
+filter|-r|list the rules as filter understands them
+filter|-v|report each message filtered on standard output
+filter|-l|log only the actions, not the messages
+filter|-q|log nothing
+filter|-f rules|read the rules from this file instead of .elm/filter_rules
+filter|-o file|send filter's messages to this file or device
+filter|-c|with -s or -S, remove the logs once they are summarised
+filter|-s|summarise the filtering log
+filter|-S|the same, with a line for every message
+fmt|-width|lines about this wide instead of 72, as in fmt -60
+freeb|-a|list the sector and size of each free block
+freeb|-h|leave out the heading with the disk's name and size
+freeb|-s|leave out the total of free blocks
+freeb|-t|count the free blocks of each size
+gnuchess|-a|do not think on the opponent's time
+gnuchess|-h|do not use the hash table
+gnuchess|-x xwndw|the evaluation window, a number
+gnuchessc|-a|do not think on the opponent's time
+gnuchessc|-t|show statistics for the hash file
+gnuchessc|-c size|create a new hash file of 2^size entries, about 65 bytes each
+gnuchessc|-s savefile|the file the save command writes
+gnuchessc|-l listfile|the file the get command reads a game from
+gnuchessc|-x xwndw|the evaluation window, a number
+gnuchessn|-a|do not think on the opponent's time
+gnuchessn|-h|do not use the hash table
+gnuchessn|-x xwndw|the evaluation window, a number
+hc|-s|put no tabs in the output, only spaces
+hc|+tab|start the next item at this column
+hc|-col|drop the first col-1 characters of every line of the next file
+hc|-l "str"|put this text in every line at that point; \n and the other C escapes work
+hc|filename|a file to set beside the others, line by line (up to thirteen)
+head|-b n|the first n blocks of 512 bytes
+head|-c n|the first n bytes instead of lines
+head|-n n|the first n lines instead of ten
+head|-q|never print the ==> name <== headings, even for several files
+head|-v|always print them, even for one file
+head|+blocks=n|long form of -b
+head|+bytes=n|long form of -c
+head|+lines=n|long form of -n
+head|+quiet, +silent|long forms of -q
+head|+verbose|long form of -v
+head|-#|a count straight after the dash, then l lines, c bytes or b blocks: head -5c
+hexedit|-v|print the version and stop
+hexedit|-d|edit a directory; for the super-user only
+hexedit|-r|read-only: look without changing anything
+juggle|-h|hold a 2-throw in the hand
+juggle|-n name|a title for the pattern
+juggle|-p pattern|the pattern in site-swap digits: 3 is the cascade, 441 a trick
+juggle|-r period|a random pattern of this many throws, 2 to 9
+juggle|-s step|the time step between frames (default 0.2; smaller is smoother)
+juggle|-v|print the version and stop
+lessecho|-ox|use x as the opening quote (default ")
+lessecho|-cx|use x as the closing quote (default ")
+lessecho|-pn|the opening quote as a character code, n
+lessecho|-dn|the closing quote as a character code, n
+lessecho|-a|quote every argument, not only those with spaces in
+listalias|-s|list only the system aliases
+listalias|-u|list only your own aliases
+listalias|expression|list only the aliases that match this regular expression
+look|-f|ignore case
+look|file|the file to search; it must be sorted
+lwf|-d|print debugging information
+lwf|-i#|indent the text # inches from the left edge (default about 1/3 inch)
+lwf|-l|landscape instead of portrait
+lwf|-m|leave margins for a three-hole punch
+lwf|-olist|print only these pages: 3, 2:5, :4 or 6: (default : for all)
+lwf|-p[str]|paginate with page headers through pr, passing it str
+lwf|-r|reverse the page order, for printers that stack face up
+lwf|-s#|point size: 7, 8, 9, 10, 11 or 12 (default 10)
+lwf|-t#|tab stops every # characters (default 8)
+lwf|-v|report page layout and progress on standard error
+lwf|-S|no print spooler: add a header page and end-of-file marks
+lwf|-c#|print # copies of each page (not collated)
+lwf|-P file|use this PostScript prologue instead of the standard one
+makedb|-o dbmname|write dbmname.dir and .pag (default /dd/usr/lib/smail/palias)
+makedb|-a|add to the existing database instead of starting it afresh
+makedb|file|pathalias output, one host<TAB>route per line (default standard input)
+mkdir|-p|make every missing directory on the way; one that exists is no error
+mkdir|-m mode|set permissions from a Unix octal mode (OS-9's differ: check with attr)
+mkdir|+path|the same as -p
+mkdir|+mode mode|the same as -m mode
+newalias|-g|rebuild the system-wide aliases instead of your own .elm/aliases.text
+nobs|-v|print the version number and exit
+nsquery|-d|trace the resolver's queries and answers
+nsquery|host|the name to look up
+nsquery|server|ask this name server instead of the default one
+paste|-s|join all the lines of each file into one line, a file at a time
+paste|-d<list>|separate fields with these characters in turn (default tab; \t \n \0)
+paste|files|the files to join side by side; - reads standard input
+pathalias|-v|report progress and counts on standard error
+pathalias|-c|print each route's cost before it
+pathalias|-i|ignore case in host names
+pathalias|-D|make routes that go beyond a domain cost more
+pathalias|-f|print the cost of the first hop before each route
+pathalias|-I|the local host is on the Internet, within reach of the DNS
+pathalias|-l localname|route from this host (default $HOSTNAME, then /dd/SYS/hostname)
+pathalias|-d deadlink|treat this host, or host!host link, as dead
+pathalias|-t tracelink|trace how this link is handled, on standard error
+pathalias|-g edgeout|also write the whole graph's list of links to this file
+pathalias|-s treeout|also write the cheapest-path tree to this file
+pathalias|files|map files of links and costs (default standard input)
+pdraw|-v vx vy vz|view the plot from this eye position, relative to 0,0,0
+pdraw|-o options-file|read labels and plot settings from this file
+pdraw|-Pprinter|the printer to send the PostScript to (default $PRINTER)
+pdraw|-s scale|scale the PostScript plot by 0.1 to 1.0
+pdraw|-e|scale x, y and z unequally, so the bounds make a cube
+pdraw|-h|hide hidden lines
+pdraw|-nosort|do not sort for hidden lines
+pdraw|-noplot|draw nothing on the graphics display
+pdraw|-print|send the plot to the printer without asking
+pdraw|-ps|write no PostScript file
+pdraw|infile|x-y-z data: bounds, number of curves, then each curve's points
+printmail|-p|separate messages with a form feed instead of a line of dashes
+printmail|-r filename|print from this folder instead of your incoming mailbox
+printmail|message list|as readmsg takes it: numbers (0 or $ is the last), text to match, or *
+readmsg|-a|print every message that matches the text, not just the first
+readmsg|-n|leave out all the headers
+readmsg|-h|print each message's whole header, not just From, Date and Subject
+readmsg|-p|put a form feed between messages
+readmsg|-f Folder|read this folder (a file, or =name) instead of your incoming mailbox
+readmsg|MessageNum ...|these messages, by number; 0 or $ is the last
+readmsg|pattern|the first message containing exactly this text (case matters)
+readmsg|*|every message in the folder
+relaynews|-i|send standard output to the news log
+relaynews|-n|NNTP mode: record rejected articles in the history too
+relaynews|-r|send standard output and errors to the news log and errlog
+relaynews|-s|exit non-zero when an article is discarded
+relaynews|-d fhlmt|debug filing, headers, locking, matching and/or transmission
+relaynews|-x site|do not pass the articles on to this neighbour
+rm|-d|remove an empty directory as though it were a file
+rm|-f|never ask, and say nothing about names that are not there
+rm|-i|ask before each removal
+rm|-r|remove directories and everything in them
+rm|-v|name each file as it goes
+rm|-R|the same as -r
+rm|+directory|the same as -d
+rm|+force|the same as -f
+rm|+interactive|the same as -i
+rm|+recursive|the same as -r
+rm|+verbose|the same as -v
+rnews|-x debug_level|debugging, from 0 (off) to 9 (the most)
+rnews|-n inital_newsgroup|file a single article under this newsgroup
+rnews|-z|log to standard output whatever the debug level
+rnews|newsfile|the batch received, compressed or not
+robots|-m|manual mode: nothing moves until you press a key, a game of strategy
+robots|-s|print the top hundred scores
+shar|-u archive|unpack this shell archive
+shar|-a|all of -b, -c and -v, with lines prefixed XX
+shar|-p prefix|start every archived line with prefix, removed again on unpacking
+shar|-d delim|end each file with this line (default SHAR_EOF)
+shar|-b|unpack each file under its base name, dropping the directories
+shar|-c|check each file's size with wc when it is unpacked
+shar|-v|name each file as it is unpacked
+slice|-f filename|read this file instead of standard input
+slice|-a|split after the matching line rather than before it
+slice|-x|leave the matching lines out of the pieces
+slice|-i<n>|start the #n numbering at n (default 1)
+slice|-m|split a mailbox at each From line, naming pieces by date and time
+slice|-s|split where a shell script starts (a #!/bin/sh line)
+slice|-n<n>|split every n lines, with no pattern
+slice|-r file|send lines before the first match here (default thrown away)
+slice|-e expression|split at lines matching this ed-style pattern
+slice|format|names for the pieces: #f file name, #n count, #1-#9 words of the match
+sort|-c|check only: exit 1 with a disorder message if the input is not sorted
+sort|-m|merge files that are each already sorted
+sort|-u|print only one of each run of equal lines
+sort|-t separator|fields are split by this character, not by runs of blanks
+sort|-o output-file|write the result here; it may be one of the inputs
+sort|-b|ignore blanks at the start of a key
+sort|-d|dictionary order: only letters, digits and blanks count
+sort|-f|fold lower case into upper
+sort|-i|ignore characters outside printable ASCII
+sort|-M|compare month names: JAN before FEB
+sort|-n|numeric: 10 after 9
+sort|-r|reverse the order
+sort|+POS1 [-POS2]|sort on fields POS1 to POS2, counting from 0 (+1 is the second)
+sort|-k POS1[,POS2]|sort on fields POS1 to POS2, counting from 1; 2n is field two, numerically
+sox|-V|describe each processing step as it goes
+sox|fopts|before ifile they describe the input, after it the output
+sox|-r rate|sample rate in hertz
+sox|-v volume|scale the amplitude: under 1.0 quieter, over 1.0 louder
+sox|-c channels|1, 2 or 4 channels: mono, stereo or quad
+sox|-s/-u/-U/-A|samples are signed, unsigned, u-law or A-law
+sox|-b/-w/-l/-f/-d/-D|samples are bytes, 16-bit words, 32-bit longs, floats, doubles or IEEE floats
+sox|-x|swap the byte order, for data from a machine of the other order
+sox|-t filetype|the file's type, when its name has no suffix: au, voc, wav, raw, ul ...
+sox|ifile, ofile|the sound files; the suffix gives the type; - is standard input or output
+sox|effect|one of copy, rate, avg, stat, echo, vibro, lowp or band
+split|-lines|pieces of this many lines (default 1000)
+split|-l lines|the same as -lines
+split|-b bytes[km]|pieces of this many bytes, or kilobytes or megabytes with k or m
+split|-C bytes[km]|pieces of as many whole lines as fit in this many bytes
+split|+lines=lines|the same as -l
+split|+bytes=bytes[km]|the same as -b
+split|+line-bytes=bytes[km]|the same as -C
+split|infile|the file to cut up (default standard input, or -)
+split|outfile-prefix|name the pieces prefix plus aa, ab, ac ... (default x)
+tac|-b|the separator starts each record rather than ending it
+tac|-r|the separator is a regular expression
+tac|-s separator|records end at this string instead of at a line end
+tac|+before|the same as -b
+tac|+regex|the same as -r
+tac|+separator=separator|the same as -s
+tput|-Ttype|the terminal type (default $TERM)
+tput|-e|print no error messages; the exit code still says
+tput|-nlines|how many lines the capability affects, for its padding
+tput|capname|the capability: a string is printed, a number too, a flag sets the exit code
+tput|x y|the two numbers for a cursor-movement capability
+trek73|-t|terse: skip the opening description of the scenario
+trek73|-c captain's name|your name as captain, instead of being asked
+trek73|-s sex|m or f, for how the crew address you, instead of being asked
+trek73|-S science officer|name the science officer (default Spock)
+trek73|-E engineer|name the chief engineer (default Scott)
+trek73|-C communications officer|name the communications officer (default Uhura)
+trek73|-N navigator|name the navigator (default Chekov)
+trek73|-H helmsman|name the helmsman (default Sulu)
+trek73|-f enemy captain|name the enemy's commander
+trek73|-r enemy race|Klingon, Romulan, Kzinti, Gorn, Hydran, Lyran, Tholian or Orion
+trek73|-d command delay time|seconds allowed to enter each command (default 30)
+trek73|-y|silly: Monty Python can turn up as the enemy
+trek73|-T|teletype: some output as the original teletype game printed it
+trek73|-n shipname|name your ship (default one chosen at random)
+trek73|-F enemy ship type|DD, CL, CA or DN, or a ship of your own design from shipyard
+trek73|-l federation ship type|your ship's class: DD, CL, CA or DN
+trek73|-R|restore a saved game; on OS-9 it says saving is not possible
+tt|-s|print the high-score table and leave
+tt|-l#|start at level #, from -10 to 20
+ul|-i|show underlining as a separate line of dashes beneath the text
+ul|-tTerm|use this terminal type instead of $TERM
+unexpand|-tab1[,tab2[,...]]|the same as -t
+unexpand|-t tab1[,tab2[,...]]|one number: stops that far apart; a list: stops at those columns; implies -a
+unexpand|-a|replace every run of spaces that reaches a stop, not only leading ones
+unexpand|+tabs=tab1[,tab2[,...]]|the same as -t
+unexpand|+all|the same as -a
+unshar|-f|unpack even if the input does not look like a shell archive
+unshar|-s|save the mail or news headers in file.hdr (UNSHAR.HDR from standard input)
+unshar|-c dir|change to this directory first, making it if need be
+unshar|-h hdrfile|append the headers to this file
+uucp|-c|do not copy the file into the spool; send it from where it is at call time
+uucp|[system!]fromfile|the file to copy; system! puts it on a neighbour, a!b!c further away
+uucp|[system!]tofile|where it goes; a remote site usually accepts only /usr/spool/uucppublic
+vi|-t tag|edit the file that defines tag, looked up in ./tags
+vi|+[num] file|start at line num; + alone starts at the last line
+vi|+/pat file|start at the first line matching pat
+vi_1.0|-t tag|edit the file that defines tag, looked up in ./tags
+vi_1.0|+[num] file|start at line num; + alone starts at the last line
+vi_1.0|+/pat file|start at the first line matching pat
+whereis|-s|look only for source (they combine with -b and -m)
+whereis|-b|look only for commands
+whereis|-m|look only for documentation
+whereis|-u|print only names without exactly one entry of each kind
+whereis|-SBM dir ... -f|search these directories instead, for that kind; -f ends the list
+which|-i|read alias definitions on standard input and print a match first
+which|-a|print every place the name is found, not just the first
+which|--|take the next argument as the command even if it starts with -
+which|<command>|with none, list the directories searched, one per line
+wndex|-r|also index each directory the index file names on its Subdirs= line
+wndex|-q|quiet: print no warnings or messages
+wndex|-d dir|work in this directory instead of the current one
+wndex|-i indexfile|read this instead of the file named index
+wndex|-c cachefile|write this instead of index.cache
+wns|-a=n|show n lines after each match
+wns|-b=n|show n lines before each match
+wns|-d|debugging: report every line tried against the pattern
+wns|-w=n|show n lines before and after each match
+worms|-field|fill the screen with WORM for them to crawl over
+worms|-length #|how long each worm is, 2 to 1024 (default 16)
+worms|-number #|how many worms, 1 to 40 (default 3)
+worms|-trail|each worm leaves a trail of dots

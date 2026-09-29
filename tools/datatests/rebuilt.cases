@@ -76,8 +76,9 @@ expect  1 file
 run     $R/lharcs l /dd/tmp/l1.lzh
 expect  1 file
 
-# The shipped compress is the fixed build since 2026-09-18.  It still packs the same 631-byte archive the period binary
-# did, and still reads its own output back byte for byte.
+# The shipped compress is the fixed build since 2026-09-18.  It still packs
+# the same 631-byte archive the period binary did, and still reads its own
+# output back byte for byte.
 case    compress-packs-the-same-archive-it-always-did
 run     /dd/CMDS/compress -c < /dd/SYS/termcap > /dd/tmp/rc.Z
 run     /dd/CMDS/wc -c /dd/tmp/rc.Z
