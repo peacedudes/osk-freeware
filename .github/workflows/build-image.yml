@@ -16,7 +16,7 @@ on:
       os9exec_ref:
         description: 'os9exec ref to build against'
         required: false
-        default: ace955f653574c69670d0756275ab2d86dab1d5e
+        default: 1b19c2a81cb0f147b098657c2bf7918c027c50a8
 
 env:
   # WHICH os9exec. The collection is developed and tested against the branch
@@ -52,12 +52,11 @@ env:
   # hash, which will be stale again: it is that the person who owns the
   # emulator knows which commit is good and a tip does not.
   #
-  # Pinned to the commit os9exec tags v4.1.0 -- ace955f6, whose code is
-  # 75aea92e's, on which this collection's suite passed 1069/1069 and every
-  # play-test.  A commit, not a branch or tag name, so it never moves and is
+  # Pinned to os9exec v4.1.1 -- commit 1b19c2a8, on which this collection's
+  # suite passed 1069/1069 and all 156 play-tests (2026-09-29).  A commit, not a branch or tag name, so it never moves and is
   # reachable before the tag exists and after the branch is merged away.
   OS9EXEC_REPO: peacedudes/os9exec
-  OS9EXEC_REF: ace955f653574c69670d0756275ab2d86dab1d5e
+  OS9EXEC_REF: 1b19c2a81cb0f147b098657c2bf7918c027c50a8
 
 jobs:
   build:
