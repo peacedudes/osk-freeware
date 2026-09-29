@@ -114,7 +114,7 @@ vmod_trap|Module name changed from vmod_trap to VMod_trap, the name rxmod asks f
 wam.sbprolog|Built here from the SB-Prolog sources with their own OS-9 makefiles, replacing the prebuilt binary the archive carried; both gave identical output on the same queries.
 wrjpgcom.070|Module name changed from wrjpgcom to wrjpgcom.070 to match its file, so loading it no longer answers for the wrjpgcom in CMDS.
 xargs|The command is forked directly instead of through system() and the "exec " prefix is gone, so a redirection or pipe written in the command is not interpreted.
-xmas|The two underscore rules are 79 columns rather than 80, so curses never relies on the terminal wrapping and the bottom rule stays on its own line -- it did not, even at 80 wide.
+xmas|The two underscore rules are 79 columns rather than 80, so curses never relies on the terminal wrapping and the bottom rule stays on its own line -- it did not, even at 80 wide. Its sign-off is the author's own again; the 1990 OS-9 port had replaced it with a greeting of its own.
 xpmtoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
 xvminitoppm|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.
 yahtzee2|The ! shell escape is removed.
