@@ -191,6 +191,11 @@
   .docs .k{display:block;margin:0 0 6px}
   .docs ul.dl{list-style:none;margin:0;padding:0;font-size:13px;line-height:1.6}
   .docs .dk{color:var(--faint);font-size:12px}
+  .about ul.first{list-style:none;margin:0 0 14px;padding:0;font-size:13.5px;line-height:1.7}
+  .about ul.first a{color:var(--link);text-decoration:none}
+  .about ul.first a:hover{text-decoration:underline}
+  .about ul.first code{font-family:var(--mono);font-size:13px}
+  .about ul.first .fw{color:var(--dim);margin-left:8px}
   .report{margin:22px 0 0;font-size:12.5px}
   .report a{color:var(--link);text-decoration:none}
   .report a:hover{text-decoration:underline}
@@ -409,6 +414,38 @@ function shotHTML(shot){
 const TRY_PAGE = "try/index.html";
 // Where feedback goes: a new issue on the collection's repository.
 const ISSUES = "https://github.com/peacedudes/osk-freeware/issues/new";
+function tryURL(shot){
+  const os9 = shell==="os9";
+  const cmd = os9 ? (shot.os9 || shot.try) : shot.try;
+  const h1 = shot.tc==="h1" || os9;
+  // &card names the stanza, so the page can do first what the card did out
+  // of sight (docs/try/setup.json): the directory it ran in, what it loaded.
+  return TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"")+
+         (shot.n?"&card="+encodeURIComponent(shot.n):"");
+}
+// THE FIRST IMPRESSION: things that move, then things to play, each one
+// click from running.  Chosen because they work flawlessly in the page and
+// say more about the emulator than any paragraph could (2026-09-29).
+const FIRST = [
+  ["rain", "raindrops ripple across the screen"],
+  ["worms", "worms chase across the terminal"],
+  ["life", "a glider gun firing gliders"],
+  ["xmas", "an animated Christmas card, reindeer and all"],
+  ["card", "a video Christmas card from 1984"],
+  ["juggle", "a juggler at work"],
+  ["tet", "falling blocks, to stack"],
+  ["mz", "Pac-Man in an ASCII maze: you are OS9, the ghosts are CPM, MPM and RAM"],
+  ["robots", "dodge the robots until they crash into each other"],
+  ["rogue", "the dungeon game that named a genre"],
+];
+function firstHTML(){
+  if(!TRY_PAGE) return "";
+  const rows = FIRST.filter(([n])=>SHOTS[n] && SHOTS[n].try && SHOTS[n].tc!=="no")
+    .map(([n,what])=>`<li><a href="${esc(tryURL(SHOTS[n]))}" target="os9exec"><code>${esc(SHOTS[n].try)}</code></a> `+
+      `<span class="fw">${esc(what)}</span></li>`).join("");
+  return rows ? `<p><b>Try these first</b><br>Each opens the disk in your browser with the command `+
+    `typed; press Enter to run it.</p><ul class="first">${rows}</ul>` : "";
+}
 function runItHTML(shot){
   if(!TRY_PAGE || !shot || !shot.try) return "";
   if(shot.tc==="no")
@@ -422,12 +459,8 @@ function runItHTML(shot){
   // stays in the shell afterwards.  Until 2026-09-24 the command went to
   // bash, first wrapped as `shell "..."' and before that not at all.
   const os9 = shell==="os9";
-  const cmd = os9 ? (shot.os9 || shot.try) : shot.try;
   const h1 = shot.tc==="h1" || os9;
-  // &card names the stanza, so the page can do first what the card did out
-  // of sight (docs/try/setup.json): the directory it ran in, what it loaded.
-  const url = TRY_PAGE+"?run="+encodeURIComponent(cmd)+(h1?"&needs=h1":"")+(os9?"&shell=os9":"")+
-              (shot.n?"&card="+encodeURIComponent(shot.n):"");
+  const url = tryURL(shot);
   // The link is the whole offer; how it works is for the first visit only,
   // so it goes in the tooltip (2026-09-26).  What it NEEDS stays in view.
   // ONE TAB FOR EVERY TRY.  Each tab boots its own emulator with the whole
@@ -650,6 +683,7 @@ function about(){
     `does not endorse it. Everything here was written for OS-9; through WebAssembly and `+
     `os9exec, a community 68000 emulator, it also runs in this page. Pick a program and `+
     `press <i>Try it in your browser</i>.</p>`+
+    firstHTML()+
     `<p><b>Setting up</b><br>`+
     `This collection is for OS-9. Give it a disk of its own on your system, reached `+
     `by two device names: <code>/dd</code>, where the programs look for their data, and `+
