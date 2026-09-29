@@ -27,16 +27,16 @@ runs in a web page, and most of it needs nothing more.
 
 **[The catalogue](https://peacedudes.github.io/osk-freeware/)** has a card
 for every program: what it is, what it needs, its terms, its own help, and a
-screen of it running. Press "Try it in your browser" on any card and it is
-running. The rest of your OS-9, if you have one, can come along: "Open disk
-as /h1" attaches it, and the few programs that want your `runb` or shell
-find them there.
+screen of it running. Press "Try it in your browser" on any card and the
+program will start running in the page. Your own licensed OS-9, if you have
+one, can come along: "Open disk as /h1" attaches it, and the programs that
+want your `runb`, shell or compiler find them there.
 
-    $ cursive Ad astra
-       __
-      /  )   /             _/_
-     /--/ __/     __.  _   /  __  __.
-    /  (_(_/_    (_/|_/_)_<__/ (_(_/|_
+    $ cursive To the stars
+      ______
+        /       _/_ /             _/_
+     --/ __     /  /_  _      _   /  __.  __  _
+    (_/ (_)    <__/ /_</_    /_)_<__(_/|_/ (_/_)_
 
 That is `cursive`, on the disk, captured as it ran.
 
@@ -63,27 +63,30 @@ known.
 
 ## Keeping what you like
 
-`keep`, `kept` and `unkeep` were written for this collection. They copy the
-programs you choose, with every file each one reads, onto your own disk:
+Three small programs written for this collection, `keep`, `kept` and
+`unkeep`, copy the programs you choose onto your own disk, with every file
+each one reads:
 
     keep cookie       copy cookie, and every file it reads, onto your disk on /h1
     kept              list what you have kept
     unkeep cookie     remove it again, leaving any file you have changed
 
-In the catalogue, tick programs and it writes the `keep` line for you, or
-makes a new disk of just those in the browser, to download.
-`DOC/README-KEEP` has more.
+In the catalogue, choose programs with the **+** beside each name, and it
+writes the `keep` line for you, or makes a new disk of just those in the
+browser, to download. `DOC/README-KEEP` has more.
 
 ## On your desktop
 
-os9exec builds on macOS, Linux and Windows, and runs the image with no OS-9
-of your own:
+os9exec builds on macOS, Linux and Windows, and runs the image without any
+OS-9 hardware. Some programs still need parts of a licensed OS-9 of your
+own -- its shell, `runb` or compiler -- which os9exec attaches as `/h1`:
 
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=<your OS-9> \
         os9exec -r bash /dd/SYS/login
 
-`OS9H1` is optional. Run the image, not a copy unpacked into a directory:
-permissions and record locking work only on the image.
+Without `OS9H1` most of the collection still runs. Run the image, not a copy
+unpacked into a directory: permissions and record locking work only on the
+image.
 
 ## Finding your way on the disk
 

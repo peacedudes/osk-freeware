@@ -41,8 +41,8 @@ shot    cursive
 cap     cursive writes the word you give it as a single line of joined,
 cap     sloping script, the kind of flourish people once signed email
 cap     with.
-try     cursive Ad astra
-run     cursive Ad astra
+try     cursive To the stars
+run     cursive To the stars
 wait    6
 
 shot    diff
