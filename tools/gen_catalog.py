@@ -778,6 +778,8 @@ def render_markdown(progs):
                 # How to run it, which is what a reader actually wants next:
                 # the written note, or else the first line of the help the
                 # program printed when asked (docs/help/<name>.txt).
+                if p.get("exit"):
+                    cell += "<br>**To leave:** " + p["exit"].replace("|", "\\|")
                 if p.get("howto"):
                     cell += "<br>**How:** " + p["howto"].replace("|", "\\|")
                 elif p.get("help", {}).get("text"):
@@ -864,6 +866,13 @@ def render_disk_index(progs):
                 # Only a handful of programs carry one, and they are exactly
                 # the ones that otherwise look broken -- see tools/howto.psv.
                 note = p.get("howto")
+                while note:
+                    cut = note.rfind(" ", 0, 62) if len(note) > 62 else len(note)
+                    L.append("      %s" % note[:cut])
+                    note = note[cut:].lstrip()
+                # And how to get out again (tools/exits.psv), which is what
+                # makes it safe to try: the same tested line the card shows.
+                note = ("To leave: " + p["exit"]) if p.get("exit") else ""
                 while note:
                     cut = note.rfind(" ", 0, 62) if len(note) > 62 else len(note)
                     L.append("      %s" % note[:cut])
