@@ -19,3 +19,8 @@ key     n
 wait    6
 expect  Dlvl:1
 expect  Really quit?
+# Quitting writes the logfile under a whole-file SS_Lock on a WRITE-ONLY
+# path; the manual allows it, and os9exec refused it until 75aea92e --
+# nethack then retried for 75 seconds and gave up.
+absent  Record-lock
+absent  I give up
