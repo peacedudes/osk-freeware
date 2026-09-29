@@ -13,6 +13,7 @@
   header { padding: 8px 16px; color: var(--dim); display: flex; gap: 12px;
            align-items: center; flex-wrap: wrap; }
   #status { flex: 1; min-width: 12em; }
+  #lifejacket { color: #e3b341; font-size: 13px; }
   header button { font: inherit; color: var(--fg); background: #1f262d; border: 1px solid #30363d;
                   border-radius: 6px; padding: 4px 10px; cursor: pointer; }
   header button:disabled { opacity: 0.4; cursor: default; }
@@ -30,6 +31,7 @@
 <body>
 <header>
   <span id="status">OS9exec: loading the emulator and its disk...</span>
+  <span id="lifejacket" title="Nothing here can harm your computer or your files">Stuck in a program? Its card says how to leave, and closing this tab is always safe.</span>
   <span id="h1name"></span>
   <button id="attach" disabled title="Open an RBF disk image from this computer as /h1. It is copied into this browser and stays on this machine; nothing is sent anywhere. Safari's own dialog says &quot;Upload&quot;, which it is not.">Open disk as /h1...</button>
   <button id="save" disabled title="Download /h1 as it is now">Save /h1</button>

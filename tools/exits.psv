@@ -1,0 +1,6 @@
+# exits.psv -- how to leave a program that does not finish on its own.
+# name | the way out, in the card's own style: keys in `backquotes'.
+#
+# The card shows this on a line of its own, highlighted, right under "Try it":
+# the lifejacket that makes it safe to just try something.  Every line was
+# confirmed by leaving the program that way under the emulator, not assumed.

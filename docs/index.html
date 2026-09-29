@@ -196,6 +196,10 @@
   .about ul.first a:hover{text-decoration:underline}
   .about ul.first code{font-family:var(--mono);font-size:13px}
   .about ul.first .fw{color:var(--dim);margin-left:8px}
+  .lifejacket{margin:8px 0 0;font-size:13.5px;display:inline-block;padding:3px 10px;
+    border-radius:6px;background:var(--soft);color:var(--ink)}
+  .lifejacket .lj{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;
+    color:var(--accent);margin-right:8px}
   .report{margin:22px 0 0;font-size:12.5px}
   .report a{color:var(--link);text-decoration:none}
   .report a:hover{text-decoration:underline}
@@ -837,6 +841,9 @@ function renderPanel(){
     `<p class="pd">${esc(sentence(p.desc))}</p>`+
     `<div class="try"><code class="copycmd" tabindex="0" title="tap to copy"><span class="pr">${esc(PROMPT[shell])}</span><span class="ct">${esc(tryCmd)}</span></code></div>`+
     runItHTML(shot)+
+    // THE LIFEJACKET: how to get out again, on its own line, always in the
+    // same place, so that trying anything is safe (tools/exits.psv).
+    (p.exit?`<p class="lifejacket"><span class="lj">to leave</span> ${keys(esc(p.exit))}</p>`:"")+
     (p.shadows?`<p class="shadow"><b>Your OS-9 has a <code>${esc(p.name)}</code> of its own.</b> `+
       `This is a different program under the same name. Nothing is overwritten by reading this disk `+
       `&mdash; but put <code>${esc(p.shadows.includes("/")?"/dd/CMDS/"+p.shadows.replace(/\/[^/]*$/,""):"/dd/CMDS")}</code> `+

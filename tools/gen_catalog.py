@@ -499,6 +499,20 @@ def load_excluded(path):
     return out
 
 
+def load_exits(path):
+    """name -> how to leave it, from tools/exits.psv."""
+    out = {}
+    if not os.path.exists(path):
+        return out
+    for line in open(path, encoding="utf-8"):
+        line = line.rstrip("\n")
+        if not line.strip() or line.startswith("#") or "|" not in line:
+            continue
+        name, how = line.split("|", 1)
+        out[name.strip()] = how.strip()
+    return out
+
+
 def load_options(path):
     """name -> [[option, meaning], ...] from tools/options.psv, in file order."""
     out = {}
@@ -614,6 +628,8 @@ def gather(root, catfile):
     helps = load_help(root)
     options = load_options(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                         "options.psv"))
+    exits = load_exits(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    "exits.psv"))
     terms = load_terms(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                     "terms.psv"))
     requires = load_requires(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -641,6 +657,8 @@ def gather(root, catfile):
             p["help"] = helps[p["name"]]
         if p["name"] in options:
             p["opts"] = options[p["name"]]
+        if p["name"] in exits:
+            p["exit"] = exits[p["name"]]
         if p["name"] in terms:
             p["terms"] = terms[p["name"]]
             # The author's own condition, from the terms rather than the
@@ -708,7 +726,7 @@ ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools"
 
 KEEP = ("name","desc","cat","sub","star","dir","size","origin","archive","src","shadows",
         "docs","hassrc","military","basic09","needs","info","help","howto","terms","requires",
-        "lang","langnote","changed","changedsrc","out","why","dl","opts")
+        "lang","langnote","changed","changedsrc","out","why","dl","opts","exit")
 
 def render_markdown(progs):
     """A catalogue GitHub will actually render in the repository view.
