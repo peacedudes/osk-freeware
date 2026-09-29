@@ -622,6 +622,20 @@ function about(){
   const pr = PROMPT[shell];
   const cm = esc(COMMENT[shell]);
   col.innerHTML = `<div class="about">`+
+    `<p>Microware Systems Corporation, from the heart of Iowa, wrote OS-9 at the turn of `+
+    `the 1980s for Motorola&rsquo;s 6809, and brought it to the 68000 in 1983. Its claim to `+
+    `fame is a real-time, multitasking, Unix-like system on machines far too small for Unix, `+
+    `built from compact modules that run as happily from ROM as from disk. That made it at `+
+    `home in the Tandy Color Computer, Fujitsu&rsquo;s FM computers and the Philips CD-i `+
+    `player, where it ran as CD-RTOS, and on factory floors, in instruments and in traffic `+
+    `signals. It never stopped: OS-9 is still developed, sold and supported by Microware LP, `+
+    `at <a href="https://www.microware.com">microware.com</a>. Microware graciously gave `+
+    `permission for this collection to include the standard 68000 runtime modules its `+
+    `programs need.</p>`+
+    `<p>This collection is the community&rsquo;s work, not Microware&rsquo;s, and Microware `+
+    `does not endorse it. Everything here was written for OS-9; through WebAssembly and `+
+    `os9exec, a community 68000 emulator, it also runs in this page. Pick a program and `+
+    `press <i>Try it in your browser</i>.</p>`+
     `<p><b>Setting up</b><br>`+
     `This collection is for OS-9. Give it a disk of its own on your system, reached `+
     `by two device names: <code>/dd</code>, where the programs look for their data, and `+
