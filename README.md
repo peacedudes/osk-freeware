@@ -32,8 +32,9 @@ OS-9 is still developed, sold and supported by Microware LP, at
 permission for this collection to include the standard 68000 runtime
 modules its programs need.
 
-This collection is the community's work, not Microware's, and Microware does
-not endorse it.
+This collection comes from OS-9's users, not from Microware. Microware isn't
+responsible for it and doesn't support it, and anything it says about OS-9
+is ours, not theirs.
 
 ## Try it in your browser
 

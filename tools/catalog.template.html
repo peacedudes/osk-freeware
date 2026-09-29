@@ -32,6 +32,8 @@
        padding:12px 20px 10px;border-bottom:1px solid var(--rule);background:var(--paper)}
   .top h1{font-family:var(--serif);font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em;
           white-space:nowrap}
+  .top h1 a{color:inherit;text-decoration:none}
+  .top h1 a:hover{text-decoration:underline}
   .top h1 small{display:block;font-family:var(--sans);font-size:12px;font-weight:400;
                 color:var(--dim);letter-spacing:0}
   .top input[type=search]{width:100%;max-width:520px;font:inherit;font-size:15px;padding:8px 12px;
@@ -287,7 +289,7 @@
 
 <div class="app" id="app" data-stage="list">
   <header class="top">
-    <h1>OS-9/68000 freeware<small>__TOTAL__ programs on one disk image, 1983&ndash;1998</small></h1>
+    <h1><a href="#" id="home" title="Back to the start">OS-9/68000 freeware</a><small>__TOTAL__ programs on one disk image, 1983&ndash;1998</small></h1>
     <input type="search" id="q" placeholder="Search names and descriptions"
            aria-label="Search programs" autocomplete="off">
     <div class="only">
@@ -674,8 +676,9 @@ function about(){
     `at <a href="https://www.microware.com">microware.com</a>. Microware graciously gave `+
     `permission for this collection to include the standard 68000 runtime modules its `+
     `programs need.</p>`+
-    `<p>This collection is the community&rsquo;s work, not Microware&rsquo;s, and Microware `+
-    `does not endorse it. Everything here was written for OS-9; through WebAssembly and `+
+    `<p>This collection comes from OS-9&rsquo;s users, not from Microware. Microware isn&rsquo;t `+
+    `responsible for it and doesn&rsquo;t support it, and anything it says about OS-9 is `+
+    `ours, not theirs. Everything here was written for OS-9; through WebAssembly and `+
     `os9exec, a community 68000 emulator, it also runs in this page. Pick a program and `+
     `press <i>Try it in your browser</i>.</p>`+
     firstHTML()+
@@ -1015,6 +1018,16 @@ document.addEventListener("keydown", e=>{
   const code=e.target.closest && e.target.closest(".copycmd");
   if(code){ e.preventDefault(); copyCmd(code); }
 });
+// The title goes home: nothing chosen, so the opening page shows.
+document.getElementById("home").onclick=e=>{
+  e.preventDefault();
+  st.sel=null; st.cat=null; st.letter=null; st.q="";
+  document.getElementById("q").value="";
+  document.getElementById("app").dataset.stage="list";
+  toHash(); render();
+  const pc=document.getElementById("panel-col"); if(pc) pc.scrollTop=0;
+  window.scrollTo(0,0);
+};
 document.getElementById("sh-toggle").onclick=()=>setShell(shell==="os9" ? "unix" : "os9");
 document.getElementById("trayclear").onclick=()=>{ picked.clear(); renderProgs(); tray(); };
 window.addEventListener("popstate", ()=>{ st.sel=null; st.cat=null; st.letter=null; st.q=""; fromHash(); render(); });
