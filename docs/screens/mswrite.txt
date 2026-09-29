@@ -2,7 +2,7 @@ $ mswrite motd a:RAW.TXT
 $ msread a:RAW.TXT raw.out
 Copying RAW.TXT
 $ chksum motd raw.out
-4b68af85
-4b68af85
+b4d9f557
+b4d9f557
 ========
-9d870070
+5ab0f788

@@ -3,9 +3,9 @@ $ msdir a:/DOCS
  Volume Serial Number is 35D7-0A00
  Directory for A:/DOCS
 
-.            <DIR>     09-24-2026   2:33a
-..           <DIR>     09-24-2026   2:33a
-README   TXT        40 09-24-2026   2:33a
+.            <DIR>     09-28-2026   8:26p
+..           <DIR>     09-28-2026   8:26p
+README   TXT        40 09-28-2026   8:26p
         3 file(s)                40 bytes
                           1 456 128 bytes free
 

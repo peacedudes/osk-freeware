@@ -4,8 +4,8 @@ $ msdir a:/MOVED
  Volume Serial Number is 35D7-0A00
  Directory for A:/MOVED
 
-.            <DIR>     09-24-2026   2:34a
-..           <DIR>     09-24-2026   2:34a
-MOTD     TXT        40 09-24-2026   2:34a
+.            <DIR>     09-28-2026   8:29p
+..           <DIR>     09-28-2026   8:29p
+MOTD     TXT        40 09-28-2026   8:29p
         3 file(s)                40 bytes
                           1 456 128 bytes free

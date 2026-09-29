@@ -62,8 +62,8 @@ autoreply 8bb29bfd62bf7b26
 back 928bab49d55f396d
 backgammon 648cb5694ecaef2f
 bandit 7938ddadcd0ad186
-banner 5a6b9d4158349032
-banner1 c1e3d55b746a0a25
+banner 74c1593faa009739
+banner1 c424c183092eda27
 basename 88d6e9c0a92810a1
 bash 6e45fc01c6b3701f
 basicwin f7b0c22628587472
@@ -73,7 +73,7 @@ bcheck b66ba3119e2a9c9f
 bdecode 9153f19f37056727
 beav 5c4c9333df878ea7
 bibtex 2f5c69fc71e4f506
-biff 5974699784b4d2fc
+biff 68a5caeb58546020
 bigsetter 227177ac889a49f9
 bincheckr d35dfd53b12df508
 binhex abe31b8b77dfffa3
@@ -109,7 +109,7 @@ buildhash f8896c115cf0a04e
 byteflip c10238a98d40e2c4
 c4 79e00796ab327574
 c7decode 3de6325c8e5cd3d5
-caesar d8865432f1d55b0a
+caesar 92bf9dc5031be8db
 cal 901a5f69eca7c189
 calcdate feb1d691c5e46ad5
 calen 47ebd7471ad0a89b
@@ -187,7 +187,7 @@ csl 6aa8e4d8135d4d82
 csl020 39310a824262cca5
 ctags 841abe2f2cfff6b3
 ctags.elvis 4326afa6b0aed1b3
-cursive b6556ab83fc099c5
+cursive 998d6d0eb5dba9c8
 cut db89f25fada4b2e9
 cuts 826166b4d423b70e
 cvt_help 617b2fefa1ceb7c9
@@ -247,7 +247,7 @@ dmode 0a416b364cbb87b8
 dotilde ee0c4f3594ccd509
 dpark e2e88dc860179385
 draw 29443d021d3b3804
-drawl c48c20a247e0e429
+drawl 807fd6175580bb3f
 drawpoker 3deb9c50b08867af
 du a58fd06112b32f84
 dump 8a79a4b161c262b3
@@ -373,7 +373,7 @@ gnuchessn fc407404a2d38b90
 gnuchessr 0fd75528d53a53af
 gnugo f9a0347f90d9f83e
 gnuplot 20f9fa75209a8b28
-gothic dc712a5b6f98d7a9
+gothic 23cb160ffc848a48
 gouldtoppm 48ab00100346af10
 gpp f2789d4fb176bc07
 gpp_cc1plus 870c0d0d360be757
@@ -443,7 +443,7 @@ jumble fdf4a1563b16a596
 jumble2 7f172d3db77300c6
 kalah 4b32cbbb59512983
 keep 5c6b4b40fea22151
-ken da734166418fdff3
+ken 2423b2d292ba4709
 kept ec53bd61950c86f3
 kermit 35f92c8ecd1dc6c7
 kermit2 28b91e5e0320a6d8
@@ -488,11 +488,11 @@ look 22644a3ef76ff2e5
 lorenz3d d0d3da74c4b780c8
 lotto 5de290941fac37bf
 lout c0ebd5f69b37c4fd
-lp 3be0e7a3bf9e18d1
-lpq d5bf915b7c8d70a1
-lprm 0e8c1ebd60d886af
+lp 1a2aee6a95274d60
+lpq 8d2eb45dab2f05d9
+lprm ba5d880552d5f39e
 lpsched c909f7768316bd91
-lpshut bdb3308093983a23
+lpshut db04475f0c5a49b9
 ls 7475c3da2ee7ecd8
 ltb 1370ac92a259ce3e
 lua 448a54bf1e1f69a5
@@ -543,7 +543,7 @@ modinfo 358a73ee944d8a15
 monop 129a3b7895b0273c
 more b6221da83f834868
 moria d7bf50872194ffb2
-morse 5ab2783888c595ae
+morse cb95aaa8183dd96c
 move eeae24bf2e1d12fb
 msattrib 447ddc9504eb95b8
 msbadblocks 66d74d636341ac20
@@ -679,7 +679,7 @@ phoon de4ee7fd8a8f72ba
 pi1toppm 8ce4fa41c5fba8a3
 pi3topbm f271634e5d66c676
 picttoppm 836f862d8251fc55
-pig b468f1f8ea5327f5
+pig 88c57e18cecfb75c
 pktogf 3ec328b65858c636
 pktopbm 608cc52d94a94a67
 pktype 062c6ceb9985bd92
@@ -781,7 +781,7 @@ rawtopgm 108df7a3d0b6f487
 rawtoppm 9d7b04088ca0eb84
 rayshade 82039a3f669c1882
 rb37c65 72ce1e669b834c19
-rdjpgcom 0e272b918a21084d
+rdjpgcom 237fddf3dfd35287
 rdjpgcom.070 d866e54727df02d7
 rdoc a0d7a1db99272266
 readmsg 9aec7c611e3260ae
@@ -1004,7 +1004,7 @@ uustat ddf92c441bcb879f
 uux ccfecc013cba5830
 uuxqt 7d5ec6a8ac150b00
 v7make 2a9b2e869566b585
-valspeak 7d51b124e270473b
+valspeak 15efb55f07e42bfb
 vc ba3b4e62d8594321
 vcraps 4a4e9c21b6113efa
 vcron 15cf55aa11df386b
@@ -1051,7 +1051,7 @@ workstations dd72aa072265e689
 world 0d51fe4befe7e68a
 worm dadf60f5bdf3dae5
 worms 44d3eb5b2a689c90
-wrjpgcom b47132a51a37fcae
+wrjpgcom 760f4a81a3534a05
 wrjpgcom.070 cf0ca0d4ba4b8dcf
 wump 670d79d07f33b5c7
 wysecrack ee56fc918d336050
@@ -1095,4 +1095,4 @@ zipnote c13e62bff5c4c1db
 zipsplit 1b88d6aa10cc41a8
 zoo 4f8d3b3e48103ce2
 zoo_2.1 670850db5870b4a0
-zot d256f6265fd35334
+zot 71e922a205d446bb

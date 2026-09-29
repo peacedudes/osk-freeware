@@ -80,3 +80,13 @@ absent  RAW      TXT
 case    b-drive-is-the-720k-image
 run     /dd/CMDS/msinfo b:
 expect  filename="/dd/DOS/b.img"
+
+# A text copy to DOS ends each line CR LF, the way DOS does.  The OS-9 port
+# wrote LF CR -- `0A 0D' in the dump -- until tools/patch_mtools_crlf.py.
+case    mscopy-t-ends-dos-lines-cr-lf
+run     /dd/CMDS/msdel a:T2.TXT
+run     /dd/CMDS/rm -f /dd/tmp/t2.raw
+run     /dd/CMDS/mscopy -t $MOTD a:T2.TXT
+run     /dd/CMDS/msread a:T2.TXT /dd/tmp/t2.raw
+run     /dd/CMDS/dump /dd/tmp/t2.raw
+expect  6E0D 0A

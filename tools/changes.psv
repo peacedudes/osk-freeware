@@ -61,6 +61,11 @@ macunpack|Renamed from macunpac, the archive's file name, to match the module na
 make|Rebuilt with a utime() written for this collection: the original carried a copyright with no grant, and it wrote a zero over the file's link count on every touch.
 monop|Two features that depend on a Unix process are disabled: the shell escape and saving or restoring a game.
 moria|Rebuilt from TOP's source with a terminal-entry reader of its own, replacing TOP's binary, which could not find the terminal in this disk's termcap. The game code is unchanged. The map sits one column further left, the author's own BUGGY_CURSES layout, so column 80 is never written and the town keeps its shape in any window 80 or wider.
+mscopy|With -t, a line copied to a DOS disk ends CR LF, as DOS expects; the port wrote LF CR. Two bytes patched in place.
+msread|With -t, a line copied to a DOS disk ends CR LF, as DOS expects; the port wrote LF CR. Two bytes patched in place.
+mstype|With -t, a line copied to a DOS disk ends CR LF, as DOS expects; the port wrote LF CR. Two bytes patched in place.
+mswrite|With -t, a line copied to a DOS disk ends CR LF, as DOS expects; the port wrote LF CR. Two bytes patched in place.
+mtools|With -t, a line copied to a DOS disk ends CR LF, as DOS expects; the port wrote LF CR. Two bytes patched in place.
 mz|A timer that wrapped when the room was drawn within one clock tick is fixed (the game froze for ever), and the author's usage log is left out. The room is drawn with the cursor placed at the start of each row rather than left to the terminal's wrap after column 80, so it keeps its shape in any window 80 or wider.
 newsetup|Built with its news directories changed to this disk's C News layout, and the site name changed from the porter's own to osk.UUCP.
 newsrun|Built with its news-library directory names changed to this disk's C News layout; link() and rename() are versions written for this collection that copy the file, since RBF has no hard links.
