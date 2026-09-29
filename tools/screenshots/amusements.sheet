@@ -128,15 +128,15 @@ wait    10
 
 shot    logisim
 size    40 100
-cap     A logic simulator.  It reads a circuit written as text -- one gate a
-cap     line, named by type, with its input nodes and its output -- and runs
-cap     it as a pulse diagram: a row for each node named on the circuit's
-cap     `view' line, a column a step, # for high and _ for low, with the step
-cap     numbers in the bars above and below.  This is the 16-bit counter that
-cap     ships with it in DOC/logisim, counting up from the top row; the other
-cap     sample there is a master-slave flip-flop whose input you set at a
-cap     prompt.  Esc stops the run.  PORT must name your terminal, because it
-cap     reopens the keyboard through that path.
+cap     A logic simulator. It reads a circuit written as text -- one gate
+cap     a line, named by type, with its input nodes and its output -- and
+cap     runs it as a pulse diagram: a row for each node named on the
+cap     circuit's `view' line, a column a step, # for high and _ for low,
+cap     with the step numbers in the bars above and below. This is the
+cap     16-bit counter that ships with it in DOC/logisim, counting up from
+cap     the top row; the other sample there is a master-slave flip-flop
+cap     whose input you set at a prompt. PORT must name your terminal,
+cap     because it reopens the keyboard through that path.
 try     PORT=/term logisim DOC/logisim/counter.lsi
 os9     setenv PORT /term; logisim DOC/logisim/counter.lsi
 run     builtin cd /dd

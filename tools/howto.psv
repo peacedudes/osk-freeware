@@ -82,23 +82,23 @@ ephem|An astronomical ephemeris: `ephem -c /dd/SYS/ephem.cfg -d /dd/SYS/ephem.db
 ephem881|The same as ephem, built for a 68881 coprocessor. Control-D quits.
 animal|The file it learns from is one you name: `animal /dd/DOC/animal/example'. Answer y or n to each question; when its final guess is wrong it asks what you were thinking of and what question tells the two apart, and writes that back into the file. Control-C leaves it.
 assembler|Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do.
-beav|Full-screen binary editor: `beav <file>'. Control-C leaves it.
+beav|Full-screen binary editor: `beav <file>'.
 bite|Full-screen: it takes over the display. **`q' quits**.
 bog|Boggle. Space starts the three-minute round, `?' shows the rules, and you type every word you can trace through adjoining letters. Control-C leaves it. Its word list, index and help are in GAMES/BOG.
 checkfile|Full screen. A adds a record through a form, C accepts it, R lists the records with the balance, Q quits. Records go in testfile.dat in the current directory; cheques are entered as negative amounts.
 compiler|Full-screen: it takes over the display. **control-C gets you out**; none of q, Q, control-D or ESC do.
 crib|Full-screen cribbage, and it wants TERM -- run it from a login session. Answer the instructions question, choose a long or short game, and discard by naming a card, `7H'. Control-C gets you out.
 cribbage|The other cribbage, the same shape: TERM must be set, it offers the rules first, then cuts for the crib. Control-C gets you out.
-editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction. Control-C leaves the menu.
-emacs|Full-screen editor, MicroEMACS keys. Control-X control-C quits. It finds its startup and help files in your home directory, the current one or a PATH directory, not in USR/LIB/EMACS where they ship.
-gshell|A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file. Control-C leaves it.
+editor|Run it bare: a full-screen file picker for umacs. Given a file on the command line it stops on an illegal instruction.
+emacs|Full-screen editor, MicroEMACS keys. It finds its startup and help files in your home directory, the current one or a PATH directory, not in USR/LIB/EMACS where they ship.
+gshell|A full-screen menu of the current directory: + and - page, . changes directory, a letter runs that file.
 hang|Hangman. Type a letter to guess it; the letters still unused are along the top. Control-C gets you out. Its word list is GAMES/dict.
-hotel|Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say.
-lander|Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros. `q' quits.
+hotel|Full-screen: it takes over the display.
+lander|Full-screen. Space starts a descent, a digit sets the engine power, `x' or `k' fires the main thruster and z/j and c/l the side retros.
 letters|Full-screen typing game. Words fall from the top of the screen, and typing a word's letters clears it; a word that reaches the bottom costs one of your lives. Every 15 words the level rises and the words fall faster. The bottom line shows the score, level, words, lives and words per minute. `letters -l5' starts at level 5, -b rings the bell for a mistake, and `letters -h' shows the top ten scores, kept in GAMES/LETTERS. The words come from GAMES/words.
 larn|Full-screen dungeon crawl. RETURN gets past the opening text. Control-C gets you out; its playground is GAMES/LARN/PLAYGROUND.
-me|Full-screen editor, MicroEMACS keys, German messages. Control-X control-C quits.
-mg|Full-screen editor, Emacs keys. Control-X control-C quits.
+me|Full-screen editor, MicroEMACS keys, German messages.
+mg|Full-screen editor, Emacs keys.
 mille|Full-screen Mille Bornes. `p' picks a card, `u #' plays one, `d #' discards, `s' saves the game and `q' quits.
 mines|Full-screen minesweeper. Name a square by its row letter and then its column letter, and answer `Mark?' with Y to flag it rather than open it. `q' quits.
 nobs|Full-screen: it takes over the display. **control-C gets you out**; q, Q, control-D and ESC do not. If it has a quit command of its own, its documentation in DOC/ will say.
@@ -295,7 +295,7 @@ gcl|A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten s
 cuts|Coco Usenet Transfer Utility: `cuts -e -o f.cut -a file' encodes a text file (-b for a binary, -9 for an OS-9 module) as mail-safe text, and `cuts -d f.cut' writes it back under its original name in the current directory.
 subber|Substitutes words in a stream from a word list of `,old,new' pairs (the line's first character is the delimiter), reading a file as the second argument or standard input. It grows its data area as it reads, with F$Mem, so give it room up front: at an OS-9 (Microware) shell, `subber #1000k words file' -- `#1000k' is the shell's directive, not subber's, so only Microware's shell acts on it: bash hands it straight to subber, which answers `cannot open #1000k', and without it subber's own growth is refused -- `No more memory: 256-byte request refused'. Run it at your OS-9 shell or through it. Both halves measured 2026-09-19. Tested: `,fox,cat' turns `a fox' into `a cat'.
 tcmp|Compares two text files and prints each differing line, both versions one under the other with the line number in each file. Files whose lines differ only in tabs and spaces are reported as changed, which reads oddly until you dump them.
-back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits.
+back|Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game.
 blackjack|BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand.
 checkgame|It reads the `chess.lst' that gnuchess writes when you type `list'. Play in a directory of your own -- `ksh -c "cd /dd/tmp/mine; gnuchess"' -- type `list' then `quit', and then `checkgame /dd/tmp/mine/chess.lst'.
 chess|It asks for your colour, your name and a long or short game, then takes a move as two squares -- `e2' for the piece and `e4' for where it goes. Each square is two keystrokes and needs no RETURN.
@@ -328,7 +328,7 @@ wish|WiSH, a windowing shell over the OS-9 shell. Type a command on the top line
 worm|Full-screen. h/j/k/l steer, H/J/K/L run; with no key the worm keeps going. Eat the digits to grow. Control-C gets you out.
 xmas|Full-screen: a Christmas card that plays in a loop. Control-C gets you out.
 nethack3|Full-screen dungeon crawl. `y' lets it pick your character, SPACE clears each --More--, `?' is the command list, `S' saves and `Q' quits. It needs TERM set; its data is USR/GAMES/LIB/NETHACK3DIR.
-moria|Full-screen dungeon crawl. SPACE past the news, then pick race, sex (m/f), ESC to keep the stats, class, and type a name; SPACE past the character sheet puts you in the town. `?' is the command list, `^X' saves and `^K' quits. It needs TERM set; its data is USR/GAMES/MORIADIR.
+moria|Full-screen dungeon crawl. SPACE past the news, then pick race, sex (m/f), ESC to keep the stats, class, and type a name; SPACE past the character sheet puts you in the town. `?' is the command list and `^X' saves. It needs TERM set; its data is USR/GAMES/MORIADIR.
 mw|Full-screen maze game for up to eight players on one system. `w' walks, `a'/`d' turn, `s' shoots, `m' mines, `n' walls, `Q' quits; `mw -l=5 >/nil &' first starts a computer player to play against. Needs cio; its maze is USR/GAMES/LIB/MAZEWAR.
 bandit|A slot machine. Do `. /dd/SYS/termcap.entry' first -- it reads TERMCAP as the description itself. Then `n' skips the instructions, a number 0-5 is the bet, and `q' at the bet prompt ends with your total.
 atc|Full-screen air traffic control. `atc -l' lists the airports and `atc -g easy' picks one. Type a command to a plane by its letter: `a' and a digit sets altitude (and takes off), `t' and a direction key turns; RETURN sends it, `?' lists what may come next, ^L redraws and ^C asks to quit. Its airports are in GAMES/ATC.

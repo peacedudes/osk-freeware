@@ -758,10 +758,10 @@ wait    6
 
 shot    moria
 size    24 80
-cap     A new warrior in the town at the top of the dungeon: the walls of the
-cap     six shops, numbered by their doors, the `@' that is you, and down the
-cap     left the character's stats, hit points and gold.  `?' lists the
-cap     commands, `^X' saves and `^K' quits.
+cap     A new warrior in the town at the top of the dungeon: the walls of
+cap     the six shops, numbered by their doors, the `@' that is you, and
+cap     down the left the character's stats, hit points and gold. `?'
+cap     lists the commands, `^X' saves.
 try     moria
 run     export TERM=vt100 USER=tester
 wait    1
@@ -821,11 +821,11 @@ wait    3
 
 shot    atc
 size    24 80
-cap     The easy airport a few seconds in: the radar with its exits round the
-cap     edge, airport 0 and a beacon, and the first plane as its letter and
-cap     altitude.  Beside it the clock, the count of planes brought in safely,
-cap     and each plane with where it is bound.  Talk to a plane by its letter;
-cap     `?' lists what may come next, ^C quits.
+cap     The easy airport a few seconds in: the radar with its exits round
+cap     the edge, airport 0 and a beacon, and the first plane as its
+cap     letter and altitude. Beside it the clock, the count of planes
+cap     brought in safely, and each plane with where it is bound. Talk to
+cap     a plane by its letter; `?' lists what may come next.
 try     atc -g easy
 run     export TERM=vt100 USER=tester
 wait    1
@@ -1433,9 +1433,9 @@ wait    2
 shot    saa
 size    24 80
 cap     A fresh deal: the four foundations, S, H, D and C, empty down the
-cap     left, and the cards dealt out beside them, with the prompt waiting for
-cap     a stack to move from.  Type a stack 1-8 then a destination -- 0 for a
-cap     foundation; `?' for help, `q' quits.
+cap     left, and the cards dealt out beside them, with the prompt waiting
+cap     for a stack to move from. Type a stack 1-8 then a destination -- 0
+cap     for a foundation; `?' for help.
 try     saa
 run     saa
 wait    6
@@ -1701,11 +1701,11 @@ wait    2
 
 shot    reversi
 size    24 80
-cap     A new game, three RETURNs into the menu -- the board setup, who plays
-cap     which colour, and a strength from Apprentice to Very Hard: the four
-cap     opening disks, two all, with both colours left to human players.  The
-cap     arrow keys or hjkl move the cursor and RETURN puts a disk down; ESC
-cap     brings the menu back.
+cap     A new game, three RETURNs into the menu -- the board setup, who
+cap     plays which colour, and a strength from Apprentice to Very Hard:
+cap     the four opening disks, two all, with both colours left to human
+cap     players. The arrow keys or hjkl move the cursor and RETURN puts a
+cap     disk down.
 try     reversi
 run     clear
 wait    1
@@ -1723,11 +1723,10 @@ wait    2
 
 shot    scrabble
 size    24 80
-cap     You against the computer, `Mach 1': the empty board with its premium
-cap     squares, and seven letters dealt to each of you, the blank a `*'.
-cap     `hjkl' move the cursor, `H' or `V' enters a word across or down from
-cap     where it sits, `A' asks the computer what it would play, and `Q'
-cap     quits.
+cap     You against the computer, `Mach 1': the empty board with its
+cap     premium squares, and seven letters dealt to each of you, the blank
+cap     a `*'. `hjkl' move the cursor, `H' or `V' enters a word across or
+cap     down from where it sits, `A' asks the computer what it would play.
 try     scrabble -n 2 -m 1
 run     clear
 wait    1

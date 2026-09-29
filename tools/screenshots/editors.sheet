@@ -94,7 +94,7 @@ wait    5
 
 shot    em
 cap     MicroEMACS 3.8b on a four-line file, with its mode line at the
-cap     foot.  Control-X control-C leaves it.
+cap     foot.
 try     em tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -109,10 +109,10 @@ send    \030\003
 wait    3
 
 shot    emacs
-cap     Opened on a four-line file: the text, the mode line with the version
-cap     and the file's name, and `[Read 4 lines]'.  Control-X control-C leaves
-cap     it.  With SYS, where emacs.hlp is, and USR/LIB/EMACS, where its macros
-cap     are, on PATH, ESC ? shows the help.
+cap     Opened on a four-line file: the text, the mode line with the
+cap     version and the file's name, and `[Read 4 lines]'. With SYS, where
+cap     emacs.hlp is, and USR/LIB/EMACS, where its macros are, on PATH,
+cap     ESC ? shows the help.
 try     emacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -128,7 +128,7 @@ wait    3
 
 shot    umacs
 cap     The sample poem open, the mode line naming the file and `[Read 4
-cap     lines]' below it.  Control-X control-C leaves.
+cap     lines]' below it.
 try     umacs tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -144,7 +144,6 @@ wait    3
 
 shot    me
 cap     MicroEMACS 3.11 with German messages -- Datei for File.
-cap     Control-X control-C leaves it.
 try     me tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil; printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
 wait    2
@@ -160,7 +159,7 @@ wait    3
 
 shot    mg
 cap     The sample poem open, the mode line naming the file and `(Read 4
-cap     lines)' below it.  Control-X control-C leaves.
+cap     lines)' below it.
 try     mg DOC/samples/jabber.txt
 wait    2
 run     builtin cd /dd
@@ -175,11 +174,11 @@ wait    3
 
 shot    stevie
 size    24 80
-cap     STEVIE -- "Simply Try this Editor for VI Enthusiasts" -- a small vi
-cap     clone: the same movement keys, operators and colon commands.  Here it
-cap     has the sample poem open, with `~' marking the lines past the end of
-cap     the file the way vi does.  `:q' leaves, `:wq' saves.  Its quick
-cap     reference is DOC/stevie.
+cap     STEVIE -- "Simply Try this Editor for VI Enthusiasts" -- a small
+cap     vi clone: the same movement keys, operators and colon commands.
+cap     Here it has the sample poem open, with `~' marking the lines past
+cap     the end of the file the way vi does. `:wq' saves and leaves. Its
+cap     quick reference is DOC/stevie.
 try     stevie poem
 run     rm -rf /dd/tmp/STV > /nil 2>/nil; mkdir -p /dd/tmp/STV; cp /dd/DOC/samples/jabber.txt /dd/tmp/STV/poem
 wait    4
