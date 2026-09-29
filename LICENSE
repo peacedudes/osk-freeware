@@ -57,9 +57,8 @@ MICROWARE'S SIX MODULES, BY PERMISSION
 --------------------------------------
 
 OS-9 is Microware's and is still a current product; this collection is for
-people running it.  Six of Microware's runtime modules ship on the disk by
-permission: `cio`, `csl`, `csl020`, `math` and `math881` on Microware's
-word, and `fpu` on the grant in `DOC/fpu.doc`, which ships beside it.
-`disk/SOURCES.txt` records both.  No other Microware utility, header or
+people running it.  Six of Microware's runtime modules ship on the disk with
+Microware's permission: cio, csl, csl020, fpu, math and math881.
+`disk/SOURCES.txt` records it.  No other Microware utility, header or
 library is here.  Programs compiled with Microware's `cc` link its
 `cstart` and C library -- that is what a compiler is for.

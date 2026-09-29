@@ -46,7 +46,7 @@ for every program: what it is, what it needs, its terms, its own help, and a
 screen of it running. Press "Try it in your browser" on any card and the
 program will start running in the page. Your own licensed OS-9, if you have
 one, can come along: "Open disk as /h1" attaches it, and the programs that
-want your `runb`, shell or compiler find them there.
+want your runb, shell or compiler find them there.
 
 **What is here.** bash, ksh and vi. Several C compilers, with yacc, bison,
 flex and make. TeX, LaTeX and METAFONT. netpbm, JPEG and a ray tracer. elm,
@@ -57,9 +57,9 @@ screen. Written between the mid-1980s and the mid-1990s, and given away.
 
 ## On your own OS-9 system
 
-The collection is one RBF image, `osk-freeware.dd`, written whole onto a
+The collection is one RBF image, **osk-freeware.dd**, written whole onto a
 disk of its own. Mount it as `/dd` and also name it `/h0`: the programs look
-for their data under `/dd`, and some older ones carry `/h0` paths inside
+for their data under /dd, and some older ones carry /h0 paths inside
 them. On most OS-9 systems `/dd` already names the `/h0` drive. Your own
 system goes on `/h1`. Then
 
@@ -71,9 +71,9 @@ known.
 
 ## Keeping what you like
 
-Three small programs written for this collection, `keep`, `kept` and
-`unkeep`, copy the programs you choose onto your own disk, with every file
-each one reads:
+Three small programs written for this collection -- **keep**, **kept** and
+**unkeep** -- copy the programs you choose onto your own disk, with every
+file each one reads:
 
     keep cookie       copy cookie, and every file it reads, onto your disk on /h1
     kept              list what you have kept
@@ -87,14 +87,15 @@ browser, to download. `DOC/README-KEEP` has more.
 
 os9exec builds on macOS, Linux and Windows, and runs the image without any
 OS-9 hardware. Some programs still need parts of a licensed OS-9 of your
-own -- its shell, `runb` or compiler -- which os9exec attaches as `/h1`:
+own -- its shell, runb or compiler -- which os9exec attaches as /h1:
 
-    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=<your OS-9> \
+    OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=/path/to/your/os9 \
         os9exec -r bash /dd/SYS/login
 
-Without `OS9H1` most of the collection still runs. Run the image, not a copy
-unpacked into a directory: permissions and record locking work only on the
-image.
+OS9DISK and OS9H0 both name the collection's image; OS9H1 names your own
+licensed OS-9, a disk image or a directory. Leave OS9H1 out and most of the
+collection still runs. Run the image, not a copy unpacked into a directory:
+permissions and record locking work only on the image.
 
 ## Finding your way on the disk
 
@@ -109,13 +110,18 @@ image.
 A program with no documents gets its one-line description and what it says
 when asked for help.
 
-Seven vi files, six kermits, twenty archivers: `DOC/README-VI`,
-`DOC/README-EDITORS`, `DOC/README-ARCHIVERS`, `DOC/README-KERMIT`,
-`DOC/README-GREP` and `DOC/README-SHELLS` each compare a family and say
-which to take.
+Seven vi files, six kermits, twenty archivers. These compare a family and
+say which to take:
 
-A star in `DOC/INDEX` means the program uses Microware's `cio`, which is on
-the disk; `DOC/README-CIO` explains. `SYS/login` sets `TERM`, `TERMCAP` and
+    DOC/README-VI          which vi
+    DOC/README-EDITORS     the editors that are not vi
+    DOC/README-ARCHIVERS   archivers, by format
+    DOC/README-KERMIT      kermits, and the two flags that decide a transfer
+    DOC/README-GREP        ways to search a file
+    DOC/README-SHELLS      the shells, and why SYS/login names ksh
+
+A star in DOC/INDEX means the program uses Microware's cio module, which is
+on the disk; DOC/README-CIO explains. SYS/login sets TERM, TERMCAP and
 the paths, and most full-screen programs need nothing more; `gnuchess` wants
 `SYS/termcap.entry` sourced first. bash's own `pwd` hangs on OS-9, so
 `SYS/login` sets `HOME` and `/dd/.bashrc` replaces `cd` and `pwd` with
@@ -166,13 +172,12 @@ stated terms, recorded as such.
 If you hold rights in something here and want it removed, say so and it
 will be.
 
-Six Microware runtime modules ship by permission: `cio`, `csl`, `csl020`,
-`math` and `math881` on Microware's word, and `fpu` on the grant in
-`DOC/fpu.doc`, which ships beside it. `SOURCES.txt` records both. Nothing
-else of Microware's is here.
+Six Microware runtime modules -- cio, csl, csl020, fpu, math and math881 --
+ship with Microware's permission, which SOURCES.txt records. Nothing else of
+Microware's is here.
 
-The tooling written for this repository (`tools/`, `.github/`, this README)
-is MIT: `tools/LICENSE`.
+The tooling written for this repository -- tools/, .github/ and this README
+-- is MIT: tools/LICENSE.
 
 ## Building
 
