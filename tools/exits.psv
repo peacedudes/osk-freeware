@@ -156,3 +156,70 @@ wam.sbprolog|`halt.' and Return
 wish|`Control-D'
 xlisp|`(exit)' and Return
 bc|`quit' then Return
+EditLibr|`Return' on Quit, the first line of the menu
+Librarian|`Return' on Quit, the first line of the menu
+adduser|`Q' then Return at the first question
+answer|`bye' then Return
+assembler|`!'
+atp|`q' then Return
+bibtex|`Control-C'
+bigsetter|`Control-C', or any key about twenty times to step through to the end
+browse|`q'
+calender|`q' then Return -- any answer that is not a year
+ckermit|`exit' then Return
+clock|`Control-C'
+compiler|`!'
+dedit|`Control-C' once a sector is on screen; at the first question give a device such as `/dd@' first
+des|`Control-C', or type a password and Return twice to go ahead
+digclk|`Control-E'
+dld|`Control-X'
+dm|`q'
+draw|`Escape' then `y'
+elm|`x'
+ephem|`q' to stop it running, then `Control-D' and `y'
+ephem881|`q' to stop it running, then `Control-D' and `y'
+gnuplot|`quit' then Return
+inimf|`\end' then Return
+initex|`\end' then Return
+kermit3|`exit' then Return
+lissaj|`Control-C'
+logon|`Escape'
+lorenz3d|`Control-C'
+mail|`x' then Return
+mailx|Return past the opening line, then `q'
+mvolformat|`Control-C' at `Hit RETURN when drive ready'
+names|`Q'
+newgrp|`exit' then Return
+nn|`Q'
+orbit|`Control-C'
+passwd|`Control-C'
+pdraw|`q' then Return
+philmail|`q' then Return
+postnews|`Control-C'
+readnews|`Control-C'
+rn|`q'
+sdb|`exit' then Return
+sddemo|`E' once it has finished reading the disk
+setime2|Return on its own sets nothing and leaves
+setterm|`Escape'
+slitex|`\stop' then Return
+sonnet|`q' then Return
+speech|`Escape'
+t_trtest|`.' then Return
+tass|`q'
+testibc|answer the timeout question, then `Q' and Return
+top|`Control-C'
+tplot|`Control-C'
+transfer|Return
+uld|`Control-X'
+undel|`Control-C'
+utree|`Q'
+vis|`Control-C'
+vt100|any key, then `Alt-/', `Q' and `y' (a browser may not pass Alt through; closing the tab always works)
+vttest|`0' then Return
+wgen|`Control-C'
+xcrypt|`Control-C', or type a key and Return to go ahead
+xy|no key stops it; it gives up by itself after about three minutes
+yagi|`Control-C'
+ynad|Return at the first question; `Q' once a file is open
+z|`Control-X' five times

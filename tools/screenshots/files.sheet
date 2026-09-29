@@ -309,14 +309,13 @@ snap
 shot    utree
 size    24 80
 cap     Opened on the DOC directory: its directories in the tree pane, the
-cap     files of the current one below, the tree menu across
-cap     the top.  `>' or RETURN crosses into the file pane and RETURN or
-cap     `q' comes back, while `<' goes up a level; a capital letter acts
-cap     on the whole tagged set instead of the one file under the cursor.
-cap     `t' tags, `!' opens a command line with a history, `H' is the
-cap     help pages, `=' the settings, `Q' then `y' leaves.  `-v 0' asks
-cap     for no highlighting, as here; without it the menu line and the
-cap     current entry come up in reverse video.
+cap     files of the current one below, the tree menu across the top. `>'
+cap     or RETURN crosses into the file pane and RETURN or `q' comes back,
+cap     while `<' goes up a level; a capital letter acts on the whole
+cap     tagged set instead of the one file under the cursor. `t' tags, `!'
+cap     opens a command line with a history, `H' is the help pages, `='
+cap     the settings. `-v 0' asks for no highlighting, as here; without it
+cap     the menu line and the current entry come up in reverse video.
 try     utree -v 0 DOC
 run     builtin cd /dd
 wait    1

@@ -1137,9 +1137,9 @@ wait    8
 shot    draw
 for     draw
 cap     A character-graphics drawing program: a box drawn on its canvas by
-cap     dropping the pen with `p' and walking it round with the l, j, h and k
-cap     keys, then a diagonal in `*' with the pen character changed by
-cap     `\*' and the n key.  `?' lists the rest of the keys; ESC leaves.
+cap     dropping the pen with `p' and walking it round with the l, j, h
+cap     and k keys, then a diagonal in `*' with the pen character changed
+cap     by `\*' and the n key. `?' lists the rest of the keys.
 try     draw
 run     draw
 wait    8

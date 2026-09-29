@@ -22,8 +22,8 @@ snap
 shot    calender
 size    58 100
 cap     A whole year at once, in German, with the German public holidays
-cap     listed under it.  It asks `Fuer welches Jahr?' -- for which year --
-cap     and then asks again for the next; RETURN there ends it.
+cap     listed under it. It asks `Fuer welches Jahr?' -- for which year --
+cap     and then asks again for the next.
 try     calender
 run     calender
 wait    2
@@ -62,10 +62,10 @@ snap
 wait    4
 
 shot    ephem
-cap     The live panel, from the configuration and star database in SYS: date,
-cap     sidereal time and site at the top, and below it each body's right
-cap     ascension, declination, azimuth, altitude and more, recomputed as it
-cap     runs.  RETURN passes the opening page; control-D quits.
+cap     The live panel, from the configuration and star database in SYS:
+cap     date, sidereal time and site at the top, and below it each body's
+cap     right ascension, declination, azimuth, altitude and more,
+cap     recomputed as it runs. RETURN passes the opening page.
 try     ephem -c ephem.cfg -d ephem.db
 run     builtin cd /dd/SYS
 wait    1
