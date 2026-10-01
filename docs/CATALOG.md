@@ -9,7 +9,7 @@
 | [Shells](#shells) | 25 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | [Editors](#editors) | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | [Text tools](#text-tools) | 140 | Search, sort, compare, reformat, split and spell-check. |
-| [Files & directories](#files--directories) | 38 | Listing, copying, finding, renaming, and knowing what you have. |
+| [Files & directories](#files--directories) | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | [Developer tools](#developer-tools) | 39 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | [Compilers & build](#compilers--build) | 49 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | [Languages](#languages) | 16 | Interpreters and language systems beyond C. |
@@ -20,14 +20,14 @@
 | [Games](#games) | 117 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
-| [System & modules](#system--modules) | 141 | OS-9 module and process tools, devices, system state and scheduling. |
+| [System & modules](#system--modules) | 140 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
 | [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 20 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 8 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so. |
-| [Needs hardware](#needs-hardware) | 16 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code. |
+| [Needs hardware](#needs-hardware) | 18 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
 
 ## Shells
 
@@ -354,7 +354,7 @@
 
 *Listing, copying, finding, renaming, and knowing what you have.*
 
-<details><summary>38 programs</summary>
+<details><summary>37 programs</summary>
 
 **Attributes & ownership**
 
@@ -434,7 +434,6 @@
 
 | | |
 |---|---|
-| `names` | &#9733; an address book in German, full screen: name, street, postcode, town, phone and two notes per record, in a file under SYS it creates on first run. Wants a terminal; its screen codes are a Datamedia 1520's whatever TERM says<br>**To leave:** `Q' |
 | `sdb` | SDB 2.0, a small relational database: `create' makes a relation, `insert' prompts for records, `print <fields> from <relation> ;' shows a table; also delete, update, sort, import, export and macros. `help' lists them; manual in DOC/sdb<br>**To leave:** `exit' then Return<br>**How:** Run it in a directory you can write to; it keeps one file per relation there. `create people ( name char 12 town char 12 ) 20' makes one, `insert people' prompts field by field and a blank line ends the entry, and `print * from people ;' reads it back as a table -- the semicolon is part of the syntax. `help' lists the commands, `exit' leaves. Typing something it cannot parse gives `syntax error' and, if you keep going, a stack overflow. |
 
 **Split & join**
@@ -1475,7 +1474,7 @@
 
 *OS-9 module and process tools, devices, system state and scheduling.*
 
-<details><summary>141 programs</summary>
+<details><summary>140 programs</summary>
 
 **Devices & disks**
 
@@ -1672,7 +1671,6 @@
 | `vlen` | &#9733; a variable-length record demonstration: ignores arguments, creates a store, adds a hundred records and prints sizes and mapper entries. It leaves test.mp and test.st in the current directory; delete them to run it again<br>**How:** It leaves its store behind, in the data directory, as `test.mp' and `test.st'. Run it twice and the second run says `Filesystem already exists.' and adds nothing; delete those two to run it again. |
 | `xlharc` | C-LHarc 1.00 in a third build: extracts and lists .lzh archives like `lharc'<br>`C-LHarc for OSK Version 1.00   (C) 1989-1990 Y.Tagawa` |
 | `yagi` | a Yagi antenna calculator, DL6WU method: answer five questions -- frequency, element count, boom diameter, insulated Y/N, tubing size from its list -- and it prints element lengths and spacings. Run at a terminal: at end of input it repeats the last question for ever<br>**To leave:** `Control-C'<br>**How:** It asks five questions on standard input -- centre frequency in MHz, element count, boom diameter, whether the elements are insulated from the boom (Y/N), and a tubing size off its own list of six. Answer four and it loops on the fifth forever, because EOF on a numeric read returns the same thing every time. |
-| `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database.<br>**To leave:** Return at the first question; `Q' once a file is open |
 
 **Vendor demos**
 
@@ -1877,9 +1875,9 @@
 
 ## Needs hardware
 
-*Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code.*
+*Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code.*
 
-<details><summary>16 programs</summary>
+<details><summary>18 programs</summary>
 
 **<a sub-category for machine-specific tools>**
 
@@ -1911,6 +1909,13 @@
 | `splman` | &#9733; OS-9 print spooler: the manager.  It wants a printer on an SCF device to spool to.  `splprt' is the process that drives the printer and `splstat' shows the queue; the three go together |
 | `splprt` | &#9733; OS-9 print spooler: the printer process, one per printer. It wants an SCF device to write to |
 | `splstat` | &#9733; OS-9 print spooler: reports the queue in SPL/splq as a table of jobs and a table of printers; with nothing queued it prints nothing. splman and splprt are the rest of the set |
+
+**Terminals**
+
+| | |
+|---|---|
+| `names` | &#9733; an address book in German, full screen: name, street, postcode, town, phone and two notes per record, in a file under SYS it creates on first run. Wants a terminal; its screen codes are a Datamedia 1520's whatever TERM says<br>**To leave:** `Q' |
+| `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database.<br>**To leave:** Return at the first question; `Q' once a file is open |
 
 </details>
 

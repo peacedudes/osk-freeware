@@ -875,7 +875,7 @@ trunc|System & modules|Utilities
 getsys|System & modules|Utilities
 mvolformat|System & modules|Utilities
 vc|Maths & calculators|Spreadsheets
-ynad|System & modules|Utilities
+ynad|Needs hardware|Terminals
 xlharc|System & modules|Utilities
 fixyear|System & modules|Utilities
 setyear|System & modules|Utilities
@@ -952,7 +952,7 @@ lmargin|Printing|Printers
 lunisolar|Time & calendar|Astronomy
 map|System & modules|Utilities
 mshell|Shells|Shells
-names|Files & directories|Records & catalogues
+names|Needs hardware|Terminals
 preset|System & modules|Utilities
 pri|System & modules|Utilities
 rndir|System & modules|Utilities

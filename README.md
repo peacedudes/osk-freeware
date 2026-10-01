@@ -148,7 +148,7 @@ versions that work.
 | **Shells** | 25 | Unix shells to sit beside OS-9's own -- bash and ksh bring history, job control, and scripts that come across unchanged. |
 | **Editors** | 22 | vi and emacs in several flavours, line and stream editors, and editors for binary and hex. |
 | **Text tools** | 140 | Search, sort, compare, reformat, split and spell-check. |
-| **Files & directories** | 38 | Listing, copying, finding, renaming, and knowing what you have. |
+| **Files & directories** | 37 | Listing, copying, finding, renaming, and knowing what you have. |
 | **Developer tools** | 39 | Version control, tags, cross-reference, formatters, a debugger and benchmarks. |
 | **Compilers & build** | 49 | C compilers and their passes, assemblers, linkers, make and parser generators. |
 | **Languages** | 16 | Interpreters and language systems beyond C. |
@@ -159,14 +159,14 @@ versions that work.
 | **Games** | 117 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | **Screen toys** | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | **Amusements** | 39 | Generators, simulators and diversions that are not quite games. |
-| **System & modules** | 141 | OS-9 module and process tools, devices, system state and scheduling. |
+| **System & modules** | 140 | OS-9 module and process tools, devices, system state and scheduling. |
 | **Disk & DOS** | 20 | Reading and writing MS-DOS media with the mtools set. |
 | **Time & calendar** | 18 | Calendars, clocks and astronomy. |
 | **Maths & calculators** | 20 | Calculators, plotting, orbits and number theory. |
 | **Printing** | 11 | Spoolers, page formatting and PostScript. |
 | **Documentation** | 8 | Pagers, readers and the help system. |
 | **G-Windows** | 6 | Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so. |
-| **Needs hardware** | 16 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code. |
+| **Needs hardware** | 18 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
 
 <!-- CATEGORIES:END -->
 

@@ -715,7 +715,7 @@ BLURB = {
  "Printing":"Spoolers, page formatting and PostScript.",
  "Documentation":"Pagers, readers and the help system.",
  "G-Windows":"Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so.",
- "Needs hardware":"Programs for hardware out of our reach: a GEPARD or MM/1 display, a printer on its own port.  Untested here; what is said of them comes from their own text and code.",
+ "Needs hardware":"Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code.",
 }
 ORDER = ["Shells","Editors","Text tools","Files & directories","Developer tools",
  "Compilers & build","Languages","Archives & compression","Encoding & conversion",
