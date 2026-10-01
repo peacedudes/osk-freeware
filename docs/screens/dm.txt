@@ -8,7 +8,7 @@
 | CMDS                                         |           ---wr-wr            |
 | DEFS                                         |      Length: 3557 bytes       |
 | DEMO                                         |        Creation date          |
-| DOC                                          |           26/09/26            |
+| DOC                                          |           26/10/01            |
 | DOS                                          |        Last modified          |
 | ETC                                          |        26/08/03 19:00         |
 | GAMES                                        |                               |

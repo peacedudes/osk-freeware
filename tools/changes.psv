@@ -165,7 +165,7 @@ crypto|Rebuilt from its source, trap-free. The archive build ended the whole ses
 unpacklib|Rebuilt from its source, trap-free. The archive build stopped at `Wrong SYNC long word' after the first module of every library; this one takes a library apart whole.
 screen|Rebuilt from its source, trap-free, with one line fixed in scandir.c: a file counter was never set, and the archive build died with a bus error on the first file it picked.
 lispmtopgm|Rebuilt from its source with two changes: its maxval is one less than 2 to the depth, so an 8-bit image is no longer refused, and it skips each row's padding, so an image whose width is not a multiple of 32 comes back row for row.
-dm|Rebuilt from its source for an ANSI or vt100 terminal: the arrow keys move the bar as Ctrl-N and Ctrl-P do, the bar shows in reverse video where there is no colour, and it no longer needs cio.
+dm|Rebuilt from its source for an ANSI or vt100 terminal: the arrow keys move the bar as Ctrl-N and Ctrl-P do, the bar shows in reverse video where there is no colour, and it no longer needs cio. Pressing the up arrow after the space bar no longer stops it with E_PRCABT, and the file-information pane no longer frees memory it did not allocate.
 editor|Rebuilt from its source; at the end of its input it now leaves as `!' does, where it redrew its menu for ever.
 mkdict|Rebuilt from its source; a line longer than a word no longer overruns its buffer and stops it with a bus error.
 bincheckr|Rebuilt from its source: it reads the book gnuchess 4.0 writes, where it read only an older layout, says so rather than dividing by zero when a book has no entries, and its odd and even counts are no longer swapped.
