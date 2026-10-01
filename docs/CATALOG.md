@@ -16,18 +16,18 @@
 | [Archives & compression](#archives--compression) | 34 | Pack, unpack and shrink -- lha, zip, tar, arc, zoo, and OS-9 module libraries. |
 | [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 123 | Kermit in several builds, terminal sessions, and networking. |
-| [Graphics & images](#graphics--images) | 191 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
+| [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
 | [Games](#games) | 117 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 140 | OS-9 module and process tools, devices, system state and scheduling. |
 | [Disk & DOS](#disk--dos) | 20 | Reading and writing MS-DOS media with the mtools set. |
-| [Time & calendar](#time--calendar) | 18 | Calendars, clocks and astronomy. |
+| [Time & calendar](#time--calendar) | 17 | Calendars, clocks and astronomy. |
 | [Maths & calculators](#maths--calculators) | 20 | Calculators, plotting, orbits and number theory. |
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 8 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so. |
-| [Needs hardware](#needs-hardware) | 18 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
+| [Needs hardware](#needs-hardware) | 20 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
 
 ## Shells
 
@@ -972,7 +972,7 @@
 
 *The netpbm toolkit, JPEG, a ray tracer, and things that draw.*
 
-<details><summary>191 programs</summary>
+<details><summary>190 programs</summary>
 
 **Drawing & display**
 
@@ -980,7 +980,6 @@
 |---|---|
 | `draw` | a character-graphics drawing program: move a cursor over a canvas laying down characters -- hjkl move, p lifts and drops the pen, backslash chooses the character, `?' shows the keys<br>**To leave:** `Escape' then `y'<br>`syntax: draw [<opts>] <file> [<opts>]` |
 | `pdraw` | Pdraw 1.4: plots 2D and 3D data as PostScript. It reads an options file (labels, hidden lines, point marks), lists the settings, asks before plotting, and writes `dataplot.ps' beside the data<br>**To leave:** `q' then Return<br>`Pdraw V1.4  9/4/90` |
-| `snap` | &#9733; writes what is on the terminal screen to a file -- `polaroid' unless you name another -- so a display can be kept. -s and -e take a range of lines rather than the whole screen<br>`syntax: snap {opt} [<file>] {opt}` |
 
 **Hardware demos**
 
@@ -1718,7 +1717,7 @@
 
 *Calendars, clocks and astronomy.*
 
-<details><summary>18 programs</summary>
+<details><summary>17 programs</summary>
 
 **Astronomy**
 
@@ -1749,7 +1748,6 @@
 | | |
 |---|---|
 | `digclk` | &#9733; a clock in block digits with the machine's name above it and the date below, redrawn once a minute, or every so many seconds as given<br>**To leave:** `Control-E'<br>`Usage: digclk [refresh_rate]` |
-| `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
 | `qt` | &#9733; tells the time in words, the way a person would say it: `It's just gone ten past four.' |
 | `setimex` | &#9733; checks the system clock against a hardware time source and sets it: -s=<date> sets a date outright, -t tests, and -x or -e make the exit status say whether the time was right<br>`SETIMEX  Version UTIL 2.80 by DESIGNA VLT 03.08.98` |
 
@@ -1877,7 +1875,7 @@
 
 *Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code.*
 
-<details><summary>18 programs</summary>
+<details><summary>20 programs</summary>
 
 **<a sub-category for machine-specific tools>**
 
@@ -1914,8 +1912,10 @@
 
 | | |
 |---|---|
+| `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video. Its screen codes are a TeleVideo's whatever TERM says<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
 | `names` | &#9733; an address book in German, full screen: name, street, postcode, town, phone and two notes per record, in a file under SYS it creates on first run. Wants a terminal; its screen codes are a Datamedia 1520's whatever TERM says<br>**To leave:** `Q' |
-| `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database.<br>**To leave:** Return at the first question; `Q' once a file is open |
+| `snap` | &#9733; writes what is on the terminal screen to a file -- `polaroid' unless you name another -- so a display can be kept. -s and -e take a range of lines rather than the whole screen.  It reads the screen back from one of the hardware terminals -l lists; on any other it names the type and stops<br>`syntax: snap {opt} [<file>] {opt}` |
+| `ynad` | &#9733; YNAD -- Yet Another Name & Address program.  A contact database. Wants a terminal; its screen codes are a Datamedia 1520's whatever TERM says<br>**To leave:** Return at the first question; `Q' once a file is open |
 
 </details>
 

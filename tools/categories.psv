@@ -295,7 +295,7 @@ draw|Graphics & images|Drawing & display
 loadmem|System & modules|Processes & memory
 pdraw|Graphics & images|Drawing & display
 savemem|System & modules|Processes & memory
-snap|Graphics & images|Drawing & display
+snap|Needs hardware|Terminals
 cjpeg|Graphics & images|JPEG
 cjpeg.070|Graphics & images|JPEG
 djpeg|Graphics & images|JPEG
@@ -494,7 +494,7 @@ stone|Games|Other games
 
 # ---- Maths & calculators ----
 orbit|Time & calendar|Astronomy
-gcl|Time & calendar|Clocks
+gcl|Needs hardware|Terminals
 hc|Text tools|Format & typeset
 loan|Maths & calculators|Calculators
 rechne|Maths & calculators|Calculators

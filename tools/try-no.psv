@@ -28,6 +28,7 @@ enable|switches on a serial port's monitor
 setfont|loads a font into a terminal that takes downloadable fonts
 names|draws for a Datamedia 1520 whatever TERM says; the browser's terminal is not one
 ynad|draws for a Datamedia 1520 whatever TERM says; the browser's terminal is not one
+gcl|draws for a TeleVideo whatever TERM says; the browser's terminal is not one
 sbreak|sends a break on a serial line
 basicwin|an X11 program
 xengine|an X11 program
