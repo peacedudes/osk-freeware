@@ -104,10 +104,10 @@ permissions and record locking work only on the image.
 emulator the collection runs under in the browser and on the desktop; this
 collection's programs found most of the fixes in its release 4.1.
 
-Writing or porting OS-9 software? The
-[OS-9 development skills](https://github.com/peacedudes/os9-dev-skill) give
-a person or an AI coding assistant a checked reference to the system: its
-calls, its C, BASIC09 and assembly, and its tools.
+Writing or porting OS-9 software with an AI coding assistant? The
+[OS-9 skills for AI coding assistants](https://github.com/peacedudes/os9-dev-skill)
+teach it the system - its calls, its C, BASIC09 and assembly, and its tools -
+with every claim saying where it came from.
 
 ## Finding your way on the disk
 
