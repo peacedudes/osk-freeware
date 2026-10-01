@@ -74,6 +74,7 @@ nnadmin|Built with the directory it looks for nn's programs in changed from the 
 nnaux|Built with the directory it looks for nn's programs in changed from the package's default to where MNews lives on this disk.
 nncheck|Built with the directory it looks for nn's programs in changed from the package's default to where MNews lives on this disk.
 nnmaster|Built with the directories nn looks in changed from the package's defaults to where MNews lives on this disk.
+nobs|Rebuilt from its source with one change: it asks curses for single-key input at start-up. Without that, OS-9's curses returned at once from every key read, so it beeped without pause while waiting for a choice and never saw a key.
 os9dsk|Rebuilt from its source rather than shipped as the author's binary, with coco_direct.h written for this collection in place of the release's header derived from Microware's direct.h.
 patch|Every open() and creat() given OS-9 access modes: the Unix mode 0 grants nothing here, so patch fell back to Plan B and stopped with "Error reading tmp file", leaving the file untouched.
 pbmtext|Stack size in its module header raised from 3K to 64K; it died of stack overflow before doing anything.

@@ -11,7 +11,7 @@
 
 
 
-                               Qs   Qh   Kd   2h   Kc   5d
+                               Jh   7h   Kh   5s  10c   4d
                                 a    b    c    d    e    f
 
 
