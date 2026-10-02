@@ -106,6 +106,13 @@ Sheet format (blank lines and `#' comments ignored):
                                    AFTER the screen is taken -- an editor that
                                    is still running would otherwise eat the
                                    next stanza's command line
+    cut     Error:                 for a `burst' stanza: picture the screen
+                                   only up to the first time the program
+                                   prints this text.  A burst stanza's input
+                                   always runs out, and a game waiting for a
+                                   move then says so -- teachgammon prints
+                                   `Error: 000:000 - readc' over its prompt,
+                                   which nobody at a keyboard ever sees
 
 Every stanza ends with Ctrl-E, which os9exec delivers to the last writer and
 which kills a program however it is blocked. That is what makes it safe to
@@ -272,6 +279,8 @@ def parse(path):
             cur["acts"].append(("keys", unescape(rest)))
         elif word == "quit":
             cur["quit"] = unescape(rest)
+        elif word == "cut":
+            cur["cut"] = unescape(rest)
         else:
             sys.exit("%s: unknown directive `%s'" % (path, word))
     return shots
@@ -642,6 +651,8 @@ def stanza_hash(shot):
         parts.append("frames")            # only when set: older hashes hold
     if shot.get("super"):
         parts.append("super")             # who ran it changes what it shows
+    if shot.get("cut"):
+        parts.append("cut " + shot["cut"])  # where the picture stops
     # `fresh' is deliberately NOT here: it changes what the NEXT stanza
     # starts from, never this stanza's own screen, and the rule above is
     # that only what alters the capture belongs in the fingerprint.
@@ -774,6 +785,10 @@ def capture_burst(image, shot):
     i = raw.find(b"\x1b")
     if i > 0:
         raw = raw[i:]
+    if shot.get("cut"):
+        j = raw.find(shot["cut"].encode("latin-1"))
+        if j >= 0:
+            raw = raw[:j]
     return ansiscreen.render(raw, rows, cols), False
 
 
