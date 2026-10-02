@@ -34,7 +34,7 @@ run     builtin cd /dd/tmp/CMPA
 wait    2
 run     clear
 wait    1
-run     cat c.a
+run     cat t.a
 wait    4
 run     as09 t.a
 wait    12

@@ -1,5 +1,9 @@
-$ cat c.a
-cat: couldn't open 'c.a' (Error #000:216)
+$ cat t.a
+        org  $1000
+        lda  #$42
+        sta  $2000
+        rts
+        end
 $ as09 t.a
 $ cat t.s19
 S10910008642B72000390E

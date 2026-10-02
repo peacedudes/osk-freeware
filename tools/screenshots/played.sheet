@@ -322,11 +322,11 @@ send    y\r
 shot    teachgammon
 size    40 80
 burst
+cut     Error:
 cap     A backgammon tutor: it sets out the rules a screen at a time, and `t'
 cap     goes straight to the tutorial, a practice game against the computer
-cap     explained a move at a time.  Here its opening roll and first move, and
-cap     the prompt for yours.  The `Error: 000:000 - readc' beside it is this
-cap     card's typed input running out; at a keyboard it waits for your move.
+cap     explained a move at a time.  Here its opening roll and first move,
+cap     your roll, and the prompt for your move.
 try     teachgammon
 run     export TERM=vt100
 run     clear

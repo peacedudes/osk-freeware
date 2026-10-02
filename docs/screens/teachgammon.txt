@@ -20,4 +20,4 @@ To start the game, I roll a 3, and you roll a 1.  This means
 that I get to start first.  I move 8-5,6-5 since this makes a
 new point and helps to trap your back men on 1.  You should be
 able to do a similar move with your roll.
-Error: 000:000 - readc          Move:
+Red's roll:  4 2                Move:
