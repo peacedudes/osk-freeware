@@ -429,10 +429,10 @@ def hidden_setup(shot):
     # is redrawn in scrambled pieces there.
     typed = []
     for k, v in (acts[:cut] if cut else []):
-        # A file typed in -- `tee >f', its `text' lines, `eof' -- goes over
+        # A file typed in -- `cat >f', its `text' lines, `eof' -- goes over
         # as one step, {"file": [lines]}: the page types the lines verbatim
         # and then end of file, the one key a line cannot carry, without
-        # waiting between them -- tee reads what was typed ahead.
+        # waiting between them -- cat reads what was typed ahead.
         if k == "text":
             typed.append(v)
             continue

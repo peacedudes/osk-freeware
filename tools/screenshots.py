@@ -113,14 +113,16 @@ Sheet format (blank lines and `#' comments ignored):
                                    move then says so -- teachgammon prints
                                    `Error: 000:000 - readc' over its prompt,
                                    which nobody at a keyboard ever sees
-    run     tee >t.a               a file a card needs, typed as a reader
+    run     cat >t.a               a file a card needs, typed as a reader
     text            org  $1000     would type it: `text' lines go to the
     eof                            program verbatim from column 9 on, so
                                    leading spaces survive, and `eof' sends
                                    ESC, SCF's end of file.  Before a `clear'
                                    they are setup the browser page replays,
                                    as plain lines -- not a chain of echo
-                                   commands full of octal escapes
+                                   commands full of octal escapes.  `cat',
+                                   not `tee': tee is the reader's own, from
+                                   /h1, and the disk carries a cat
 
 Every stanza ends with Ctrl-E, which os9exec delivers to the last writer and
 which kills a program however it is blocked. That is what makes it safe to

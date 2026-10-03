@@ -314,8 +314,8 @@
     }
     if (setupLines.length) {
       const step = setupLines.shift();
-      // {"file": [lines]} is a file the card typed in with `tee': its lines
-      // all at once, since tee reads what is typed ahead, then ESC, SCF's
+      // {"file": [lines]} is a file the card typed in with `cat': its lines
+      // all at once, since cat reads what is typed ahead, then ESC, SCF's
       // end of file, and nothing else -- still no way to put a key of a
       // link's choosing into the terminal.
       const line = s => String(s).replace(/[\x00-\x1f\x7f]/g, '') + '\n';
