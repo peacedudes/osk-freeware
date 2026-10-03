@@ -103,6 +103,7 @@ slice|Default output names are <input>.001 rather than <input>:001, and -m write
 snake|Rebuilt from its source with two changes: echo is turned off while it plays (the port's raw() and cook() were empty, so each key typed was echoed onto the board), and stdout is no longer made unbuffered -- with it, the C library held back the ESC of each cursor move after a flush, so moves were printed on the board as text.
 soelim|One token fixed in its usage message, which printed an empty name where the program's name belongs.
 stone|Rebuilt from its source so that it finds its SNOBOL4 syntax file in GAMES/SNOBOL from any directory; as built before, it looked in the current directory and died.
+teachgammon|One byte changed: its raw-mode terminal settings started from nothing rather than from your terminal's own, so it switched off your interrupt and quit keys and set the speed byte to 50 baud, which slowed its text to a crawl under an emulator that honours that byte.
 tet|Replaced by a rebuild from its source with the keyboard compiled in (the build first shipped took no keys), then fixed so it really pauses between moves, turns echo off and keeps a score file.
 top|Rebuilt from its source with its process-table walk bounded: it read past the end of its own table and died with a bus error just after printing its headings. The rebuild needs no cio.
 torus|The field is one column narrower than the screen, so column 80 is never written and it keeps its shape in any window 80 or wider.
