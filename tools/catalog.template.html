@@ -567,13 +567,16 @@ function renderKinds(){
     ` title="${byl[k]||0} programs">${k}</button>`).join("");
 }
 
+// SEARCHING IS NOT BROWSING: the answer is a ranked list, best first.
+function searchRows(q){
+  return DATA.filter(ok).filter(p=>matches(p,q)).sort((a,b)=>(!!a.out-!!b.out)||rank(b,q)-rank(a,q)||a.name.localeCompare(b.name));
+}
 function renderProgs(){
   const col = document.getElementById("progs-col");
   const hits = DATA.filter(ok);
   const q = st.q.trim().toLowerCase();
   if(q){
-    // SEARCHING IS NOT BROWSING: the answer is a ranked list, best first.
-    const rows = hits.filter(p=>matches(p,q)).sort((a,b)=>(!!a.out-!!b.out)||rank(b,q)-rank(a,q)||a.name.localeCompare(b.name));
+    const rows = searchRows(q);
     col.innerHTML = `<h2>${rows.length} match${rows.length===1?"":"es"}</h2>`+
       (rows.length ? `<ul class="progs">${rows.map(p=>row(p,p.out?"not included":p.cat)).join("")}</ul>`
                    : `<p class="empty">Nothing matches that. Names, descriptions and kinds are searched.</p>`);
@@ -968,9 +971,15 @@ document.getElementById("panel-col").addEventListener("click",e=>{
     st.sel=null; document.getElementById("app").dataset.stage="list"; toHash(); renderProgs(); renderPanel();
   }
 });
+// ONE MATCH OPENS ITSELF: a search down to a single program shows its card
+// without a tap on the only link (asked for 2026-10-03).  The list stays
+// beside it, so a further letter that widens the search again is no trap.
 document.getElementById("q").addEventListener("input",e=>{
   st.q=e.target.value; if(st.q){ st.cat=null; st.letter=null; }
-  document.getElementById("app").dataset.stage="list"; toHash(); render(); });
+  const q=st.q.trim().toLowerCase(), rows=q ? searchRows(q) : [];
+  if(rows.length===1) st.sel = rows[0].name;
+  document.getElementById("app").dataset.stage = rows.length===1 ? "panel" : "list";
+  toHash(); render(); });
 for(const [id,k] of [["f-src","src"],["f-doc","doc"],["f-shot","shot"],["f-de","de"],["f-out","out"]]){
   const b=document.getElementById(id);
   b.onclick=()=>{ st[k]=!st[k]; b.setAttribute("aria-pressed",String(st[k])); render(); };
