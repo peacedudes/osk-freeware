@@ -438,8 +438,14 @@ cap     and PORT the terminal, which logon sets; here both are set by hand
 cap     and the menu is one of three entries.  `l' leaves it.
 try     mmenu -f=main
 run     rm -rf /dd/tmp/MMC; mkdir -p /dd/tmp/MMC; builtin cd /dd/tmp/MMC
-run     echo "Main Menu" > main; echo "Pick one; l leaves" >> main
-run     echo "Date,date" >> main; echo "Help,:help" >> main; echo "Logoff,:logoff" >> main
+run     cat >main
+text    Main Menu
+text    Pick one; l leaves
+text    Date,date
+text    Help,:help
+text    Logoff,:logoff
+eof
+wait    2
 run     echo "The only help there is." > main.hlp
 run     export MENUDATA=/dd/tmp/MMC PORT=/term
 wait    2

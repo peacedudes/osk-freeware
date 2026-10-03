@@ -1,4 +1,8 @@
-$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ cat >hello.c
+int main()
+{
+  return 0;
+}
 $ export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
 $ ./gcc272 -S hello.c
 $ cat hello.a

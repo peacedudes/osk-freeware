@@ -462,9 +462,11 @@ try     scpp -MWIDTH s.c
 run     /dd/CMDS/rm -rf /dd/tmp/scppcard > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/scppcard
 run     builtin cd /dd/tmp/scppcard
-run     echo "#define WIDTH 80" > s.c
-run     echo "#define DEPTH 24" >> s.c
-run     echo "int w = WIDTH, d = DEPTH;" >> s.c
+run     cat >s.c
+text    #define WIDTH 80
+text    #define DEPTH 24
+text    int w = WIDTH, d = DEPTH;
+eof
 wait    2
 run     clear
 wait    1

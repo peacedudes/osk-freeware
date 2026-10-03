@@ -42,4 +42,4 @@ Move# 6    Target= 6000    Clock: 0
 
            White's percentage was 50.00%.     Black's percentage was 50.00%.
 
-           Elapsed time was 1 seconds.
+           Elapsed time was 0 seconds.

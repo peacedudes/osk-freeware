@@ -137,21 +137,16 @@ run     rm -rf /dd/tmp/cppdemo > /nil 2>/nil; mkdir -p /dd/tmp/cppdemo > /nil 2>
 wait    4
 run     builtin cd /dd/tmp/cppdemo
 wait    1
-run     echo "#define GREET(who) \"hello, \" who" > t.c
-wait    3
-run     echo "#define N 3" >> t.c
-wait    3
-run     echo "#if N > 2" >> t.c
-wait    3
-run     echo "int big = N;" >> t.c
-wait    3
-run     echo "#else" >> t.c
-wait    3
-run     echo "int small = N;" >> t.c
-wait    3
-run     echo "#endif" >> t.c
-wait    3
-run     echo "char *s = GREET(\"world\");" >> t.c
+run     cat >t.c
+text    #define GREET(who) "hello, " who
+text    #define N 3
+text    #if N > 2
+text    int big = N;
+text    #else
+text    int small = N;
+text    #endif
+text    char *s = GREET("world");
+eof
 wait    3
 run     clear
 wait    1
@@ -170,11 +165,11 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "%token NUM" > tmp/b.y
-wait    3
-run     echo "%%" >> tmp/b.y
-wait    3
-run     echo "expr : expr NUM | NUM ;" >> tmp/b.y
+run     cat >tmp/b.y
+text    %token NUM
+text    %%
+text    expr : expr NUM | NUM ;
+eof
 wait    3
 run     bison -v tmp/b.y
 wait    15
@@ -190,11 +185,11 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "%%" > tmp/l.l
-wait    5
-run     echo "[0-9]+   { return NUM; }" >> tmp/l.l
-wait    5
-run     echo ".        ;" >> tmp/l.l
+run     cat >tmp/l.l
+text    %%
+text    [0-9]+   { return NUM; }
+text    .        ;
+eof
 wait    5
 run     flex tmp/l.l
 wait    8
@@ -218,7 +213,12 @@ wait    2
 run     rm -f hello.c hello.r
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    2
 run     ./gcc -v -c hello.c
 wait    14
@@ -240,7 +240,12 @@ run     builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137
 wait    2
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    2
 run     ./gcc137 -B$PWD/gcc137_ -S hello.c
 wait    8
@@ -262,7 +267,12 @@ wait    2
 run     rm -f hello.c hello.a
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    1
 run     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"
 wait    1
@@ -290,7 +300,19 @@ run     load /h1/CMDS/r68
 run     export PATH=$PATH:/dd/CMDS/GCC272
 run     rm -rf /dd/tmp/CL272; mkdir -p /dd/tmp/CL272; builtin cd /dd/tmp/CL272
 run     cp /h1/LIB/cstart.r /h1/LIB/clibn.l /h1/LIB/sys.l .; cp /dd/GNULIB/libgcc000.l gcc.l
-run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     cat >greet.cc
+text    class Greeter {
+text    public:
+text      Greeter() { n = 1; }
+text      int n;
+text    };
+text    Greeter hello;
+text    int main()
+text    {
+text      return hello.n;
+text    }
+eof
+wait    2
 run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
@@ -309,7 +331,14 @@ cap     to 42, and the `# 1 "..."' line marks where the source began.
 try     ./gcc137_cccp hello.c
 run     builtin cd /dd/CMDS/GCC137
 wait    1
-run     printf "#define ANSWER 42\rint main()\r{\r  return ANSWER;\r}\r" > hello.c
+run     cat >hello.c
+text    #define ANSWER 42
+text    int main()
+text    {
+text      return ANSWER;
+text    }
+eof
+wait    2
 run     clear
 wait    1
 run     cat hello.c
@@ -327,7 +356,13 @@ cap     function itself, returning 42.
 try     ./gcc137_cc1 hello.i -o hello.a -quiet; cat hello.a
 run     builtin cd /dd/CMDS/GCC137
 wait    1
-run     printf "int main()\r{\r  return 42;\r}\r" > hello.i
+run     cat >hello.i
+text    int main()
+text    {
+text      return 42;
+text    }
+eof
+wait    2
 run     clear
 wait    1
 run     cat hello.i
@@ -345,7 +380,14 @@ cap     and the `# 1' line marks where the source began.
 try     ./gcc272_cccp2 hello.c hello.i; cat hello.i
 run     builtin cd /dd/CMDS/GCC272
 wait    1
-run     printf "#define ANSWER 42\rint main()\r{\r  return ANSWER;\r}\r" > hello.c
+run     cat >hello.c
+text    #define ANSWER 42
+text    int main()
+text    {
+text      return ANSWER;
+text    }
+eof
+wait    2
 run     clear
 wait    1
 run     ./gcc272_cccp2 hello.c hello.i; cat hello.i
@@ -360,7 +402,13 @@ cap     writes 68k assembly for your own r68.
 try     ./gcc272_cc2 hello.i -o hello.a -quiet; cat hello.a
 run     builtin cd /dd/CMDS/GCC272
 wait    1
-run     printf "int main()\r{\r  return 42;\r}\r" > hello.i
+run     cat >hello.i
+text    int main()
+text    {
+text      return 42;
+text    }
+eof
+wait    2
 run     clear
 wait    1
 run     ./gcc272_cc2 hello.i -o hello.a -quiet; cat hello.a
@@ -377,7 +425,11 @@ cap     C++ mangled name, f__1G.
 try     ./gcc272_cc2plus hello.ii -o hello.a -quiet; cat hello.a
 run     builtin cd /dd/CMDS/GCC272
 wait    1
-run     printf "class G { public: int f() { return 42; } };\rint main() { G g; return g.f(); }\r" > hello.ii
+run     cat >hello.ii
+text    class G { public: int f() { return 42; } };
+text    int main() { G g; return g.f(); }
+eof
+wait    2
 run     clear
 wait    1
 run     cat hello.ii
@@ -402,7 +454,12 @@ wait    3
 run     rm -f hello.c hello.a hello.r
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    2
 run     ./gcc2 -S -o hello.a hello.c
 wait    12
@@ -427,7 +484,12 @@ wait    3
 run     rm -f hello.c hello.r
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    2
 run     ./gpp -v -c hello.c
 wait    16
@@ -448,13 +510,20 @@ run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear
 wait    1
-run     printf "int main()\r{\r  return 0;\r}\r" > hello.c
-wait    3
+run     cat >hello.c
+text    int main()
+text    {
+text      return 0;
+text    }
+eof
 wait    1
 run     ./cccp2 hello.c hello.i
 wait    8
 run     cat hello.i
 wait    5
+snap
+run     rm -f hello.c hello.i
+wait    1
 
 shot    cc2
 fresh
@@ -505,7 +574,19 @@ try     ./collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
 run     rm -f greet.cc greet.r
-run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     cat >greet.cc
+text    class Greeter {
+text    public:
+text      Greeter() { n = 1; }
+text      int n;
+text    };
+text    Greeter hello;
+text    int main()
+text    {
+text      return hello.n;
+text    }
+eof
+wait    2
 run     ./gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
@@ -558,7 +639,19 @@ cap     names holds its one constructor, _GLOBAL_$I$main.
 try     gcc_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGC; mkdir -p /dd/tmp/CLGC; builtin cd /dd/tmp/CLGC
-run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     cat >greet.cc
+text    class Greeter {
+text    public:
+text      Greeter() { n = 1; }
+text      int n;
+text    };
+text    Greeter hello;
+text    int main()
+text    {
+text      return hello.n;
+text    }
+eof
+wait    2
 run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
@@ -613,7 +706,19 @@ cap     constructor, _GLOBAL_$I$main.
 try     gpp_collect -o ctors.a greet.r; cat ctors.a
 run     load /h1/CMDS/r68
 run     rm -rf /dd/tmp/CLGP; mkdir -p /dd/tmp/CLGP; builtin cd /dd/tmp/CLGP
-run     printf "class Greeter {\rpublic:\r  Greeter() { n = 1; }\r  int n;\r};\rGreeter hello;\rint main()\r{\r  return hello.n;\r}\r" > greet.cc
+run     cat >greet.cc
+text    class Greeter {
+text    public:
+text      Greeter() { n = 1; }
+text      int n;
+text    };
+text    Greeter hello;
+text    int main()
+text    {
+text      return hello.n;
+text    }
+eof
+wait    2
 run     /dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil
 wait    12
 run     clear
@@ -673,13 +778,11 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "define(greet,hi \0441 -- welcome)" > tmp/m.m4
-wait    5
-run     echo "greet(reader)" >> tmp/m.m4
-wait    5
-run     echo "syscmd(whoami)" >> tmp/m.m4
-wait    5
-run     cat tmp/m.m4
+run     cat >tmp/m.m4
+text    define(greet,hi $1 -- welcome)
+text    greet(reader)
+text    syscmd(whoami)
+eof
 wait    5
 run     m4 tmp/m.m4
 wait    8
@@ -724,7 +827,16 @@ cap     Info reader can move between.  Its options take a leading `+', not
 cap     `--' -- `makeinfo +version'.
 try     makeinfo hi.texi
 run     rm -rf /dd/tmp/MKI; mkdir -p /dd/tmp/MKI; builtin cd /dd/tmp/MKI
-run     printf '\\input texinfo\r@setfilename hi.info\r@settitle Hi\r@node Top\r@chapter Hi\r\rA small manual.\r@bye\r' > hi.texi
+run     cat >hi.texi
+text    \input texinfo
+text    @setfilename hi.info
+text    @settitle Hi
+text    @node Top
+text    @chapter Hi
+text
+text    A small manual.
+text    @bye
+eof
 wait    2
 run     clear
 wait    1
@@ -786,7 +898,12 @@ cap     prints nothing on success; the listed file and its size confirm it
 cap     finished.
 try     yacc g.y
 run     rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c; mkdir -p /dd/tmp/CMPA > /nil 2>/nil
-run     printf "%%token NUM\r%%%%\rexpr : expr NUM | NUM ;\r" > /dd/tmp/CMPA/g.y
+run     cat >/dd/tmp/CMPA/g.y
+text    %token NUM
+text    %%
+text    expr : expr NUM | NUM ;
+eof
+wait    2
 run     builtin cd /dd/tmp/CMPA
 wait    3
 run     clear

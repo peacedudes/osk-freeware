@@ -1,6 +1,7 @@
-$ echo "%token NUM" > tmp/b.y
-$ echo "%%" >> tmp/b.y
-$ echo "expr : expr NUM | NUM ;" >> tmp/b.y
+$ cat >tmp/b.y
+%token NUM
+%%
+expr : expr NUM | NUM ;
 $ bison -v tmp/b.y
 $ head -n 12 tmp/b.output 2>/nil
 

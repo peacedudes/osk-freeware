@@ -4,7 +4,7 @@ OS-9 Mailx v2.1    1 messages    1 new
 
 hit <ENTER> to continue...
 ------------------------------------------------------------------------------
->From  Sat, 26 Sep 26 10:51:20 -0500
+>From  Fri, 2 Oct 26 22:48:52 -0500
 Subject: hello
 Status: NEW
 

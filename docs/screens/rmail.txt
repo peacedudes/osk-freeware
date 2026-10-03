@@ -4,9 +4,9 @@ Subject: hello
 a line of mail
 $ rmail tester < letter
 $ ls tester
-m201260926103442  mail..list
+m201261002224954  mail..list
 $ cat tester/m2*
->From  Sat, 26 Sep 26 10:34:42 -0500
+>From  Fri, 2 Oct 26 22:49:54 -0500
 Subject: hello
 
 a line of mail

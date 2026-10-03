@@ -8,11 +8,11 @@ resolve: parse route 'phoenix!seabass!pirsqrd!ralph' = 'seabass!pirsqrd!ralph' @
 resolve 'ralph@pirsqrd' = 'seabass!pirsqrd!ralph' @ 'phoenix' (UUCP)
 COMMAND: /dd/etc/cmds/uux -a'tester' -r - 'phoenix!rmail' '(seabass!pirsqrd!ralp
 h)'
-From tester  Thu Sep 24 18:43:15 2026 remote from milkyway
+From tester  Fri Oct  2 22:50:24 2026 remote from milkyway
 Received: by milkyway (smail2.5)
-        id AA00004; 24 Sep 26 18:43:15 CST (Thu)
+        id AA00004; 2 Oct 26 22:50:24 CST (Fri)
 Subject: hello
-Message-Id: <12609241843.AA00004@milkyway>
-Date: 24 Sep 26 18:43:15 CST (Thu)
+Message-Id: <12610022250.AA00004@milkyway>
+Date: 2 Oct 26 22:50:24 CST (Fri)
 From: tester@milkyway
 To: ralph@pirsqrd

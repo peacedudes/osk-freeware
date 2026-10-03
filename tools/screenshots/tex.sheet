@@ -90,7 +90,15 @@ cap     writes cite.bbl, the formatted bibliography LaTeX reads on its next
 cap     run; its head is shown.
 try     bibtex
 run     rm -rf /dd/tmp/BIBT; mkdir -p /dd/tmp/BIBT; cp /dd/SYS/TEX/SAMPLES/xampl.bib /dd/tmp/BIBT; builtin cd /dd/tmp/BIBT
-run     printf '\\documentstyle{article}\r\\begin{document}\rSee \\cite{book-full} and \\cite{article-full}.\r\\bibliographystyle{plain}\r\\bibliography{xampl}\r\\end{document}\r' > cite.tex
+run     cat >cite.tex
+text    \documentstyle{article}
+text    \begin{document}
+text    See \cite{book-full} and \cite{article-full}.
+text    \bibliographystyle{plain}
+text    \bibliography{xampl}
+text    \end{document}
+eof
+wait    2
 run     latex cite.tex > /nil
 wait    60
 run     builtin cd /dd/tmp/BIBT

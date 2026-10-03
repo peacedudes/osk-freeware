@@ -1,4 +1,8 @@
-$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ cat >hello.c
+int main()
+{
+  return 0;
+}
 $ ./gcc137 -B$PWD/gcc137_ -S hello.c
 $ cat hello.a
         psect   hello_gc,0,0,0,0,0

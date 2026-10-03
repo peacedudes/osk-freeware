@@ -35,16 +35,42 @@
 "set +H",
 "rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
 "rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
-"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"cat >/h0/USR/LIB/CNEWS/active",
+{
+"file": [
+"control 0000000000 00001 y",
+"junk 0000000000 00001 y"
+]
+},
 "printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
 "printf '' > /h0/USR/LIB/CNEWS/history",
 "builtin cd /h0/USR/LIB/CNEWS",
 "dbz history",
 "mkdir -p /dd/tmp/CNC",
 "builtin cd /dd/tmp/CNC",
-"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
+"cat >article",
+{
+"file": [
+"Path: somewhere!someone",
+"From: someone@somewhere",
+"Newsgroups: junk",
+"Subject: filed by relaynews",
+"Message-ID: <1@somewhere>",
+"Date: 23 Sep 1990 10:00:00 GMT",
+"",
+"hello from C News"
+]
+},
 "builtin cd /h0/SPOOL/CNEWS",
-"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"cat >post",
+{
+"file": [
+"Newsgroups: junk",
+"Subject: posted with Pnews",
+"",
+"read back with rn"
+]
+},
 "echo yes > /dd/.pnewsexpert"
 ]
 },
@@ -374,7 +400,15 @@
 "bdecode": {
 "setup": [
 "rm -rf /dd/tmp/BDC; mkdir -p /dd/tmp/BDC",
-"printf \"Decode the following with bdecode\\rSGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N\\r/00\\r42 baa8\\r\" > /dd/tmp/BDC/batch.txt",
+"cat >/dd/tmp/BDC/batch.txt",
+{
+"file": [
+"Decode the following with bdecode",
+"SGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N",
+"/00",
+"42 baa8"
+]
+},
 "builtin cd /dd/tmp/BDC"
 ]
 },
@@ -392,7 +426,17 @@
 "mkdir -p /dd/tmp/BIBT",
 "cp /dd/SYS/TEX/SAMPLES/xampl.bib /dd/tmp/BIBT",
 "builtin cd /dd/tmp/BIBT",
-"printf '\\\\documentstyle{article}\\r\\\\begin{document}\\rSee \\\\cite{book-full} and \\\\cite{article-full}.\\r\\\\bibliographystyle{plain}\\r\\\\bibliography{xampl}\\r\\\\end{document}\\r' > cite.tex",
+"cat >cite.tex",
+{
+"file": [
+"\\documentstyle{article}",
+"\\begin{document}",
+"See \\cite{book-full} and \\cite{article-full}.",
+"\\bibliographystyle{plain}",
+"\\bibliography{xampl}",
+"\\end{document}"
+]
+},
 "latex cite.tex > /nil",
 "builtin cd /dd/tmp/BIBT"
 ]
@@ -820,7 +864,21 @@
 "load /h1/CMDS/r68",
 "builtin cd /dd/CMDS/GCC2",
 "rm -f greet.cc greet.r",
-"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"cat >greet.cc",
+{
+"file": [
+"class Greeter {",
+"public:",
+"  Greeter() { n = 1; }",
+"  int n;",
+"};",
+"Greeter hello;",
+"int main()",
+"{",
+"  return hello.n;",
+"}"
+]
+},
 "./gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
@@ -918,14 +976,19 @@
 "rm -rf /dd/tmp/cppdemo > /nil 2>/nil",
 "mkdir -p /dd/tmp/cppdemo > /nil 2>/nil",
 "builtin cd /dd/tmp/cppdemo",
-"echo \"#define GREET(who) \\\"hello, \\\" who\" > t.c",
-"echo \"#define N 3\" >> t.c",
-"echo \"#if N > 2\" >> t.c",
-"echo \"int big = N;\" >> t.c",
-"echo \"#else\" >> t.c",
-"echo \"int small = N;\" >> t.c",
-"echo \"#endif\" >> t.c",
-"echo \"char *s = GREET(\\\"world\\\");\" >> t.c"
+"cat >t.c",
+{
+"file": [
+"#define GREET(who) \"hello, \" who",
+"#define N 3",
+"#if N > 2",
+"int big = N;",
+"#else",
+"int small = N;",
+"#endif",
+"char *s = GREET(\"world\");"
+]
+}
 ]
 },
 "cpr": {
@@ -1116,15 +1179,52 @@
 "diff3": {
 "setup": [
 "rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C",
-"printf \"one\\rtwo\\rthree\\r\" > /dd/tmp/D3C/older; printf \"one\\rTWO\\rthree\\r\" > /dd/tmp/D3C/mine; printf \"one\\rtwo\\rTHREE\\r\" > /dd/tmp/D3C/theirs",
+"cat >/dd/tmp/D3C/older",
+{
+"file": [
+"one",
+"two",
+"three"
+]
+},
+"cat >/dd/tmp/D3C/mine",
+{
+"file": [
+"one",
+"TWO",
+"three"
+]
+},
+"cat >/dd/tmp/D3C/theirs",
+{
+"file": [
+"one",
+"two",
+"THREE"
+]
+},
 "builtin cd /dd/tmp/D3C"
 ]
 },
 "diff_1.1": {
 "setup": [
 "mkdir -p /dd/tmp/BLGX > /nil 2>/nil",
-"printf 'apple\\rpear\\rplum\\r' > /dd/tmp/BLGX/d1",
-"printf 'apple\\rpeach\\rplum\\r' > /dd/tmp/BLGX/d2",
+"cat >/dd/tmp/BLGX/d1",
+{
+"file": [
+"apple",
+"pear",
+"plum"
+]
+},
+"cat >/dd/tmp/BLGX/d2",
+{
+"file": [
+"apple",
+"peach",
+"plum"
+]
+},
 "builtin cd /dd"
 ]
 },
@@ -1498,12 +1598,17 @@
 "export MAIL=/dd/tmp/FSMAIL",
 "cp /dd/SYS/UUCP/Parameters /dd/tmp/Parameters.fs",
 "grep -v \"^server = no\" /dd/tmp/Parameters.fs > /dd/SYS/UUCP/Parameters",
-"echo \"From tester Mon Sep 21 00:00:00 2026\" > /dd/tmp/fsreq",
-"echo \"Subject: request\" >> /dd/tmp/fsreq",
-"echo \"\" >> /dd/tmp/fsreq",
-"echo \"reply tester\" >> /dd/tmp/fsreq",
-"echo \"dir\" >> /dd/tmp/fsreq",
-"echo \"quit\" >> /dd/tmp/fsreq",
+"cat >/dd/tmp/fsreq",
+{
+"file": [
+"From tester Mon Sep 21 00:00:00 2026",
+"Subject: request",
+"",
+"reply tester",
+"dir",
+"quit"
+]
+},
 "load /dd/CMDS/UUCP/rmail"
 ]
 },
@@ -1668,13 +1773,30 @@
 "gcc137_cc1": {
 "setup": [
 "builtin cd /dd/CMDS/GCC137",
-"printf \"int main()\\r{\\r  return 42;\\r}\\r\" > hello.i"
+"cat >hello.i",
+{
+"file": [
+"int main()",
+"{",
+"  return 42;",
+"}"
+]
+}
 ]
 },
 "gcc137_cccp": {
 "setup": [
 "builtin cd /dd/CMDS/GCC137",
-"printf \"#define ANSWER 42\\rint main()\\r{\\r  return ANSWER;\\r}\\r\" > hello.c"
+"cat >hello.c",
+{
+"file": [
+"#define ANSWER 42",
+"int main()",
+"{",
+"  return ANSWER;",
+"}"
+]
+}
 ]
 },
 "gcc2": {
@@ -1693,19 +1815,42 @@
 "gcc272_cc2": {
 "setup": [
 "builtin cd /dd/CMDS/GCC272",
-"printf \"int main()\\r{\\r  return 42;\\r}\\r\" > hello.i"
+"cat >hello.i",
+{
+"file": [
+"int main()",
+"{",
+"  return 42;",
+"}"
+]
+}
 ]
 },
 "gcc272_cc2plus": {
 "setup": [
 "builtin cd /dd/CMDS/GCC272",
-"printf \"class G { public: int f() { return 42; } };\\rint main() { G g; return g.f(); }\\r\" > hello.ii"
+"cat >hello.ii",
+{
+"file": [
+"class G { public: int f() { return 42; } };",
+"int main() { G g; return g.f(); }"
+]
+}
 ]
 },
 "gcc272_cccp2": {
 "setup": [
 "builtin cd /dd/CMDS/GCC272",
-"printf \"#define ANSWER 42\\rint main()\\r{\\r  return ANSWER;\\r}\\r\" > hello.c"
+"cat >hello.c",
+{
+"file": [
+"#define ANSWER 42",
+"int main()",
+"{",
+"  return ANSWER;",
+"}"
+]
+}
 ]
 },
 "gcc272_collect": {
@@ -1717,7 +1862,21 @@
 "builtin cd /dd/tmp/CL272",
 "cp /h1/LIB/cstart.r /h1/LIB/clibn.l /h1/LIB/sys.l .",
 "cp /dd/GNULIB/libgcc000.l gcc.l",
-"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"cat >greet.cc",
+{
+"file": [
+"class Greeter {",
+"public:",
+"  Greeter() { n = 1; }",
+"  int n;",
+"};",
+"Greeter hello;",
+"int main()",
+"{",
+"  return hello.n;",
+"}"
+]
+},
 "/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
@@ -1732,7 +1891,21 @@
 "rm -rf /dd/tmp/CLGC",
 "mkdir -p /dd/tmp/CLGC",
 "builtin cd /dd/tmp/CLGC",
-"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"cat >greet.cc",
+{
+"file": [
+"class Greeter {",
+"public:",
+"  Greeter() { n = 1; }",
+"  int n;",
+"};",
+"Greeter hello;",
+"int main()",
+"{",
+"  return hello.n;",
+"}"
+]
+},
 "/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
@@ -1818,8 +1991,17 @@
 "rm -rf /dd/tmp/G4GNUAN > /nil 2>/nil",
 "mkdir -p /dd/tmp/G4GNUAN",
 "builtin cd /dd/tmp/G4GNUAN",
-"echo \"e2e4 e7e5\" > moves; echo \"g1f3 b8c6\" >> moves; echo \"f1b5 a7a6\" >> moves",
-"echo \"h2h3 h7h6\" >> moves; echo \"b5c6 d7c6\" >> moves; echo draw >> moves"
+"cat >moves",
+{
+"file": [
+"e2e4 e7e5",
+"g1f3 b8c6",
+"f1b5 a7a6",
+"h2h3 h7h6",
+"b5c6 d7c6",
+"draw"
+]
+}
 ]
 },
 "gnuchess": {
@@ -1894,7 +2076,21 @@
 "rm -rf /dd/tmp/CLGP",
 "mkdir -p /dd/tmp/CLGP",
 "builtin cd /dd/tmp/CLGP",
-"printf \"class Greeter {\\rpublic:\\r  Greeter() { n = 1; }\\r  int n;\\r};\\rGreeter hello;\\rint main()\\r{\\r  return hello.n;\\r}\\r\" > greet.cc",
+"cat >greet.cc",
+{
+"file": [
+"class Greeter {",
+"public:",
+"  Greeter() { n = 1; }",
+"  int n;",
+"};",
+"Greeter hello;",
+"int main()",
+"{",
+"  return hello.n;",
+"}"
+]
+},
 "/dd/CMDS/GCC2/gpp -c greet.cc -o greet.r > /nil 2>/nil"
 ]
 },
@@ -2032,7 +2228,15 @@
 "hexed": {
 "setup": [
 "mkdir -p /dd/tmp/EDIT > /nil 2>/nil",
-"printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\" > /dd/tmp/EDIT/jabber.txt",
+"cat >/dd/tmp/EDIT/jabber.txt",
+{
+"file": [
+"Twas brillig, and the slithy toves",
+"     Did gyre and gimble in the wabe:",
+"All mimsy were the borogoves,",
+"     And the mome raths outgrabe."
+]
+},
 "builtin cd /dd"
 ]
 },
@@ -2124,10 +2328,24 @@
 "rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
 "rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
 "rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
-"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"cat >/h0/USR/LIB/NEWS/Active",
+{
+"file": [
+"control:00000 00000 n",
+"junk:00000 00000 n"
+]
+},
 "mkdir -p /dd/tmp/MNC",
 "builtin cd /dd/tmp/MNC",
-"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article"
+"cat >article",
+{
+"file": [
+"Newsgroups: comp.os.os9",
+"Subject: MNews on this disk",
+"",
+"Posted with inews, read back with nn."
+]
+}
 ]
 },
 "infocom": {
@@ -2532,9 +2750,14 @@
 "rm -rf /dd/tmp/MAILX",
 "mkdir -p /dd/tmp/MAILX/tester",
 "export MAIL=/dd/tmp/MAILX",
-"echo 'Subject: hello' > /dd/tmp/MAILX/letter",
-"echo '' >> /dd/tmp/MAILX/letter",
-"echo 'a line of mail' >> /dd/tmp/MAILX/letter",
+"cat >/dd/tmp/MAILX/letter",
+{
+"file": [
+"Subject: hello",
+"",
+"a line of mail"
+]
+},
 "rmail tester < /dd/tmp/MAILX/letter",
 "builtin cd /dd/tmp/MAILX"
 ]
@@ -2563,7 +2786,19 @@
 "rm -rf /dd/tmp/MKI",
 "mkdir -p /dd/tmp/MKI",
 "builtin cd /dd/tmp/MKI",
-"printf '\\\\input texinfo\\r@setfilename hi.info\\r@settitle Hi\\r@node Top\\r@chapter Hi\\r\\rA small manual.\\r@bye\\r' > hi.texi"
+"cat >hi.texi",
+{
+"file": [
+"\\input texinfo",
+"@setfilename hi.info",
+"@settitle Hi",
+"@node Top",
+"@chapter Hi",
+"",
+"A small manual.",
+"@bye"
+]
+}
 ]
 },
 "makelex": {
@@ -2666,8 +2901,16 @@
 "rm -rf /dd/tmp/MMC",
 "mkdir -p /dd/tmp/MMC",
 "builtin cd /dd/tmp/MMC",
-"echo \"Main Menu\" > main; echo \"Pick one; l leaves\" >> main",
-"echo \"Date,date\" >> main; echo \"Help,:help\" >> main; echo \"Logoff,:logoff\" >> main",
+"cat >main",
+{
+"file": [
+"Main Menu",
+"Pick one; l leaves",
+"Date,date",
+"Help,:help",
+"Logoff,:logoff"
+]
+},
 "echo \"The only help there is.\" > main.hlp",
 "export MENUDATA=/dd/tmp/MMC PORT=/term"
 ]
@@ -2921,15 +3164,41 @@
 "set +H",
 "rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
 "rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
-"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"cat >/h0/USR/LIB/CNEWS/active",
+{
+"file": [
+"control 0000000000 00001 y",
+"junk 0000000000 00001 y"
+]
+},
 "printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
 "printf '' > /h0/USR/LIB/CNEWS/history",
 "builtin cd /h0/USR/LIB/CNEWS",
 "dbz history",
 "mkdir -p /dd/tmp/CNC",
 "builtin cd /dd/tmp/CNC",
-"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
-"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"cat >article",
+{
+"file": [
+"Path: somewhere!someone",
+"From: someone@somewhere",
+"Newsgroups: junk",
+"Subject: filed by relaynews",
+"Message-ID: <1@somewhere>",
+"Date: 23 Sep 1990 10:00:00 GMT",
+"",
+"hello from C News"
+]
+},
+"cat >post",
+{
+"file": [
+"Newsgroups: junk",
+"Subject: posted with Pnews",
+"",
+"read back with rn"
+]
+},
 "builtin cd /dd",
 "rm -f .newsrc .oldnewsrc > /nil 2>/nil"
 ]
@@ -2954,7 +3223,13 @@
 "set +H",
 "rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /h0/SPOOL/CNEWS/in.coming/bad > /nil 2>/nil",
 "rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/SPOOL/CNEWS/in.coming/1 /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
-"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"cat >/h0/USR/LIB/CNEWS/active",
+{
+"file": [
+"control 0000000000 00001 y",
+"junk 0000000000 00001 y"
+]
+},
 "printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
 "printf '' > /h0/USR/LIB/CNEWS/history",
 "builtin cd /h0/USR/LIB/CNEWS",
@@ -2975,14 +3250,34 @@
 "rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
 "rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
 "rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
-"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"cat >/h0/USR/LIB/NEWS/Active",
+{
+"file": [
+"control:00000 00000 n",
+"junk:00000 00000 n"
+]
+},
 "mkdir -p /dd/tmp/MNC",
 "builtin cd /dd/tmp/MNC",
-"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"cat >article",
+{
+"file": [
+"Newsgroups: comp.os.os9",
+"Subject: MNews on this disk",
+"",
+"Posted with inews, read back with nn."
+]
+},
 "load /h1/CMDS/shell",
 "inews -c=newgroup:comp.os.os9 < /nil",
 "inews -h < article",
-"printf 'OK\\ry\\r' > ok",
+"cat >ok",
+{
+"file": [
+"OK",
+"y"
+]
+},
 "nnmaster -I < ok > /nil",
 "nnmaster < /nil"
 ]
@@ -2997,14 +3292,34 @@
 "rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
 "rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
 "rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
-"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"cat >/h0/USR/LIB/NEWS/Active",
+{
+"file": [
+"control:00000 00000 n",
+"junk:00000 00000 n"
+]
+},
 "mkdir -p /dd/tmp/MNC",
 "builtin cd /dd/tmp/MNC",
-"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"cat >article",
+{
+"file": [
+"Newsgroups: comp.os.os9",
+"Subject: MNews on this disk",
+"",
+"Posted with inews, read back with nn."
+]
+},
 "load /h1/CMDS/shell",
 "inews -c=newgroup:comp.os.os9 < /nil",
 "inews -h < article",
-"printf 'OK\\ry\\r' > ok",
+"cat >ok",
+{
+"file": [
+"OK",
+"y"
+]
+},
 "nnmaster -I < ok > /nil",
 "nnmaster < /nil"
 ]
@@ -3016,9 +3331,23 @@
 "rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil",
 "rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil",
 "rm -f /h0/SPOOL/MNEWS/article /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
-"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"cat >/h0/USR/LIB/NEWS/Active",
+{
+"file": [
+"control:00000 00000 n",
+"junk:00000 00000 n"
+]
+},
 "builtin cd /h0/SPOOL/MNEWS",
-"printf 'Newsgroups: junk\\rSubject: posted by nnaux\\r\\rnn hands nnaux the article to post.\\r' > article",
+"cat >article",
+{
+"file": [
+"Newsgroups: junk",
+"Subject: posted by nnaux",
+"",
+"nn hands nnaux the article to post."
+]
+},
 "load /h1/CMDS/shell",
 "load /dd/CMDS/MNEWS/inews"
 ]
@@ -3056,14 +3385,34 @@
 "rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil",
 "rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil",
 "rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil",
-"printf 'control:00000 00000 n\\rjunk:00000 00000 n\\r' > /h0/USR/LIB/NEWS/Active",
+"cat >/h0/USR/LIB/NEWS/Active",
+{
+"file": [
+"control:00000 00000 n",
+"junk:00000 00000 n"
+]
+},
 "mkdir -p /dd/tmp/MNC",
 "builtin cd /dd/tmp/MNC",
-"printf 'Newsgroups: comp.os.os9\\rSubject: MNews on this disk\\r\\rPosted with inews, read back with nn.\\r' > article",
+"cat >article",
+{
+"file": [
+"Newsgroups: comp.os.os9",
+"Subject: MNews on this disk",
+"",
+"Posted with inews, read back with nn."
+]
+},
 "load /h1/CMDS/shell",
 "inews -c=newgroup:comp.os.os9 < /nil",
 "inews -h < article",
-"printf 'OK\\ry\\r' > ok"
+"cat >ok",
+{
+"file": [
+"OK",
+"y"
+]
+}
 ]
 },
 "nptx": {
@@ -3201,7 +3550,14 @@
 "pathalias": {
 "setup": [
 "rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC",
-"printf \"milkyway phoenix(20)\\rphoenix seabass(30)\\rseabass pirsqrd(10)\\r\" > /dd/tmp/EC/map",
+"cat >/dd/tmp/EC/map",
+{
+"file": [
+"milkyway phoenix(20)",
+"phoenix seabass(30)",
+"seabass pirsqrd(10)"
+]
+},
 "builtin cd /dd/tmp/EC"
 ]
 },
@@ -3496,7 +3852,18 @@
 "setup": [
 "rm -rf /dd/tmp/ALIB > /nil 2>/nil; mkdir -p /dd/tmp/ALIB",
 "builtin cd /dd/tmp/ALIB",
-"printf \"P2\\r6 4\\r255\\r255 255 255 255 255 0\\r255 255 255 255 0 0\\r255 255 0 0 0 0\\r0 0 0 0 0 0\\r\" > edge.pgm"
+"cat >edge.pgm",
+{
+"file": [
+"P2",
+"6 4",
+"255",
+"255 255 255 255 255 0",
+"255 255 255 255 0 0",
+"255 255 0 0 0 0",
+"0 0 0 0 0 0"
+]
+}
 ]
 },
 "pnmarith": {
@@ -3605,7 +3972,17 @@
 "setup": [
 "rm -rf /dd/tmp/NLFB > /nil 2>/nil; mkdir -p /dd/tmp/NLFB",
 "builtin cd /dd/tmp/NLFB",
-"printf \"P2\\r7 3\\r255\\r100 100 100 100 100 100 100\\r100 100 100 255 100 100 100\\r100 100 100 100 100 100 100\\r\" > spot.pgm"
+"cat >spot.pgm",
+{
+"file": [
+"P2",
+"7 3",
+"255",
+"100 100 100 100 100 100 100",
+"100 100 100 255 100 100 100",
+"100 100 100 100 100 100 100"
+]
+}
 ]
 },
 "pnmnoraw": {
@@ -4079,15 +4456,41 @@
 "set +H",
 "rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
 "rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
-"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"cat >/h0/USR/LIB/CNEWS/active",
+{
+"file": [
+"control 0000000000 00001 y",
+"junk 0000000000 00001 y"
+]
+},
 "printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
 "printf '' > /h0/USR/LIB/CNEWS/history",
 "builtin cd /h0/USR/LIB/CNEWS",
 "dbz history",
 "mkdir -p /dd/tmp/CNC",
 "builtin cd /dd/tmp/CNC",
-"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
-"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post"
+"cat >article",
+{
+"file": [
+"Path: somewhere!someone",
+"From: someone@somewhere",
+"Newsgroups: junk",
+"Subject: filed by relaynews",
+"Message-ID: <1@somewhere>",
+"Date: 23 Sep 1990 10:00:00 GMT",
+"",
+"hello from C News"
+]
+},
+"cat >post",
+{
+"file": [
+"Newsgroups: junk",
+"Subject: posted with Pnews",
+"",
+"read back with rn"
+]
+}
 ]
 },
 "remove": {
@@ -4129,9 +4532,14 @@
 "mkdir -p /dd/tmp/RMAIL/tester",
 "export MAIL=/dd/tmp/RMAIL",
 "builtin cd /dd/tmp/RMAIL",
-"echo 'Subject: hello' > letter",
-"echo '' >> letter",
-"echo 'a line of mail' >> letter"
+"cat >letter",
+{
+"file": [
+"Subject: hello",
+"",
+"a line of mail"
+]
+}
 ]
 },
 "rn": {
@@ -4139,15 +4547,41 @@
 "set +H",
 "rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil",
 "rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil",
-"printf 'control 0000000000 00001 y\\rjunk 0000000000 00001 y\\r' > /h0/USR/LIB/CNEWS/active",
+"cat >/h0/USR/LIB/CNEWS/active",
+{
+"file": [
+"control 0000000000 00001 y",
+"junk 0000000000 00001 y"
+]
+},
 "printf '0\\r' > /h0/USR/LIB/CNEWS/artnum",
 "printf '' > /h0/USR/LIB/CNEWS/history",
 "builtin cd /h0/USR/LIB/CNEWS",
 "dbz history",
 "mkdir -p /dd/tmp/CNC",
 "builtin cd /dd/tmp/CNC",
-"printf 'Path: somewhere!someone\\rFrom: someone@somewhere\\rNewsgroups: junk\\rSubject: filed by relaynews\\rMessage-ID: <1@somewhere>\\rDate: 23 Sep 1990 10:00:00 GMT\\r\\rhello from C News\\r' > article",
-"printf 'Newsgroups: junk\\rSubject: posted with Pnews\\r\\rread back with rn\\r' > post",
+"cat >article",
+{
+"file": [
+"Path: somewhere!someone",
+"From: someone@somewhere",
+"Newsgroups: junk",
+"Subject: filed by relaynews",
+"Message-ID: <1@somewhere>",
+"Date: 23 Sep 1990 10:00:00 GMT",
+"",
+"hello from C News"
+]
+},
+"cat >post",
+{
+"file": [
+"Newsgroups: junk",
+"Subject: posted with Pnews",
+"",
+"read back with rn"
+]
+},
 "mount -r=256k /r0 > /nil 2>/nil",
 "mkdir -p /dd/News > /nil 2>/nil",
 "Pnews -h post -s > /nil",
@@ -4169,7 +4603,15 @@
 "rnews": {
 "setup": [
 "rm -rf /dd/SPOOL/news/COMP /dd/art.txt /dd/batch.txt",
-"printf \"Newsgroups: comp.os.os9\\rSubject: test article\\r\\rhello there\\r\" > /dd/art.txt",
+"cat >/dd/art.txt",
+{
+"file": [
+"Newsgroups: comp.os.os9",
+"Subject: test article",
+"",
+"hello there"
+]
+},
 "LEN=$(cat /dd/art.txt | wc -c)",
 "builtin cd /dd",
 "printf \"#! rnews %s\\r\" $LEN > batch.txt; cat art.txt >> batch.txt"
@@ -4291,9 +4733,14 @@
 "/dd/CMDS/rm -rf /dd/tmp/scppcard > /nil 2>/nil",
 "/dd/CMDS/mkdir -p /dd/tmp/scppcard",
 "builtin cd /dd/tmp/scppcard",
-"echo \"#define WIDTH 80\" > s.c",
-"echo \"#define DEPTH 24\" >> s.c",
-"echo \"int w = WIDTH, d = DEPTH;\" >> s.c"
+"cat >s.c",
+{
+"file": [
+"#define WIDTH 80",
+"#define DEPTH 24",
+"int w = WIDTH, d = DEPTH;"
+]
+}
 ]
 },
 "scrabble": {
@@ -4375,8 +4822,13 @@
 "/dd/CMDS/rm -rf /dd/tmp/sgcard > /nil 2>/nil",
 "/dd/CMDS/mkdir -p /dd/tmp/sgcard",
 "builtin cd /dd/tmp/sgcard",
-"echo \"\\[:n+,@r\" > arr",
-"echo \"[?1][\" >> arr",
+"cat >arr",
+{
+"file": [
+"\\[:n+,@r",
+"[?1]["
+]
+},
 "echo \"x = A[I,J,K] + B[N,M]\" > src"
 ]
 },
@@ -4439,7 +4891,14 @@
 "setup": [
 "rm -rf /dd/tmp/SMAIL; mkdir -p /dd/tmp/SMAIL",
 "builtin cd /dd/tmp/SMAIL",
-"printf \"milkyway phoenix(20)\\rphoenix seabass(30)\\rseabass pirsqrd(10)\\r\" > map",
+"cat >map",
+{
+"file": [
+"milkyway phoenix(20)",
+"phoenix seabass(30)",
+"seabass pirsqrd(10)"
+]
+},
 "pathalias -l milkyway map | sort > paths",
 "echo \"Subject: hello\" > letter"
 ]
@@ -4583,17 +5042,27 @@
 "rm -rf /dd/tmp/SUBA > /nil 2>/nil; mkdir -p /dd/tmp/SUBA",
 "load /h1/CMDS/shell",
 "cat /dd/DOC/samples/jabber.txt > /dd/tmp/SUBA/poem",
-"echo \"wc poem\" > /dd/tmp/SUBA/demo.sub",
-"echo \"md5 poem\" >> /dd/tmp/SUBA/demo.sub",
-"echo \"head -n 2 poem\" >> /dd/tmp/SUBA/demo.sub",
+"cat >/dd/tmp/SUBA/demo.sub",
+{
+"file": [
+"wc poem",
+"md5 poem",
+"head -n 2 poem"
+]
+},
 "builtin cd /dd/tmp/SUBA"
 ]
 },
 "subscribe": {
 "setup": [
 "rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS",
-"echo \"comp.os.os9: 1-12\" > /dd/tmp/SUBS/.newsrc",
-"echo \"news.announce.newusers! 1-3\" >> /dd/tmp/SUBS/.newsrc",
+"cat >/dd/tmp/SUBS/.newsrc",
+{
+"file": [
+"comp.os.os9: 1-12",
+"news.announce.newusers! 1-3"
+]
+},
 "export HOME=/dd/tmp/SUBS",
 "builtin cd /dd/tmp/SUBS"
 ]
@@ -4662,8 +5131,34 @@
 "mkdir -p $W/lib $W/spool/comp/os/os9",
 "printf 'MNEWS.DIR,s=%s/spool\\rMNEWS.LIB,s=%s/lib\\r' $W $W > $W/sysinfo; setup $W/sysinfo",
 "printf 'comp.os.os9 00000002 00000001 nu\\r' > $W/lib/Active",
-"printf 'Path: osk\\rFrom: a@osk (A Writer)\\rNewsgroups: comp.os.os9\\rSubject: first article\\rMessage-ID: <1@osk>\\rDate: 1 Jan 93 10:00:00 GMT\\rLines: 1\\r\\rfirst body\\r' > $W/spool/comp/os/os9/1",
-"printf 'Path: osk\\rFrom: b@osk (B Writer)\\rNewsgroups: comp.os.os9\\rSubject: second article\\rMessage-ID: <2@osk>\\rDate: 2 Jan 93 10:00:00 GMT\\rLines: 1\\r\\rgreetings, reader\\r' > $W/spool/comp/os/os9/2",
+"cat >$W/spool/comp/os/os9/1",
+{
+"file": [
+"Path: osk",
+"From: a@osk (A Writer)",
+"Newsgroups: comp.os.os9",
+"Subject: first article",
+"Message-ID: <1@osk>",
+"Date: 1 Jan 93 10:00:00 GMT",
+"Lines: 1",
+"",
+"first body"
+]
+},
+"cat >$W/spool/comp/os/os9/2",
+{
+"file": [
+"Path: osk",
+"From: b@osk (B Writer)",
+"Newsgroups: comp.os.os9",
+"Subject: second article",
+"Message-ID: <2@osk>",
+"Date: 2 Jan 93 10:00:00 GMT",
+"Lines: 1",
+"",
+"greetings, reader"
+]
+},
 "rm -f $HOME/.newsrc > /nil 2>/nil"
 ]
 },
@@ -4975,8 +5470,13 @@
 "unsubscribe": {
 "setup": [
 "rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS",
-"echo \"comp.os.os9: 1-12\" > /dd/tmp/SUBS/.newsrc",
-"echo \"comp.sys.m68k: 1-40\" >> /dd/tmp/SUBS/.newsrc",
+"cat >/dd/tmp/SUBS/.newsrc",
+{
+"file": [
+"comp.os.os9: 1-12",
+"comp.sys.m68k: 1-40"
+]
+},
 "export HOME=/dd/tmp/SUBS",
 "builtin cd /dd/tmp/SUBS"
 ]
@@ -5120,7 +5620,20 @@
 "setup": [
 "set +H",
 "mkdir -p /dd/tmp/EDIT > /nil 2>/nil",
-"printf \"Twas brillig, and the slithy toves\\r     Did gyre and gimble in the wabe:\\rAll mimsy were the borogoves,\\r     And the mome raths outgrabe.\\r\\rBeware the Jabberwock, my son!\\r     The jaws that bite, the claws that catch!\\rBeware the Jubjub bird, and shun\\r     The frumious Bandersnatch!\\r\" > /dd/tmp/EDIT/jabber.txt",
+"cat >/dd/tmp/EDIT/jabber.txt",
+{
+"file": [
+"Twas brillig, and the slithy toves",
+"     Did gyre and gimble in the wabe:",
+"All mimsy were the borogoves,",
+"     And the mome raths outgrabe.",
+"",
+"Beware the Jabberwock, my son!",
+"     The jaws that bite, the claws that catch!",
+"Beware the Jubjub bird, and shun",
+"     The frumious Bandersnatch!"
+]
+},
 "builtin cd /dd/tmp/EDIT"
 ]
 },
@@ -5253,8 +5766,13 @@
 "rm -rf /dd/tmp/WNQ; mkdir -p /dd/tmp/WNQ",
 "builtin cd /h0/c/unid/wn_1.14.3/osk",
 "wndex 2>/nil",
-"echo \"GET /index.html HTTP/1.0\" > /dd/tmp/WNQ/rq",
-"echo \"\" >> /dd/tmp/WNQ/rq",
+"cat >/dd/tmp/WNQ/rq",
+{
+"file": [
+"GET /index.html HTTP/1.0",
+""
+]
+},
 "builtin cd /dd/tmp/WNQ"
 ]
 },
@@ -5317,7 +5835,19 @@
 "xargs": {
 "setup": [
 "rm -rf /dd/tmp/XARG > /nil 2>/nil; mkdir -p /dd/tmp/XARG",
-"printf \"alpha\\rbeta\\r\" > /dd/tmp/XARG/one; printf \"gamma\\r\" > /dd/tmp/XARG/two",
+"cat >/dd/tmp/XARG/one",
+{
+"file": [
+"alpha",
+"beta"
+]
+},
+"cat >/dd/tmp/XARG/two",
+{
+"file": [
+"gamma"
+]
+},
 "builtin cd /dd/tmp/XARG"
 ]
 },
@@ -5415,7 +5945,14 @@
 "setup": [
 "rm -f /dd/tmp/CMPA/g.y /dd/tmp/CMPA/y.tab.c",
 "mkdir -p /dd/tmp/CMPA > /nil 2>/nil",
-"printf \"%%token NUM\\r%%%%\\rexpr : expr NUM | NUM ;\\r\" > /dd/tmp/CMPA/g.y",
+"cat >/dd/tmp/CMPA/g.y",
+{
+"file": [
+"%token NUM",
+"%%",
+"expr : expr NUM | NUM ;"
+]
+},
 "builtin cd /dd/tmp/CMPA"
 ]
 },

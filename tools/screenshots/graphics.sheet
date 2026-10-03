@@ -1320,7 +1320,14 @@ run     rm -rf /dd/tmp/NLFB > /nil 2>/nil; mkdir -p /dd/tmp/NLFB
 wait    3
 run     builtin cd /dd/tmp/NLFB
 wait    1
-run     printf "P2\r7 3\r255\r100 100 100 100 100 100 100\r100 100 100 255 100 100 100\r100 100 100 100 100 100 100\r" > spot.pgm
+run     cat >spot.pgm
+text    P2
+text    7 3
+text    255
+text    100 100 100 100 100 100 100
+text    100 100 100 255 100 100 100
+text    100 100 100 100 100 100 100
+eof
 wait    3
 run     clear
 wait    1
@@ -1339,7 +1346,15 @@ run     rm -rf /dd/tmp/ALIB > /nil 2>/nil; mkdir -p /dd/tmp/ALIB
 wait    3
 run     builtin cd /dd/tmp/ALIB
 wait    1
-run     printf "P2\r6 4\r255\r255 255 255 255 255 0\r255 255 255 255 0 0\r255 255 0 0 0 0\r0 0 0 0 0 0\r" > edge.pgm
+run     cat >edge.pgm
+text    P2
+text    6 4
+text    255
+text    255 255 255 255 255 0
+text    255 255 255 255 0 0
+text    255 255 0 0 0 0
+text    0 0 0 0 0 0
+eof
 wait    3
 run     clear
 wait    1

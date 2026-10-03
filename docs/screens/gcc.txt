@@ -1,4 +1,8 @@
-$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ cat >hello.c
+int main()
+{
+  return 0;
+}
 $ ./gcc -v -c hello.c
 gcc version 1.42
  cccp -v -undef -D__GNUC__ -DOSK -D__OSK__ -D__mc68000__ -Dmc68000 hello.c cc.00

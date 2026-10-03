@@ -7,18 +7,18 @@ hello there
 $ rnews batch.txt
 $ ls -laR SPOOL/news/COMP
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 11:28 .
-drwxrwxrwx   1 0        0             160 Sep 26 11:28 ..
-drw-r--r--   1 0        0              96 Sep 26 11:28 OS
+drw-r--r--   1 0        0              96 Oct  2 23:03 .
+drwxrwxrwx   1 0        0             128 Oct  2 23:03 ..
+drw-r--r--   1 0        0              96 Oct  2 23:03 OS
 
 SPOOL/news/COMP/OS:
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 11:28 .
-drw-r--r--   1 0        0              96 Sep 26 11:28 ..
-drw-r--r--   1 0        0              96 Sep 26 11:28 OS9
+drw-r--r--   1 0        0              96 Oct  2 23:03 .
+drw-r--r--   1 0        0              96 Oct  2 23:03 ..
+drw-r--r--   1 0        0              96 Oct  2 23:03 OS9
 
 SPOOL/news/COMP/OS/OS9:
 total 1536
-drw-r--r--   1 0        0              96 Sep 26 11:28 .
-drw-r--r--   1 0        0              96 Sep 26 11:28 ..
--rw-------   1 0        0              59 Sep 26 11:28 a2
+drw-r--r--   1 0        0              96 Oct  2 23:03 .
+drw-r--r--   1 0        0              96 Oct  2 23:03 ..
+-rw-------   1 0        0              59 Oct  2 23:03 a1

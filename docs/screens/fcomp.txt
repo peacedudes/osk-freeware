@@ -1,5 +1,6 @@
-$ echo "alpha" > tmp/fc1
-$ echo "bravo" >> tmp/fc1
+$ cat >tmp/fc1
+alpha
+bravo
 $ cp tmp/fc1 tmp/fc2
 $ echo "charlie" >> tmp/fc2
 $ fcomp tmp/fc1 tmp/fc2

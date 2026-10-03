@@ -4,4 +4,4 @@ $ cat g.y
 expr : expr NUM | NUM ;
 $ yacc g.y
 $ ls -l y.tab.c
--rw-------   1 7        1            6773 Sep 24 01:59 y.tab.c
+-rw-------   1 7        1            6773 Oct  2 22:04 y.tab.c

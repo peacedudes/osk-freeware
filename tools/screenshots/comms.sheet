@@ -290,9 +290,12 @@ pages
 run     rm -rf /dd/tmp/MAILX
 run     mkdir -p /dd/tmp/MAILX/tester
 run     export MAIL=/dd/tmp/MAILX
-run     echo 'Subject: hello' > /dd/tmp/MAILX/letter
-run     echo '' >> /dd/tmp/MAILX/letter
-run     echo 'a line of mail' >> /dd/tmp/MAILX/letter
+run     cat >/dd/tmp/MAILX/letter
+text    Subject: hello
+text
+text    a line of mail
+eof
+wait    2
 run     rmail tester < /dd/tmp/MAILX/letter
 run     builtin cd /dd/tmp/MAILX
 run     clear
@@ -375,7 +378,12 @@ cap     prints the cheapest route from milkyway to each site; the %s is
 cap     where a user name goes.
 try     pathalias -l milkyway map
 run     rm -rf /dd/tmp/EC; mkdir -p /dd/tmp/EC
-run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > /dd/tmp/EC/map
+run     cat >/dd/tmp/EC/map
+text    milkyway phoenix(20)
+text    phoenix seabass(30)
+text    seabass pirsqrd(10)
+eof
+wait    2
 run     builtin cd /dd/tmp/EC
 wait    1
 run     clear
@@ -442,9 +450,12 @@ run     rm -rf /dd/tmp/RMAIL
 run     mkdir -p /dd/tmp/RMAIL/tester
 run     export MAIL=/dd/tmp/RMAIL
 run     builtin cd /dd/tmp/RMAIL
-run     echo 'Subject: hello' > letter
-run     echo '' >> letter
-run     echo 'a line of mail' >> letter
+run     cat >letter
+text    Subject: hello
+text
+text    a line of mail
+eof
+wait    2
 run     clear
 wait    1
 run     cat letter
@@ -467,7 +478,12 @@ cap     letter is signed with your login name.
 try     smail -h milkyway -p paths -d ralph@pirsqrd <letter
 run     rm -rf /dd/tmp/SMAIL; mkdir -p /dd/tmp/SMAIL
 run     builtin cd /dd/tmp/SMAIL
-run     printf "milkyway phoenix(20)\rphoenix seabass(30)\rseabass pirsqrd(10)\r" > map
+run     cat >map
+text    milkyway phoenix(20)
+text    phoenix seabass(30)
+text    seabass pirsqrd(10)
+eof
+wait    2
 run     pathalias -l milkyway map | sort > paths
 run     echo "Subject: hello" > letter
 run     clear
@@ -520,7 +536,12 @@ cap     characters, and a trailer carrying the byte count and CRC.
 cap     bdecode checks both and writes the note back.
 try     bdecode batch.txt
 run     rm -rf /dd/tmp/BDC; mkdir -p /dd/tmp/BDC
-run     printf "Decode the following with bdecode\rSGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N\r/00\r42 baa8\r" > /dd/tmp/BDC/batch.txt
+run     cat >/dd/tmp/BDC/batch.txt
+text    Decode the following with bdecode
+text    SGVsbG8gZnJvbSB0aGUgbmV3cyBzcG9vbC4NQSBzZWNvbmQgbGluZS4N
+text    /00
+text    42 baa8
+eof
 wait    3
 run     builtin cd /dd/tmp/BDC
 wait    1
@@ -644,15 +665,34 @@ try     relaynews -n < article; relaynews -n < article
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
 run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
-run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     cat >/h0/USR/LIB/CNEWS/active
+text    control 0000000000 00001 y
+text    junk 0000000000 00001 y
+eof
+wait    2
 run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
 run     printf '' > /h0/USR/LIB/CNEWS/history
 run     builtin cd /h0/USR/LIB/CNEWS
 run     dbz history
 run     mkdir -p /dd/tmp/CNC
 run     builtin cd /dd/tmp/CNC
-run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
-run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+run     cat >article
+text    Path: somewhere!someone
+text    From: someone@somewhere
+text    Newsgroups: junk
+text    Subject: filed by relaynews
+text    Message-ID: <1@somewhere>
+text    Date: 23 Sep 1990 10:00:00 GMT
+text
+text    hello from C News
+eof
+wait    2
+run     cat >post
+text    Newsgroups: junk
+text    Subject: posted with Pnews
+text
+text    read back with rn
+eof
 wait    3
 run     clear
 run     relaynews -n < article; relaynews -n < article
@@ -668,7 +708,11 @@ try     newsrun -v; cat junk/1
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /h0/SPOOL/CNEWS/in.coming/bad > /nil 2>/nil
 run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/SPOOL/CNEWS/in.coming/1 /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
-run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     cat >/h0/USR/LIB/CNEWS/active
+text    control 0000000000 00001 y
+text    junk 0000000000 00001 y
+eof
+wait    2
 run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
 run     printf '' > /h0/USR/LIB/CNEWS/history
 run     builtin cd /h0/USR/LIB/CNEWS
@@ -708,16 +752,35 @@ try     Pnews -h post -s
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
 run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
-run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     cat >/h0/USR/LIB/CNEWS/active
+text    control 0000000000 00001 y
+text    junk 0000000000 00001 y
+eof
+wait    2
 run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
 run     printf '' > /h0/USR/LIB/CNEWS/history
 run     builtin cd /h0/USR/LIB/CNEWS
 run     dbz history
 run     mkdir -p /dd/tmp/CNC
 run     builtin cd /dd/tmp/CNC
-run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
+run     cat >article
+text    Path: somewhere!someone
+text    From: someone@somewhere
+text    Newsgroups: junk
+text    Subject: filed by relaynews
+text    Message-ID: <1@somewhere>
+text    Date: 23 Sep 1990 10:00:00 GMT
+text
+text    hello from C News
+eof
+wait    2
 run     builtin cd /h0/SPOOL/CNEWS
-run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+run     cat >post
+text    Newsgroups: junk
+text    Subject: posted with Pnews
+text
+text    read back with rn
+eof
 wait    3
 run     echo yes > /dd/.pnewsexpert
 run     clear
@@ -739,15 +802,34 @@ try     rn junk
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
 run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
-run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     cat >/h0/USR/LIB/CNEWS/active
+text    control 0000000000 00001 y
+text    junk 0000000000 00001 y
+eof
+wait    2
 run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
 run     printf '' > /h0/USR/LIB/CNEWS/history
 run     builtin cd /h0/USR/LIB/CNEWS
 run     dbz history
 run     mkdir -p /dd/tmp/CNC
 run     builtin cd /dd/tmp/CNC
-run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
-run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+run     cat >article
+text    Path: somewhere!someone
+text    From: someone@somewhere
+text    Newsgroups: junk
+text    Subject: filed by relaynews
+text    Message-ID: <1@somewhere>
+text    Date: 23 Sep 1990 10:00:00 GMT
+text
+text    hello from C News
+eof
+wait    2
+run     cat >post
+text    Newsgroups: junk
+text    Subject: posted with Pnews
+text
+text    read back with rn
+eof
 wait    3
 run     mount -r=256k /r0 > /nil 2>/nil
 run     mkdir -p /dd/News > /nil 2>/nil
@@ -771,15 +853,34 @@ try     newsetup; cat .newsrc
 run     set +H
 run     rm -rf /h0/SPOOL/CNEWS/junk /h0/SPOOL/CNEWS/control /dd/tmp/CNC > /nil 2>/nil
 run     rm -f /h0/SPOOL/CNEWS/in.coming/0local* /h0/USR/LIB/CNEWS/history.dir /h0/USR/LIB/CNEWS/history.pag > /nil 2>/nil
-run     printf 'control 0000000000 00001 y\rjunk 0000000000 00001 y\r' > /h0/USR/LIB/CNEWS/active
+run     cat >/h0/USR/LIB/CNEWS/active
+text    control 0000000000 00001 y
+text    junk 0000000000 00001 y
+eof
+wait    2
 run     printf '0\r' > /h0/USR/LIB/CNEWS/artnum
 run     printf '' > /h0/USR/LIB/CNEWS/history
 run     builtin cd /h0/USR/LIB/CNEWS
 run     dbz history
 run     mkdir -p /dd/tmp/CNC
 run     builtin cd /dd/tmp/CNC
-run     printf 'Path: somewhere!someone\rFrom: someone@somewhere\rNewsgroups: junk\rSubject: filed by relaynews\rMessage-ID: <1@somewhere>\rDate: 23 Sep 1990 10:00:00 GMT\r\rhello from C News\r' > article
-run     printf 'Newsgroups: junk\rSubject: posted with Pnews\r\rread back with rn\r' > post
+run     cat >article
+text    Path: somewhere!someone
+text    From: someone@somewhere
+text    Newsgroups: junk
+text    Subject: filed by relaynews
+text    Message-ID: <1@somewhere>
+text    Date: 23 Sep 1990 10:00:00 GMT
+text
+text    hello from C News
+eof
+wait    2
+run     cat >post
+text    Newsgroups: junk
+text    Subject: posted with Pnews
+text
+text    read back with rn
+eof
 wait    3
 run     builtin cd /dd
 run     rm -f .newsrc .oldnewsrc > /nil 2>/nil
@@ -827,10 +928,19 @@ run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
 run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
-run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     cat >/h0/USR/LIB/NEWS/Active
+text    control:00000 00000 n
+text    junk:00000 00000 n
+eof
+wait    2
 run     mkdir -p /dd/tmp/MNC
 run     builtin cd /dd/tmp/MNC
-run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+run     cat >article
+text    Newsgroups: comp.os.os9
+text    Subject: MNews on this disk
+text
+text    Posted with inews, read back with nn.
+eof
 wait    2
 run     clear
 run     inews -c=newgroup:comp.os.os9 -v < /nil
@@ -855,15 +965,27 @@ run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
 run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
-run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     cat >/h0/USR/LIB/NEWS/Active
+text    control:00000 00000 n
+text    junk:00000 00000 n
+eof
+wait    2
 run     mkdir -p /dd/tmp/MNC
 run     builtin cd /dd/tmp/MNC
-run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+run     cat >article
+text    Newsgroups: comp.os.os9
+text    Subject: MNews on this disk
+text
+text    Posted with inews, read back with nn.
+eof
 wait    2
 run     load /h1/CMDS/shell
 run     inews -c=newgroup:comp.os.os9 < /nil
 run     inews -h < article
-run     printf 'OK\ry\r' > ok
+run     cat >ok
+text    OK
+text    y
+eof
 wait    2
 run     clear
 run     nnmaster -I < ok
@@ -882,9 +1004,18 @@ run     rm -rf /h0/SPOOL/MNEWS/comp > /nil 2>/nil
 run     rm -rf /h0/SPOOL/MNEWS/control > /nil 2>/nil
 run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 run     rm -f /h0/SPOOL/MNEWS/article /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
-run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     cat >/h0/USR/LIB/NEWS/Active
+text    control:00000 00000 n
+text    junk:00000 00000 n
+eof
+wait    2
 run     builtin cd /h0/SPOOL/MNEWS
-run     printf 'Newsgroups: junk\rSubject: posted by nnaux\r\rnn hands nnaux the article to post.\r' > article
+run     cat >article
+text    Newsgroups: junk
+text    Subject: posted by nnaux
+text
+text    nn hands nnaux the article to post.
+eof
 wait    2
 run     load /h1/CMDS/shell
 run     load /dd/CMDS/MNEWS/inews
@@ -911,15 +1042,28 @@ run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
 run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
-run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     cat >/h0/USR/LIB/NEWS/Active
+text    control:00000 00000 n
+text    junk:00000 00000 n
+eof
+wait    2
 run     mkdir -p /dd/tmp/MNC
 run     builtin cd /dd/tmp/MNC
-run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+run     cat >article
+text    Newsgroups: comp.os.os9
+text    Subject: MNews on this disk
+text
+text    Posted with inews, read back with nn.
+eof
 wait    2
 run     load /h1/CMDS/shell
 run     inews -c=newgroup:comp.os.os9 < /nil
 run     inews -h < article
-run     printf 'OK\ry\r' > ok
+run     cat >ok
+text    OK
+text    y
+eof
+wait    2
 run     nnmaster -I < ok > /nil
 run     nnmaster < /nil
 wait    4
@@ -946,15 +1090,28 @@ run     rm -rf /h0/SPOOL/MNEWS/junk > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/GROUPS > /nil 2>/nil
 run     rm -rf /h0/SPOOL/NN/MASTER > /nil 2>/nil
 run     rm -f /h0/SPOOL/NN/DATA/*.? /h0/USR/LIB/NEWS/HISTORY/* > /nil 2>/nil
-run     printf 'control:00000 00000 n\rjunk:00000 00000 n\r' > /h0/USR/LIB/NEWS/Active
+run     cat >/h0/USR/LIB/NEWS/Active
+text    control:00000 00000 n
+text    junk:00000 00000 n
+eof
+wait    2
 run     mkdir -p /dd/tmp/MNC
 run     builtin cd /dd/tmp/MNC
-run     printf 'Newsgroups: comp.os.os9\rSubject: MNews on this disk\r\rPosted with inews, read back with nn.\r' > article
+run     cat >article
+text    Newsgroups: comp.os.os9
+text    Subject: MNews on this disk
+text
+text    Posted with inews, read back with nn.
+eof
 wait    2
 run     load /h1/CMDS/shell
 run     inews -c=newgroup:comp.os.os9 < /nil
 run     inews -h < article
-run     printf 'OK\ry\r' > ok
+run     cat >ok
+text    OK
+text    y
+eof
+wait    2
 run     nnmaster -I < ok > /nil
 run     nnmaster < /nil
 wait    4
@@ -1031,8 +1188,30 @@ run     set +H
 run     W=/dd/tmp/TASSC; rm -rf $W > /nil 2>/nil; mkdir -p $W/lib $W/spool/comp/os/os9
 run     printf 'MNEWS.DIR,s=%s/spool\rMNEWS.LIB,s=%s/lib\r' $W $W > $W/sysinfo; setup $W/sysinfo
 run     printf 'comp.os.os9 00000002 00000001 nu\r' > $W/lib/Active
-run     printf 'Path: osk\rFrom: a@osk (A Writer)\rNewsgroups: comp.os.os9\rSubject: first article\rMessage-ID: <1@osk>\rDate: 1 Jan 93 10:00:00 GMT\rLines: 1\r\rfirst body\r' > $W/spool/comp/os/os9/1
-run     printf 'Path: osk\rFrom: b@osk (B Writer)\rNewsgroups: comp.os.os9\rSubject: second article\rMessage-ID: <2@osk>\rDate: 2 Jan 93 10:00:00 GMT\rLines: 1\r\rgreetings, reader\r' > $W/spool/comp/os/os9/2
+run     cat >$W/spool/comp/os/os9/1
+text    Path: osk
+text    From: a@osk (A Writer)
+text    Newsgroups: comp.os.os9
+text    Subject: first article
+text    Message-ID: <1@osk>
+text    Date: 1 Jan 93 10:00:00 GMT
+text    Lines: 1
+text
+text    first body
+eof
+wait    2
+run     cat >$W/spool/comp/os/os9/2
+text    Path: osk
+text    From: b@osk (B Writer)
+text    Newsgroups: comp.os.os9
+text    Subject: second article
+text    Message-ID: <2@osk>
+text    Date: 2 Jan 93 10:00:00 GMT
+text    Lines: 1
+text
+text    greetings, reader
+eof
+wait    2
 run     rm -f $HOME/.newsrc > /nil 2>/nil
 wait    2
 run     clear
@@ -1145,7 +1324,12 @@ cap     directory tree its `Newsgroups:' line names, in the news spool.
 try     rnews batch.txt
 run     rm -rf /dd/SPOOL/news/COMP /dd/art.txt /dd/batch.txt
 wait    3
-run     printf "Newsgroups: comp.os.os9\rSubject: test article\r\rhello there\r" > /dd/art.txt
+run     cat >/dd/art.txt
+text    Newsgroups: comp.os.os9
+text    Subject: test article
+text
+text    hello there
+eof
 wait    3
 run     LEN=$(cat /dd/art.txt | wc -c)
 wait    2
@@ -1168,8 +1352,11 @@ cap     turned off.  subscribe turns news.announce.newusers back on.  A
 cap     group that is not in .newsrc at all is left alone.
 try     subscribe news.announce.newusers
 run     rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS
-run     echo "comp.os.os9: 1-12" > /dd/tmp/SUBS/.newsrc
-run     echo "news.announce.newusers! 1-3" >> /dd/tmp/SUBS/.newsrc
+run     cat >/dd/tmp/SUBS/.newsrc
+text    comp.os.os9: 1-12
+text    news.announce.newusers! 1-3
+eof
+wait    2
 run     export HOME=/dd/tmp/SUBS
 run     builtin cd /dd/tmp/SUBS
 wait    1
@@ -1192,8 +1379,11 @@ cap     turned off.  unsubscribe turns comp.sys.m68k off and keeps its
 cap     record of what was read.
 try     unsubscribe comp.sys.m68k
 run     rm -rf /dd/tmp/SUBS; mkdir -p /dd/tmp/SUBS
-run     echo "comp.os.os9: 1-12" > /dd/tmp/SUBS/.newsrc
-run     echo "comp.sys.m68k: 1-40" >> /dd/tmp/SUBS/.newsrc
+run     cat >/dd/tmp/SUBS/.newsrc
+text    comp.os.os9: 1-12
+text    comp.sys.m68k: 1-40
+eof
+wait    2
 run     export HOME=/dd/tmp/SUBS
 run     builtin cd /dd/tmp/SUBS
 wait    1
@@ -1805,12 +1995,15 @@ run     mkdir -p /dd/tmp/FSMAIL/tester
 run     export MAIL=/dd/tmp/FSMAIL
 run     cp /dd/SYS/UUCP/Parameters /dd/tmp/Parameters.fs
 run     grep -v "^server = no" /dd/tmp/Parameters.fs > /dd/SYS/UUCP/Parameters
-run     echo "From tester Mon Sep 21 00:00:00 2026" > /dd/tmp/fsreq
-run     echo "Subject: request" >> /dd/tmp/fsreq
-run     echo "" >> /dd/tmp/fsreq
-run     echo "reply tester" >> /dd/tmp/fsreq
-run     echo "dir" >> /dd/tmp/fsreq
-run     echo "quit" >> /dd/tmp/fsreq
+run     cat >/dd/tmp/fsreq
+text    From tester Mon Sep 21 00:00:00 2026
+text    Subject: request
+text
+text    reply tester
+text    dir
+text    quit
+eof
+wait    2
 run     load /dd/CMDS/UUCP/rmail
 wait    2
 run     clear
@@ -1864,9 +2057,10 @@ run     rm -rf /dd/tmp/WNQ; mkdir -p /dd/tmp/WNQ
 run     builtin cd /h0/c/unid/wn_1.14.3/osk
 run     wndex 2>/nil
 wait    6
-run     echo "GET /index.html HTTP/1.0" > /dd/tmp/WNQ/rq
-wait    2
-run     echo "" >> /dd/tmp/WNQ/rq
+run     cat >/dd/tmp/WNQ/rq
+text    GET /index.html HTTP/1.0
+text
+eof
 wait    2
 run     builtin cd /dd/tmp/WNQ
 wait    1

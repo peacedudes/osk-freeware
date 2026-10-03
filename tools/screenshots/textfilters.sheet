@@ -626,7 +626,24 @@ cap     The first changed the middle line and the third changed the last.
 try     diff3 mine older theirs
 run     rm -rf /dd/tmp/D3C > /nil 2>/nil; mkdir -p /dd/tmp/D3C
 wait    3
-run     printf "one\rtwo\rthree\r" > /dd/tmp/D3C/older; printf "one\rTWO\rthree\r" > /dd/tmp/D3C/mine; printf "one\rtwo\rTHREE\r" > /dd/tmp/D3C/theirs
+run     cat >/dd/tmp/D3C/older
+text    one
+text    two
+text    three
+eof
+wait    2
+run     cat >/dd/tmp/D3C/mine
+text    one
+text    TWO
+text    three
+eof
+wait    2
+run     cat >/dd/tmp/D3C/theirs
+text    one
+text    two
+text    THREE
+eof
+wait    2
 wait    3
 run     builtin cd /dd/tmp/D3C
 wait    1

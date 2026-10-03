@@ -298,11 +298,11 @@ run     load /h1/CMDS/shell
 wait    3
 run     cat /dd/DOC/samples/jabber.txt > /dd/tmp/SUBA/poem
 wait    2
-run     echo "wc poem" > /dd/tmp/SUBA/demo.sub
-wait    1
-run     echo "md5 poem" >> /dd/tmp/SUBA/demo.sub
-wait    1
-run     echo "head -n 2 poem" >> /dd/tmp/SUBA/demo.sub
+run     cat >/dd/tmp/SUBA/demo.sub
+text    wc poem
+text    md5 poem
+text    head -n 2 poem
+eof
 wait    1
 run     builtin cd /dd/tmp/SUBA
 wait    1
@@ -319,7 +319,15 @@ cap     program like wc needs to count them separately.
 try     ls | xargs wc -l
 os9     ls ! xargs wc -l
 run     rm -rf /dd/tmp/XARG > /nil 2>/nil; mkdir -p /dd/tmp/XARG
-run     printf "alpha\rbeta\r" > /dd/tmp/XARG/one; printf "gamma\r" > /dd/tmp/XARG/two
+run     cat >/dd/tmp/XARG/one
+text    alpha
+text    beta
+eof
+wait    2
+run     cat >/dd/tmp/XARG/two
+text    gamma
+eof
+wait    2
 run     builtin cd /dd/tmp/XARG
 wait    2
 run     clear

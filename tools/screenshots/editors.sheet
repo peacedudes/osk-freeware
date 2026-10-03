@@ -204,7 +204,12 @@ cap     mount first.
 try     hexed -t=tmp/EDIT -e=vi tmp/EDIT/jabber.txt
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil
 wait    2
-run     printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r" > /dd/tmp/EDIT/jabber.txt
+run     cat >/dd/tmp/EDIT/jabber.txt
+text    Twas brillig, and the slithy toves
+text         Did gyre and gimble in the wabe:
+text    All mimsy were the borogoves,
+text         And the mome raths outgrabe.
+eof
 wait    2
 run     builtin cd /dd
 wait    1
@@ -342,7 +347,17 @@ run     set +H
 wait    1
 run     mkdir -p /dd/tmp/EDIT > /nil 2>/nil
 wait    2
-run     printf "Twas brillig, and the slithy toves\r     Did gyre and gimble in the wabe:\rAll mimsy were the borogoves,\r     And the mome raths outgrabe.\r\rBeware the Jabberwock, my son!\r     The jaws that bite, the claws that catch!\rBeware the Jubjub bird, and shun\r     The frumious Bandersnatch!\r" > /dd/tmp/EDIT/jabber.txt
+run     cat >/dd/tmp/EDIT/jabber.txt
+text    Twas brillig, and the slithy toves
+text         Did gyre and gimble in the wabe:
+text    All mimsy were the borogoves,
+text         And the mome raths outgrabe.
+text
+text    Beware the Jabberwock, my son!
+text         The jaws that bite, the claws that catch!
+text    Beware the Jubjub bird, and shun
+text         The frumious Bandersnatch!
+eof
 wait    3
 run     builtin cd /dd/tmp/EDIT
 wait    1

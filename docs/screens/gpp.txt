@@ -1,4 +1,8 @@
-$ printf "int main()\r{\r  return 0;\r}\r" > hello.c
+$ cat >hello.c
+int main()
+{
+  return 0;
+}
 $ ./gpp -v -c hello.c
 gpp version 1.40.3 (based on GCC 1.40)
  /DD/CMDS/gpp_cccp -+ -v -undef -D__GNUC__ -D__GNUG__ -DOSK -D__OSK__ -D__mc6800

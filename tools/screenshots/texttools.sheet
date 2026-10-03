@@ -66,8 +66,18 @@ cap     GNU diff 1.1, the archive's build, on two short lists that differ on
 cap     one line: pear becoming peach.
 try     diff_1.1 tmp/BLGX/d1 tmp/BLGX/d2
 run     mkdir -p /dd/tmp/BLGX > /nil 2>/nil
-run     printf 'apple\rpear\rplum\r' > /dd/tmp/BLGX/d1
-run     printf 'apple\rpeach\rplum\r' > /dd/tmp/BLGX/d2
+run     cat >/dd/tmp/BLGX/d1
+text    apple
+text    pear
+text    plum
+eof
+wait    2
+run     cat >/dd/tmp/BLGX/d2
+text    apple
+text    peach
+text    plum
+eof
+wait    2
 run     builtin cd /dd
 wait    1
 run     clear
@@ -82,9 +92,10 @@ run     builtin cd /dd
 wait    1
 run     clear
 wait    1
-run     echo "alpha" > tmp/fc1
-wait    4
-run     echo "bravo" >> tmp/fc1
+run     cat >tmp/fc1
+text    alpha
+text    bravo
+eof
 wait    4
 run     cp tmp/fc1 tmp/fc2
 wait    4
@@ -148,8 +159,11 @@ try     sgrep arr < src
 run     /dd/CMDS/rm -rf /dd/tmp/sgcard > /nil 2>/nil
 run     /dd/CMDS/mkdir -p /dd/tmp/sgcard
 run     builtin cd /dd/tmp/sgcard
-run     echo "\[:n+,@r" > arr
-run     echo "[?1][" >> arr
+run     cat >arr
+text    \[:n+,@r
+text    [?1][
+eof
+wait    2
 run     echo "x = A[I,J,K] + B[N,M]" > src
 wait    2
 run     clear

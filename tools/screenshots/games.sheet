@@ -420,8 +420,15 @@ cap     the game.
 try     gnuan
 run     rm -rf /dd/tmp/G4GNUAN > /nil 2>/nil; mkdir -p /dd/tmp/G4GNUAN
 run     builtin cd /dd/tmp/G4GNUAN
-run     echo "e2e4 e7e5" > moves; echo "g1f3 b8c6" >> moves; echo "f1b5 a7a6" >> moves
-run     echo "h2h3 h7h6" >> moves; echo "b5c6 d7c6" >> moves; echo draw >> moves
+run     cat >moves
+text    e2e4 e7e5
+text    g1f3 b8c6
+text    f1b5 a7a6
+text    h2h3 h7h6
+text    b5c6 d7c6
+text    draw
+eof
+wait    2
 wait    3
 run     clear
 wait    1
