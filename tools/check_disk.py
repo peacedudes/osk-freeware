@@ -1072,7 +1072,10 @@ def check_cards_have_no_pathlists(root):
     # must be given its full path or it cannot re-open itself.  The `os9' line
     # stays bare.  The card's caption explains it.  This is the copy-paste
     # rule winning over the no-pathlist rule for the one command that needs it.
-    path_ok = {("hack", "try")}
+    # And gcc's: its -L options name the library directories, the disk's
+    # GNULIB and the reader's own LIB on /h1, and no relative path reaches
+    # another device.  Without them it cannot link (2026-10-03).
+    path_ok = {("hack", "try"), ("gcc", "try")}
     bad = []
     for f in sorted(os.listdir(sheets)):
         if not f.endswith(".sheet"):

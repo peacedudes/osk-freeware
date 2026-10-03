@@ -199,33 +199,36 @@ wait    5
 shot    gcc
 fresh
 size    30 80
-cap     GCC2's `gcc', the 1.42 driver, run from its own directory with
-cap     `./' since it is off the command path.  -v prints each pass as it
-cap     forks it: GCC 1.39's preprocessor and compiler, which it forks as
-cap     `cccp' and `cc1', and your own OS-9's r68.  All three were loaded
-cap     first -- `load CMDS/GCC139/gcc_cccp CMDS/GCC139/gcc_cc1' from /dd,
-cap     and r68 from your OS-9 -- and hello.r is the object it made.
-try     ./gcc -v -c hello.c
-run     load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68
+cap     GCC2's `gcc', the 1.42 driver, building the first program in
+cap     Kernighan and Ritchie -- as their first edition printed it, with no
+cap     #include -- and running it.  -v prints each pass as it forks it:
+cap     GCC 1.39's preprocessor and compiler, which it forks as `cccp' and
+cap     `cc1', then your own OS-9's r68 and l68.  The two -L options say
+cap     where the libraries are: gnulib.l is this disk's, in its GNULIB
+cap     directory; cstart.r and the C library are your OS-9's, in LIB on
+cap     /h1.  The passes were loaded first -- `load CMDS/GCC139/gcc_cccp
+cap     CMDS/GCC139/gcc_cc1' from /dd, r68 and l68 from your OS-9.
+try     ./gcc -v -L/dd/GNULIB -L/h1/LIB -o hello hello.c && ./hello
+run     load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68 /h1/CMDS/l68
 wait    3
 run     builtin cd /dd/CMDS/GCC2
 wait    2
-run     rm -f hello.c hello.r
+run     rm -f hello.c hello.r hello
 run     clear
 wait    1
 run     cat >hello.c
-text    int main()
+text    main()
 text    {
-text      return 0;
+text        printf("hello, world\n");
 text    }
 eof
 wait    2
-run     ./gcc -v -c hello.c
-wait    14
-run     ls hello.*
+run     ./gcc -v -L/dd/GNULIB -L/h1/LIB -o hello hello.c
+wait    16
+run     ./hello
 wait    3
 snap
-run     rm -f hello.c hello.r
+run     rm -f hello.c hello.r hello
 wait    1
 
 shot    gcc137

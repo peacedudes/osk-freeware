@@ -1,9 +1,9 @@
 $ cat >hello.c
-int main()
+main()
 {
-  return 0;
+    printf("hello, world\n");
 }
-$ ./gcc -v -c hello.c
+$ ./gcc -v -L/dd/GNULIB -L/h1/LIB -o hello hello.c
 gcc version 1.42
  cccp -v -undef -D__GNUC__ -DOSK -D__OSK__ -D__mc68000__ -Dmc68000 hello.c cc.00
 0004.cpp
@@ -13,5 +13,7 @@ GNU C version 1.39 (68k, Motorola syntax) compiled by GNU C version 1.39.
 default target switches: -mregparm -mstack-check
  r68 -v -q cc.000004.a -o=hello.r
 68000 Resident assembler Version 1.9, Edition 66
-$ ls hello.*
-hello.c  hello.r
+ l68 -o=/dd/CMDS/GCC2/hello -a /h1/LIB/cstart.r hello.r -l=/dd/GNULIB/gnulib.l -
+l=/h1/LIB/clibn.l -l=/h1/LIB/math.l -l=/h1/LIB/sys.l
+$ ./hello
+hello, world

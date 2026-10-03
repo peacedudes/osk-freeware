@@ -1800,15 +1800,15 @@
 },
 "gcc": {
 "setup": [
-"load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68",
+"load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68 /h1/CMDS/l68",
 "builtin cd /dd/CMDS/GCC2",
-"rm -f hello.c hello.r",
+"rm -f hello.c hello.r hello",
 "cat >hello.c",
 {
 "file": [
-"int main()",
+"main()",
 "{",
-"  return 0;",
+"    printf(\"hello, world\\n\");",
 "}"
 ]
 }
