@@ -113,6 +113,14 @@ Sheet format (blank lines and `#' comments ignored):
                                    move then says so -- teachgammon prints
                                    `Error: 000:000 - readc' over its prompt,
                                    which nobody at a keyboard ever sees
+    run     tee >t.a               a file a card needs, typed as a reader
+    text            org  $1000     would type it: `text' lines go to the
+    eof                            program verbatim from column 9 on, so
+                                   leading spaces survive, and `eof' sends
+                                   ESC, SCF's end of file.  Before a `clear'
+                                   they are setup the browser page replays,
+                                   as plain lines -- not a chain of echo
+                                   commands full of octal escapes
 
 Every stanza ends with Ctrl-E, which os9exec delivers to the last writer and
 which kills a program however it is blocked. That is what makes it safe to
@@ -196,6 +204,10 @@ def parse(path):
             continue
         word, _, rest = line.strip().partition(" ")
         rest = rest.strip()
+        if word == "text" and cur is not None:
+            # Verbatim from column 9: the leading spaces are the point.
+            cur["acts"].append(("text", line[8:] if line[:8].rstrip() == "text" else rest))
+            continue
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
                    "try": None, "os9": None, "fold": False, "burst": False,
@@ -281,6 +293,8 @@ def parse(path):
             cur["quit"] = unescape(rest)
         elif word == "cut":
             cur["cut"] = unescape(rest)
+        elif word == "eof":
+            cur["acts"].append(("eof", ""))
         else:
             sys.exit("%s: unknown directive `%s'" % (path, word))
     return shots
@@ -564,6 +578,12 @@ def _drive(sess, shot):
             for ch in val:
                 sess.write(ch)
                 time.sleep(shot["rate"])
+        elif kind == "text":
+            sess.write(val + "\r")
+            time.sleep(0.6)
+        elif kind == "eof":
+            sess.write("\x1b")
+            time.sleep(1.0)
         elif kind == "snap":
             shot["_snaps"].append(sess.mark())
         elif kind == "kill":

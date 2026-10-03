@@ -386,7 +386,7 @@ def sheet_shots(sheets=None):
                                    # that was RUN from one merely credited.
                                    "typed": " ".join(
                                        v for k, v in shot["acts"]
-                                       if k in ("run", "send", "setup")),
+                                       if k in ("run", "send", "setup", "text")),
                                    "cap": " ".join(shot["cap"]),
                                    "try": shot.get("try"),
                                    "os9": shot.get("os9"),
@@ -420,13 +420,25 @@ def hidden_setup(shot):
     card does out of sight (a cd, a load, a file staged) -- or [] if it never
     clears.  The browser page runs these before typing the card's command,
     so `Try it' starts where the card did; see docs/try/setup.json."""
-    runs = [v for k, v in shot["acts"] if k == "run"]
-    cut = next((i for i, v in enumerate(runs) if v.strip() == "clear"), None)
+    acts = shot["acts"]
+    cut = next((i for i, (k, v) in enumerate(acts)
+                if k == "run" and v.strip() == "clear"), None)
     out = []
     # A long line with no quoting is entered as its `;'-separated parts: the
     # page types each at bash's prompt, and a line wider than the terminal
     # is redrawn in scrambled pieces there.
-    for v in (runs[:cut] if cut else []):
+    for k, v in (acts[:cut] if cut else []):
+        # A file typed in -- `tee >f', its `text' lines, `eof' -- goes over
+        # as it is: each line verbatim, and end of file as {"eof": 1}, the
+        # one key the page will send that a line cannot carry.
+        if k == "text":
+            out.append(v)
+            continue
+        if k == "eof":
+            out.append({"eof": 1})
+            continue
+        if k != "run":
+            continue
         # `exec shell' is how a card shows Microware's shell, as a real OS-9
         # user has it (top's listing names its parent shell).  In the browser
         # that is the reader's choice, which the page already makes -- so it

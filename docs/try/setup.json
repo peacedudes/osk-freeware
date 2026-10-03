@@ -245,12 +245,16 @@
 "setup": [
 "mkdir -p /dd/tmp/CMPA > /nil 2>/nil",
 "rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19",
-"echo \"        org  \\0441000\" > /dd/tmp/CMPA/t.a",
-"echo \"        lda  #\\04442\" >> /dd/tmp/CMPA/t.a",
-"echo \"        sta  \\0442000\" >> /dd/tmp/CMPA/t.a",
-"echo \"        rts\" >> /dd/tmp/CMPA/t.a",
-"echo \"        end\" >> /dd/tmp/CMPA/t.a",
-"builtin cd /dd/tmp/CMPA"
+"builtin cd /dd/tmp/CMPA",
+"tee >t.a",
+"        org  $1000",
+"        lda  #$42",
+"        sta  $2000",
+"        rts",
+"        end",
+{
+"eof": 1
+}
 ]
 },
 "as1": {

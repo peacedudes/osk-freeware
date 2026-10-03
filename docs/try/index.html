@@ -313,7 +313,12 @@
       return;
     }
     if (setupLines.length) {
-      typeText(setupLines.shift().replace(/[\x00-\x1f\x7f]/g, '') + '\n');
+      const step = setupLines.shift();
+      // {"eof": 1} ends a file the card typed in with `tee': ESC, SCF's end
+      // of file, and nothing else -- still no way to put a key of a link's
+      // choosing into the terminal.
+      typeText(step && step.eof ? '\x1b'
+               : String(step).replace(/[\x00-\x1f\x7f]/g, '') + '\n');
       return;                             // the next step waits for quiet
     }
     if (wantShell && !inShell) {

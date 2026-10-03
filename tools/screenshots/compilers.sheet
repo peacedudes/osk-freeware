@@ -25,12 +25,14 @@ cap     Motorola S-records beside the source: four instructions at $1000,
 cap     in the format a ROM burner reads.
 try     as09 t.a
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
-run     echo "        org  \0441000" > /dd/tmp/CMPA/t.a
-run     echo "        lda  #\04442" >> /dd/tmp/CMPA/t.a
-run     echo "        sta  \0442000" >> /dd/tmp/CMPA/t.a
-run     echo "        rts" >> /dd/tmp/CMPA/t.a
-run     echo "        end" >> /dd/tmp/CMPA/t.a
 run     builtin cd /dd/tmp/CMPA
+run     tee >t.a
+text            org  $1000
+text            lda  #$42
+text            sta  $2000
+text            rts
+text            end
+eof
 wait    2
 run     clear
 wait    1
