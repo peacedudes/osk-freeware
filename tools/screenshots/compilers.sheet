@@ -205,7 +205,7 @@ cap     forks it: GCC 1.39's preprocessor and compiler, which it forks as
 cap     `cccp' and `cc1', and your own OS-9's r68.  All three were loaded
 cap     first -- `load CMDS/GCC139/gcc_cccp CMDS/GCC139/gcc_cc1' from /dd,
 cap     and r68 from your OS-9 -- and hello.r is the object it made.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc -v -c hello.c
+try     ./gcc -v -c hello.c
 run     load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68
 wait    3
 run     builtin cd /dd/CMDS/GCC2
@@ -235,7 +235,7 @@ cap     its own directory.  -B names its passes (gcc137_cccp, gcc137_cc1)
 cap     by the path of their prefix -- $PWD, as the shell keeps it, is that
 cap     directory; asked to stop at assembly (`-S') it writes 68k assembly
 cap     for your own r68 to assemble.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc137 -B$PWD/gcc137_ -S hello.c; cat hello.a
+try     ./gcc137 -B$PWD/gcc137_ -S hello.c; cat hello.a
 run     builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137
 wait    2
 run     clear
@@ -261,7 +261,7 @@ cap     `gcc272', GNU C and C++ 2.7.2, run from its own directory.  It
 cap     forks its passes by name, so GCC2_OPTS points it at each one with
 cap     -F, by the path $PWD gives; asked to stop at assembly (`-S') it
 cap     writes 68k assembly for your own r68.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"; ./gcc272 -S hello.c
+try     export GCC2_OPTS="-Fcccp2x[$PWD/gcc272_cccp2] -Fcc2x[$PWD/gcc272_cc2]"; ./gcc272 -S hello.c
 run     builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272
 wait    2
 run     rm -f hello.c hello.a
@@ -447,7 +447,7 @@ cap     it is off the command path.  Asked to stop at assembly (`-S') it
 cap     writes 68k assembly in Microware syntax -- `psect', `link.w
 cap     a5,#0'.  With -c it goes on to assemble, with `r68' from your own
 cap     OS-9, loaded first, and hello.r is the object.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gcc2 -S -o hello.a hello.c
+try     ./gcc2 -S -o hello.a hello.c
 run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
 wait    3
@@ -477,7 +477,7 @@ cap     `gpp', the GCC2 C++ driver (1.40.3), run from its own directory.
 cap     -v shows the whole pipeline -- `gpp_cccp' preprocesses,
 cap     `gpp_cc1plus' compiles to assembly, and `r68', your own OS-9's,
 cap     loaded first, assembles hello.r.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./gpp -v -c hello.c
+try     ./gpp -v -c hello.c
 run     load /h1/CMDS/r68
 run     builtin cd /dd/CMDS/GCC2
 wait    3
@@ -505,7 +505,7 @@ cap     The GCC 2.x preprocessor pass, expanding a small C file.  The
 cap     `# 1 "..."' line is the source marker it adds; there are no macros
 cap     here to expand.  It is run from the GCC2 directory, off the
 cap     command path.
-try     printf "int main()\r{\r  return 0;\r}\r" > hello.c; ./cccp2 hello.c hello.i
+try     ./cccp2 hello.c hello.i
 run     builtin cd /dd/CMDS/GCC2
 wait    3
 run     clear

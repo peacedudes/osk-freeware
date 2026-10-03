@@ -452,7 +452,25 @@ def hidden_setup(shot):
             out += [p.strip() for p in v.split(";") if p.strip()]
         else:
             out.append(v)
-    return out + typed
+    out += typed
+    # A FILE THE CARD TYPES ON SCREEN IS SETUP TOO.  bison's card made
+    # tmp/b.y after its `clear', so the browser, replaying only what came
+    # before, ran `bison -v tmp/b.y' on a disk with no such file: error 216
+    # (2026-10-03).  The image ships an empty /dd/tmp; nothing a card left
+    # there is on the reader's disk.  So each `cat >f' block after the clear
+    # is typed as well -- the reader sees the file go in, as the card shows.
+    rest = acts[cut + 1:] if cut is not None else []
+    for i, (k, v) in enumerate(rest):
+        if k == "run" and v.strip().startswith("cat >"):
+            lines = []
+            for k2, v2 in rest[i + 1:]:
+                if k2 != "text":
+                    break
+                lines.append(v2)
+            if lines and len(rest) > i + 1 + len(lines) \
+                    and rest[i + 1 + len(lines)][0] == "eof":
+                out += [v.strip(), {"file": lines}]
+    return out
 
 
 def pick(name, want, first="", fold=False):

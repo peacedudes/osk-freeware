@@ -492,7 +492,15 @@
 },
 "bison": {
 "setup": [
-"builtin cd /dd"
+"builtin cd /dd",
+"cat >tmp/b.y",
+{
+"file": [
+"%token NUM",
+"%%",
+"expr : expr NUM | NUM ;"
+]
+}
 ]
 },
 "bjack": {
@@ -693,7 +701,16 @@
 },
 "cccp2": {
 "setup": [
-"builtin cd /dd/CMDS/GCC2"
+"builtin cd /dd/CMDS/GCC2",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "ccheck": {
@@ -1562,7 +1579,22 @@
 },
 "fcomp": {
 "setup": [
-"builtin cd /dd"
+"builtin cd /dd",
+"cat >tmp/fc1",
+{
+"file": [
+"alpha",
+"bravo"
+]
+},
+"cat >tmp/fc2",
+{
+"file": [
+"alpha",
+"bravo",
+"charlie"
+]
+}
 ]
 },
 "ff": {
@@ -1668,7 +1700,15 @@
 },
 "flex": {
 "setup": [
-"builtin cd /dd"
+"builtin cd /dd",
+"cat >tmp/l.l",
+{
+"file": [
+"%%",
+"[0-9]+   { return NUM; }",
+".        ;"
+]
+}
 ]
 },
 "fmt": {
@@ -1762,12 +1802,30 @@
 "setup": [
 "load /dd/CMDS/GCC139/gcc_cccp /dd/CMDS/GCC139/gcc_cc1 /h1/CMDS/r68",
 "builtin cd /dd/CMDS/GCC2",
-"rm -f hello.c hello.r"
+"rm -f hello.c hello.r",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "gcc137": {
 "setup": [
-"builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137"
+"builtin cd /dd/CMDS/GCC137; PWD=/dd/CMDS/GCC137",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "gcc137_cc1": {
@@ -1803,13 +1861,31 @@
 "setup": [
 "load /h1/CMDS/r68",
 "builtin cd /dd/CMDS/GCC2",
-"rm -f hello.c hello.a hello.r"
+"rm -f hello.c hello.a hello.r",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "gcc272": {
 "setup": [
 "builtin cd /dd/CMDS/GCC272; PWD=/dd/CMDS/GCC272",
-"rm -f hello.c hello.a"
+"rm -f hello.c hello.a",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "gcc272_cc2": {
@@ -2067,7 +2143,16 @@
 "setup": [
 "load /h1/CMDS/r68",
 "builtin cd /dd/CMDS/GCC2",
-"rm -f hello.c hello.r"
+"rm -f hello.c hello.r",
+"cat >hello.c",
+{
+"file": [
+"int main()",
+"{",
+"  return 0;",
+"}"
+]
+}
 ]
 },
 "gpp_collect": {
@@ -2694,7 +2779,15 @@
 "m4": {
 "setup": [
 "load /h1/CMDS/shell",
-"builtin cd /dd"
+"builtin cd /dd",
+"cat >tmp/m.m4",
+{
+"file": [
+"define(greet,hi $1 -- welcome)",
+"greet(reader)",
+"syscmd(whoami)"
+]
+}
 ]
 },
 "m4_0.5": {

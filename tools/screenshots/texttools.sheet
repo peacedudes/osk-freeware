@@ -97,9 +97,11 @@ text    alpha
 text    bravo
 eof
 wait    4
-run     cp tmp/fc1 tmp/fc2
-wait    4
-run     echo "charlie" >> tmp/fc2
+run     cat >tmp/fc2
+text    alpha
+text    bravo
+text    charlie
+eof
 wait    4
 run     fcomp tmp/fc1 tmp/fc2
 wait    6
