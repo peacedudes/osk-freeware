@@ -397,16 +397,23 @@ function setShell(s){
 // keys the card entered at the program (shot.k, from its sheet's `send'
 // lines) wherever a line ends with one -- forth waits silently for
 // `20 fib . cr', and a reader who cannot tell it was typed waits too.
+// A FILE TYPED IN WITH `cat >f' IS TYPED TOO: every line after that command
+// up to the next prompt is the reader's own typing echoed back, since cat
+// itself writes only to the file.  Known by position, not by matching text,
+// so the same lines printed later by `cat f' stay printed.
 function shotHTML(shot){
   const cmd = tryFor(shot);
   const keys = (shot.k||[]).map(esc).sort((a,b)=>b.length-a.length);
+  let intoCat = false;
   return esc(shot.s).split("\n").map(ln => {
     if(ln.startsWith("$ ")){
       let typed = ln.slice(2);
+      intoCat = /^cat &gt;\S/.test(typed);
       if(shell==="os9" && shot.os9 && typed===esc(shot.try||"")) typed = esc(shot.os9);
       return `<span class="pr">${esc(PROMPT[shell])}</span><span class="ty">${typed}</span>`;
     }
     const body = ln.replace(/\s+$/,"");
+    if(intoCat) return body ? `<span class="ty">${body}</span>` : ln;
     const k = keys.find(k => body.endsWith(k));
     return k ? `${body.slice(0, body.length-k.length)}<span class="ty">${k}</span>` : ln;
   }).join("\n");
