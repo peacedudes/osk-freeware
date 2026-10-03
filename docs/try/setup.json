@@ -246,7 +246,7 @@
 "mkdir -p /dd/tmp/CMPA > /nil 2>/nil",
 "rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19",
 "builtin cd /dd/tmp/CMPA",
-"tee >t.a",
+"cat >t.a",
 {
 "file": [
 "        org  $1000",

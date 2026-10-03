@@ -26,7 +26,7 @@ cap     in the format a ROM burner reads.
 try     as09 t.a
 run     mkdir -p /dd/tmp/CMPA > /nil 2>/nil; rm -f /dd/tmp/CMPA/t.a /dd/tmp/CMPA/t.s19
 run     builtin cd /dd/tmp/CMPA
-run     tee >t.a
+run     cat >t.a
 text            org  $1000
 text            lda  #$42
 text            sta  $2000
