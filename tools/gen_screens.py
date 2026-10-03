@@ -427,15 +427,18 @@ def hidden_setup(shot):
     # A long line with no quoting is entered as its `;'-separated parts: the
     # page types each at bash's prompt, and a line wider than the terminal
     # is redrawn in scrambled pieces there.
+    typed = []
     for k, v in (acts[:cut] if cut else []):
         # A file typed in -- `tee >f', its `text' lines, `eof' -- goes over
-        # as it is: each line verbatim, and end of file as {"eof": 1}, the
-        # one key the page will send that a line cannot carry.
+        # as one step, {"file": [lines]}: the page types the lines verbatim
+        # and then end of file, the one key a line cannot carry, without
+        # waiting between them -- tee reads what was typed ahead.
         if k == "text":
-            out.append(v)
+            typed.append(v)
             continue
         if k == "eof":
-            out.append({"eof": 1})
+            out.append({"file": typed})
+            typed = []
             continue
         if k != "run":
             continue
@@ -449,7 +452,7 @@ def hidden_setup(shot):
             out += [p.strip() for p in v.split(";") if p.strip()]
         else:
             out.append(v)
-    return out
+    return out + typed
 
 
 def pick(name, want, first="", fold=False):
