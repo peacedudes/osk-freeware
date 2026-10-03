@@ -427,14 +427,32 @@
   keysEl.addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
-    if (b.hasAttribute('data-ctrl')) armCtrl(!ctrlArmed);
+    // Only Ctrl asks for the keyboard -- a letter has to follow it.  The
+    // rest leave it as it was: A- and A+ brought it up for nothing, and ^C
+    // needs no keyboard.  Focus stays put because pointerdown is cancelled.
+    if (b.hasAttribute('data-ctrl')) { armCtrl(!ctrlArmed); term.focus(); }
     else if (b.dataset.font) {
       ownFont = Math.min(28, Math.max(FONT_MIN, term.options.fontSize + Number(b.dataset.font)));
       try { localStorage.setItem('os9font', String(ownFont)); } catch (e) {}
       fitTerm();
     } else { armCtrl(false); keyIn(String.fromCharCode(...b.dataset.key.split(' ').map(Number))); }
-    term.focus();
   });
+  // THE PHONE'S KEYBOARD MUST NOT PUSH THE SCREEN'S TOP AWAY.  Safari keeps
+  // the page its full height under the keyboard and scrolls it so the
+  // cursor shows, which takes the first lines a program drew off the top.
+  // So the page is made exactly as tall as what is visible above the
+  // keyboard and held at the top; the terminal, never under 24 rows,
+  // scrolls inside itself if that is too little.
+  if (window.visualViewport) {
+    const vv = window.visualViewport;
+    const hold = () => {
+      document.body.style.height = vv.height + 'px';
+      if (window.scrollY) window.scrollTo(0, 0);
+      fitTerm();
+    };
+    vv.addEventListener('resize', hold);
+    vv.addEventListener('scroll', hold);
+  }
   function keyIn(data) {
     for (const ch of data) {
       const c = ch.charCodeAt(0);
