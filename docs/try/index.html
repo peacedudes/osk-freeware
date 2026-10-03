@@ -26,6 +26,20 @@
   #term.bell::after { opacity: 0.125; }
   body.embed header { display: none; }
   body.embed #term { padding: 4px; }
+  /* A PHONE HAS NO CTRL KEY, and ^C and ^E are how a program is left.
+     These keys go in through the same path as typed ones.  Only where the
+     pointer is a finger; a keyboard has them already. */
+  #keys { display: none; gap: 6px; padding: 6px 8px; flex-wrap: wrap;
+          justify-content: center; border-top: 1px solid #30363d; }
+  #keys button { font: 15px ui-monospace, Menlo, monospace; color: var(--fg);
+                 background: #1f262d; border: 1px solid #30363d; border-radius: 6px;
+                 min-width: 2.6em; padding: 8px 6px; touch-action: manipulation; }
+  #keys button[aria-pressed="true"] { background: #e3b341; color: #101418; }
+  @media (hover: none) and (pointer: coarse) {
+    #keys { display: flex; }
+    #term { padding: 0 4px 4px; }
+  }
+  body.embed #keys { display: none; }
 </style>
 </head>
 <body>
@@ -40,6 +54,19 @@
   <input id="pick" type="file" hidden>
 </header>
 <div id="term"></div>
+<div id="keys" role="toolbar" aria-label="Keys a phone keyboard lacks">
+  <button data-ctrl aria-pressed="false" title="Ctrl: tap, then a letter">Ctrl</button>
+  <button data-key="3" title="Ctrl-C: interrupt">^C</button>
+  <button data-key="5" title="Ctrl-E: abort">^E</button>
+  <button data-key="27" title="Escape">Esc</button>
+  <button data-key="9" title="Tab">Tab</button>
+  <button data-key="27 91 68" aria-label="Left">&larr;</button>
+  <button data-key="27 91 65" aria-label="Up">&uarr;</button>
+  <button data-key="27 91 66" aria-label="Down">&darr;</button>
+  <button data-key="27 91 67" aria-label="Right">&rarr;</button>
+  <button data-font="-1" aria-label="Smaller text">A&minus;</button>
+  <button data-font="1" aria-label="Larger text">A+</button>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/lib/xterm.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/lib/addon-fit.js"></script>
 <script>
@@ -55,7 +82,23 @@
   // narrower terminal wraps their lines.  A small window scrolls instead.
   // (A wider one is fine now that nothing writes column 80, 2026-09-28.)
   const MIN_COLS = 80, MIN_ROWS = 24;
+  // THE TEXT SHRINKS TO FIT 80 COLUMNS, as Cmd-minus would: a phone held
+  // upright is about 45 columns wide at 14px, and scrolling sideways
+  // through a full-screen program is no way to use it.  A- and A+ (on the
+  // phone's key row) set a size of the reader's own, kept in this browser.
+  const FONT_MAX = 14, FONT_MIN = 5;
+  let ownFont = null;
+  try { ownFont = parseInt(localStorage.getItem('os9font'), 10) || null; } catch (e) {}
+  function fitFont() {
+    if (ownFont) { term.options.fontSize = ownFont; return; }
+    for (let f = FONT_MAX; f >= FONT_MIN; f--) {
+      term.options.fontSize = f;
+      const d = fit.proposeDimensions();
+      if (d && d.cols >= MIN_COLS) return;
+    }
+  }
   function fitTerm() {
+    fitFont();
     const d = fit.proposeDimensions();
     if (!d || !isFinite(d.cols) || !isFinite(d.rows)) return;
     const cols = Math.max(MIN_COLS, d.cols), rows = Math.max(MIN_ROWS, d.rows);
@@ -365,14 +408,41 @@
   // which the key belongs to the guest again. The Enter that runs the typed
   // command is not a line of their own.
   let ownLineEntered = false;
+  let ctrlArmed = false;
+  const ctrlButton = document.querySelector('#keys [data-ctrl]');
+  function armCtrl(on) { ctrlArmed = on; ctrlButton.setAttribute('aria-pressed', String(on)); }
   term.onData((data) => {
+    // Ctrl tapped on the key row: the next letter typed is its control key.
+    if (ctrlArmed && data.length === 1 && /[@-_a-z]/i.test(data)) {
+      data = String.fromCharCode(data.toUpperCase().charCodeAt(0) & 0x1f);
+    }
+    armCtrl(false);
+    keyIn(data);
+  });
+  // A tap on the key row must not take focus from the terminal, or the
+  // phone's keyboard goes away with it: pointerdown is cancelled, and the
+  // key is sent on click.
+  const keysEl = document.getElementById('keys');
+  keysEl.addEventListener('pointerdown', (e) => e.preventDefault());
+  keysEl.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (b.hasAttribute('data-ctrl')) armCtrl(!ctrlArmed);
+    else if (b.dataset.font) {
+      ownFont = Math.min(28, Math.max(FONT_MIN, term.options.fontSize + Number(b.dataset.font)));
+      try { localStorage.setItem('os9font', String(ownFont)); } catch (e) {}
+      fitTerm();
+    } else { armCtrl(false); keyIn(String.fromCharCode(...b.dataset.key.split(' ').map(Number))); }
+    term.focus();
+  });
+  function keyIn(data) {
     for (const ch of data) {
       const c = ch.charCodeAt(0);
       if (c === 0x01 && typedRun && !ownLineEntered) { typeText(wantShell ? runCmd : wrapForBash(runCmd)); continue; }
       if (c === 0x0d) { if (runWaiting) runWaiting = false; else ownLineEntered = true; }
       Module.os9keys.push(KEYMAP[c] ?? c);
     }
-  });
+  }
 </script>
 <script src="os9exec.js"></script>
 </body>
