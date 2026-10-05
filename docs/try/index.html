@@ -39,6 +39,27 @@
     #keys { display: flex; }
     #term { padding: 0 4px 4px; }
   }
+  /* Upright, the row is two rows anyway, so lay them out on purpose: the
+     control keys in a block on the left, the arrows an inverted T on the
+     right, where a keyboard keeps them. */
+  @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+    #keys { display: grid; justify-content: stretch;
+            grid-template-columns: repeat(4, minmax(0, 1fr)) 0.4em repeat(3, minmax(0, 1fr));
+            grid-template-areas: "ctrl intr abrt esc . .    up   ."
+                                 "tab  smlr lrgr .   . left down right"; }
+    #keys button { min-width: 0; padding: 8px 2px; }
+    #keys [data-ctrl]              { grid-area: ctrl; }
+    #keys [data-key="3"]           { grid-area: intr; }
+    #keys [data-key="5"]           { grid-area: abrt; }
+    #keys [data-key="27"]          { grid-area: esc; }
+    #keys [data-key="9"]           { grid-area: tab; }
+    #keys [data-font="-1"]         { grid-area: smlr; }
+    #keys [data-font="1"]          { grid-area: lrgr; }
+    #keys [data-key="27 91 65"]    { grid-area: up; }
+    #keys [data-key="27 91 68"]    { grid-area: left; }
+    #keys [data-key="27 91 66"]    { grid-area: down; }
+    #keys [data-key="27 91 67"]    { grid-area: right; }
+  }
   body.embed #keys { display: none; }
 </style>
 </head>
