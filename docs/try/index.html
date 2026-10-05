@@ -464,12 +464,31 @@
   // So the page is made exactly as tall as what is visible above the
   // keyboard and held at the top; the terminal, never under 24 rows,
   // scrolls inside itself if that is too little.
+  // WHAT YOU TYPE STAYS IN VIEW.  With the keyboard up there may be room
+  // for only a dozen of the 24 rows, and the prompt is usually near the
+  // bottom; so the terminal's box scrolls just enough to show the cursor's
+  // line, and not at all when everything fits.  It follows where the cursor
+  // comes to rest, not every jump a full-screen program makes as it draws.
+  const termBox = document.getElementById('term');
+  function showCursor() {
+    const screen = term.element && term.element.querySelector('.xterm-screen');
+    if (!screen || termBox.scrollHeight <= termBox.clientHeight) return;
+    const rowH = screen.getBoundingClientRect().height / term.rows;
+    const top = screen.getBoundingClientRect().top - termBox.getBoundingClientRect().top
+                + termBox.scrollTop + term.buffer.active.cursorY * rowH;
+    if (top < termBox.scrollTop) termBox.scrollTop = top;
+    else if (top + rowH > termBox.scrollTop + termBox.clientHeight)
+      termBox.scrollTop = top + rowH - termBox.clientHeight;
+  }
+  let restTimer = 0;
+  term.onCursorMove(() => { clearTimeout(restTimer); restTimer = setTimeout(showCursor, 120); });
   if (window.visualViewport) {
     const vv = window.visualViewport;
     const hold = () => {
       document.body.style.height = vv.height + 'px';
       if (window.scrollY) window.scrollTo(0, 0);
       fitTerm();
+      showCursor();
     };
     vv.addEventListener('resize', hold);
     vv.addEventListener('scroll', hold);
