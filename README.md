@@ -58,8 +58,11 @@ screen. Written between the mid-1980s and the mid-1990s, and given away.
 
 ## On your own OS-9 system
 
-The collection is one RBF image, **osk-freeware.dd**, written whole onto a
-disk of its own. Mount it as `/dd` and also name it `/h0`: the programs look
+The collection is one RBF image, **osk-freeware.dd**. Download it as
+`osk-freeware.dd.gz` from
+[Releases](https://github.com/peacedudes/osk-freeware/releases/latest) and
+unpack it with `gunzip osk-freeware.dd.gz`. Write it whole onto a disk of its
+own. Mount it as `/dd` and also name it `/h0`: the programs look
 for their data under /dd, and some older ones carry /h0 paths inside
 them. On most OS-9 systems `/dd` already names the `/h0` drive. Your own
 system goes on `/h1`. Then
@@ -87,7 +90,12 @@ browser, to download. `DOC/README-KEEP` has more.
 ## On your desktop
 
 os9exec builds on macOS, Linux and Windows, and runs the image without any
-OS-9 hardware. Some programs still need parts of a licensed OS-9 of your
+OS-9 hardware. Download a binary from
+[its Releases](https://github.com/peacedudes/os9exec/releases/latest), or
+build it from source as [its README](https://github.com/peacedudes/os9exec)
+says. The image comes from this collection's
+[Releases](https://github.com/peacedudes/osk-freeware/releases/latest), as
+above. Some programs still need parts of a licensed OS-9 of your
 own -- its shell, runb or compiler -- which os9exec attaches as /h1:
 
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=/path/to/your/os9 \
