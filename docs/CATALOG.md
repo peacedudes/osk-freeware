@@ -17,7 +17,7 @@
 | [Encoding & conversion](#encoding--conversion) | 34 | Between text encodings, line endings, Macintosh formats, ciphers and hashes. |
 | [Communications](#communications) | 123 | Kermit in several builds, terminal sessions, and networking. |
 | [Graphics & images](#graphics--images) | 190 | The netpbm toolkit, JPEG, a ray tracer, and things that draw. |
-| [Games](#games) | 117 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
+| [Games](#games) | 116 | Adventures, board and card games, arcade ports, dungeon crawls and puzzles. |
 | [Screen toys](#screen-toys) | 10 | Animations and screen effects -- they draw on the terminal rather than print to it. Some run until you stop them. |
 | [Amusements](#amusements) | 39 | Generators, simulators and diversions that are not quite games. |
 | [System & modules](#system--modules) | 140 | OS-9 module and process tools, devices, system state and scheduling. |
@@ -27,7 +27,7 @@
 | [Printing](#printing) | 11 | Spoolers, page formatting and PostScript. |
 | [Documentation](#documentation) | 8 | Pagers, readers and the help system. |
 | [G-Windows](#g-windows) | 6 | Programs for G-Windows, OS-9's graphical display.  There is none here, so each card shows the program saying so. |
-| [Needs hardware](#needs-hardware) | 20 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
+| [Needs hardware](#needs-hardware) | 21 | Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code. |
 
 ## Shells
 
@@ -1220,7 +1220,7 @@
 
 *Adventures, board and card games, arcade ports, dungeon crawls and puzzles.*
 
-<details><summary>117 programs</summary>
+<details><summary>116 programs</summary>
 
 **Adventure & fiction**
 
@@ -1262,7 +1262,6 @@
 | | |
 |---|---|
 | `accordian` | Accordian solitaire: the deck is dealt in a row, and a stack slides one or three places left onto a card of the same suit or rank, closing the gap; win by squeezing it to one pile<br>**To leave:** `x', then `n' at `Play again?' |
-| `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits<br>**To leave:** `Control-C'<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game. |
 | `bjack` | blackjack, a 1990 obfuscated-C contest entry: one deck, a stake of $1000 or the one you name (`bjack 500'); a wager of 0 or end of file quits<br>**To leave:** `0' Return at `Wager?'<br>**How:** `bjack [stake]' -- $1000 unless you name one; the largest bet is 500. It asks `Wager?' before each hand, then offers double, hit, split and insurance as the cards allow; answer y or n. A wager of 0, a negative one, or end of file quits. |
 | `blackjack` | Las Vegas blackjack in BASIC09: `runb blackjack'. RETURN draws, `s' stands, `d' doubles down, `x' splits, a wager of 0 ends the game. `blackjak' in GAMES is a different, SNOBOL4 version<br>**To leave:** `0' Return at `Wager?', then `n' Return<br>**How:** BASIC09 I-code: `load /h1/CMDS/runb' then `runb blackjack' (bare module name -- a pathname gives BASIC09 error 43). It asks your name and whether you want the rules, then takes a wager and deals: RETURN draws a card, `s' stands, `d' doubles down, `x' splits a pair; a wager of 0 ends the game. runb links the `math' trap handler from the execution directory, so leave chx at CMDS -- tested, plays a full hand. |
 | `blackjak` | &#9733; Las Vegas BlackJack (SNOBOL4-in-C).  Data: GAMES/SNOBOL<br>**To leave:** `Control-C' |
@@ -1875,7 +1874,7 @@
 
 *Programs for hardware out of our reach: a GEPARD or MM/1 display, a particular terminal, a printer on its own port.  Most are untested here; what is said of them comes from their own text and code.*
 
-<details><summary>20 programs</summary>
+<details><summary>21 programs</summary>
 
 **<a sub-category for machine-specific tools>**
 
@@ -1912,6 +1911,7 @@
 
 | | |
 |---|---|
+| `back` | &#9733; backgammon on a full board, points numbered 1 to 24, with the dice cup and the doubling status beside it. Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game, Q quits. Its screen codes are a TeleVideo's whatever TERM says<br>**To leave:** `Control-C'<br>**How:** Single letters are the commands: R rolls, D doubles, H is the help, N starts a new game. |
 | `gcl` | &#9733; a grand digital clock: the time drawn large across the terminal and redrawn as it runs.  `-n=<seconds>' runs it for that long; -s scrolls the digits, -i inverts the video. Its screen codes are a TeleVideo's whatever TERM says<br>**How:** A full-screen digital clock: `gcl' runs until stopped, `gcl -n=10' for ten seconds; -s scrolls the digits, -i inverts the video. |
 | `names` | &#9733; an address book in German, full screen: name, street, postcode, town, phone and two notes per record, in a file under SYS it creates on first run. Wants a terminal; its screen codes are a Datamedia 1520's whatever TERM says<br>**To leave:** `Q' |
 | `snap` | &#9733; writes what is on the terminal screen to a file -- `polaroid' unless you name another -- so a display can be kept. -s and -e take a range of lines rather than the whole screen.  It reads the screen back from one of the hardware terminals -l lists; on any other it names the type and stops<br>`syntax: snap {opt} [<file>] {opt}` |

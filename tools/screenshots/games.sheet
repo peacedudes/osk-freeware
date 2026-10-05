@@ -312,7 +312,8 @@ size    40 80
 burst
 cap     The opening position, one side's checkers drawn as [] and the other's
 cap     as <>, with the empty dice cups, the command menu and the doubling
-cap     status on the right, waiting at `Command?'.
+cap     status on the right, waiting at `Command?'.  Its screen codes are a
+cap     TeleVideo's whatever TERM says, so it needs that terminal.
 try     back
 run     export TERM=vt100
 run     clear
