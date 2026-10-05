@@ -352,9 +352,12 @@ run     uid tester
 wait    2
 
 shot    newgrp
+super
 cap     newgrp starts a shell in another group that SYS/group lists you
 cap     in, asking for the group's password if it has one.  This disk
-cap     carries no SYS/group; here a two-line one names tester in staff.
+cap     carries no SYS/group; here a two-line one names tester in staff,
+cap     and newgrp is run as root.  Run as tester it answers `You are not
+cap     allowd to change to staff', and we have not found why.
 try     newgrp staff
 run     printf 'users::1:tester\rstaff::5:tester\r' > /dd/SYS/group
 wait    1
