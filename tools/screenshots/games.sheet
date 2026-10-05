@@ -1209,19 +1209,19 @@ send    q
 wait    2
 
 shot    zot
-size    44 80
+size    60 80
 cap     Prints a line of text in one of fourteen animated styles: the
 cap     letters slide in from a side, bounce, sort themselves, or turn up
 cap     one at a time like a game-show board, and settle as the line.  Shown
-cap     as a strip, one line per frame, top to bottom: Wheel of Fortune
-cap     (style 14), then Expand text outward (style 5).  zot -s names all
-cap     fourteen.
-try     zot -s=14 "That's one small step for man, one giant leap for mankind."
+cap     as a strip, one line per frame, top to bottom: Expand text outward
+cap     (style 5), then zot -s, which names the fourteen styles, each one
+cap     arriving in its own style.
+try     zot -s
 frames
-run     zot -s=14 "That's one small step for man, one giant leap for mankind."
-wait    6
 run     zot -s=5 "That's one small step for man, one giant leap for mankind."
 wait    6
+run     zot -s
+wait    3
 
 shot    convert
 cap     Starts the WORLD text adventure.  Its opening sets you on a trail near

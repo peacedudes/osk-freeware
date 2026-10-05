@@ -610,7 +610,7 @@ def _drive(sess, shot):
 
 PARTIAL = re.compile(rb"\x1b\[?[0-9;?]*$")
 ANSI = re.compile(rb"\x1b\[[0-9;?]*[A-Za-z]|\x1b[()#][0-9A-Za-z]|\x1b[=>78]")
-FRAME_BREAK = re.compile(rb"\r\n?|\n")
+FRAME_BREAK = re.compile(rb"(\r\n?|\n)")
 
 
 def filmstrip(data, shot):
@@ -623,16 +623,20 @@ def filmstrip(data, shot):
     card showed for a month, captioned as terminal attributes it never
     used.  Here every CR-terminated write is a line of its own, top to
     bottom, so the reader sees the dance.  Escape sequences go, blank frames
-    go, and when there are more frames than rows the program's frames are
-    sampled evenly while every typed command line stays.
+    go, and when there are more frames than rows the bare-CR frames are
+    sampled evenly.  A line that ends in a newline is a finished line --
+    a typed command, the settled text, `zot -s' naming its styles -- and
+    always stays.
     """
     rows, cols = shot["size"]
-    text = ANSI.sub(b"", trim_partial(data))
-    frames = [f for f in FRAME_BREAK.split(text) if f.strip()]
-    runs = [v.encode("utf-8") for k, v in shot["acts"] if k == "run"]
-    anchors = {i for i, f in enumerate(frames) if any(r in f for r in runs)}
+    text = re.sub(rb"\r+\n", b"\r\n", ANSI.sub(b"", trim_partial(data)))
+    pieces = FRAME_BREAK.split(text)
+    pairs = [(f, end) for f, end in zip(pieces[0::2], pieces[1::2] + [b""])
+             if f.strip()]
+    frames = [f for f, end in pairs]
+    anchors = {i for i, (f, end) in enumerate(pairs) if end != b"\r"}
     others = [i for i in range(len(frames)) if i not in anchors]
-    room = rows - len(anchors)
+    room = rows - len(anchors) - 1      # the last newline takes a row
     if len(others) > room and room > 1:
         keep = {others[round(k * (len(others) - 1) / (room - 1))]
                 for k in range(room)}
