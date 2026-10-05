@@ -1,58 +1,46 @@
 $ zot -s=5 "That's one small step for man, one giant leap for mankind."
                             Td.
+                           Thnd.
+                          Thaind.
+                         Thatkind.
+                        That'nkind.
+                       That'sankind.
+                      That's mankind.
+                     That's o mankind.
+                    That's onr mankind.
+                   That's oneor mankind.
                   That's one for mankind.
+                 That's one s for mankind.
+                That's one smp for mankind.
+               That's one smaap for mankind.
+              That's one smaleap for mankind.
+             That's one smallleap for mankind.
+            That's one small  leap for mankind.
+           That's one small st leap for mankind.
+          That's one small stnt leap for mankind.
+         That's one small steant leap for mankind.
         That's one small stepiant leap for mankind.
+       That's one small step giant leap for mankind.
+      That's one small step f giant leap for mankind.
+     That's one small step foe giant leap for mankind.
+    That's one small step forne giant leap for mankind.
+   That's one small step for one giant leap for mankind.
+  That's one small step for m one giant leap for mankind.
+ That's one small step for ma, one giant leap for mankind.
 That's one small step for man, one giant leap for mankind.
 $ zot -s
 Styles:
-ght
-ext to right
-1. Shift text to right
     1. Shift text to right
-                  2. Shif
-        2. Shift text to
     2. Shift text to left
-    3. Fill
-    3. Fill text to r
     3. Fill text to right
-               t
     4. Fill text to left
-             rd
-       5. Expext outward
     5. Expand text outward
-. Expand           text in
     6. Expand text inward
-uoB .7
-o txet ecnuoB .7
-   thgir no txet ecnuoB
-             t    7. Bounce
-        7. Bounce text on r
     7. Bounce text on right
-                   tfel no
-          tfel no txet ecn
-tfel no txet ecnuoB .8
-xt on left.8
- Bounce text on left
     8. Bounce text on left
-e t i w r          . M r
     9. Merge text inward
-   0  - .
-   10.
-   10. Un  S
-   10. Un-B  S
-   10. Un-BubS
-   10. Un-Bubbl e Sorttt
-   10. Un-Bubble Soe
-   10. Un-Bubble Sort tet
    10. Un-Bubble Sort text
-   11. Inein S e
    11. Insertion Sort text
-     .
-   12. F         ASCIIb   ca
    12. Fill text ASCIIbetically
-   13. Rdbdd Addacd ddcdddddd
-   13. Rnbnn Annack nechninne
    13. Robot Attack technique
-   14. _____ __ _______
-   14. Wheel of Fort_ne
    14. Wheel of Fortune

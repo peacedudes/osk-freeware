@@ -76,6 +76,9 @@ Sheet format (blank lines and `#' comments ignored):
                                    plain line of text; the strip keeps the
                                    dance.  Sampled evenly to fit the window,
                                    the typed commands always kept
+    settled                        in a `frames' stanza, the NEXT `run' shows
+                                   only its finished lines, not the frames
+                                   between: `zot -s' as the list it ends on
     for     getsys today           which CATALOGUE programs this screen shows,
                                    when the shot's own name is not the only
                                    one -- the gallery hangs it on each
@@ -213,7 +216,7 @@ def parse(path):
         if word == "shot":
             cur = {"name": rest, "cap": [], "for": [], "acts": [],
                    "try": None, "os9": None, "fold": False, "burst": False,
-                   "frames": False, "fresh": False, "super": False,
+                   "frames": False, "settled": [], "fresh": False, "super": False,
                    "rate": rate, "size": size, "quit": None, "sheet": path}
             shots.append(cur)
             continue
@@ -248,6 +251,9 @@ def parse(path):
         elif word == "frames":
             cur["frames"] = True
             continue
+        elif word == "settled":
+            cur["settle_next"] = True
+            continue
         elif word == "pages":
             cur["pages"] = True
         elif word == "term":
@@ -281,6 +287,8 @@ def parse(path):
             cur["burst"] = True
         elif word == "run":
             cur["acts"].append(("run", rest))
+            if cur.pop("settle_next", False):
+                cur["settled"].append(rest)
         elif word == "kill":
             cur["acts"].append(("kill", ""))
         elif word == "snap":
@@ -633,6 +641,17 @@ def filmstrip(data, shot):
     pieces = FRAME_BREAK.split(text)
     pairs = [(f, end) for f, end in zip(pieces[0::2], pieces[1::2] + [b""])
              if f.strip()]
+    # The output of a `settled' run keeps only its finished lines.
+    runs = [v.encode("utf-8") for k, v in shot["acts"] if k == "run"]
+    settled = [v.encode("utf-8") for v in shot.get("settled", [])]
+    kept, quiet = [], False
+    for f, end in pairs:
+        if end != b"\r" and any(f.rstrip().endswith(r) for r in runs):
+            quiet = any(f.rstrip().endswith(r) for r in settled)
+        elif quiet and end == b"\r":
+            continue
+        kept.append((f, end))
+    pairs = kept
     frames = [f for f, end in pairs]
     anchors = {i for i, (f, end) in enumerate(pairs) if end != b"\r"}
     others = [i for i in range(len(frames)) if i not in anchors]
@@ -675,6 +694,8 @@ def stanza_hash(shot):
              str(shot["size"])]
     if shot.get("frames"):
         parts.append("frames")            # only when set: older hashes hold
+    if shot.get("settled"):
+        parts.append("settled " + repr(shot["settled"]))
     if shot.get("super"):
         parts.append("super")             # who ran it changes what it shows
     if shot.get("cut"):
