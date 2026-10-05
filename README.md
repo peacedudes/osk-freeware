@@ -99,7 +99,7 @@ above. Some programs still need parts of a licensed OS-9 of your
 own -- its shell, runb or compiler -- which os9exec attaches as /h1:
 
     OS9DISK=$PWD/osk-freeware.dd OS9H0=$PWD/osk-freeware.dd OS9H1=/path/to/your/os9 \
-        os9exec -r bash /dd/SYS/login
+        os9exec bash /dd/SYS/login
 
 OS9DISK and OS9H0 both name the collection's image; OS9H1 names your own
 licensed OS-9, a disk image or a directory. Leave OS9H1 out and most of the
