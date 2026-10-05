@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Give teachgammon's raw-mode terminal options a starting point.
+"""Give teachgammon's and backgammon's raw-mode terminal options a starting point.
 
     patch_teachgammon_rawmode.py <disk-dir>            report only
     patch_teachgammon_rawmode.py <disk-dir> --apply    write it
@@ -25,8 +25,13 @@ written, so raw mode starts as the terminal's own options with echo off,
 which is all the program then changes.
 
   CMDS/GAMES/teachgammon  0x577e: moveq #31,d0 -> moveq #63,d0
+  CMDS/GAMES/backgammon   0x2970: moveq #31,d0 -> moveq #63,d0
 
-One byte.  Module header untouched; the CRC is recomputed.  Same shape as
+backgammon is the same code at the same frame offsets, and it is what
+teachgammon forks when you ask it to play -- so with only teachgammon
+patched, the lesson ran at full speed and the game at 50 baud.
+
+One byte each.  Module header untouched; the CRC is recomputed.  Same shape as
 tools/patch_head_close.py.
 """
 import os
@@ -37,6 +42,9 @@ PATCHES = {
     "CMDS/GAMES/teachgammon": [(0x5776,
                                 bytes.fromhex("41ee871443ee8794701f22d851c8fffc"),
                                 bytes.fromhex("41ee871443ee8794703f22d851c8fffc"))],
+    "CMDS/GAMES/backgammon": [(0x2968,
+                               bytes.fromhex("41ee871443ee8794701f22d851c8fffc"),
+                               bytes.fromhex("41ee871443ee8794703f22d851c8fffc"))],
 }
 
 

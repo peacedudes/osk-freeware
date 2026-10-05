@@ -6,6 +6,7 @@ animal|Rebuilt from its source with one change: the frame is one column narrower
 argproc_demo|Rebuilt from its source with 64K of memory; the build shipped before stopped with a stack overflow whatever it was given.
 ascii|Built here from Roland McGrath's source.
 atc|The `!' shell escape is left out; that key only redraws the screen.
+backgammon|One byte changed, the same fix as teachgammon's: its raw-mode terminal settings started from nothing rather than from your terminal's own, so it switched off your interrupt and quit keys and set the speed byte to 50 baud, which slowed its text to a crawl under an emulator that honours that byte.
 bash|Two one-byte fixes: a start-up crash on systems with more than 16 MB of memory (BASH_VERSION now reads 1.12.12), and a pipe that waited for ever in `cat file | head -n 1', because every open path was handed to the command rather than paths 0 to 2.
 bc|Its scanner now accepts CR as a line end as well as LF, so scripts written on this disk, piped input and its own maths library (bc -l) are no longer refused.
 bks|Named bks, the posting's archive name, because this disk's `bs' is Battleships. Its ESC shell escape does nothing here, since OS-9 reads ESC as end of file.
