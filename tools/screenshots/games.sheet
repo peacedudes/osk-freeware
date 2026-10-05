@@ -1212,10 +1212,11 @@ shot    zot
 size    60 80
 cap     Prints a line of text in one of fourteen animated styles: the
 cap     letters slide in from a side, bounce, sort themselves, or turn up
-cap     one at a time like a game-show board, and settle as the line.  Shown
-cap     as a strip, one line per frame, top to bottom: Expand text outward
-cap     (style 5), then zot -s, which names the fourteen styles; each name
-cap     arrives in its own style, and the list is shown as it ends.
+cap     one at a time like a game-show board, and settle as the line.  On
+cap     the terminal it all happens on that one line; here each step is
+cap     spread onto a line of its own, top to bottom.  First Expand text
+cap     outward (style 5), then zot -s, which names the fourteen styles,
+cap     each name arriving in its own style, shown as the list it ends on.
 try     zot -s
 frames
 run     zot -s=5 "That's one small step for man, one giant leap for mankind."
